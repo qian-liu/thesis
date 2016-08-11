@@ -71,7 +71,7 @@ In this way massive parallelism extending to thousands or millions of processors
 
 \begin{figure}
 \centering
-	\includegraphics[width=0.42\textwidth]{pics_icann/mesh_ctiff.jpg}
+	\includegraphics[width=0.7\textwidth]{pics_icann/mesh_ctiff.jpg}
 	\caption{SpiNNaker system diagram.
 	Each element represents one chip with local memory.
 	Every chip connects to its neighbours through the six bi-directional on-board links. }
@@ -113,7 +113,7 @@ Fig.~\ref{fig:conv} shows a typical convolutional connection between two layers 
 The repeated convolutional kernels are overlapped in the receptive fields of the input neurons. 
 \begin{figure}
 \centering
-	\includegraphics[width=0.42\textwidth]{pics_icann/conv.pdf}
+	\includegraphics[width=0.7\textwidth]{pics_icann/conv.pdf}
 	\caption{Each individual neuron in the convolution layer (right matrix) connects to its receptive field using the same kernel. The value of the kernel is represented by the synaptic weights between the connected neurons.}
 	\label{fig:conv}
 \end{figure}
@@ -124,7 +124,7 @@ A straight forward method of template matching is employed at first, followed by
 
 \begin{figure}
 \centering
-	\includegraphics[width=0.8\textwidth]{pics_icann/model1.pdf}
+	\includegraphics[width=0.9\textwidth]{pics_icann/model1.pdf}
 	\caption{Model 1. 
 	The retina input is convolved with Gabor filters in the second layer, and then shrinks the sizes in the pooling layer.
 	The templates are considered as convolution kernels in the last layer.
@@ -144,7 +144,7 @@ The templates are chosen by sampling the output of the pooling layer when given 
 
 \begin{figure}
 \centering
-	\includegraphics[width=0.8\textwidth]{pics_icann/gesture.pdf}
+	\includegraphics[width=0.9\textwidth]{pics_icann/gesture.pdf}
 	\caption{Templates of the five postures: `Fist',`Index Finger', `Victory Sign', `Full Hand' and `Thumb up'.}
 	\label{fig:template}
 \end{figure}
@@ -175,7 +175,7 @@ Only the real parts of the Gabor filters (see Fig.~\ref{fig:gabor}) are used as 
 
 \begin{figure}
 \centering
-	\includegraphics[width=0.8\textwidth]{pics_icann/gabor.pdf}
+	\includegraphics[width=0.9\textwidth]{pics_icann/gabor.pdf}
 	\caption{Real parts of the Gabor filters orienting four directions.}
 	\label{fig:gabor}
 \end{figure}
@@ -195,7 +195,7 @@ Therefore, a tracking layer plays an important role to find the most active regi
 
 \begin{figure}
 \centering
-	\includegraphics[width=0.8\textwidth]{pics_icann/model2.pdf}
+	\includegraphics[width=0.9\textwidth]{pics_icann/model2.pdf}
 	\caption{Model 2. 
 	The retina input convolves with Gabor filters in the second layer, and then shrinks the sizes in the pooling layer.
 	The following tracking layer finds the most active area of some fixed size, moves the posture to the centre and pushes the image to the trained MLP.
@@ -300,7 +300,7 @@ The integration layer is not necessary in a convolutional network, but is used h
 
 \begin{figure}
 \centering
-	\includegraphics[width=0.8\textwidth]{pics_icann/rateMatlab.pdf}
+	\includegraphics[width=\textwidth]{pics_icann/rateMatlab.pdf}
 	\caption{Neural responses with time of four experiments to the same recorded moving postures.
 	The recognition output is normalised to \mbox{[-1, 1]}.
 	Every point represents the highest response in a specific population (different colour) for a 30~ms frame.
@@ -434,7 +434,7 @@ More spikes are generated during the period when the preferred input posture is 
 
 \begin{figure}
 \centering
-	\includegraphics[width=0.8\textwidth]{pics_icann/rateSpiNN.pdf}
+	\includegraphics[width=\textwidth]{pics_icann/rateSpiNN.pdf}
 	\caption{Real-time neural responses of two experiments on SpiNNaker with time to the same recorded postures.
 	These two experiments only differ in input resolution.
 	The result of the high input resolution test is plotted the first with a sample frame of 30~ms; 
@@ -677,7 +677,7 @@ The trained weights are plotted in accordance with the positions of the decision
 %		\label{Fig:test}
 %		\includegraphics[width=0.48\textwidth]{testing}
 %	}
-	\includegraphics[width=0.8\textwidth]{pics_bench/fig6}
+	\includegraphics[width=0.9\textwidth]{pics_bench/fig6}
 	\caption{The (a) training and (b) testing model of the two-layered spiking neural network.}
 	\label{fig:model}
 \end{figure} 
@@ -936,7 +936,7 @@ The result provides a baseline for comparison with other SNN models and neuromor
 
 \begin{figure}[hbt!]
 	\centering
-	\includegraphics[width=0.6\textwidth]{pics_bench/fig8}
+	\includegraphics[width=0.7\textwidth]{pics_bench/fig8}
 	\caption{Energy usages of different network size both using NEST (blue) on a PC and SpiNNaker (black).}
 	\label{fig:energy}
 \end{figure}

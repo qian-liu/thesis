@@ -723,6 +723,421 @@ The main advantages of DBN comparing to multilayer perceptron (MLP) lie on the f
 %	Layer-wise fine-tuning only applies learning on one direction of connections, leaving the other direction unchanged until all the above layers tuned, which results in unbalanced tuning.
 	
 		What's more, practical learning is experience related to configure the parameters: such as penalty, momentum, different learning rate, and etc.
-\section{Methods}
-\section{Results}
+\section{Mapping trained DBN to SNN}
+As Chapter \ref{cha:Conv} stated, we mapped trained DBN to SNN.
+	\subsection{Training ReLU DBN}
+	It is exactly the same training method to make a RBM present a set of data.
+	Figure~\ref{Fig:recon_relu} shows a RBM consisting of 784 visible units and 600 hidden units reconstruct the input images for every $6,000$ updating steps.
+	There are $60,000$ training images in MNIST dataset and the batch size is 10 in this training, so each figure represents the reconstruction of each epoch during training.
+	
+	\begin{figure}[hbt]
+		\centering
+		\begin{subfigure}[t]{0.18\textwidth}
+			\includegraphics[width=\textwidth]{pics_sdbn/b10_epoc1.png}
+			\caption{epoc 1.}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.18\textwidth}
+			\includegraphics[width=\textwidth]{pics_sdbn/b10_epoc2.png}
+			\caption{epoc 2.}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.18\textwidth}
+			\includegraphics[width=\textwidth]{pics_sdbn/b10_epoc3.png}
+			\caption{epoc 3.}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.18\textwidth}
+			\includegraphics[width=\textwidth]{pics_sdbn/b10_epoc4.png}
+			\caption{epoc 4.}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.18\textwidth}
+			\includegraphics[width=\textwidth]{pics_sdbn/b10_epoc5.png}
+			\caption{epoc 5.}
+		\end{subfigure}\\
+		\begin{subfigure}[t]{0.18\textwidth}
+			\includegraphics[width=\textwidth]{pics_sdbn/b10_epoc6.png}
+			\caption{epoc 6.}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.18\textwidth}
+			\includegraphics[width=\textwidth]{pics_sdbn/b10_epoc7.png}
+			\caption{epoc 7.}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.18\textwidth}
+			\includegraphics[width=\textwidth]{pics_sdbn/b10_epoc8.png}
+			\caption{epoc 8.}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.18\textwidth}
+			\includegraphics[width=\textwidth]{pics_sdbn/b10_epoc9.png}
+			\caption{epoc 9.}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.18\textwidth}
+			\includegraphics[width=\textwidth]{pics_sdbn/b10_epoc10.png}
+			\caption{epoc 10.}
+		\end{subfigure}
+		\caption{
+			Reconstructed images using trained weights.
+		}
+		\label{Fig:recon_relu}
+	\end{figure}	
+	Using the same DBN architecture of Figure~\ref{Fig:case}, with greedy training only, the ReLU network performs 92.97\% on correct recognition, 7.03\% on wrong recognition and 0\% on unrecognised.
+	The training is with 5 epochs and 10 images per batch.
+	With the same configuration, sigmoid binary units reaches 53.94\%, 21.19\% and 25.36\% respectively for correct-, wrong- and non-recognition.
+	By applying fine tuning on the network, the performance of the ReLU remains the same while the sigmoid units behaves better: 56.76\%, 17.59\% and 25.64\%.
+	\subsection{Mapping to spiking DBN}
+
+	
+	\section{STDP on Spiking RBM~\cite{neftci2013event}}
+	
+	\subsection{Training Autoencoders}
+	%TODO rewording
+	Figure~\ref{fig:AE} shows a simplest architecture of an autoencoder, which is the same as a multilayer perceptron (MLP).
+	The only difference lies to the number of the output units, where an autoencoder has as many output neurons as the input.
+	In this example, the input layer feeds forward the data vector $\mathbf{v}$ to the hidden layer as weighted sum of the data, $\mathbf{net\_h}$.
+	Then the hidden units are activated by the input $\mathbf{net\_h}$ according to the activation function: $\mathbf{h}=\sigma(\mathbf{net\_h})$.
+	Finally, using the same approach the output of the network is generated, $\mathbf{v'}=\sigma(\mathbf{net\_v'})$, as the reconstruction of the input data.
+	Thus, autoencoders are trained without given target values, work as unsupervised learning models.	
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.4\textwidth]{pics_ae/AE.pdf}
+		\caption{A typical Autoencoder structure.}
+		\label{fig:AE}
+	\end{figure}
+	
+	%TODO why tied weights are good
+	Notice that the connections used in the example are tied weights.
+	\begin{equation}
+	h_j=\sigma(\sum_i v_i w^T_{ij})
+	\end{equation}
+	\begin{equation}
+	v'_j=\sigma(\sum_i h_i w_{ij})
+	\end{equation}
+	
+	Training an autoencoder is not different from backpropagation (BP) on an Multi-Layer Perceptrons(MLP).
+	The objective of training is to minimise the prediction error of an MLP, which measured as a loss function.
+	Accordingly, the loss function of an autoencoder can be described as:
+	\begin{equation}
+	L=\sum_{k=1}^{K}\|\mathbf{v}_{k}-\mathbf{v'}_{k}\|=\frac{1}{2}\sum_{k=1}^{K}(\mathbf{v}_{k}-\mathbf{v'}_{k})^{2}
+	\end{equation}
+	where k indicates the index of the training data $\mathbf{v}$, and each data vector $\mathbf{v}=\{v_0, v_1,...,v_N\}$ and its reconstruction $\mathbf{v'}=\{v'_0, v'_1,...,v'_N\}$ have N dimensions. 
+	
+	%TODO rewording
+	Backpropagation, an abbreviation for "backward propagation of errors", is a common method of training artificial neural networks used in conjunction with an optimization method such as gradient descent.
+	The method calculates the gradient of a loss function with respect to all the weights in the network.
+	The gradient is fed to the optimisation method which in turn uses it to update the weights, in an attempt to minimize the loss function:
+	\begin{equation}
+	\Delta W \propto -\frac{\partial L}{\partial W}.
+	\end{equation}
+	
+	Applying stochastic gradient descent (SGD), the true gradient of the weight matrix, $\Delta W$, is approximated by a gradient at a single example with iterations.
+	The reconstruction error $E_k$ of an input vector $\mathbf{v}_k$ is as given:
+	\begin{equation}
+	%	\begin{align*}
+	E_k = \frac{1}{2}(\mathbf{v}_k - \mathbf{v'}_k)^2,
+	%	\end{align*}
+	\end{equation}
+	and the gradient of the weight matrix is:
+	\begin{equation}
+	\Delta W \propto -\frac{\partial E_k}{\partial W}=-\eta \frac{\partial E_k}{\partial W},
+	\end{equation}
+	where $\eta$ is the learning rate.
+	
+	Since we use tied weights in the network, the weight tuning only needs to apply in the output layer.
+	\begin{equation}
+	\begin{aligned}
+	\Delta w_{ij} = -\eta \frac{\partial E_k}{\partial w_{ij}} &= -\eta \frac{\partial E_k}{\partial v'_j} \frac{\partial v'_j}{\partial net\_v'_j} \frac{\partial net\_v'_j}{\partial w_{ij}}, \textrm{ where} \\
+	\frac{\partial E_k}{\partial v'_j} &= \frac{\partial \frac{1}{2}(\mathbf{v}_k - \mathbf{v'}_k)^2}{\partial v'_j}= -(v'_j - v_j), \\
+	%	\frac{\partial v'_j}{\partial net\_v'_j} &= \begin{cases} 1, v'_j>0\\0, v'_j<=0\\ \end{cases}, \textrm{using ReLU,}\\
+	\frac{\partial v'_j}{\partial net\_v'_j} &= 1, \textrm{using Identify function,}\\
+	\frac{\partial net\_v'_j}{\partial w_{ij}} &= \frac{\partial h_i w_{ij}}{\partial w_{ij}} = h_i.
+	\end{aligned}
+	\end{equation}
+	Thus, the weight gradient is calculated as:
+	\begin{equation}
+	\Delta w_{ij} = \eta h_i(v'_j - v_j)
+	\end{equation}
+	
+	Examples of using an autoencoder with 10 input neurons and 10 hidden neurons: reconstruction the input data $\mathbf{v}$ where I) $v_i = 1$, II) $v_i = i/10$.
+	\begin{figure}
+		\centering
+		\begin{subfigure}[t]{0.4\textwidth}
+			\includegraphics[width=\textwidth]{pics_ae/exp1_weights_non.pdf}
+			\caption{Weights of Exp1}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.4\textwidth}
+			\includegraphics[width=\textwidth]{pics_ae/exp2_weights_non.pdf}
+			\caption{Weights of Exp2}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.4\textwidth}
+			\includegraphics[width=\textwidth]{pics_ae/exp1_recon_non.pdf}
+			\caption{Reconstruction of visible units in Exp1}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.4\textwidth}
+			\includegraphics[width=\textwidth]{pics_ae/exp2_recon_non.pdf}
+			\caption{Reconstruction of visible units in Exp2}
+		\end{subfigure}\\
+		\begin{subfigure}[t]{0.4\textwidth}
+			\includegraphics[width=\textwidth]{pics_ae/exp1_hid_non.pdf}
+			\caption{Output of hidden units in Exp1}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.4\textwidth}
+			\includegraphics[width=\textwidth]{pics_ae/exp2_hid_non.pdf}
+			\caption{Output of hidden units in Exp2}
+		\end{subfigure}
+		\caption{Weights and outputs of visible and hidden units change during training of the reconstruction tests. 
+			Experiments 1) 10 visible units fully connected to 10 hidden units with input data of all 1s; 2) same network fed with 10 values distribute linearly from 0.1 to 1.}
+	\end{figure}
+	
+	\subsection{Training Spiking Autoencoders}
+	ReSuMe\\
+	-Why it works stated in Maths.\\
+	-Figure to plot
+	
+	Experiments
+	\begin{figure}
+		\centering
+		\begin{subfigure}[t]{0.4\textwidth}
+			\includegraphics[width=\textwidth]{pics_ae/exp1_weights_s.pdf}
+			\caption{Weights of Exp1}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.4\textwidth}
+			\includegraphics[width=\textwidth]{pics_ae/exp2_weights_s.pdf}
+			\caption{Weights of Exp2}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.4\textwidth}
+			\includegraphics[width=\textwidth]{pics_ae/exp1_recon_s.pdf}
+			\caption{Reconstruction of visible units in Exp1}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.4\textwidth}
+			\includegraphics[width=\textwidth]{pics_ae/exp2_recon_s.pdf}
+			\caption{Reconstruction of visible units in Exp2}
+		\end{subfigure}\\
+		\begin{subfigure}[t]{0.4\textwidth}
+			\includegraphics[width=\textwidth]{pics_ae/exp1_recon_nons.pdf}
+			\caption{Reconstruction of visible units in Exp1}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.4\textwidth}
+			\includegraphics[width=\textwidth]{pics_ae/exp2_recon_nons.pdf}
+			\caption{Reconstruction of visible units in Exp2}
+		\end{subfigure}\\
+		\begin{subfigure}[t]{0.4\textwidth}
+			\includegraphics[width=\textwidth]{pics_ae/exp1_hid_s.pdf}
+			\caption{Output of hidden units in Exp1}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.4\textwidth}
+			\includegraphics[width=\textwidth]{pics_ae/exp2_hid_s.pdf}
+			\caption{Output of hidden units in Exp2}
+		\end{subfigure}\\
+		\begin{subfigure}[t]{0.4\textwidth}
+			\includegraphics[width=\textwidth]{pics_ae/exp1_hid_nons.pdf}
+			\caption{Output of hidden units in Exp1}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.4\textwidth}
+			\includegraphics[width=\textwidth]{pics_ae/exp2_hid_nons.pdf}
+			\caption{Output of hidden units in Exp2}
+		\end{subfigure}
+		\caption{Weights and firing rates of visible and hidden units change during training of the reconstruction tests of spiking neurons. 
+			Experiments 1) 10 visible units fully connected to 10 hidden units with Poisson spike trains of 100~Hz which lasted 100~ms; 2) same network fed with 10 Poisson spike trains of firing rate ranging from 10~Hz to 100~Hz.}
+	\end{figure}
+	\subsection{Problem}
+	Poisson noise make weights diverge.
+	Same Poisson data used in non-spiking tests.
+	\begin{figure}
+		\centering
+		\begin{subfigure}[t]{0.4\textwidth}
+			\includegraphics[width=\textwidth]{pics_ae/exp1_weights_noisy.pdf}
+			\caption{Weights of Exp1}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.4\textwidth}
+			\includegraphics[width=\textwidth]{pics_ae/exp2_weights_noisy.pdf}
+			\caption{Weights of Exp2}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.4\textwidth}
+			\includegraphics[width=\textwidth]{pics_ae/exp1_recon_noisy.pdf}
+			\caption{Reconstruction of visible units in Exp1}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.4\textwidth}
+			\includegraphics[width=\textwidth]{pics_ae/exp2_recon_noisy.pdf}
+			\caption{Reconstruction of visible units in Exp2}
+		\end{subfigure}\\
+		\begin{subfigure}[t]{0.4\textwidth}
+			\includegraphics[width=\textwidth]{pics_ae/exp1_hid_noisy.pdf}
+			\caption{Output of hidden units in Exp1}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.4\textwidth}
+			\includegraphics[width=\textwidth]{pics_ae/exp2_hid_noisy.pdf}
+			\caption{Output of hidden units in Exp2}
+		\end{subfigure}
+		\caption{Weights and outputs of visible and hidden units change during training fed with noisy inputs. 
+			Experiments 1) 10 visible units fully connected to 10 hidden units with noisy input data of all 1s; 2) same network fed with noisy values distribute linearly from 0.1 to 1.}
+	\end{figure}
+	
+	Decay learning rate.
+	\begin{figure}
+		\centering
+		\begin{subfigure}[t]{0.4\textwidth}
+			\includegraphics[width=\textwidth]{pics_ae/exp1_weights_noisy_decay.pdf}
+			\caption{Weights of Exp1}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.4\textwidth}
+			\includegraphics[width=\textwidth]{pics_ae/exp2_weights_noisy_decay.pdf}
+			\caption{Weights of Exp2}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.4\textwidth}
+			\includegraphics[width=\textwidth]{pics_ae/exp1_recon_noisy_decay.pdf}
+			\caption{Reconstruction of visible units in Exp1}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.4\textwidth}
+			\includegraphics[width=\textwidth]{pics_ae/exp2_recon_noisy_decay.pdf}
+			\caption{Reconstruction of visible units in Exp2}
+		\end{subfigure}\\
+		\begin{subfigure}[t]{0.4\textwidth}
+			\includegraphics[width=\textwidth]{pics_ae/exp1_hid_noisy_decay.pdf}
+			\caption{Output of hidden units in Exp1}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.4\textwidth}
+			\includegraphics[width=\textwidth]{pics_ae/exp2_hid_noisy_decay.pdf}
+			\caption{Output of hidden units in Exp2}
+		\end{subfigure}
+		\caption{Weights and outputs of visible and hidden units change during training using decayed learning rate. 
+			Experiments 1) 10 visible units fully connected to 10 hidden units with noisy input data of all 1s; 2) same network fed with noisy values distribute linearly from 0.1 to 1.}
+	\end{figure}
+	
+	Decay learning rate in SNN.
+	\begin{figure}
+		\centering
+		\begin{subfigure}[t]{0.4\textwidth}
+			\includegraphics[width=\textwidth]{pics_ae/exp1_weights_s_decay.pdf}
+			\caption{Weights of Exp1}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.4\textwidth}
+			\includegraphics[width=\textwidth]{pics_ae/exp2_weights_s_decay.pdf}
+			\caption{Weights of Exp2}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.4\textwidth}
+			\includegraphics[width=\textwidth]{pics_ae/exp1_recon_s_decay.pdf}
+			\caption{Reconstruction of visible units in Exp1}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.4\textwidth}
+			\includegraphics[width=\textwidth]{pics_ae/exp2_recon_s_decay.pdf}
+			\caption{Reconstruction of visible units in Exp2}
+		\end{subfigure}\\
+		\begin{subfigure}[t]{0.4\textwidth}
+			\includegraphics[width=\textwidth]{pics_ae/exp1_recon_nons_decay.pdf}
+			\caption{Reconstruction of visible units in Exp1}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.4\textwidth}
+			\includegraphics[width=\textwidth]{pics_ae/exp2_recon_nons_decay.pdf}
+			\caption{Reconstruction of visible units in Exp2}
+		\end{subfigure}\\
+		\begin{subfigure}[t]{0.4\textwidth}
+			\includegraphics[width=\textwidth]{pics_ae/exp1_hid_s_decay.pdf}
+			\caption{Output of hidden units in Exp1}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.4\textwidth}
+			\includegraphics[width=\textwidth]{pics_ae/exp2_hid_s_decay.pdf}
+			\caption{Output of hidden units in Exp2}
+		\end{subfigure}\\
+		\begin{subfigure}[t]{0.4\textwidth}
+			\includegraphics[width=\textwidth]{pics_ae/exp1_hid_nons_decay.pdf}
+			\caption{Output of hidden units in Exp1}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.4\textwidth}
+			\includegraphics[width=\textwidth]{pics_ae/exp2_hid_nons_decay.pdf}
+			\caption{Output of hidden units in Exp2}
+		\end{subfigure}
+		\caption{Weights and firing rates of visible and hidden units change during training of the reconstruction tests of spiking neurons. 
+			Experiments 1) 10 visible units fully connected to 10 hidden units with Poisson spike trains of 100~Hz which lasted 100~ms; 2) same network fed with 10 Poisson spike trains of firing rate ranging from 10~Hz to 100~Hz.}
+	\end{figure}
+	\section{Results}
+	\subsection{Trained weights}
+	AE automatically extracts features.
+	\begin{figure}
+		\centering
+		\begin{subfigure}[t]{0.9\textwidth}
+			\includegraphics[width=\textwidth]{pics_ae/weights_e0_1000.pdf}
+			\caption{Trained with 1000 Images}
+		\end{subfigure}\\
+		\begin{subfigure}[t]{0.9\textwidth}
+			\includegraphics[width=\textwidth]{pics_ae/weights_e0_60000.pdf}
+			\caption{Trained with 60000 Images}
+		\end{subfigure}	
+		\caption{Trained weights of MNIST training set.}
+	\end{figure}
+	
+	\subsection{Reconstruction}
+	AE reconstructs visible units.
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.7\textwidth]{pics_ae/recon_digit.pdf}
+		\caption{Reconstructions of a testing digit `2' using trained weights during training.}
+		\label{fig:recon}		
+	\end{figure}
+	\subsection{Classification Performance}
+	Compare CA of spiking AE with non-spiking continuous neurons. 
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.7\textwidth]{pics_ae/recog_comp.pdf}
+		\caption{Fast recognition with spiking neurons. Classification accuracy increases over presence period of an image.}
+		\label{fig:recog_comp}		
+	\end{figure}
+	
+	Fast classification.
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.7\textwidth]{pics_ae/recog_speed.pdf}
+		\caption{Fast recognition with spiking neurons. Classification accuracy increases over presence period of an image.}
+		\label{fig:recog_speed}		
+	\end{figure}
+	
+	
+	
+	
 \section{Summary}
+	As mentioned in the beginning of the Section, a DBN is a probabilistic model whose objective function differs from the RBMs.
+	It is not a easy problem to understand, so as the reason why include finding tuning into the whole procedure.
+	%	Discussions on mathematical explanation on difference of wake-sleep and contrastive wake-sleep algorithms.
+	
+	%	Layer-wise fine-tuning only applies learning on one direction of connections, leaving the other direction unchanged until all the above layers tuned, which results in unbalanced tuning.
+	
+	What's more, practical learning is experience related to configure the parameters: such as penalty, momentum, different learning rate, and etc.
+	\begin{itemize}
+			\item The maths explaining ReLU.	
+			\item why no bias
+			\item why fine tuning does not work
+			\item data-dependent mapping
+			\item the correct way the assess the mapping both for RBM and DBN.
+	\end{itemize}
+		
+	
+\section{Appendices}
+		\subsection{Derivation process of Equation~(\ref{equ:part})}
+		\label{app:part}
+		\begin{equation}
+		\begin{aligned}
+		\dfrac{\partial \log Z(\Theta)}{\partial \theta}
+		=&\frac{1}{Z(\Theta)}\dfrac{\partial Z(\Theta)}{\partial \theta}\\
+		=&\frac{1}{Z(\Theta)} \int \dfrac{\partial f(\mathbf{x} \mid \Theta)}{\partial \theta} \D \mathbf{x} \\
+		=&\frac{1}{Z(\Theta)} \int f(\mathbf{x} \mid \Theta) \frac{1}{f(\mathbf{x} \mid \Theta)} \dfrac{\partial  f(\mathbf{x} \mid \Theta)}{\partial \theta} \D \mathbf{x}\\
+		=& \int \frac{f(\mathbf{x} \mid \Theta) }{Z(\Theta)} \dfrac{\partial \log f(\mathbf{x} \mid \Theta)}{\partial \theta} \D \mathbf{x}\\
+		=& \int  p(\mathbf{x} \mid \Theta) \dfrac{\partial \log f(\mathbf{x} \mid \Theta)}{\partial \theta} \D \mathbf{x}\\
+		=&\left \langle \dfrac{\partial \log f(\mathbf{c} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{C} \sim p(\mathbf{x} \mid \Theta)}
+		\end{aligned}
+		\end{equation}
+		\subsection{Derivation process of Equation~(\ref{equ:RBM})  }
+		\label{app:RBM}
+		\begin{equation}
+		\begin{aligned}
+		\dfrac{\partial \hat{l} (\Theta \mid \mathbf{D})}{\partial \theta} 
+		& = \left \langle \dfrac{\partial \log f(\mathbf{d} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{V=D}} -\left \langle \dfrac{\partial \log f(\mathbf{v} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{V} \sim p(\mathbf{x} \mid \Theta)}  \\
+		& = \left \langle \dfrac{\partial \log \sum_{ \mathbf{h}} e^{-E(\mathbf{v}, \mathbf{h} \mid \Theta)}}{\partial \theta}\right \rangle_{\mathbf{V}} 
+		-\left \langle \dfrac{\partial \log \sum_{ \mathbf{h}} e^{-E(\mathbf{v}, \mathbf{h} \mid \Theta)} }{\partial \theta}\right \rangle_{\mathbf{V} \sim p(\mathbf{v} \mid \Theta)}  \\
+		& = \left \langle \sum_{ \mathbf{h}} \frac{e^{-E(\mathbf{v}, \mathbf{h} \mid \Theta)}}{\sum_{ \mathbf{h}} e^{-E(\mathbf{v}, \mathbf{h} \mid \Theta)}} \cdot \dfrac{\partial -E(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{V}} 
+		- \left \langle \sum_{ \mathbf{h}} \frac{e^{-E(\mathbf{v}, \mathbf{h} \mid \Theta)}}{\sum_{ \mathbf{h}} e^{-E(\mathbf{v}, \mathbf{h} \mid \Theta)}} \cdot \dfrac{\partial -E(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{V} \sim p(\mathbf{v} \mid \Theta)}  \\
+		& = \left \langle \sum_{ \mathbf{h}} \frac{p(\mathbf{v}, \mathbf{h} \mid \Theta)}{p(\mathbf{v} \mid \Theta)} \cdot \dfrac{\partial -E(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{V}} 
+		- \left \langle \sum_{ \mathbf{h}}  \frac{p(\mathbf{v}, \mathbf{h} \mid \Theta)}{p(\mathbf{v} \mid \Theta)} \cdot \dfrac{\partial -E(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{V} \sim p(\mathbf{v} \mid \Theta)}  \\
+		& = \left \langle \sum_{ \mathbf{h}} p( \mathbf{h} \mid \mathbf{v}, \Theta) \cdot \dfrac{\partial -E(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{V}} 
+		- \left \langle \sum_{ \mathbf{h}} p( \mathbf{h} \mid \mathbf{v}, \Theta) \cdot \dfrac{\partial -E(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{V} \sim p(\mathbf{v} \mid \Theta)}  \\
+		& = \left \langle \left \langle \dfrac{\partial -E(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{h} \sim p( \mathbf{h} \mid \mathbf{v}, \Theta)} \right \rangle_{\mathbf{V}}
+		- \left \langle \left \langle \dfrac{\partial -E(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{h} \sim p( \mathbf{h} \mid \mathbf{v}, \Theta)} \right \rangle_{\mathbf{V} \sim p(\mathbf{v} \mid \Theta)}  \\
+		& = \left \langle \dfrac{\partial -E(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{h} \sim p( \mathbf{h} \mid \mathbf{v}, \Theta), \mathbf{V}} 
+		- \left \langle \dfrac{\partial -E(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{v}, \mathbf{h} \sim p( \mathbf{v}, \mathbf{h} \mid  \Theta)}  \\
+		\end{aligned}
+		\end{equation}
