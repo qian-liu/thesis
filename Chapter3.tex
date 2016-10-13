@@ -1,7 +1,7 @@
-\chapter{Pattern-Based Recognition-Paper 1 \& 2}
+\chapter{Real-Time Pattern-Based Recognition on a Neuromorphic System}
 \label{cha:pattern}
 
-\section{Hard-wired Network Model}
+%\section{Hard-wired Network Model}
 To explore how brain may recognise objects, we have employed a biologically-inspired DVS silicon retina~\cite{lenero20113}, a good example of low-cost visual processing due to its event-driven and redundancy-reducing style of computation;
 and a SpiNNaker system~\cite{furber2014spinnaker}, which is a massive parallel computing platform aimed at real-time simulation of SNNs. 
 %SpiNNaker, as the back-end of the system, provides a flexible, event-driven mechanism for real-time simulation of SNNs, and is where the posture recogniser locates.
@@ -11,11 +11,11 @@ To match the image properties detailed earlier, the position, shape, size and tr
 To keep the task simple at first, the postures are of similar size and the goal is to recognise the shape of a hand with moving positions.
 Tracking the postures with a short memory will form part of the future work.
 
-Dynamic recognition takes advantage of the intrinsic temporal processing of SNNs which are receiving considerable attention for  undertaking vision processing.
+Dynamic recognition takes advantage of the intrinsic temporal processing of SNNs which are receiving considerable attention for undertaking vision processing.
 Pattern information can be encoded in the delays between the pre- and post-synaptic spikes since the spiking neurons are capable of computing radial basis functions (RBFs)~\cite{hopfield1995pattern}.
 Spatio-temporal information can also be stored in the exact firing time rather than relative delays~\cite{natschlager1998spatial}.
 
-\subsection{The Neuromorphic Platform}
+\section{The Neuromorphic Platform}
 \label{sec:np}
 The outline of the platform is illustrated in Fig.~\ref{fig:SysOverViewa}, where the hardware system is configured, controlled and monitored by the PC.
 %Fig.~\ref{fig:SysOverViewb} shows the combined hand posture recognition system; 
@@ -48,7 +48,7 @@ The photograph of the hardware platform, Fig.~\ref{fig:SysOverViewb}, shows that
 \label{fig:SysOverView}
 \end{figure}
 
-\subsubsection{Silicon Retina}
+\subsection{Silicon Retina}
 The visual input is captured by a DVS silicon retina, which is quite different from conventional video cameras.
 Each pixel generates spikes when its change in brightness reaches a defined threshold.
 Thus, instead of buffering video into frames, the activity of pixels is sent out and processed continuously with time.
@@ -56,7 +56,7 @@ The communication bandwidth is therefore optimised by sending activity only, whi
 The level of activity depends on the contrast change; pixels generate spikes faster and more frequently when they are subject to more active change.
 The sensor is capable of capturing very fast moving objects (e.g., up to 10 K rotations per second), which is equivalent to 100 K conventional frames per second~\cite{lenero20113}.
 
-\subsubsection{SpiNNaker System}
+\subsection{SpiNNaker System}
 The SpiNNaker project's architecture mimics the human brain's biological structure and functionality. 
 This offers the possibility of utilizing massive parallelism and redundancy, as the brain, to provide resilience in an environment of unreliability and failure of individual components.
 
@@ -100,14 +100,14 @@ The boards can be connected together to form larger systems using high-speed ser
 %	\label{fig:48node}
 %\end{figure}
 
-\subsubsection{Interfacing AER Sensors}
+\subsection{Interfacing AER Sensors}
 Spikes from the silicon retina are injected directly into SpiNNaker via a SPARTAN-6 FPGA board that translates them into a SpiNNaker compatible AER format~\cite{appnote8}. 
 
 From a neural modelling point of view, interfacing the silicon retina is performed using pyNN~\cite{davison2008pynn}. 
 The retina is configured as a spike source population that resides on a virtual SpiNNaker chip, to which an AER sensor's spikes are directed, thus abstracting away the hardware details from the user\cite{galluppi2012real}.
 Besides the retina, we have successfully connected an AER based silicon cochlea~\cite{5537164} to SpiNNaker for a sound localisation task~\cite{6706931}.
 
-\subsection{Methods}
+\section{Methods}
 The convolutional network is well-known as an example of a biologically-inspired model. 
 Fig.~\ref{fig:conv} shows a typical convolutional connection between two layers of neurons. 
 The repeated convolutional kernels are overlapped in the receptive fields of the input neurons. 
@@ -206,7 +206,7 @@ Therefore, a tracking layer plays an important role to find the most active regi
 %Since the size of the input image of the MLP training is fixed and the position is centered, tracking plays a very important role to spot the valid region. 
 %Tracking is naturally embedded in the pooling layer of the convolutional network, for the active neurons directly point out the lively receptive field. 
 
-\subsection{Results}
+\section{Results}
 
 In order to evaluate the cost and performance trade-offs in optimizing the number of neural components, both the convolutional models described above are tested at different scales. 
 Five videos of every posture are captured from the silicon retina in AER format, all of similar size and moving clock-wise in front of the retina. 
@@ -385,8 +385,8 @@ The smaller network uses only 1/10th the number of neurons and 1/50th the number
 	\label{tbl:rsl}
 \end{table}
 
-\subsection{Real-Time Recognition on SpiNNaker}
-\subsubsection{Live Recognition}
+\section{Real-Time Recognition on SpiNNaker}
+\subsection{Live Recognition}
 We implemented the prototype of the dynamic posture recognition system on SpiNNaker using LIF neurons. 
 The input retina layer consists of 128$\times$128 neurons; 
 each Gabor filter has 112$\times$112 valid neurons, since the kernel size is 17$\times$17; 
@@ -424,7 +424,7 @@ All the supporting demonstrative videos can be found on YouTube~\cite{video1, vi
 \label{fig:live}
 \end{figure}
 
-\subsubsection{Recognition of Recorded Data}
+\subsection{Recognition of Recorded Data}
 To compare with the results of the experiments carried out with Matlab (in Section~\ref{sec:exp}), the same recorded retinal data is conducted into SpiNNaker.
 Only Model 1 is tested on the neuromorphic hardware platform, since tracking is still need to investigate using SNN (for Model 2) in the future. 
 The recorded data is presented as spike source array in the system with 128$\times$128 input (see Fig.~\ref{fig:ssa}) while the data is forwarded to a sub-sampling layer of 32$\times$32 resolution in the system of the smaller network (see Fig.~\ref{fig:ssa32}). 
@@ -587,357 +587,3 @@ Between the two network scales there is also a smaller gap in recognition rates 
 	\end{tabular}
 	\label{tbl:srr}
 \end{table}
-
-\section{Plasticity in Learning Patterns}
-The first case study is a simple two-layer network where the input neurons receive Poisson spike trains from the dataset and form a fully connected network with the decision neurons.
-There is at least one decision neuron per digit to classify a test input.
-The neuron with highest output firing rate classifies a test image as the digit it represents.
-The model utilises LIF neurons, and the parameters are all biologically valid, see the listed values in Table~\ref{tbl:pynnSetting}.
-The LIF neuron model follows the membrane potential dynamics:
-
-\begin{equation}
-\tau_m \frac{\D V}{\D t}=V_{rest} - V + R_{m} I_{syn}(t) ~~~,
-\label{eq:LIF}
-\end{equation}
-
-where $\tau_m$ is the membrane time constant, $ V_{rest} $ is the resting potential, $ R_{m} $ is the membrane resistance and $ I_{syn} $ is the synaptic input current.
-In PyNN, $ R_{m} $ is presented by $ R_{m}=\tau_m/C_{m} $, where $C_{m} $ is the membrane capacitance.
-A spike is generated when the membrane potential goes beyond the threshold, $ V_{thresh} $ and the membrane potential then resets to $V_{reset}$.
-In addition, a neuron cannot fire within the refractory period, $ \tau_{refrac} $, after generating a spike.
-
-The connections between the input neurons and the decision neurons are plastic, so the connection weights can be modulated during training with a standard STDP learning rule.
-The model is described with PyNN and the code is published in
-%\footnote {https://github.com/qian-liu/benchmarking/tree/master/code/case\_study\_I}
-the Github repository with the dataset.
-As a potential benchmark, this system is composed of simple neural models, trained with standard learning rules and written in a standard SNN description language. These characteristics allow the same network to be tested on various simulators, both software- and hardware-based.
-
-Both training and testing exploit the Poissonian subset of the NE15-MNIST dataset.
-This makes performance evaluation on different simulators possible with the unified spike source array provided by the dataset. 
-In terms of this case study, the performance of the model was evaluated with both software simulation [on NEST~\cite{gewaltig2007nest}] and hardware implementation (on SpiNNaker).
-
-In order to fully assess the performance, different settings were configured on the network, such as network size, input rate and test image duration.
-For simplicity of describing the system, one standard configuration is set as the example in the following sections.
-
-\begin{table}[hbbp]
-	\centering
-	\caption{\label{tbl:pynnSetting}Parameter setting for the current-based LIF neurons using PyNN.}
-	\bgroup
-	\def\arraystretch{1.4}
-	\begin{tabular}{c c c}
-		%\hline
-		Parameters & Values & Units \\
-		\hline
-		cm & 0.25 & nF	\\
-		%\hline
-		tau\_m & 20.0 & ms\\
-		%\hline
-		tau\_refrac & 2.0 & ms\\
-		%\hline
-		%  tau\_syn\_E & 1.0 & ms\\
-		%  %\hline
-		%  tau\_syn\_I & 1.0 & ms\\
-		%  %\hline
-		v\_reset & -70.0 & mV\\
-		%\hline
-		v\_rest & -65.0 & mV\\
-		%\hline
-		v\_thresh & -50.0 & mV\\
-		%\hline
-	\end{tabular}
-	\egroup
-\end{table}
-
-\subsection{Methods}
-\subsubsection{Training}
-There are two layers in the model: 28$\times$28 input neurons fully connect to 100 decision neurons.
-Each decision neuron responds to a certain digit template.
-In the standard configuration, there are 10 decision neurons responding to each digit with slightly different templates.
-Those templates are embedded in the connection weights between the two layers.
-Figure~\ref{fig:model}(a) shows how the connections to a single decision neuron are tuned.
-
-The training set of $60,000$ hand written digits are firstly classified into 100 classes, 10 subclasses per digit, using K-means clusters.
-K-means clustering separates a set of data points into K subsets (clusters) according to the Euclidean distance between them.
-Therefore each cluster tends to form a boundary within which the data points are near to each other.
-In this case, all the images of the same digit (a class) are divided into 10 subclasses by assigning K=10.
-Then the images in a certain subclass are used to train a template embedded in the synaptic weights to the corresponding decision neuron.
-The firing rates of the input neurons are assigned linearly according to their intensities and the total firing rate of all the 28$\times$28 input neurons is normalised to $2,000$~Hz, that is, the sum of the firing rates of all of the input neurons is $2,000$~Hz.
-All the images together are presented for $18,000$~s (about 300~ms per image) during training and at the same time a teaching signal of 50~Hz is conveyed to the decision neuron to trigger STDP learning.
-The trained weights are plotted in accordance with the positions of the decision neurons in Figure~\ref{fig:model}(b).
-
-\begin{figure}[thb!]
-	\centering
-%	\subfloat[Training model of a single decision neuron.]{
-%		\label{Fig:train}
-%		\includegraphics[width=0.48\textwidth]{training}
-%	} \\
-%	
-%	\centering
-%	
-%	\subfloat[Testing model of the spiking neural network.]{
-%		\label{Fig:test}
-%		\includegraphics[width=0.48\textwidth]{testing}
-%	}
-	\includegraphics[width=0.9\textwidth]{pics_bench/fig6}
-	\caption{The (a) training and (b) testing model of the two-layered spiking neural network.}
-	\label{fig:model}
-\end{figure} 
-
-\subsubsection{Testing}
-After training the weights of the plastic synapses are set to static, keeping the state of the weights at the last moment of training.
-%The synaptic plasticity holds a hard limit of 0 on the weight strength during training, since the excitatory synapses cannot change into inhibitory.
-The weak weights were set to inhibitory connections with identical strengths in testing.
-The negative connections reduced the output firing rates while keeping a good classification ability.
-The feed-forward testing network is shown in Figure~\ref{fig:model}(b) where Poisson spike trains are generated the same way as in the training with a total firing rate of $2,000$~Hz per image.
-The input neurons convey the same spike trains to every decision neuron through its responding trained synaptic weights. 
-Every test image ($10,000$ images in total) is presented once and lasts 1~s with a silence of 200~ms between consecutive images.
-The output neuron with the highest firing rate determines which digit was recognised.
-Taking the trained weights from the NEST simulation, the accuracy of the recognition on NEST reaches 90.03\% with the standard configuration, while the result drops slightly to 89.97\% using SpiNNaker.
-When both trained and tested on SpiNNaker the recognition accuracy is 87.41\%, and with these weights used in NEST the result is 87.25\%. 
-The CA drops less than $0.06\%$ on SpiNNaker compared to NEST due to the limited fast memory and the necessity for fixed-point arithmetic on SpiNNaker to ensure real-time operation.
-It is inevitable that numerical precision will be below IEEE double precision at various points in the processing chain from synaptic input to membrane potential.
-The main bottleneck is currently in the ring buffer where the total precision for accumulated spike inputs is 16-bit, meaning that individual spikes are realistically going to be limited to 11- to 14-bit depending upon the probabilistic headroom calculated as necessary from the network configuration and spike throughput~\cite{Hopkins2015Accuracy}.
-
-
-\subsection{Results}
-Evaluation starts from the model-level, focusing on the spike-based recognition analysis.
-Later in Section~\ref{subsec:model}, CA, response time (latency) and the total number of synaptic events are the main concerns when assessing the recognition performance.
-In our experiment, two sets of weights were applied: the original STDP trained weights, and scaled-up weights which are 10 times stronger.
-The spike rates of the test samples were also modified, ranging from 10 to $5,000$~Hz.
-
-We found that accuracy depends largely on the time each sample is exposed to the network and the sample spike rate (Figure~\ref{fig:assess}).
-%Furthermore, the latency of the output of the decision neurons is affected by both the spiking rate and connection weights.
-Figure~\ref{fig:assess}(a) shows that the CA is better as exposure time increases. The longer an image is presented, the more information is gathered by the network, so the accuracy climbs.
-Classification accuracy also increases when input spike rates are augmented (Figure~\ref{fig:assess}(b)).
-Given that the spike trains injected into the network are more intense, the decision neurons become more active, and so does the output disparity between them.
-Nonetheless, it is important to know that these increases in CA have a limit, as is shown in the aforementioned figures.
-With stronger weights, the accuracy is much higher when the input firing rate is less than $2,000$~Hz.
-
-
-The latency of an SNN model is the result of the input firing rates and the synaptic weights.
-We measured the latency of each test by getting the time difference of the first spike generated by any decision neuron in the output layer and the first spike of the input layer.
-As the input firing rates grow, there are more spikes arriving at the decision neurons, triggering them to spike sooner.
-A similar idea applies to the influence of synaptic weights.
-If stronger weights are taken, then the membrane potential of a neuron reaches its threshold earlier.
-Figure~\ref{fig:assess}(d) indicates that the latency is shortened with increasing input firing rates with both the original and scaled-up weights.
-When the spiking rate is less than $2,000$~Hz, the network with stronger weights has a much shorter latency.
-As long as there are enough spikes to trigger the decision neurons to spike, increasing the test time will not make the network respond sooner~(Figure~\ref{fig:assess}(c)).
-
-As the default configuration of the SNN model, each input neuron connects to all of the 100 decision (output) neurons with both excitatory and inhibitory projections.
-Thus the synaptic events happening in the inter-layer connections are 200 times the total input firing rate.
-Figure~\ref{fig:assess}(e) shows the stable Sopbs of the entire network when the input firing rate is held at 2000~Hz and the test time increases.
-The firing rates of the output layer are relatively small, and are 0.1\% and 1.5\% of the total Sopbs using original and scaled-up weights respectively.
-The variations in the total Sopbs lie in the firing rate of the output layers only, and the stronger connections lead to the higher firing rates.
-Likewise, the output neurons are more active with stronger connection weights, and the gap widens as the input firing rate increases, see Figure~\ref{fig:assess}(f).
-Although the variations in the Sopbs climbs to around 8~kHz, it is not obvious in the figure because the output firing rates are relatively low and therefore so are the differences.
-\begin{figure}[htb!]
-	\centering
-%	\subfloat[Accuracy changes against test time.]{
-%		\label{fig:acc_time}
-%		\includegraphics[width=0.25\textwidth]{images/acc_dur}
-%	}
-%	\subfloat[Accuracy changes against firing rate.]{
-%		\label{fig:acc_rate}
-%		\includegraphics[width=0.25\textwidth]{images/acc_rate}
-%	}
-%	\\
-%	\subfloat[Latency stablises against test time.]{
-%		\label{fig:lat_time}
-%		\includegraphics[width=0.25\textwidth]{images/lat_dur}
-%	}
-%	\subfloat[Latency changes against firing rate.]{
-%		\label{fig:lat_rate}
-%		\includegraphics[width=0.25\textwidth]{images/lat_rate}
-%	}
-%	\\
-%	\subfloat[Event rate stablises against test time.]{
-%		\label{fig:eve_time}
-%		\includegraphics[width=0.25\textwidth]{images/time-event}
-%	}
-%	\subfloat[Event rate against firing rate.]{
-%		\label{fig:eve_rate}
-%		\includegraphics[width=0.25\textwidth]{images/rate-event}
-%	}
-	\includegraphics[width=0.8\textwidth]{pics_bench/fig7_m}
-	\caption{Accuracy, response time (latency) and synaptic event rate (Sopbs) change over test time and input firing rate per test image.
-	The test time is the duration of the presence of a single test image, and the input firing rate is the summation of all the input neurons.
-	Original trained weights are used (circles in blue) as well as the scaled up ($\times10$) weights (triangles in black). }
-	\label{fig:assess}
-\end{figure}
-
-The network size not only influences the accuracy of a model but also the time taken for simulation on specific platforms, thus impacting the energy usage on the hardware.
-For the purpose of comparing the accuracy, simulation time, number of synaptic events and energy usage, different configurations have been tested on NEST (working on a PC with CPU: i5-4570 and 8G memory) and on SpiNNaker.
-The same experiment was run 4~times with different random seeds; the average performance estimation is listed in Table~\ref{tbl:compare}.
-The input rates in all of the tests are $5,000$~Hz, and each image is presented for 1~s with 0.2~s silence in between.
-The configurations only differ in the number of templates (subclasses/clusters) per digit.
-%Thus the network size varies according to the number of neurons in the decision layer where each neuron represents a subclass of a digit and the template is embedded in the synaptic weights connecting from the input layer to the decision neuron.
-
-
-As the network size grows there are more decision neurons and synapses connecting to them, thus the simulation time on NEST increases.
-On the other hand, SpiNNaker works in real (biologically real) time and the simulation time becomes shorter than the NEST simulation when $1,000$ patterns per digit ($1,000$ decision neurons per digit) are used.
-%The Thermal Design Power (TDP) usage of all four processors of i5-4570 actively operating at base frequency is 84~W\footnote{\url{http://ark.intel.com/products/75043/Intel-Core-i5-4570-Processor-6M-Cache-up-to-3_60-GHz}}.
-%NEST was run fully active on a single core, and only OS related operations were on the other cores.
-The power usage is estimated by subtracting the power usage of idle OS operation from the usage running the simulation.
-A complete SNN simulation contains three main stages: pre-processing (such as network building and input data generation), simulation and post-processing (for example, extracting recorded data).
-\cite{Diamond2016comparing} compared the power usage on three hardware platform in detail of all the stages while this paper focuses on the simulation part.
-%Thanks to PyNN we can accurately get the start and the end of the simulation slot thus to measure the simulation time and its energy use.
-The energy use is calculated as the product of the simulation time and the power use.
-Even with the smallest network, SpiNNaker wins in the energy cost comparison, see Figure~\ref{fig:energy}.
-Among different network configurations, the model with 500 decision neurons (50 clusters per digit) reaches the highest recognition rate of 92.99\% on average having a latency of 13.82~ms mean and 2.96~ms standard deviation.
-And there are standard deviations of 2.57\% on CA and of 1.17~ms on the latency over 10 testing digits.
-%Except for the model latency which measures the time difference between the first input spike and the first spike of any decision neuron, we also estimated the time difference for every digit.
-%The average of each digit's mean latency is 15.55~ms with a 0.39~ms standard deviation over digits.
-The total number of synaptic events is around $4.17$M Sopbs, where only 7K spikes are generated in the output layer. 
-The NEST simulation costs 767.67~s on average for the entire $12,000$~s biological-time test, 20~W in power use on the PC and $15.35$~KJ of energy, while SpiNNaker works in real time using $4.92$~KJ of energy at a power of 0.41~W (see Table~\ref{tbl:compare}).
-%Providing the number of synaptic events (Sopbs) respectively for all the configurations and the simulation time, the energy per synaptic event on a hardware platform can be calculated (see Table~\ref{tbl:compare}): 
-%306~nJ/SE running NEST on a PC, and 98~nJ/SE on SpiNNaker.
-The result provides a baseline for comparison with other SNN models and neuromorphic hardwares, and no optimisation is applied.
-\begin{table}[h]
-	\caption{Comparisons of NEST (N) on a PC and SpiNNaker (S) performance averaged over 10 trials.}
-	\begin{center}
-    \bgroup
-    \def\arraystretch{1.4}
-		\begin{tabular} {l| c  c c c c c}
-		%First line
-		\multicolumn{2}{c}{Subclasses per digit} 
-		& 1 & 10 & 50 & 100 & 1000 \\
-		\hline
-		%Response latency
-		\multicolumn{2}{c}{Avg. response}
-		& \multirow{2}{*}{18.03} %18.03 $\pm0.22$
-		& \multirow{2}{*}{14.25} %14.25 $\pm0.06$ 
-		& \multirow{2}{*}{13.82} %13.82 $\pm0.05$ 
-		& \multirow{2}{*}{13.57} %13.57 $\pm0.05$ 
-		& \multirow{2}{*}{13.15} %13.15 $\pm0.05$
-		\\
-		\multicolumn{2}{c}{latency (ms)}
-		& & & & &
-		\\
-		%Synaptic events
-    \multicolumn{7}{c}{\vspace*{-3mm}}\\
-		\multicolumn{2}{c}{Avg. synaptic}
-		& \multirow{2}{*}{$83,691.48$}
-		& \multirow{2}{*}{$835,274.98$}
-		& \multirow{2}{*}{$4,173,392.03$}
-		& \multirow{2}{*}{$8,343,559.69$}
-		& \multirow{2}{*}{$83,385,785.67$}
-		\\	
-		\multicolumn{2}{c}{events (Sopbs)}
-		& & & & &
-		\\
-    \multicolumn{7}{c}{\vspace*{-3mm}}\\
-		%Accuracy (\%)
-		Accuracy
-		& N 
-		& 79.63$\pm0.23$
-		& 91.42$\pm0.13$ 
-		& 92.99$\pm0.15$
-		& 87.05$\pm0.21$
-		& 89.63$\pm0.08$
-		\\
-		(\%)
-		& S
-		& 79.57$\pm0.31$
-		& 91.39$\pm0.09$
-		& 92.99$\pm0.08$
-		& 87.00$\pm0.26$
-		& 89.58$\pm0.24$
-		\\
-		%Simulation time (s)
-    & &\multicolumn{5}{c}{\vspace*{-4mm}}\\
-		Avg. SIM
-		& N 
-		& 445.09
-		& 503.21
-		& 767.67
-		& $1,131.09$
-		& $12,027.75$
-		\\
-		time (s)
-		& S
-		& \multicolumn{5}{c}{$12,000$}
-		\\
-		%Power cost (W)
-    & &\multicolumn{5}{c}{\vspace*{-4mm}}\\
-		Power
-		& N 
-		& 20
-		& 20
-		& 20
-		& 19
-		& 17
-		\\
-		(W) %cost
-		& S
-		& 0.38 
-		& 0.38 
-		& 0.41
-		& 0.44
-		& 1.50
-		\\
-	    %Energy cost (W)
-    & &\multicolumn{5}{c}{\vspace*{-4mm}}\\
-		Energy
-		& N 
-		& 8.90
-		& 10.06
-		& 15.34
-		& 21.50
-		& 208.25
-		\\
-		(KJ) %cost 
-		& S
-		& 4.56
-		& 4.56
-		& 4.92
-		& 5.28
-		& 18.00
-		\\
-%		Energy
-%		& N 
-%		& $8,864$
-%		& $1,004$
-%		& 306
-%		& 215
-%		& 204
-%		\\
-%		(nJ/SE) %cost 
-%		& S
-%		& $4540$
-%		& $ 455 $
-%		& $ 98 $
-%		& $ 53 $
-%		& $ 18 $
-%		\\
-			
-%		\begin{tabular} {r|c|c|c|c|c|c|c|c|c|c}
-%			Subclasses
-%			& Response
-%			& Synaptic
-%			&\multicolumn{2}{c|}{Accuracy (\%)}  &\multicolumn{2}{c|}{Simulation (s)}
-%			&\multicolumn{2}{c|}{Power Use (W)}
-%			&\multicolumn{2}{c}{Energy (nJ/SE)}   \\
-%			\cline{4-11}
-%			per digit
-%			& latency (ms)
-%			& events (sopbs)
-%			& N & S & N & S & N & S & N & S\\
-%			\hline
-%			1 & 18.03 & 429.78 & 79.63$\pm0.23$ & 79.57$\pm0.31$ & 445.09 & \multirow{5}{*}{$12,000$} & 20 & 0.38 & $8,864$  & $4,540$\\
-%			10 & 14.25 & 2329.98 & 91.42$\pm0.13$ & 91.39$\pm0.09$ & 503.21 &   & 20  & 0.38 & 1,004 & 455 \\
-%			50 & 13.82 & 8087.43 & 92.99$\pm0.15$ & 92.99$\pm0.08$ & $767.67$ &   & 20  & 0.41 & 306 & 98\\
-%			100 & 13.57 & 12271.63 & 87.05$\pm0.21$ & 87.00$\pm0.26$ & $1,131.09$ &   &  19 & 0.44 & 215 & 53\\
-%			1000 & 13.15 & 62942.80 & 89.63$\pm0.08$ & 89.58$\pm0.24$ & $120,27.75$ &   &  17  & 1.50 & 204 & 18\\
-%			
-		\end{tabular}
-    \egroup
-		\label{tbl:compare}
-	\end{center}
-\end{table}
-
-\begin{figure}[hbt!]
-	\centering
-	\includegraphics[width=0.7\textwidth]{pics_bench/fig8}
-	\caption{Energy usages of different network size both using NEST (blue) on a PC and SpiNNaker (black).}
-	\label{fig:energy}
-\end{figure}
-\section{Summary}

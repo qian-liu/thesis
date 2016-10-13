@@ -1,23 +1,72 @@
 \chapter{Introduction}
 \label{cha:intro}
 
-\begin{figure}[thb!]
+%Problem, motivation and significance
+%TODO the origin of neuromorphic computing
+%Neuromorphic computing has lead towards the development of biologically-inspired computer architectures 
+Promising advances in computing power and machine learning have equipped computers with a rapid growing performance on more and more cognitive tasks, such as recognising objects~\cite{deng2009imagenet} and playing GO~\cite{silver2016mastering}). 
+These tasks were once only dominated by human intelligence and solved by biological neurons in the brain.
+However, humans and many other animals still win against computers in general practical tasks, e.g. vision, and outperform in terms of size and energy cost over several magnitude.
+For instance, AlphaGO~\cite{silver2016mastering} was burning 1~MW of power on its 1920 CPUs and another 280 GPUs when playing the game with one of the best human players whose brain only cost about 20~W.
+Although it is still far from understanding the brain thoroughly, the performance gap of computation in biological nervous system and in computer is believed to lie in the fundamental computing units and the way they act.
+Computers conduct Boolean logic and precise digital operations based on synchronous clocks while nervous systems consist of distributed, event-driven, hybrid analog/digital, unreliable components~\cite{indiveri2009artificial}.
+The impressive disparities in cognitive capabilities and energy consumption drives the research into biologically-inspired computer design.
+
+
+
+\begin{figure}[tbh!]
 	\centering
 	\includegraphics[width=0.8\textwidth]{pics_intro/intro1.pdf}
 	\caption{The story line of the thesis.}
 	\label{fig:intro}
 \end{figure}
+%which may alternate conventional Von Neumann and rival the Human brain in terms of energy efficiency and cognitive capabilities.
+%Two aims
+Neuromorphic engineering (NE) or neuromorphic computing was proposed by Carver Mead in the late 1980s~\cite{Mead:1989:AVN:64998} to build analogue circuits that mimic the biological neural cells and the architecture of the nervous system using very-large-scale integration (VLSI) technology.
+Figure~\ref{fig:intro} indicates the objectives of NE: 1) for neuroscientists to understand the brain by modelling and simulating the activities of the biological neurons; and 2) for engineers to build brain-like machines by applying biological features to computers.
+This is a two-way process whereby engineers learn principles from
+neuroscience to incorporate into their models, and in return
+neuroscientists learn from the results those engineers get from
+their models. In some cases the goal is very close reproduc-
+tion of detailed biological phenomena; in others the goal is to
+apply more abstract biological principles to the solution of
+engineering problems.
 
-%Problem, motivation and significance
-%TODO the origin of neuromorphic computing
-Promising advances in computing power and machine learning have empowered computers with a rapid growing performance on more and more cognitive tasks, such as recognising objects and playing GO. However, this beat-human performance is supported by huge amount (for example 1~MW on AlphaGO~\cite{silver2016mastering}) of energy use comparing to an average human brain, 20~W.
-The impressive disparities of several magnitude in energy consumption drives the research into biologically-inspired computer design.
-With the widespread introduction over the last half cen
-tury of the stored-programme computer into all areas of
-human activity we have an alternative information processing
-paradigm against which the brain may be compared, yet
-despite superficial similarities in their roles as information
-processing and control systems, it is clear that the principles
+
+%Although there are a number of neuromorphic platforms available for large-scale SNN simulations,
+During the last decade, the NE community has made
+substantial progress by designing hybrid analog/digital
+circuits that implement silicon neurons and synapses [7, 38,
+66], silicon retinas, and cochleas [13, 43], and by devel-
+oping the technology for constructing distributed multi-
+chip systems of sensors and neuronal processors that
+operate asynchronously and communicate using action-
+potential-like signals (or spikes) [17, 49]. A number of
+research groups worldwide are already developing large
+scale (in terms of component count) neuromorphic systems
+[59, 60]. 
+
+%how to operate these brain-like machines to be competent in cognitive applications still remains unsolved.
+Until now, however, the neuromorphic
+approach has been restricted to relatively simple circuits and special
+ized functions,
+Today, however, NE stands before a large con-
+ceptual challenge that must be met before there will be
+significant progress toward an age of genuinely intelligent
+neuromorphic machines. The challenge is to bridge the gap
+from reactive systems to ones that are cognitive in quality.
+In NE, as in neuroscience and computer science, we
+understand very little about how to configure these large
+systems to achieve the sophistication of
+
+
+
+%While Deep Learning within the research of ANNs has dominated the state-of-the-art solutions on cognitive tasks.
+
+
+%SNN
+%To catch up with ANNs' beat-human performance, this work took object recognition as the cut-in point to explore the capability and learning ability of SNNs.
+it is clear that the principles
 of operation of the brain and the computer are very different.
 While computers excel at speed and precision, the brain still
 wins in coping with novelty, complexity and ambiguity, and
@@ -80,26 +129,7 @@ be applied in a practical engineered system.
 %To receive further benefits to build energy-efficient machines with cognitive intelligence, neuromorphic computing (or neuromorphic engineering) carries out biologically-plausible neural models instead CPU-like logic and synchronous operations by mimicking the brain.
 
 %TODO Short history with inital aim
-Carver Mead proposed in the late 1980s (Mead,1989) and that is known as neuromorphic engineering. Mead’s idea was to use very-large-scale integration (VLSI) technology to build electronic circuits that mimic the architecture of the nervous system.
-The term neuromorphic engineering was coined by
-Carver Mead in the late 1980s to describe Very Large Scale
-Integration (VLSI) systems comprising analog circuits and
-built to mimic biological neural cells and architectures
-. Since then, NE has been attempting to identify neural
-types of computational principles, by implementing bio-
-physically realistic models of neural systems in VLSI
-technology to reproduce the same physics of computation.
-The first electronic devices inspired by this concept were analog circuits that exploited the sub-threshold properties of transistors to emulate the biophysics of real neurons.
-Today the term neuromorphic refers to any analog, digital, or hybrid VLSI system whose design principles are inspired by those of biological neural systems (Indiveri et al., 2011).
 
-Neuromorphic engineering combines the architectural and computa
-tional principles of systems neuroscience with semiconductor electron
-ics, with the aim of building efficient and compact devices that mimic the
-synaptic and neural machinery of the brain. The energy consumptions
-promised by neuromorphic engineering are extremely low, comparable
-to those of the nervous system. Until now, however, the neuromorphic
-approach has been restricted to relatively simple circuits and special
-ized functions,
 
 The examples cited above, and others not mentioned
 here, show the widespread and diverse interest in using
@@ -115,6 +145,7 @@ a great deal to learn about, and to learn from, biological
 nervous systems, and building models is a great way to learn!
 
 %Problem of memory wall and dark silicon.
+%which may alternate conventional Von Neumann and rival the Human brain in terms of energy efficiency and cognitive capabilities.
 The microprocessor/memory performance gap, or the Von Neumann bottleneck, greatly exacerbated in the past decade, which indicates that Moore's law will be end soon.
 So the system speed is determined and limited by the memory performance.
 And coupled with the failure of Dennard scaling, free energy cost has ended hence that increasing the number of microprocessors cannot reduce the energy use. 
