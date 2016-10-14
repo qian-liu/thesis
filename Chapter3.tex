@@ -2,18 +2,17 @@
 \label{cha:pattern}
 
 %\section{Hard-wired Network Model}
-To explore how brain may recognise objects, we have employed a biologically-inspired DVS silicon retina~\cite{lenero20113}, a good example of low-cost visual processing due to its event-driven and redundancy-reducing style of computation;
-and a SpiNNaker system~\cite{furber2014spinnaker}, which is a massive parallel computing platform aimed at real-time simulation of SNNs. 
+To build a real-time neuromorphic object recognition prototype, we have employed a biologically-inspired DVS silicon retina~\cite{lenero20113}, and a SpiNNaker system~\cite{furber2014spinnaker}, which is a massive parallel computing platform aimed at real-time simulation of SNNs. 
 %SpiNNaker, as the back-end of the system, provides a flexible, event-driven mechanism for real-time simulation of SNNs, and is where the posture recogniser locates.
-With this neuromorphic hardware system we have the ability to explore visual processing by mimicking the functions of various regions along the visual pathway. 
-Building a real-time recognition system for dynamic hand postures is a first step of exploring visual processing in a biological fashion and is also a validation of the neuromorphic platform.
-To match the image properties detailed earlier, the position, shape, size and trajectory of the hand postures can be detected from the retina output.
-To keep the task simple at first, the postures are of similar size and the goal is to recognise the shape of a hand with moving positions.
-Tracking the postures with a short memory will form part of the future work.
+With this neuromorphic hardware system we have the ability to explore visual processing by mimicking the functions of vision neurons. 
+Building a real-time recognition system for dynamic hand postures is a first step of exploring cognition using spiking neurons of the thesis and is also a validation of the neuromorphic platform.
+%To match the image properties detailed earlier, the position, shape, size and trajectory of the hand postures can be detected from the retina output.
+%To keep the task simple at first, the postures are of similar size and the goal is to recognise the shape of a hand with moving positions.
+%Tracking the postures with a short memory will form part of the future work.
 
-Dynamic recognition takes advantage of the intrinsic temporal processing of SNNs which are receiving considerable attention for undertaking vision processing.
-Pattern information can be encoded in the delays between the pre- and post-synaptic spikes since the spiking neurons are capable of computing radial basis functions (RBFs)~\cite{hopfield1995pattern}.
-Spatio-temporal information can also be stored in the exact firing time rather than relative delays~\cite{natschlager1998spatial}.
+%Dynamic recognition takes advantage of the intrinsic temporal processing of SNNs which are receiving considerable attention for undertaking vision processing.
+%Pattern information can be encoded in the delays between the pre- and post-synaptic spikes since the spiking neurons are capable of computing radial basis functions (RBFs)~\cite{hopfield1995pattern}.
+%Spatio-temporal information can also be stored in the exact firing time rather than relative delays~\cite{natschlager1998spatial}.
 
 \section{The Neuromorphic Platform}
 \label{sec:np}
@@ -587,3 +586,16 @@ Between the two network scales there is also a smaller gap in recognition rates 
 	\end{tabular}
 	\label{tbl:srr}
 \end{table}
+\section{Conclusion}
+\label{sec:cfw}
+
+%Motivation
+To explore how brain may recognise objects in its general, accurate and energy-efficient manner, this paper proposes the use of a neuromorphic hardware system which includes a DVS retina connected to SpiNNaker, a real-time SNN simulator.
+%Problem
+Building a recognition system based on this bespoke hardware for dynamic hand postures is a first step in the study of object recognition using spiking neurons.
+%Methods
+Inspired by the structures of the primary visual cortex, convolutional neural networks are modelled using both linear perceptrons and LIF neurons.
+%Results
+The larger network of 74,210 neurons and 15,216,512 synapses runs smoothly in real-time on SpiNNaker using 290 cores within a 48-node board.
+The smaller network using 1/10 of the resources is able to recognise the postures in real-time with an accuracy about 86.4\% in average, which is 
+only 6.6\% lower than the former but with a better cost/performance ratio.
