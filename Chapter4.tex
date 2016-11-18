@@ -1,7 +1,7 @@
-\chapter{Mapping Continuous Network to SNN-Paper 3}
+\chapter{Training Deep SNNs Off-line as ANNs}
 \label{cha:Conv}
-successful vision recognition architecture.\\
-The propose of Noisy-Softplus.
+%successful vision recognition architecture.\\
+%The propose of Noisy-Softplus.
 \section{Introduction}
 Deep Neural Networks (DNNs) are the most promising research field in computer vision, even exceeding human-level performance on image classification tasks~\cite{he2015delving}.
 	To investigate whether brains might work similarly on vision tasks, these powerful DNN models have been converted to spiking neural networks (SNNs).
@@ -39,13 +39,13 @@ Deep Neural Networks (DNNs) are the most promising research field in computer vi
 	This study brings a significant biological feature, noise, to the activation units of an ANN, in the hope of promoting research into noise-based computation.
 	
 \section{Methods}
-	\subsection{Rectified Linear Units(ReLU)~\cite{nair2010rectified}}
+	\subsection{Rectified Linear Units(ReLU)}
 	Nair and Hinton~\cite{nair2010rectified} stated that ReLU preserve information about relative intensities(intensity equivarance) provided they have zero biases and are noise-free, but binary units do not.
 	This technique has dominated the best recognition performances~\textcolor{red}{ref?} in deep learning.
 	Furthermore, utilising ReLU in SNNs will simplify the network structure significantly because of the zero biases.
 	Thus in this section we firstly demonstrate on how ReLU work and perform in DBN.
 	
-	The input vector in a ReLU based RBM does no longer have to be binary, so it can be a float~\textcolor{red}{fig?}.
+	The input vector in a ReLU based RBM does no longer have to be binary, so it can be a float.
 	Instead of using sigmoid transfer function, the ReLU is always positive and has no upper boundary.
 	There are three different ways to model ReLU~\ref{Fig:relu_tranf}:
 	\begin{figure}[hbt]

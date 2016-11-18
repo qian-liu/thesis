@@ -1,8 +1,14 @@
-\chapter{Spiking Deep Belief Network-Paper 4*}
+\chapter{Event-based Unsupervised On-line STDP Learning on Deep SNNs}
 \label{cha:sdbn}
+Understanding how the brain handles information remains a mystery and attracts the attention of researchers from many areas.
+Recently, exciting reports of visual recognition and decision making with better than human performance have brought deep learning into the spotlight.
+This provides a clue which may help unveil the mechanisms of neural processing in the brain.
+As a result, training and operate deep learning on spiking neural networks (SNNs) has become a hot topic as it offers a more biologically realistic approach to deep learning.
 
-\section{Introduction}
-	In order to implement training and testing of Spiking Deep~Belief~Networks~(SDBNs) on-line, this paper studied:
+\textcolor{red}{Currently I am writing the STDP learning on training Spiking Autoencoders. Some more effort needs to be done to split the non-spiking parts from the spiking training. }
+
+\section{Deep Belief Network}
+	In order to implement training and testing of Spiking Deep~Belief~Networks~(SDBNs) on-line, this section studied:
 	\begin{itemize}
 		\item \textit{Contrastive Divergence.}
 		The study starts from understanding the original problem, Products of Experts~(PoE), which was solved by using Contrastive~Divergence~(CD).
@@ -15,8 +21,7 @@
 		The greedy algorithm on training layered RBMs and the fine training on the whole DBN are studied.
 	\end{itemize}
 	Next, the study will carry on to on-line learning methods which only applies to spiking neurons for training spiking RBM and DBN.
-\section{Theoretical Background}
-\section{Why CD(Contrastive Divergence)?\cite{hinton2002training,woodfordnotes}}
+\subsection{Why CD(Contrastive Divergence)?\cite{hinton2002training,woodfordnotes}}
 	The probability of a vector point $ \mathbf{x} $ is modelled by the function $f(\mathbf{x} \mid \Theta )$ given the model parameters $ \Theta $, and normalised by a partition function $Z( \Theta)$:
 	
 	\begin{equation}
@@ -96,7 +101,7 @@
 	The search will follow the direction by walking one step or a certain distance (e.g. line search lowest point), and then start a new iteration.
 	
 
-\subsection{PoE Problem}
+\subsubsection{PoE Problem}
 	\textbf{Finally}, the probability model function becomes the product of N normal distributions: 
 	\begin{equation}
 	f(x \mid \Theta ) = \prod_{i=1}^N\mathcal{N}(x \mid \mu_i, \sigma_i ),
@@ -124,7 +129,7 @@
 	The computation of Equation~(\ref{equ:part}) is to ``feel the gradient of the field under our feet''.~\cite{woodfordnotes}.
 	%The motivation underlining Contrastive Divergence algorithm is to boost the training speed of a Markov Chain in order to represent the distribution of a PoE (Product of Expert) model.
 	%Thus the sampling can be followed using this trained Markov Chain model. 
-\subsection{MCMC Sampling}
+\subsubsection{MCMC Sampling}
 	\label{sec:mcmc}
 	In order to solve the integration of algebraically intractable equations we can use numerical integration to approximate.
 	One of the popular method is Monte Carlo integration:
@@ -187,7 +192,7 @@
 	\end{algorithm}
 	
 	The probability model function as the product of N normal distributions can be approximated by using this Metropolis-Hastings sampling.
-\subsection{Gibbs Sampling}
+\subsubsection{Gibbs Sampling}
 	\label{sec:Gibbs}
 	For high dimensional data sampling, it is possible to make the accept rate to 1 which increases the convergence speed dramatically.
 	According to conditional probability:
@@ -222,7 +227,7 @@
 	  \end{algorithmic}
 	\end{algorithm}
 	
-\subsection{CD Instead of KL(Kullback-Leibler)}
+\subsubsection{CD Instead of KL(Kullback-Leibler)}
 \label{sec:CD}
 	Kullback-Leibler divergence is the measure of how different two probability distributions are:
 	\begin{equation}
@@ -267,7 +272,7 @@
 %	The step made for a single $ CD_{k} $ can be approximated by summation of $ k $ steps of $ CD_{1} $ as long as the searching does not go far.
 %	Otherwise the searching path may follow some direction for accumulated steps away from the original area, thus significantly reduces the training time.
 	
-	\subsection{Discussion}
+	\subsubsection{Discussion}
 		Although there is practical explanation on using $CD_1$ for parameter space searching, arguments exist over whether the search converge to the same maxima/minima as $CD_\infty$~\cite{wu2015bias}.
 		Moreover, is the parameter searching still following the original objective function?	
 		As an initial exploration over the problem we tested some experiments on Section~\ref{sec:cd1}. 
@@ -282,7 +287,7 @@
 %	\begin{equation}
 %		CD_n = KL(p^0 \mid \mid p^{\infty}) - KL(p^n \mid \mid p^{\infty})
 %	\end{equation}
-\section{RBM\cite{zhang2013rbm}}
+\subsection{RBM\cite{zhang2013rbm}}
 	RBM is a restricted version of Boltzman machine, where there are only connections between layers of units but not between units within a layer, see Figure~\ref{fig:RBM}.
 	$ v $ is the layer of visible units representing the observable data $ \mathbf{v} $, while $ h $ are the hidden units which can be seen as feature extractors.
 	The connections between the hidden layer and the visible layers are bidirectional weights, $ \mathbf{W} $.
@@ -312,7 +317,7 @@
 	\begin{equation}
 		p(\mathbf{v} \mid \Theta) =\frac{\sum_{ \mathbf{h}} e^{-E(\mathbf{v}, \mathbf{h} \mid \Theta)}}{Z(\Theta)}.
 	\end{equation}		
-\subsection{Objective Function}
+\subsubsection{Objective Function}
 	Although $ p(\mathbf{v} \mid \Theta) $ is not a PoE problem, the partial derivation of the average log-likelihood function still applies to Equation~(\ref{equ:part}) and the intractable integration is the same problem here:
 	\begin{equation}
 		\label{equ:RBM}
@@ -339,7 +344,7 @@
 	\end{aligned}
 	\end{equation}	 
 	
-\subsection{CD with 1-step Reconstruction}
+\subsubsection{CD with 1-step Reconstruction}
 \label{sec:cd}
 	Both terms of the derivatives of the average log-likelihood function (Equation~(\ref{equ:RBM})) are intractable, so generative models for sampling is needed.
 	As stated in Section~\ref{sec:CD}, for each iteration only one sample is generated.
@@ -390,7 +395,7 @@
 		\caption{Gibbs sampling on RBM.}
 		\label{fig:gibbs}
 	\end{figure}	
-\subsection{$CD_1$ vs $CD_{\infty}$}
+\subsubsection{$CD_1$ vs $CD_{\infty}$}
 \label{sec:cd1}
 The common validation of trained RBMs is to measure the reconstruction error over the training dataset.
 To be precise, the reconstruction of some training vision data $ v_0 $ is one step Gibbs sampling (from $ v_0 $ via $ (v_0, h_0 )$ to $ (v_1, h_0 )$) away from it, $ v_1 $.
@@ -588,7 +593,7 @@ The results can be derived from Figure~\ref{Fig:vector}.
   \label{Fig:vector}
 \end{figure}
 
-\subsection{Discussion}
+\subsubsection{Discussion}
 	How to validated a trained RBM is still an open question.
 	Actually, to estimate how well a trained model (a set of parameters) describes given data is not studied in this research.
 	We may use confidence level or confidence intervals as reference to assess a set of trained parameters.
@@ -600,7 +605,7 @@ The results can be derived from Figure~\ref{Fig:vector}.
 		\item \textbf{Reconstruction error:} $CD_1$, batch $CD_1$ and $CD_k$ all shows very similar reconstruction error using MNIST data, while none of them shows a good performance with the ten bits vectors.
 		\item \textbf{Data distribution:} Only $CD_k$ restores the original data distribution with MNIST data; and all of them learn to form the normal distribution of the simple vectors.
 	\end{itemize}
-\section{Deep Belief Network}
+\subsection{Deep Belief Network}
 The Deep Belief Network (DBN) model is proposed by Hinton et al.~\cite{hinton2006fast} in 2006, in which the top RBM (top two layers) works as an associative memory where the lower layers form a belief net with directed connections, see Figure~\ref{Fig:dbn}. % \textcolor{red}{(Need to redraw)}
 The main advantages of DBN comparing to multilayer perceptron (MLP) lie on the following:
 	\begin{itemize}
@@ -633,19 +638,19 @@ The main advantages of DBN comparing to multilayer perceptron (MLP) lie on the f
 	  \label{Fig:dbn}
 	\end{figure}
 	
-	\subsection{A Probabilistic Representation}
+	\subsubsection{A Probabilistic Representation}
 		Why the deeper the better.
 %		堆叠的RBM并不是一个多层RBM模型，而是a deep sigmoid belief net深度sigmoid置信网
 	 	Putting up layers of RBMs does not mean a layered RBM model, but a deep sigmoid belief net.
 	 	I need to study sigmoid belief net.
-	\subsection{Greedy Algorithm}
+	\subsubsection{Greedy Algorithm}
 		From the piratical view, the greedy algorithm allows each RBM model in the layer-wise sequence to receive a transformed representation of the data.
 		Especially when applying the greedy algorithm to layered dimension-reduced RBMs, the data is presented with lower dimension along the neural layers.
 		For each RBM, the input vector of the visual units are transformed non-linearly as output vector of the hidden layer which is considered to be the input for the next RBM.
 		
 		From the probability view, the layered RBMs are a generative model.
 		It is guaranteed that learning the weights layer-wise bottom-up using the maximum likelihood of the Energy function of RBMs the bound on the log probability of the data will never decrease. 
-	\subsection{Fine Tuning}
+	\subsubsection{Fine Tuning}
 		In practice, as stated above in Section~\ref{sec:cd} the RBM is trained with Contrastive Divergence.
 %		The \textcolor{red}{altered objective function} using CD makes the guarantee of non-decreasing log probability void, however extra layers still guarantee the improvement of imperfect models \textcolor{red}{ref???}.
 			The altered objective function using CD makes the guarantee of non-decreasing log probability void, however extra layers still guarantee the improvement of imperfect models.
@@ -691,12 +696,12 @@ The main advantages of DBN comparing to multilayer perceptron (MLP) lie on the f
 			\end{algorithmic}
 		\end{algorithm}				
 		
-	\subsection{Case Study on Labelled Data}
+	\subsubsection{Case Study on Labelled Data}
 	There is no unified training methods for DBN, here we reproduce the same example and training algorithm from the paper~\cite{hinton2006fast} in order to apply greedy training on all the RBM layers, and fine-tuning bidirectionally, see Algorithm~\ref{alg:fine}.
 	The only difference or addition is the label layer (10 neurons) locating on the top of the network, see Figure~\ref{Fig:case}.
 		\begin{figure}[hbt]
 				\centering
-				\includegraphics[width=0.4\textwidth]{pics_sdbn/DBN.pdf}
+				\includegraphics[width=0.8\textwidth]{pics_sdbn/DBN.pdf}
 				\caption{The DBN architecture.} 
 				\label{Fig:case}
 		\end{figure}
@@ -710,12 +715,12 @@ The main advantages of DBN comparing to multilayer perceptron (MLP) lie on the f
 %	The recognition and error rates are: epoc 1 (65.5\%, 14.11\%) and epoc 40 (70.51\%, 5.47\%). 
 		\begin{figure}[hbt]
 				\centering
-				\includegraphics[width=0.6\textwidth]{pics_sdbn/MNISTerror.pdf}
+				\includegraphics[width=0.8\textwidth]{pics_sdbn/MNISTerror.pdf}
 				\caption{Classification error for training epochs of 1 to 9 testing on the MNIST testing data.} 
 				\label{Fig:class}
 		\end{figure}	
 	
-	\subsection{Discussion}
+	\subsubsection{Discussion}
 		As mentioned in the beginning of the Section, a DBN is a probabilistic model whose objective function differs from the RBMs.
 		It is not a easy problem to understand, so as the reason why include finding tuning into the whole procedure.
 %	Discussions on mathematical explanation on difference of wake-sleep and contrastive wake-sleep algorithms.
@@ -723,9 +728,7 @@ The main advantages of DBN comparing to multilayer perceptron (MLP) lie on the f
 %	Layer-wise fine-tuning only applies learning on one direction of connections, leaving the other direction unchanged until all the above layers tuned, which results in unbalanced tuning.
 	
 		What's more, practical learning is experience related to configure the parameters: such as penalty, momentum, different learning rate, and etc.
-\section{Mapping trained DBN to SNN}
-As Chapter \ref{cha:Conv} stated, we mapped trained DBN to SNN.
-	\subsection{Training ReLU DBN}
+\subsection{Training ReLU DBN}
 	It is exactly the same training method to make a RBM present a set of data.
 	Figure~\ref{Fig:recon_relu} shows a RBM consisting of 784 visible units and 600 hidden units reconstruct the input images for every $6,000$ updating steps.
 	There are $60,000$ training images in MNIST dataset and the batch size is 10 in this training, so each figure represents the reconstruction of each epoch during training.
@@ -781,12 +784,8 @@ As Chapter \ref{cha:Conv} stated, we mapped trained DBN to SNN.
 	The training is with 5 epochs and 10 images per batch.
 	With the same configuration, sigmoid binary units reaches 53.94\%, 21.19\% and 25.36\% respectively for correct-, wrong- and non-recognition.
 	By applying fine tuning on the network, the performance of the ReLU remains the same while the sigmoid units behaves better: 56.76\%, 17.59\% and 25.64\%.
-	\subsection{Mapping to spiking DBN}
 
-	
-	\section{STDP on Spiking RBM~\cite{neftci2013event}}
-	
-	\subsection{Training Autoencoders}
+\section{Autoencoders}
 	%TODO rewording
 	Figure~\ref{fig:AE} shows a simplest architecture of an autoencoder, which is the same as a multilayer perceptron (MLP).
 	The only difference lies to the number of the output units, where an autoencoder has as many output neurons as the input.
@@ -796,7 +795,7 @@ As Chapter \ref{cha:Conv} stated, we mapped trained DBN to SNN.
 	Thus, autoencoders are trained without given target values, work as unsupervised learning models.	
 	\begin{figure}
 		\centering
-		\includegraphics[width=0.4\textwidth]{pics_ae/AE.pdf}
+		\includegraphics[width=0.8\textwidth]{pics_ae/AE.pdf}
 		\caption{A typical Autoencoder structure.}
 		\label{fig:AE}
 	\end{figure}
@@ -885,10 +884,24 @@ As Chapter \ref{cha:Conv} stated, we mapped trained DBN to SNN.
 			Experiments 1) 10 visible units fully connected to 10 hidden units with input data of all 1s; 2) same network fed with 10 values distribute linearly from 0.1 to 1.}
 	\end{figure}
 	
-	\subsection{Training Spiking Autoencoders}
-	ReSuMe\\
-	-Why it works stated in Maths.\\
-	-Figure to plot
+\section{Training Spiking Autoencoders}
+Rate-based learning of STDP (rSTDP) which is inspired by ReSuMe.\\
+-Why it works stated in Maths.\\
+\begin{equation}
+\begin{aligned}
+\overline{\Delta w_{ij}} &\propto \eta \lambda_{h_i}(\lambda_{v_j} - \lambda_{v'_j})\\
+&=\eta'P_{h_i}P_{v_j}\tau_{w} \tau_{dur} - \eta'P_{h_i}P_{v'_j}\tau_{w} \tau_{dur}, \textrm{where,}\\
+P_{s} &= \lambda_{s} \times 0.001~s = \frac{K s}{1000}\\
+\eta' &= \frac{10^6}{K^2 \tau_{w} \tau_{dur}} \eta
+\end{aligned}
+\end{equation}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.8\textwidth]{pics_ae/rSTDP.pdf}
+	\caption{How rSTDP works in training AutoEncoders.}
+	\label{fig:rSTDP}
+\end{figure}
 	
 	Experiments
 	\begin{figure}
@@ -937,8 +950,8 @@ As Chapter \ref{cha:Conv} stated, we mapped trained DBN to SNN.
 			Experiments 1) 10 visible units fully connected to 10 hidden units with Poisson spike trains of 100~Hz which lasted 100~ms; 2) same network fed with 10 Poisson spike trains of firing rate ranging from 10~Hz to 100~Hz.}
 	\end{figure}
 	\subsection{Problem}
-	Poisson noise make weights diverge.
-	Same Poisson data used in non-spiking tests.
+Poisson noise make weights diverge.
+Same Poisson data used in non-spiking tests.
 	\begin{figure}
 		\centering
 		\begin{subfigure}[t]{0.4\textwidth}
@@ -1089,23 +1102,10 @@ As Chapter \ref{cha:Conv} stated, we mapped trained DBN to SNN.
 	
 	
 	
-	
-\section{Summary}
-	As mentioned in the beginning of the Section, a DBN is a probabilistic model whose objective function differs from the RBMs.
-	It is not a easy problem to understand, so as the reason why include finding tuning into the whole procedure.
-	%	Discussions on mathematical explanation on difference of wake-sleep and contrastive wake-sleep algorithms.
-	
-	%	Layer-wise fine-tuning only applies learning on one direction of connections, leaving the other direction unchanged until all the above layers tuned, which results in unbalanced tuning.
-	
-	What's more, practical learning is experience related to configure the parameters: such as penalty, momentum, different learning rate, and etc.
-	\begin{itemize}
-			\item The maths explaining ReLU.	
-			\item why no bias
-			\item why fine tuning does not work
-			\item data-dependent mapping
-			\item the correct way the assess the mapping both for RBM and DBN.
-	\end{itemize}
-		
+\section{STDP Training on Spiking RBM}	
+
+\section{Conclusion}
+
 	
 \section{Appendices}
 		\subsection{Derivation process of Equation~(\ref{equ:part})}
