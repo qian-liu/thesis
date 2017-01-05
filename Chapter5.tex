@@ -1,281 +1,449 @@
 \chapter{STDP Training on Spiking Deep Learning Models}
-\label{cha:sdbn}
-Understanding how the brain handles information remains a mystery and attracts the attention of researchers from many areas.
-Recently, exciting reports of visual recognition and decision making with better than human performance have brought deep learning into the spotlight.
-This provides a clue which may help unveil the mechanisms of neural processing in the brain.
-As a result, training and operate deep learning on spiking neural networks (SNNs) has become a hot topic as it offers a more biologically realistic approach to deep learning.
+\label{cha:sdlm}
 
-\textcolor{red}{Currently I am writing the STDP learning on training Spiking Autoencoders. Some more effort needs to be done to split the non-spiking parts from the spiking training. }
+The previous Chapter introduces the feasibility of constructing spiking deep neural networks with ANN training off-line, this Chapter continues the hot topic of deep SNNs and takes extra step forward to on-line event-based training in biologically plausible manner.
+The deep learning models selected in the research are Autoencoders and Deep Belief Network due to there unsupervised learning mechanism and popularity.
 
-\section{Deep Belief Network}
-	In order to implement training and testing of Spiking Deep~Belief~Networks~(SDBNs) on-line, this section studied:
-	\begin{itemize}
-		\item \textit{Contrastive Divergence.}
-		The study starts from understanding the original problem, Products of Experts~(PoE), which was solved by using Contrastive~Divergence~(CD).
-		It involves utilising Markov~Chain~Monte~Carlo~(MCMC) sampling to present the distribution of a certain untraceable high-dimensional probability model function, e.g. PoE.
-		Among these sampling algorithms, Gibbs method is introduced and used in high dimensional problems.
-		Instead of minimising the original objective function of Kullback-Leibler divergence, the contrastive divergence is exploited to solve PoE.
-		\item \textit{Restricted Boltzmann Machine (RBM). }
-		Then the study continues on applying Gibbs sampling and CD to RBM, which builds the foundation of the light RBM training.
-		\item \textit{Deep Belief Network.} 
-		The greedy algorithm on training layered RBMs and the fine training on the whole DBN are studied.
-	\end{itemize}
-	Next, the study will carry on to on-line learning methods which only applies to spiking neurons for training spiking RBM and DBN.
+\section{Autoencoders}
+%TODO rewording
+Figure~\ref{fig:AE} shows a simplest architecture of an autoencoder, which is the same as a multilayer perceptron (MLP).
+The only difference lies to the number of the output units, where an autoencoder has as many output neurons as the input.
+In this example, the input layer feeds forward the data vector $\mathbf{v}$ to the hidden layer as weighted sum of the data, $\mathbf{net\_h}$.
+Then the hidden units are activated by the input $\mathbf{net\_h}$ according to the activation function: $\mathbf{h}=\sigma(\mathbf{net\_h})$.
+Finally, using the same approach the output of the network is generated, $\mathbf{v'}=\sigma(\mathbf{net\_v'})$, as the reconstruction of the input data.
+Thus, autoencoders are trained without given target values, work as unsupervised learning models.
+\begin{equation}
+h_j=\sigma(\sum_i v_i w^T_{ij})
+\end{equation}
+\begin{equation}
+v'_j=\sigma(\sum_i h_i w_{ij})
+\end{equation}
+	
+\begin{figure}
+	\centering
+	\includegraphics[width=0.8\textwidth]{pics_sdlm/AE.pdf}
+	\caption{A typical Autoencoder structure.}
+	\label{fig:AE}
+\end{figure}
+
+%TODO why tied weights are good
+Notice that the connections used in the example are tied weights.
+
+Training an autoencoder is not different from backpropagation (BP) on an Multi-Layer Perceptrons(MLP).
+The objective of training is to minimise the prediction error of an MLP, which measured as a loss function.
+Accordingly, the loss function of an autoencoder can be described as:
+\begin{equation}
+L=\sum_{k=1}^{K}\|\mathbf{v}_{k}-\mathbf{v'}_{k}\|=\frac{1}{2}\sum_{k=1}^{K}(\mathbf{v}_{k}-\mathbf{v'}_{k})^{2}
+\end{equation}
+where k indicates the index of the training data $\mathbf{v}$, and each data vector $\mathbf{v}=\{v_0, v_1,...,v_N\}$ and its reconstruction $\mathbf{v'}=\{v'_0, v'_1,...,v'_N\}$ have N dimensions. 
+
+%TODO rewording
+Backpropagation, an abbreviation for "backward propagation of errors", is a common method of training artificial neural networks used in conjunction with an optimization method such as gradient descent.
+The method calculates the gradient of a loss function with respect to all the weights in the network.
+The gradient is fed to the optimisation method which in turn uses it to update the weights, in an attempt to minimize the loss function:
+\begin{equation}
+\Delta W \propto -\frac{\partial L}{\partial W}.
+\end{equation}
+
+Applying stochastic gradient descent (SGD), the true gradient of the weight matrix, $\Delta W$, is approximated by a gradient at a single example with iterations.
+The reconstruction error $E_k$ of an input vector $\mathbf{v}_k$ is as given:
+\begin{equation}
+%	\begin{align*}
+E_k = \frac{1}{2}(\mathbf{v}_k - \mathbf{v'}_k)^2,
+%	\end{align*}
+\end{equation}
+and the gradient of the weight matrix is:
+\begin{equation}
+\Delta W \propto -\frac{\partial E_k}{\partial W}=-\eta \frac{\partial E_k}{\partial W},
+\end{equation}
+where $\eta$ is the learning rate.
+
+Since we use tied weights in the network, the weight tuning only needs to apply in the output layer.
+\begin{equation}
+\begin{aligned}
+\Delta w_{ij} = -\eta \frac{\partial E_k}{\partial w_{ij}} &= -\eta \frac{\partial E_k}{\partial v'_j} \frac{\partial v'_j}{\partial net\_v'_j} \frac{\partial net\_v'_j}{\partial w_{ij}}, \textrm{ where} \\
+\frac{\partial E_k}{\partial v'_j} &= \frac{\partial \frac{1}{2}(\mathbf{v}_k - \mathbf{v'}_k)^2}{\partial v'_j}= -(v'_j - v_j), \\
+%	\frac{\partial v'_j}{\partial net\_v'_j} &= \begin{cases} 1, v'_j>0\\0, v'_j<=0\\ \end{cases}, \textrm{using ReLU,}\\
+\frac{\partial v'_j}{\partial net\_v'_j} &= 1, \textrm{using Identify function,}\\
+\frac{\partial net\_v'_j}{\partial w_{ij}} &= \frac{\partial h_i w_{ij}}{\partial w_{ij}} = h_i.
+\end{aligned}
+\end{equation}
+Thus, the weight gradient is calculated as:
+\begin{equation}
+\Delta w_{ij} = \eta h_i(v'_j - v_j)
+\end{equation}
+
+Examples of using an autoencoder with 10 input neurons and 10 hidden neurons: reconstruction the input data $\mathbf{v}$ where I) $v_i = 1$, II) $v_i = i/10$.
+%	\begin{figure}
+%		\centering
+%		\begin{subfigure}[t]{0.4\textwidth}
+%			\includegraphics[width=\textwidth]{pics_ae/exp1_weights_non.pdf}
+%			\caption{Weights of Exp1}
+%		\end{subfigure}
+%		\begin{subfigure}[t]{0.4\textwidth}
+%			\includegraphics[width=\textwidth]{pics_ae/exp2_weights_non.pdf}
+%			\caption{Weights of Exp2}
+%		\end{subfigure}
+%		\begin{subfigure}[t]{0.4\textwidth}
+%			\includegraphics[width=\textwidth]{pics_ae/exp1_recon_non.pdf}
+%			\caption{Reconstruction of visible units in Exp1}
+%		\end{subfigure}
+%		\begin{subfigure}[t]{0.4\textwidth}
+%			\includegraphics[width=\textwidth]{pics_ae/exp2_recon_non.pdf}
+%			\caption{Reconstruction of visible units in Exp2}
+%		\end{subfigure}\\
+%		\begin{subfigure}[t]{0.4\textwidth}
+%			\includegraphics[width=\textwidth]{pics_ae/exp1_hid_non.pdf}
+%			\caption{Output of hidden units in Exp1}
+%		\end{subfigure}
+%		\begin{subfigure}[t]{0.4\textwidth}
+%			\includegraphics[width=\textwidth]{pics_ae/exp2_hid_non.pdf}
+%			\caption{Output of hidden units in Exp2}
+%		\end{subfigure}
+%		\caption{Weights and outputs of visible and hidden units change during training of the reconstruction tests. 
+%			Experiments 1) 10 visible units fully connected to 10 hidden units with input data of all 1s; 2) same network fed with 10 values distribute linearly from 0.1 to 1.}
+%	\end{figure}
+
+\section{Training Spiking Autoencoders}
+Rate-based learning of STDP (rSTDP) which is inspired by ReSuMe.\\
+-Why it works stated in Maths.\\
+\begin{equation}
+\begin{aligned}
+\overline{\Delta w_{ij}} &\propto \eta \lambda_{h_i}(\lambda_{v_j} - \lambda_{v'_j})\\
+&=\eta'P_{h_i}P_{v_j}\tau_{w} \tau_{dur} - \eta'P_{h_i}P_{v'_j}\tau_{w} \tau_{dur}, \textrm{where,}\\
+P_{s} &= \lambda_{s} \times 0.001~s = \frac{K s}{1000}\\
+\eta' &= \frac{10^6}{K^2 \tau_{w} \tau_{dur}} \eta
+\end{aligned}
+\end{equation}
+\begin{figure}
+	\centering
+	\includegraphics[width=0.8\textwidth]{pics_sdlm/rSTDP.pdf}
+	\caption{A typical Autoencoder structure.}
+	\label{fig:rSTDP}
+\end{figure}
+%\begin{figure}
+%	\centering
+%	\includegraphics[width=0.8\textwidth]{pics_ae/rSTDP.pdf}
+%	\caption{How rSTDP works in training AutoEncoders.}
+%	\label{fig:rSTDP}
+%\end{figure}
+%	
+%	Experiments
+%	\begin{figure}
+%		\centering
+%		\begin{subfigure}[t]{0.4\textwidth}
+%			\includegraphics[width=\textwidth]{pics_ae/exp1_weights_s.pdf}
+%			\caption{Weights of Exp1}
+%		\end{subfigure}
+%		\begin{subfigure}[t]{0.4\textwidth}
+%			\includegraphics[width=\textwidth]{pics_ae/exp2_weights_s.pdf}
+%			\caption{Weights of Exp2}
+%		\end{subfigure}
+%		\begin{subfigure}[t]{0.4\textwidth}
+%			\includegraphics[width=\textwidth]{pics_ae/exp1_recon_s.pdf}
+%			\caption{Reconstruction of visible units in Exp1}
+%		\end{subfigure}
+%		\begin{subfigure}[t]{0.4\textwidth}
+%			\includegraphics[width=\textwidth]{pics_ae/exp2_recon_s.pdf}
+%			\caption{Reconstruction of visible units in Exp2}
+%		\end{subfigure}\\
+%		\begin{subfigure}[t]{0.4\textwidth}
+%			\includegraphics[width=\textwidth]{pics_ae/exp1_recon_nons.pdf}
+%			\caption{Reconstruction of visible units in Exp1}
+%		\end{subfigure}
+%		\begin{subfigure}[t]{0.4\textwidth}
+%			\includegraphics[width=\textwidth]{pics_ae/exp2_recon_nons.pdf}
+%			\caption{Reconstruction of visible units in Exp2}
+%		\end{subfigure}\\
+%		\begin{subfigure}[t]{0.4\textwidth}
+%			\includegraphics[width=\textwidth]{pics_ae/exp1_hid_s.pdf}
+%			\caption{Output of hidden units in Exp1}
+%		\end{subfigure}
+%		\begin{subfigure}[t]{0.4\textwidth}
+%			\includegraphics[width=\textwidth]{pics_ae/exp2_hid_s.pdf}
+%			\caption{Output of hidden units in Exp2}
+%		\end{subfigure}\\
+%		\begin{subfigure}[t]{0.4\textwidth}
+%			\includegraphics[width=\textwidth]{pics_ae/exp1_hid_nons.pdf}
+%			\caption{Output of hidden units in Exp1}
+%		\end{subfigure}
+%		\begin{subfigure}[t]{0.4\textwidth}
+%			\includegraphics[width=\textwidth]{pics_ae/exp2_hid_nons.pdf}
+%			\caption{Output of hidden units in Exp2}
+%		\end{subfigure}
+%		\caption{Weights and firing rates of visible and hidden units change during training of the reconstruction tests of spiking neurons. 
+%			Experiments 1) 10 visible units fully connected to 10 hidden units with Poisson spike trains of 100~Hz which lasted 100~ms; 2) same network fed with 10 Poisson spike trains of firing rate ranging from 10~Hz to 100~Hz.}
+%	\end{figure}
+
+\section{Restricted Boltzmann Machine}
+In order to implement training and testing of Spiking Deep~Belief~Networks~(SDBNs) on-line, this section studied:
+\begin{itemize}
+	\item \textit{Contrastive Divergence.}
+	The study starts from understanding the original problem, Products of Experts~(PoE), which was solved by using Contrastive~Divergence~(CD).
+	It involves utilising Markov~Chain~Monte~Carlo~(MCMC) sampling to present the distribution of a certain untraceable high-dimensional probability model function, e.g. PoE.
+	Among these sampling algorithms, Gibbs method is introduced and used in high dimensional problems.
+	Instead of minimising the original objective function of Kullback-Leibler divergence, the contrastive divergence is exploited to solve PoE.
+	\item \textit{Restricted Boltzmann Machine (RBM). }
+	Then the study continues on applying Gibbs sampling and CD to RBM, which builds the foundation of the light RBM training.
+	\item \textit{Deep Belief Network.} 
+	The greedy algorithm on training layered RBMs and the fine training on the whole DBN are studied.
+\end{itemize}
+Next, the study will carry on to on-line learning methods which only applies to spiking neurons for training spiking RBM and DBN.
 \subsection{Why CD(Contrastive Divergence)?\cite{hinton2002training,woodfordnotes}}
-	The probability of a vector point $ \mathbf{x} $ is modelled by the function $f(\mathbf{x} \mid \Theta )$ given the model parameters $ \Theta $, and normalised by a partition function $Z( \Theta)$:
-	
-	\begin{equation}
-	p(\mathbf{x} \mid \Theta ) = \dfrac{f(\mathbf{x} \mid \Theta )}{Z( \Theta)}
-	\end{equation}
-	where the partition function is defined as:
-	\begin{equation}
-	\label{equ:z_int}
-	Z( \Theta) = \int f(\mathbf{x} \mid \Theta )\D\mathbf{x}, \text{when  $ \mathbf{x} $ is continuous, or}
-	\end{equation}
-	
-	\begin{equation}
-	\label{equ:z_dis}
-	Z( \Theta) = \sum_{\mathbf{x}} f(\mathbf{x} \mid \Theta ), \text{when  $ \mathbf{x} $ is discrete.}
-	\end{equation}
-	Given a set of data points $ \mathbf{D}=(\mathbf{d}_1, \mathbf{d}_2, ..., \mathbf{d}_K) $ the purpose of learning is to tune the model parameter $ \Theta $ to fit the data $ \mathbf{D}  $. 
-	The objective function is the probability product of all the independent data points of the data set, which is also called the likelihood function:
-	\begin{equation}
-	 L (\Theta \mid \mathbf{D}) = p(\mathbf{D} \mid \Theta ) = \prod_{k=1}^K p(\mathbf{d}_k \mid \Theta ) =  \prod_{k=1}^K\dfrac{f(\mathbf{d}_k \mid \Theta )}{Z( \Theta)}.
-	\end{equation}
-	 And the target is to maximise the likelihood given the data set $ \mathbf{D}  $, which equals to maximise the log of the probability product (the log-likelihood):
-	\begin{equation}
-	    \log  L (\Theta \mid \mathbf{D}) = \log p(\mathbf{D} \mid \Theta ) = \sum_{k=1}^K\log f(\mathbf{d}_k \mid \Theta ) - K \log Z( \Theta),
-	\end{equation}
-	or the average log-likelihood:
-	\begin{equation}
-	\label{equ:like}
-		\hat{l} (\Theta \mid \mathbf{D}) =\frac{1}{K}\log  L (\Theta \mid \mathbf{D}) 
-		=\frac{1}{K}\sum_{k=1}^K\log f(\mathbf{d}_k \mid \Theta ) - \log Z( \Theta).
-	\end{equation}
-	Imagine three different conditions (probability function) as following.
-	
-	\textbf{First}, $f(\mathbf{x} \mid \Theta )$ is the probability density function (pdf) of a normal distribution $\mathcal{N}(x \mid \mu, \sigma )$.
-	Data vector $ \mathbf{x} $ is just a one dimensional data point, $x$.
-	$ Z( \Theta) $ equals to 1, thus $p(x \mid \Theta ) = \mathcal{N}(x \mid \mu, \sigma )$.
-	\begin{equation}
-	\hat{l} (\Theta \mid D) =  
-	\frac{1}{K} \sum_{k=1}^K \log \left[ \frac{1}{\sigma \sqrt{2\pi}} \exp(-\frac{(d_k-\mu)^{2}}{2\sigma^{2}}) \right]
-	\label{pdf}
-	\end{equation}
-	To maximise Equation~\ref{pdf} is to find the Maximum Likelihood Estimation (MLE) of parameters $ \mu $ and $ \sigma $, by deriving from the partial differential equations when they are equal to 0. 
-	\begin{equation}
-	\left\{
-	\begin{aligned}
-	   &\dfrac{\partial \hat{l} (\Theta \mid D)}{\partial \mu}= \sum_{k=1}^K -\frac{1}{2\sigma^{2}}\dfrac{\partial (\mu-d_k)^{2}}{\partial \mu} = \sum_{k=1}^K -\frac{1}{\sigma^{2}}(\mu-d_k) = 0 \quad\\
-	   &\dfrac{\partial \hat{l} (\Theta \mid D) }{\partial \sigma^{2}}= -\frac{K}{2\sigma^{2}}+\frac{1}{2\sigma^{4}}\sum_{k=1}^K d_k^{2} -\frac{\mu}{\sigma^{4}}\sum_{k=1}^K d_k + \frac{K\mu^{2}}{2\sigma^{4}} = 0 \quad\\
-	\end{aligned}
-	\right.
-	\end{equation}
-	\begin{equation}
-	\left\{
-	\begin{aligned}
-	    &\mu= \frac{1}{K}\sum_{k=1}^K d_k  \quad\\
-	    &\sigma^{2} = \frac{1}{K}\sum_{k=1}^K d_k^{2} - (\frac{1}{K}\sum_{k=1}^K d_k)^{2}
-	\end{aligned}
-	\right.
-	\end{equation}
-	$\hat{l} (\Theta \mid D)$ here is the function of two dimensional parameters $\mu$ and $\theta$, and searching the highest point in the parameter space ``is equivalent to being in the field on a clear, sunny day,''~\cite{woodfordnotes} seeing the point straight away.
-	
-	\textbf{Second}, the probability model function changes to be the sum of N normal distributions: 
-	\begin{equation}
-	f(x \mid \Theta ) = \sum_{i=1}^N\mathcal{N}(x \mid \mu_i, \sigma_i ).
-	\end{equation}
-	Derived from Equation~(\ref{equ:like}), the objective function is:
-	\begin{equation}
-	\hat{l} (\Theta \mid D) = \frac{1}{K}\sum_{k=1}^K \log \sum_{i=1}^N \mathcal{N}(d_k \mid \mu_i, \sigma_i ) - \log N,
-	\end{equation}
-	where $\log Z( \Theta)$ still equals a constant, but the partial differential equation of any parameter depends on other model parameters.
-	It is very hard to solve equation set of log of sum, thus iteration methods are introduced, e.g., gradient descent method. %and expectation maximization (EM) algorithm
-	Searching for a local maximum of the likelihood function in the parameter space starts with an initial point, either random or well selected.
-	For each iteration, the partial derivatives for every dimension of the parameter point are calculated as the gradient.
-	The gradient determines the decent direction of the space search, the next parameter point is one step $ \eta $  towards the direction or is the highest point found by line search.
-	
-	The gradient descent method is equivalent to ``being in the field at night with a torch.''~\cite{woodfordnotes}.
-	And then the descent direction is estimated and chosen by using the torch to see the relative heights of the field a short distance in each direction.
-	Because partial differential equation of any parameter depends on other model parameters, we can only see the gradient for a small area.
-	The search will follow the direction by walking one step or a certain distance (e.g. line search lowest point), and then start a new iteration.
-	
+The probability of a vector point $ \mathbf{x} $ is modelled by the function $f(\mathbf{x} \mid \Theta )$ given the model parameters $ \Theta $, and normalised by a partition function $Z( \Theta)$:
+
+\begin{equation}
+p(\mathbf{x} \mid \Theta ) = \dfrac{f(\mathbf{x} \mid \Theta )}{Z( \Theta)}
+\end{equation}
+where the partition function is defined as:
+\begin{equation}
+\label{equ:z_int}
+Z( \Theta) = \int f(\mathbf{x} \mid \Theta )\D\mathbf{x}, \text{when  $ \mathbf{x} $ is continuous, or}
+\end{equation}
+
+\begin{equation}
+\label{equ:z_dis}
+Z( \Theta) = \sum_{\mathbf{x}} f(\mathbf{x} \mid \Theta ), \text{when  $ \mathbf{x} $ is discrete.}
+\end{equation}
+Given a set of data points $ \mathbf{D}=(\mathbf{d}_1, \mathbf{d}_2, ..., \mathbf{d}_K) $ the purpose of learning is to tune the model parameter $ \Theta $ to fit the data $ \mathbf{D}  $. 
+The objective function is the probability product of all the independent data points of the data set, which is also called the likelihood function:
+\begin{equation}
+L (\Theta \mid \mathbf{D}) = p(\mathbf{D} \mid \Theta ) = \prod_{k=1}^K p(\mathbf{d}_k \mid \Theta ) =  \prod_{k=1}^K\dfrac{f(\mathbf{d}_k \mid \Theta )}{Z( \Theta)}.
+\end{equation}
+And the target is to maximise the likelihood given the data set $ \mathbf{D}  $, which equals to maximise the log of the probability product (the log-likelihood):
+\begin{equation}
+\log  L (\Theta \mid \mathbf{D}) = \log p(\mathbf{D} \mid \Theta ) = \sum_{k=1}^K\log f(\mathbf{d}_k \mid \Theta ) - K \log Z( \Theta),
+\end{equation}
+or the average log-likelihood:
+\begin{equation}
+\label{equ:like}
+\hat{l} (\Theta \mid \mathbf{D}) =\frac{1}{K}\log  L (\Theta \mid \mathbf{D}) 
+=\frac{1}{K}\sum_{k=1}^K\log f(\mathbf{d}_k \mid \Theta ) - \log Z( \Theta).
+\end{equation}
+Imagine three different conditions (probability function) as following.
+
+\textbf{First}, $f(\mathbf{x} \mid \Theta )$ is the probability density function (pdf) of a normal distribution $\mathcal{N}(x \mid \mu, \sigma )$.
+Data vector $ \mathbf{x} $ is just a one dimensional data point, $x$.
+$ Z( \Theta) $ equals to 1, thus $p(x \mid \Theta ) = \mathcal{N}(x \mid \mu, \sigma )$.
+\begin{equation}
+\hat{l} (\Theta \mid D) =  
+\frac{1}{K} \sum_{k=1}^K \log \left[ \frac{1}{\sigma \sqrt{2\pi}} \exp(-\frac{(d_k-\mu)^{2}}{2\sigma^{2}}) \right]
+\label{pdf}
+\end{equation}
+To maximise Equation~\ref{pdf} is to find the Maximum Likelihood Estimation (MLE) of parameters $ \mu $ and $ \sigma $, by deriving from the partial differential equations when they are equal to 0. 
+\begin{equation}
+\left\{
+\begin{aligned}
+&\dfrac{\partial \hat{l} (\Theta \mid D)}{\partial \mu}= \sum_{k=1}^K -\frac{1}{2\sigma^{2}}\dfrac{\partial (\mu-d_k)^{2}}{\partial \mu} = \sum_{k=1}^K -\frac{1}{\sigma^{2}}(\mu-d_k) = 0 \quad\\
+&\dfrac{\partial \hat{l} (\Theta \mid D) }{\partial \sigma^{2}}= -\frac{K}{2\sigma^{2}}+\frac{1}{2\sigma^{4}}\sum_{k=1}^K d_k^{2} -\frac{\mu}{\sigma^{4}}\sum_{k=1}^K d_k + \frac{K\mu^{2}}{2\sigma^{4}} = 0 \quad\\
+\end{aligned}
+\right.
+\end{equation}
+\begin{equation}
+\left\{
+\begin{aligned}
+&\mu= \frac{1}{K}\sum_{k=1}^K d_k  \quad\\
+&\sigma^{2} = \frac{1}{K}\sum_{k=1}^K d_k^{2} - (\frac{1}{K}\sum_{k=1}^K d_k)^{2}
+\end{aligned}
+\right.
+\end{equation}
+$\hat{l} (\Theta \mid D)$ here is the function of two dimensional parameters $\mu$ and $\theta$, and searching the highest point in the parameter space ``is equivalent to being in the field on a clear, sunny day,''~\cite{woodfordnotes} seeing the point straight away.
+
+\textbf{Second}, the probability model function changes to be the sum of N normal distributions: 
+\begin{equation}
+f(x \mid \Theta ) = \sum_{i=1}^N\mathcal{N}(x \mid \mu_i, \sigma_i ).
+\end{equation}
+Derived from Equation~(\ref{equ:like}), the objective function is:
+\begin{equation}
+\hat{l} (\Theta \mid D) = \frac{1}{K}\sum_{k=1}^K \log \sum_{i=1}^N \mathcal{N}(d_k \mid \mu_i, \sigma_i ) - \log N,
+\end{equation}
+where $\log Z( \Theta)$ still equals a constant, but the partial differential equation of any parameter depends on other model parameters.
+It is very hard to solve equation set of log of sum, thus iteration methods are introduced, e.g., gradient descent method. %and expectation maximization (EM) algorithm
+Searching for a local maximum of the likelihood function in the parameter space starts with an initial point, either random or well selected.
+For each iteration, the partial derivatives for every dimension of the parameter point are calculated as the gradient.
+The gradient determines the decent direction of the space search, the next parameter point is one step $ \eta $  towards the direction or is the highest point found by line search.
+
+The gradient descent method is equivalent to ``being in the field at night with a torch.''~\cite{woodfordnotes}.
+And then the descent direction is estimated and chosen by using the torch to see the relative heights of the field a short distance in each direction.
+Because partial differential equation of any parameter depends on other model parameters, we can only see the gradient for a small area.
+The search will follow the direction by walking one step or a certain distance (e.g. line search lowest point), and then start a new iteration.
+
 
 \subsubsection{PoE Problem}
-	\textbf{Finally}, the probability model function becomes the product of N normal distributions: 
-	\begin{equation}
-	f(x \mid \Theta ) = \prod_{i=1}^N\mathcal{N}(x \mid \mu_i, \sigma_i ),
-	\end{equation}
-	where the partition (normalisation) function $Z( \Theta)$ is no longer a constant, but varies accordance to all the parameters.
-	Essentially, the integration of the probability model, see Equation~(\ref{equ:z_int}) and~(\ref{equ:z_dis}), is usually algebraically intractable.
-	We have to use numerical integration method to evaluate the Equation~(\ref{equ:like}), whose partial derivative is (we are using vectors to generalise the problem):
-	\begin{equation}
-	\label{equ:part}
-	\begin{aligned}
-	\dfrac{\partial \hat{l} (\Theta \mid \mathbf{D})}{\partial \theta} 
-	& = \frac{1}{K} \dfrac{\partial \sum_{k=1}^K\log f(\mathbf{d}_k \mid \Theta )}{\partial \theta} - \dfrac{\partial \log Z( \Theta)}{\partial \theta}\\
-	& =  \frac{1}{K}\sum_{k=1}^K \dfrac{\partial \log f(\mathbf{d}_k \mid \Theta)}{\partial \theta} - \int p(\mathbf{x} \mid \Theta) \dfrac{\partial \log f(\mathbf{x} \mid \Theta)}{\partial \theta} \D \mathbf{x}\\
-	& = \left \langle \dfrac{\partial \log f(\mathbf{d} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{D}} -\left \langle \dfrac{\partial \log f(\mathbf{c} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{C} \sim p(\mathbf{x} \mid \Theta)}  \\
-	&=\left \langle \dfrac{\partial \log f(\mathbf{x} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{X}_{data}} - \left \langle \dfrac{\partial \log f(\mathbf{x} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{X}_{model}},
-	\end{aligned}
-	\end{equation}
-	where  $ <\cdot>_x $ denotes the mean expectation of $ \cdot $ given distribution of $x$.
-	The first term of the right-hand side is easy to get with the given data set $ \mathbf{D} $, and the second term can be approximated by generating data samples $ \mathbf{C} $ according to $ p(\mathbf{x} \mid \Theta) $.
-	These generative samples is called ``fantasy data'' and can be generated using Monte Carlo Markov Chain (MCMC) sampling, see section~\ref{sec:mcmc}.
-	The detailed derivation process can be found in Appendix~\ref{app:part}.
-	Although in this example the integration of product of normal distribution is still tractable, it is also helpful to use numerical integration.
+\textbf{Finally}, the probability model function becomes the product of N normal distributions: 
+\begin{equation}
+f(x \mid \Theta ) = \prod_{i=1}^N\mathcal{N}(x \mid \mu_i, \sigma_i ),
+\end{equation}
+where the partition (normalisation) function $Z( \Theta)$ is no longer a constant, but varies accordance to all the parameters.
+Essentially, the integration of the probability model, see Equation~(\ref{equ:z_int}) and~(\ref{equ:z_dis}), is usually algebraically intractable.
+We have to use numerical integration method to evaluate the Equation~(\ref{equ:like}), whose partial derivative is (we are using vectors to generalise the problem):
+\begin{equation}
+\label{equ:part}
+\begin{aligned}
+\dfrac{\partial \hat{l} (\Theta \mid \mathbf{D})}{\partial \theta} 
+& = \frac{1}{K} \dfrac{\partial \sum_{k=1}^K\log f(\mathbf{d}_k \mid \Theta )}{\partial \theta} - \dfrac{\partial \log Z( \Theta)}{\partial \theta}\\
+& =  \frac{1}{K}\sum_{k=1}^K \dfrac{\partial \log f(\mathbf{d}_k \mid \Theta)}{\partial \theta} - \int p(\mathbf{x} \mid \Theta) \dfrac{\partial \log f(\mathbf{x} \mid \Theta)}{\partial \theta} \D \mathbf{x}\\
+& = \left \langle \dfrac{\partial \log f(\mathbf{d} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{D}} -\left \langle \dfrac{\partial \log f(\mathbf{c} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{C} \sim p(\mathbf{x} \mid \Theta)}  \\
+&=\left \langle \dfrac{\partial \log f(\mathbf{x} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{X}_{data}} - \left \langle \dfrac{\partial \log f(\mathbf{x} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{X}_{model}},
+\end{aligned}
+\end{equation}
+where  $ <\cdot>_x $ denotes the mean expectation of $ \cdot $ given distribution of $x$.
+The first term of the right-hand side is easy to get with the given data set $ \mathbf{D} $, and the second term can be approximated by generating data samples $ \mathbf{C} $ according to $ p(\mathbf{x} \mid \Theta) $.
+These generative samples is called ``fantasy data'' and can be generated using Monte Carlo Markov Chain (MCMC) sampling, see section~\ref{sec:mcmc}.
+The detailed derivation process can be found in Appendix~\ref{app:part}.
+Although in this example the integration of product of normal distribution is still tractable, it is also helpful to use numerical integration.
 
-	Go back to the metaphor of the parameter field, solving PoE problem is like searching the highest point in a completely dark night without a torch.
-	The computation of Equation~(\ref{equ:part}) is to ``feel the gradient of the field under our feet''.~\cite{woodfordnotes}.
-	%The motivation underlining Contrastive Divergence algorithm is to boost the training speed of a Markov Chain in order to represent the distribution of a PoE (Product of Expert) model.
-	%Thus the sampling can be followed using this trained Markov Chain model. 
+Go back to the metaphor of the parameter field, solving PoE problem is like searching the highest point in a completely dark night without a torch.
+The computation of Equation~(\ref{equ:part}) is to ``feel the gradient of the field under our feet''.~\cite{woodfordnotes}.
+%The motivation underlining Contrastive Divergence algorithm is to boost the training speed of a Markov Chain in order to represent the distribution of a PoE (Product of Expert) model.
+%Thus the sampling can be followed using this trained Markov Chain model. 
 \subsubsection{MCMC Sampling}
-	\label{sec:mcmc}
-	In order to solve the integration of algebraically intractable equations we can use numerical integration to approximate.
-	One of the popular method is Monte Carlo integration:
-	\begin{equation}
-	\int_{a}^{b} f(x) \D x = \int_{a}^{b}\frac{f(x)}{q(x)}q(x)\D x = \dfrac{1}{N}\sum_{i=1}^{N}\frac{f(x_i)}{q(x_i)}.
-	\end{equation}
-	The integration of $ f(x) $ transforms to the integration of a new function $ F(x) = f(x)/q(x)  $ times its probability function $ q(x) $.
-	It could be approximated by sampling N data points $ x_i $ according to the probability distribution $ q(x) $, and calculate the average of $ F(x_i) $ as $ <F(x)>_{q(x)}$.
-	So the main question following is how to sample from a probability distribution.
-	
-	MCMC algorithm was proposed by Metropolis in 1953 and it became a wide-used sampling method.
-	The stationary distribution $ \pi $ exists when every two nodes in a Markov Chain are connected regardless of the initial state distribution $ \pi_0 $:
-	\begin{equation}
-	\begin{aligned}
-		&\pi(j) = \sum_{i=1}^{\infty}\pi(i)P_{ij} \\
-		&\pi P = \pi,
-	\end{aligned}
-	\end{equation}
-	where $ P $ is the transition probability matrix, and $ \pi $ is in the state space of a MC and the sum, $ \sum_{i=1}^{\infty}\pi(i) $,of a state distribution is 1.
-	Thus based on the useful theorem of MC, sampled sequence $ \{x_0, x_1, ..., x_n, ... \}$ from a MC complies with its stationary distribution $ \pi(x) $.
-	Metropolis stated that if a MC has a stationary distribution, $ q(x) $, which is exactly needed to sample from, then we can easily obtain a sample sequence along the MC according to the transformation probability matrix $ P $.
-	Here so far we are describing the MC with discrete states, however the it also applies to continuous $ \pi $ and $ P $.
-	The problem here is to build $ P $ to make the stationary distribution equal to the required probability, $ \pi(x) = q(x) $.
-	
-	So the other useful theorem (detailed balance) lies here, if an aperiodic MC is reversible: $\pi (i) P_{ij} = \pi (j) P_{ji},$ then $ \pi $ is the stationary distribution.
-	It is a stronger condition than the previous theorem, so most of the MCs are not generally eligible:
-	\begin{equation}
-	\pi (i) P_{ij} \neq \pi (j) P_{ji}.
-	\end{equation}
-	Thus we can introduce another parameter matrix, $ \alpha $ to make a general MC reversible:
-	\begin{equation}
-	\pi (i) P_{ij} \alpha_{ij} = \pi (j) P_{ji} \alpha_{ji}	,
-	\end{equation}
-	where $ \alpha_{ij} = \pi(j) P_{ji} $ and $ \alpha_{ji} = \pi(i) P_{ij}$.
-	The altered transformation probability matrix is $ P'_{ij} =  P_{ij} \alpha_{ij}$ and $ P'_{ji} =  P_{ji} \alpha_{ji}$, and the MC complies the detailed balance condition: $\pi (i) P'_{ij} = \pi (j) P'_{ji}$.
-	The matrix parameter $ \alpha $ is called as ``acceptance rate'', and its physic meaning is as follows: when state $ i $ transforms to state $ j $ with a probability of $ P_{ij} $, the transformation is accepted by the rate of $ \alpha_{ij} $.
-	Since the accept rate may be too low for the sampling to move along the MC, we can normalise the $ \alpha $ pair to 1:
-	\begin{equation}
-		\alpha^{'}(i,j) = min \left\{\frac{\pi(j)P_{ji}}{\pi(i)P_{ij}},1\right\}.
-	\end{equation}
-	The algorithm is called Metropolis-Hastings and described in following:
-	\begin{algorithm}[h]
-	  \caption{Metropolis-Hastings Sampling}
-	  \label{alg:mcmc}
-	  \begin{algorithmic}
-	  	
-%	    \Procedure{Correction}{coeffs $C$, correlations $Q$}
-	    \State Initialisation $x_0 = s_{random}$, \Comment{$ x $:sampling sequence and $s$:state in MC}
-	    \For{$t=1, 2, ..., N$}
-		    \State $y \sim p_(x \mid x_{t-1})$ 
-			    \Comment{Random drawing the next state by the transformation probability matrix $P$}
-		    \State $ u \sim Uniform[0,1] $ 
-			    \Comment{Random drawing from a uniform distribution}
-			\If {$ u < \alpha^{'}(x_{t-1},y) = min \left\{\frac{q(y)p_(x_{t-1} \mid y)}{q(x_{t-1})p_(y \mid x_{t-1})},1\right\} $}
-				\State {$x_t = y$} \Comment{Accept the transformation when the random number is less than $\alpha$}
-				\Else \State {$x_t = x_{t-1}$}  \Comment{Transformation is refused elsewise}
-			\EndIf
+\label{sec:mcmc}
+In order to solve the integration of algebraically intractable equations we can use numerical integration to approximate.
+One of the popular method is Monte Carlo integration:
+\begin{equation}
+\int_{a}^{b} f(x) \D x = \int_{a}^{b}\frac{f(x)}{q(x)}q(x)\D x = \dfrac{1}{N}\sum_{i=1}^{N}\frac{f(x_i)}{q(x_i)}.
+\end{equation}
+The integration of $ f(x) $ transforms to the integration of a new function $ F(x) = f(x)/q(x)  $ times its probability function $ q(x) $.
+It could be approximated by sampling N data points $ x_i $ according to the probability distribution $ q(x) $, and calculate the average of $ F(x_i) $ as $ <F(x)>_{q(x)}$.
+So the main question following is how to sample from a probability distribution.
+
+MCMC algorithm was proposed by Metropolis in 1953 and it became a wide-used sampling method.
+The stationary distribution $ \pi $ exists when every two nodes in a Markov Chain are connected regardless of the initial state distribution $ \pi_0 $:
+\begin{equation}
+\begin{aligned}
+&\pi(j) = \sum_{i=1}^{\infty}\pi(i)P_{ij} \\
+&\pi P = \pi,
+\end{aligned}
+\end{equation}
+where $ P $ is the transition probability matrix, and $ \pi $ is in the state space of a MC and the sum, $ \sum_{i=1}^{\infty}\pi(i) $,of a state distribution is 1.
+Thus based on the useful theorem of MC, sampled sequence $ \{x_0, x_1, ..., x_n, ... \}$ from a MC complies with its stationary distribution $ \pi(x) $.
+Metropolis stated that if a MC has a stationary distribution, $ q(x) $, which is exactly needed to sample from, then we can easily obtain a sample sequence along the MC according to the transformation probability matrix $ P $.
+Here so far we are describing the MC with discrete states, however the it also applies to continuous $ \pi $ and $ P $.
+The problem here is to build $ P $ to make the stationary distribution equal to the required probability, $ \pi(x) = q(x) $.
+
+So the other useful theorem (detailed balance) lies here, if an aperiodic MC is reversible: $\pi (i) P_{ij} = \pi (j) P_{ji},$ then $ \pi $ is the stationary distribution.
+It is a stronger condition than the previous theorem, so most of the MCs are not generally eligible:
+\begin{equation}
+\pi (i) P_{ij} \neq \pi (j) P_{ji}.
+\end{equation}
+Thus we can introduce another parameter matrix, $ \alpha $ to make a general MC reversible:
+\begin{equation}
+\pi (i) P_{ij} \alpha_{ij} = \pi (j) P_{ji} \alpha_{ji}	,
+\end{equation}
+where $ \alpha_{ij} = \pi(j) P_{ji} $ and $ \alpha_{ji} = \pi(i) P_{ij}$.
+The altered transformation probability matrix is $ P'_{ij} =  P_{ij} \alpha_{ij}$ and $ P'_{ji} =  P_{ji} \alpha_{ji}$, and the MC complies the detailed balance condition: $\pi (i) P'_{ij} = \pi (j) P'_{ji}$.
+The matrix parameter $ \alpha $ is called as ``acceptance rate'', and its physic meaning is as follows: when state $ i $ transforms to state $ j $ with a probability of $ P_{ij} $, the transformation is accepted by the rate of $ \alpha_{ij} $.
+Since the accept rate may be too low for the sampling to move along the MC, we can normalise the $ \alpha $ pair to 1:
+\begin{equation}
+\alpha^{'}(i,j) = min \left\{\frac{\pi(j)P_{ji}}{\pi(i)P_{ij}},1\right\}.
+\end{equation}
+The algorithm is called Metropolis-Hastings and described in following:
+\begin{algorithm}[h]
+	\caption{Metropolis-Hastings Sampling}
+	\label{alg:mcmc}
+	\begin{algorithmic}
+		
+		%	    \Procedure{Correction}{coeffs $C$, correlations $Q$}
+		\State Initialisation $x_0 = s_{random}$, \Comment{$ x $:sampling sequence and $s$:state in MC}
+		\For{$t=1, 2, ..., N$}
+		\State $y \sim p_(x \mid x_{t-1})$ 
+		\Comment{Random drawing the next state by the transformation probability matrix $P$}
+		\State $ u \sim Uniform[0,1] $ 
+		\Comment{Random drawing from a uniform distribution}
+		\If {$ u < \alpha^{'}(x_{t-1},y) = min \left\{\frac{q(y)p_(x_{t-1} \mid y)}{q(x_{t-1})p_(y \mid x_{t-1})},1\right\} $}
+		\State {$x_t = y$} \Comment{Accept the transformation when the random number is less than $\alpha$}
+		\Else \State {$x_t = x_{t-1}$}  \Comment{Transformation is refused elsewise}
+		\EndIf
 		\EndFor
-	  \end{algorithmic}
-	\end{algorithm}
-	
-	The probability model function as the product of N normal distributions can be approximated by using this Metropolis-Hastings sampling.
+	\end{algorithmic}
+\end{algorithm}
+
+The probability model function as the product of N normal distributions can be approximated by using this Metropolis-Hastings sampling.
 \subsubsection{Gibbs Sampling}
-	\label{sec:Gibbs}
-	For high dimensional data sampling, it is possible to make the accept rate to 1 which increases the convergence speed dramatically.
-	According to conditional probability:
-	\begin{equation}
-		P(A \mid B) = \frac{P(A \cap B)}{P(B)}.
-	\end{equation}
-	For a $ n $ dimensional data $ (\mathbf{x}, y) $ where $ \mathbf{x}=(x_1,x_2,...,x_{n-1}) $, the joint probability of $p(\mathbf{x},y)$ is:
-	\begin{equation}
-		p(\mathbf{x},y) = p(y \mid \mathbf{x})p(\mathbf{x}).
-	\end{equation}
-	Thus, during sampling if we restrict the direction of transformation to one single axis(dimension), $ y $, from point $ A(\mathbf{x}_1, y_1) $ to point $ B(\mathbf{x}_1, y_2)$:
-	\begin{equation}
-		p(\mathbf{x}_1, y_1)p(y_2 \mid \mathbf{x}_1) = p(\mathbf{x}_1, y_2)p(y_1 \mid \mathbf{x}_1) = p(\mathbf{x}_1)p(y_1 \mid \mathbf{x}_1)p(y_2 \mid \mathbf{x}_1),
-	\end{equation}
-	then, the MC obeys the condition of detailed balance.
-	So the stationary distribution $ \pi(x_1,x_2,...,x_n) $ equals to the joint probability $ p(x_1,x_2,...,x_n) $ and the transformation probability matrix P is consisted of the conditional probability of each dimension $ k $ $,  p(x_k \mid x_1,...,x_{k-1},x_{k+1},...,x_n) $.
-	Therefore, given the conditional distribution of each variable for a multivariate distribution Gibbs sampling is able to approximate the joint distribution with long enough sample sequence.
-	Gibbs sampling is described as follows:
-	\begin{algorithm}[h]
-	  \caption{Gibbs Sampling}
-	  \label{alg:gibbs}
-	  \begin{algorithmic}
-	  	
-%	    \Procedure{Correction}{coeffs $C$, correlations $Q$}
-	    \State Initialisation $\mathbf{x}_0 = [x_0(1),x_0(2),...,x_0(M)]$,  \Comment{Random initialise $\mathbf{x}_0$}
-	    \For{$t=1, 2, ..., N$}
-	    	\For{$k=1, 2, ..., M$}
-	    		\State $ x_t(k) = p(x(k) \mid x_{t-1}(1),x_{t-1}(2),...,x_{t-1}(k-1),x_{t-1}(k+1),...,x_{t-1}(M))$\\
-	    		\Comment{Sampling by the conditional distribution}
-			\EndFor
+\label{sec:Gibbs}
+For high dimensional data sampling, it is possible to make the accept rate to 1 which increases the convergence speed dramatically.
+According to conditional probability:
+\begin{equation}
+P(A \mid B) = \frac{P(A \cap B)}{P(B)}.
+\end{equation}
+For a $ n $ dimensional data $ (\mathbf{x}, y) $ where $ \mathbf{x}=(x_1,x_2,...,x_{n-1}) $, the joint probability of $p(\mathbf{x},y)$ is:
+\begin{equation}
+p(\mathbf{x},y) = p(y \mid \mathbf{x})p(\mathbf{x}).
+\end{equation}
+Thus, during sampling if we restrict the direction of transformation to one single axis(dimension), $ y $, from point $ A(\mathbf{x}_1, y_1) $ to point $ B(\mathbf{x}_1, y_2)$:
+\begin{equation}
+p(\mathbf{x}_1, y_1)p(y_2 \mid \mathbf{x}_1) = p(\mathbf{x}_1, y_2)p(y_1 \mid \mathbf{x}_1) = p(\mathbf{x}_1)p(y_1 \mid \mathbf{x}_1)p(y_2 \mid \mathbf{x}_1),
+\end{equation}
+then, the MC obeys the condition of detailed balance.
+So the stationary distribution $ \pi(x_1,x_2,...,x_n) $ equals to the joint probability $ p(x_1,x_2,...,x_n) $ and the transformation probability matrix P is consisted of the conditional probability of each dimension $ k $ $,  p(x_k \mid x_1,...,x_{k-1},x_{k+1},...,x_n) $.
+Therefore, given the conditional distribution of each variable for a multivariate distribution Gibbs sampling is able to approximate the joint distribution with long enough sample sequence.
+Gibbs sampling is described as follows:
+\begin{algorithm}[h]
+	\caption{Gibbs Sampling}
+	\label{alg:gibbs}
+	\begin{algorithmic}
+		
+		%	    \Procedure{Correction}{coeffs $C$, correlations $Q$}
+		\State Initialisation $\mathbf{x}_0 = [x_0(1),x_0(2),...,x_0(M)]$,  \Comment{Random initialise $\mathbf{x}_0$}
+		\For{$t=1, 2, ..., N$}
+		\For{$k=1, 2, ..., M$}
+		\State $ x_t(k) = p(x(k) \mid x_{t-1}(1),x_{t-1}(2),...,x_{t-1}(k-1),x_{t-1}(k+1),...,x_{t-1}(M))$\\
+		\Comment{Sampling by the conditional distribution}
 		\EndFor
-	  \end{algorithmic}
-	\end{algorithm}
-	
+		\EndFor
+	\end{algorithmic}
+\end{algorithm}
+
 \subsubsection{CD Instead of KL(Kullback-Leibler)}
 \label{sec:CD}
-	Kullback-Leibler divergence is the measure of how different two probability distributions are:
-	\begin{equation}
-	\begin{aligned}
-	KL(P \mid \mid Q)
-	&= \int P(\mathbf{x}) \log \frac{P(\mathbf{x})}{Q(\mathbf{x})} \D \mathbf{x}\\
-	%= \sum_{\mathbf{x}} P(\mathbf{x}) \log \frac{P(\mathbf{x})}{Q(\mathbf{x})} \\
-	&= \int P(\mathbf{x}) \log P(\mathbf{x}) \D \mathbf{x} - \int P(\mathbf{x}) \log Q(\mathbf{x}) \D \mathbf{x}\\
-	%=  \sum_{\mathbf{x}} P(\mathbf{x}) \log P(\mathbf{x}) - \sum_{\mathbf{x}} P(\mathbf{x}) \log Q(\mathbf{x})\\
-	&= \left \langle \log P(\mathbf{x}) \right \rangle_{\mathbf{X} \sim P(\mathbf{x})} - \left \langle \log Q(\mathbf{x}) \right \rangle_{\mathbf{X} \sim P(\mathbf{x})} ,
-	\end{aligned}
-	\end{equation}
-	and the second term of the right hand side is the average log-likelihood function (see Equation~\ref{equ:like}) if $P(\mathbf{x})$ is the training data distribution and $Q(\mathbf{x})$ is the model distribution:
-	\begin{equation}
-	\begin{aligned}
-	& KL \left( p(\mathbf{x} \mid \mathbf{D}) \mid \mid p(\mathbf{x} \mid \Theta) \right)
-	=   \left \langle \log p(\mathbf{d} \mid \mathbf{D}) \right \rangle_{\mathbf{D}} - \left \langle \log p(\mathbf{d} \mid \Theta) \right \rangle_{\mathbf{D}}, \textit{where} \\
-	& \hat{l} (\Theta \mid \mathbf{D}) =\frac{1}{K}\log  L (\Theta \mid \mathbf{D}) 
-	=  \frac{1}{K}\log p(\mathbf{D} \mid \Theta ) 
-	= \frac{1}{K} \sum_{k=1}^{\mathbf{K}} \log f(\mathbf{d}_k \mid \Theta )
-	= \left \langle \log p(\mathbf{d} \mid \Theta) \right \rangle_{\mathbf{D}}.
-	\end{aligned}
-	\end{equation}
-	We use $ \mathbf{D} $ instead of $ \mathbf{X} \sim p(\mathbf{x} \mid \mathbf{D}) $, for $ p(\mathbf{x} \mid \mathbf{D}) $ is the distribution of data set $ \mathbf{D} $.
-	If we need to generate a sample sequence according to the distribution $ p(\mathbf{x} \mid \mathbf{D}) $, $ \mathbf{D} $ itself is the most approximated.
-	Since $\left \langle \log p(\mathbf{d} \mid \mathbf{D}) \right \rangle_{\mathbf{D}}$ is independent with model parameters, the negative partial derivative is the same with Equation~(\ref{equ:part}):
-	\begin{equation}
-	\label{equ:kl}
-		-\dfrac{\partial KL \left( p(\mathbf{x} \mid \mathbf{D}) \mid \mid p(\mathbf{x} \mid \Theta) \right)}{\partial \theta}
-		= \dfrac{\partial \hat{l} (\Theta \mid \mathbf{D})}{\partial \theta} \\
-		= \left \langle \dfrac{\partial \log f(\mathbf{d} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{D}} - \left \langle \dfrac{\partial \log f(\mathbf{c} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{C} \sim p(\mathbf{x} \mid \Theta)} .
-	\end{equation}
-	Therefore, for each iteration searching in the parameter space we use $ k $ number of training data $ \mathbf{D}=(\mathbf{d}_1, \mathbf{d}_2, ..., \mathbf{d}_k) $ and fantasy data $ \mathbf{C}=(\mathbf{c}_1, \mathbf{c}_2, ..., \mathbf{c}_k) $.
-	If $ k $ is big enough, sampling sequences $ \mathbf{D} $ and $ \mathbf{C} $ are able to approximate the data and the model distribution thus to get derivatives of the KL function.
-	However, if we just take a small number of data, even $ k = 1 $ per iteration~\cite{hinton2002training}, the KL divergence can be seen as a ``k-step contrastive convergence ($ CD_{k}) $'':
-	\begin{equation}
-	\label{equ:cdk}
-		\dfrac{\partial CD_{k}}{\partial \theta} 
-		= - \left \langle \dfrac{\partial \log f(\mathbf{d} \mid \Theta)}{\partial \theta}\right \rangle_{(\mathbf{d}_1, \mathbf{d}_2, ..., \mathbf{d}_k) } + \left \langle \dfrac{\partial \log f(\mathbf{c} \mid \Theta)}{\partial \theta}\right \rangle_{(\mathbf{c}_1, \mathbf{c}_2, ..., \mathbf{c}_k) \sim p(\mathbf{x} \mid \Theta)}.
-	\end{equation}
-	Since the searching step $ \eta $ is very small, the derivatives of points in a small area can be seen as the same.
+Kullback-Leibler divergence is the measure of how different two probability distributions are:
+\begin{equation}
+\begin{aligned}
+KL(P \mid \mid Q)
+&= \int P(\mathbf{x}) \log \frac{P(\mathbf{x})}{Q(\mathbf{x})} \D \mathbf{x}\\
+%= \sum_{\mathbf{x}} P(\mathbf{x}) \log \frac{P(\mathbf{x})}{Q(\mathbf{x})} \\
+&= \int P(\mathbf{x}) \log P(\mathbf{x}) \D \mathbf{x} - \int P(\mathbf{x}) \log Q(\mathbf{x}) \D \mathbf{x}\\
+%=  \sum_{\mathbf{x}} P(\mathbf{x}) \log P(\mathbf{x}) - \sum_{\mathbf{x}} P(\mathbf{x}) \log Q(\mathbf{x})\\
+&= \left \langle \log P(\mathbf{x}) \right \rangle_{\mathbf{X} \sim P(\mathbf{x})} - \left \langle \log Q(\mathbf{x}) \right \rangle_{\mathbf{X} \sim P(\mathbf{x})} ,
+\end{aligned}
+\end{equation}
+and the second term of the right hand side is the average log-likelihood function (see Equation~\ref{equ:like}) if $P(\mathbf{x})$ is the training data distribution and $Q(\mathbf{x})$ is the model distribution:
+\begin{equation}
+\begin{aligned}
+& KL \left( p(\mathbf{x} \mid \mathbf{D}) \mid \mid p(\mathbf{x} \mid \Theta) \right)
+=   \left \langle \log p(\mathbf{d} \mid \mathbf{D}) \right \rangle_{\mathbf{D}} - \left \langle \log p(\mathbf{d} \mid \Theta) \right \rangle_{\mathbf{D}}, \textit{where} \\
+& \hat{l} (\Theta \mid \mathbf{D}) =\frac{1}{K}\log  L (\Theta \mid \mathbf{D}) 
+=  \frac{1}{K}\log p(\mathbf{D} \mid \Theta ) 
+= \frac{1}{K} \sum_{k=1}^{\mathbf{K}} \log f(\mathbf{d}_k \mid \Theta )
+= \left \langle \log p(\mathbf{d} \mid \Theta) \right \rangle_{\mathbf{D}}.
+\end{aligned}
+\end{equation}
+We use $ \mathbf{D} $ instead of $ \mathbf{X} \sim p(\mathbf{x} \mid \mathbf{D}) $, for $ p(\mathbf{x} \mid \mathbf{D}) $ is the distribution of data set $ \mathbf{D} $.
+If we need to generate a sample sequence according to the distribution $ p(\mathbf{x} \mid \mathbf{D}) $, $ \mathbf{D} $ itself is the most approximated.
+Since $\left \langle \log p(\mathbf{d} \mid \mathbf{D}) \right \rangle_{\mathbf{D}}$ is independent with model parameters, the negative partial derivative is the same with Equation~(\ref{equ:part}):
+\begin{equation}
+\label{equ:kl}
+-\dfrac{\partial KL \left( p(\mathbf{x} \mid \mathbf{D}) \mid \mid p(\mathbf{x} \mid \Theta) \right)}{\partial \theta}
+= \dfrac{\partial \hat{l} (\Theta \mid \mathbf{D})}{\partial \theta} \\
+= \left \langle \dfrac{\partial \log f(\mathbf{d} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{D}} - \left \langle \dfrac{\partial \log f(\mathbf{c} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{C} \sim p(\mathbf{x} \mid \Theta)} .
+\end{equation}
+Therefore, for each iteration searching in the parameter space we use $ k $ number of training data $ \mathbf{D}=(\mathbf{d}_1, \mathbf{d}_2, ..., \mathbf{d}_k) $ and fantasy data $ \mathbf{C}=(\mathbf{c}_1, \mathbf{c}_2, ..., \mathbf{c}_k) $.
+If $ k $ is big enough, sampling sequences $ \mathbf{D} $ and $ \mathbf{C} $ are able to approximate the data and the model distribution thus to get derivatives of the KL function.
+However, if we just take a small number of data, even $ k = 1 $ per iteration~\cite{hinton2002training}, the KL divergence can be seen as a ``k-step contrastive convergence ($ CD_{k}) $'':
+\begin{equation}
+\label{equ:cdk}
+\dfrac{\partial CD_{k}}{\partial \theta} 
+= - \left \langle \dfrac{\partial \log f(\mathbf{d} \mid \Theta)}{\partial \theta}\right \rangle_{(\mathbf{d}_1, \mathbf{d}_2, ..., \mathbf{d}_k) } + \left \langle \dfrac{\partial \log f(\mathbf{c} \mid \Theta)}{\partial \theta}\right \rangle_{(\mathbf{c}_1, \mathbf{c}_2, ..., \mathbf{c}_k) \sim p(\mathbf{x} \mid \Theta)}.
+\end{equation}
+Since the searching step $ \eta $ is very small, the derivatives of points in a small area can be seen as the same.
 %	The step made for a single $ CD_{k} $ can be approximated by summation of $ k $ steps of $ CD_{1} $ as long as the searching does not go far.
 %	Otherwise the searching path may follow some direction for accumulated steps away from the original area, thus significantly reduces the training time.
-	
-	\subsubsection{Discussion}
-		Although there is practical explanation on using $CD_1$ for parameter space searching, arguments exist over whether the search converge to the same maxima/minima as $CD_\infty$~\cite{wu2015bias}.
-		Moreover, is the parameter searching still following the original objective function?	
-		As an initial exploration over the problem we tested some experiments on Section~\ref{sec:cd1}. 
+
+\subsubsection{Discussion}
+Although there is practical explanation on using $CD_1$ for parameter space searching, arguments exist over whether the search converge to the same maxima/minima as $CD_\infty$~\cite{wu2015bias}.
+Moreover, is the parameter searching still following the original objective function?	
+As an initial exploration over the problem we tested some experiments on Section~\ref{sec:cd1}. 
 %	Thus,
 %	\begin{equation}
 %		\dfrac{\partial [KL(p^0 \mid \mid p^{\infty}) - KL(p^1 \mid \mid p^{\infty})]}{\partial \theta}
@@ -288,856 +456,225 @@ As a result, training and operate deep learning on spiking neural networks (SNNs
 %		CD_n = KL(p^0 \mid \mid p^{\infty}) - KL(p^n \mid \mid p^{\infty})
 %	\end{equation}
 \subsection{RBM\cite{zhang2013rbm}}
-	RBM is a restricted version of Boltzman machine, where there are only connections between layers of units but not between units within a layer, see Figure~\ref{fig:RBM}.
-	$ v $ is the layer of visible units representing the observable data $ \mathbf{v} $, while $ h $ are the hidden units which can be seen as feature extractors.
-	The connections between the hidden layer and the visible layers are bidirectional weights, $ \mathbf{W} $.
-	Note that, both visible and hidden units have their bias individually, $ \mathbf{a} $ and $ \mathbf{b} $.
-	Thus the RBM consists of the data $ \mathbf{D} = \mathbf{V} = (\mathbf{v}_1, \mathbf{v}_2, ..., \mathbf{v}_K ) $, the model parameters $ \Theta = (\mathbf{a}, \mathbf{b}, \mathbf{W}) $ and the hidden units $ \mathbf{h} \sim p(\mathbf{h} \mid \mathbf{v}, \Theta) $.
-	\begin{figure}[hbt]
+RBM is a restricted version of Boltzman machine, where there are only connections between layers of units but not between units within a layer, see Figure~\ref{fig:RBM}.
+$ v $ is the layer of visible units representing the observable data $ \mathbf{v} $, while $ h $ are the hidden units which can be seen as feature extractors.
+The connections between the hidden layer and the visible layers are bidirectional weights, $ \mathbf{W} $.
+Note that, both visible and hidden units have their bias individually, $ \mathbf{a} $ and $ \mathbf{b} $.
+Thus the RBM consists of the data $ \mathbf{D} = \mathbf{V} = (\mathbf{v}_1, \mathbf{v}_2, ..., \mathbf{v}_K ) $, the model parameters $ \Theta = (\mathbf{a}, \mathbf{b}, \mathbf{W}) $ and the hidden units $ \mathbf{h} \sim p(\mathbf{h} \mid \mathbf{v}, \Theta) $.
+\begin{figure}[hbt]
 	\centering
-		\includegraphics[width=0.6\textwidth]{pics_sdbn/RBM.pdf}
-		\caption{A typical RBM structure.}
-		\label{fig:RBM}
-	\end{figure}
-	
-	The Energy function~\cite{hopfield1982neural} of a RBM is defined as follows, which has $ n $ vision units and $ m $ hidden ones:
-	\begin{equation}
-		E(\mathbf{v}, \mathbf{h} \mid \Theta)= -\sum_{i=1}^n a_i v_i - \sum_{j=1}^m b_j h_j - \sum_{i=1}^n \sum_{j=m}^n v_i W_{ij} h_j.
-	\end{equation}
-	And the model function and its probability functions are as follows:
-	\begin{equation}
-		\begin{aligned}
-		& f(\mathbf{v}, \mathbf{h} \mid \Theta) =e^{-E(\mathbf{v}, \mathbf{h} \mid \Theta)} \\
-		& p(\mathbf{v}, \mathbf{h} \mid \Theta) =\frac{e^{-E(\mathbf{v}, \mathbf{h} \mid \Theta)}}{Z(\Theta)}\\
-		& Z(\Theta) = \sum_{\mathbf{v}} \sum_{\mathbf{h}} e^{-E(\mathbf{v}, \mathbf{h} \mid \Theta)}.
-		\end{aligned}
-	\end{equation}
-	Note that, the model function $ f(\mathbf{v}, \mathbf{h} \mid \Theta) $ is nicely defined as a PoE problem, and each hidden unit represent an expert.
-	However, we are more interested in the marginal probability function: $ p(\mathbf{v} \mid \Theta) $:
-	\begin{equation}
-		p(\mathbf{v} \mid \Theta) =\frac{\sum_{ \mathbf{h}} e^{-E(\mathbf{v}, \mathbf{h} \mid \Theta)}}{Z(\Theta)}.
-	\end{equation}		
-\subsubsection{Objective Function}
-	Although $ p(\mathbf{v} \mid \Theta) $ is not a PoE problem, the partial derivation of the average log-likelihood function still applies to Equation~(\ref{equ:part}) and the intractable integration is the same problem here:
-	\begin{equation}
-		\label{equ:RBM}
-		\begin{aligned}
-		\dfrac{\partial \hat{l} (\Theta \mid \mathbf{D})}{\partial \theta} 
-		& = \left \langle \dfrac{\partial -E(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{h} \sim p( \mathbf{h} \mid \mathbf{v}, \Theta), \mathbf{V}} 
-		- \left \langle \dfrac{\partial -E(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{v}, \mathbf{h} \sim p( \mathbf{v}, \mathbf{h} \mid  \Theta)},  \\
-		\end{aligned}
-	\end{equation}
-	The detailed derivation process, please see Appendix~\ref{app:RBM}.
-	Regarding the specific RBM parameters,  $ \Theta = (\mathbf{a}, \mathbf{b}, \mathbf{W}) $, the derivatives are:
-	\begin{equation}
-		\label{equ:RBM_2}
-		\begin{aligned}
-		\dfrac{\partial \hat{l} (\Theta \mid \mathbf{D})}{\partial W_{ij}} 
-		& = \left \langle v_i h_j \right \rangle_{\mathbf{h} \sim p( \mathbf{h} \mid \mathbf{v}, \Theta), \mathbf{V}} 
-		- \left \langle  v_i h_j \right \rangle_{\mathbf{v}, \mathbf{h} \sim p( \mathbf{v}, \mathbf{h} \mid  \Theta)},  \\
-		\dfrac{\partial \hat{l} (\Theta \mid \mathbf{D})}{\partial a_{i}} 
-		& = \left \langle v_i \right \rangle_{\mathbf{h} \sim p( \mathbf{h} \mid \mathbf{v}, \Theta), \mathbf{V}} 
-		- \left \langle  v_i \right \rangle_{\mathbf{v}, \mathbf{h} \sim p( \mathbf{v}, \mathbf{h} \mid  \Theta)},  \\
-		\dfrac{\partial \hat{l} (\Theta \mid \mathbf{D})}{\partial b_{j}} 
-		& = \left \langle h_j \right \rangle_{\mathbf{h} \sim p( \mathbf{h} \mid \mathbf{v}, \Theta), \mathbf{V}} 
-		- \left \langle  h_j \right \rangle_{\mathbf{v}, \mathbf{h} \sim p( \mathbf{v}, \mathbf{h} \mid  \Theta)},  \\
-	\end{aligned}
-	\end{equation}	 
-	
-\subsubsection{CD with 1-step Reconstruction}
-\label{sec:cd}
-	Both terms of the derivatives of the average log-likelihood function (Equation~(\ref{equ:RBM})) are intractable, so generative models for sampling is needed.
-	As stated in Section~\ref{sec:CD}, for each iteration only one sample is generated.
-	
-	Regarding to the first term, given a training data $ \mathbf{v}_0 $ we first generate a hidden vector according to the conditional distribution $ \mathbf{h}_0 \sim p( \mathbf{h} \mid \mathbf{v}_0, \Theta) $.
-	Welling et al. have proposed~\cite{welling2004exponential} that both the hidden and visible units can be any exponential unit, such as softmax, Gaussian and Poissonian.
-	Here we take a Bernoulli-Bernoulli RBM as an example, where each node is a sigmoidal unit.
-	The conditional probability function is as follows:
-	\begin{equation}
-		p(h_i = 1 \mid \mathbf{v}) = \sigma(\sum_{j=1}^{m} W_{ij} \cdot \mathbf{v} + b_j).
-	\end{equation}
-	
-	The second term is perfect fit for Gibbs sampling, since we can $ p(\mathbf{v}, \mathbf{h} \mid \Theta) $ as a 2D vector and generating the samples by jumping in a Markov Chain with the transformation probability matrix $ p(\mathbf{v} \mid \mathbf{h}, \Theta) $ and $ p(\mathbf{h} \mid \mathbf{v}, \Theta) $, see Figure~\ref{fig:gibbs} and Section~\ref{sec:Gibbs}.
-	So, with the given data $ \mathbf{v}_0 $ and the sampling data $ \mathbf{h}_0 $, we have the initial data point in this Markov Chain,  ($ \mathbf{v}_0, \mathbf{h}_0$).
-	The transformation starts from the axis of $ \mathbf{v} $, then we get $ \mathbf{v}_1 \sim p( \mathbf{v} \mid \mathbf{h}_0, \Theta) $.
-	It follows the next axis $ \mathbf{h} $, similarly we get $ \mathbf{h}_1 \sim p( \mathbf{h} \mid \mathbf{v}_1, \Theta) $.
-	So far we obtain the first sample along the Markov Chain, ($ \mathbf{v}_1, \mathbf{h}_1$) thus to solve the objective function with one iteration.
-	The algorithm is described below:   
-	\begin{algorithm}[h]
-		\caption{Learning on RBM Parameters with $ CD_1 $}
-		\label{alg:learn}
-		\begin{algorithmic}
-%			\State Initialisation $\mathbf{x}_0 = [x_0(1),x_0(2),...,x_0(M)]$,  \Comment{Random initialise $\mathbf{x}_0$}
-			\For{$t=1, 2, ..., K$} \Comment{K number of training data $ \mathbf{V} $, 1 data each iteration}
-%			\For{$k=1, 2, ..., M$}
-			\State $ \mathbf{h}_t \sim p( \mathbf{h} \mid \mathbf{v}_t, \Theta) $
-			\Comment{Generate $ \mathbf{h}_t $ given $ \mathbf{v}_t $ }
-			\State $ \mathbf{v}_{t+1} \sim p( \mathbf{v} \mid \mathbf{h}_{t}, \Theta) $
-			\Comment{Generate $ \mathbf{v}_{t+1} $ on v axis using Gibbs sampling }
-			\State $ \mathbf{h}_{t+1} \sim p( \mathbf{h} \mid \mathbf{v}_{t+1}, \Theta) $
-			\Comment{Generate $ \mathbf{h}_{t+1} $ on h axis using Gibbs sampling }
-			\State $ \dfrac{\partial \hat{l} (\Theta \mid \mathbf{D})}{\partial W_{ij}} = v_{t,i} h_{t,j} - v_{t+1,i} h_{t+1,j}$
-			\State $ \dfrac{\partial \hat{l} (\Theta \mid \mathbf{D})}{\partial a_{i}} = v_{t,i} - v_{t+1,i} $
-			\State $  \dfrac{\partial \hat{l} (\Theta \mid \mathbf{D})}{\partial b_{j}} = h_{t,j} - h_{t+1,j}$
-			\State $ \Delta W_{ij} = \eta ( v_{t,i} h_{t,j} - v_{t+1,i} h_{t+1,j}) $
-			\Comment{Update $ W_{ij} $}
-			\State $ \Delta a_{i} = \eta ( v_{t,i} - v_{t+1,i}) $
-			\Comment{Update $ a_{i} $}
-			\State $ \Delta b_{j} = \eta ( h_{t,j} - h_{t+1,j}) $
-			\Comment{Update $ b_{j} $}
-%			\EndFor
-			\EndFor
-		\end{algorithmic}
-	\end{algorithm}
-	\begin{figure}[hbt]
-		\centering
-		\includegraphics[width=0.6\textwidth]{pics_sdbn/gibbs.png}
-		\caption{Gibbs sampling on RBM.}
-		\label{fig:gibbs}
-	\end{figure}	
-\subsubsection{$CD_1$ vs $CD_{\infty}$}
-\label{sec:cd1}
-The common validation of trained RBMs is to measure the reconstruction error over the training dataset.
-To be precise, the reconstruction of some training vision data $ v_0 $ is one step Gibbs sampling (from $ v_0 $ via $ (v_0, h_0 )$ to $ (v_1, h_0 )$) away from it, $ v_1 $.
-We use the MNIST dataset as both the training and testing data.
-The size of every image in MNIST is $28 \times 28$, and every pixel is with grey scale from 0 to 255.
-To make it fit the binary status of the neurons, the pixels whose values over 50 are set as 1 and the others are set to 0, see Figure~\ref{Fig:5} as an example.
-This RBM is with $28 \times 28$ visible units and 500 hidden units.
-If we look at the measured results in Figure~\ref{Fig:error}, it is not surprise to see there is no obvious difference on the reconstruction error among $CD_1$, $CD_2$ and $CD_{1000}$.
-
-	\begin{figure}[hbt]
-		\centering
-		\includegraphics[width=0.6\textwidth]{pics_sdbn/test.pdf}
-		\caption{An example of binary image in MNIST.}
-		\label{Fig:5}
-	\end{figure}
-
-The objective function, Equation~(\ref{equ:cdk}), targets at maximise the log likelihood of data and model.
-In another word, the samples generated from the converged model should have the same distribution as the training dataset.
-However, lower reconstruction error means smaller changes over the first step of Gibbs sampling, where only one sample generated from the model.
-It is impossible to compare two distributions with merely single data.
-
-Thus, we have done another simple test to generate long sample sequence using Gibbs sampling.
-In order to measure the distribution in a very naive way, the cluster centre of the training data is found by k-means and we calculated the Euclidean distance between a sample and the cluster centre.
-The distribution of the Euclidean distance of the training data is shown in Figure~\ref{Fig:dis}.
-The distribution is well presented by $CD_{1000}$, which confirms the objective function~\ref{equ:RBM}.
-
-\begin{figure}[hbt]
-  \centering
-		\begin{subfigure}[t]{0.4\textwidth}
-			\includegraphics[width=\textwidth]{pics_sdbn/train_short.pdf}
-		    \caption{Reconstruction error over training images, plotted only for the first $8,000$ searching steps.}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.4\textwidth}
-			\includegraphics[width=\textwidth]{pics_sdbn/train_long.pdf}
-		    \caption{Reconstruction error over training images.}
-		\end{subfigure}\\
-		\begin{subfigure}[t]{0.4\textwidth}
-			\includegraphics[width=\textwidth]{pics_sdbn/test_short.pdf}
-		    \caption{Reconstruction error over testing images, plotted only for the first $8,000$ searching steps.}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.4\textwidth}
-			\includegraphics[width=\textwidth]{pics_sdbn/test_long.pdf}
-		    \caption{Reconstruction error over testing images}
-		\end{subfigure}
-
-  \caption{
-  Reconstruction error.
-  Due to the high cost of training with $CD_{1000}$, we stopped at $6,000$ update steps.
-  }
-  \label{Fig:error}
+	\includegraphics[width=0.6\textwidth]{pics_sdbn/RBM.pdf}
+	\caption{A typical RBM structure.}
+	\label{fig:RBM}
 \end{figure}
 
-\begin{figure}[hbt]
-  \centering
-		\begin{subfigure}[t]{0.18\textwidth}
-			\includegraphics[width=\textwidth]{pics_sdbn/train_dist.pdf}
-		    \caption{Original distribution of the training data.}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.18\textwidth}
-			\includegraphics[width=\textwidth]{pics_sdbn/cd1_1.pdf}
-		    \caption{$5,420$ steps of $CD_1$.}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.18\textwidth}
-			\includegraphics[width=\textwidth]{pics_sdbn/cd1_51.pdf}
-		    \caption{$ 27,100 $ steps of $CD_1$.}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.18\textwidth}
-			\includegraphics[width=\textwidth]{pics_sdbn/cd1_91.pdf}
-		    \caption{$ 48,780 $ steps of $CD_1$.}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.18\textwidth}
-			\includegraphics[width=\textwidth]{pics_sdbn/cd1_para.pdf}
-		    \caption{Searching path of para $\mu$ and $\sigma$.}
-		\end{subfigure}\\
-		\begin{subfigure}[t]{0.18\textwidth}
-			\includegraphics[width=\textwidth]{pics_sdbn/kcd_100.pdf}
-		    \caption{$600$ steps of K times $CD_1$.}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.18\textwidth}
-			\includegraphics[width=\textwidth]{pics_sdbn/kcd_900.pdf}
-		    \caption{$5,400$ steps of K times $CD_1$.}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.18\textwidth}
-			\includegraphics[width=\textwidth]{pics_sdbn/kcd_3794.pdf}
-		    \caption{$ 22,764 $ steps of K times $CD_1$.}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.18\textwidth}
-			\includegraphics[width=\textwidth]{pics_sdbn/kcd_18428.pdf}
-		    \caption{$ 48,780 $ steps of K times $CD_1$.}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.18\textwidth}
-			\includegraphics[width=\textwidth]{pics_sdbn/kcd_long_para.pdf}
-		    \caption{Searching path of para $\mu$ and $\sigma$.}
-		\end{subfigure}\\
-		\begin{subfigure}[t]{0.18\textwidth}
-			\includegraphics[width=\textwidth]{pics_sdbn/cdk_100.pdf}
-		    \caption{$600$ steps of$CD_{1000}$.}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.18\textwidth}
-			\includegraphics[width=\textwidth]{pics_sdbn/cdk_500.pdf}
-		    \caption{$3,000$ steps of $CD_{1000}$.}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.18\textwidth}
-			\includegraphics[width=\textwidth]{pics_sdbn/cdk_600.pdf}
-		    \caption{$3,600$ steps of $CD_{1000}$.}
-		\end{subfigure}		
-		\begin{subfigure}[t]{0.18\textwidth}
-			\includegraphics[width=\textwidth]{pics_sdbn/cdk_900.pdf}
-		    \caption{$5,400 $ steps of $CD_{1000}$.}
-		\end{subfigure}	
-		\begin{subfigure}[t]{0.18\textwidth}
-			\includegraphics[width=\textwidth]{pics_sdbn/cdk_para.pdf}
-		    \caption{Searching path of para $\mu$ and $\sigma$.}
-		\end{subfigure}	
-  \caption{
-  Distribution of the Euclidean distance between the generated Gibbs samples and the cluster centre.
-  }
-  \label{Fig:dis}
-\end{figure}
-%In Figure~\ref{Fig:dis} we can see the obvious approximation with $CD_{1000}$.
-%There are 10 trails experimented for 5 configuration on sample size. 
-%	\begin{figure}[hbt]
-%		\centering
-%		\includegraphics[width=0.7\textwidth]{pics_sdbn/distr.pdf}
-%		\caption{Euclidean distance between the training data and the generated Gibbs sampling sequence on the mean value only.} 
-%		\label{Fig:dis}
-%	\end{figure}
-
-The previous experiment is a rough approximation of distribution which maps the training data points to a 1-D Euclidean distance.
-Thus we then take another experiment with given distribution (Normal) to estimate the reconstruction capability and the distribution representation.
-The training data consists of $1,000$ digits generated from a normal distribution ranging from 0 to 9.
-A digit K is represented by a 10-D binary vector, with the K-th bit turning on (1) and the other bits are 0.
-%The reconstruction only succeeds when the 1-step Gibbs sample is the same with the input vector.
-%The correct rate is only 4.5\% for $CD_{1}$ and 6.6\% for $CD_{1000}$.
-To gain the reconstruction error, the same test is applied to the experiment.
-The error rate is counted pixel-wise, and with the increasing update steps the reconstruction error drops to a similar range for both $CD_1$ and $CD_K$, see Figure~\ref{Fig:disRecon}.
-Then we continue to sample $1,000$ vectors along the Markov Chain, thus to compare the distribution with the original given normal distribution.
-The results can be derived from Figure~\ref{Fig:vector}.
-\begin{figure}[hbt]
-				\centering
-				\includegraphics[width=0.6\textwidth]{pics_sdbn/ReconError.pdf}
-				\caption{Reconstruction error over training images. } 
-				\label{Fig:disRecon}
-\end{figure}
-
-\begin{figure}[hbt]
-  \centering
-  		\begin{subfigure}[t]{0.38\textwidth}
-  			\includegraphics[width=\textwidth]{pics_sdbn/train_data_v.pdf}
-  		    \caption{Original normal distribution of the training data.}
-  		\end{subfigure}\\
-  		\begin{subfigure}[t]{0.18\textwidth}
-  			\includegraphics[width=\textwidth]{pics_sdbn/gibbs_cd1_1000.pdf}
-  		    \caption{$1,000$ steps of $CD_1$.}
-  		\end{subfigure}
-  		\begin{subfigure}[t]{0.18\textwidth}
-  			\includegraphics[width=\textwidth]{pics_sdbn/gibbs_cd1_3000.pdf}
-  		    \caption{$3,000$ steps of $CD_1$.}
-  		\end{subfigure}
-  		\begin{subfigure}[t]{0.18\textwidth}
-  			\includegraphics[width=\textwidth]{pics_sdbn/gibbs_cd1_5000.pdf}
-  		    \caption{$5,000$ steps of $CD_1$.}
-  		\end{subfigure}
-  		\begin{subfigure}[t]{0.18\textwidth}
-  			\includegraphics[width=\textwidth]{pics_sdbn/gibbs_cd1_7000.pdf}
-  		    \caption{$7,000$ steps of $CD_1$.}
-  		\end{subfigure}
-  		\begin{subfigure}[t]{0.18\textwidth}
-  			\includegraphics[width=\textwidth]{pics_sdbn/gibbs_cd1_9000.pdf}
-  		    \caption{$9,000$ steps of $CD_1$.}
-  		\end{subfigure}\\
-  		\begin{subfigure}[t]{0.18\textwidth}
-  			\includegraphics[width=\textwidth]{pics_sdbn/gibbs_cdk_1000.pdf}
-  		    \caption{$1,000$ steps of $CD_{1000}$.}
-  		\end{subfigure}
-  		\begin{subfigure}[t]{0.18\textwidth}
-  			\includegraphics[width=\textwidth]{pics_sdbn/gibbs_cdk_3000.pdf}
-  		    \caption{$3,000$ steps of $CD_{1000}$.}
-  		\end{subfigure}
-  		\begin{subfigure}[t]{0.18\textwidth}
-  			\includegraphics[width=\textwidth]{pics_sdbn/gibbs_cdk_5000.pdf}
-  		    \caption{$5,000$ steps of $CD_{1000}$.}
-  		\end{subfigure}
-  		\begin{subfigure}[t]{0.18\textwidth}
-  			\includegraphics[width=\textwidth]{pics_sdbn/gibbs_cdk_7000.pdf}
-  		    \caption{$7,000$ steps of $CD_{1000}$.}
-  		\end{subfigure}
-  		\begin{subfigure}[t]{0.18\textwidth}
-  			\includegraphics[width=\textwidth]{pics_sdbn/gibbs_cdk_9000.pdf}
-  		    \caption{$9,000$ steps of $CD_{1000}$.}
-  		\end{subfigure}\\
-  \caption{
-  Distribution of the Gibbs samples.
-  }
-  \label{Fig:vector}
-\end{figure}
-
-\subsubsection{Discussion}
-	How to validated a trained RBM is still an open question.
-	Actually, to estimate how well a trained model (a set of parameters) describes given data is not studied in this research.
-	We may use confidence level or confidence intervals as reference to assess a set of trained parameters.
-	Existing popular approach is to estimate the reconstruction error which does not describe the objective function, the data distribution.
-	
-	We have tested both the data distribution and reconstruction error in two experiments: MNIST hand written images and a normal distributed simple data set of ten bits vectors. 
-	They showed data-dependent results for both estimation.
-	\begin{itemize}
-		\item \textbf{Reconstruction error:} $CD_1$, batch $CD_1$ and $CD_k$ all shows very similar reconstruction error using MNIST data, while none of them shows a good performance with the ten bits vectors.
-		\item \textbf{Data distribution:} Only $CD_k$ restores the original data distribution with MNIST data; and all of them learn to form the normal distribution of the simple vectors.
-	\end{itemize}
-\subsection{Deep Belief Network}
-The Deep Belief Network (DBN) model is proposed by Hinton et al.~\cite{hinton2006fast} in 2006, in which the top RBM (top two layers) works as an associative memory where the lower layers form a belief net with directed connections, see Figure~\ref{Fig:dbn}. % \textcolor{red}{(Need to redraw)}
-The main advantages of DBN comparing to multilayer perceptron (MLP) lie on the following:
-	\begin{itemize}
-	  \item \textbf{is a probabilistic model}, which not only presents $p(output \mid input)$ but also $p(input \mid output)$.
-	  The deep layers work as complementary prior and solves the explain away problem in a belief net.
-%	  \textcolor{red}{Probably we need to start from explaining belief net and then the explain away problem as well as the complementary prior, and finally the probabilistic representations of DBN. } 
-		Probably we need to start from explaining belief net and then the explain away problem as well as the complementary prior, and finally the probabilistic representations of DBN. 
-	  \item \textbf{works bidirectionally}, both down-top (recognition pass) and top-down (generative pass).
-	  The generative model is able to reconstruct the input thus to interpret the hidden representations visibly.
-	  \item \textbf{is trained with fast and unsupervised learning algorithm}.
-	  As stated above RBM is trained in an unsupervised way with fast training algorithm targeting at CD.
-	  Notice that although the lower layers are not RBMs, they can be pre-trained as RBMs.
-%	  \textcolor{red}{??? During fine-tuning, every layer generates (reconstructs) its input with a probability of $p(input \mid output)$, the error between the input and the reconstruction makes the tuning on the generative pass exactly like back propagation (BP) but with only one layer.
-%	  The same applies to the recognition pass}.
-	  It also works with labelled data where the generative model presents both the labels and the data. 
-	\end{itemize}
-	\begin{figure}[hbt]
-	  \centering
-  		\begin{subfigure}[t]{0.42\textwidth}
-  			\includegraphics[width=\textwidth]{pics_sdbn/dbn.jpg}
-  		    \caption{A DBN contains undirected RBM on the top and directed belief net on the lower layers~\cite{hinton2006fast}.}
-  		\end{subfigure}
-  		\begin{subfigure}[t]{0.42\textwidth}
-  			\includegraphics[width=\textwidth]{pics_sdbn/dis.jpg}
-  		    \caption{Deep Belief Network framework.}
-  		\end{subfigure}
-	  \caption{
-	  Structure of Deep Belief Network~\cite{arel2010deep}.
-	  }
-	  \label{Fig:dbn}
-	\end{figure}
-	
-	\subsubsection{A Probabilistic Representation}
-		Why the deeper the better.
-%		堆叠的RBM并不是一个多层RBM模型，而是a deep sigmoid belief net深度sigmoid置信网
-	 	Putting up layers of RBMs does not mean a layered RBM model, but a deep sigmoid belief net.
-	 	I need to study sigmoid belief net.
-	\subsubsection{Greedy Algorithm}
-		From the piratical view, the greedy algorithm allows each RBM model in the layer-wise sequence to receive a transformed representation of the data.
-		Especially when applying the greedy algorithm to layered dimension-reduced RBMs, the data is presented with lower dimension along the neural layers.
-		For each RBM, the input vector of the visual units are transformed non-linearly as output vector of the hidden layer which is considered to be the input for the next RBM.
-		
-		From the probability view, the layered RBMs are a generative model.
-		It is guaranteed that learning the weights layer-wise bottom-up using the maximum likelihood of the Energy function of RBMs the bound on the log probability of the data will never decrease. 
-	\subsubsection{Fine Tuning}
-		In practice, as stated above in Section~\ref{sec:cd} the RBM is trained with Contrastive Divergence.
-%		The \textcolor{red}{altered objective function} using CD makes the guarantee of non-decreasing log probability void, however extra layers still guarantee the improvement of imperfect models \textcolor{red}{ref???}.
-			The altered objective function using CD makes the guarantee of non-decreasing log probability void, however extra layers still guarantee the improvement of imperfect models.
-		Layer-wise learning is efficient but not optimal, since the weights of the higher layers are changed, e.g. the prior of the inference procedure for the lower layers are altered to the optimal.
-		Thus a fine tuning is required to tune the network as a whole.
-		And the weights of the lower layers are ``untied'' to train the undirected connections.
-		The bottom-up pass is presented by the recognition connections while the top-down pass by the generative connections.
-		
-		The standard and ``Contrastive'' wake-sleep algorithm are described in Algorithm~\ref{alg:fine}, after the sequentially layered greedy learning on all the RBM layers.
-		\begin{algorithm}[tdh!]
-		\caption{Fine Tuning on Deep Belief Network}
-		\label{alg:fine}
-			\begin{algorithmic}
-%			\State Initialisation $\mathbf{x}_0 = [x_0(1),x_0(2),...,x_0(M)]$,  \Comment{Random initialise $\mathbf{x}_0$}
-			\For{$t=1, 2, ..., K$} \Comment{K number of training data $ \mathbf{V} $, 1 data each iteration}
-			\State Wake Phase, Up-Pass:
-				\For{each RBM layer (besides ths associate memory)}
-					\State $ \mathbf{h}_t \sim p( \mathbf{h} \mid \mathbf{v}_t, \Theta) $
-					\Comment{Generate $ \mathbf{h}_t $ given $ \mathbf{v}_t $ }
-					\State $ \mathbf{v}_{t+1} \sim p( \mathbf{v} \mid \mathbf{h}_{t}, \Theta) $
-					\Comment{Generate $ \mathbf{v}_{t+1} $ on v axis using Gibbs sampling }
-					\State $ \Delta W_{ij} = \eta h_{t,j} (v_{t+1,i} - v_{t,i}) $
-					\Comment Update generative weight
-					\State $ \Delta b_{i} = \eta (v_{t+1,i} - v_{t,i}) $
-					\Comment Update down-pass bias
-				\EndFor
-			\State $CD_1$ training on top layer (Optional):
-			\Comment Same as Algorithm~\ref{app:RBM}
-			\State Sleep Phase, Down-Pass:
-				\For{each RBM layer (besides ths associate memory)}
-				\Comment{Seeing the RBM up-side-down}
-					\State $ \mathbf{h}_t \sim p( \mathbf{h} \mid \mathbf{v}_t, \Theta) $
-					\Comment{Generate $ \mathbf{h}_t $ given $ \mathbf{v}_t $ }
-					\State $ \mathbf{v}_{t+1} \sim p( \mathbf{v} \mid \mathbf{h}_{t}, \Theta) $
-					\Comment{Generate $ \mathbf{v}_{t+1} $ on v axis using Gibbs sampling }
-					\State $ \Delta W_{ji} = \eta h_{t,i} (v_{t+1,j} - v_{t,j}) $
-					\Comment Update recognition weight
-					\State $ \Delta b_{j} = \eta (v_{t+1,j} - v_{t,j}) $
-					\Comment Update up-pass bias
-				\EndFor			
-			
-			\EndFor
-			\end{algorithmic}
-		\end{algorithm}				
-		
-	\subsubsection{Case Study on Labelled Data}
-	There is no unified training methods for DBN, here we reproduce the same example and training algorithm from the paper~\cite{hinton2006fast} in order to apply greedy training on all the RBM layers, and fine-tuning bidirectionally, see Algorithm~\ref{alg:fine}.
-	The only difference or addition is the label layer (10 neurons) locating on the top of the network, see Figure~\ref{Fig:case}.
-		\begin{figure}[hbt]
-				\centering
-				\includegraphics[width=0.8\textwidth]{pics_sdbn/DBN.pdf}
-				\caption{The DBN architecture.} 
-				\label{Fig:case}
-		\end{figure}
-		
-	During training the label units can be appended with the top hidden layer, which is the pen layer.
-	After tuning, the combined weights can be split up into pen-top and label-top connections.
-	When testing, the neurons of labelling layer are changed to ``soft-max'' neurons, thus the neuron with the highest possibility to be activated presents the classification result.
-	We have experimented the same tests by training 1 to 9 epochs of all the training data.
-	For the test on the MNIST testing data, the error rate is shown in Figure~\ref{Fig:class}.
-	However, there are quite a few unrecognised testing images as well which is around 20\%.
-%	The recognition and error rates are: epoc 1 (65.5\%, 14.11\%) and epoc 40 (70.51\%, 5.47\%). 
-		\begin{figure}[hbt]
-				\centering
-				\includegraphics[width=0.8\textwidth]{pics_sdbn/MNISTerror.pdf}
-				\caption{Classification error for training epochs of 1 to 9 testing on the MNIST testing data.} 
-				\label{Fig:class}
-		\end{figure}	
-	
-	\subsubsection{Discussion}
-		As mentioned in the beginning of the Section, a DBN is a probabilistic model whose objective function differs from the RBMs.
-		It is not a easy problem to understand, so as the reason why include finding tuning into the whole procedure.
-%	Discussions on mathematical explanation on difference of wake-sleep and contrastive wake-sleep algorithms.
-	
-%	Layer-wise fine-tuning only applies learning on one direction of connections, leaving the other direction unchanged until all the above layers tuned, which results in unbalanced tuning.
-	
-		What's more, practical learning is experience related to configure the parameters: such as penalty, momentum, different learning rate, and etc.
-\subsection{Training ReLU DBN}
-	It is exactly the same training method to make a RBM present a set of data.
-	Figure~\ref{Fig:recon_relu} shows a RBM consisting of 784 visible units and 600 hidden units reconstruct the input images for every $6,000$ updating steps.
-	There are $60,000$ training images in MNIST dataset and the batch size is 10 in this training, so each figure represents the reconstruction of each epoch during training.
-	
-	\begin{figure}[hbt]
-		\centering
-		\begin{subfigure}[t]{0.18\textwidth}
-			\includegraphics[width=\textwidth]{pics_sdbn/b10_epoc1.png}
-			\caption{epoc 1.}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.18\textwidth}
-			\includegraphics[width=\textwidth]{pics_sdbn/b10_epoc2.png}
-			\caption{epoc 2.}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.18\textwidth}
-			\includegraphics[width=\textwidth]{pics_sdbn/b10_epoc3.png}
-			\caption{epoc 3.}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.18\textwidth}
-			\includegraphics[width=\textwidth]{pics_sdbn/b10_epoc4.png}
-			\caption{epoc 4.}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.18\textwidth}
-			\includegraphics[width=\textwidth]{pics_sdbn/b10_epoc5.png}
-			\caption{epoc 5.}
-		\end{subfigure}\\
-		\begin{subfigure}[t]{0.18\textwidth}
-			\includegraphics[width=\textwidth]{pics_sdbn/b10_epoc6.png}
-			\caption{epoc 6.}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.18\textwidth}
-			\includegraphics[width=\textwidth]{pics_sdbn/b10_epoc7.png}
-			\caption{epoc 7.}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.18\textwidth}
-			\includegraphics[width=\textwidth]{pics_sdbn/b10_epoc8.png}
-			\caption{epoc 8.}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.18\textwidth}
-			\includegraphics[width=\textwidth]{pics_sdbn/b10_epoc9.png}
-			\caption{epoc 9.}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.18\textwidth}
-			\includegraphics[width=\textwidth]{pics_sdbn/b10_epoc10.png}
-			\caption{epoc 10.}
-		\end{subfigure}
-		\caption{
-			Reconstructed images using trained weights.
-		}
-		\label{Fig:recon_relu}
-	\end{figure}	
-	Using the same DBN architecture of Figure~\ref{Fig:case}, with greedy training only, the ReLU network performs 92.97\% on correct recognition, 7.03\% on wrong recognition and 0\% on unrecognised.
-	The training is with 5 epochs and 10 images per batch.
-	With the same configuration, sigmoid binary units reaches 53.94\%, 21.19\% and 25.36\% respectively for correct-, wrong- and non-recognition.
-	By applying fine tuning on the network, the performance of the ReLU remains the same while the sigmoid units behaves better: 56.76\%, 17.59\% and 25.64\%.
-
-\section{Autoencoders}
-	%TODO rewording
-	Figure~\ref{fig:AE} shows a simplest architecture of an autoencoder, which is the same as a multilayer perceptron (MLP).
-	The only difference lies to the number of the output units, where an autoencoder has as many output neurons as the input.
-	In this example, the input layer feeds forward the data vector $\mathbf{v}$ to the hidden layer as weighted sum of the data, $\mathbf{net\_h}$.
-	Then the hidden units are activated by the input $\mathbf{net\_h}$ according to the activation function: $\mathbf{h}=\sigma(\mathbf{net\_h})$.
-	Finally, using the same approach the output of the network is generated, $\mathbf{v'}=\sigma(\mathbf{net\_v'})$, as the reconstruction of the input data.
-	Thus, autoencoders are trained without given target values, work as unsupervised learning models.	
-	\begin{figure}
-		\centering
-		\includegraphics[width=0.8\textwidth]{pics_sdbn/AE.pdf}
-		\caption{A typical Autoencoder structure.}
-		\label{fig:AE}
-	\end{figure}
-	
-	%TODO why tied weights are good
-	Notice that the connections used in the example are tied weights.
-	\begin{equation}
-	h_j=\sigma(\sum_i v_i w^T_{ij})
-	\end{equation}
-	\begin{equation}
-	v'_j=\sigma(\sum_i h_i w_{ij})
-	\end{equation}
-	
-	Training an autoencoder is not different from backpropagation (BP) on an Multi-Layer Perceptrons(MLP).
-	The objective of training is to minimise the prediction error of an MLP, which measured as a loss function.
-	Accordingly, the loss function of an autoencoder can be described as:
-	\begin{equation}
-	L=\sum_{k=1}^{K}\|\mathbf{v}_{k}-\mathbf{v'}_{k}\|=\frac{1}{2}\sum_{k=1}^{K}(\mathbf{v}_{k}-\mathbf{v'}_{k})^{2}
-	\end{equation}
-	where k indicates the index of the training data $\mathbf{v}$, and each data vector $\mathbf{v}=\{v_0, v_1,...,v_N\}$ and its reconstruction $\mathbf{v'}=\{v'_0, v'_1,...,v'_N\}$ have N dimensions. 
-	
-	%TODO rewording
-	Backpropagation, an abbreviation for "backward propagation of errors", is a common method of training artificial neural networks used in conjunction with an optimization method such as gradient descent.
-	The method calculates the gradient of a loss function with respect to all the weights in the network.
-	The gradient is fed to the optimisation method which in turn uses it to update the weights, in an attempt to minimize the loss function:
-	\begin{equation}
-	\Delta W \propto -\frac{\partial L}{\partial W}.
-	\end{equation}
-	
-	Applying stochastic gradient descent (SGD), the true gradient of the weight matrix, $\Delta W$, is approximated by a gradient at a single example with iterations.
-	The reconstruction error $E_k$ of an input vector $\mathbf{v}_k$ is as given:
-	\begin{equation}
-	%	\begin{align*}
-	E_k = \frac{1}{2}(\mathbf{v}_k - \mathbf{v'}_k)^2,
-	%	\end{align*}
-	\end{equation}
-	and the gradient of the weight matrix is:
-	\begin{equation}
-	\Delta W \propto -\frac{\partial E_k}{\partial W}=-\eta \frac{\partial E_k}{\partial W},
-	\end{equation}
-	where $\eta$ is the learning rate.
-	
-	Since we use tied weights in the network, the weight tuning only needs to apply in the output layer.
-	\begin{equation}
-	\begin{aligned}
-	\Delta w_{ij} = -\eta \frac{\partial E_k}{\partial w_{ij}} &= -\eta \frac{\partial E_k}{\partial v'_j} \frac{\partial v'_j}{\partial net\_v'_j} \frac{\partial net\_v'_j}{\partial w_{ij}}, \textrm{ where} \\
-	\frac{\partial E_k}{\partial v'_j} &= \frac{\partial \frac{1}{2}(\mathbf{v}_k - \mathbf{v'}_k)^2}{\partial v'_j}= -(v'_j - v_j), \\
-	%	\frac{\partial v'_j}{\partial net\_v'_j} &= \begin{cases} 1, v'_j>0\\0, v'_j<=0\\ \end{cases}, \textrm{using ReLU,}\\
-	\frac{\partial v'_j}{\partial net\_v'_j} &= 1, \textrm{using Identify function,}\\
-	\frac{\partial net\_v'_j}{\partial w_{ij}} &= \frac{\partial h_i w_{ij}}{\partial w_{ij}} = h_i.
-	\end{aligned}
-	\end{equation}
-	Thus, the weight gradient is calculated as:
-	\begin{equation}
-	\Delta w_{ij} = \eta h_i(v'_j - v_j)
-	\end{equation}
-	
-	Examples of using an autoencoder with 10 input neurons and 10 hidden neurons: reconstruction the input data $\mathbf{v}$ where I) $v_i = 1$, II) $v_i = i/10$.
-	\begin{figure}
-		\centering
-		\begin{subfigure}[t]{0.4\textwidth}
-			\includegraphics[width=\textwidth]{pics_ae/exp1_weights_non.pdf}
-			\caption{Weights of Exp1}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.4\textwidth}
-			\includegraphics[width=\textwidth]{pics_ae/exp2_weights_non.pdf}
-			\caption{Weights of Exp2}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.4\textwidth}
-			\includegraphics[width=\textwidth]{pics_ae/exp1_recon_non.pdf}
-			\caption{Reconstruction of visible units in Exp1}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.4\textwidth}
-			\includegraphics[width=\textwidth]{pics_ae/exp2_recon_non.pdf}
-			\caption{Reconstruction of visible units in Exp2}
-		\end{subfigure}\\
-		\begin{subfigure}[t]{0.4\textwidth}
-			\includegraphics[width=\textwidth]{pics_ae/exp1_hid_non.pdf}
-			\caption{Output of hidden units in Exp1}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.4\textwidth}
-			\includegraphics[width=\textwidth]{pics_ae/exp2_hid_non.pdf}
-			\caption{Output of hidden units in Exp2}
-		\end{subfigure}
-		\caption{Weights and outputs of visible and hidden units change during training of the reconstruction tests. 
-			Experiments 1) 10 visible units fully connected to 10 hidden units with input data of all 1s; 2) same network fed with 10 values distribute linearly from 0.1 to 1.}
-	\end{figure}
-	
-\section{Training Spiking Autoencoders}
-Rate-based learning of STDP (rSTDP) which is inspired by ReSuMe.\\
--Why it works stated in Maths.\\
+The Energy function~\cite{hopfield1982neural} of a RBM is defined as follows, which has $ n $ vision units and $ m $ hidden ones:
+\begin{equation}
+E(\mathbf{v}, \mathbf{h} \mid \Theta)= -\sum_{i=1}^n a_i v_i - \sum_{j=1}^m b_j h_j - \sum_{i=1}^n \sum_{j=m}^n v_i W_{ij} h_j.
+\end{equation}
+And the model function and its probability functions are as follows:
 \begin{equation}
 \begin{aligned}
-\overline{\Delta w_{ij}} &\propto \eta \lambda_{h_i}(\lambda_{v_j} - \lambda_{v'_j})\\
-&=\eta'P_{h_i}P_{v_j}\tau_{w} \tau_{dur} - \eta'P_{h_i}P_{v'_j}\tau_{w} \tau_{dur}, \textrm{where,}\\
-P_{s} &= \lambda_{s} \times 0.001~s = \frac{K s}{1000}\\
-\eta' &= \frac{10^6}{K^2 \tau_{w} \tau_{dur}} \eta
+& f(\mathbf{v}, \mathbf{h} \mid \Theta) =e^{-E(\mathbf{v}, \mathbf{h} \mid \Theta)} \\
+& p(\mathbf{v}, \mathbf{h} \mid \Theta) =\frac{e^{-E(\mathbf{v}, \mathbf{h} \mid \Theta)}}{Z(\Theta)}\\
+& Z(\Theta) = \sum_{\mathbf{v}} \sum_{\mathbf{h}} e^{-E(\mathbf{v}, \mathbf{h} \mid \Theta)}.
 \end{aligned}
 \end{equation}
+Note that, the model function $ f(\mathbf{v}, \mathbf{h} \mid \Theta) $ is nicely defined as a PoE problem, and each hidden unit represent an expert.
+However, we are more interested in the marginal probability function: $ p(\mathbf{v} \mid \Theta) $:
+\begin{equation}
+p(\mathbf{v} \mid \Theta) =\frac{\sum_{ \mathbf{h}} e^{-E(\mathbf{v}, \mathbf{h} \mid \Theta)}}{Z(\Theta)}.
+\end{equation}		
+\subsubsection{Objective Function}
+Although $ p(\mathbf{v} \mid \Theta) $ is not a PoE problem, the partial derivation of the average log-likelihood function still applies to Equation~(\ref{equ:part}) and the intractable integration is the same problem here:
+\begin{equation}
+\label{equ:RBM}
+\begin{aligned}
+\dfrac{\partial \hat{l} (\Theta \mid \mathbf{D})}{\partial \theta} 
+& = \left \langle \dfrac{\partial -E(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{h} \sim p( \mathbf{h} \mid \mathbf{v}, \Theta), \mathbf{V}} 
+- \left \langle \dfrac{\partial -E(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{v}, \mathbf{h} \sim p( \mathbf{v}, \mathbf{h} \mid  \Theta)},  \\
+\end{aligned}
+\end{equation}
+The detailed derivation process, please see Appendix~\ref{app:RBM}.
+Regarding the specific RBM parameters,  $ \Theta = (\mathbf{a}, \mathbf{b}, \mathbf{W}) $, the derivatives are:
+\begin{equation}
+\label{equ:RBM_2}
+\begin{aligned}
+\dfrac{\partial \hat{l} (\Theta \mid \mathbf{D})}{\partial W_{ij}} 
+& = \left \langle v_i h_j \right \rangle_{\mathbf{h} \sim p( \mathbf{h} \mid \mathbf{v}, \Theta), \mathbf{V}} 
+- \left \langle  v_i h_j \right \rangle_{\mathbf{v}, \mathbf{h} \sim p( \mathbf{v}, \mathbf{h} \mid  \Theta)},  \\
+\dfrac{\partial \hat{l} (\Theta \mid \mathbf{D})}{\partial a_{i}} 
+& = \left \langle v_i \right \rangle_{\mathbf{h} \sim p( \mathbf{h} \mid \mathbf{v}, \Theta), \mathbf{V}} 
+- \left \langle  v_i \right \rangle_{\mathbf{v}, \mathbf{h} \sim p( \mathbf{v}, \mathbf{h} \mid  \Theta)},  \\
+\dfrac{\partial \hat{l} (\Theta \mid \mathbf{D})}{\partial b_{j}} 
+& = \left \langle h_j \right \rangle_{\mathbf{h} \sim p( \mathbf{h} \mid \mathbf{v}, \Theta), \mathbf{V}} 
+- \left \langle  h_j \right \rangle_{\mathbf{v}, \mathbf{h} \sim p( \mathbf{v}, \mathbf{h} \mid  \Theta)},  \\
+\end{aligned}
+\end{equation}	 
+\subsubsection{CD with 1-step Reconstruction}
+\label{sec:cd}
+Both terms of the derivatives of the average log-likelihood function (Equation~(\ref{equ:RBM})) are intractable, so generative models for sampling is needed.
+As stated in Section~\ref{sec:CD}, for each iteration only one sample is generated.
 
-\begin{figure}
+Regarding to the first term, given a training data $ \mathbf{v}_0 $ we first generate a hidden vector according to the conditional distribution $ \mathbf{h}_0 \sim p( \mathbf{h} \mid \mathbf{v}_0, \Theta) $.
+Welling et al. have proposed~\cite{welling2004exponential} that both the hidden and visible units can be any exponential unit, such as softmax, Gaussian and Poissonian.
+Here we take a Bernoulli-Bernoulli RBM as an example, where each node is a sigmoidal unit.
+The conditional probability function is as follows:
+\begin{equation}
+p(h_i = 1 \mid \mathbf{v}) = \sigma(\sum_{j=1}^{m} W_{ij} \cdot \mathbf{v} + b_j).
+\end{equation}
+
+The second term is perfect fit for Gibbs sampling, since we can $ p(\mathbf{v}, \mathbf{h} \mid \Theta) $ as a 2D vector and generating the samples by jumping in a Markov Chain with the transformation probability matrix $ p(\mathbf{v} \mid \mathbf{h}, \Theta) $ and $ p(\mathbf{h} \mid \mathbf{v}, \Theta) $, see Figure~\ref{fig:gibbs} and Section~\ref{sec:Gibbs}.
+So, with the given data $ \mathbf{v}_0 $ and the sampling data $ \mathbf{h}_0 $, we have the initial data point in this Markov Chain,  ($ \mathbf{v}_0, \mathbf{h}_0$).
+The transformation starts from the axis of $ \mathbf{v} $, then we get $ \mathbf{v}_1 \sim p( \mathbf{v} \mid \mathbf{h}_0, \Theta) $.
+It follows the next axis $ \mathbf{h} $, similarly we get $ \mathbf{h}_1 \sim p( \mathbf{h} \mid \mathbf{v}_1, \Theta) $.
+So far we obtain the first sample along the Markov Chain, ($ \mathbf{v}_1, \mathbf{h}_1$) thus to solve the objective function with one iteration.
+The algorithm is described below:   
+\begin{algorithm}[h]
+	\caption{Learning on RBM Parameters with $ CD_1 $}
+	\label{alg:learn}
+	\begin{algorithmic}
+		%			\State Initialisation $\mathbf{x}_0 = [x_0(1),x_0(2),...,x_0(M)]$,  \Comment{Random initialise $\mathbf{x}_0$}
+		\For{$t=1, 2, ..., K$} \Comment{K number of training data $ \mathbf{V} $, 1 data each iteration}
+		%			\For{$k=1, 2, ..., M$}
+		\State $ \mathbf{h}_t \sim p( \mathbf{h} \mid \mathbf{v}_t, \Theta) $
+		\Comment{Generate $ \mathbf{h}_t $ given $ \mathbf{v}_t $ }
+		\State $ \mathbf{v}_{t+1} \sim p( \mathbf{v} \mid \mathbf{h}_{t}, \Theta) $
+		\Comment{Generate $ \mathbf{v}_{t+1} $ on v axis using Gibbs sampling }
+		\State $ \mathbf{h}_{t+1} \sim p( \mathbf{h} \mid \mathbf{v}_{t+1}, \Theta) $
+		\Comment{Generate $ \mathbf{h}_{t+1} $ on h axis using Gibbs sampling }
+		\State $ \dfrac{\partial \hat{l} (\Theta \mid \mathbf{D})}{\partial W_{ij}} = v_{t,i} h_{t,j} - v_{t+1,i} h_{t+1,j}$
+		\State $ \dfrac{\partial \hat{l} (\Theta \mid \mathbf{D})}{\partial a_{i}} = v_{t,i} - v_{t+1,i} $
+		\State $  \dfrac{\partial \hat{l} (\Theta \mid \mathbf{D})}{\partial b_{j}} = h_{t,j} - h_{t+1,j}$
+		\State $ \Delta W_{ij} = \eta ( v_{t,i} h_{t,j} - v_{t+1,i} h_{t+1,j}) $
+		\Comment{Update $ W_{ij} $}
+		\State $ \Delta a_{i} = \eta ( v_{t,i} - v_{t+1,i}) $
+		\Comment{Update $ a_{i} $}
+		\State $ \Delta b_{j} = \eta ( h_{t,j} - h_{t+1,j}) $
+		\Comment{Update $ b_{j} $}
+		%			\EndFor
+		\EndFor
+	\end{algorithmic}
+\end{algorithm}
+\begin{figure}[hbt]
 	\centering
-	\includegraphics[width=0.8\textwidth]{pics_ae/rSTDP.pdf}
-	\caption{How rSTDP works in training AutoEncoders.}
-	\label{fig:rSTDP}
-\end{figure}
-	
-	Experiments
-	\begin{figure}
-		\centering
-		\begin{subfigure}[t]{0.4\textwidth}
-			\includegraphics[width=\textwidth]{pics_ae/exp1_weights_s.pdf}
-			\caption{Weights of Exp1}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.4\textwidth}
-			\includegraphics[width=\textwidth]{pics_ae/exp2_weights_s.pdf}
-			\caption{Weights of Exp2}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.4\textwidth}
-			\includegraphics[width=\textwidth]{pics_ae/exp1_recon_s.pdf}
-			\caption{Reconstruction of visible units in Exp1}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.4\textwidth}
-			\includegraphics[width=\textwidth]{pics_ae/exp2_recon_s.pdf}
-			\caption{Reconstruction of visible units in Exp2}
-		\end{subfigure}\\
-		\begin{subfigure}[t]{0.4\textwidth}
-			\includegraphics[width=\textwidth]{pics_ae/exp1_recon_nons.pdf}
-			\caption{Reconstruction of visible units in Exp1}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.4\textwidth}
-			\includegraphics[width=\textwidth]{pics_ae/exp2_recon_nons.pdf}
-			\caption{Reconstruction of visible units in Exp2}
-		\end{subfigure}\\
-		\begin{subfigure}[t]{0.4\textwidth}
-			\includegraphics[width=\textwidth]{pics_ae/exp1_hid_s.pdf}
-			\caption{Output of hidden units in Exp1}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.4\textwidth}
-			\includegraphics[width=\textwidth]{pics_ae/exp2_hid_s.pdf}
-			\caption{Output of hidden units in Exp2}
-		\end{subfigure}\\
-		\begin{subfigure}[t]{0.4\textwidth}
-			\includegraphics[width=\textwidth]{pics_ae/exp1_hid_nons.pdf}
-			\caption{Output of hidden units in Exp1}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.4\textwidth}
-			\includegraphics[width=\textwidth]{pics_ae/exp2_hid_nons.pdf}
-			\caption{Output of hidden units in Exp2}
-		\end{subfigure}
-		\caption{Weights and firing rates of visible and hidden units change during training of the reconstruction tests of spiking neurons. 
-			Experiments 1) 10 visible units fully connected to 10 hidden units with Poisson spike trains of 100~Hz which lasted 100~ms; 2) same network fed with 10 Poisson spike trains of firing rate ranging from 10~Hz to 100~Hz.}
-	\end{figure}
-	\subsection{Problem}
-Poisson noise make weights diverge.
+	\includegraphics[width=0.6\textwidth]{pics_sdbn/gibbs.png}
+	\caption{Gibbs sampling on RBM.}
+	\label{fig:gibbs}
+\end{figure}	
+
+\subsection{noisy RBM}
+
+\section{Training Spiking RBM}
+
+\section{Problem}
+Correlations in spike trains and Poisson noise make weights diverge.
 Same Poisson data used in non-spiking tests.
-	\begin{figure}
-		\centering
-		\begin{subfigure}[t]{0.4\textwidth}
-			\includegraphics[width=\textwidth]{pics_ae/exp1_weights_noisy.pdf}
-			\caption{Weights of Exp1}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.4\textwidth}
-			\includegraphics[width=\textwidth]{pics_ae/exp2_weights_noisy.pdf}
-			\caption{Weights of Exp2}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.4\textwidth}
-			\includegraphics[width=\textwidth]{pics_ae/exp1_recon_noisy.pdf}
-			\caption{Reconstruction of visible units in Exp1}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.4\textwidth}
-			\includegraphics[width=\textwidth]{pics_ae/exp2_recon_noisy.pdf}
-			\caption{Reconstruction of visible units in Exp2}
-		\end{subfigure}\\
-		\begin{subfigure}[t]{0.4\textwidth}
-			\includegraphics[width=\textwidth]{pics_ae/exp1_hid_noisy.pdf}
-			\caption{Output of hidden units in Exp1}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.4\textwidth}
-			\includegraphics[width=\textwidth]{pics_ae/exp2_hid_noisy.pdf}
-			\caption{Output of hidden units in Exp2}
-		\end{subfigure}
-		\caption{Weights and outputs of visible and hidden units change during training fed with noisy inputs. 
-			Experiments 1) 10 visible units fully connected to 10 hidden units with noisy input data of all 1s; 2) same network fed with noisy values distribute linearly from 0.1 to 1.}
-	\end{figure}
-	
-	Decay learning rate.
-	\begin{figure}
-		\centering
-		\begin{subfigure}[t]{0.4\textwidth}
-			\includegraphics[width=\textwidth]{pics_ae/exp1_weights_noisy_decay.pdf}
-			\caption{Weights of Exp1}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.4\textwidth}
-			\includegraphics[width=\textwidth]{pics_ae/exp2_weights_noisy_decay.pdf}
-			\caption{Weights of Exp2}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.4\textwidth}
-			\includegraphics[width=\textwidth]{pics_ae/exp1_recon_noisy_decay.pdf}
-			\caption{Reconstruction of visible units in Exp1}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.4\textwidth}
-			\includegraphics[width=\textwidth]{pics_ae/exp2_recon_noisy_decay.pdf}
-			\caption{Reconstruction of visible units in Exp2}
-		\end{subfigure}\\
-		\begin{subfigure}[t]{0.4\textwidth}
-			\includegraphics[width=\textwidth]{pics_ae/exp1_hid_noisy_decay.pdf}
-			\caption{Output of hidden units in Exp1}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.4\textwidth}
-			\includegraphics[width=\textwidth]{pics_ae/exp2_hid_noisy_decay.pdf}
-			\caption{Output of hidden units in Exp2}
-		\end{subfigure}
-		\caption{Weights and outputs of visible and hidden units change during training using decayed learning rate. 
-			Experiments 1) 10 visible units fully connected to 10 hidden units with noisy input data of all 1s; 2) same network fed with noisy values distribute linearly from 0.1 to 1.}
-	\end{figure}
-	
-	Decay learning rate in SNN.
-	\begin{figure}
-		\centering
-		\begin{subfigure}[t]{0.4\textwidth}
-			\includegraphics[width=\textwidth]{pics_ae/exp1_weights_s_decay.pdf}
-			\caption{Weights of Exp1}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.4\textwidth}
-			\includegraphics[width=\textwidth]{pics_ae/exp2_weights_s_decay.pdf}
-			\caption{Weights of Exp2}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.4\textwidth}
-			\includegraphics[width=\textwidth]{pics_ae/exp1_recon_s_decay.pdf}
-			\caption{Reconstruction of visible units in Exp1}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.4\textwidth}
-			\includegraphics[width=\textwidth]{pics_ae/exp2_recon_s_decay.pdf}
-			\caption{Reconstruction of visible units in Exp2}
-		\end{subfigure}\\
-		\begin{subfigure}[t]{0.4\textwidth}
-			\includegraphics[width=\textwidth]{pics_ae/exp1_recon_nons_decay.pdf}
-			\caption{Reconstruction of visible units in Exp1}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.4\textwidth}
-			\includegraphics[width=\textwidth]{pics_ae/exp2_recon_nons_decay.pdf}
-			\caption{Reconstruction of visible units in Exp2}
-		\end{subfigure}\\
-		\begin{subfigure}[t]{0.4\textwidth}
-			\includegraphics[width=\textwidth]{pics_ae/exp1_hid_s_decay.pdf}
-			\caption{Output of hidden units in Exp1}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.4\textwidth}
-			\includegraphics[width=\textwidth]{pics_ae/exp2_hid_s_decay.pdf}
-			\caption{Output of hidden units in Exp2}
-		\end{subfigure}\\
-		\begin{subfigure}[t]{0.4\textwidth}
-			\includegraphics[width=\textwidth]{pics_ae/exp1_hid_nons_decay.pdf}
-			\caption{Output of hidden units in Exp1}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.4\textwidth}
-			\includegraphics[width=\textwidth]{pics_ae/exp2_hid_nons_decay.pdf}
-			\caption{Output of hidden units in Exp2}
-		\end{subfigure}
-		\caption{Weights and firing rates of visible and hidden units change during training of the reconstruction tests of spiking neurons. 
-			Experiments 1) 10 visible units fully connected to 10 hidden units with Poisson spike trains of 100~Hz which lasted 100~ms; 2) same network fed with 10 Poisson spike trains of firing rate ranging from 10~Hz to 100~Hz.}
-	\end{figure}
-	\section{Results}
-	\subsection{Trained weights}
-	AE automatically extracts features.
-	\begin{figure}
-		\centering
-		\begin{subfigure}[t]{0.9\textwidth}
-			\includegraphics[width=\textwidth]{pics_ae/weights_e0_1000.pdf}
-			\caption{Trained with 1000 Images}
-		\end{subfigure}\\
-		\begin{subfigure}[t]{0.9\textwidth}
-			\includegraphics[width=\textwidth]{pics_ae/weights_e0_60000.pdf}
-			\caption{Trained with 60000 Images}
-		\end{subfigure}	
-		\caption{Trained weights of MNIST training set.}
-	\end{figure}
-	
-	\subsection{Reconstruction}
-	AE reconstructs visible units.
-	\begin{figure}
-		\centering
-		\includegraphics[width=0.7\textwidth]{pics_ae/recon_digit.pdf}
-		\caption{Reconstructions of a testing digit `2' using trained weights during training.}
-		\label{fig:recon}		
-	\end{figure}
-	\subsection{Classification Performance}
-	Compare CA of spiking AE with non-spiking continuous neurons. 
-	\begin{figure}
-		\centering
-		\includegraphics[width=0.7\textwidth]{pics_ae/recog_comp.pdf}
-		\caption{Fast recognition with spiking neurons. Classification accuracy increases over presence period of an image.}
-		\label{fig:recog_comp}		
-	\end{figure}
-	
-	Fast classification.
-	\begin{figure}
-		\centering
-		\includegraphics[width=0.7\textwidth]{pics_ae/recog_speed.pdf}
-		\caption{Fast recognition with spiking neurons. Classification accuracy increases over presence period of an image.}
-		\label{fig:recog_speed}		
-	\end{figure}
-	
-	
-	
-\section{STDP Training on Spiking RBM}	
+%	\begin{figure}
+%		\centering
+%		\begin{subfigure}[t]{0.4\textwidth}
+%			\includegraphics[width=\textwidth]{pics_ae/exp1_weights_noisy.pdf}
+%			\caption{Weights of Exp1}
+%		\end{subfigure}
+%		\begin{subfigure}[t]{0.4\textwidth}
+%			\includegraphics[width=\textwidth]{pics_ae/exp2_weights_noisy.pdf}
+%			\caption{Weights of Exp2}
+%		\end{subfigure}
+%		\begin{subfigure}[t]{0.4\textwidth}
+%			\includegraphics[width=\textwidth]{pics_ae/exp1_recon_noisy.pdf}
+%			\caption{Reconstruction of visible units in Exp1}
+%		\end{subfigure}
+%		\begin{subfigure}[t]{0.4\textwidth}
+%			\includegraphics[width=\textwidth]{pics_ae/exp2_recon_noisy.pdf}
+%			\caption{Reconstruction of visible units in Exp2}
+%		\end{subfigure}\\
+%		\begin{subfigure}[t]{0.4\textwidth}
+%			\includegraphics[width=\textwidth]{pics_ae/exp1_hid_noisy.pdf}
+%			\caption{Output of hidden units in Exp1}
+%		\end{subfigure}
+%		\begin{subfigure}[t]{0.4\textwidth}
+%			\includegraphics[width=\textwidth]{pics_ae/exp2_hid_noisy.pdf}
+%			\caption{Output of hidden units in Exp2}
+%		\end{subfigure}
+%		\caption{Weights and outputs of visible and hidden units change during training fed with noisy inputs. 
+%			Experiments 1) 10 visible units fully connected to 10 hidden units with noisy input data of all 1s; 2) same network fed with noisy values distribute linearly from 0.1 to 1.}
+%	\end{figure}
+\subsection{Solution 1: Longer STDP Window}
+
+\subsection{Solution 2: Noisy Threshold}
+
+\subsection{Solution 3: Teaching Signal}
+
+\section{Results: MNIST Test}
+\subsection{Trained weights}
+AE automatically extracts features.
+%	\begin{figure}
+%		\centering
+%		\begin{subfigure}[t]{0.9\textwidth}
+%			\includegraphics[width=\textwidth]{pics_ae/weights_e0_1000.pdf}
+%			\caption{Trained with 1000 Images}
+%		\end{subfigure}\\
+%		\begin{subfigure}[t]{0.9\textwidth}
+%			\includegraphics[width=\textwidth]{pics_ae/weights_e0_60000.pdf}
+%			\caption{Trained with 60000 Images}
+%		\end{subfigure}	
+%		\caption{Trained weights of MNIST training set.}
+%	\end{figure}
+
+\subsection{Reconstruction}
+AE reconstructs visible units.
+%	\begin{figure}
+%		\centering
+%		\includegraphics[width=0.7\textwidth]{pics_ae/recon_digit.pdf}
+%		\caption{Reconstructions of a testing digit `2' using trained weights during training.}
+%		\label{fig:recon}		
+%	\end{figure}
+%	\subsection{Classification Performance}
+%	Compare CA of spiking AE with non-spiking continuous neurons. 
+%	\begin{figure}
+%		\centering
+%		\includegraphics[width=0.7\textwidth]{pics_ae/recog_comp.pdf}
+%		\caption{Fast recognition with spiking neurons. Classification accuracy increases over presence period of an image.}
+%		\label{fig:recog_comp}		
+%	\end{figure}
+
+\subsection{Recognition}
+
 
 \section{Conclusion}
 
-	
+
 \section{Appendices}
-		\subsection{Derivation process of Equation~(\ref{equ:part})}
-		\label{app:part}
-		\begin{equation}
-		\begin{aligned}
-		\dfrac{\partial \log Z(\Theta)}{\partial \theta}
-		=&\frac{1}{Z(\Theta)}\dfrac{\partial Z(\Theta)}{\partial \theta}\\
-		=&\frac{1}{Z(\Theta)} \int \dfrac{\partial f(\mathbf{x} \mid \Theta)}{\partial \theta} \D \mathbf{x} \\
-		=&\frac{1}{Z(\Theta)} \int f(\mathbf{x} \mid \Theta) \frac{1}{f(\mathbf{x} \mid \Theta)} \dfrac{\partial  f(\mathbf{x} \mid \Theta)}{\partial \theta} \D \mathbf{x}\\
-		=& \int \frac{f(\mathbf{x} \mid \Theta) }{Z(\Theta)} \dfrac{\partial \log f(\mathbf{x} \mid \Theta)}{\partial \theta} \D \mathbf{x}\\
-		=& \int  p(\mathbf{x} \mid \Theta) \dfrac{\partial \log f(\mathbf{x} \mid \Theta)}{\partial \theta} \D \mathbf{x}\\
-		=&\left \langle \dfrac{\partial \log f(\mathbf{c} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{C} \sim p(\mathbf{x} \mid \Theta)}
-		\end{aligned}
-		\end{equation}
-		\subsection{Derivation process of Equation~(\ref{equ:RBM})  }
-		\label{app:RBM}
-		\begin{equation}
-		\begin{aligned}
-		\dfrac{\partial \hat{l} (\Theta \mid \mathbf{D})}{\partial \theta} 
-		& = \left \langle \dfrac{\partial \log f(\mathbf{d} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{V=D}} -\left \langle \dfrac{\partial \log f(\mathbf{v} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{V} \sim p(\mathbf{x} \mid \Theta)}  \\
-		& = \left \langle \dfrac{\partial \log \sum_{ \mathbf{h}} e^{-E(\mathbf{v}, \mathbf{h} \mid \Theta)}}{\partial \theta}\right \rangle_{\mathbf{V}} 
-		-\left \langle \dfrac{\partial \log \sum_{ \mathbf{h}} e^{-E(\mathbf{v}, \mathbf{h} \mid \Theta)} }{\partial \theta}\right \rangle_{\mathbf{V} \sim p(\mathbf{v} \mid \Theta)}  \\
-		& = \left \langle \sum_{ \mathbf{h}} \frac{e^{-E(\mathbf{v}, \mathbf{h} \mid \Theta)}}{\sum_{ \mathbf{h}} e^{-E(\mathbf{v}, \mathbf{h} \mid \Theta)}} \cdot \dfrac{\partial -E(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{V}} 
-		- \left \langle \sum_{ \mathbf{h}} \frac{e^{-E(\mathbf{v}, \mathbf{h} \mid \Theta)}}{\sum_{ \mathbf{h}} e^{-E(\mathbf{v}, \mathbf{h} \mid \Theta)}} \cdot \dfrac{\partial -E(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{V} \sim p(\mathbf{v} \mid \Theta)}  \\
-		& = \left \langle \sum_{ \mathbf{h}} \frac{p(\mathbf{v}, \mathbf{h} \mid \Theta)}{p(\mathbf{v} \mid \Theta)} \cdot \dfrac{\partial -E(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{V}} 
-		- \left \langle \sum_{ \mathbf{h}}  \frac{p(\mathbf{v}, \mathbf{h} \mid \Theta)}{p(\mathbf{v} \mid \Theta)} \cdot \dfrac{\partial -E(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{V} \sim p(\mathbf{v} \mid \Theta)}  \\
-		& = \left \langle \sum_{ \mathbf{h}} p( \mathbf{h} \mid \mathbf{v}, \Theta) \cdot \dfrac{\partial -E(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{V}} 
-		- \left \langle \sum_{ \mathbf{h}} p( \mathbf{h} \mid \mathbf{v}, \Theta) \cdot \dfrac{\partial -E(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{V} \sim p(\mathbf{v} \mid \Theta)}  \\
-		& = \left \langle \left \langle \dfrac{\partial -E(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{h} \sim p( \mathbf{h} \mid \mathbf{v}, \Theta)} \right \rangle_{\mathbf{V}}
-		- \left \langle \left \langle \dfrac{\partial -E(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{h} \sim p( \mathbf{h} \mid \mathbf{v}, \Theta)} \right \rangle_{\mathbf{V} \sim p(\mathbf{v} \mid \Theta)}  \\
-		& = \left \langle \dfrac{\partial -E(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{h} \sim p( \mathbf{h} \mid \mathbf{v}, \Theta), \mathbf{V}} 
-		- \left \langle \dfrac{\partial -E(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{v}, \mathbf{h} \sim p( \mathbf{v}, \mathbf{h} \mid  \Theta)}  \\
-		\end{aligned}
-		\end{equation}
+\subsection{Derivation process of Equation~(\ref{equ:part})}
+\label{app:part}
+\begin{equation}
+\begin{aligned}
+\dfrac{\partial \log Z(\Theta)}{\partial \theta}
+=&\frac{1}{Z(\Theta)}\dfrac{\partial Z(\Theta)}{\partial \theta}\\
+=&\frac{1}{Z(\Theta)} \int \dfrac{\partial f(\mathbf{x} \mid \Theta)}{\partial \theta} \D \mathbf{x} \\
+=&\frac{1}{Z(\Theta)} \int f(\mathbf{x} \mid \Theta) \frac{1}{f(\mathbf{x} \mid \Theta)} \dfrac{\partial  f(\mathbf{x} \mid \Theta)}{\partial \theta} \D \mathbf{x}\\
+=& \int \frac{f(\mathbf{x} \mid \Theta) }{Z(\Theta)} \dfrac{\partial \log f(\mathbf{x} \mid \Theta)}{\partial \theta} \D \mathbf{x}\\
+=& \int  p(\mathbf{x} \mid \Theta) \dfrac{\partial \log f(\mathbf{x} \mid \Theta)}{\partial \theta} \D \mathbf{x}\\
+=&\left \langle \dfrac{\partial \log f(\mathbf{c} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{C} \sim p(\mathbf{x} \mid \Theta)}
+\end{aligned}
+\end{equation}
+\subsection{Derivation process of Equation~(\ref{equ:RBM})  }
+\label{app:RBM}
+\begin{equation}
+\begin{aligned}
+\dfrac{\partial \hat{l} (\Theta \mid \mathbf{D})}{\partial \theta} 
+& = \left \langle \dfrac{\partial \log f(\mathbf{d} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{V=D}} -\left \langle \dfrac{\partial \log f(\mathbf{v} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{V} \sim p(\mathbf{x} \mid \Theta)}  \\
+& = \left \langle \dfrac{\partial \log \sum_{ \mathbf{h}} e^{-E(\mathbf{v}, \mathbf{h} \mid \Theta)}}{\partial \theta}\right \rangle_{\mathbf{V}} 
+-\left \langle \dfrac{\partial \log \sum_{ \mathbf{h}} e^{-E(\mathbf{v}, \mathbf{h} \mid \Theta)} }{\partial \theta}\right \rangle_{\mathbf{V} \sim p(\mathbf{v} \mid \Theta)}  \\
+& = \left \langle \sum_{ \mathbf{h}} \frac{e^{-E(\mathbf{v}, \mathbf{h} \mid \Theta)}}{\sum_{ \mathbf{h}} e^{-E(\mathbf{v}, \mathbf{h} \mid \Theta)}} \cdot \dfrac{\partial -E(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{V}} 
+- \left \langle \sum_{ \mathbf{h}} \frac{e^{-E(\mathbf{v}, \mathbf{h} \mid \Theta)}}{\sum_{ \mathbf{h}} e^{-E(\mathbf{v}, \mathbf{h} \mid \Theta)}} \cdot \dfrac{\partial -E(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{V} \sim p(\mathbf{v} \mid \Theta)}  \\
+& = \left \langle \sum_{ \mathbf{h}} \frac{p(\mathbf{v}, \mathbf{h} \mid \Theta)}{p(\mathbf{v} \mid \Theta)} \cdot \dfrac{\partial -E(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{V}} 
+- \left \langle \sum_{ \mathbf{h}}  \frac{p(\mathbf{v}, \mathbf{h} \mid \Theta)}{p(\mathbf{v} \mid \Theta)} \cdot \dfrac{\partial -E(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{V} \sim p(\mathbf{v} \mid \Theta)}  \\
+& = \left \langle \sum_{ \mathbf{h}} p( \mathbf{h} \mid \mathbf{v}, \Theta) \cdot \dfrac{\partial -E(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{V}} 
+- \left \langle \sum_{ \mathbf{h}} p( \mathbf{h} \mid \mathbf{v}, \Theta) \cdot \dfrac{\partial -E(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{V} \sim p(\mathbf{v} \mid \Theta)}  \\
+& = \left \langle \left \langle \dfrac{\partial -E(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{h} \sim p( \mathbf{h} \mid \mathbf{v}, \Theta)} \right \rangle_{\mathbf{V}}
+- \left \langle \left \langle \dfrac{\partial -E(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{h} \sim p( \mathbf{h} \mid \mathbf{v}, \Theta)} \right \rangle_{\mathbf{V} \sim p(\mathbf{v} \mid \Theta)}  \\
+& = \left \langle \dfrac{\partial -E(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{h} \sim p( \mathbf{h} \mid \mathbf{v}, \Theta), \mathbf{V}} 
+- \left \langle \dfrac{\partial -E(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{v}, \mathbf{h} \sim p( \mathbf{v}, \mathbf{h} \mid  \Theta)}  \\
+\end{aligned}
+\end{equation}
