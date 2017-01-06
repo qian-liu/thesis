@@ -21,7 +21,7 @@ v'_j=\sigma(\sum_i h_i w_{ij})
 	
 \begin{figure}
 	\centering
-	\includegraphics[width=0.8\textwidth]{pics_sdlm/AE.pdf}
+	\includegraphics[width=0.5\textwidth]{pics_sdlm/AE.pdf}
 	\caption{A typical Autoencoder structure.}
 	\label{fig:AE}
 \end{figure}
@@ -74,106 +74,45 @@ Thus, the weight gradient is calculated as:
 \end{equation}
 
 Examples of using an autoencoder with 10 input neurons and 10 hidden neurons: reconstruction the input data $\mathbf{v}$ where I) $v_i = 1$, II) $v_i = i/10$.
-%	\begin{figure}
-%		\centering
-%		\begin{subfigure}[t]{0.4\textwidth}
-%			\includegraphics[width=\textwidth]{pics_ae/exp1_weights_non.pdf}
-%			\caption{Weights of Exp1}
-%		\end{subfigure}
-%		\begin{subfigure}[t]{0.4\textwidth}
-%			\includegraphics[width=\textwidth]{pics_ae/exp2_weights_non.pdf}
-%			\caption{Weights of Exp2}
-%		\end{subfigure}
-%		\begin{subfigure}[t]{0.4\textwidth}
-%			\includegraphics[width=\textwidth]{pics_ae/exp1_recon_non.pdf}
-%			\caption{Reconstruction of visible units in Exp1}
-%		\end{subfigure}
-%		\begin{subfigure}[t]{0.4\textwidth}
-%			\includegraphics[width=\textwidth]{pics_ae/exp2_recon_non.pdf}
-%			\caption{Reconstruction of visible units in Exp2}
-%		\end{subfigure}\\
-%		\begin{subfigure}[t]{0.4\textwidth}
-%			\includegraphics[width=\textwidth]{pics_ae/exp1_hid_non.pdf}
-%			\caption{Output of hidden units in Exp1}
-%		\end{subfigure}
-%		\begin{subfigure}[t]{0.4\textwidth}
-%			\includegraphics[width=\textwidth]{pics_ae/exp2_hid_non.pdf}
-%			\caption{Output of hidden units in Exp2}
-%		\end{subfigure}
-%		\caption{Weights and outputs of visible and hidden units change during training of the reconstruction tests. 
-%			Experiments 1) 10 visible units fully connected to 10 hidden units with input data of all 1s; 2) same network fed with 10 values distribute linearly from 0.1 to 1.}
-%	\end{figure}
+	\begin{figure}
+		\centering
+		\begin{subfigure}[t]{0.4\textwidth}
+			\includegraphics[width=\textwidth]{pics_sdlm/20_exp_AE/exp1_weights_non.pdf}
+			\caption{Weights of Exp1}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.4\textwidth}
+			\includegraphics[width=\textwidth]{pics_sdlm/20_exp_AE/exp2_weights_non.pdf}
+			\caption{Weights of Exp2}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.4\textwidth}
+			\includegraphics[width=\textwidth]{pics_sdlm/20_exp_AE/exp1_recon_non.pdf}
+			\caption{Reconstruction of visible units in Exp1}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.4\textwidth}
+			\includegraphics[width=\textwidth]{pics_sdlm/20_exp_AE/exp2_recon_non.pdf}
+			\caption{Reconstruction of visible units in Exp2}
+		\end{subfigure}\\
+		\begin{subfigure}[t]{0.4\textwidth}
+			\includegraphics[width=\textwidth]{pics_sdlm/20_exp_AE/exp1_hid_non.pdf}
+			\caption{Output of hidden units in Exp1}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.4\textwidth}
+			\includegraphics[width=\textwidth]{pics_sdlm/20_exp_AE/exp2_hid_non.pdf}
+			\caption{Output of hidden units in Exp2}
+		\end{subfigure}\\
+		\begin{subfigure}[t]{0.4\textwidth}
+			\includegraphics[width=\textwidth]{pics_sdlm/20_exp_AE/exp1_loss.pdf}
+			\caption{Output of hidden units in Exp1}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.4\textwidth}
+			\includegraphics[width=\textwidth]{pics_sdlm/20_exp_AE/exp2_loss.pdf}
+			\caption{Output of hidden units in Exp2}
+		\end{subfigure}
+		\caption{Changes of weights, output of visible and hidden units, and mean squared error (loss) during the AE training of the reconstruction tests. 
+			Experiments 1) 10 visible units fully connected to 10 hidden units with input data of all 1s; 2) same network fed with 10 values distribute linearly from 0.1 to 1.}
+	\end{figure}
 
-\section{Training Spiking Autoencoders}
-Rate-based learning of STDP (rSTDP) which is inspired by ReSuMe.\\
--Why it works stated in Maths.\\
-\begin{equation}
-\begin{aligned}
-\overline{\Delta w_{ij}} &\propto \eta \lambda_{h_i}(\lambda_{v_j} - \lambda_{v'_j})\\
-&=\eta'P_{h_i}P_{v_j}\tau_{w} \tau_{dur} - \eta'P_{h_i}P_{v'_j}\tau_{w} \tau_{dur}, \textrm{where,}\\
-P_{s} &= \lambda_{s} \times 0.001~s = \frac{K s}{1000}\\
-\eta' &= \frac{10^6}{K^2 \tau_{w} \tau_{dur}} \eta
-\end{aligned}
-\end{equation}
-\begin{figure}
-	\centering
-	\includegraphics[width=0.8\textwidth]{pics_sdlm/rSTDP.pdf}
-	\caption{A typical Autoencoder structure.}
-	\label{fig:rSTDP}
-\end{figure}
-%\begin{figure}
-%	\centering
-%	\includegraphics[width=0.8\textwidth]{pics_ae/rSTDP.pdf}
-%	\caption{How rSTDP works in training AutoEncoders.}
-%	\label{fig:rSTDP}
-%\end{figure}
-%	
-%	Experiments
-%	\begin{figure}
-%		\centering
-%		\begin{subfigure}[t]{0.4\textwidth}
-%			\includegraphics[width=\textwidth]{pics_ae/exp1_weights_s.pdf}
-%			\caption{Weights of Exp1}
-%		\end{subfigure}
-%		\begin{subfigure}[t]{0.4\textwidth}
-%			\includegraphics[width=\textwidth]{pics_ae/exp2_weights_s.pdf}
-%			\caption{Weights of Exp2}
-%		\end{subfigure}
-%		\begin{subfigure}[t]{0.4\textwidth}
-%			\includegraphics[width=\textwidth]{pics_ae/exp1_recon_s.pdf}
-%			\caption{Reconstruction of visible units in Exp1}
-%		\end{subfigure}
-%		\begin{subfigure}[t]{0.4\textwidth}
-%			\includegraphics[width=\textwidth]{pics_ae/exp2_recon_s.pdf}
-%			\caption{Reconstruction of visible units in Exp2}
-%		\end{subfigure}\\
-%		\begin{subfigure}[t]{0.4\textwidth}
-%			\includegraphics[width=\textwidth]{pics_ae/exp1_recon_nons.pdf}
-%			\caption{Reconstruction of visible units in Exp1}
-%		\end{subfigure}
-%		\begin{subfigure}[t]{0.4\textwidth}
-%			\includegraphics[width=\textwidth]{pics_ae/exp2_recon_nons.pdf}
-%			\caption{Reconstruction of visible units in Exp2}
-%		\end{subfigure}\\
-%		\begin{subfigure}[t]{0.4\textwidth}
-%			\includegraphics[width=\textwidth]{pics_ae/exp1_hid_s.pdf}
-%			\caption{Output of hidden units in Exp1}
-%		\end{subfigure}
-%		\begin{subfigure}[t]{0.4\textwidth}
-%			\includegraphics[width=\textwidth]{pics_ae/exp2_hid_s.pdf}
-%			\caption{Output of hidden units in Exp2}
-%		\end{subfigure}\\
-%		\begin{subfigure}[t]{0.4\textwidth}
-%			\includegraphics[width=\textwidth]{pics_ae/exp1_hid_nons.pdf}
-%			\caption{Output of hidden units in Exp1}
-%		\end{subfigure}
-%		\begin{subfigure}[t]{0.4\textwidth}
-%			\includegraphics[width=\textwidth]{pics_ae/exp2_hid_nons.pdf}
-%			\caption{Output of hidden units in Exp2}
-%		\end{subfigure}
-%		\caption{Weights and firing rates of visible and hidden units change during training of the reconstruction tests of spiking neurons. 
-%			Experiments 1) 10 visible units fully connected to 10 hidden units with Poisson spike trains of 100~Hz which lasted 100~ms; 2) same network fed with 10 Poisson spike trains of firing rate ranging from 10~Hz to 100~Hz.}
-%	\end{figure}
+
 
 \section{Restricted Boltzmann Machine}
 In order to implement training and testing of Spiking Deep~Belief~Networks~(SDBNs) on-line, this section studied:
@@ -189,7 +128,7 @@ In order to implement training and testing of Spiking Deep~Belief~Networks~(SDBN
 	The greedy algorithm on training layered RBMs and the fine training on the whole DBN are studied.
 \end{itemize}
 Next, the study will carry on to on-line learning methods which only applies to spiking neurons for training spiking RBM and DBN.
-\subsection{Why CD(Contrastive Divergence)?\cite{hinton2002training,woodfordnotes}}
+\subsection{Contrastive Divergence\cite{hinton2002training,woodfordnotes}}
 The probability of a vector point $ \mathbf{x} $ is modelled by the function $f(\mathbf{x} \mid \Theta )$ given the model parameters $ \Theta $, and normalised by a partition function $Z( \Theta)$:
 
 \begin{equation}
@@ -524,6 +463,12 @@ The conditional probability function is as follows:
 p(h_i = 1 \mid \mathbf{v}) = \sigma(\sum_{j=1}^{m} W_{ij} \cdot \mathbf{v} + b_j).
 \end{equation}
 
+\begin{figure}[hbt]
+	\centering
+	\includegraphics[width=0.6\textwidth]{pics_sdbn/gibbs.png}
+	\caption{Gibbs sampling on RBM.}
+	\label{fig:gibbs}
+\end{figure}
 The second term is perfect fit for Gibbs sampling, since we can $ p(\mathbf{v}, \mathbf{h} \mid \Theta) $ as a 2D vector and generating the samples by jumping in a Markov Chain with the transformation probability matrix $ p(\mathbf{v} \mid \mathbf{h}, \Theta) $ and $ p(\mathbf{h} \mid \mathbf{v}, \Theta) $, see Figure~\ref{fig:gibbs} and Section~\ref{sec:Gibbs}.
 So, with the given data $ \mathbf{v}_0 $ and the sampling data $ \mathbf{h}_0 $, we have the initial data point in this Markov Chain,  ($ \mathbf{v}_0, \mathbf{h}_0$).
 The transformation starts from the axis of $ \mathbf{v} $, then we get $ \mathbf{v}_1 \sim p( \mathbf{v} \mid \mathbf{h}_0, \Theta) $.
@@ -556,54 +501,562 @@ The algorithm is described below:
 		\EndFor
 	\end{algorithmic}
 \end{algorithm}
-\begin{figure}[hbt]
-	\centering
-	\includegraphics[width=0.6\textwidth]{pics_sdbn/gibbs.png}
-	\caption{Gibbs sampling on RBM.}
-	\label{fig:gibbs}
-\end{figure}	
+	
 
 \subsection{noisy RBM}
+Instead of using binary units in RBM, we employ noisy ReLU units constructing noisy RBM which is closer to biology and performances better in classification tasks\cite{nair2010rectified}.
 
-\section{Training Spiking RBM}
+Examples of using an autoencoder with 10 input neurons and 10 hidden neurons: reconstruction the input data $\mathbf{v}$ where I) $v_i = 1$, II) $v_i = i/10$.
+\begin{figure}
+	\centering
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/30_exp_RBM/exp1_weights_non.pdf}
+		\caption{Weights of Exp1}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/30_exp_RBM/exp2_weights_non.pdf}
+		\caption{Weights of Exp2}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/30_exp_RBM/exp1_recon_non.pdf}
+		\caption{Reconstruction of visible units in Exp1}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/30_exp_RBM/exp2_recon_non.pdf}
+		\caption{Reconstruction of visible units in Exp2}
+	\end{subfigure}\\
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/30_exp_RBM/exp1_hid_non.pdf}
+		\caption{Output of hidden units in Exp1}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/30_exp_RBM/exp2_hid_non.pdf}
+		\caption{Output of hidden units in Exp2}
+	\end{subfigure}\\
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/30_exp_RBM/exp1_loss.pdf}
+		\caption{Output of hidden units in Exp1}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/30_exp_RBM/exp2_loss.pdf}
+		\caption{Output of hidden units in Exp2}
+	\end{subfigure}
+	\caption{Changes of weights, output of visible and hidden units, and mean squared error (loss) during the nRBM training of the reconstruction tests. 
+		Experiments 1) 10 visible units fully connected to 10 hidden units with input data of all 1s; 2) same network fed with 10 values distribute linearly from 0.1 to 1.}
+\end{figure}
+
+\section{Biologically Plausible Training}
+\subsection{Rate-based coding}
+The encoding method is the same as stated below in Chapter~\ref{sec:poissonian}.
+It introduces noise to the original input.
+The experiments on noisy input driven by Poissonian spike trains.
+Figure~\ref{fig:poisson_ae} and Figure~\ref{fig:poisson_rbm} show how noise influence the training and output of both the visible and hidden units.
+The change of the weights oscillates more. % and the value of the weights tends to diverge slightly as training goes on. 
+The experiments run as a baseline to compare with spike based training in the following Section.
+\begin{figure}
+	\centering
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/21_exp_AE_noise/exp1_weights_s.pdf}
+		\caption{Weights of Exp1}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/21_exp_AE_noise/exp2_weights_s.pdf}
+		\caption{Weights of Exp2}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/21_exp_AE_noise/exp1_recon_s.pdf}
+		\caption{Reconstruction of visible units in Exp1}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/21_exp_AE_noise/exp2_recon_s.pdf}
+		\caption{Reconstruction of visible units in Exp2}
+	\end{subfigure}\\
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/21_exp_AE_noise/exp1_hid_s.pdf}
+		\caption{Output of hidden units in Exp1}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/21_exp_AE_noise/exp2_hid_s.pdf}
+		\caption{Output of hidden units in Exp2}
+	\end{subfigure}\\
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/21_exp_AE_noise/exp1_loss_s.pdf}
+		\caption{Output of hidden units in Exp1}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/21_exp_AE_noise/exp2_loss_s.pdf}
+		\caption{Output of hidden units in Exp2}
+	\end{subfigure}
+	\caption{Changes of weights, output of visible and hidden units, and mean squared error (loss) during the AE training of the reconstruction tests. 
+		Experiments 1) 10 visible units fully connected to 10 hidden units with the count of Poisson spikes firing at 100~Hz which lasted 100~ms; 2) same network fed with 10 count of Poisson spikes at firing rate ranging from 10~Hz to 100~Hz.}
+	\label{fig:poisson_ae}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/31_exp_RBM_noise/exp1_weights_s.pdf}
+		\caption{Weights of Exp1}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/31_exp_RBM_noise/exp2_weights_s.pdf}
+		\caption{Weights of Exp2}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/31_exp_RBM_noise/exp1_recon_s.pdf}
+		\caption{Reconstruction of visible units in Exp1}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/31_exp_RBM_noise/exp2_recon_s.pdf}
+		\caption{Reconstruction of visible units in Exp2}
+	\end{subfigure}\\
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/31_exp_RBM_noise/exp1_hid_s.pdf}
+		\caption{Output of hidden units in Exp1}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/31_exp_RBM_noise/exp2_hid_s.pdf}
+		\caption{Output of hidden units in Exp2}
+	\end{subfigure}\\
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/31_exp_RBM_noise/exp1_loss_s.pdf}
+		\caption{Output of hidden units in Exp1}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/31_exp_RBM_noise/exp2_loss_s.pdf}
+		\caption{Output of hidden units in Exp2}
+	\end{subfigure}
+	\caption{Changes of weights, output of visible and hidden units, and mean squared error (loss) during the nRBM training of the reconstruction tests. 
+		Experiments 1) 10 visible units fully connected to 10 hidden units with the count of Poisson spikes firing at 100~Hz which lasted 100~ms; 2) same network fed with 10 count of Poisson spikes at firing rate ranging from 10~Hz to 100~Hz.}
+	\label{fig:poisson_rbm}
+\end{figure}
+
+\subsection{STDP}
+
+\subsection{Training Spiking Autoencoders}
+Rate-based learning of STDP (rSTDP) which is inspired by ReSuMe.
+Biology, local\\
+-Why it works stated in Maths.\\
+\begin{equation}
+\begin{aligned}
+\overline{\Delta w_{ij}} &\propto \eta \lambda_{h_i}(\lambda_{v_j} - \lambda_{v'_j})\\
+&=\eta'P_{h_i}P_{v_j}\tau_{w} \tau_{dur} - \eta'P_{h_i}P_{v'_j}\tau_{w} \tau_{dur}, \textrm{where,}\\
+P_{s} &= \lambda_{s} \times 0.001~s = \frac{K s}{1000}\\
+\eta' &= \frac{10^6}{K^2 \tau_{w} \tau_{dur}} \eta
+\end{aligned}
+\end{equation}
+\begin{figure}
+	\centering
+	\includegraphics[width=0.8\textwidth]{pics_sdlm/rSTDP.pdf}
+	\caption{How rSTDP works in training spiking Autoencoders.}
+	\label{fig:rSTDP}
+\end{figure}
+
+\subsection{Training Spiking RBM}
+\begin{figure}
+	\centering
+	\includegraphics[width=0.8\textwidth]{pics_sdlm/rSTDP_rbm.pdf}
+	\caption{How rSTDP works in training spiking RBMs.}
+	\label{fig:rSTDP_rbm}
+\end{figure}
 
 \section{Problem}
-Correlations in spike trains and Poisson noise make weights diverge.
-Same Poisson data used in non-spiking tests.
-%	\begin{figure}
-%		\centering
-%		\begin{subfigure}[t]{0.4\textwidth}
-%			\includegraphics[width=\textwidth]{pics_ae/exp1_weights_noisy.pdf}
-%			\caption{Weights of Exp1}
-%		\end{subfigure}
-%		\begin{subfigure}[t]{0.4\textwidth}
-%			\includegraphics[width=\textwidth]{pics_ae/exp2_weights_noisy.pdf}
-%			\caption{Weights of Exp2}
-%		\end{subfigure}
-%		\begin{subfigure}[t]{0.4\textwidth}
-%			\includegraphics[width=\textwidth]{pics_ae/exp1_recon_noisy.pdf}
-%			\caption{Reconstruction of visible units in Exp1}
-%		\end{subfigure}
-%		\begin{subfigure}[t]{0.4\textwidth}
-%			\includegraphics[width=\textwidth]{pics_ae/exp2_recon_noisy.pdf}
-%			\caption{Reconstruction of visible units in Exp2}
-%		\end{subfigure}\\
-%		\begin{subfigure}[t]{0.4\textwidth}
-%			\includegraphics[width=\textwidth]{pics_ae/exp1_hid_noisy.pdf}
-%			\caption{Output of hidden units in Exp1}
-%		\end{subfigure}
-%		\begin{subfigure}[t]{0.4\textwidth}
-%			\includegraphics[width=\textwidth]{pics_ae/exp2_hid_noisy.pdf}
-%			\caption{Output of hidden units in Exp2}
-%		\end{subfigure}
-%		\caption{Weights and outputs of visible and hidden units change during training fed with noisy inputs. 
-%			Experiments 1) 10 visible units fully connected to 10 hidden units with noisy input data of all 1s; 2) same network fed with noisy values distribute linearly from 0.1 to 1.}
-%	\end{figure}
-\subsection{Solution 1: Longer STDP Window}
+Correlations in spike trains make weights diverge.
+Experiments
+\begin{figure}
+	\centering
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/00_exp_SAE_Orig/exp1_weights_s.pdf}
+		\caption{Weights of Exp1}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/00_exp_SAE_Orig/exp2_weights_s.pdf}
+		\caption{Weights of Exp2}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/00_exp_SAE_Orig/exp1_recon_s.pdf}
+		\caption{Reconstruction of visible units in Exp1}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/00_exp_SAE_Orig/exp2_recon_s.pdf}
+		\caption{Reconstruction of visible units in Exp2}
+	\end{subfigure}\\
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/00_exp_SAE_Orig/exp1_hid_s.pdf}
+		\caption{Output of hidden units in Exp1}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/00_exp_SAE_Orig/exp2_hid_s.pdf}
+		\caption{Output of hidden units in Exp2}
+	\end{subfigure}\\
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/00_exp_SAE_Orig/exp1_mse_nons.pdf}
+		\caption{Output of hidden units in Exp1}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/00_exp_SAE_Orig/exp2_mse_nons.pdf}
+		\caption{Output of hidden units in Exp2}
+	\end{subfigure}
+	\caption{Weights and firing rates of visible and hidden units change during training of the reconstruction tests of spiking AE. 
+		Experiments 1) 10 visible units fully connected to 10 hidden units with Poisson spike trains of 100~Hz which lasted 100~ms; 2) same network fed with 10 Poisson spike trains of firing rate ranging from 10~Hz to 100~Hz.}
+\end{figure}
 
+\begin{figure}
+	\centering
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/10_exp_SRBM_Orig/exp1_weights_s.pdf}
+		\caption{Weights of Exp1}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/10_exp_SRBM_Orig/exp2_weights_s.pdf}
+		\caption{Weights of Exp2}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/10_exp_SRBM_Orig/exp1_recon_s.pdf}
+		\caption{Reconstruction of visible units in Exp1}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/10_exp_SRBM_Orig/exp2_recon_s.pdf}
+		\caption{Reconstruction of visible units in Exp2}
+	\end{subfigure}\\
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/10_exp_SRBM_Orig/exp1_hid_s.pdf}
+		\caption{Output of hidden units in Exp1}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/10_exp_SRBM_Orig/exp2_hid_s.pdf}
+		\caption{Output of hidden units in Exp2}
+	\end{subfigure}\\
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/10_exp_SRBM_Orig/exp1_mse_nons.pdf}
+		\caption{Output of hidden units in Exp1}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/10_exp_SRBM_Orig/exp2_mse_nons.pdf}
+		\caption{Output of hidden units in Exp2}
+	\end{subfigure}
+	\caption{Weights and firing rates of visible and hidden units change during training of the reconstruction tests of spiking RBM. 
+		Experiments 1) 10 visible units fully connected to 10 hidden units with Poisson spike trains of 100~Hz which lasted 100~ms; 2) same network fed with 10 Poisson spike trains of firing rate ranging from 10~Hz to 100~Hz.}
+\end{figure}
+
+\subsection{Solution 1: Longer STDP Window}
+The stronger correlation of a pair of pre- and post-synaptic neurons make the spikes generated by the post-synaptic neuron lie in the shorter period after the pre-synaptic spike.
+So a longer square STDP window maker the overall weight change more dependent of the correlation of the spike trains.
+\begin{figure}
+	\centering
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/01_exp_SAE_Orig_long/exp1_weights_s.pdf}
+		\caption{Weights of Exp1}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/01_exp_SAE_Orig_long/exp2_weights_s.pdf}
+		\caption{Weights of Exp2}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/01_exp_SAE_Orig_long/exp1_recon_s.pdf}
+		\caption{Reconstruction of visible units in Exp1}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/01_exp_SAE_Orig_long/exp2_recon_s.pdf}
+		\caption{Reconstruction of visible units in Exp2}
+	\end{subfigure}\\
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/01_exp_SAE_Orig_long/exp1_hid_s.pdf}
+		\caption{Output of hidden units in Exp1}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/01_exp_SAE_Orig_long/exp2_hid_s.pdf}
+		\caption{Output of hidden units in Exp2}
+	\end{subfigure}\\
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/01_exp_SAE_Orig_long/exp1_mse_nons.pdf}
+		\caption{Output of hidden units in Exp1}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/01_exp_SAE_Orig_long/exp2_mse_nons.pdf}
+		\caption{Output of hidden units in Exp2}
+	\end{subfigure}
+	\caption{Weights and firing rates of visible and hidden units change during training of the reconstruction tests of spiking AE. 
+		Experiments 1) 10 visible units fully connected to 10 hidden units with Poisson spike trains of 100~Hz which lasted 100~ms; 2) same network fed with 10 Poisson spike trains of firing rate ranging from 10~Hz to 100~Hz.}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/11_exp_SRBM_Orig_long/exp1_weights_s.pdf}
+		\caption{Weights of Exp1}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/11_exp_SRBM_Orig_long/exp2_weights_s.pdf}
+		\caption{Weights of Exp2}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/11_exp_SRBM_Orig_long/exp1_recon_s.pdf}
+		\caption{Reconstruction of visible units in Exp1}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/11_exp_SRBM_Orig_long/exp2_recon_s.pdf}
+		\caption{Reconstruction of visible units in Exp2}
+	\end{subfigure}\\
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/11_exp_SRBM_Orig_long/exp1_hid_s.pdf}
+		\caption{Output of hidden units in Exp1}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/11_exp_SRBM_Orig_long/exp2_hid_s.pdf}
+		\caption{Output of hidden units in Exp2}
+	\end{subfigure}\\
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/11_exp_SRBM_Orig_long/exp1_mse_nons.pdf}
+		\caption{Output of hidden units in Exp1}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/11_exp_SRBM_Orig_long/exp2_mse_nons.pdf}
+		\caption{Output of hidden units in Exp2}
+	\end{subfigure}
+	\caption{Weights and firing rates of visible and hidden units change during training of the reconstruction tests of spiking RBM. 
+		Experiments 1) 10 visible units fully connected to 10 hidden units with Poisson spike trains of 100~Hz which lasted 100~ms; 2) same network fed with 10 Poisson spike trains of firing rate ranging from 10~Hz to 100~Hz.}
+\end{figure}
 \subsection{Solution 2: Noisy Threshold}
+There are various ways to introduce noise in formal spiking neuron models. In this section we focus on a `noisy threshold' (also called escape or hazard model)~\cite{gerstner2002spiking}.
+The noise drives the post-synaptic spikes fire in advance or behind the expected time, thus it reduces the correlation between the pre- and post synaptic spikes.
+
+\begin{figure}
+	\centering
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/03_exp_SAE_noise_long/exp1_weights_s.pdf}
+		\caption{Weights of Exp1}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/03_exp_SAE_noise_long/exp2_weights_s.pdf}
+		\caption{Weights of Exp2}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/03_exp_SAE_noise_long/exp1_recon_s.pdf}
+		\caption{Reconstruction of visible units in Exp1}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/03_exp_SAE_noise_long/exp2_recon_s.pdf}
+		\caption{Reconstruction of visible units in Exp2}
+	\end{subfigure}\\
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/03_exp_SAE_noise_long/exp1_hid_s.pdf}
+		\caption{Output of hidden units in Exp1}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/03_exp_SAE_noise_long/exp2_hid_s.pdf}
+		\caption{Output of hidden units in Exp2}
+	\end{subfigure}\\
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/03_exp_SAE_noise_long/exp1_mse_nons.pdf}
+		\caption{Output of hidden units in Exp1}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/03_exp_SAE_noise_long/exp2_mse_nons.pdf}
+		\caption{Output of hidden units in Exp2}
+	\end{subfigure}
+	\caption{Weights and firing rates of visible and hidden units change during training of the reconstruction tests of spiking AE. 
+		Experiments 1) 10 visible units fully connected to 10 hidden units with Poisson spike trains of 100~Hz which lasted 100~ms; 2) same network fed with 10 Poisson spike trains of firing rate ranging from 10~Hz to 100~Hz.}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/13_exp_SRBM_noise_long/exp1_weights_s.pdf}
+		\caption{Weights of Exp1}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/13_exp_SRBM_noise_long/exp2_weights_s.pdf}
+		\caption{Weights of Exp2}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/13_exp_SRBM_noise_long/exp1_recon_s.pdf}
+		\caption{Reconstruction of visible units in Exp1}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/13_exp_SRBM_noise_long/exp2_recon_s.pdf}
+		\caption{Reconstruction of visible units in Exp2}
+	\end{subfigure}\\
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/13_exp_SRBM_noise_long/exp1_hid_s.pdf}
+		\caption{Output of hidden units in Exp1}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/13_exp_SRBM_noise_long/exp2_hid_s.pdf}
+		\caption{Output of hidden units in Exp2}
+	\end{subfigure}\\
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/13_exp_SRBM_noise_long/exp1_mse_nons.pdf}
+		\caption{Output of hidden units in Exp1}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/13_exp_SRBM_noise_long/exp2_mse_nons.pdf}
+		\caption{Output of hidden units in Exp2}
+	\end{subfigure}
+	\caption{Weights and firing rates of visible and hidden units change during training of the reconstruction tests of spiking RBM. 
+		Experiments 1) 10 visible units fully connected to 10 hidden units with Poisson spike trains of 100~Hz which lasted 100~ms; 2) same network fed with 10 Poisson spike trains of firing rate ranging from 10~Hz to 100~Hz.}
+\end{figure}
+
 
 \subsection{Solution 3: Teaching Signal}
+Teaching spike train firing at the same rate with input spikes is completely decorrelated with the spikes generated in the network.
+Thus it decorrelates the positive part of the weight change (red bar in Figure~\ref{fig:rSTDP} and~\ref{fig:rSTDP_rbm}).
+\begin{figure}
+	\centering
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/05_exp_SAE_teach_long/exp1_weights_s.pdf}
+		\caption{Weights of Exp1}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/05_exp_SAE_teach_long/exp2_weights_s.pdf}
+		\caption{Weights of Exp2}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/05_exp_SAE_teach_long/exp1_recon_s.pdf}
+		\caption{Reconstruction of visible units in Exp1}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/05_exp_SAE_teach_long/exp2_recon_s.pdf}
+		\caption{Reconstruction of visible units in Exp2}
+	\end{subfigure}\\
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/05_exp_SAE_teach_long/exp1_hid_s.pdf}
+		\caption{Output of hidden units in Exp1}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/05_exp_SAE_teach_long/exp2_hid_s.pdf}
+		\caption{Output of hidden units in Exp2}
+	\end{subfigure}\\
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/05_exp_SAE_teach_long/exp1_mse_nons.pdf}
+		\caption{Output of hidden units in Exp1}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/05_exp_SAE_teach_long/exp2_mse_nons.pdf}
+		\caption{Output of hidden units in Exp2}
+	\end{subfigure}
+	\caption{Weights and firing rates of visible and hidden units change during training of the reconstruction tests of spiking AE. 
+		Experiments 1) 10 visible units fully connected to 10 hidden units with Poisson spike trains of 100~Hz which lasted 100~ms; 2) same network fed with 10 Poisson spike trains of firing rate ranging from 10~Hz to 100~Hz.}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/15_exp_SRBM_teach_long/exp1_weights_s.pdf}
+		\caption{Weights of Exp1}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/15_exp_SRBM_teach_long/exp2_weights_s.pdf}
+		\caption{Weights of Exp2}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/15_exp_SRBM_teach_long/exp1_recon_s.pdf}
+		\caption{Reconstruction of visible units in Exp1}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/15_exp_SRBM_teach_long/exp2_recon_s.pdf}
+		\caption{Reconstruction of visible units in Exp2}
+	\end{subfigure}\\
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/15_exp_SRBM_teach_long/exp1_hid_s.pdf}
+		\caption{Output of hidden units in Exp1}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/15_exp_SRBM_teach_long/exp2_hid_s.pdf}
+		\caption{Output of hidden units in Exp2}
+	\end{subfigure}\\
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/15_exp_SRBM_teach_long/exp1_mse_nons.pdf}
+		\caption{Output of hidden units in Exp1}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/15_exp_SRBM_teach_long/exp2_mse_nons.pdf}
+		\caption{Output of hidden units in Exp2}
+	\end{subfigure}
+	\caption{Weights and firing rates of visible and hidden units change during training of the reconstruction tests of spiking RBM. 
+		Experiments 1) 10 visible units fully connected to 10 hidden units with Poisson spike trains of 100~Hz which lasted 100~ms; 2) same network fed with 10 Poisson spike trains of firing rate ranging from 10~Hz to 100~Hz.}
+\end{figure}
+
+\subsection{Test on Combined Solutions}
+Same test:
+\begin{figure}
+	\centering
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/07_exp_SAE_all_long/exp1_weights_s.pdf}
+		\caption{Weights of Exp1}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/07_exp_SAE_all_long/exp2_weights_s.pdf}
+		\caption{Weights of Exp2}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/07_exp_SAE_all_long/exp1_recon_s.pdf}
+		\caption{Reconstruction of visible units in Exp1}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/07_exp_SAE_all_long/exp2_recon_s.pdf}
+		\caption{Reconstruction of visible units in Exp2}
+	\end{subfigure}\\
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/07_exp_SAE_all_long/exp1_hid_s.pdf}
+		\caption{Output of hidden units in Exp1}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/07_exp_SAE_all_long/exp2_hid_s.pdf}
+		\caption{Output of hidden units in Exp2}
+	\end{subfigure}\\
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/07_exp_SAE_all_long/exp1_mse_nons.pdf}
+		\caption{Output of hidden units in Exp1}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/07_exp_SAE_all_long/exp2_mse_nons.pdf}
+		\caption{Output of hidden units in Exp2}
+	\end{subfigure}
+	\caption{Weights and firing rates of visible and hidden units change during training of the reconstruction tests of spiking AE. 
+		Experiments 1) 10 visible units fully connected to 10 hidden units with Poisson spike trains of 100~Hz which lasted 100~ms; 2) same network fed with 10 Poisson spike trains of firing rate ranging from 10~Hz to 100~Hz.}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/17_exp_SRBM_all_long/exp1_weights_s.pdf}
+		\caption{Weights of Exp1}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/17_exp_SRBM_all_long/exp2_weights_s.pdf}
+		\caption{Weights of Exp2}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/17_exp_SRBM_all_long/exp1_recon_s.pdf}
+		\caption{Reconstruction of visible units in Exp1}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/17_exp_SRBM_all_long/exp2_recon_s.pdf}
+		\caption{Reconstruction of visible units in Exp2}
+	\end{subfigure}\\
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/17_exp_SRBM_all_long/exp1_hid_s.pdf}
+		\caption{Output of hidden units in Exp1}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/17_exp_SRBM_all_long/exp2_hid_s.pdf}
+		\caption{Output of hidden units in Exp2}
+	\end{subfigure}\\
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/17_exp_SRBM_all_long/exp1_mse_nons.pdf}
+		\caption{Output of hidden units in Exp1}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/17_exp_SRBM_all_long/exp2_mse_nons.pdf}
+		\caption{Output of hidden units in Exp2}
+	\end{subfigure}
+	\caption{Weights and firing rates of visible and hidden units change during training of the reconstruction tests of spiking RBM. 
+		Experiments 1) 10 visible units fully connected to 10 hidden units with Poisson spike trains of 100~Hz which lasted 100~ms; 2) same network fed with 10 Poisson spike trains of firing rate ranging from 10~Hz to 100~Hz.}
+\end{figure}
+
+XOR problem:
+
 
 \section{Results: MNIST Test}
 \subsection{Trained weights}
