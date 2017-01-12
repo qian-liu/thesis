@@ -1,9 +1,12 @@
 \chapter{STDP Training on Spiking Deep Learning Models}
 \label{cha:sdlm}
 
-The previous Chapter introduces the feasibility of constructing spiking deep neural networks with ANN training off-line, this Chapter continues the hot topic of deep SNNs and takes extra step forward to on-line event-based training in biologically plausible manner.
-The deep learning models selected in the research are Autoencoders and Deep Belief Network due to there unsupervised learning mechanism and popularity.
-
+The previous Chapter introduces the feasibility of constructing deep SNNs by training DNN with specific activation function, noisy Softplus, off-line.
+This Chapter continues the hot topic of deep SNNs and takes extra step forward to on-line, event-based training in biologically plausible manner.
+%TODO What, Why, How
+The deep learning models selected in the research are Autoencoders (AE) and Restricted Boltzmann Machine (RBM) due to their unsupervised learning mechanism and popularity.
+\section{Introduction}
+Specify the motivation and state of the art
 \section{Autoencoders}
 %TODO rewording
 Figure~\ref{fig:AE} shows a simplest architecture of an autoencoder, which is the same as a multilayer perceptron (MLP).
@@ -1376,7 +1379,7 @@ Latency$\times$Sops$\times$ops/s
 		\caption{SAE+teach+noise.}
 	\end{subfigure}
 	\begin{subfigure}[t]{0.45\textwidth}
-		\includegraphics[width=\textwidth]{pics_sdlm/53_MNIST_SRBM_all/result_freq.pdf}
+		\includegraphics[width=\textwidth]{pics_sdlm/51_MNIST_SRBM_teach/result_freq.pdf}
 		\caption{SRBM+teach+noise.}
 	\end{subfigure}
 	\caption{Classification accuracy during the entire testing time period with increasing input spike firing rate.}
