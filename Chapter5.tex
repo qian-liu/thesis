@@ -1,12 +1,24 @@
 \chapter{STDP Training on Spiking Deep Learning Models}
 \label{cha:sdlm}
-
+\section{Introduction}
+%Paragraph One: LINK
+%Make a connection to what has immediately gone before. Recap the last chapter. In the last chapter I showed that… Having argued in the previous chapter that… As a result of x, which I established in the last chapter….. It is also possible to make a link between this chapter and the whole argument… The first step in answering my research question (repeat question) .. was to.. . In the last chapter I …
 The previous Chapter introduces the feasibility of constructing deep SNNs by training DNN with specific activation function, noisy Softplus, off-line.
 This Chapter continues the hot topic of deep SNNs and takes extra step forward to on-line, event-based training in biologically plausible manner.
-%TODO What, Why, How
-The deep learning models selected in the research are Autoencoders (AE) and Restricted Boltzmann Machine (RBM) due to their unsupervised learning mechanism and popularity.
-\section{Introduction}
-Specify the motivation and state of the art
+
+%Paragraph Two: FOCUS
+%Now focus the reader’s attention on what this chapter is specifically going to do and why it is important. In this chapter I will examine.. I will present… I will report … This is crucial in (aim of thesis/research question) in order to….
+In this Chapter I we will present the approach which successfully transfers the discrete weights update of conventional unsupervised training of deep learning modules to spike-based STDP learning.
+It is attractive and promising to implement the on-line, event-based training algorithm on neuromorphic hardware for better power efficiency and scalability.
+
+%Paragraph Three: OVERVIEW
+%The third paragraph simply outlines the way that you are going to achieve the aim spelled out in the previous paragraph. It’s really just a statement of the contents in the order that the reader will encounter them. It is important to state these not simply as topics, but actually how they build up the internal chapter argument… I will begin by examining the definitions of, then move to seeing how these were applied… I first of all explain my orientation to the research process, positioning myself as a critical scholar.. I then explain the methodology that I used in the research, arguing that ethnography was the most suitable approach to provide answers to the question of… 
+%https://patthomson.net/2014/01/16/connecting-chapterschapter-introductions/
+We validate the STDP learning approach on spike-based version of Autoencoders (AE) and Restricted Boltzmann Machine (RBM), due to their unsupervised learning mechanism and popularity in state-of-the-art deep learning applications.
+The detailed comparison of the traditional training and spike-based STDP learning on MNIST dataset demonstrates the equivalent learning ability of the spiking deep learning modules and shows similar even surpassing recognition and reconstruction capability.
+
+
+
 \section{Autoencoders}
 %TODO rewording
 Figure~\ref{fig:AE} shows a simplest architecture of an autoencoder, which is the same as a multilayer perceptron (MLP).
@@ -1385,7 +1397,8 @@ Latency$\times$Sops$\times$ops/s
 	\caption{Classification accuracy during the entire testing time period with increasing input spike firing rate.}
 \end{figure}
 
-
+\section{Conclusion}
+%A conclusion should be a short summary of the most pithy points in the chapter. It’s the thing that you’re going to leave the reader with. Given that they’ve just spent time reading the whole chapter, they don’t want to read it all again. What do you most want the reader to remember about this chapter? What is the key to the argument you’ve made, the most significant thing(s) that they have to keep in their mind as they go forward? In a thesis, a conclusion is usually fairly brief and to the point. Barbara and I call this ‘crunching’. Crunching the conclusion requires some thought – it’s not an afterthought. It is always about your take-home message, if you like. So don’t go on at length in the conclusion – Crunch.
 \section{Appendices}
 \subsection{Derivation process of Equation~(\ref{equ:part})}
 \label{app:part}

@@ -1,12 +1,6 @@
 \chapter{Training Deep SNNs Off-line as ANNs}
 \label{cha:Conv}
-	The Spiking Neural Network (SNN) has not achieved the recognition/classification performance of its non-spiking competitor, the Artificial Neural Network(ANN), particularly when used in deep neural networks.
-	How to equip SNNs with equivalent recognition capability as DNNs' thus to take advantages of their neuromorphic implementation attracts increased attention both in the neuromorphic community and the deep learning industry.
-%TODO the scalability, power efficiency and real-time sensor interactive with the environment 
-%	The mapping of a well-trained ANN to an SNN is a hot topic in this field, especially using spiking neurons with biological characteristics.
-	This Chapter proposes a new biologically-inspired activation function, Noisy Softplus, which is well-matched to the response function of LIF (Leaky Integrate-and-Fire) neurons.
-	A convolutional network (ConvNet) was trained on the MNIST database with Noisy Softplus units and converted to an SNN while maintaining a close classification accuracy.
-	This result demonstrates the equivalent recognition capability of the more biologically-realistic SNNs and bring biological features to the activation units in ANNs.
+
 \section{Introduction}
 Deep Neural Networks (DNNs) are the most promising research field in computer vision, even exceeding human-level performance on image classification tasks~\cite{he2015delving}.
 	To investigate whether brains might work similarly on vision tasks, these powerful DNN models have been converted to spiking neural networks (SNNs).
@@ -320,7 +314,15 @@ Deep Neural Networks (DNNs) are the most promising research field in computer vi
 			(c) illustrates the accuracy over short response times.}
 		\label{fig:training}	
 	\end{figure}
-\section{Summary}
+\section{Conclusion}
+	The Spiking Neural Network (SNN) has not achieved the recognition/classification performance of its non-spiking competitor, the Artificial Neural Network(ANN), particularly when used in deep neural networks.
+	How to equip SNNs with equivalent recognition capability as DNNs' thus to take advantages of their neuromorphic implementation attracts increased attention both in the neuromorphic community and the deep learning industry.
+	%TODO the scalability, power efficiency and real-time sensor interactive with the environment 
+	%	The mapping of a well-trained ANN to an SNN is a hot topic in this field, especially using spiking neurons with biological characteristics.
+	This Chapter proposes a new biologically-inspired activation function, Noisy Softplus, which is well-matched to the response function of LIF (Leaky Integrate-and-Fire) neurons.
+	A convolutional network (ConvNet) was trained on the MNIST database with Noisy Softplus units and converted to an SNN while maintaining a close classification accuracy.
+	This result demonstrates the equivalent recognition capability of the more biologically-realistic SNNs and bring biological features to the activation units in ANNs.
+	
 	The biologically-inspired activation function, Noisy Softplus, adapts to the noise level of input currents automatically, and is the first attempt to map activation units accurately to the firing response of LIF neurons.
 	Noisy Softplus not only brings more biological features to the activation function, but also proves capable of performing well in a spiking ConvNet recognition task.
 	The spiking version of Noisy Softplus wins on accuracy over the sigmoid neuron, compared to the result~\cite{Stromatias2015scalable} of using Siegert units.
