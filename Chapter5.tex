@@ -29,6 +29,12 @@ An event-driven Contrastive Divergence (CD) training algorithm for Restricted Bo
 %critisize
 Followed by Wolfgang Mass on neural sampling.
 
+%2. Backpropogation
+We cannot simply propagate errors through SNNs in conventional way because of the property of SNNs that process discrete data in the form of a series. 
+\cite{lee2016training,park2016efficient} uses membrane potential of a neuron as a differentiable variable to train BP.
+
+%3. Mirrored STDP
+\cite{koch2013hebbian,de2015study,burbank2015mirrored}
 \section{Methods}
 \subsection{Autoencoders}
 %TODO rewording
