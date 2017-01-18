@@ -1,55 +1,44 @@
-\chapter{Training Spiking Deep Learning Models On-line Using Spike-based Rate Multiplication (SRM)}
+\chapter{STDP Training on Spiking Deep Learning Models}
 \label{cha:sdlm}
 %Paragraph One: LINK
 %Make a connection to what has immediately gone before. Recap the last chapter. In the last chapter I showed that… Having argued in the previous chapter that… As a result of x, which I established in the last chapter….. It is also possible to make a link between this chapter and the whole argument… The first step in answering my research question (repeat question) .. was to.. . In the last chapter I …
 Having argued in the previous chapter that it is feasible to construct deep SNNs off-line by training DNN with specific activation function.
-This Chapter continues the hot topic of deep SNNs and takes extra step forward to biologically inspired, on-line, spike-based training.
+This Chapter continues the hot topic of deep SNNs and takes extra step forward to on-line, spike-based training in biologically plausible manner.
 
 %Paragraph Two: FOCUS
 %Now focus the reader’s attention on what this chapter is specifically going to do and why it is important. In this chapter I will examine.. I will present… I will report … This is crucial in (aim of thesis/research question) in order to….
-In this Chapter We will present the method, Spike-based Rate Multiplication (SRM).
-This algorithm successfully transfers multiplication operations to possibility of some specific firing events of a pair of rate-coded spike trains.
-Moreover, these firing events can be captured with Synaptic-Time-Dependent Plasticity (STDP) rule thus to update the weights accordingly in an on-line, event-based, and biologically-plausible manner.
-Such weights update well fits the conventional unsupervised deep learning modules: such as Autoencoders (AE) and Restricted Boltzmann Machines (RBMs), where multiplication of the neural outputs is the main operation.
-It is crucial to provide deep SNNs with effective on-line training algorithm not only for building successful spike-based object recognition applications, but also for better power efficiency and scalability when training on neuromorphic hardware.
+In this Chapter We will present the approach which successfully transfers the discrete weights update of conventional unsupervised training of deep learning modules to spike-based STDP learning.
+It is crucial in not only building SNNs for object recognition applications, but also equipping the deep SNN models with biologically plausible learning capability.
+It is also attractive and promising to implement the on-line, event-based training algorithm on neuromorphic hardware for better power efficiency and scalability.
 
 
 %Paragraph Three: OVERVIEW
 %The third paragraph simply outlines the way that you are going to achieve the aim spelled out in the previous paragraph. It’s really just a statement of the contents in the order that the reader will encounter them. It is important to state these not simply as topics, but actually how they build up the internal chapter argument… I will begin by examining the definitions of, then move to seeing how these were applied… I first of all explain my orientation to the research process, positioning myself as a critical scholar.. I then explain the methodology that I used in the research, arguing that ethnography was the most suitable approach to provide answers to the question of… 
 %https://patthomson.net/2014/01/16/connecting-chapterschapter-introductions/
 We first of all explore the research question of on-line, event-based deep SNN training in the literature.
-We then describe SRM in mathematical expression, and explain the factors influencing the accuracy of the method and the factors not. 
-Afterwards we argue why the learning algorithm is proper to train spiking Autoencoders (SAEs) and Spiking Restricted Boltzmann Machines (SRBM).
-During the research we encountered the problem introduced by the correlated spikes, therefore we also propose solutions to decorrelate spike trains in Section~\ref{sec:problem}. 
-Finally the detailed comparison of the traditional training and SRM learning on MNIST dataset demonstrates the equivalent learning ability and shows similar even surpassing recognition and reconstruction capability of SRM.
+We then describe our method in mathematical expression and state why the learning algorithm is proper to train spiking Autoencoders (AEs) and Restricted Boltzmann Machines (RBM).
+The deep learning modules, AEs and RBMs, are selected for their unsupervised learning mechanism and popularity in state-of-the-art deep learning applications.
+During the research we encountered the problem introduced by the correlated spikes, therefore we also propose solutions to decorrelate spike trains in this Chapter. 
+Finally the detailed comparison of the traditional training and spike-based STDP learning on MNIST dataset demonstrates the equivalent learning ability of the spiking deep learning modules and shows similar even surpassing recognition and reconstruction capability.
 
 
 \section{Related Works}
-%To start with evidence of energy efficiency: maybe should refer to Chapter 2 or 1.
-The current trend towards training deep SNNs on line using biologically-plausible learning methods is promising due to its potential benefit on low-energy hardware implementation.
-%0. Dan Neil: Online Learning in Event-based Restricted Boltzmann Machines
-The first on-line training algorithm of SRBMs is event-based contrastive divergence (evtCD)~\cite{neil2013online}, which firstly found out the feasibility of applying STDP rule to approximate CD algorithm.
-To review the algorithm of training RBMs, please refer to Section~\ref{sec:rbm}.
-The method divided the learning process into potentiating and depression parts, which formed the basic design of related research.
-As an initial attempt the mathematical analysis was mainly ignored, thus the best classification performance achieved was only about 81.5\% using pure spiking neurons.
+The current trend towards training deep SNNs on line using biologically-plausible learning methods is promising.
 %1. Neftci
-\cite{neftci2013event} derived the division of potentiating and depression parts of CD algorithm, but conduct them both on the same neural populations which was more biologically plausible.
-Therefore, a global signal was needed to differentiate the potentiating and depression process.
-And the rhythmic oscillation of these processes generated the particular form of neural sampling~\cite{petrovici2013stochastic}.
-The work focused on the statistical aspect of the event-driven sampling, and was extended to the later work on Synaptic Sampling Machines (S2Ms)~\cite{neftci2016stochastic}.
-The classification accuracy of MNIST was 91.9\%, 1.7\% lower than the conventional RBM.
-Similar work of Dan's SRBM training, \cite{burbank2015mirrored} applied STDP rule to train SAEs in very much biologically-plausible manner.
-This work aimed at constructing artificial machine learning algorithm closely to biology, whereas the works above focused on training spiking deep learning modules with equivalent recognition capability as alternative deep learning methods.
+An event-driven Contrastive Divergence (CD) training algorithm for Restricted Boltzmann Machines (RBMs) was proposed for Deep Belief Networks (DBNs) using LIF neurons with Spike-Timing-Dependent Plasticity (STDP) synapses and verified on MNIST with a CA of 91.9\%~\cite{neftci2013event}.
+%critisize
+Followed by Wolfgang Mass on neural sampling.
 
+<<<<<<< HEAD
+
+=======
 %2. Backpropogation
 We cannot simply propagate errors through SNNs in conventional way because of the property of SNNs that process discrete data in the form of a series. 
 \cite{lee2016training,park2016efficient} uses membrane potential of a neuron as a differentiable variable to train BP.
 
-%4. remote (ReSuMe)
-Mostly inspired from this work~\cite{ponulak2010supervised}.
-
-
-
+%3. Mirrored STDP
+\cite{koch2013hebbian,de2015study,burbank2015mirrored}
+>>>>>>> 1fa4ae449d737a4aad4c010a7552e15fc1917597
 \section{Methods}
 \subsection{Autoencoders}
 %TODO rewording
@@ -252,7 +241,6 @@ P_{s} &= \lambda_{s} \times 0.001~s = \frac{K s}{1000}\\
 \end{figure}
 
 \section{Problem}
-\label{sec:problem}
 Correlations in spike trains make weights diverge.
 Experiments
 \begin{figure}
