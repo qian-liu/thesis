@@ -83,6 +83,12 @@ The latter paper claims a state-of-the-art performance (99.1\% on the MNIST data
 %The current trend towards training Spiking DNNs on line using biologically-plausible learning methods is also promising.
 %An event-driven Contrastive Divergence (CD) training algorithm for Restricted Boltzmann Machines (RBMs) was proposed for Deep Belief Networks (DBNs) using LIF neurons with Spike-Timing-Dependent Plasticity (STDP) synapses and verified on MNIST with a CA of 91.9\%~\cite{neftci2013event}.
 
+%Backpropagation
+However, the most popular and effective training method, back propagation, has been hardly deployed in SNNs.
+Since it is difficult to define ``error'' and propagate the error in an event-based fashion.
+Until recently a derivative function~\cite{lee2016training,park2016efficient} on the membrane potential of a specific LIF neuron model in a WTA circuit was carried out, thus BP can be operated in every time step in the network simulation.
+
+
 STDP as a biological learning process has been applied to vision tasks.
 \cite{bichler2012extraction} demonstrated an unsupervised STDP learning model to classify car trajectories captured with a DVS retina. 
 A similar model was tested on a Poissonian spike presentation of the MNIST dataset achieving a performance of 95.0\%~\cite{diehl2015unsupervised}.

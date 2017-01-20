@@ -28,70 +28,107 @@ Finally the detailed comparison of the traditional training and SRM learning on 
 %To start with evidence of energy efficiency: maybe should refer to Chapter 2 or 1.
 The current trend towards training deep SNNs on line using biologically-plausible learning methods is promising due to its potential benefit on low-energy hardware implementation.
 %0. Dan Neil: Online Learning in Event-based Restricted Boltzmann Machines
-The first on-line training algorithm of SRBMs is event-based contrastive divergence (evtCD)~\cite{neil2013online}, which firstly found out the feasibility of applying STDP rule to approximate CD algorithm.
+The first on-line training algorithm of unsupervised learning is event-based contrastive divergence (evtCD)~\cite{neil2013online} for SRBM, which firstly found out the feasibility of applying STDP rule to approximate CD algorithm.
 To review the algorithm of training RBMs, please refer to Section~\ref{sec:rbm}.
 The method divided the learning process into potentiating and depression parts, which formed the basic design of related research.
-As an initial attempt the mathematical analysis was mainly ignored, thus the best classification performance achieved was only about 81.5\% using pure spiking neurons.
+As an initial attempt the mathematical analysis was mainly ignored, thus the best classification performance achieved was only about 81.5\% using purely spiking neurons.
 %1. Neftci
 \cite{neftci2013event} derived the division of potentiating and depression parts of CD algorithm, but conduct them both on the same neural populations which was more biologically plausible.
 Therefore, a global signal was needed to differentiate the potentiating and depression process.
 And the rhythmic oscillation of these processes generated the particular form of neural sampling~\cite{petrovici2013stochastic}.
-The work focused on the statistical aspect of the event-driven sampling, and was extended to the later work on Synaptic Sampling Machines (S2Ms)~\cite{neftci2016stochastic}.
+The work focused on the statistical aspect of the event-driven sampling, and was extended to the later work on Synaptic Sampling Machines (S2Ms)~\cite{neftci2016stochastic} with stochastic synapses.
 The classification accuracy of MNIST was 91.9\%, 1.7\% lower than the conventional RBM.
 Similar work of Dan's SRBM training, \cite{burbank2015mirrored} applied STDP rule to train SAEs in very much biologically-plausible manner.
-This work aimed at constructing artificial machine learning algorithm closely to biology, whereas the works above focused on training spiking deep learning modules with equivalent recognition capability as alternative deep learning methods.
-
-%2. Backpropogation
-We cannot simply propagate errors through SNNs in conventional way because of the property of SNNs that process discrete data in the form of a series. 
-\cite{lee2016training,park2016efficient} uses membrane potential of a neuron as a differentiable variable to train BP.
+This work aimed at constructing artificial machine learning algorithm closely to biology, whereas the other works above focused on training spiking deep learning modules with equivalent recognition capability as alternative deep learning methods.
 
 %4. remote (ReSuMe)
-Mostly inspired from this work~\cite{ponulak2010supervised}.
+The work we propose was mostly inspired from the supervised time-based spiking learning rule~\cite{ponulak2010supervised}, ReSuMe, where the output spikes of a post-synaptic neuron were trained to generate at expected time points with certain input pattern injected to the pre-synaptic neurons, see Figure~\ref{fig:resume}.
+The teaching signal always potentiates the synaptic strength according to the exponential STDP curve on the time difference between the teaching spike and the pre-synaptic spike; and the output spikes of the post-synaptic neuron always depress the connection.
+Thus, if an output spike fires earlier than the teaching spike the weight will depress more than it potentiate, thus the output spike should be delayed the next trial; and the vice versa if the post-synaptic neuron spikes later.
+Therefore, the weight stays constant only when the output spikes fire coincidently with the teaching signal.
+\begin{figure}
+	\centering
+	\includegraphics[width=0.4\textwidth]{pics_sdlm/ReSuMe.pdf}
+	\caption{Network architecture of a pair of pre- and post-synaptic neurons trained by ReSuMe~\cite{ponulak2010supervised} with a teaching signal.}
+	\label{fig:resume}
+\end{figure}
 
+The basic idea of the proposed method is to provide equivalent learning rule as ReSuMe on rate-encoded SNNs.
+The objective is to supervise the post-synaptic neuron to fire at the frequency of the teaching spike train. 
+Accordingly, the weight decreases if the output neuron fires stronger than the teaching neuron, and vice versa.
+The synaptic strength stops changing as the output neuron fires at the same frequency of the teaching signal.
+The algorithm is simply divided into spike-based rate multiplication (SRM) problems, and we will demonstrate the SRM method in following Section~\ref{sec:SRM}.
+The learning rule can be easily applied to SAEs if we use input spikes as teaching signals to the visible units, moreover the CD algorithm of training SRBMs is still not more than two operations of SRMs.
+Section~\ref{sec:dSNN} explains the specific training on SAEs and SRBMs in detail.
+ 
 
+\section{Spike-based Rate Multiplication (SRM)}
+\label{sec:SRM}
+If we see \textit{pre}, \textit{post} and \textit{teach} as vectors individually, and \textit{w} as a weight matrix of the all-to-all connections between \textit{pre} and \textit{post} in Figure~\ref{fig:resume}, the network will form the Adaline (Adaptive Linear Element) which is a single-layered ANN.
+The learning algorithm was named after the researcher Widrow-Hoff:
+\begin{equation}
+\Delta w = \eta (teach - post)pre,
+\end{equation}
+which is equivalent to Stochastic Gradient Descent~(SGD) in Multi-Layered Perceptrons~(MLPs).
+The right hand of the equation can be seen as two operations of multiplication, $teach \times pre$ and $post \times pre$, times the constant learning rate, $\eta$.
 
-\section{Methods}
+To present multiplication $c=ab$ with rate-based spike trains, $s_a$ and $s_b$, we need to introduce the firing rates, $\lambda_a$ and $\lambda_b$, and their possibilities of generating a spike at 1~ms resolution, $P_a/ms$ and $P_b/ms$.
+The firing rate is the original value scaled by $\alpha Hz$, and equals to the possibility to fire per ms times 1 second: $\lambda_a = \alpha Hz\times a = 1000 P_a/s$, and  $\lambda_b = \alpha Hz\times b = 1000 P_b/s$.
+The multiplication operation can be written as:
+\begin{equation}
+c=ab=\frac{\lambda_a \lambda_b}{\alpha^2} = \frac{10^6 P_a P_b}{\alpha^2}
+\end{equation}
+
+Then we investigated the way to present $P_a P_b$ in rate-based spike trains.
+It can be easily converted to the average count of coincident spike events over the duration, $\tau_{dur}$, of the spike trains.
+However, it is rare for two neurons to fire at exactly the same millisecond slot when the firing rates are low, we bring in the term, window period $\tau_{win}$:
+\begin{equation}
+<P_a P_b> = \frac{count_{\tau_{win}}(s_a, s_b)}{\tau_{win}\tau_{dur}}
+\end{equation}
+The mean $<P_a P_b>$ times equals to the count of firing events which are less than $\tau_{win}$ apart.
+\section{Training Deep SNNs}
+\label{sec:dSNN}
 \subsection{Autoencoders}
 %TODO rewording
 
 Examples of using an autoencoder with 10 input neurons and 10 hidden neurons: reconstruction the input data $\mathbf{v}$ where I) $v_i = 1$, II) $v_i = i/10$.
-	\begin{figure}
-		\centering
-		\begin{subfigure}[t]{0.4\textwidth}
-			\includegraphics[width=\textwidth]{pics_sdlm/20_exp_AE/exp1_weights_non.pdf}
-			\caption{Weights of Exp1}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.4\textwidth}
-			\includegraphics[width=\textwidth]{pics_sdlm/20_exp_AE/exp2_weights_non.pdf}
-			\caption{Weights of Exp2}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.4\textwidth}
-			\includegraphics[width=\textwidth]{pics_sdlm/20_exp_AE/exp1_recon_non.pdf}
-			\caption{Reconstruction of visible units in Exp1}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.4\textwidth}
-			\includegraphics[width=\textwidth]{pics_sdlm/20_exp_AE/exp2_recon_non.pdf}
-			\caption{Reconstruction of visible units in Exp2}
-		\end{subfigure}\\
-		\begin{subfigure}[t]{0.4\textwidth}
-			\includegraphics[width=\textwidth]{pics_sdlm/20_exp_AE/exp1_hid_non.pdf}
-			\caption{Output of hidden units in Exp1}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.4\textwidth}
-			\includegraphics[width=\textwidth]{pics_sdlm/20_exp_AE/exp2_hid_non.pdf}
-			\caption{Output of hidden units in Exp2}
-		\end{subfigure}\\
-		\begin{subfigure}[t]{0.4\textwidth}
-			\includegraphics[width=\textwidth]{pics_sdlm/20_exp_AE/exp1_loss.pdf}
-			\caption{Output of hidden units in Exp1}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.4\textwidth}
-			\includegraphics[width=\textwidth]{pics_sdlm/20_exp_AE/exp2_loss.pdf}
-			\caption{Output of hidden units in Exp2}
-		\end{subfigure}
-		\caption{Changes of weights, output of visible and hidden units, and mean squared error (loss) during the AE training of the reconstruction tests. 
-			Experiments 1) 10 visible units fully connected to 10 hidden units with input data of all 1s; 2) same network fed with 10 values distribute linearly from 0.1 to 1.}
-	\end{figure}
+\begin{figure}
+	\centering
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/20_exp_AE/exp1_weights_non.pdf}
+		\caption{Weights of Exp1}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/20_exp_AE/exp2_weights_non.pdf}
+		\caption{Weights of Exp2}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/20_exp_AE/exp1_recon_non.pdf}
+		\caption{Reconstruction of visible units in Exp1}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/20_exp_AE/exp2_recon_non.pdf}
+		\caption{Reconstruction of visible units in Exp2}
+	\end{subfigure}\\
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/20_exp_AE/exp1_hid_non.pdf}
+		\caption{Output of hidden units in Exp1}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/20_exp_AE/exp2_hid_non.pdf}
+		\caption{Output of hidden units in Exp2}
+	\end{subfigure}\\
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/20_exp_AE/exp1_loss.pdf}
+		\caption{Output of hidden units in Exp1}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/20_exp_AE/exp2_loss.pdf}
+		\caption{Output of hidden units in Exp2}
+	\end{subfigure}
+	\caption{Changes of weights, output of visible and hidden units, and mean squared error (loss) during the AE training of the reconstruction tests. 
+		Experiments 1) 10 visible units fully connected to 10 hidden units with input data of all 1s; 2) same network fed with 10 values distribute linearly from 0.1 to 1.}
+\end{figure}
 
 
 
@@ -136,7 +173,6 @@ Examples of using an autoencoder with 10 input neurons and 10 hidden neurons: re
 		Experiments 1) 10 visible units fully connected to 10 hidden units with input data of all 1s; 2) same network fed with 10 values distribute linearly from 0.1 to 1.}
 \end{figure}
 
-\section{Biologically Plausible Training}
 \subsection{Rate-based coding}
 The encoding method is the same as stated below in Chapter~\ref{sec:poissonian}.
 It introduces noise to the original input.
