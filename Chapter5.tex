@@ -72,20 +72,54 @@ The learning algorithm was named after the researcher Widrow-Hoff:
 which is equivalent to Stochastic Gradient Descent~(SGD) in Multi-Layered Perceptrons~(MLPs).
 The right hand of the equation can be seen as two operations of multiplication, $teach \times pre$ and $post \times pre$, times the constant learning rate, $\eta$.
 
-To present multiplication $c=ab$ with rate-based spike trains, $s_a$ and $s_b$, we need to introduce the firing rates, $\lambda_a$ and $\lambda_b$, and their possibilities of generating a spike at 1~ms resolution, $P_a/ms$ and $P_b/ms$.
-The firing rate is the original value scaled by $\alpha Hz$, and equals to the possibility to fire per ms times 1 second: $\lambda_a = \alpha Hz\times a = 1000 P_a/s$, and  $\lambda_b = \alpha Hz\times b = 1000 P_b/s$.
-The multiplication operation can be written as:
+SRM provides the solution to present numeric multiplication $c=ab$ with rate-based spike trains.
+First of all, the multiplier $a$ and the multiplicand $b$ are encoded into Poisson spike trains $s_a=\{s_a(1),s_a(2),...,s_a(T)\}$ and $s_b=\{s_b(1),s_b(2),...,s_b(T)\}$ in the 1~ms resolution, where $s(t)=1$ indicates a spike in the $t$th~ms and $s(t)=0$ means none.
+Secondly, a Poisson generator fires a sequence of spike train according to its firing rate, $\lambda$~Hz, which is assigned linearly to the original multiplier/multiplicand by a factor of $K$.
+Hence, the firing rate ($\lambda_x$) of the Poisson generator is $K$ times of the numerical value x, and can be approximated by the average spike count, $N_T(s_x)$, of the generated spike train $s_x$ over time length of $T$:
 \begin{equation}
-c=ab=\frac{\lambda_a \lambda_b}{\alpha^2} = \frac{10^6 P_a P_b}{\alpha^2}
-\end{equation}
+\lambda_x = Kx \approx N_T(s_x) = \frac{1000}{T} \sum_{t=1}^{T} s_x(t) ,
+\end{equation} 
+and 1000 is the scale factor for scaling frequency per millisecond to per second.
+Significantly, the approximation is more accurate as the observing time ($T$) grows since more spikes are generated over time and the average spike count becomes more reliable.
+Thirdly, assuming $s_a$ and $s_b$ are independent Poisson spike trains the core definition of the rate multiplication of the pair of spike trains is as follows:
+\begin{equation}
+\lambda_a \lambda_b \approx N_{T_1}(s_a)N_{T_2}(s_b)= 10^6 \frac{\sum_{t_a=1}^{T_1}s_a(t_a)}{T_1}  \frac{\sum_{t_b=1}^{T_2} s_b(t_b)}{T_2}.
+\label{equ:mul}
+\end{equation} 
 
-Then we investigated the way to present $P_a P_b$ in rate-based spike trains.
-It can be easily converted to the average count of coincident spike events over the duration, $\tau_{dur}$, of the spike trains.
-However, it is rare for two neurons to fire at exactly the same millisecond slot when the firing rates are low, we bring in the term, window period $\tau_{win}$:
+Finally, if we combine the concept of the STDP learning window to equation~\ref{equ:mul}, the length of the observing time on $s_b$ shrinks to a fix-length windowing period, $\tau_{win}$.
+Consequently, the rate multiplication can be conducted within only the local events in term of time, although the accuracy may drop.
+The rate multiplication is then approximated by:
 \begin{equation}
-<P_a P_b> = \frac{count_{\tau_{win}}(s_a, s_b)}{\tau_{win}\tau_{dur}}
-\end{equation}
-The mean $<P_a P_b>$ times equals to the count of firing events which are less than $\tau_{win}$ apart.
+\lambda_a \lambda_b \approx \frac{10^6}{\tau_{dur} \tau_{win}} \sum_{t=1}^{\tau_{dur}} [s_a(t) \sum_{t_b=t}^{t+\tau_{win}} s_b(t_b)],
+\end{equation} 
+where $\tau_{dur}$ replaces $T$ to represent the length of generated spike trains during SNN simulation.
+The weight rise/drop according to a rectangular STDP curve can detect the spike events of a pair of spike trains when post-synaptic spike occurs no later than $\tau_{win}$, see Figure~\ref{fig:rtg_stdp}.
+Therefore, the overall weight change of time $\tau_{dur}$ indicates the rate multiplication, and is decried by SRM:
+\begin{equation}
+\begin{aligned}
+\Delta w &= \eta_s \sum_{t=1}^{\tau_{dur}} [s_a(t) \sum_{t_b=t}^{t+\tau_{win}} s_b(t_b)] \text{, and}\\
+c=ab=\frac{\lambda_a \lambda_b}{K^2} &\approx \frac{10^6}{K^2 \tau_{dur} \tau_{win}} \sum_{t=1}^{\tau_{dur}} [s_a(t) \sum_{t_b=t}^{t+\tau_{win}} s_b(t_b)] \\
+&\approx  \frac{10^6 \Delta w}{K^2 \tau_{dur} \tau_{win}  \eta_s}.
+\end{aligned}
+\end{equation} 
+We can adjust $\eta_s$ to $ K^2 \tau_{dur} \tau_{win}10^{-6}$ to make $ab = \Delta w$.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.4\textwidth]{pics_sdlm/stdp.pdf}
+	\caption{Rectangular STDP curve.
+		If the time difference of the post-synaptic spike and the pre-synaptic spike lies in the window on $\tau_{win}$, then the synaptic weight will increase by $\eta_s$.}
+	\label{fig:rtg_stdp}
+\end{figure}
+
+Here we state the property of SRM algorithm:
+\begin{itemize}
+	\item the accuracy of SRM is mainly controlled by $\tau_{dur}$ and $\tau_{win}$, where longer spike trains and longer STDP window expresses the rate more reliable.
+	\item in spiking neural network both the multiplier and the multiplicand can only be presented as rates, which is positive.
+	Thus negative product is applied with weight decrease, $-\eta_s$. 
+	\item the accuracy is independent of neural model and synaptic model because, the calculation replies on the firing rate only.
+\end{itemize}
 \section{Training Deep SNNs}
 \label{sec:dSNN}
 \subsection{Autoencoders}
