@@ -338,7 +338,7 @@ where k indicates the index of the training data $\mathbf{v}$, and each data vec
 %TODO rewording
 Backpropagation, an abbreviation for "backward propagation of errors", is a common method of training artificial neural networks used in conjunction with an optimization method such as gradient descent.
 The method calculates the gradient of a loss function with respect to all the weights in the network.
-The gradient is fed to the optimisation method which in turn uses it to update the weights, in an attempt to minimize the loss function:
+The gradient is fed to the optimisation method which in turn uses it to update the weights, in an attempt to minimise the loss function:
 \begin{equation}
 \Delta W \propto -\frac{\partial L}{\partial W}.
 \end{equation}
@@ -360,15 +360,27 @@ Since we use tied weights in the network, the weight tuning only needs to apply 
 \begin{equation}
 \begin{aligned}
 \Delta w_{ij} = -\eta \frac{\partial E_k}{\partial w_{ij}} &= -\eta \frac{\partial E_k}{\partial v'_j} \frac{\partial v'_j}{\partial net\_v'_j} \frac{\partial net\_v'_j}{\partial w_{ij}}, \textrm{ where} \\
-\frac{\partial E_k}{\partial v'_j} &= \frac{\partial \frac{1}{2}(\mathbf{v}_k - \mathbf{v'}_k)^2}{\partial v'_j}= -(v'_j - v_j), \\
+\frac{\partial E_k}{\partial v'_j} &= \frac{\partial \frac{1}{2} \sum_l (v_l - {v'}_l)^2}{\partial v'_j}= \frac{\partial \frac{1}{2}(v_j - {v'}_j)^2}{\partial v'_j}= v'_j - v_j, \\
 %	\frac{\partial v'_j}{\partial net\_v'_j} &= \begin{cases} 1, v'_j>0\\0, v'_j<=0\\ \end{cases}, \textrm{using ReLU,}\\
-\frac{\partial v'_j}{\partial net\_v'_j} &= 1, \textrm{using Identify function, } \textcolor{red}{ using ReLU instead }\\
+\frac{\partial v'_j}{\partial net\_v'_j} &=\left\{
+	\begin{aligned}
+    & 1, net\_v'_j > 0 \\
+    & 0, net\_v'_j < = 0
+    \end{aligned} 
+    \right.    \textrm{using ReLU, }\\
 \frac{\partial net\_v'_j}{\partial w_{ij}} &= \frac{\partial h_i w_{ij}}{\partial w_{ij}} = h_i.
 \end{aligned}
 \end{equation}
 Thus, the weight gradient is calculated as:
 \begin{equation}
-\Delta w_{ij} = \eta h_i(v'_j - v_j)
+\label{equ:ae_widrow_hoff}
+\Delta w_{ij} = \left \{
+	\begin{aligned}
+	& \eta h_i(v_j - v'_j), &net\_v'_j > 0 \\
+	&-\eta h_i v'_j, & net\_v'_j < = 0
+	\end{aligned} 
+	= \eta h_i(v_j - v'_j)
+\right.
 \end{equation}
 
 \subsection{Restricted Boltzmann Machine}
@@ -769,41 +781,3 @@ The algorithm is described below:
 	\end{algorithmic}
 \end{algorithm}
 
-
-\subsubsection{noisy RBM}
-Instead of using binary units in RBM, we employ noisy ReLU units constructing noisy RBM which is closer to biology and performances better in classification tasks\cite{nair2010rectified}.
-
-\section{Appendices}
-\subsection{Derivation process of Equation~(\ref{equ:part})}
-\label{app:part}
-\begin{equation}
-\begin{aligned}
-\dfrac{\partial \log Z(\Theta)}{\partial \theta}
-=&\frac{1}{Z(\Theta)}\dfrac{\partial Z(\Theta)}{\partial \theta}\\
-=&\frac{1}{Z(\Theta)} \int \dfrac{\partial f(\mathbf{x} \mid \Theta)}{\partial \theta} \D \mathbf{x} \\
-=&\frac{1}{Z(\Theta)} \int f(\mathbf{x} \mid \Theta) \frac{1}{f(\mathbf{x} \mid \Theta)} \dfrac{\partial  f(\mathbf{x} \mid \Theta)}{\partial \theta} \D \mathbf{x}\\
-=& \int \frac{f(\mathbf{x} \mid \Theta) }{Z(\Theta)} \dfrac{\partial \log f(\mathbf{x} \mid \Theta)}{\partial \theta} \D \mathbf{x}\\
-=& \int  p(\mathbf{x} \mid \Theta) \dfrac{\partial \log f(\mathbf{x} \mid \Theta)}{\partial \theta} \D \mathbf{x}\\
-=&\left \langle \dfrac{\partial \log f(\mathbf{c} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{C} \sim p(\mathbf{x} \mid \Theta)}
-\end{aligned}
-\end{equation}
-\subsection{Derivation process of Equation~(\ref{equ:RBM})  }
-\label{app:RBM}
-\begin{equation}
-\begin{aligned}
-\dfrac{\partial \hat{l} (\Theta \mid \mathbf{D})}{\partial \theta} 
-& = \left \langle \dfrac{\partial \log f(\mathbf{d} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{V=D}} -\left \langle \dfrac{\partial \log f(\mathbf{v} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{V} \sim p(\mathbf{x} \mid \Theta)}  \\
-& = \left \langle \dfrac{\partial \log \sum_{ \mathbf{h}} e^{-E(\mathbf{v}, \mathbf{h} \mid \Theta)}}{\partial \theta}\right \rangle_{\mathbf{V}} 
--\left \langle \dfrac{\partial \log \sum_{ \mathbf{h}} e^{-E(\mathbf{v}, \mathbf{h} \mid \Theta)} }{\partial \theta}\right \rangle_{\mathbf{V} \sim p(\mathbf{v} \mid \Theta)}  \\
-& = \left \langle \sum_{ \mathbf{h}} \frac{e^{-E(\mathbf{v}, \mathbf{h} \mid \Theta)}}{\sum_{ \mathbf{h}} e^{-E(\mathbf{v}, \mathbf{h} \mid \Theta)}} \cdot \dfrac{\partial -E(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{V}} 
-- \left \langle \sum_{ \mathbf{h}} \frac{e^{-E(\mathbf{v}, \mathbf{h} \mid \Theta)}}{\sum_{ \mathbf{h}} e^{-E(\mathbf{v}, \mathbf{h} \mid \Theta)}} \cdot \dfrac{\partial -E(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{V} \sim p(\mathbf{v} \mid \Theta)}  \\
-& = \left \langle \sum_{ \mathbf{h}} \frac{p(\mathbf{v}, \mathbf{h} \mid \Theta)}{p(\mathbf{v} \mid \Theta)} \cdot \dfrac{\partial -E(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{V}} 
-- \left \langle \sum_{ \mathbf{h}}  \frac{p(\mathbf{v}, \mathbf{h} \mid \Theta)}{p(\mathbf{v} \mid \Theta)} \cdot \dfrac{\partial -E(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{V} \sim p(\mathbf{v} \mid \Theta)}  \\
-& = \left \langle \sum_{ \mathbf{h}} p( \mathbf{h} \mid \mathbf{v}, \Theta) \cdot \dfrac{\partial -E(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{V}} 
-- \left \langle \sum_{ \mathbf{h}} p( \mathbf{h} \mid \mathbf{v}, \Theta) \cdot \dfrac{\partial -E(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{V} \sim p(\mathbf{v} \mid \Theta)}  \\
-& = \left \langle \left \langle \dfrac{\partial -E(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{h} \sim p( \mathbf{h} \mid \mathbf{v}, \Theta)} \right \rangle_{\mathbf{V}}
-- \left \langle \left \langle \dfrac{\partial -E(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{h} \sim p( \mathbf{h} \mid \mathbf{v}, \Theta)} \right \rangle_{\mathbf{V} \sim p(\mathbf{v} \mid \Theta)}  \\
-& = \left \langle \dfrac{\partial -E(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{h} \sim p( \mathbf{h} \mid \mathbf{v}, \Theta), \mathbf{V}} 
-- \left \langle \dfrac{\partial -E(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{v}, \mathbf{h} \sim p( \mathbf{v}, \mathbf{h} \mid  \Theta)}  \\
-\end{aligned}
-\end{equation}
