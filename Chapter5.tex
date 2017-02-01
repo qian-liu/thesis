@@ -95,7 +95,7 @@ The rate multiplication is then approximated by:
 \end{equation} 
 where $\tau_{dur}$ replaces $T$ to represent the length of generated spike trains during SNN simulation.
 The weight rise/drop according to a rectangular STDP curve can detect the spike events of a pair of spike trains when post-synaptic spike occurs no later than $\tau_{win}$, see Figure~\ref{fig:rtg_stdp}.
-Therefore, the overall weight change of time $\tau_{dur}$ indicates the rate multiplication, and is decried by SRM:
+Therefore, the overall weight change during time $\tau_{dur}$ indicates the rate multiplication, and is decried by SRM:
 \begin{equation}
 \begin{aligned}
 \Delta w &= \eta_s \sum_{t=1}^{\tau_{dur}} [s_a(t) \sum_{t_b=t}^{t+\tau_{win}} s_b(t_b)] \text{, and}\\
@@ -147,6 +147,8 @@ The same experiments are then applied to the on-line and spike-based algorithm.
 
 \subsection{Autoencoders (AEs)}
 Using ReLU and Equation~\ref{equ:ae_widrow_hoff}, we can easily train a layer of AEs with a small network size of 10 visible units and 10 output units.
+The initial weights are randomly generated with unified distribution from 0 to 0.01, and the learning rate, $\eta$, is set to 0.001.
+We keep the same initial weights for all the experiments thus to provide an accurate comparison on the weights update.
 The input vector, seen as an image, repeatedly feed into the network for $5,000$ times and Figure~\ref{fig:ae_orig} shows the dynamics of the AE as more repeating images present through training.
 
 \begin{figure}
@@ -188,7 +190,17 @@ The input vector, seen as an image, repeatedly feed into the network for $5,000$
 	\label{fig:ae_orig}
 \end{figure}
 
+In order to compare all the experiments following, we demonstrate the results in the same figure template:
+(a) and (b) depict the weights change of the two experiment set-ups (Exp1 and Exp2) which is the most important output of a training method;
+(c) and (d) visually display the output of the visible units, the reconstruction of the input vector;
+(e) and (f) draw the output of the hidden units during training and assist the observation on weight change and the reconstruction;
+(g) and (h) intuitively show the loss (mean squared error) and validate how well the reconstructions are.
 
+
+For Exp1, the reconstruction loss reduces exponentially to the limit of the computer's float precision (Figure~\ref{fig:ae_orig}(g)), and reaches $10^{-4}$ using about 600 steps, and from that point the weights, visible reconstruction, and the output of the hidden units nearly stabilise, see Figure~\ref{fig:ae_orig}(a,c,e).
+With differentiate input values in Exp2, the training runs slower taking about $1,400$ steps to reach the same performance of $10^{-4}$ loss (Figure~\ref{fig:ae_orig}(h)).
+The reason of the slower training comes to the weaker input and it also makes the output of the hidden units lower than Exp1, see Figure~\ref{fig:ae_orig}(f), thus the positive part of the weight change, $\eta h_i v_j$, is much weakened. 
+The reconstructions, shown in Figure~\ref{fig:ae_orig}(d), of smaller values stabilise earlier than the ones of higher values, since the higher output of the reconstruction requires stronger weights and more accumulated weights update. 
 \begin{figure}
 	\centering
 	\begin{subfigure}[t]{0.45\textwidth}
@@ -223,25 +235,42 @@ The input vector, seen as an image, repeatedly feed into the network for $5,000$
 		\includegraphics[width=\textwidth]{pics_sdlm/21_exp_AE_noise/exp2_loss_s.pdf}
 		\caption{Output of hidden units in Exp2}
 	\end{subfigure}
-	\caption{Changes of weights, output of visible and hidden units, and mean squared error (loss) during the AE training of the reconstruction tests. 
-		Experiments 1) 10 visible units fully connected to 10 hidden units with the count of Poisson spikes firing at 100~Hz which lasted 100~ms; 2) same network fed with 10 count of Poisson spikes at firing rate ranging from 10~Hz to 100~Hz.}
+	\caption{Changes of weights, output of visible and hidden units, and mean squared error (loss) during the AE training of the noisy reconstruction tests. 
+		Experiments 1) 10 visible units fully connected to 10 hidden units with the count of Poisson spikes firing at 100~Hz which lasted 100~ms; 2) same network fed with spike count of Poisson spikes at firing rate ranging from 10~Hz to 100~Hz.}
 	\label{fig:ae_noise}
 \end{figure}
 
-In order to compare all the experiments following, we demonstrate the results in the same figure template:
-(a) and (b) depict the weights change of the two experiment set-ups (Exp1 and Exp2) which is the most important output of a training method;
-(c) and (d) visually display the output of the visible units, the reconstruction of the input vector;
-(e) and (f) draw the output of the hidden units during training and assist the observation on weight change and the reconstruction;
-(g) and (h) intuitively show the loss (mean squared error) and validate how well the reconstructions are.
+The same experiments are repeated with noisy training and testing data to provide a fair comparison with the spike-based deep learning modules, see Figure~\ref{fig:ae_noise}.
+The noisy data is gathered from the SNN experiments in Section~\ref{subsec:SAE}, and the corresponding SRM parameters are listed in Table~\ref{tbl:srm}.
+All the SNN experiments use the same training and testing Poisson spike trains for the purpose of unified experimental environment.
+The firing rates of the input values are scaled up by the factor $K = 100$, thus $\lambda_1 = [100, 100, 100, ..., 100]$ Hz and $\lambda_2 = [10, 20, 30, ..., 100]$ Hz.
+The spike count $c$ of a generated Poisson spike train then transformed to the noisy input, $c/(\tau_{dur} * K)$.
+The length of spike trains $\tau_{dur}$ is 0.1~s when training, and 1~s for testing.
+The longer the spike trains are, less noisy the spike counts become.
+The noisy input can be seen as distorted data by adding Gaussian noise on the original value.
+Hence, the noisy training input adds the clean data a Gaussian noise with -0.05 mean and 0.29 variance for Exp1, and -0.02 mean and 0.22 variance for Exp2;
+while in terms of testing data, see Figure~\ref{fig:noise_input}, the means of the noise are the same, but the variances are much smaller: 0.09 for Exp1 and 0.07 for Exp2.
+\begin{figure}
+	\centering
+	\begin{subfigure}[t]{0.45\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/21_exp_AE_noise/exp1.pdf}
+		\caption{Input images of Exp1}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.45\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/21_exp_AE_noise/exp2.pdf}
+		\caption{Input images of Exp2}
+	\end{subfigure}
+	\caption{Noisy input gathered from Poisson spike trains.}
+	\label{fig:noise_input}
+\end{figure}
 
 
-For Exp~I the reconstruction error (loss or squared mean error) reduces exponentially to the limit of the computer's float precision (Figure~\ref{fig:ae_orig}(g)), the training (with size of $10\times10$) reach the performance of the loss of 0.001 using about 500 steps, and from that point the weights~(Figure~\ref{fig:ae_orig}(a)), visible reconstruction~(Figure~\ref{fig:ae_orig}(c)), and the hidden units~(Figure~\ref{fig:ae_orig}(e)) nearly stabilise.
-
-%(original input, Figure~\ref{fig:ae_orig} and noisy input, Figure~\ref{fig:ae_noise}.) and II (Figure~\ref{fig:rbm_orig} and~\ref{fig:rbm_noise}).
-
-\subsection{Noisy Restricted Boltzmann Machines (nRBMs)}
-Instead of using binary units in RBM, we employ noisy ReLU units constructing noisy RBM which is closer to biology and performances better in classification tasks\cite{nair2010rectified}.
-
+Figure~\ref{fig:ae_noise} shows the effect of the noisy input, although the training stabilises at roughly the same time point.
+First of all, it generates slight waves on the weight changes.
+Secondly, the reconstruction and the output of the hidden units are noisy comparing to the training and testing on clean data, however the noise are much reduced from the noisy input data (Figure~\ref{fig:noise_input}). 
+Finally, the loss keeps in a certain level and stops dropping.
+The loss of Exp2 is lower than Exp1, in other words the reconstruction on Exp2 are closer to the input data.
+It is mainly caused the weaker noise level on the smaller input values that the data is less noisy in Exp2 in average. 
 \begin{figure}
 	\centering
 	\begin{subfigure}[t]{0.4\textwidth}
@@ -280,6 +309,16 @@ Instead of using binary units in RBM, we employ noisy ReLU units constructing no
 		Experiments 1) 10 visible units fully connected to 10 hidden units with input data of all 1s; 2) same network fed with 10 values distribute linearly from 0.1 to 1.}
 	\label{fig:rbm_orig}
 \end{figure}
+
+\subsection{Noisy Restricted Boltzmann Machines (nRBMs)}
+Instead of using binary units in RBM, we employ noisy ReLU units constructing noisy RBM which is closer to biology and performs better in classification tasks~\cite{nair2010rectified}.
+Leaving the learning algorithm unchanged, see Algorithm~\ref{alg:rbm} in Section~\ref{sec:rbm}, the new sampling method noisy ReLU (NReLU) is equivalent to generating multiple samples in the meantime and averaging them: $max(0, x+\mathcal{N}(0, \sigma(x))$.
+The lower the variance of the normal distribution is, it means more samples are taken for averaging.
+To put it differently, zero variance is used when unlimited samples are generated, but at the same time the sampling itself loses the randomness.
+In our experiments the variance of the normal distribution used in NReLU is 0.1.
+
+
+
 
 
 
@@ -327,6 +366,29 @@ Figure~\ref{fig:ae_noise} and Figure~\ref{fig:rbm_noise} show how noise influenc
 The change of the weights oscillates more. % and the value of the weights tends to diverge slightly as training goes on. 
 
 \subsection{Training Spiking Autoencoders}
+\label{subsec:SAE}
+\begin{table}[hbbp]
+	\centering
+	\caption{\label{tbl:srm}Parameter setting of SRM for training SAEs and SRBMs.}
+	\bgroup
+	\def\arraystretch{1.4}
+	\begin{tabular}{c c l}
+		%\hline
+		Parameters & Values & Description \\
+		\hline
+		K & 100 & linear scaling factor\\
+		%\hline
+		$\tau_{dur}$ & 100 ms &  length of training spike trains\\
+		%\hline
+		$\tau_{win}$ & 10 ms & window length of STDP\\
+		%\hline
+		$\eta$ & $10^{-3}$ & learning rate of AEs and RBMs\\
+		%\hline
+		$\eta_s$ & $10^{-4}$ nA & learning rate of SAEs and SRBMs\\
+		%\hline
+	\end{tabular}
+	\egroup
+\end{table}
 \begin{figure}
 	\centering
 	\includegraphics[width=0.8\textwidth]{pics_sdlm/rSTDP.pdf}
