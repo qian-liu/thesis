@@ -10,7 +10,7 @@ This Chapter continues the hot topic of deep SNNs and takes extra step forward t
 In this Chapter We will present the method, Spike-based Rate Multiplication (SRM).
 This algorithm successfully transfers multiplication operations to possibility of some specific firing events of a pair of rate-coded spike trains.
 Moreover, these firing events can be captured with Synaptic-Time-Dependent Plasticity (STDP) rule thus to update the weights accordingly in an on-line, event-based, and biologically-plausible manner.
-Such weights update well fits the conventional unsupervised deep learning modules: such as Autoencoders (AE) and Restricted Boltzmann Machines (RBMs), where multiplication of the neural outputs is the main operation.
+Such weight update well fits the conventional unsupervised deep learning modules: such as Autoencoders (AE) and Restricted Boltzmann Machines (RBMs), where multiplication of the neural outputs is the main operation.
 It is crucial to provide deep SNNs with effective on-line training algorithm not only for building successful spike-based object recognition applications, but also for better power efficiency and scalability when training on neuromorphic hardware.
 
 
@@ -102,6 +102,7 @@ Therefore, the overall weight change during time $\tau_{dur}$ indicates the rate
 c=ab=\frac{\lambda_a \lambda_b}{K^2} &\approx \frac{10^6}{K^2 \tau_{dur} \tau_{win}} \sum_{t=1}^{\tau_{dur}} [s_a(t) \sum_{t_b=t}^{t+\tau_{win}} s_b(t_b)] \\
 &\approx  \frac{10^6 \Delta w}{K^2 \tau_{dur} \tau_{win}  \eta_s}.
 \end{aligned}
+\label{equ:srm}
 \end{equation} 
 \begin{figure}
 	\centering
@@ -121,8 +122,9 @@ In terms of the Widrow-Hoff learning algorithm, $\eta_s$ is set to be:
     - \eta K^2 \tau_{dur} \tau_{win}10^{-6}, &\text{ when calculating } \eta post \times pre
     \end{aligned}
     \right.
+    \label{equ:eta_s}
 \end{equation}
-In Section~\ref{sec:AE}, we demonstrate how Widrow-Hoff algorithm successfully applies to training AEs (see Equation~\ref{equ:ae_widrow_hoff}) and in the next section we describe the implementation of SRM algorithm to deep learning models of spiking AEs and RBMs.
+In Section~\ref{sec:AE}, we demonstrate how Widrow-Hoff algorithm successfully applies to training AEs (see Equation~\ref{equ:ae_widrow_hoff}) and in Section~\ref{subsec:SAE} we describe the implementation of SRM algorithm to deep learning models of spiking AEs and RBMs.
 
 Last but not least, we state the property of SRM algorithm:
 \begin{itemize}
@@ -130,7 +132,7 @@ Last but not least, we state the property of SRM algorithm:
 	\item in spiking neural network both the multiplier and the multiplicand can only be presented as rates, which is positive.
 	Thus negative product is applied with weight decrease, $-\eta_s$. 
 	\item the multiplier and the multiplicand are interchangeable due to the independence of the spike trains. 
-	\item the accuracy is independent of neural model and synaptic model because the calculation replies on the firing rate only.
+	\item the accuracy is independent of neural model and synaptic model because the calculation relies on the firing rate only.
 \end{itemize}
 \section{Training Deep SNNs}
 \label{sec:dSNN}
@@ -148,7 +150,7 @@ The same experiments are then applied to the on-line and spike-based algorithm.
 \subsection{Autoencoders (AEs)}
 Using ReLU and Equation~\ref{equ:ae_widrow_hoff}, we can easily train a layer of AEs with a small network size of 10 visible units and 10 output units.
 The initial weights are randomly generated with unified distribution from 0 to 0.01, and the learning rate, $\eta$, is set to 0.001.
-We keep the same initial weights for all the experiments thus to provide an accurate comparison on the weights update.
+We keep the same initial weights for all the experiments thus to provide an accurate comparison on the weight update.
 The input vector, seen as an image, repeatedly feed into the network for $5,000$ times and Figure~\ref{fig:ae_orig} shows the dynamics of the AE as more repeating images present through training.
 
 \begin{figure}
@@ -191,7 +193,7 @@ The input vector, seen as an image, repeatedly feed into the network for $5,000$
 \end{figure}
 
 In order to compare all the experiments following, we demonstrate the results in the same figure template:
-(a) and (b) depict the weights change of the two experiment set-ups (Exp1 and Exp2) which is the most important output of a training method;
+(a) and (b) depict the weight change of the two experiment set-ups (Exp1 and Exp2) which is the most important output of a training method;
 (c) and (d) visually display the output of the visible units, the reconstruction of the input vector;
 (e) and (f) draw the output of the hidden units during training and assist the observation on weight change and the reconstruction;
 (g) and (h) intuitively show the loss (mean squared error) and validate how well the reconstructions are.
@@ -200,7 +202,7 @@ In order to compare all the experiments following, we demonstrate the results in
 For Exp1, the reconstruction loss reduces exponentially to the limit of the computer's float precision (Figure~\ref{fig:ae_orig}(g)), and reaches $10^{-4}$ using about 600 steps, and from that point the weights, visible reconstruction, and the output of the hidden units nearly stabilise, see Figure~\ref{fig:ae_orig}(a,c,e).
 With differentiate input values in Exp2, the training runs slower taking about $1,400$ steps to reach the same performance of $10^{-4}$ loss (Figure~\ref{fig:ae_orig}(h)).
 The reason of the slower training comes to the weaker input and it also makes the output of the hidden units lower than Exp1, see Figure~\ref{fig:ae_orig}(f), thus the positive part of the weight change, $\eta h_i v_j$, is much weakened. 
-The reconstructions, shown in Figure~\ref{fig:ae_orig}(d), of smaller values stabilise earlier than the ones of higher values, since the higher output of the reconstruction requires stronger weights and more accumulated weights update. 
+The reconstructions, shown in Figure~\ref{fig:ae_orig}(d), of smaller values stabilise earlier than the ones of higher values, since the higher output of the reconstruction requires stronger weights and more accumulated weight updates. 
 \begin{figure}
 	\centering
 	\begin{subfigure}[t]{0.45\textwidth}
@@ -281,27 +283,27 @@ It is mainly caused the weaker noise level on the smaller input values that the 
 		\includegraphics[width=\textwidth]{pics_sdlm/30_exp_RBM/exp2_weights_non.pdf}
 		\caption{Weights of Exp2}
 	\end{subfigure}
-	\begin{subfigure}[t]{0.4\textwidth}
+	\begin{subfigure}[t]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/30_exp_RBM/exp1_recon_non.pdf}
 		\caption{Reconstruction of visible units in Exp1}
 	\end{subfigure}
-	\begin{subfigure}[t]{0.4\textwidth}
+	\begin{subfigure}[t]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/30_exp_RBM/exp2_recon_non.pdf}
 		\caption{Reconstruction of visible units in Exp2}
 	\end{subfigure}\\
-	\begin{subfigure}[t]{0.4\textwidth}
+	\begin{subfigure}[t]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/30_exp_RBM/exp1_hid_non.pdf}
 		\caption{Output of hidden units in Exp1}
 	\end{subfigure}
-	\begin{subfigure}[t]{0.4\textwidth}
+	\begin{subfigure}[t]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/30_exp_RBM/exp2_hid_non.pdf}
 		\caption{Output of hidden units in Exp2}
 	\end{subfigure}\\
-	\begin{subfigure}[t]{0.4\textwidth}
+	\begin{subfigure}[t]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/30_exp_RBM/exp1_loss.pdf}
 		\caption{Output of hidden units in Exp1}
 	\end{subfigure}
-	\begin{subfigure}[t]{0.4\textwidth}
+	\begin{subfigure}[t]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/30_exp_RBM/exp2_loss.pdf}
 		\caption{Output of hidden units in Exp2}
 	\end{subfigure}
@@ -310,63 +312,89 @@ It is mainly caused the weaker noise level on the smaller input values that the 
 	\label{fig:rbm_orig}
 \end{figure}
 
-\subsection{Noisy Restricted Boltzmann Machines (nRBMs)}
-Instead of using binary units in RBM, we employ noisy ReLU units constructing noisy RBM which is closer to biology and performs better in classification tasks~\cite{nair2010rectified}.
-Leaving the learning algorithm unchanged, see Algorithm~\ref{alg:rbm} in Section~\ref{sec:rbm}, the new sampling method noisy ReLU (NReLU) is equivalent to generating multiple samples in the meantime and averaging them: $max(0, x+\mathcal{N}(0, \sigma(x))$.
-The lower the variance of the normal distribution is, it means more samples are taken for averaging.
-To put it differently, zero variance is used when unlimited samples are generated, but at the same time the sampling itself loses the randomness.
-In our experiments the variance of the normal distribution used in NReLU is 0.1.
-
-
-
-
-
-
-
 \begin{figure}
 	\centering
-	\begin{subfigure}[t]{0.4\textwidth}
+	\begin{subfigure}[t]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/31_exp_RBM_noise/exp1_weights_s.pdf}
 		\caption{Weights of Exp1}
 	\end{subfigure}
-	\begin{subfigure}[t]{0.4\textwidth}
+	\begin{subfigure}[t]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/31_exp_RBM_noise/exp2_weights_s.pdf}
 		\caption{Weights of Exp2}
 	\end{subfigure}
-	\begin{subfigure}[t]{0.4\textwidth}
+	\begin{subfigure}[t]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/31_exp_RBM_noise/exp1_recon_s.pdf}
 		\caption{Reconstruction of visible units in Exp1}
 	\end{subfigure}
-	\begin{subfigure}[t]{0.4\textwidth}
+	\begin{subfigure}[t]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/31_exp_RBM_noise/exp2_recon_s.pdf}
 		\caption{Reconstruction of visible units in Exp2}
 	\end{subfigure}\\
-	\begin{subfigure}[t]{0.4\textwidth}
+	\begin{subfigure}[t]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/31_exp_RBM_noise/exp1_hid_s.pdf}
 		\caption{Output of hidden units in Exp1}
 	\end{subfigure}
-	\begin{subfigure}[t]{0.4\textwidth}
+	\begin{subfigure}[t]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/31_exp_RBM_noise/exp2_hid_s.pdf}
 		\caption{Output of hidden units in Exp2}
 	\end{subfigure}\\
-	\begin{subfigure}[t]{0.4\textwidth}
+	\begin{subfigure}[t]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/31_exp_RBM_noise/exp1_loss_s.pdf}
 		\caption{Output of hidden units in Exp1}
 	\end{subfigure}
-	\begin{subfigure}[t]{0.4\textwidth}
+	\begin{subfigure}[t]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/31_exp_RBM_noise/exp2_loss_s.pdf}
 		\caption{Output of hidden units in Exp2}
 	\end{subfigure}
-	\caption{Changes of weights, output of visible and hidden units, and mean squared error (loss) during the nRBM training of the reconstruction tests. 
-		Experiments 1) 10 visible units fully connected to 10 hidden units with the count of Poisson spikes firing at 100~Hz which lasted 100~ms; 2) same network fed with 10 count of Poisson spikes at firing rate ranging from 10~Hz to 100~Hz.}
+	\caption{Changes of weights, output of visible and hidden units, and mean squared error (loss) during the nRBM training of the noisy reconstruction tests. 
+		Experiments 1) 10 visible units fully connected to 10 hidden units with the count of Poisson spikes firing at 100~Hz which lasted 100~ms; 2) same network fed with spike count of Poisson spikes at firing rate ranging from 10~Hz to 100~Hz.}
 	\label{fig:rbm_noise}
 \end{figure}
-The experiments on noisy input driven by Poissonian spike trains.
-Figure~\ref{fig:ae_noise} and Figure~\ref{fig:rbm_noise} show how noise influence the training and output of both the visible and hidden units.
-The change of the weights oscillates more. % and the value of the weights tends to diverge slightly as training goes on. 
 
-\subsection{Training Spiking Autoencoders}
+\subsection{Noisy Restricted Boltzmann Machines (nRBMs)}
+Instead of using binary units in RBM, we employ noisy ReLU (NReLU) units to construct nRBM which is closer to biology and performs better in classification tasks~\cite{nair2010rectified}.
+Leaving the learning algorithm unchanged, see Algorithm~\ref{alg:rbm} in Section~\ref{sec:rbm}, the new sampling method NReLU is equivalent to generating multiple samples in the meantime and averaging them: $max(0, x+\mathcal{N}(0, \sigma(x))$.
+The lower the variance of the normal distribution is, it means more samples are taken for averaging.
+To put it differently, zero variance (equivalent to ReLU) is used when unlimited samples are generated, but at the same time the sampling itself loses the randomness.
+In our experiments the variance of the normal distribution used in NReLU is 0.1 during training.
+While in testing, we use ReLU for the deterministic reconstructions. 
+To keep the similar network architecture and the learning rule with AEs, we use RBM with zero bias as well.
+Thus the weight updating rule in Algorithm~\ref{alg:rbm} can be simplified as:
+\begin{equation}
+\Delta w_{ij} = \eta (h_iv_j - h'_iv'_j),
+\label{equ:rbm}
+\end{equation} 
+where $h'_i$ and $v'_j$ is a pair of Gibbs sampling.
+
+Figure~\ref{fig:rbm_orig} demonstrates the training process and the testing result of nRBM, both experiments stabilise earlier than AE training: about 400 and $1,000$ steps respectively.
+Due to randomness of the sampling in nRBM, there are noisy waves adding on the weights during training, the reconstructions and the output of hidden units in deterministic testing, and the loss stops declining around $10^{-4}$.
+
+The same experiments are also carried out with the identical noisy input described above, see Figure~\ref{fig:rbm_noise}.
+The weight change is slightly more noisy than the experiments on clean data.
+But the noise are more obvious on the output of the visible reconstruction and the hidden units.
+The same effect of the noisy input data can be found in Figure~\ref{fig:ae_noise} that the noise on the reconstruction is much reduced comparing to the input data and the loss remains about $10^{-2}$ and $10^{-2.5}$ after the stabilisation, although it takes less time for nRBM to converge than AE.
+
+
+\subsection{Training Spiking Autoencoders (SAEs)}
 \label{subsec:SAE}
+Equation~\ref{equ:ae_widrow_hoff} states the learning rule of AE, which can be approximated by adding up a positive SRM and a negative SRM.
+The weight increase takes place in the positive STDP learning between the neurons of the input ($\bf{v}$) and the hidden units ($\bf{h}$); and the weight decrease carries out in the negative STDP learning between the reconstruction ($\bf{v'}$) and the hidden neurons ($\bf{h}$).
+Figure~\ref{fig:AE} shows the network architecture of an SAE where the hidden units connect to the reconstruction neurons with the weight matrix $\bf{w}$ and the input neurons feedforward to the hidden layer with the transposed tied weights $\bf{w}^\textrm{T}$.
+The shared weights, three individual populations of neurons build the training network of an SAE.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.9\textwidth]{pics_sdlm/rSTDP.pdf}
+	\caption{How SRM works in training spiking Autoencoders.}
+	\label{fig:rSTDP}
+\end{figure}
+
+Figure~\ref{fig:rSTDP} illustrates the learning mechanism of the SAE architecture by giving an example of one hidden neuron $h_i$ connected by an input neuron $v_j$ and connecting to a reconstruction neuron $v'_j$ with the same strength $w_{ij}$.
+The weight $w_{ij}$ rises by $\eta_s$ (marked with up-arrow) when a spike comes within the period of $\tau_{win}$ after the hidden neuron fires;
+and it decreases by $-\eta_s$ (marked with down-arrow) if the reconstruction neuron generates a spike in the same time window.
+On the contrary, either $v_j$ or $v'_j$ spikes outside the effective STDP window, the weight remains unchanged.
+The learning continues as long as the neurons are active, however the weights may stay relatively stable when the input firing rate is the same with the reconstructions'.
+
 \begin{table}[hbbp]
 	\centering
 	\caption{\label{tbl:srm}Parameter setting of SRM for training SAEs and SRBMs.}
@@ -384,23 +412,38 @@ The change of the weights oscillates more. % and the value of the weights tends 
 		%\hline
 		$\eta$ & $10^{-3}$ & learning rate of AEs and RBMs\\
 		%\hline
-		$\eta_s$ & $10^{-4}$ nA & learning rate of SAEs and SRBMs\\
+		$\eta_s$ & $10^{-4}$ & learning rate of SAEs and SRBMs\\
 		%\hline
 	\end{tabular}
 	\egroup
 \end{table}
-\begin{figure}
-	\centering
-	\includegraphics[width=0.8\textwidth]{pics_sdlm/rSTDP.pdf}
-	\caption{How rSTDP works in training spiking Autoencoders.}
-	\label{fig:rSTDP}
-\end{figure}
+
+In order to reproduce the experiments on AEs, we select the parameters (see Table~\ref{tbl:srm}) for training SAEs and also apply the same parameter for SRBM experiments.
+Each input vector (image) presents as spiking trains with the length of 100~ms, and the STDP window is set to 10~ms.
+The input values are scales by 100 times as firing rates of the spike trains.
+Thus according to Equation~\ref{equ:eta_s}, the learning rate of SAEs and RBMs is $10^{-4}$.
 
 \subsection{Training Spiking RBM}
+As illustrated in Equation~\ref{equ:rbm}, the positive weight updates are generated from multiplication of visible and hidden units; where the negative comes from the pair of Gibbs sampling.
+Figure~\ref{fig:sRBM} shows the architecture of a SRBM which consists of four layers of neurons: input $\bf{v}$, hidden $\bf{h}$, sampling visible (or reconstruction) $\bf{v'}$, sampling hidden $\bf{h'}$ and the shared weights $\bf{W}$.
 \begin{figure}
 	\centering
-	\includegraphics[width=0.8\textwidth]{pics_sdlm/rSTDP_rbm.pdf}
-	\caption{How rSTDP works in training spiking RBMs.}
+	\includegraphics[width=0.6\textwidth]{pics_sdlm/rbm.pdf}
+	\caption{Network architecture of a spiking RBM.}
+	\label{fig:sRBM}
+\end{figure}
+
+
+Figure~\ref{fig:rSTDP_rbm} demonstrates the training of an SRBM with a pair of spiking neurons $v_j$ and $h_i$, the corresponding sampling pair $v'_j$ and $h'_i$, and the shared weight $w_ij$.
+Up-arrow marks the increase of the weight when $v_j$ fires during the time window after the two spikes of $h_i$;
+at the meanwhile, down-arrow highlighted the decrease of the weight when $v'_j$ generates a spike no later than $\tau_{win}$ after $h'_i$ fires.
+The amplitude of the weight change is set the same as in Table~\ref{tbl:srm}.
+
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.9\textwidth]{pics_sdlm/rSTDP_rbm.pdf}
+	\caption{How SRM works in training spiking RBMs.}
 	\label{fig:rSTDP_rbm}
 \end{figure}
 
