@@ -275,11 +275,11 @@ The loss of Exp2 is lower than Exp1, in other words the reconstruction on Exp2 a
 It is mainly caused the weaker noise level on the smaller input values that the data is less noisy in Exp2 in average. 
 \begin{figure}
 	\centering
-	\begin{subfigure}[t]{0.4\textwidth}
+	\begin{subfigure}[t]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/30_exp_RBM/exp1_weights_non.pdf}
 		\caption{Weights of Exp1}
 	\end{subfigure}
-	\begin{subfigure}[t]{0.4\textwidth}
+	\begin{subfigure}[t]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/30_exp_RBM/exp2_weights_non.pdf}
 		\caption{Weights of Exp2}
 	\end{subfigure}
@@ -384,7 +384,7 @@ The shared weights, three individual populations of neurons build the training n
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.9\textwidth]{pics_sdlm/rSTDP.pdf}
+	\includegraphics[width=0.8\textwidth]{pics_sdlm/rSTDP.pdf}
 	\caption{How SRM works in training spiking Autoencoders.}
 	\label{fig:rSTDP}
 \end{figure}
@@ -418,114 +418,138 @@ The learning continues as long as the neurons are active, however the weights ma
 	\egroup
 \end{table}
 
-In order to reproduce the experiments on AEs, we select the parameters (see Table~\ref{tbl:srm}) for training SAEs and also apply the same parameter for SRBM experiments.
-Each input vector (image) presents as spiking trains with the length of 100~ms, and the STDP window is set to 10~ms.
-The input values are scales by 100 times as firing rates of the spike trains.
-Thus according to Equation~\ref{equ:eta_s}, the learning rate of SAEs and RBMs is $10^{-4}$.
-
-\subsection{Training Spiking RBM}
-As illustrated in Equation~\ref{equ:rbm}, the positive weight updates are generated from multiplication of visible and hidden units; where the negative comes from the pair of Gibbs sampling.
-Figure~\ref{fig:sRBM} shows the architecture of a SRBM which consists of four layers of neurons: input $\bf{v}$, hidden $\bf{h}$, sampling visible (or reconstruction) $\bf{v'}$, sampling hidden $\bf{h'}$ and the shared weights $\bf{W}$.
-\begin{figure}
-	\centering
-	\includegraphics[width=0.6\textwidth]{pics_sdlm/rbm.pdf}
-	\caption{Network architecture of a spiking RBM.}
-	\label{fig:sRBM}
-\end{figure}
-
-
-Figure~\ref{fig:rSTDP_rbm} demonstrates the training of an SRBM with a pair of spiking neurons $v_j$ and $h_i$, the corresponding sampling pair $v'_j$ and $h'_i$, and the shared weight $w_ij$.
-Up-arrow marks the increase of the weight when $v_j$ fires during the time window after the two spikes of $h_i$;
-at the meanwhile, down-arrow highlighted the decrease of the weight when $v'_j$ generates a spike no later than $\tau_{win}$ after $h'_i$ fires.
-The amplitude of the weight change is set the same as in Table~\ref{tbl:srm}.
 
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.9\textwidth]{pics_sdlm/rSTDP_rbm.pdf}
-	\caption{How SRM works in training spiking RBMs.}
-	\label{fig:rSTDP_rbm}
-\end{figure}
-
-\section{Problem}
-\label{sec:problem}
-Correlations in spike trains make weights diverge.
-Experiments
-\begin{figure}
-	\centering
-	\begin{subfigure}[t]{0.4\textwidth}
+	\begin{subfigure}[t]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/00_exp_SAE_Orig/exp1_weights_s.pdf}
 		\caption{Weights of Exp1}
 	\end{subfigure}
-	\begin{subfigure}[t]{0.4\textwidth}
+	\begin{subfigure}[t]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/00_exp_SAE_Orig/exp2_weights_s.pdf}
 		\caption{Weights of Exp2}
 	\end{subfigure}
-	\begin{subfigure}[t]{0.4\textwidth}
+	\begin{subfigure}[t]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/00_exp_SAE_Orig/exp1_recon_s.pdf}
 		\caption{Reconstruction of visible units in Exp1}
 	\end{subfigure}
-	\begin{subfigure}[t]{0.4\textwidth}
+	\begin{subfigure}[t]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/00_exp_SAE_Orig/exp2_recon_s.pdf}
 		\caption{Reconstruction of visible units in Exp2}
 	\end{subfigure}\\
-	\begin{subfigure}[t]{0.4\textwidth}
+	\begin{subfigure}[t]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/00_exp_SAE_Orig/exp1_hid_s.pdf}
 		\caption{Output of hidden units in Exp1}
 	\end{subfigure}
-	\begin{subfigure}[t]{0.4\textwidth}
+	\begin{subfigure}[t]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/00_exp_SAE_Orig/exp2_hid_s.pdf}
 		\caption{Output of hidden units in Exp2}
 	\end{subfigure}\\
-	\begin{subfigure}[t]{0.4\textwidth}
+	\begin{subfigure}[t]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/00_exp_SAE_Orig/exp1_mse_nons.pdf}
 		\caption{Loss of Exp1}
 	\end{subfigure}
-	\begin{subfigure}[t]{0.4\textwidth}
+	\begin{subfigure}[t]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/00_exp_SAE_Orig/exp2_mse_nons.pdf}
 		\caption{Loss of Exp2}
 	\end{subfigure}
 	\caption{Weights and firing rates of visible and hidden units change during training of the reconstruction tests of spiking AE. 
 		Experiments 1) 10 visible units fully connected to 10 hidden units with Poisson spike trains of 100~Hz which lasted 100~ms; 2) same network fed with 10 Poisson spike trains of firing rate ranging from 10~Hz to 100~Hz.}
+	\label{fig:SAE_orig}
 \end{figure}
+In order to reproduce the experiments on AEs, we select the parameters (see Table~\ref{tbl:srm}) for training SAEs and also apply the same parameter for SRBM experiments.
+Each input vector (image) presents as spiking trains with the length of 100~ms, and the STDP window is set to 10~ms.
+The input values are scales by 100 times as firing rates of the spike trains.
+Thus according to Equation~\ref{equ:eta_s}, the learning rate of SAEs and RBMs is $10^{-4}$.
+
+To compare with the AE experiments on noisy input data, Figure~\ref{fig:SAE_orig} records the weight change during training, and the testing results generated by the test of the 1~s long input spike trains.
+The most import and obvious difference is the weight change where the weights do not stabilise but accelerate to diverge along training.
+The output firing rate of the hidden units tends to converge as training goes on.
+The reason of these phenomena will be discussed in Section~\ref{sec:problem}.
+The training is slower than the AE experiment where the loss decrease takes long time.
+It mainly caused by the low firing rate of both the input and the hidden units at the beginning of the training.
+Thus very few even none spikes involved to trigger STDP.
+With the simple input of Exp1, the training performance reaches the AE test of 0.01 loss;
+however, the SAE does not reconstruct the various input values of Exp2 as good as the AE does, since the parameters $\tau_{win}$ and $\tau_{dur}$ are relatively short.
 
 \begin{figure}
 	\centering
-	\begin{subfigure}[t]{0.4\textwidth}
+	\includegraphics[width=0.4\textwidth]{pics_sdlm/rbm.pdf}
+	\caption{Network architecture of a spiking RBM.}
+	\label{fig:sRBM}
+\end{figure}
+
+\subsection{Training Spiking RBM}
+As illustrated in Equation~\ref{equ:rbm}, the positive weight updates are generated from multiplication of visible and hidden units; where the negative comes from the pair of Gibbs sampling.
+Figure~\ref{fig:sRBM} shows the architecture of a SRBM which consists of four layers of neurons: input $\bf{v}$, hidden $\bf{h}$, sampling visible (or reconstruction) $\bf{v'}$, sampling hidden $\bf{h'}$ and the shared weights $\bf{W}$.
+
+Figure~\ref{fig:rSTDP_rbm} demonstrates the training of an SRBM with a pair of spiking neurons $v_j$ and $h_i$, the corresponding sampling pair $v'_j$ and $h'_i$, and the shared weight $w_ij$.
+Up-arrows mark the increase of the weight when $v_j$ fires during the time window after the two spikes of $h_i$;
+at the meanwhile, down-arrow highlights the decrease of the weight when $v'_j$ generates a spike no later than $\tau_{win}$ after $h'_i$ fires.
+The amplitude of the weight change is set the same as in Table~\ref{tbl:srm}.
+
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.8\textwidth]{pics_sdlm/rSTDP_rbm.pdf}
+	\caption{How SRM works in training spiking RBMs.}
+	\label{fig:rSTDP_rbm}
+\end{figure}
+
+
+
+\begin{figure}
+	\centering
+	\begin{subfigure}[t]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/10_exp_SRBM_Orig/exp1_weights_s.pdf}
 		\caption{Weights of Exp1}
 	\end{subfigure}
-	\begin{subfigure}[t]{0.4\textwidth}
+	\begin{subfigure}[t]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/10_exp_SRBM_Orig/exp2_weights_s.pdf}
 		\caption{Weights of Exp2}
 	\end{subfigure}
-	\begin{subfigure}[t]{0.4\textwidth}
+	\begin{subfigure}[t]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/10_exp_SRBM_Orig/exp1_recon_s.pdf}
 		\caption{Reconstruction of visible units in Exp1}
 	\end{subfigure}
-	\begin{subfigure}[t]{0.4\textwidth}
+	\begin{subfigure}[t]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/10_exp_SRBM_Orig/exp2_recon_s.pdf}
 		\caption{Reconstruction of visible units in Exp2}
 	\end{subfigure}\\
-	\begin{subfigure}[t]{0.4\textwidth}
+	\begin{subfigure}[t]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/10_exp_SRBM_Orig/exp1_hid_s.pdf}
 		\caption{Output of hidden units in Exp1}
 	\end{subfigure}
-	\begin{subfigure}[t]{0.4\textwidth}
+	\begin{subfigure}[t]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/10_exp_SRBM_Orig/exp2_hid_s.pdf}
 		\caption{Output of hidden units in Exp2}
 	\end{subfigure}\\
-	\begin{subfigure}[t]{0.4\textwidth}
+	\begin{subfigure}[t]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/10_exp_SRBM_Orig/exp1_mse_nons.pdf}
 		\caption{Loss of Exp1}
 	\end{subfigure}
-	\begin{subfigure}[t]{0.4\textwidth}
+	\begin{subfigure}[t]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/10_exp_SRBM_Orig/exp2_mse_nons.pdf}
 		\caption{Loss of Exp2}
 	\end{subfigure}
 	\caption{Weights and firing rates of visible and hidden units change during training of the reconstruction tests of spiking RBM. 
 		Experiments 1) 10 visible units fully connected to 10 hidden units with Poisson spike trains of 100~Hz which lasted 100~ms; 2) same network fed with 10 Poisson spike trains of firing rate ranging from 10~Hz to 100~Hz.}
+\label{fig:srbm_orig}
 \end{figure}
+
+The weight diverging is a more severe problem in SRBM, see Figure~\ref{fig:srbm_orig}.
+Especially for Exp1, only on hidden neuron is active on the later half of the training, thus to make firing rate of the reconstruction jumping between two states.
+Because the high firing rate of the pre-synaptic neuron, a slight weight increase may generate quite a few spikes for the post-synaptic neuron.
+Therefore, more balanced activity among neurons can perform better in terms of accuracy.
+The same as SAE experiments, the slower training and worse loss also appear in the experiments.
+
+\section{Problem}
+\label{sec:problem}
+
+
+
+
 
 \subsection{Solution 1: Longer STDP Window}
 The stronger correlation of a pair of pre- and post-synaptic neurons make the spikes generated by the post-synaptic neuron lie in the shorter period after the pre-synaptic spike.
