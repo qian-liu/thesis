@@ -98,9 +98,9 @@ The weight rise/drop according to a rectangular STDP curve can detect the spike 
 Therefore, the overall weight change during time $\tau_{dur}$ indicates the rate multiplication, and is decried by SRM:
 \begin{equation}
 \begin{aligned}
-\Delta w &= \eta_s \sum_{t=1}^{\tau_{dur}} [s_a(t) \sum_{t_b=t}^{t+\tau_{win}} s_b(t_b)] \text{, and}\\
+\Delta w = SRM(s_a, s_b) &= \eta_s \sum_{t=1}^{\tau_{dur}} [s_a(t) \sum_{t_b=t}^{t+\tau_{win}} s_b(t_b)] \text{, and}\\
 c=ab=\frac{\lambda_a \lambda_b}{K^2} &\approx \frac{10^6}{K^2 \tau_{dur} \tau_{win}} \sum_{t=1}^{\tau_{dur}} [s_a(t) \sum_{t_b=t}^{t+\tau_{win}} s_b(t_b)] \\
-&\approx  \frac{10^6 \Delta w}{K^2 \tau_{dur} \tau_{win}  \eta_s}.
+&\approx  \frac{10^6 SRM(s_a, s_b)}{K^2 \tau_{dur} \tau_{win}  \eta_s}.
 \end{aligned}
 \label{equ:srm}
 \end{equation} 
@@ -148,6 +148,7 @@ Following the experiments of conventional models, we propose the training method
 The same experiments are then applied to the on-line and spike-based algorithm.
 
 \subsection{Autoencoders (AEs)}
+\label{sec:ae}
 Using ReLU and Equation~\ref{equ:ae_widrow_hoff}, we can easily train a layer of AEs with a small network size of 10 visible units and 10 output units.
 The initial weights are randomly generated with unified distribution from 0 to 0.01, and the learning rate, $\eta$, is set to 0.001.
 We keep the same initial weights for all the experiments thus to provide an accurate comparison on the weight update.
@@ -399,7 +400,7 @@ The learning continues as long as the neurons are active, however the weights ma
 	\centering
 	\caption{\label{tbl:srm}Parameter setting of SRM for training SAEs and SRBMs.}
 	\bgroup
-	\def\arraystretch{1.4}
+	\def\arraystretch{1}
 	\begin{tabular}{c c l}
 		%\hline
 		Parameters & Values & Description \\
@@ -414,6 +415,9 @@ The learning continues as long as the neurons are active, however the weights ma
 		%\hline
 		$\eta_s$ & $10^{-4}$ & learning rate of SAEs and SRBMs\\
 		%\hline
+		$V_{rest}$ & 0~mV & resting membrane potential\\
+		%\hline
+		$V_{thresh}$ & 1~mV & membrane threshold  \\
 	\end{tabular}
 	\egroup
 \end{table}
@@ -566,6 +570,81 @@ This section proposes three solutions to reduce the correlations between layers 
 In other words, the aim is to modulate the weight updates close to AE and RBM training under the premise of keeping a same level of loss.
 To highlight the performance of the solutions, we apply these methods on the same experiments above.
 And the default parameters are the same as in Table\ref{tbl:srm}.
+\begin{figure}
+	\centering
+	\begin{subfigure}[c]{0.45\textwidth}\raggedleft
+		\myrowlabel{Orignal SAE}
+		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
+			{pics_sdlm/00_exp_SAE_Orig/exp2_weights_s.pdf}}\\
+		\myrowlabel{Solution 1}
+		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
+			{pics_sdlm/01_exp_SAE_Orig_long/exp2_weights_s.pdf}}\\
+		\myrowlabel{Solution 2}
+		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
+			{pics_sdlm/03_exp_SAE_noise_long/exp2_weights_s.pdf}}
+		\myrowlabel{Solution 3}
+		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
+			{pics_sdlm/05_exp_SAE_teach_long/exp2_weights_s.pdf}}\\
+		\myrowlabel{Combined Solutions}
+		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
+			{pics_sdlm/07_exp_SAE_all_long/exp2_weights_s.pdf}}
+		\caption{Exp2 Weights}
+	\end{subfigure}%
+	\hspace{1em}
+	\begin{subfigure}[c]{0.45\textwidth}\raggedleft
+		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
+			{pics_sdlm/00_exp_SAE_Orig/exp2_mse_nons.pdf}}\\
+		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
+			{pics_sdlm/01_exp_SAE_Orig_long/exp2_mse_nons.pdf}}\\
+		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
+			{pics_sdlm/03_exp_SAE_noise_long/exp2_mse_nons.pdf}}
+		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
+			{pics_sdlm/05_exp_SAE_teach_long/exp2_mse_nons.pdf}}\\
+		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
+			{pics_sdlm/07_exp_SAE_all_long/exp2_mse_nons.pdf}}
+		\caption{Exp2 Loss}
+	\end{subfigure}%
+	\caption{Comparisons of weights and loss of solutions for training SAE. 10 visible units fully connected to 10 hidden units with Poisson spike trains of firing rate ranging from 10~Hz to 100~Hz.}
+	\label{fig:sols_ae}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\begin{subfigure}[c]{0.45\textwidth}\raggedleft
+		\myrowlabel{Orignal SAE}
+		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
+			{pics_sdlm/10_exp_SRBM_Orig/exp2_weights_s.pdf}}\\
+		\myrowlabel{Solution 1}
+		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
+			{pics_sdlm/11_exp_SRBM_Orig_long/exp2_weights_s.pdf}}\\
+		\myrowlabel{Solution 2}
+		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
+			{pics_sdlm/13_exp_SRBM_noise_long/exp2_weights_s.pdf}}
+		\myrowlabel{Solution 3}
+		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
+			{pics_sdlm/15_exp_SRBM_teach_long/exp2_weights_s.pdf}}\\
+		\myrowlabel{Combined Solutions}
+		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
+			{pics_sdlm/17_exp_SRBM_all_long/exp2_weights_s.pdf}}
+		\caption{Exp2 Weights}
+	\end{subfigure}%
+	\hspace{1em}
+	\begin{subfigure}[c]{0.45\textwidth}\raggedleft
+		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
+			{pics_sdlm/10_exp_SRBM_Orig/exp2_mse_nons.pdf}}\\
+		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
+			{pics_sdlm/11_exp_SRBM_Orig_long/exp2_mse_nons.pdf}}\\
+		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
+			{pics_sdlm/13_exp_SRBM_noise_long/exp2_mse_nons.pdf}}
+		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
+			{pics_sdlm/15_exp_SRBM_teach_long/exp2_mse_nons.pdf}}\\
+		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
+			{pics_sdlm/17_exp_SRBM_all_long/exp2_mse_nons.pdf}}
+		\caption{Exp2 Loss}
+	\end{subfigure}%
+	\caption{Comparisons of weights and loss of solutions for training SRBM. 10 visible units fully connected to 10 hidden units with Poisson spike trains of firing rate ranging from 10~Hz to 100~Hz.}
+	\label{fig:sols_rbm}
+\end{figure}
 
 \subsection{Solution 1: Longer STDP Window}
 A stronger weight between a pair of pre- and post-synaptic neurons makes a higher probability for the pre-synaptic neuron to trigger a post-synaptic spike in a shorter period.
@@ -574,102 +653,42 @@ On the other hand, a weaker connection strength usually takes longer to activate
 Thus SRM using a short STDP window weakens the rate multiplication of a neuron pair with weaker synaptic strength.
 Therefore, we use a longer square STDP window to make SRM more independent on the correlations between spike trains.
 Of course, an unlimited window length is ideal to eliminate the effect of neural correlations, but a fair trade-off concerns about fewer computation and memory use.
-In the experiment, we double the window length to 20~ms, and record the complete results in Figure~\ref{fig:sol1_ae} and~\ref{fig:sol1_rbm}.
+In the experiment, we double the window length to 20~ms and set $\eta_s$ to $5 \times 10^{-5}$, and record the complete results in Figure~\ref{fig:sol1_ae} and~\ref{fig:sol1_rbm}.
 
 To make the comparisons more straight forward, we list the weights and loss of Exp2 for all the solutions in Figure~\ref{fig:sols_ae} (SAE) and Figure~\ref{fig:sols_rbm} (SRBM).
+Longer STDP window reduces the weights diverging that the bidirectional weight change slows down and keeps within a smaller range.
+In addition, the loss performance drops comparing to the original SAE test because of the longer STDP window $\tau_{dur}$ makers SRM more accurate reflecting to the first property of SRM algorithm in Section~\ref{sec:SRM}.
+
 
 
 \subsection{Solution 2: Noisy Threshold}
-There are various ways to introduce noise in formal spiking neuron models. 
-In this section we focus on a `noisy threshold' (also called escape or hazard model)~\cite{gerstner2002spiking}.
-The noise drives the post-synaptic spikes fire in advance or behind the expected time, thus it reduces the correlation between the pre- and post synaptic spikes.
+%There are various ways to introduce noise in formal spiking neuron models~\cite{gerstner2014neuronal}.
+We introduce a method of `noisy threshold' (also called escape or hazard model)~\cite{gerstner2002spiking} to generate noise in the output of spikes.
+The stochastic threshold of the membrane potential drives the post-synaptic spikes firing in advance or behind the expected time, thus it reduces the correlation between the pre- and post synaptic spikes.
+The Gaussian noise adding on the membrane potential is randomly generated by $\mathcal{N}(0, \sigma)$~mV, where $\sigma$ is set to 0.2, 20\% of $V_{thresh} - V_{rest}.$
+An appropriate $\sigma$ is chosen for introducing enough noise to decrease the correlation of the spike trains and also maintain a good loss performance.
+The complete testing results can be found in Figures~\ref{fig:sol2_ae} and~\ref{fig:sol2_rbm}.
 
-
+Using the same STDP window $\tau_{win}$ of 20~ms, the noisy membrane threshold enhances the decorrelation, thus that the weight change remains more subtle than Solution 1, see Solution 2 in Figures~\ref{fig:sols_ae}(a) and~\ref{fig:sols_rbm}(a) .
+Furthermore, the performance of the reconstruction improves in both SAE and SRBM training that the loss achieves a lower level and the training accelerates to reach the stabilisation. % with the help of the noise. 
 
 
 \subsection{Solution 3: Teaching Signal}
-Teaching spike train firing at the same rate with input spikes is completely decorrelated with the spikes generated in the network.
-Thus it decorrelates the positive part of the weight change (red bar in Figure~\ref{fig:rSTDP} and~\ref{fig:rSTDP_rbm}).
+A teaching signal which fires at the same rate of the input spikes is completely independent with the output spikes generated in the network.
+Thus it decorrelates the SRM in the positive part of the weight change $\Delta w_{ij} = SRM(v_j,h_i)$ in SAE and SRBM by using $\Delta w_{ij}=SRM(s_j,h_i)$ instead, where $s_j$ is the teaching spike train firing at the same rate of $v_j$.
+Comparing to the other solutions, it requires doubled Poisson spike trains: the input spikes work the same to active the network, and the teaching spikes do not impact on the neural dynamics but only trigger learning on the synapses between the input layer and the hidden layer.
 
+In terms of SAE training, teaching signals improve the problem of correlations similar as the noisy threshold does, and the variance of the loss shrinks (Figure~\ref{fig:sols_ae} Solution 3).
+Although the loss keeps at a higher level, it is due to a constant bias of the reconstruction which caused by a higher SRM calculation on the correlated negative part.
+The reconstruction bias can be observed in the firing rates of the reconstruction neurons recorded in the complete experimental result in Figures~\ref{fig:sol2_ae} and~\ref{fig:sol2_rbm}.
+Regarding to the SRBM training (Figure~\ref{fig:sols_rbm}, the weights diverging is also improved comparing to Solution 1 but not as good as Solution 2, since the noisy threshold applies on the entire network whereas teaching signal only works on the input layer.
+The average reconstruction loss is also worse than Solution 1 because of the bias. 
 
 \subsection{Test on Combined Solutions}
-The test combines solutions of long STDP window, noisy threshold and teaching signals. 
+The test combines solutions of long STDP window, noisy threshold and teaching signals.
+The results shown in both Figures~\ref{fig:sols_ae} and~\ref{fig:sols_rbm} demonstrates a combined effect of Solutions 2 and 3 that the dynamic trained weights are between the diverging degree of the solutions and the loss level keeps in between.
+More experiments results can be found in the Appendix~\ref{sec:app2}, Figures~\ref{fig:sol4_ae} and~\ref{fig:sol4_rbm}.
 
-\begin{figure}
-	\centering
-	\begin{subfigure}[t]{0.45\textwidth}
-		\includegraphics[width=\textwidth]{pics_sdlm/01_exp_SAE_orig_long/exp2_weights_s.pdf}
-		\caption{Weights of Solution 1}
-	\end{subfigure}
-	\begin{subfigure}[t]{0.45\textwidth}
-		\includegraphics[width=\textwidth]{pics_sdlm/01_exp_SAE_orig_long/exp2_mse_nons.pdf}
-		\caption{Loss of Solution 1}
-	\end{subfigure}
-	\begin{subfigure}[t]{0.45\textwidth}
-		\includegraphics[width=\textwidth]{pics_sdlm/03_exp_SAE_noise_long/exp2_weights_s.pdf}
-		\caption{Weights of Solution 2}
-	\end{subfigure}
-	\begin{subfigure}[t]{0.45\textwidth}
-		\includegraphics[width=\textwidth]{pics_sdlm/03_exp_SAE_noise_long/exp2_mse_nons.pdf}
-		\caption{Loss of Solution 2}
-	\end{subfigure}\\
-	\begin{subfigure}[t]{0.45\textwidth}
-		\includegraphics[width=\textwidth]{pics_sdlm/05_exp_SAE_teach_long/exp2_weights_s.pdf}
-		\caption{Weights of Solution 3}
-	\end{subfigure}
-	\begin{subfigure}[t]{0.45\textwidth}
-		\includegraphics[width=\textwidth]{pics_sdlm/05_exp_SAE_teach_long/exp2_mse_nons.pdf}
-		\caption{Loss of Solution 3}
-	\end{subfigure}\\
-	\begin{subfigure}[t]{0.45\textwidth}
-		\includegraphics[width=\textwidth]{pics_sdlm/07_exp_SAE_all_long/exp2_weights_s.pdf}
-		\caption{Weights of Solution 4}
-	\end{subfigure}
-	\begin{subfigure}[t]{0.45\textwidth}
-		\includegraphics[width=\textwidth]{pics_sdlm/07_exp_SAE_all_long/exp2_mse_nons.pdf}
-		\caption{Loss of Solution 3}
-	\end{subfigure}
-	\caption{Comparisons of weights and loss on solutions for training SAE. 10 visible units fully connected to 10 hidden units with Poisson spike trains of firing rate ranging from 10~Hz to 100~Hz.}
-	\label{fig:sols_ae}
-\end{figure}
-
-\begin{figure}
-	\centering
-	\begin{subfigure}[t]{0.45\textwidth}
-		\includegraphics[width=\textwidth]{pics_sdlm/11_exp_SRBM_orig_long/exp2_weights_s.pdf}
-		\caption{Weights of Solution 1}
-	\end{subfigure}
-	\begin{subfigure}[t]{0.45\textwidth}
-		\includegraphics[width=\textwidth]{pics_sdlm/11_exp_SRBM_orig_long/exp2_mse_nons.pdf}
-		\caption{Loss of Solution 1}
-	\end{subfigure}
-	\begin{subfigure}[t]{0.45\textwidth}
-		\includegraphics[width=\textwidth]{pics_sdlm/13_exp_SRBM_noise_long/exp2_weights_s.pdf}
-		\caption{Weights of Solution 2}
-	\end{subfigure}
-	\begin{subfigure}[t]{0.45\textwidth}
-		\includegraphics[width=\textwidth]{pics_sdlm/13_exp_SRBM_noise_long/exp2_mse_nons.pdf}
-		\caption{Loss of Solution 2}
-	\end{subfigure}\\
-	\begin{subfigure}[t]{0.45\textwidth}
-		\includegraphics[width=\textwidth]{pics_sdlm/15_exp_SRBM_teach_long/exp2_weights_s.pdf}
-		\caption{Weights of Solution 3}
-	\end{subfigure}
-	\begin{subfigure}[t]{0.45\textwidth}
-		\includegraphics[width=\textwidth]{pics_sdlm/15_exp_SRBM_teach_long/exp2_mse_nons.pdf}
-		\caption{Loss of Solution 3}
-	\end{subfigure}\\
-	\begin{subfigure}[t]{0.45\textwidth}
-		\includegraphics[width=\textwidth]{pics_sdlm/17_exp_SRBM_all_long/exp2_weights_s.pdf}
-		\caption{Weights of Solution 4}
-	\end{subfigure}
-	\begin{subfigure}[t]{0.45\textwidth}
-		\includegraphics[width=\textwidth]{pics_sdlm/17_exp_SRBM_all_long/exp2_mse_nons.pdf}
-		\caption{Loss of Solution 3}
-	\end{subfigure}
-	\caption{Comparisons of weights and loss on solutions for training SRBM. 10 visible units fully connected to 10 hidden units with Poisson spike trains of firing rate ranging from 10~Hz to 100~Hz.}
-	\label{fig:sols_rbm}
-\end{figure}
 
 %XOR problem:
 %To validate the decorrelation methods proposed, a more complicated reconstruction experiment is conducted.
@@ -783,48 +802,64 @@ The test combines solutions of long STDP window, noisy threshold and teaching si
 
 
 \section{Results: MNIST Test}
-MNIST structure.
-As the baseline to compare with, the same neural network architecture was firstly tested on original AE and nRBM, and then trained on SNNs.
-Three epochs of all the $60,000$ training images were fed into the network in order.
-In the training of SNNs, pixel values of images were represented by spike trains firing at certain frequency linear to the original value.
-Therefore the over all count of spikes for each pixel is equivalent to adding Gaussian noise to its value.
-To provide an equal comparison, the pixel values counted by the same spike trains used in SNNs were also applied to the original ANN training.
-\begin{figure}
-	\centering
-	\includegraphics[width=0.6\textwidth]{pics_sdlm/mnist.pdf}
-	\caption{AE and RBM structure for MNIST tasks.}
-	\label{fig:MNSIT}
-\end{figure}
-\subsection{Trained weights}
-AE automatically extracts features.
+Having discussed the problem of training of SAEs and SRBMs, we finally apply the proposed methods on image recognition tasks of MNIST.
+The network architecture is shown in Figure~\ref{fig:MNSIT}.
+The training is conducted using a one-layer AE or RBM, which consists of 794 visible units including 784 neurons representing the images and 10 label units marking the classification, and 500 neurons for the hidden layer.
+Once the network is trained, only the 784 neurons representing image pixels remain as visible units and the other 10 label units work as the top layer of an MLP network for recognising a digit.
+The trained weights of the one-layer AE/RBM split into the bidirectional weights between visible and hidden units, and the forward connections from the hidden layer to the top layer.
+The forward path of the network recognises an image to a digit class, and the bidirectional connections reconstruct the input image.
 
 \begin{figure}
 	\centering
-	\begin{subfigure}[t]{0.45\textwidth}
+	\includegraphics[width=0.5\textwidth]{pics_sdlm/mnist.pdf}
+	\caption{AE and RBM structure for MNIST tasks.}
+	\label{fig:MNSIT}
+\end{figure}
+
+As the baseline to compare with, the same neural network architecture is firstly tested on original AE and nRBM, and then trained on SNNs.
+Three epochs of all the $60,000$ training images are fed into the network in order.
+In the training of SNNs, same as described above in Section~\ref{sec:ae}, pixel values of images are represented by Poisson spike trains firing at certain frequency linear to the original value.
+Therefore the over all count of spikes for each pixel is equivalent to adding Gaussian noise to its original value and is used as tests of noisy input on convectional models to provide an equal comparison to SNNs.
+In addition, the default parameters of SNNs are the same as listed in Table~\ref{tbl:srm} except that the STDP window $tau_{win}$ is doubled to 20~ms and the learning rate $\eta_s$ is set to $5 \times 10^{-5}$ accordingly in the improved SNN training.
+And the initial weights are identical for all the experiments following as well as the input spike trains.
+
+\subsection{Trained weights}
+The first comparison is directly conducted on the trained weights after three epochs of the entire training images.
+We randomly select 49 hidden neurons out of the 500 to display the weighs between them and the visible units (only the 784 neurons representing the images), see Figures~\ref{fig:weights_ae} and~\ref{fig:weights_rbm}.
+The colour scales from white to black representing the values between -1 to 1.
+
+The trained weights of original AE and AE with Poisson noisy input are of slight difference while the original SAE training results in noisy patterns where unexpected white dots appear in the black strokes of the extracted digit features (Figure~\ref{fig:weights_ae}(c)).
+The other improved training methods demonstrates a closer feature extraction to the conventional AE training.
+
+\begin{figure}
+	\centering
+	\begin{subfigure}[t]{0.4\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/22_MNIST_AE/2_60000_0.pdf}
 		\caption{AE}
 	\end{subfigure}
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.4\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/23_MNIST_AE_noise/2_60000_0.pdf}
 		\caption{AE+Poisson input}
 	\end{subfigure}\\
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.4\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/40_MNIST_SAE_original/2_60000_0.pdf}
-		\caption{SAE}
+		\caption{Original SAE}
 	\end{subfigure}
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{pics_sdlm/42_MNIST_SAE_noise/2_60000_0.pdf}
+		\caption{SAE+Solution 2}
+		
+	\end{subfigure}\\
+	\begin{subfigure}[t]{0.4\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/41_MNIST_SAE_teach/2_60000_0.pdf}
-		\caption{SAE+teaching signal.}
-	\end{subfigure}\\
-	\begin{subfigure}[t]{0.45\textwidth}
-		\includegraphics[width=\textwidth]{pics_sdlm/noise_ae/2_60000_0.pdf}
-		\caption{SAE+noisy threshold.}
+		\caption{SAE+Solution 3}
 	\end{subfigure}
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.4\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/43_MNIST_SAE_all/2_60000_0.pdf}
-		\caption{SAE+teach+noise.}
+		\caption{SAE+Solutions 2+3}
 	\end{subfigure}\\
-	\caption{Trained weights after training 3 epochs of MNIST data using (a) AE, (b) AE with Poisson spike trains as input data, (c) Original SAE, (d) SAE trained with extra teaching signal, (e) SAE trained with neurons of noisy threshold, and (f) SAE trained with both solutions.}
+	\caption{Trained weights after training 3 epochs of MNIST data using (a) AE, (b) AE with Poisson spike trains as input data, (c) Original SAE, (d)  SAE trained with neurons of noisy threshold, (e)SAE trained with extra teaching signal, and (f) SAE trained with both solutions.}
+	\label{fig:weights_ae}
 \end{figure}
 
 \begin{figure}
@@ -839,59 +874,64 @@ AE automatically extracts features.
 	\end{subfigure}\\
 	\begin{subfigure}[t]{0.4\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/50_MNIST_SRBM_original/2_60000_0.pdf}
-		\caption{SRBM}
+		\caption{Original SRBM}
 	\end{subfigure}
 	\begin{subfigure}[t]{0.4\textwidth}
-		\includegraphics[width=\textwidth]{pics_sdlm/51_MNIST_SRBM_teach/2_60000_0.pdf}
-		\caption{SRBM+teaching signal.}
-	\end{subfigure}\\
+		\includegraphics[width=\textwidth]{pics_sdlm/52_MNIST_SRBM_noise/2_60000_0.pdf}
+		\caption{SRBM+Solution 2}
+	\end{subfigure}	\\
 	\begin{subfigure}[t]{0.4\textwidth}
-		\includegraphics[width=\textwidth]{pics_sdlm/noise_rbm/2_60000_0.pdf}
-		\caption{SRBM+noisy threshold.}
+		\includegraphics[width=\textwidth]{pics_sdlm/51_MNIST_SRBM_teach/2_60000_0.pdf}
+		\caption{SRBM+Solution 3}
 	\end{subfigure}
 	\begin{subfigure}[t]{0.4\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/53_MNIST_SRBM_all/2_60000_0.pdf}
-		\caption{SRBM+teach+noise.}
+		\caption{SRBM+Solutions 2+3}
 	\end{subfigure}\\
-	\caption{Trained weights after training 3 epochs of MNIST data using (a) nRBM, (b) nRBM with Poisson spike trains as input data, (c) Original SRBM, (d) SRBM trained with extra teaching signal, (e) SRBM trained with neurons of noisy threshold, and (f) SRBM trained with both solutions.}
+	\caption{Trained weights after training 3 epochs of MNIST data using (a) nRBM, (b) nRBM with Poisson spike trains as input data, (c) Original SRBM, (d) SRBM trained with neurons of noisy threshold, (e) SRBM trained with extra teaching signal, and (f) SRBM trained with both solutions.}
+	\label{fig:weights_rbm}
 \end{figure}
 
+Regarding to RBM training, the extracted features are not easily recognisable as in the AE because of the sampling noise introduced by NReLU.
+The results in Figure~\ref{fig:weights_rbm} shows: (a) the strokes are continuous and (b) pixel-wise noise appear in (b) of Poisson input in training conventional RBM;
+(c) few continuous strokes generated in the original SRBM training;
+(d) more noticeable extracted patterns turn up with solutions of noisy threshold;
+(e) SRBM trained with teaching signal shows similar continuous strokes as in the original nRBM training in (a);
+and combined solutions demonstrate mixed patterns of training with Solution 2 and 3 which is closer to the nRBM fed with Poisson noisy input in (b). 
+
+
 \subsection{Classification Accuracy}
-Original AE and nRBM.
-%\begin{figure}
-%	\centering
-%	\includegraphics[width=0.6\textwidth]{pics_sdlm/33_MNIST_RBM_noise/non_spike_MNIST.pdf}
-%	\caption{Classification accuracy tested on original AE and nRBM.}
-%	\label{fig:non_mnist_result}
-%\end{figure}
+As the most important metric to evaluate the training performance, we test the classification accuracy on SNNs to compare with the conventional models.
+Every image is presented as a vector of Poisson spike trains which last 1~ms long.
+All the experiments below are tested with the spike trains and the spike counts are used for the conventional AE and RBM testing of noisy input. 
 
 \begin{figure}
 	\centering
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.7\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/43_MNIST_SAE_all/compare_result.pdf}
 		\caption{Classification accuracy compared on AE and SAEs.}
-	\end{subfigure}
-	\begin{subfigure}[t]{0.45\textwidth}
+	\end{subfigure}\\
+	\begin{subfigure}[t]{0.7\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/53_MNIST_SRBM_all/compare_result.pdf}
 		\caption{Classification accuracy compared on RBM and SRBMs.}
 	\end{subfigure}
-	\caption{Classification Accuracy compared with traditional training method and spike-based STDP learning.}
+	\caption{Classification Accuracy compared with traditional training method and spike-based models.}
 \end{figure}
 
 \subsection{Reconstruction}
 AE reconstructs visible units.
-\begin{figure}
-	\centering
-	\begin{subfigure}[t]{0.45\textwidth}
-		\includegraphics[width=\textwidth]{pics_sdlm/53_MNIST_SRBM_all/compare_recon.pdf}
-		\caption{Loss compared on AE and SAEs.}
-	\end{subfigure}
-	\begin{subfigure}[t]{0.45\textwidth}
-		\includegraphics[width=\textwidth]{pics_sdlm/53_MNIST_SRBM_all/compare_recon_rbm.pdf}
-		\caption{Loss compared on RBM and SRBMs.}
-	\end{subfigure}
-	\caption{Loss (mean squared error) compared with traditional training method and spike-based STDP learning.}
-\end{figure}
+%\begin{figure}
+%	\centering
+%	\begin{subfigure}[t]{0.45\textwidth}
+%		\includegraphics[width=\textwidth]{pics_sdlm/53_MNIST_SRBM_all/compare_recon.pdf}
+%		\caption{Loss compared on AE and SAEs.}
+%	\end{subfigure}
+%	\begin{subfigure}[t]{0.45\textwidth}
+%		\includegraphics[width=\textwidth]{pics_sdlm/53_MNIST_SRBM_all/compare_recon_rbm.pdf}
+%		\caption{Loss compared on RBM and SRBMs.}
+%	\end{subfigure}
+%	\caption{Loss (mean squared error) compared with traditional training method and spike-based STDP learning.}
+%\end{figure}
 
 
 \begin{figure}
@@ -913,7 +953,7 @@ AE reconstructs visible units.
 		\caption{SAE+teaching signal.}
 	\end{subfigure}
 	\begin{subfigure}[t]{0.32\textwidth}
-		\includegraphics[width=\textwidth]{pics_sdlm/noise_ae/recon_digit.pdf}
+		\includegraphics[width=\textwidth]{pics_sdlm/42_MNIST_SAE_noise/recon_digit.pdf}
 		\caption{SAE+noisy threshold.}
 	\end{subfigure}
 	\begin{subfigure}[t]{0.32\textwidth}
@@ -942,7 +982,7 @@ AE reconstructs visible units.
 		\caption{SRBM+teaching signal.}
 	\end{subfigure}
 	\begin{subfigure}[t]{0.32\textwidth}
-		\includegraphics[width=\textwidth]{pics_sdlm/noise_rbm/recon_digit.pdf}
+		\includegraphics[width=\textwidth]{pics_sdlm/52_MNIST_SRBM_noise/recon_digit.pdf}
 		\caption{SRBM+noisy threshold.}
 	\end{subfigure}
 	\begin{subfigure}[t]{0.32\textwidth}
@@ -967,7 +1007,7 @@ AE reconstructs visible units.
 		\caption{SAE+teach}
 	\end{subfigure}\\
 	\begin{subfigure}[t]{0.4\textwidth}
-		\includegraphics[width=\textwidth]{pics_sdlm/noise_ae/latency.pdf}
+		\includegraphics[width=\textwidth]{pics_sdlm/42_MNIST_SAE_noise/latency.pdf}
 		\caption{SAE+noise}
 	\end{subfigure}
 	\begin{subfigure}[t]{0.4\textwidth}
@@ -988,7 +1028,7 @@ AE reconstructs visible units.
 		\caption{SRBM+teach}
 	\end{subfigure}\\
 	\begin{subfigure}[t]{0.4\textwidth}
-		\includegraphics[width=\textwidth]{pics_sdlm/noise_rbm/latency.pdf}
+		\includegraphics[width=\textwidth]{pics_sdlm/52_MNIST_SRBM_noise/latency.pdf}
 		\caption{SRBM+noise.}
 	\end{subfigure}
 	\begin{subfigure}[t]{0.4\textwidth}
