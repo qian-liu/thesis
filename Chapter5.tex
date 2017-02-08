@@ -1031,6 +1031,29 @@ However, similar to SAEs, with half events used in the network and 400~ms testin
 	\label{fig:sdlm_freq}
 \end{figure}
 
+\begin{table}[htbp]
+\centering
+\caption{\label{tbl:fire_rate}Mean firing rate of whole network given different scaling factor K on SAE and SRBM.}
+\bgroup
+\def\arraystretch{1}
+\begin{tabular}{c l l}
+	%\hline
+	K & SAE firing rate & SRBM firing rate\\
+	\hline
+	10 & $1.92 \times 10^3$ & $2.46 \times 10^3$ \\
+	50 & $8.66 \times 10^3$ & $1.24 \times 10^4$  \\
+	100 & $1.66 \times 10^4$ & $2.43 \times 10^4$ \\
+	500 & $7.43 \times 10^4$ & $1.07 \times 10^5$ \\
+\end{tabular}
+\egroup
+\end{table}
+
+
+The energy use for classifying the whole testing images can be estimated more accurately as: $Number\_of\_images \times Mean\_firing\_rate \times Time\_per\_image \times Energy\_per\_spike$.
+The $Mean\_firing\_rate$ for various $K$ values is listed in Table~\ref{tbl:fire_rate}.
+
+
+
 \subsection{Reconstruction}
 AE reconstructs visible units.
 %\begin{figure}
