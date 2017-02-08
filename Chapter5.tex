@@ -1075,34 +1075,10 @@ Finally, regarding the energy cost in testing only, SAE generates less spike eve
 		\includegraphics[width=\textwidth]{pics_sdlm/53_MNIST_SRBM_all/compare_recon_rbm.pdf}
 		\caption{nRBMs and SRBMs.}
 	\end{subfigure}
-	\caption{Loss (mean squared error) compared with traditional training method and spike-based STDP learning.}
+	\caption{Loss (mean squared error) pixel-wise of traditional training method and spike-based STDP learning.}
+	\label{fig:sdlm_loss}
 \end{figure}
 
-Reconstruction is the other essential function of the unsupervised learning models: AEs and RBMs, such as applications of data de-noising~\cite{xie2012image} and dimension reduction~\cite{hinton2006fast}.
-
-
-%\begin{figure}
-%	\centering
-%	\begin{subfigure}[t]{0.45\textwidth}
-%		\includegraphics[width=\textwidth]{pics_sdlm/23_MNIST_AE_noise/recon_digit.pdf}
-%		\caption{AE+Poisson input}
-%	\end{subfigure}
-%	\begin{subfigure}[t]{0.45\textwidth}
-%		\includegraphics[width=\textwidth]{pics_sdlm/43_MNIST_SAE_all/recon_digit.pdf}
-%		\caption{SAE+Solution~2 and~3}
-%	\end{subfigure}\\
-%	\begin{subfigure}[t]{0.45\textwidth}
-%		\includegraphics[width=\textwidth]{pics_sdlm/33_MNIST_RBM_noise/recon_digit.pdf}
-%		\caption{nRBM+Poisson input}
-%	\end{subfigure}
-%	\begin{subfigure}[t]{0.45\textwidth}
-%		\includegraphics[width=\textwidth]{pics_sdlm/51_MNIST_SRBM_teach/recon_digit.pdf}
-%		\caption{SRBM+Solution~3}
-%	\end{subfigure}
-%	\caption{Reconstruct of the same digit '2' with trained weights using of conventional AE and RBM with noisy input data to compare with their spike-based models.
-%	The Loss (Mean Squared Error) of each reconstruction is labelled under each figure.
-%	All the reconstructions are taken on the steps of 1K, 10K, 60K (1~epoch), 120K (2~epoch), and 160K (3~epoch) during training.}
-%\end{figure}
 \begin{figure}
 	\centering
 	\begin{subfigure}[t]{0.32\textwidth}
@@ -1154,10 +1130,55 @@ Reconstruction is the other essential function of the unsupervised learning mode
 		\caption{SRBM+Solution~2 and~3}
 	\end{subfigure}\\
 	\caption{Reconstruct of the same digit '2' with trained weights using of conventional AEs and RBMs to compare with their spike-based models.
-	The Loss (Mean Squared Error) of each reconstruction is labelled under each figure.
-	All the reconstructions are taken on the steps of 1K, 10K, 60K (1~epoch), 120K (2~epoch), and 160K (3~epoch) during training.}
+		The Loss (Mean Squared Error) of each reconstruction is labelled under each figure.
+		All the reconstructions are taken on the steps of 1K, 10K, 60K (1~epoch), 120K (2~epoch), and 160K (3~epoch) during training.}
+	\label{fig:sdlm_recon}
 \end{figure}
 
-\section{Summary}
+Reconstruction is the other essential function of the unsupervised learning models: AEs and RBMs, such as applications of data de-noising~\cite{xie2012image} and dimension reduction~\cite{hinton2006fast}.
+Figure~\ref{fig:sdlm_recon} shows how reconstruction improves over training steps for each model.
+RBMs demonstrate a better reconstruction capability than AEs in general, see Figure~\ref{fig:sdlm_loss}, thus RBMs are usually used for pre-training of AEs or Deep Belief Networks.
 
+It is surprising to see that the original SRM training performs the best in both SAE and SRBM models.
+A possible explanation could be overfitting, that it is easy for the models to reconstruct the images have been shown but difficult to generalise the models to unseen data.
+Classification here is equivalent to image in-painting in AEs and RBMs.
+Therefore, the original SAE and SRBM work well on reconstruction but poorly on classification.
+SAE with noisy membrane threshold converges slowly to the loss level of noisy AE, while in SRBM training, the noise makes the loss oscillated and converges earlier than the traditional training.
+The SAEs are very sensitive to the teaching signal, thus the reconstruction performance of Solution 3 and the combined solutions vibrates roughly; 
+whereas in SRBMs, teaching signal smooths the loss performance, and both curves converge blow the nRBM loss.
+
+Therefore, it depends on the requirements to choose a proper spiking model for reconstruction.
+Original SRBM is outstanding in reconstruction task alone taking no account of the training resources and its poor classification performance.
+On the contrary, SAE of noisy threshold wins in energy-efficient training and testing on classification, and is stable in reconstruction with similar performance of noisy AE.
+
+%\begin{figure}
+%	\centering
+%	\begin{subfigure}[t]{0.45\textwidth}
+%		\includegraphics[width=\textwidth]{pics_sdlm/23_MNIST_AE_noise/recon_digit.pdf}
+%		\caption{AE+Poisson input}
+%	\end{subfigure}
+%	\begin{subfigure}[t]{0.45\textwidth}
+%		\includegraphics[width=\textwidth]{pics_sdlm/43_MNIST_SAE_all/recon_digit.pdf}
+%		\caption{SAE+Solution~2 and~3}
+%	\end{subfigure}\\
+%	\begin{subfigure}[t]{0.45\textwidth}
+%		\includegraphics[width=\textwidth]{pics_sdlm/33_MNIST_RBM_noise/recon_digit.pdf}
+%		\caption{nRBM+Poisson input}
+%	\end{subfigure}
+%	\begin{subfigure}[t]{0.45\textwidth}
+%		\includegraphics[width=\textwidth]{pics_sdlm/51_MNIST_SRBM_teach/recon_digit.pdf}
+%		\caption{SRBM+Solution~3}
+%	\end{subfigure}
+%	\caption{Reconstruct of the same digit '2' with trained weights using of conventional AE and RBM with noisy input data to compare with their spike-based models.
+%	The Loss (Mean Squared Error) of each reconstruction is labelled under each figure.
+%	All the reconstructions are taken on the steps of 1K, 10K, 60K (1~epoch), 120K (2~epoch), and 160K (3~epoch) during training.}
+%\end{figure}
+
+
+\section{Summary}
+SNNs can be trained with biologically-plausible synaptic plasticity and demonstrate competent learning capability as ANNs, even as state-of-the-art deep architectures: Autoencoders (AEs) and Restricted Boltzmann Machines (RBMs).
+The proposed Spike-based Rate Multiplication (SRM) and its improving solutions formalise a local learning algorithm based on STDP and have been applied to train spiking AEs and RBMs.
+This is the first attempt of formalising the biological-plausible learning rule to perform approximately to the unsupervised deep learning models.
+The promising results exhibit equivalent and even surpassing classification and reconstruction capabilities of SAEs and SRBMs.
+In addition, the spike-based models can be implemented on neuromorphic systems in a very energy-efficient manner.
 %A conclusion should be a short summary of the most pithy points in the chapter. It’s the thing that you’re going to leave the reader with. Given that they’ve just spent time reading the whole chapter, they don’t want to read it all again. What do you most want the reader to remember about this chapter? What is the key to the argument you’ve made, the most significant thing(s) that they have to keep in their mind as they go forward? In a thesis, a conclusion is usually fairly brief and to the point. Barbara and I call this ‘crunching’. Crunching the conclusion requires some thought – it’s not an afterthought. It is always about your take-home message, if you like. So don’t go on at length in the conclusion – Crunch.
