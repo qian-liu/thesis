@@ -10,11 +10,11 @@ Neuromorphic sensors such as silicon retinas are able to feed such mobile system
 A new set of vision benchmarks for spike-based neural processing are now needed to measure progress quantitatively within this rapidly advancing field.
 We propose that a large dataset of spike-based visual stimuli is needed to provide meaningful comparisons between different systems, and a corresponding evaluation methodology is also required to measure the performance of SNN models and their hardware implementations.
 
-In this paper we first propose an initial NE (Neuromorphic Engineering) dataset based on standard computer vision benchmarksand that uses digits from the MNIST database.
+In this Chapter we first propose an initial NE (Neuromorphic Engineering) dataset based on standard computer vision benchmarksand that uses digits from the MNIST database.
 This dataset is compatible with the state of current research on spike-based image recognition.
 The corresponding spike trains are produced using a range of techniques: rate-based Poisson spike generation, rank order encoding, and recorded output from a silicon retina with both flashing and oscillating input stimuli.
 In addition, a complementary evaluation methodology is presented to assess both model-level and hardware-level performance.
-Finally, we demonstrate the use of the dataset and the evaluation methodology using two SNN models to validate the performance of the models and their hardware implementations.
+Finally, we demonstrate the use of the dataset and the evaluation methodology using an SNN model to validate the performance of the models and their hardware implementations.
 
 With this dataset we hope to (1) promote meaningful comparison between algorithms in the field of neural computation, (2) allow comparison with conventional image recognition methods, (3) provide an assessment of the state of the art in spike-based visual recognition, and (4) help researchers identify future directions and advance the field.
 
@@ -67,7 +67,7 @@ Deep Neural Networks (DNNs) have exceeded human-level performance on image class
 The spiking deep network has great potential to combine remarkable performance with energy-efficient training and operation.
 Early research into spiking deep networks focussed on converting off-line trained deep network into SNNs~\cite{o2013real}.
 The network was initially implemented on an FPGA and achieved a CA of 92.0\%~\cite{neil2014minitaur}, while a later implementation on SpiNNaker scored 95.0\%~\cite{Stromatias2015scalable}.
-Recent advances have contributed to better translation by using modified units in a ConvNet~\cite{cao2015spiking} and tuning the weights and thresholds~\cite{Diehl2015fast}.
+Recent advances have contributed to better translation by using modified units in a ConvNet~\cite{cao2015spiking} and tuning the weights and thresholds~\cite{diehl2015fast}.
 The latter paper claims a state-of-the-art performance (99.1\% on the MNIST dataset) compared to the original ConvNet.
 The current trend towards training Spiking DNNs on line using biologically-plausible learning methods is also promising.
 An event-driven Contrastive Divergence (CD) training algorithm for Restricted Boltzmann Machines (RBMs) was proposed for Deep Belief Networks (DBNs) using LIF neurons with STDP synapses and verified on MNIST with a CA of 91.9\%~\cite{neftci2013event}.
@@ -97,14 +97,14 @@ Therefore a set of common metrics for performance evaluation in spike-based visi
 %, including evaluating trade-offs between simulation time, accuracy and power consumption.
 %Benchmarking neuromorphic hardware with various network models will reveal the advantages and disadvantages of different platforms.
 %Running various SNN benchmarks demonstrates the capability of a hardware platform to support model-specific configurations such as network size, topology, neural and synaptic models, learning algorithms and so on.
-In this paper we propose a large dataset of spike-based visual stimuli and a complementary evaluation methodology.
+In this Chapter we propose a large dataset of spike-based visual stimuli and a complementary evaluation methodology.
 Just as research in this field is an expanding and evolving activity, the dataset will be adapted and extended to fit new requirements presented by advances in the field.
 
 %In Section~\ref{sec:Related}, some example datasets of conventional non-spiking computer vision are introduced.
-The rest of this paper is structured as follows: Section~\ref{sec:method} elaborates the purpose and protocols of the proposed dataset and describes the sub-datasets and the methods employed to generate them; it also demonstrates the suggested evaluation methodology for use with the dataset.
+The rest of this Chapter is structured as follows: Section~\ref{sec:method} elaborates the purpose and protocols of the proposed dataset and describes the sub-datasets and the methods employed to generate them; it also demonstrates the suggested evaluation methodology for use with the dataset.
 %The sub-datasets and their generation methods are described in detail in Section~\ref{sec:data}.
 %In accordance with the dataset, its evaluation methodology is demonstrated in Section~\ref{sec:eval}.
-Section~\ref{sec:test} presents two SNNs as demonstrations of using the dataset to assess model performance and benchmark hardware platforms.
+Section~\ref{sec:test} presents an SNN case study as demonstrations of using the dataset to assess model performance and benchmark hardware platforms.
 Finally, Section~\ref{sec:summ} summarises the Chapter.
 
 %\section{Related Work}
@@ -261,9 +261,10 @@ A raster plot of the Poisson spike trains is shown in Figure~\ref{fig:zero}(c).
 
 
 
-%\subsubsection{Rank Order Encoding}
-%A different way of encoding spikes is to use a rank order code; this means
-%keeping just the order in which the spikes fired and disregarding their exact timing. Rank-ordered spike trains have been used in vision tasks under a biological plausibility constraint, making them a viable way of encoding images for neural applications~\cite{van2001rate,sen2009evaluating,masmoudi2010novel}.
+\subsubsection{Rank Order Encoding}
+A different way ofencoding spikes is to use a rank order code; this means
+keeping just the order in which the spikes fired and disregarding their exact timing.
+Rank-ordered spike trains have been used in vision tasks under a biological plausibility constraint, making them a viable way of encoding images for neural applications~\cite{van2001rate,sen2009evaluating,masmoudi2010novel}.
 %
 %\begin{table}[tbh!]
 %	\caption{Simulation parameters for FoCal ganglion cells}
@@ -271,7 +272,7 @@ A raster plot of the Poisson spike trains is shown in Figure~\ref{fig:zero}(c).
 %		
 %		
 %		%		\bgroup
-%		%		\def\arraystretch{0.1}
+%		%		\def\arraych{0.1}
 %		
 %		\begin{tabular}{c c c c c c}
 %			\begin{mycellS}{0.8cm}\centering Layer \end{mycellS}& 
@@ -311,9 +312,12 @@ A raster plot of the Poisson spike trains is shown in Figure~\ref{fig:zero}(c).
 %	\label{tab-kernel-specs}
 %\end{table}
 %
-%Rank order coding (ROC) can be performed using an algorithm known as the
-%{FoCal algorithm~\cite{sen2009evaluating}}.
-%This algorithm models the foveola, the highest resolution area of the retina, with four ganglion cell layers each with a different scale of centre-surround receptive field~\cite{kolb2003retina}. To simulate these layers two steps are required: the first consists of four discrete 2D convolutions; the second removes redundant information produced in the first step. During the first step, the centre-surround behaviour of the ganglion cells is modelled using Difference of Gaussians~(DoG) kernel for convolution. 
+Rank order coding (ROC) can be performed using an algorithm known as the
+{FoCal algorithm~\cite{sen2009evaluating}}.
+This algorithm models the foveola, the highest resolution area of the retina, with four ganglion cell layers each with a different scale of centre-surround receptive field~\cite{kolb2003retina}.
+The detailed description of the algorithm is demonstrated in~\cite{liu2016bench} by Garibaldi~Pineda-Garc\'ia\, and the source Python scripts to transform images to ROC spike trains, and to convert the results into AER and PyNN spike source arrays, can be found in the dataset website.
+%To simulate these layers two steps are required: the first consists of four discrete 2D convolutions; the second removes redundant information produced in the first step.
+%During the first step, the centre-surround behaviour of the ganglion cells is modelled using Difference of Gaussians~(DoG) kernel for convolution. 
 %\begin{equation}
 %\label{eq-dog}
 %DoG_w(x,y) = \pm\frac{1}{2\pi\sigma_{w,c}^2}e^{\frac{-(x^2 + y^2)}{2\sigma_{w,c}^2}}
@@ -413,7 +417,7 @@ A raster plot of the Poisson spike trains is shown in Figure~\ref{fig:zero}(c).
 %	\label{fig-reconstruction-results}
 %\end{figure}
 %
-%The source Python scripts to transform images to ROC spike trains, and to convert the results into AER and PyNN spike source arrays, can be found in the dataset website.
+
 
 \subsubsection{DVS Sensor Output with Flashing Input}
 \label{subsec_flash}
@@ -450,7 +454,7 @@ In total, this subset of the database contains 2$\times$$60,000$ recordings for 
 
 \subsubsection{DVS Sensor Output with Moving Input}
 
-The subset with DVS recorded moving digits is presented to address the challenges of position- and scale- invariance in computer vision.
+The subset with DVS recorded moving digits is provided by a collaborator, Teresa~Serrano-Gotarredona, and is  presented to address the challenges of position- and scale- invariance in computer vision.
 
 MNIST digits were scaled to three different sizes, using smooth interpolation algorithms to increase their size from the original 28x28 pixels, and displayed on the monitor with slow motion. 
 The same DVS~\cite{serrano2013128} used in Section~\ref{subsec_flash} captured the movements of the digits and generated spike trains for each pixel in its 128$\times$128 resolution.
@@ -620,7 +624,7 @@ Following to the formatted evaluation as in Table~\ref{tb:model_eval}, Table~\re
 			\begin{mycell}{3cm} 95\% \end{mycell}\\
 			
 			%
-			\begin{mycell}{0.5cm}~\cite{Diehl2015fast}\end{mycell}  & 
+			\begin{mycell}{0.5cm}~\cite{diehl2015fast}\end{mycell}  & 
 			\begin{mycell}{2cm} Poisson \end{mycell} & % preprocessing
 			\begin{mycell}{3cm} ConvNet or \\Fully connected,\\ LIF neurons \end{mycell}& % network
 			\begin{mycell}{3cm} Off-line trained with ReLU, weight normalisation \end{mycell}&   % training
@@ -634,13 +638,13 @@ Following to the formatted evaluation as in Table~\ref{tb:model_eval}, Table~\re
 			
 			%
 			\begin{mycell}{0.5cm} % %\cite{Stromatias2015scalable} \\ 
-				This paper \end{mycell} & 
+				\cite{stromatias2015robustness} \end{mycell} & 
 			\begin{mycell}{2cm} Poisson \end{mycell} & % preprocessing
 			\begin{mycell}{3cm} Four layer RBM, \\ LIF neurons \end{mycell}&  % network
 			\begin{mycell}{3cm} Off-line trained, unsupervised \end{mycell}&  % training
 			\begin{mycell}{3cm} 94.94\%\\16 ms latency \\ 1.44M Sopbs\end{mycell} \\% recognition
 			%
-			\begin{mycell}{0.5cm} This paper \end{mycell}  & 
+			\begin{mycell}{0.5cm} Case Study \end{mycell}  & 
 			\begin{mycell}{2cm} Poisson \end{mycell}& % preprocessing 
 			\begin{mycell}{3cm} Fully connected decision layer, \\ LIF neurons \end{mycell}& % network
 			\begin{mycell}{3cm} K-means clusters,\\Supervised STDP\\$18,000$~s of training \end{mycell}& % training
@@ -793,15 +797,15 @@ Similarly, energy costs vary with different networks and neural and synaptic mod
 
 \section{Results}
 \label{sec:test}
-In this section, we present two recognition SNN models working on the Poissonian subset of the NE15-MNIST dataset.
+In this section, we present a recognition SNN model working on the Poissonian subset of the NE15-MNIST dataset.
 The network components, training and testing methods are described along the lines set out in Section~\ref{subsec:model}.
 The recognition result is evaluated using the proposed metrics: classification accuracy, response latency and number of synaptic events.
 %The specific spike-based evaluations on input event rates and/or responding latency are also provided. 
 As tentative benchmarks the models are implemented on SpiNNaker to assess the hardware-level performance against software simulators.
-Presenting proper benchmarks for vision recognition systems is still under investigation; the case studies only make a first attempt.
+Presenting proper benchmarks for vision recognition systems is still under investigation; the case study only make a first attempt.
 
-\subsection{Case Study I}
-The first case study is a simple two-layer network where the input neurons receive Poisson spike trains from the dataset and form a fully connected network with the decision neurons.
+%\subsection{Case Study I}
+The case study is a simple two-layer network where the input neurons receive Poisson spike trains from the dataset and form a fully connected network with the decision neurons.
 There is at least one decision neuron per digit to classify a test input.
 The neuron with highest output firing rate classifies a test image as the digit it represents.
 The model utilises LIF neurons, and the parameters are all biologically valid, see the listed values in Table~\ref{tbl:pynnSetting}.
@@ -859,7 +863,7 @@ For simplicity of describing the system, one standard configuration is set as th
 	\egroup
 \end{table}
 
-\subsubsection{Training}
+\subsection{Training}
 There are two layers in the model: 28$\times$28 input neurons fully connect to 100 decision neurons.
 Each decision neuron responds to a certain digit template.
 In the standard configuration, there are 10 decision neurons responding to each digit with slightly different templates.
@@ -897,7 +901,7 @@ The trained weights are plotted in accordance with the positions of the decision
 
 
 
-\subsubsection{Testing}
+\subsection{Testing}
 After training the weights of the plastic synapses are set to static, keeping the state of the weights at the last moment of training.
 %The weak weights were set to inhibitory connections with identical strengths in testing.
 %The negative connections reduced the output firing rates while keeping a good classification ability.
@@ -917,7 +921,7 @@ The reduction in CA using the SpiNNaker trained weights was due to precision los
 It is inevitable that numerical precision will be below IEEE double precision at various points in the processing chain from synaptic input to membrane potential.
 The main bottleneck is currently in the ring buffer where the total precision for accumulated spike inputs is 16-bit, meaning that individual spikes are realistically going to be limited to 11- to 14-bit depending upon the probabilistic headroom calculated as necessary from the network configuration and spike throughput~\cite{Hopkins2015Accuracy}.
 
-\subsubsection{Evaluation}
+\subsection{Evaluation}
 Evaluation starts from the model-level, focusing on the spike-based recognition analysis.
 As mentioned in Section~\ref{subsec:model}, CA, response time (latency) and the total number of synaptic events are the main concerns when assessing the recognition performance.
 In our experiment, two sets of weights were applied: the original STDP trained weights, and scaled-up weights which are 10 times stronger.
@@ -1250,7 +1254,7 @@ This result provides a baseline for comparison with other SNN models and neuromo
 
 \section{Summary}
 \label{sec:summ}
-This paper puts forward the NE dataset as a baseline for comparisons of vision based SNN models and neuromorphic platforms.
+This chapter puts forward the NE dataset as a baseline for comparisons of vision based SNN models and neuromorphic platforms.
 It contains spike-based versions of existing widely-used databases in the vision recognition field.
 Since new problems will continue to arise before vision becomes a solved question, the dataset will evolve as research progresses. 
 The conversion methods for transforming images and videos into spike trains will advance. The number of vision datasets will increase and the corresponding evaluation methodologies will evolve.

@@ -213,13 +213,14 @@ The videos are cut into frames (30~ms per frame) and presented to the convolutio
 The configurations of the networks are listed in Table~\ref{tbl:nns}.
 The integration layer is not necessary in a convolutional network, but is used here to decrease the number of synaptic connections.
 
-\begin{table}
+\begin{table}[ph!]
 \caption{Sizes of the convolutional neural networks.}
+\def\arraystretch{1.4}
 	\begin{subtable}{0.8\textwidth}
 		
 		\centering
 		\caption{Model 1: Template matching}
-		\begin{tabular}{p{0.26\textwidth}|p{0.3\textwidth}<{\centering}|p{0.26\textwidth}<{\centering}|p{0.26\textwidth}<{\centering}|p{0.26\textwidth}<{\centering}}
+		\begin{tabular}{p{0.2\textwidth}|p{0.2\textwidth}<{\centering}|p{0.2\textwidth}<{\centering}|p{0.2\textwidth}<{\centering}|p{0.2\textwidth}<{\centering}}
 		%Line 1
 		\Xhline{1.2pt}
 		    & \multicolumn{2}{c|}{\tabincell{c}{\textbf{Full Resolution } \\\textbf{128 $\times$ 128}}}  
@@ -250,7 +251,7 @@ The integration layer is not necessary in a convolutional network, but is used h
 		%Line 7
 		\tabincell{l}{\textbf{Template} \\\textbf{Matching}}
 			& 16$\times$16$\times$5	& 21 $\times$ 21	& 14$\times$14$\times$5	& 15 $\times$ 15
-			\\ \Xhline{1.2 pt}
+			\\ \Xhline{1.5 pt}
 		%Line 8
 		\textbf{Total}
 			& $74,320$	& $15,216,512$	& $5,925$	& $318,420$
@@ -260,10 +261,10 @@ The integration layer is not necessary in a convolutional network, but is used h
 	\end{subtable}
 	\par\bigskip
 	\begin{subtable}{0.8\textwidth}
-		
+	\def\arraystretch{1.4}	
 		\centering
 		\caption{Model 2: Trained MLP}
-		\begin{tabular}{p{0.26\textwidth}|p{0.30\textwidth}<{\centering}|p{0.26\textwidth}<{\centering}|p{0.26\textwidth}<{\centering}|p{0.26\textwidth}<{\centering}}
+		\begin{tabular}{p{0.2\textwidth}|p{0.2\textwidth}<{\centering}|p{0.2\textwidth}<{\centering}|p{0.2\textwidth}<{\centering}|p{0.2\textwidth}<{\centering}}
 		%Line 1
 		\Xhline{1.2pt}
 		    & \multicolumn{2}{c|}{\tabincell{c}{\textbf{Full Resolution} \\\textbf{128 $\times$ 128}}}  
@@ -286,7 +287,7 @@ The integration layer is not necessary in a convolutional network, but is used h
 		%Line 5
 		\tabincell{l}{\textbf{Recognition} \\\textbf{Layer}}
 			& 5	& 5$\times$10	& 5	& 5$\times$10
-			\\ \Xhline{1.2pt}
+			\\ \Xhline{1.5pt}
 		%Line 6
 		\textbf{Total}
 			& $456$	& $4,460$	& $240$	& $2,300$
@@ -330,9 +331,10 @@ The correct recognition rate is calculated from the non-rejected frames.
 The lower resolution of the 32$\times$32 retina input is adequate (85.83\%) for this gesture recognition task. 
 The smaller network uses only 1/10th the number of neurons and 1/50th the number of synaptic connections compared with the full resolution network, while the recognition rate drops only around by 9.0\% with Model 1 and 17.2\% with Model 2.
 
-\begin{table}
+\begin{table}[ph!]
 \centering
 \caption{Recognition results using linear perceptrons in \%}
+\def\arraystretch{1.5}
 	\begin{tabular}{p{0.15\textwidth}|p{0.10\textwidth}<{\centering}|p{0.11\textwidth}<{\centering}|p{0.11\textwidth}<{\centering}|p{0.11\textwidth}<{\centering}|p{0.11\textwidth}<{\centering}}
 		%Line 1
 		\Xhline{1.2pt}
@@ -533,11 +535,15 @@ Between the two network scales there is also a smaller gap in recognition rates 
 \caption{Spikes captured during the live recognition of the recorded retinal input with the resolution of 32$\times$32. }
 \label{fig:rps32}
 \end{figure}
-\begin{table}
+
+
+\begin{table}[ph!]
 \centering
 \caption{Real-time recognition results on SpiNNaker in \%}
+\def\arraystretch{1.5}
 	\begin{tabular}{p{0.15\textwidth}|p{0.10\textwidth}<{\centering}|p{0.11\textwidth}<{\centering}|p{0.11\textwidth}<{\centering}|p{0.11\textwidth}<{\centering}|p{0.11\textwidth}<{\centering}}
 		%Line 1
+		
 		\Xhline{1.2pt}
 		    \multicolumn{2}{c|}{}	& \multicolumn{2}{c|}{\textbf{30~ms per frame}}  
 		    & \multicolumn{2}{c}{\textbf{300~ms per frame}}
@@ -586,7 +592,7 @@ Between the two network scales there is also a smaller gap in recognition rates 
 	\end{tabular}
 	\label{tbl:srr}
 \end{table}
-\section{Conclusion}
+\section{Summary}
 \label{sec:cfw}
 
 %Motivation
