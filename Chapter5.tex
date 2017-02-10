@@ -21,7 +21,7 @@ We first of all explore the research question of on-line, event-based deep SNN t
 We then describe SRM in mathematical expression, and explain the factors influencing the accuracy of the method and the factors not. 
 Afterwards we argue why the learning algorithm is proper to train spiking Autoencoders (SAEs) and Spiking Restricted Boltzmann Machines (SRBM).
 During the research we encountered the problem introduced by the correlated spikes, therefore we also propose solutions to decorrelate spike trains in Section~\ref{sec:problem}. 
-Finally the detailed comparison of the traditional training and SRM learning on MNIST dataset demonstrates the equivalent learning ability and shows similar even surpassing recognition and reconstruction capability of SRM.
+Finally the detailed comparison of the traditional training and SRM learning on MNIST dataset demonstrates the equivalent learning ability and shows similar even surpassing recognition and reconstruction capability of SAE and SRBM.
 
 
 \section{Related Works}
@@ -33,16 +33,16 @@ To review the algorithm of training RBMs, please refer to Section~\ref{sec:rbm}.
 The method divided the learning process into potentiating and depression parts, which formed the basic design of related research.
 As an initial attempt the mathematical analysis was mainly ignored, thus the best classification performance achieved was only about 81.5\% using purely spiking neurons.
 %1. Neftci
-\cite{neftci2013event} derived the division of potentiating and depression parts of CD algorithm, but conduct them both on the same neural populations which was more biologically plausible.
+Neftci et al.~\cite{neftci2013event} derived the division of potentiating and depression parts of CD algorithm, but conduct them both on the same neural populations which was more biologically plausible.
 Therefore, a global signal was needed to differentiate the potentiating and depression process.
 And the rhythmic oscillation of these processes generated the particular form of neural sampling~\cite{petrovici2013stochastic}.
 The work focused on the statistical aspect of the event-driven sampling, and was extended to the later work on Synaptic Sampling Machines (S2Ms)~\cite{neftci2016stochastic} with stochastic synapses.
 The classification accuracy of MNIST was 91.9\%, 1.7\% lower than the conventional RBM.
-Similar work of Dan's SRBM training, \cite{burbank2015mirrored} applied STDP rule to train SAEs in very much biologically-plausible manner.
+Another similar work on SRBM training~\cite{burbank2015mirrored} applied STDP rule to train SAEs in very much biologically-plausible manner.
 This work aimed at constructing artificial machine learning algorithm closely to biology, whereas the other works above focused on training spiking deep learning modules with equivalent recognition capability as alternative deep learning methods.
 
 %4. remote (ReSuMe)
-The work we propose was mostly inspired from the supervised time-based spiking learning rule~\cite{ponulak2010supervised}, ReSuMe, where the output spikes of a post-synaptic neuron were trained to generate at expected time points with certain input pattern injected to the pre-synaptic neurons, see Figure~\ref{fig:resume}.
+The work we propose was mostly inspired from the supervised time-based spiking learning rule, ReSuMe~\cite{ponulak2010supervised}, where the output spikes of a post-synaptic neuron were trained to generate at expected time points with certain input pattern injected to the pre-synaptic neurons, see Figure~\ref{fig:resume}.
 The teaching signal always potentiates the synaptic strength according to the exponential STDP curve on the time difference between the teaching spike and the pre-synaptic spike; and the output spikes of the post-synaptic neuron always depress the connection.
 Thus, if an output spike fires earlier than the teaching spike the weight will depress more than it potentiate, thus the output spike should be delayed the next trial; and the vice versa if the post-synaptic neuron spikes later.
 Therefore, the weight stays constant only when the output spikes fire coincidently with the teaching signal.
@@ -75,12 +75,12 @@ The right hand of the equation can be seen as two operations of multiplication, 
 SRM provides the solution to present numeric multiplication $c=ab$ with rate-based spike trains.
 First of all, the multiplier $a$ and the multiplicand $b$ are encoded into Poisson spike trains $s_a=\{s_a(1),s_a(2),...,s_a(T)\}$ and $s_b=\{s_b(1),s_b(2),...,s_b(T)\}$ in the 1~ms resolution, where $s(t)=1$ indicates a spike in the $t$th~ms and $s(t)=0$ means none.
 Secondly, a Poisson generator fires a sequence of spike train according to its firing rate, $\lambda$~Hz, which is assigned linearly to the original multiplier/multiplicand by a factor of $K$.
-Hence, the firing rate ($\lambda_x$) of the Poisson generator is $K$ times of the numerical value x, and can be approximated by the average spike count, $N_T(s_x)$, of the generated spike train $s_x$ over time length of $T$:
+Hence, the firing rate ($\lambda_x$) of the Poisson generator is $K$ times of the numerical value x, and can be approximated by the averaging spike count, $N_T(s_x)$, of the generated spike train $s_x$ over time length of $T$~ms:
 \begin{equation}
 \lambda_x = Kx \approx N_T(s_x) = \frac{1000}{T} \sum_{t=1}^{T} s_x(t) ,
 \end{equation} 
-and 1000 is the scale factor for scaling frequency per millisecond to per second.
-Significantly, the approximation is more accurate as the observing time ($T$) grows since more spikes are generated over time and the average spike count becomes more reliable.
+and 1000 is the scale factor to transfer frequency per millisecond to frequency per second.
+Significantly, the approximation is more accurate as the observing time ($T$) grows since more spikes are generated over time and the averagING spike count becomes more reliable.
 Thirdly, assuming $s_a$ and $s_b$ are independent Poisson spike trains the core definition of the rate multiplication of the pair of spike trains is as follows:
 \begin{equation}
 \lambda_a \lambda_b \approx N_{T_1}(s_a)N_{T_2}(s_b)= 10^6 \frac{\sum_{t_a=1}^{T_1}s_a(t_a)}{T_1}  \frac{\sum_{t_b=1}^{T_2} s_b(t_b)}{T_2}.
@@ -94,7 +94,7 @@ The rate multiplication is then approximated by:
 \lambda_a \lambda_b \approx \frac{10^6}{\tau_{dur} \tau_{win}} \sum_{t=1}^{\tau_{dur}} [s_a(t) \sum_{t_b=t}^{t+\tau_{win}} s_b(t_b)],
 \end{equation} 
 where $\tau_{dur}$ replaces $T$ to represent the length of generated spike trains during SNN simulation.
-The weight rise/drop according to a rectangular STDP curve can detect the spike events of a pair of spike trains when post-synaptic spike occurs no later than $\tau_{win}$, see Figure~\ref{fig:rtg_stdp}.
+The weight rise/drop according to a rectangular STDP curve can detect the spike events of a pair of neurons when post-synaptic spike occurs no later than $\tau_{win}$, see Figure~\ref{fig:rtg_stdp}.
 Therefore, the overall weight change during time $\tau_{dur}$ indicates the rate multiplication, and is decried by SRM:
 \begin{equation}
 \begin{aligned}
@@ -138,11 +138,11 @@ Last but not least, we state the property of SRM algorithm:
 \label{sec:dSNN}
 The Section conducts experiments to compare conventional deep learning modules to spiking versions of them.
 To start with, AEs and RBMs are trained with clean numerical values, and then with noisy values which are generated by presenting the original values with Poisson spike trains and transferring the spike counts back to numerical values.
-These experiments run as baselines to compare with spike based training on the features of weights' convergence, reconstruction error and neurons' activities.
+These experiments run as baselines to compare with spike-based training on the features of weights' convergence, reconstruction error and neurons' activities.
 
-There are two set-ups of the same network architecture where ten visible neurons connect to the layer of ten hidden neurons symmetrically with all-to-all weights: (1)~the values of all the input data are 1, $input_1 = [1, 1, 1,...,1]$; and (2)~the input data range from 0.1 to 1 linearly with step of 0.1, $input_2 = [0.1, 0.2, 0.3,...,1]$.
+There are two set-ups of the same network architecture where ten visible neurons connect to the layer of ten hidden neurons symmetrically with all-to-all weights: Exp1, the values of all the input data are 1, $input_1 = [1, 1, 1,...,1]$; and Exp2, the input data range from 0.1 to 1 linearly with step of 0.1, $input_2 = [0.1, 0.2, 0.3,...,1]$.
 These two experiments provide a close observation on the weight updates given the constant input values.
-And Experiment I shows how the network responds to a same input value 1, and reconstructs it; while Experiments II can demonstrate the influence of ranging input values, more importantly how firing rate may affect the corresponding SNN.
+And Exp1 shows how the network responds to a same input value and reconstructs it; while Exp2 can demonstrate the influence of ranging input values, more importantly how different firing rate may affect the corresponding SNN.
 
 Following the experiments of conventional models, we propose the training methods of SAEs and SRBMs in detail.
 The same experiments are then applied to the on-line and spike-based algorithm.
@@ -201,8 +201,8 @@ In order to compare all the experiments following, we demonstrate the results in
 
 
 For Exp1, the reconstruction loss reduces exponentially to the limit of the computer's float precision (Figure~\ref{fig:ae_orig}(g)), and reaches $10^{-4}$ using about 600 steps, and from that point the weights, visible reconstruction, and the output of the hidden units nearly stabilise, see Figure~\ref{fig:ae_orig}(a,c,e).
-With differentiate input values in Exp2, the training runs slower taking about $1,400$ steps to reach the same performance of $10^{-4}$ loss (Figure~\ref{fig:ae_orig}(h)).
-The reason of the slower training comes to the weaker input and it also makes the output of the hidden units lower than Exp1, see Figure~\ref{fig:ae_orig}(f), thus the positive part of the weight change, $\eta h_i v_j$, is much weakened. 
+With different input values in Exp2, the training runs slower taking about $1,400$ steps to reach the same performance of $10^{-4}$ loss (Figure~\ref{fig:ae_orig}(h)).
+The reason of the slower training comes to the weaker input which also results in lower output rate of the hidden units comparing to Exp1, see Figure~\ref{fig:ae_orig}(f), so that the positive part of the weight change, $\eta h_i v_j$, is much weakened. 
 The reconstructions, shown in Figure~\ref{fig:ae_orig}(d), of smaller values stabilise earlier than the ones of higher values, since the higher output of the reconstruction requires stronger weights and more accumulated weight updates. 
 \begin{figure}
 	\centering
@@ -247,7 +247,7 @@ The same experiments are repeated with noisy training and testing data to provid
 The noisy data is gathered from the SNN experiments in Section~\ref{subsec:SAE}, and the corresponding SRM parameters are listed in Table~\ref{tbl:srm}.
 All the SNN experiments use the same training and testing Poisson spike trains for the purpose of unified experimental environment.
 The firing rates of the input values are scaled up by the factor $K = 100$, thus $\lambda_1 = [100, 100, 100, ..., 100]$ Hz and $\lambda_2 = [10, 20, 30, ..., 100]$ Hz.
-The spike count $c$ of a generated Poisson spike train then transformed to the noisy input, $c/(\tau_{dur} * K)$.
+The spike count $N_{\tau_{dur}}$ of a generated Poisson spike train then transformed to the noisy input, $N_{\tau_{dur}}/(\tau_{dur} * K)$.
 The length of spike trains $\tau_{dur}$ is 0.1~s when training, and 1~s for testing.
 The longer the spike trains are, less noisy the spike counts become.
 The noisy input can be seen as distorted data by adding Gaussian noise on the original value.
@@ -273,7 +273,7 @@ First of all, it generates slight waves on the weight changes.
 Secondly, the reconstruction and the output of the hidden units are noisy comparing to the training and testing on clean data, however the noise are much reduced from the noisy input data (Figure~\ref{fig:noise_input}). 
 Finally, the loss keeps in a certain level and stops dropping.
 The loss of Exp2 is lower than Exp1, in other words the reconstruction on Exp2 are closer to the input data.
-It is mainly caused the weaker noise level on the smaller input values that the data is less noisy in Exp2 in average. 
+It is mainly caused by the weaker noise level on the smaller input values which makes the data of Exp2 less noisy in average. 
 \begin{figure}
 	\centering
 	\begin{subfigure}[t]{0.45\textwidth}
@@ -385,7 +385,7 @@ The shared weights, three individual populations of neurons build the training n
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.8\textwidth]{pics_sdlm/rSTDP.pdf}
+	\includegraphics[width=0.7\textwidth]{pics_sdlm/rSTDP.pdf}
 	\caption{How SRM works in training spiking Autoencoders.}
 	\label{fig:rSTDP}
 \end{figure}
@@ -393,7 +393,7 @@ The shared weights, three individual populations of neurons build the training n
 Figure~\ref{fig:rSTDP} illustrates the learning mechanism of the SAE architecture by giving an example of one hidden neuron $h_i$ connected by an input neuron $v_j$ and connecting to a reconstruction neuron $v'_j$ with the same strength $w_{ij}$.
 The weight $w_{ij}$ rises by $\eta_s$ (marked with up-arrow) when a spike comes within the period of $\tau_{win}$ after the hidden neuron fires;
 and it decreases by $-\eta_s$ (marked with down-arrow) if the reconstruction neuron generates a spike in the same time window.
-On the contrary, either $v_j$ or $v'_j$ spikes outside the effective STDP window, the weight remains unchanged.
+On the contrary, if either $v_j$ or $v'_j$ spikes outside the effective STDP window, the weight will remain unchanged.
 The learning continues as long as the neurons are active, however the weights may stay relatively stable when the input firing rate is the same with the reconstructions'.
 
 \begin{table}[hbbp]
@@ -462,20 +462,25 @@ The learning continues as long as the neurons are active, however the weights ma
 		Experiments 1) 10 visible units fully connected to 10 hidden units with Poisson spike trains of 100~Hz which lasted 100~ms; 2) same network fed with 10 Poisson spike trains of firing rate ranging from 10~Hz to 100~Hz.}
 	\label{fig:SAE_orig}
 \end{figure}
-In order to reproduce the experiments on AEs, we select the parameters (see Table~\ref{tbl:srm}) for training SAEs and also apply the same parameter for SRBM experiments.
+In order to reproduce the experiments of the AEs, we select the parameters (see Table~\ref{tbl:srm}) for training SAEs and also apply the same parameter for SRBM experiments.
 Each input vector (image) presents as spiking trains with the length of 100~ms, and the STDP window is set to 10~ms.
-The input values are scales by 100 times as firing rates of the spike trains.
-Thus according to Equation~\ref{equ:eta_s}, the learning rate of SAEs and RBMs is $10^{-4}$.
+The input values are scales by $K=100$ times, thus are used as firing rates of the spike trains.
+Therefore, according to Equation~\ref{equ:eta_s}, the learning rate of SAEs and SRBMs is $10^{-4}$.
 
-To compare with the AE experiments on noisy input data, Figure~\ref{fig:SAE_orig} records the weight change during training, and the testing results generated by the test of the 1~s long input spike trains.
+To compare with the AE experiments on noisy input data, Figure~\ref{fig:SAE_orig} records the weight change during training and the testing results generated by the test of each image presenting 1~s long.
 The most import and obvious difference is the weight change where the weights do not stabilise but their values diverge along training.
 The output firing rate of the hidden units tends to converge as training goes on.
 The reason of these phenomena will be discussed in Section~\ref{sec:problem}.
-The training is slower than the AE experiment where the loss decrease takes long time.
+The training is slower than the AE experiment and the loss takes longer time to decrease to a same level.
 It mainly caused by the low firing rate of both the input and the hidden units at the beginning of the training.
 Thus very few even none spikes involved to trigger STDP.
-With the simple input of Exp1, the training performance reaches the AE test of 0.01 loss;
+With the simple input of Exp1, the training performance reaches the same level of 0.01 of the noisy AE test;
 however, the SAE does not reconstruct the various input values of Exp2 as good as the AE does, since the parameters $\tau_{win}$ and $\tau_{dur}$ are relatively short.
+
+\subsection{Training Spiking RBM}
+As illustrated in Equation~\ref{equ:rbm}, the positive weight updates are generated from multiplication of visible and hidden units; where the negative comes from the pair of Gibbs sampling.
+Figure~\ref{fig:sRBM} shows the architecture of an SRBM which consists of four layers of neurons: input $\bf{v}$, hidden $\bf{h}$, sampling visible (or reconstruction) $\bf{v'}$ and sampling hidden $\bf{h'}$ neurons, and the shared weights $\bf{W}$.
+
 
 \begin{figure}
 	\centering
@@ -484,11 +489,7 @@ however, the SAE does not reconstruct the various input values of Exp2 as good a
 	\label{fig:sRBM}
 \end{figure}
 
-\subsection{Training Spiking RBM}
-As illustrated in Equation~\ref{equ:rbm}, the positive weight updates are generated from multiplication of visible and hidden units; where the negative comes from the pair of Gibbs sampling.
-Figure~\ref{fig:sRBM} shows the architecture of a SRBM which consists of four layers of neurons: input $\bf{v}$, hidden $\bf{h}$, sampling visible (or reconstruction) $\bf{v'}$, sampling hidden $\bf{h'}$ and the shared weights $\bf{W}$.
-
-Figure~\ref{fig:rSTDP_rbm} demonstrates the training of an SRBM with a pair of spiking neurons $v_j$ and $h_i$, the corresponding sampling pair $v'_j$ and $h'_i$, and the shared weight $w_ij$.
+Figure~\ref{fig:rSTDP_rbm} demonstrates the training of an SRBM with a pair of spiking neurons $v_j$ and $h_i$, the corresponding sampling pair $v'_j$ and $h'_i$, and the shared weight $w_{ij}$.
 Up-arrows mark the increase of the weight when $v_j$ fires during the time window after the two spikes of $h_i$;
 at the meanwhile, down-arrow highlights the decrease of the weight when $v'_j$ generates a spike no later than $\tau_{win}$ after $h'_i$ fires.
 The amplitude of the weight change is set the same as in Table~\ref{tbl:srm}.
@@ -496,7 +497,7 @@ The amplitude of the weight change is set the same as in Table~\ref{tbl:srm}.
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.8\textwidth]{pics_sdlm/rSTDP_rbm.pdf}
+	\includegraphics[width=0.7\textwidth]{pics_sdlm/rSTDP_rbm.pdf}
 	\caption{How SRM works in training spiking RBMs.}
 	\label{fig:rSTDP_rbm}
 \end{figure}
@@ -546,7 +547,7 @@ The weight diverging is a more severe problem in SRBM, see Figure~\ref{fig:srbm_
 Especially for Exp1, only on hidden neuron is active on the later half of the training, thus to make firing rate of the reconstruction jumping between two states.
 Because the high firing rate of the pre-synaptic neuron, a slight weight increase may generate quite a few spikes for the post-synaptic neuron.
 Therefore, more balanced activity among neurons can perform better in terms of accuracy.
-The same as SAE experiments, the slower training and worse loss also appear in the experiments.
+%The same as SAE experiments, the slower training and worse loss also appear in the experiments.
 
 \section{Problem}
 \label{sec:problem}
@@ -611,7 +612,7 @@ And the default parameters are the same as in Table\ref{tbl:srm}.
 \begin{figure}
 	\centering
 	\begin{subfigure}[c]{0.45\textwidth}\raggedleft
-		\myrowlabel{Orignal SAE}
+		\myrowlabel{Orignal SRBM}
 		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
 			{pics_sdlm/10_exp_SRBM_Orig/exp2_weights_s.pdf}}\\
 		\myrowlabel{Solution~1}
@@ -622,7 +623,7 @@ And the default parameters are the same as in Table\ref{tbl:srm}.
 			{pics_sdlm/13_exp_SRBM_noise_long/exp2_weights_s.pdf}}
 		\myrowlabel{Solution~3}
 		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
-			{pics_sdlm/15_exp_SRBM_teach_long/exp2_weights_s.pdf}}\\
+				{pics_sdlm/15_exp_SRBM_teach_long/exp2_weights_s.pdf}}\\
 		\myrowlabel{Combined Solutions}
 		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
 			{pics_sdlm/17_exp_SRBM_all_long/exp2_weights_s.pdf}}
@@ -657,7 +658,7 @@ In the experiment, we double the window length to 20~ms and set $\eta_s$ to $5 \
 
 To make the comparisons more straight forward, we list the weights and loss of Exp2 for all the solutions in Figure~\ref{fig:sols_ae} (SAE) and Figure~\ref{fig:sols_rbm} (SRBM).
 Longer STDP window reduces the weights diverging that the bidirectional weight change slows down and keeps within a smaller range.
-In addition, the loss performance drops comparing to the original SAE test because of the longer STDP window $\tau_{dur}$ makers SRM more accurate reflecting to the first property of SRM algorithm in Section~\ref{sec:SRM}.
+In addition, the loss performance drops comparing to the original SAE test because of the longer STDP window $\tau_{win}$ makers SRM more accurate reflecting to the first property of SRM algorithm in Section~\ref{sec:SRM}.
 
 
 
@@ -676,20 +677,20 @@ Furthermore, the performance of the reconstruction improves in both SAE and SRBM
 \subsection{Solution~3: Teaching Signal}
 A teaching signal which fires at the same rate of the input spikes is completely independent with the output spikes generated in the network.
 Thus it decorrelates the SRM in the positive part of the weight change $\Delta w_{ij} = SRM(v_j,h_i)$ in SAE and SRBM by using $\Delta w_{ij}=SRM(s_j,h_i)$ instead, where $s_j$ is the teaching spike train firing at the same rate of $v_j$.
-Comparing to the other solutions, it requires doubled Poisson spike trains: the input spikes work the same to active the network, and the teaching spikes do not impact on the neural dynamics but only trigger learning on the synapses between the input layer and the hidden layer.
+Comparing to the other solutions, it requires doubled Poisson spike trains: the input spikes work the same to activate the network, and the teaching spikes do not impact on the neural dynamics but only trigger learning on the synapses between the input layer and the hidden layer.
 
-In terms of SAE training, teaching signals improve the problem of correlations similar as the noisy threshold does, and the variance of the loss shrinks (Figure~\ref{fig:sols_ae} Solution~3).
+In terms of SAE training, teaching signals  alleviate the problem of correlations similar as the noisy threshold does, and the variance of the loss shrinks (Figure~\ref{fig:sols_ae} Solution~3).
 Although the loss keeps at a higher level, it is due to a constant bias of the reconstruction which caused by a higher SRM calculation on the correlated negative part.
 The reconstruction bias can be observed in the firing rates of the reconstruction neurons recorded in the complete experimental result in Figures~\ref{fig:sol2_ae} and~\ref{fig:sol2_rbm}.
-Regarding to the SRBM training (Figure~\ref{fig:sols_rbm}, the weights diverging is also improved comparing to Solution~1 but not as good as Solution~2, since the noisy threshold applies on the entire network whereas teaching signal only works on the input layer.
+Regarding to the SRBM training (Figure~\ref{fig:sols_rbm}), the weights diverging is also improved comparing to Solution~1 but not as good as Solution~2, since the noisy threshold applies on the entire network whereas teaching signal only works on the input layer.
 The average reconstruction loss is also worse than Solution~1 because of the bias. 
 
 \subsection{Test on Combined Solutions}
 The test combines solutions of long STDP window, noisy threshold and teaching signals.
 The results shown in both Figures~\ref{fig:sols_ae} and~\ref{fig:sols_rbm} demonstrates a combined effect of Solutions~2 and~3 that the dynamic trained weights are between the diverging degree of the solutions and the loss level keeps in between.
-More experiments results can be found in the Appendix~\ref{sec:app2}, Figures~\ref{fig:sol4_ae} and~\ref{fig:sol4_rbm}.
-
-
+More detailed experiments results can be found in Figures~\ref{fig:sol4_ae} and~\ref{fig:sol4_rbm}.
+%TODO add LIF tests
+All of the above experiments and solutions are also tested on LIF neurons to validates the features of SRM that the accuracy is independent of neural model and synaptic models, see Figures~\ref{fig:LIF_sae} and~\ref{fig:LIF_srbm}.
 %XOR problem:
 %To validate the decorrelation methods proposed, a more complicated reconstruction experiment is conducted.
 %The input nodes are fed with values (x, y, z) sequentially (0, 0, 0), (0, 1, 1), (1, 0, 1) and (1, 1, 0) which follows XOR rules, z = x XOR y.
@@ -805,7 +806,7 @@ More experiments results can be found in the Appendix~\ref{sec:app2}, Figures~\r
 Having discussed the problem of training of SAEs and SRBMs, we finally apply the proposed methods on image recognition tasks of MNIST.
 The network architecture is shown in Figure~\ref{fig:MNSIT}.
 The training is conducted using a one-layer AE or RBM, which consists of 794 visible units including 784 neurons representing the images and 10 label units marking the classification, and 500 neurons for the hidden layer.
-Once the network is trained, only the 784 neurons representing image pixels remain as visible units and the other 10 label units work as the top layer of an MLP network for recognising a digit.
+During testing, only the 784 neurons representing image pixels remain as visible units and the other 10 label units work as the top layer of an MLP network for recognising a digit.
 The trained weights of the one-layer AE/RBM split into the bidirectional weights between visible and hidden units, and the forward connections from the hidden layer to the top layer.
 The forward path of the network recognises an image to a digit class, and the bidirectional connections reconstruct the input image.
 
@@ -819,19 +820,21 @@ The forward path of the network recognises an image to a digit class, and the bi
 As the baseline to compare with, the same neural network architecture is firstly tested on original AE and nRBM, and then trained on SNNs.
 Three epochs of all the $60,000$ training images are fed into the network in order.
 In the training of SNNs, same as described above in Section~\ref{sec:ae}, pixel values of images are represented by Poisson spike trains firing at certain frequency linear to the original value.
-Therefore the over all count of spikes for each pixel is equivalent to adding Gaussian noise to its original value and is used as noisy input of convectional training to provide an equal comparison to SNNs.
+And the over all count of spikes for each pixel is used as noisy input of convectional training to provide an equal comparison to SNNs.
 Moreover, all the training images are presented in sequence, in other words we use the minimum batch size of~1.
 Since training a batch of $n$ images in parallel require $n$ times of physical spiking neurons sharing the same weights, it is easier to track the weight change caused by single pair of neurons than by $n$ pairs.
-In addition, the default parameters of SNNs are the same as listed in Table~\ref{tbl:srm} except that the STDP window $tau_{win}$ is doubled to 20~ms and the learning rate $\eta_s$ is set to $5 \times 10^{-5}$ accordingly in the improved SNN training.
+In addition, the default parameters of SNNs are the same as listed in Table~\ref{tbl:srm} except that the STDP window $tau_{win}$ is doubled to 20~ms and the learning rate $\eta_s$ is set to $5 \times 10^{-5}$ accordingly in the improved solutions of SNN training.
 And the initial weights are identical for all the experiments following as well as the input spike trains.
 
 
 \subsection{Trained weights}
 The first comparison is directly conducted on the trained weights after three epochs of the entire training images.
-We randomly select 49 hidden neurons out of the 500 to display the weighs between them and the visible units (only the 784 neurons representing the images), see Figures~\ref{fig:weights_ae} and~\ref{fig:weights_rbm}.
-The colour scales from white to black representing the values between -1 to 1.
+We randomly select 49 hidden neurons out of 500 to display the weighs between the hidden and visible units (only the 784 neurons representing the images), see Figures~\ref{fig:weights_ae} and~\ref{fig:weights_rbm}.
+The grey scales from white to black representing the values between -1 to 1.
+Unlike the diverging weights in the previous section, the trained weights of all the methods keep within the similar range thanks to the big dataset which restricts the weight searching to a certain scope.  
 
-The trained weights of original AE and AE with Poisson noisy input are of slight difference while the original SAE training results in noisy patterns where unexpected white dots appear in the black strokes of the extracted digit features (Figure~\ref{fig:weights_ae}(c)).
+The trained weights of original AE and AE with Poisson noisy input are of little difference.
+However the original SAE training results in noisy patterns where unexpected white dots appear in the black strokes of the extracted digit features (Figure~\ref{fig:weights_ae}(c)).
 The other improved training methods demonstrates a closer feature extraction to the conventional AE training.
 
 \begin{figure}
@@ -859,7 +862,7 @@ The other improved training methods demonstrates a closer feature extraction to 
 	\end{subfigure}
 	\begin{subfigure}[t]{0.4\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/43_MNIST_SAE_all/2_60000_0.pdf}
-		\caption{SAE+Solutions 2+3}
+		\caption{SAE+Combined Solutions}
 	\end{subfigure}\\
 	\caption{Trained weights after training 3 epochs of MNIST data using (a) AE, (b) AE with Poisson spike trains as input data, (c) Original SAE, (d)  SAE trained with neurons of noisy threshold, (e)SAE trained with extra teaching signal, and (f) SAE trained with both solutions.}
 	\label{fig:weights_ae}
@@ -889,7 +892,7 @@ The other improved training methods demonstrates a closer feature extraction to 
 	\end{subfigure}
 	\begin{subfigure}[t]{0.4\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/53_MNIST_SRBM_all/2_60000_0.pdf}
-		\caption{SRBM+Solutions 2+3}
+		\caption{SRBM+Combined Solutions}
 	\end{subfigure}\\
 	\caption{Trained weights after training 3 epochs of MNIST data using (a) nRBM, (b) nRBM with Poisson spike trains as input data, (c) Original SRBM, (d) SRBM trained with neurons of noisy threshold, (e) SRBM trained with extra teaching signal, and (f) SRBM trained with both solutions.}
 	\label{fig:weights_rbm}
@@ -898,16 +901,16 @@ The other improved training methods demonstrates a closer feature extraction to 
 Regarding to RBM training, the extracted features are not easily recognisable as in the AE because of the sampling noise introduced by NReLU.
 The results in Figure~\ref{fig:weights_rbm} shows: (a) the strokes are continuous and (b) pixel-wise noise appear in (b) of Poisson input in training conventional RBM;
 (c) few continuous strokes generated in the original SRBM training;
-(d) more noticeable extracted patterns turn up with solutions of noisy threshold;
+(d) more noticeable extracted patterns turn up with the solution of noisy threshold;
 (e) SRBM trained with teaching signal shows similar continuous strokes as in the original nRBM training in (a);
 and combined solutions demonstrate mixed patterns of training with Solution~2 and~3 which is closer to the nRBM fed with Poisson noisy input in (b). 
 
 
 \subsection{Classification Accuracy (CA)}
 As the most important metric to evaluate the training performance, we test the classification accuracy on SNNs to compare with the conventional models.
-Every image is presented as a vector of Poisson spike trains which last 1~ms long.
-All the experiments below are tested with the spike trains and the spike counts are used for the conventional AE and RBM testing of noisy input.
-On every millisecond step, we count the summed spikes of each output neuron since the start of the testing image's presentation.
+%Every image is presented as a vector of Poisson spike trains which last 1~ms long.
+%All the experiments below are tested with the spike trains and the spike counts are used for the conventional AE and RBM testing of noisy input.
+%On every millisecond step, we count the summed spikes of each output neuron since the start of the testing image's presentation.
 The classification neuron having a highest spike count indicates the predicted class of the given image.
 A correct recognition only happens when the prediction is the same as the label and only one prediction exists.
 Thus if two output neurons both generate the most spikes, then the recognition is failed.
@@ -991,7 +994,7 @@ SRBM with Poisson teaching spikes achieves the best CA of 94.35\% among the SRBM
 	\centering
 	\begin{subfigure}[t]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/43_MNIST_SAE_all/latency.pdf}
-		\caption{SAE+Solution~2 and~3}
+		\caption{SAE+Combined Solutions}
 	\end{subfigure}
 	\begin{subfigure}[t]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/51_MNIST_SRBM_teach/latency.pdf}
@@ -1002,12 +1005,12 @@ SRBM with Poisson teaching spikes achieves the best CA of 94.35\% among the SRBM
 \end{figure}
 
 To have a closer look on the CA performance over the testing time, we plot CA on every ms time step for the best models of the SAEs and SRBMs, see Figure~\ref{fig:latency}.
-The shorter period each image presents to the network, less energy is required.
+The shorter period each image presents to the network, less energy is required when implemented in hardware.
 The SAE model can achieve a close CA to their best performance only using 200~ms, which saves 80\% of the energy use.
 %Figures~\ref{fig:latency}(a) shows a faster convergence of CA due to the use of teaching spike trains.
 %Only Solution~3 within SRBM models exhibits a continuous improving classification performance, and as training proceeds it takes longer for all the models to converge to its best performance.
-Solution~3 exhibits a continuous improving classification performance however as training proceeds it takes longer for the model to converge to its best performance.
-Thus, about 400~ms is needed for Solution~3 of SRBM to perform close to the best CA.
+Solution~3 of SRBM exhibits a continuous improving classification performance however as training proceeds it takes longer for the model to converge to its best performance.
+Thus, about 400~ms is needed for SRBM with teaching signal to perform close to the best CA.
 
 Another factor impacting the energy use is the mean firing rate of the whole network.
 If a close classification performance can be achieved with fewer spikes or lower firing rate, then the neuromorphic implementation will be more energy efficient.
@@ -1037,7 +1040,7 @@ An output spike of a neuron generates $n$ synaptic events to the $n$ post synapt
 The $Mean\_synaptic\_event\_rate$ for various $K$ values is listed in Table~\ref{tbl:fire_rate}, and $Number\_of\_images$ is $10,000$ for MNIST test.
 The $Time\_per\_image$ can be set to 200~ms for SAE with combined solutions and 400~ms for SRBM of Solution 3.
 Hence, we can approximately estimate their energy cost provided with the $Energy\_per\_synaptic\_event$ of some specific neuromorphic hardware, for example, about 8~nJ on SpiNNaker~\cite{stromatias2013power}.
-Thus, it may only cost SpiNNaker 0.02~W of power running for $2,000$~s, 42~J, for the whole synaptic events of the entire SAE testing on MNIST.
+Thus, it may only cost SpiNNaker 0.021~W of power running for $2,000$~s, 42~J, for the whole synaptic events of the entire SAE testing on MNIST.
 %TODO compare with the other algorithm
 The energy measurement on neuromorphic hardware is out of range of this Chapter, but will be thoroughly discussed in the next Chapter.
 \begin{table}[htbp]
@@ -1139,7 +1142,7 @@ Reconstruction is the other essential function of the unsupervised learning mode
 Figure~\ref{fig:sdlm_recon} shows how reconstruction improves over training steps for each model.
 RBMs demonstrate a better reconstruction capability than AEs in general, see Figure~\ref{fig:sdlm_loss}, thus RBMs are usually used for pre-training of AEs or Deep Belief Networks.
 
-It is surprising to see that the original SRM training performs the best in both SAE and SRBM models.
+It is surprising to see that the original spike based training performs the best in both SAE and SRBM models.
 A possible explanation could be overfitting, that it is easy for the models to reconstruct the images have been shown but difficult to generalise the models to unseen data.
 Classification here is equivalent to image in-painting in AEs and RBMs.
 Therefore, the original SAE and SRBM work well on reconstruction but poorly on classification.
@@ -1177,8 +1180,8 @@ On the contrary, SAE of noisy threshold wins in energy-efficient training and te
 
 \section{Summary}
 SNNs can be trained with biologically-plausible synaptic plasticity and demonstrate competent learning capability as ANNs, even as state-of-the-art deep architectures: Autoencoders (AEs) and Restricted Boltzmann Machines (RBMs).
-The proposed Spike-based Rate Multiplication (SRM) and its improving solutions formalise a local learning algorithm based on STDP and have been applied to train spiking AEs and RBMs.
+The proposed Spike-based Rate Multiplication (SRM) and its improving solutions formalise a local learning algorithm based on STDP, the on-line, event-based learning rule, and have been applied to train spiking AEs and RBMs.
 This is the first attempt of formalising the biological-plausible learning rule to perform approximately to the unsupervised deep learning models.
-The promising results exhibit equivalent and even surpassing classification and reconstruction capabilities of SAEs and SRBMs.
-In addition, the spike-based models can be implemented on neuromorphic systems in a very energy-efficient manner.
+The promising results exhibit equivalent and even surpassing classification and reconstruction capabilities of SAEs and SRBMs comparing to their conventional methods.
+In addition, the spike-based models can be implemented on neuromorphic systems in a very energy-efficient and scalable manner.
 %A conclusion should be a short summary of the most pithy points in the chapter. It’s the thing that you’re going to leave the reader with. Given that they’ve just spent time reading the whole chapter, they don’t want to read it all again. What do you most want the reader to remember about this chapter? What is the key to the argument you’ve made, the most significant thing(s) that they have to keep in their mind as they go forward? In a thesis, a conclusion is usually fairly brief and to the point. Barbara and I call this ‘crunching’. Crunching the conclusion requires some thought – it’s not an afterthought. It is always about your take-home message, if you like. So don’t go on at length in the conclusion – Crunch.

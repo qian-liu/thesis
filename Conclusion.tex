@@ -1,3 +1,63 @@
 \chapter{Conclusion and Future Work}
 \label{cha:conc}
-\textcolor{red}{Need TODO}
+\section{Conclusion}
+The first version of the dataset is published as NE15-MNIST, which contains four different spike representations of the MNIST stationary hand-written digit database.
+The Poissonian subset is intended for benchmarking existing rate-based recognition methods.
+The rank-order coded subset, FoCal, encourages research into spatio-temporal algorithms on recognition applications using only small numbers of input spikes.
+Fast recognition can be verified on the DVS recorded flashing input subset, since just 30~ms of useful spike trains are recorded for each image.
+Looking forward, the continuous spike trains captured from the DVS recorded moving input can be used to test mobile neuromorphic robots.
+\cite{orchard2015convert} have presented a neuromorphic dataset using a similar approach, but the spike trains were obtained with micro-saccades.
+This dataset aims to convert static images to neuromorphic vision input, while the recordings of moving input in our paper are intended to promote position-invariant recognition.
+Therefore, the datasets complement each other.
+
+The proposed complementary evaluation methodology is essential to assess both the model-level and hardware-level performance of SNNs.
+In addition to classification accuracy, response latency and the number of synaptic events are specific evaluation metrics for spike-based processing.
+Moreover, it is important to describe an SNN model in sufficient detail to share the network design, and relevant SNN characteristics were highlighted in the paper.  
+%For a neural network model, its topology, neuron and synapse models, and training methods are major descriptions for any kind of neural networks, including SNNs.
+%While the recognition accuracy, network latency and also the biological time taken for both training and testing are specific performance measurements of a spike-based model.
+The network size of an SNN model that can be built on a hardware platform will be constrained by the scalability of the hardware.
+Neural and synaptic models are limited to the ones that are physically implemented, unless the hardware platform supports programmability.
+Any attempt to implement an on-line learning algorithm on neuromorphic hardware must be backed by synaptic plasticity support.
+Therefore running an identical SNN model on different neuromorphic hardware exposes the capabilities of such platforms.
+If the model runs smoothly on a hardware platform, it then can be used to benchmark the performance of the hardware simulator in terms of simulation time and energy usage.
+Classification accuracy (CA) is also a useful metric for hardware evaluation because of the limited precision of the membrane potential and synaptic weights.
+
+%Although spike-based algorithms have not surpassed their non-spiking counterparts in terms of recognition accuracy, they have shown great performance in response time and energy efficiency.
+This dataset makes the comparison of SNNs with conventional recognition methods possible by using converted spike representations of the same vision databases.
+As far as we know, this is the first attempt at benchmarking neuromorphic vision recognition by providing public a spike-based dataset and evaluation metrics.
+In accordance with the suggestions from~\cite{tan2015bench}, the evaluation metrics highlight the strengths of spike-based vision tasks and the dataset design also promotes the research into rapid and low energy recognition (e.g. flashing digits).
+Two benchmark systems were evaluated using the Poissonian subset of the NE15-MNIST dataset.
+%The models were described and their performance on accuracy, network latency, simulation time and energy usage were presented.
+These example benchmarking systems demonstrated a recommended way of using the dataset, describing the SNN models and evaluating the system performance.
+%They provide a baseline for comparisons and encourage improved algorithms and models to make use of the dataset.
+The case studies provide baselines for robust comparisons between SNN models and their hardware implementations.
+%As the dataset grows, it will allow new problems to be investigated by researchers, which should allow the identification of future directions and, in consequence, advance the field.
+
+%\subsection{The future direction of a developing database}
+\section{Future Work}
+The database will be expanded by converting more popular vision datasets to spike representations.
+As mentioned in Section~\ref{sec:chapt6_intro}, face recognition has become a hot topic in SNN approaches, however there is no unified spike-based dataset to benchmark these networks.
+Thus, the next development step for our dataset is to include face recognition databases.
+While viewing an image, saccades direct high-acuity visual analysis to a particular object or a region of interest and useful information is gathered during the fixation of several saccades in a second.
+It is possible to measure the scan path or trajectory of the eyeball and those trajectories show particular interest in eyes, nose and mouth while viewing a human face~\cite{yarbus1967eye}.
+Therefore, our plan is also to embed modulated trajectory information to direct the recording using DVS sensors to simulate human saccades.
+
+There will be more methods and algorithms for converting images to spikes.
+Although Poisson spikes are the most commonly used external input to an SNN system, there are several \textit{in-vivo} recordings in different cortical areas showing that the inter-spike intervals (ISI) are not Poissonian~\cite{deger2012statistical}. 
+Thus~\cite{deger2012statistical} proposed new algorithms to generate superposition spike trains of Poisson processes with dead-time (PPD) and of Gamma processes.
+Including novel spike generation algorithms in the dataset is one aspect of future work which will be carried out.
+
+%While the major stumbling crux of the computer object recognition systems lies in the invariance problem.
+Each encounter of an object on the retina is unique, because of the illumination (lighting condition), position (projection location on the retina), scale (distance and size), pose (viewing angle), and clutter (visual context) variabilities.
+But the brain recognises a huge number of objects rapidly and effortlessly even in cluttered and natural scenes.
+In order to explore invariant object recognition, the dataset will include the NORB (NYU Object Recognition Benchmark) dataset~\cite{lecun2004learning}, which contains images of objects that are first photographed in ideal conditions and then moved and placed in front of natural scene images.
+
+Action recognition will be the first problem of video processing to be introduced in the dataset.
+The initial plan is to use the DVS retina to convert the KTH and Weizmann benchmarks to spiking versions.
+Meanwhile, providing a software DVS retina simulator to transform frames into spike trains is also on the schedule.
+By doing this, a huge number of videos, such as those in YouTube, can automatically be converted into spikes, therefore providing researchers with more time to work on their own applications.
+
+Overall, it is impossible for the dataset proposers to provide enough datasets, converting methods and benchmarking results, thus we encourage other researchers to contribute to the dataset.
+Researchers can contribute their data to the dataset, allowing future comparisons using the same data source.
+They can also share their spike conversion algorithms by generating datasets to promote the corresponding recognition methods.
+Neuromorphic hardware owners are welcome to provide benchmarking results to compare their system's performance.

@@ -4,6 +4,7 @@
 
 \usepackage{verbatim}
 \usepackage{graphicx}
+\usepackage{rotating}
 %\usepackage[subrefformat=parens,labelformat=parens]{subfig}
 \usepackage{url} % typeset URL's reasonably
 \usepackage{listings}
@@ -32,7 +33,7 @@
 			\vspace*{0.15cm}
 		}
 		{
-			\vspace*{0.1cm}
+			\vspace*{0.15cm}
 		\end{center}
 	\end{minipage}
 }
@@ -42,7 +43,7 @@
     \begin{center}
     }
     {
-      \vspace*{0.01cm}
+      \vspace*{0.015cm}
     \end{center}
   \end{minipage}
 }
@@ -50,11 +51,22 @@
 {
 	\begin{minipage}{#1}
 		\begin{flushleft}
-			\vspace*{0.15cm}
+			\vspace*{0.3cm}
 		}
 		{
-			\vspace*{0.1cm}
+			\vspace*{0.3cm}
 		\end{flushleft}
+	\end{minipage}
+}
+\newenvironment{rightcell}[1]
+{
+	\begin{minipage}{#1}
+		\begin{flushright}
+			\vspace*{0.3cm}
+		}
+		{
+			\vspace*{0.3cm}
+		\end{flushright}
 	\end{minipage}
 }
 
