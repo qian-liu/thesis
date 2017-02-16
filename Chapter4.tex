@@ -1,10 +1,33 @@
-\chapter{Training Deep SNNs Off-line as ANNs}
+\chapter{Noisy Softplus: an Activation Function Enables Training Deep SNNs Off-line as ANNs}
 \label{cha:Conv}
-The Spiking Neural Network (SNN) has not achieved the recognition/classification performance of its non-spiking competitor, the Artificial Neural Network(ANN), particularly when used in deep neural networks.
-The mapping of a well-trained ANN to an SNN is a hot topic in this field, especially using spiking neurons with biological characteristics.
-This paper proposes a new biologically-inspired activation function, Noisy Softplus, which is well-matched to the response function of LIF (Leaky Integrate-and-Fire) neurons.
-A convolutional network (ConvNet) was trained on the MNIST database with Noisy Softplus units and converted to an SNN while maintaining a close classification accuracy.
-This result demonstrates the equivalent recognition capability of the more biologically-realistic SNNs and bring biological features to the activation units in ANNs.
+%Paragraph One: LINK
+The first step in answering my research question of validating the capability of real-time cognitive application built on neuromorphic platform was to building an object recognition prototype running completely on hardware in an absolute spike-based fashion.
+It built up the basis for the later research that neuromorphic hardware has been capable of running large cognitive applications standing alone without a general computer and has stepped into the era of improving its cognitive ability.
+It is also possible to make a link between this chapter and the whole argument that this work contributes to an effective SNN training method equivalent to the performance of ANN's.
+
+%Paragraph Two: FOCUS
+%Now focus the reader’s attention on what this chapter is specifically going to do and why it is important. In this chapter I will examine.. I will present… I will report … This is crucial in (aim of thesis/research question) in order to….
+The Spiking Neural Network (SNN) has not achieved the recognition/classification performance of its non-spiking competitor, the ANN, particularly when used in deep neural networks.
+Training SNNs by conventional ANN algorithms and mapping well-trained ANNs weights to SNNs are attracting attention in this field for its straight-forward conception.
+%, especially the SNNs of spiking neurons with biological characteristics.
+In this chapter we will propose a new biologically-inspired activation function, Noisy Softplus, which is well-matched to the response function of LIF (Leaky Integrate-and-Fire) neurons.
+Thus, any ANN employing Noisy Softplus neurons, even of deep architecture, can be trained exactly by the traditional algorithm (e.g. Back Propagation) and the trained weights can easily fit into the spiking version of the same network.
+This is crucial to increase the classification accuracy of SNNs using biological characteristics and close the gap between the performance of SNNs and ANNs.
+
+%Paragraph Three: OVERVIEW
+%The third paragraph simply outlines the way that you are going to achieve the aim spelled out in the previous paragraph. It’s really just a statement of the contents in the order that the reader will encounter them. It is important to state these not simply as topics, but actually how they build up the internal chapter argument… I will begin by examining the definitions of, then move to seeing how these were applied… I first of all explain my orientation to the research process, positioning myself as a critical scholar.. I then explain the methodology that I used in the research, arguing that ethnography was the most suitable approach to provide answers to the question of… 
+%https://patthomson.net/2014/01/16/connecting-chapterschapter-introductions/
+
+%We first of all explore the research question of on-line, event-based deep SNN training in the literature.
+%We then describe SRM in mathematical expression, and explain the factors influencing the accuracy of the method and the factors not. 
+%Afterwards we argue why the learning algorithm is proper to train spiking Autoencoders (SAEs) and Spiking Restricted Boltzmann Machines (SRBM).
+%During the research we encountered the problem introduced by the correlated spikes, therefore we also propose solutions to decorrelate spike trains in Section~\ref{sec:problem}. 
+%Finally the detailed comparison of the traditional training and SRM learning on MNIST dataset demonstrates the equivalent learning ability and shows similar even surpassing recognition and reconstruction capability of SAE and SRBM.
+We begin by introducing the difficulty of SNN training, and lead to the existing solutions state-of-the-art.
+Then we put forward the proposed activation function, Noisy Softplus, and demonstrate how it fits the network dynamics of SNNs.
+The complete SNN training method is explained employing the new activation function.
+To validate the classification accuracy, a convolutional network (ConvNet) is trained on the MNIST database following this training mechanism and tested directly on an SNN.
+The encouraging result demonstrates the equivalent recognition capability of the more biologically-realistic SNNs and bring biological features to the activation units in ANNs.
 
 \section{Introduction}	
 Deep Neural Networks (DNNs) are the most promising research field in computer vision, even exceeding human-level performance on image classification tasks~\cite{he2015delving}.
@@ -42,7 +65,7 @@ The Noisy Softplus activation function proposed here is based on LIF neurons wit
 The resulting classification accuracy was tested on a spiking ConvNet; the performance was close to that of the original ConvNet, and was better than using Softplus.
 This study brings a significant biological feature, noise, to the activation units of an ANN, in the hope of promoting research into noise-based computation.
 	
-\section{Methods}
+\section{Modelling The Activation Function}
 	\subsection{Rectified Linear Units(ReLU)}
 	Nair and Hinton~\cite{nair2010rectified} stated that ReLU preserve information about relative intensities(intensity equivarance) provided they have zero biases and are noise-free, but binary units do not.
 	This technique has dominated the best recognition performances~\textcolor{red}{ref?} in deep learning.
@@ -156,7 +179,7 @@ This study brings a significant biological feature, noise, to the activation uni
 	%assuming that large amount of small amplitude PSPs are required to reach the threshold and $\tau_syn$ limits to 0.
 	where the mean and variance are given by:
 	\begin{equation}
-	\mu = \tau_{syn}\sum_i w_i\lambda_{i}~,~\sigma^2=\frac{1}{2}\tau_{syn}^{2}\sum_i w_i^2\lambda_{i}~,
+	\mu = \tau_{syn}\sum_i w_i\lambda_{i}~,~\sigma^2=\tau_{syn}^{2}\sum_i w_i^2\lambda_{i}~,
 	\end{equation}
 	where $\tau_{syn}$ is the synaptic time constant, and each Poisson spike train connects to the neuron with a strength of $w_i$ and a firing rate of $\lambda_i$.
 	Two populations of Poisson spike sources, for excitatory and inhibitory synapses respectively, were connected to a single LIF neuron to mimic the noisy currents.
@@ -299,7 +322,7 @@ This study brings a significant biological feature, noise, to the activation uni
 	As it is a major concern in neuromorphic vision, the recognition performance over short response times is also estimated in Figure~\ref{Fig:response}.
 	\begin{figure}[bt!]
 		\centering
-		\begin{subfigure}[t]{0.45\textwidth}
+		\begin{subfigure}[t]{0.6\textwidth}
 			\includegraphics[width=\textwidth]{pics_iconip/7.pdf}
 		    \caption{Output firing rates}
 		    \label{Fig:out}
