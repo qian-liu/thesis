@@ -2,49 +2,50 @@
 \label{cha:sdlm}
 %Paragraph One: LINK
 %Make a connection to what has immediately gone before. Recap the last chapter. In the last chapter I showed that… Having argued in the previous chapter that… As a result of x, which I established in the last chapter….. It is also possible to make a link between this chapter and the whole argument… The first step in answering my research question (repeat question) .. was to.. . In the last chapter I …
-Having argued in the previous chapter that it is feasible to construct deep SNNs off-line by training DNN with specific activation function.
-This Chapter continues the hot topic of deep SNNs and takes extra step forward to biologically inspired, on-line, spike-based training.
+Having argued in the previous chapter that it is feasible to construct deep SNNs off-line by training DNN with specific activation function, this chapter continues the hot topic of deep SNNs and takes extra step forward to biologically inspired, on-line, spike-based training.
 
 %Paragraph Two: FOCUS
 %Now focus the reader’s attention on what this chapter is specifically going to do and why it is important. In this chapter I will examine.. I will present… I will report … This is crucial in (aim of thesis/research question) in order to….
-In this Chapter We will present the method, Spike-based Rate Multiplication (SRM).
+In this chapter we will present the Spike-based Rate Multiplication method, SRM.
 This algorithm successfully transfers multiplication operations to possibility of some specific firing events of a pair of rate-coded spike trains.
 Moreover, these firing events can be captured with Synaptic-Time-Dependent Plasticity (STDP) rule thus to update the weights accordingly in an on-line, event-based, and biologically-plausible manner.
-Such weight update well fits the conventional unsupervised deep learning modules: such as Autoencoders (AE) and Restricted Boltzmann Machines (RBMs), where multiplication of the neural outputs is the main operation.
-It is crucial to provide deep SNNs with effective on-line training algorithm not only for building successful spike-based object recognition applications, but also for better power efficiency and scalability when training on neuromorphic hardware.
+Such weight updates suit the conventional unsupervised deep learning modules, such as Autoencoders (AE) and Restricted Boltzmann Machines (RBMs), where multiplication of the neural outputs is the main operation.
+%todo maybe sell online event-based STDP? At least in Chapter 2, when introducing learning algorithms.
+It is crucial to provide deep SNNs with effective on-line training algorithms not only for building successful spike-based object recognition applications, but also for better power efficiency and scalability when training on neuromorphic hardware.
 
 
 %Paragraph Three: OVERVIEW
 %The third paragraph simply outlines the way that you are going to achieve the aim spelled out in the previous paragraph. It’s really just a statement of the contents in the order that the reader will encounter them. It is important to state these not simply as topics, but actually how they build up the internal chapter argument… I will begin by examining the definitions of, then move to seeing how these were applied… I first of all explain my orientation to the research process, positioning myself as a critical scholar.. I then explain the methodology that I used in the research, arguing that ethnography was the most suitable approach to provide answers to the question of… 
 %https://patthomson.net/2014/01/16/connecting-chapterschapter-introductions/
-We first of all explore the research question of on-line, event-based deep SNN training in the literature.
-We then describe SRM in mathematical expression, and explain the factors influencing the accuracy of the method and the factors not. 
-Afterwards we argue why the learning algorithm is proper to train spiking Autoencoders (SAEs) and Spiking Restricted Boltzmann Machines (SRBM).
-During the research we encountered the problem introduced by the correlated spikes, therefore we also propose solutions to decorrelate spike trains in Section~\ref{sec:problem}. 
-Finally the detailed comparison of the traditional training and SRM learning on MNIST dataset demonstrates the equivalent learning ability and shows similar even surpassing recognition and reconstruction capability of SAE and SRBM.
+We explore the research question of on-line, event-based deep SNN training in the literature, describe SRM in mathematical expression, and explain the factors influencing the accuracy of the method and the factors not. 
+We argue why the learning algorithm is suited to train spiking Autoencoders (SAEs) and Spiking Restricted Boltzmann Machines (SRBM).
+During the research we encountered the problem introduced by correlated spikes, and propose solutions to decorrelate spike trains in Section~\ref{sec:problem}. 
+Finally, the online, spike-based learning algorithms demonstrated similar even surpassing recognition and reconstruction capabilities over traditional training on the detailed comparison on the MNIST dataset.
+
 
 
 \section{Related Works}
 %To start with evidence of energy efficiency: maybe should refer to Chapter 2 or 1.
-The current trend towards training deep SNNs on line using biologically-plausible learning methods is promising due to its potential benefit on low-energy hardware implementation.
+The current trend towards training deep SNNs on-line using biologically-plausible learning methods is promising due to its potential benefit on low-energy hardware implementation.
 %0. Dan Neil: Online Learning in Event-based Restricted Boltzmann Machines
-The first on-line training algorithm of unsupervised learning is event-based contrastive divergence (evtCD)~\cite{neil2013online} for SRBM, which firstly found out the feasibility of applying STDP rule to approximate CD algorithm.
-To review the algorithm of training RBMs, please refer to Section~\ref{sec:rbm}.
-The method divided the learning process into potentiating and depression parts, which formed the basic design of related research.
+The first on-line training algorithm of unsupervised learning is event-based contrastive divergence (evtCD)~\cite{neil2013online} for SRBM, which established the feasibility of applying STDP rule to approximate CD algorithm.
+A review of training RBM algorithms is given in Section~\ref{sec:rbm}.
+The evtCD method divided the learning process into potentiating and depression parts, which formed the basic design of related research.
 As an initial attempt the mathematical analysis was mainly ignored, thus the best classification performance achieved was only about 81.5\% using purely spiking neurons.
 %1. Neftci
-Neftci et al.~\cite{neftci2013event} derived the division of potentiating and depression parts of CD algorithm, but conduct them both on the same neural populations which was more biologically plausible.
+Neftci et al.~\cite{neftci2013event} derived the division of potentiating and depression parts of CD algorithm, but conducted both on the same neural populations which was more biologically plausible.
 Therefore, a global signal was needed to differentiate the potentiating and depression process.
 And the rhythmic oscillation of these processes generated the particular form of neural sampling~\cite{petrovici2013stochastic}.
 The work focused on the statistical aspect of the event-driven sampling, and was extended to the later work on Synaptic Sampling Machines (S2Ms)~\cite{neftci2016stochastic} with stochastic synapses.
 The classification accuracy of MNIST was 91.9\%, 1.7\% lower than the conventional RBM.
-Another similar work on SRBM training~\cite{burbank2015mirrored} applied STDP rule to train SAEs in very much biologically-plausible manner.
-This work aimed at constructing artificial machine learning algorithm closely to biology, whereas the other works above focused on training spiking deep learning modules with equivalent recognition capability as alternative deep learning methods.
+Another similar work on SRBM training~\cite{burbank2015mirrored} applied STDP rule to train SAEs in a very much biologically-plausible manner.
+This work aimed at constructing artificial machine learning algorithms closely to biology, whereas the other works above focused on training spiking deep learning modules with equivalent recognition capability as alternative deep learning methods.
 
 %4. remote (ReSuMe)
 The work we propose was mostly inspired from the supervised time-based spiking learning rule, ReSuMe~\cite{ponulak2010supervised}, where the output spikes of a post-synaptic neuron were trained to generate at expected time points with certain input pattern injected to the pre-synaptic neurons, see Figure~\ref{fig:resume}.
-The teaching signal always potentiates the synaptic strength according to the exponential STDP curve on the time difference between the teaching spike and the pre-synaptic spike; and the output spikes of the post-synaptic neuron always depress the connection.
-Thus, if an output spike fires earlier than the teaching spike the weight will depress more than it potentiate, thus the output spike should be delayed the next trial; and the vice versa if the post-synaptic neuron spikes later.
+The teaching signal always potentiates the synaptic strength $w$ according to the exponential STDP curve on the time difference between the teaching spike and the pre-synaptic spike; and the output spikes of the post-synaptic neuron always depress the connection.
+%todo not like the sentence
+Thus, if an output spike fires earlier than the teaching spike the weight will depress more than it potentiates, thus the output spike may be delayed at the next trial due to a weaker synaptic input; and vice versa that the output spike will possibly fire earlier because of the weight's stronger potentiation when the post-synaptic neuron spikes later.
 Therefore, the weight stays constant only when the output spikes fire coincidently with the teaching signal.
 \begin{figure}
 	\centering
