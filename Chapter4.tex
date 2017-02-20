@@ -1,7 +1,7 @@
 \chapter{Noisy Softplus: an Activation Function Enables Training Deep SNNs Off-line as ANNs}
 \label{cha:Conv}
 %Paragraph One: LINK
-The first step in answering my research question of validating the capability of real-time cognitive application built on neuromorphic platform was to building an object recognition prototype running completely on hardware in an absolute spike-based fashion.
+The first step in answering my research question of validating the capability of real-time cognitive application built on neuromorphic platform was to build an object recognition prototype running completely on hardware in an absolute spike-based fashion.
 It built up the basis for the later research that neuromorphic hardware has been capable of running large cognitive applications standing alone without a general computer and has stepped into the era of improving its cognitive ability.
 It is also possible to make a link between this chapter and the whole argument that this work contributes to an effective SNN training method equivalent to the performance of ANN's.
 
@@ -44,53 +44,28 @@ In practice, ANNs use neuron and synapse models very different from biological n
 
 %How to map a well trained ANN to SNN is a hot topic in this field, especially using spiking neurons of biological scale.
 
-On the other hand, the offline training of an ANN, which is then mapped to an SNN, has shown near loss-less conversion and state-of-the-art classification accuracy.
+Conversely, the offline training of an ANN, which is then mapped to an SNN, has shown near loss-less conversion and state-of-the-art classification accuracy.
 This research aims to prove that SNNs are equally capable as their non-spiking rivals of pattern recognition, and at the same time are more biologically realistic and energy-efficient.
 Jug et. al.~\cite{Jug_etal_2012} first proposed the use of the Siegert function to replace the sigmoid activation function in Restricted Boltzmann Machine (RBM) training.
 The Siegert units map incoming currents driven by Poisson spike trains to the response firing rate of a Leaky Integrate-and-Fire (LIF) neuron.
 The ratio of the spiking rate to its maximum is equivalent to the output of a sigmoid neuron.
 A spiking Deep Belief Network (DBN)~\cite{Stromatias2015scalable} was implemented on neuromorphic hardware, SpiNNaker~\cite{furber2014spinnaker}, to recognise hand written digits in real time.
 However, cortical neurons seldom saturate their firing rate.
-Thus Rectified Linear Units (ReLU) were proposed and surpassed the performance of other popular activation units thanks to their advantage of sparsity~\cite{glorot2011deep}.
-Recent work~\cite{hunsberger2015spiking} proposed the Soft LIF response function, which is equivalent to Softplus activation.
+Thus Rectified Linear Units (ReLU) were proposed and surpassed the performance of other popular activation units thanks to their advantage of sparsity~\cite{glorot2011deep} and its robustness towards the vanishing gradient problem which will be described in Section~\ref{sec:activation}.
+%TODO Chapter2 about relu and vanishing gradient problem.
 %	~\cite{dugas2001incorporating}.
 %trained with noisy input, the 4-layered spiking autoencoder reached 98.37\% accuracy on MNIST. 
 
-Even better performance~\cite{cao2015spiking,diehl2015fast} has been demonstrated in Spiking Convolutional Networks (ConvNets), but this employed simple integrate and fire neurons.
+Even better performance~\cite{cao2015spiking,diehl2015fast} has been demonstrated in Spiking Convolutional Networks (ConvNets), but this employed simple integrate and fire (IF) neurons.
 The training used only ReLUs and zero bias to avoid negative outputs, and applied a deep learning technique, dropout, to increase the classification accuracy.
 Normalising the trained weights for use on an SNN was relatively straightforward and maintained the classification accuracy.
 This work was extended to a Recursive Neural Network (RNN)~\cite{diehl2016conversion} and run on the TrueNorth~\cite{merolla2014million} neuromorphic hardware platform.
 
-The Noisy Softplus activation function proposed here is based on LIF neurons with biological characteristics, and is the first attempt to map a spiking neural response accurately to the activation unit of an ANN.
-The resulting classification accuracy was tested on a spiking ConvNet; the performance was close to that of the original ConvNet, and was better than using Softplus.
-This study brings a significant biological feature, noise, to the activation units of an ANN, in the hope of promoting research into noise-based computation.
-	
-\section{Modelling The Activation Function}
-	\subsection{Rectified Linear Units(ReLU)}
-	Nair and Hinton~\cite{nair2010rectified} stated that ReLU preserve information about relative intensities(intensity equivarance) provided they have zero biases and are noise-free, but binary units do not.
-	This technique has dominated the best recognition performances~\textcolor{red}{ref?} in deep learning.
-	Furthermore, utilising ReLU in SNNs will simplify the network structure significantly because of the zero biases.
-	Thus in this section we firstly demonstrate on how ReLU work and perform in DBN.
-	
-	The input vector in a ReLU based RBM does no longer have to be binary, so it can be a float.
-	Instead of using sigmoid transfer function, the ReLU is always positive and has no upper boundary.
-	There are three different ways to model ReLU~\ref{Fig:relu_tranf}:
-	\begin{figure}[hbt]
-		\centering
-		\includegraphics[width=0.7\textwidth]{pics_sdbn/relu.pdf}
-		\caption{The DBN architecture.} 
-		\label{Fig:relu_tranf}
-	\end{figure}
-	\begin{itemize}
-		\item sum of an infinite number of binary units with each having a bias less than the previous one~~\cite{nair2010rectified}.
-		This is one of the reason people believe the recognition performance exceeding since each ReLU represents infinite samples of sigmoid. 
-		\item the approximation of the previous form $\log(1+e_x)$.
-		\item the simplified version which is the most popular in deep learning $max(0,\sum w x)$.
-	\end{itemize}  
 
 	
-	
-	\subsection{Neural Science Background}
+\section{Modelling The Activation Function}
+
+\subsection{Neural Science Background}
 	%As discussed above, most of the top scored networks map the ReLUs in ANN to the equivalent spiking version of IF neurons.
 	This paper proposes a new activation function, Noisy Softplus, which is inspired by neuroscience observations of LIF neurons.
 	The LIF neuron model follows the following membrane potential dynamics:
@@ -159,7 +134,31 @@ This study brings a significant biological feature, noise, to the activation uni
 		\end{tabular}
 		\egroup
 	\end{table}
+
+	\subsection{Activation Function in ANN}
+	\label{sec:activation}
+	Nair and Hinton~\cite{nair2010rectified} stated that ReLU preserve information about relative intensities(intensity equivarance) provided they have zero biases and are noise-free, but binary units do not.
+	This technique has dominated the best recognition performances~\textcolor{red}{ref?} in deep learning.
+	Furthermore, utilising ReLU in SNNs will simplify the network structure significantly because of the zero biases.
+	Thus in this section we firstly demonstrate on how ReLU work and perform in DBN.
 	
+	The input vector in a ReLU based RBM does no longer have to be binary, so it can be a float.
+	Instead of using sigmoid transfer function, the ReLU is always positive and has no upper boundary.
+	There are three different ways to model ReLU~\ref{Fig:relu_tranf}:
+	\begin{figure}[hbt]
+		\centering
+		\includegraphics[width=0.7\textwidth]{pics_sdbn/relu.pdf}
+		\caption{The DBN architecture.} 
+		\label{Fig:relu_tranf}
+	\end{figure}
+	\begin{itemize}
+		\item sum of an infinite number of binary units with each having a bias less than the previous one~~\cite{nair2010rectified}.
+		This is one of the reason people believe the recognition performance exceeding since each ReLU represents infinite samples of sigmoid. 
+		\item the approximation of the previous form $\log(1+e_x)$.
+		\item the simplified version which is the most popular in deep learning $max(0,\sum w x)$.
+	\end{itemize}  
+	
+	Recent work~\cite{hunsberger2015spiking} proposed the Soft LIF response function, which is equivalent to Softplus activation.
 	
 	
 	\subsection{LIF Neuron Simulation}
@@ -358,6 +357,10 @@ This study brings a significant biological feature, noise, to the activation uni
 	Noisy Softplus not only brings more biological features to the activation function, but also proves capable of performing well in a spiking ConvNet recognition task.
 	The spiking version of Noisy Softplus wins on accuracy over the sigmoid neuron, compared to the result~\cite{Stromatias2015scalable} of using Siegert units.
 	As a result of its more accurate mapping, Noisy Softplus outperforms Softplus.
+	
+	The Noisy Softplus activation function proposed here is based on LIF neurons with biological characteristics, and is the first attempt to map a spiking neural response accurately to the activation unit of an ANN.
+	The resulting classification accuracy was tested on a spiking ConvNet; the performance was close to that of the original ConvNet, and was better than using Softplus.
+	This study brings a significant biological feature, noise, to the activation units of an ANN, in the hope of promoting research into noise-based computation.
 	
 	Future work on SNNs will include constraints during training to limit the function within the active range, which is equivalent to constraining the maximum firing rate of an LIF neuron.
 	As a result there should be no need for the scaling process after training.
