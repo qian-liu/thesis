@@ -178,7 +178,7 @@ This work was extended to a Recursive Neural Network (RNN)~\cite{diehl2016conver
 	%assuming that large amount of small amplitude PSPs are required to reach the threshold and $\tau_syn$ limits to 0.
 	where the mean and variance are given by:
 	\begin{equation}
-	\mu = \tau_{syn}\sum_i w_i\lambda_{i}~,~\sigma^2=\tau_{syn}^{2}\sum_i w_i^2\lambda_{i}~,
+	\mu = \tau_{syn}\sum_i w_i\lambda_{i}~,~\sigma^2=\frac{1}{2}\tau_{syn}\sum_i w_i^2\lambda_{i}~,
 	\end{equation}
 	where $\tau_{syn}$ is the synaptic time constant, and each Poisson spike train connects to the neuron with a strength of $w_i$ and a firing rate of $\lambda_i$.
 	Two populations of Poisson spike sources, for excitatory and inhibitory synapses respectively, were connected to a single LIF neuron to mimic the noisy currents.
