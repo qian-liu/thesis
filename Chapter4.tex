@@ -72,17 +72,17 @@ Although the use of Siegert function opened the door for ANN-trained SNNs, there
 \begin{itemize}
 	\item most importantly, the numerical analysis on the LIF response function is too far from the practice, thus it generates large error between the model and the actual response firing rate.
 	This issue will be addressed in Section~\ref{subsec:practice}.
-	\item the training uses Siegert function to estimate the output firing rate in the forward path, but uses the derivative of sigmoid function during BP.
+	\item the training uses Siegert function to estimate the output firing rate in the forward path, but uses the derivative of sigmoid function during back propagation.
 	Due to the difference of Siegert and sigmoid functions, error is introduced. 
 	\item high complexity of Siegert function causes much longer training time and more energy.
 	\item neurons have to fire at high frequency (higher than half of the maximum firing rate) so as to represent activation of a sigmoid unit, as a result the network activity requires high power dissipation.
 	\item better learning performance has been reported using ReLU, so modelling ReLU like activation function of Spiking neurons is needed.  
 \end{itemize}
 
-This section will provide solutions to the drawbacks of Siegert unit above.
+This section will propose the Noisy Softplus function which provides solutions to the drawbacks of Siegert unit.
 \subsection{Neural Science Background}
 	%As discussed above, most of the top scored networks map the ReLUs in ANN to the equivalent spiking version of IF neurons.
-	This paper proposes a new activation function, Noisy Softplus, which is inspired by neuroscience observations of LIF neurons.
+	%This research proposes a new activation function, Noisy Softplus, which is inspired by neuroscience observations of LIF neurons.
 	The LIF neuron model follows the following membrane potential dynamics:
 	\begin{equation}
 	\tau_m \frac{\D V}{\D t}=V_{rest} - V + R_{m} I(t) ~.
@@ -186,10 +186,12 @@ This section will provide solutions to the drawbacks of Siegert unit above.
 	
 	\subsection{LIF Neuron Simulation}
 	\label{subsec:practice}
-	To verify the response function, a simulation was carried out using PyNN~\cite{davison2008pynn} to compare with the analytical results.
-	A noisy current with a particular $\mu$ and $\sigma$ was injected into an LIF neuron for 10~s.
-	The firing rate was the average among 10 trials, see Figures~\ref{Fig:lif_curr}(a) and (b).
-	The difference compared to the analytical results (thin lines) comes from the time resolution of the simulated noisy current.
+	To verify the response function in practice, simulation tests were carried out using PyNN~\cite{davison2008pynn} to compare with the analytical results.
+	The noisy current was produced by a constant current of $\mu$ adding up with a Gaussian white noise of zero mean and $\sigma^2$ variance.
+	The noise was drawn from the Gaussian distribution in a time resolution of $dt$.
+	We chose $dt=1$~ms which is the finest resolution for common SNN simulators, and $dt=10$~ms for comparison.
+	For a given pair of $\mu$ and $\sigma^2$, a noisy current was injected into a current-based LIF neuron for 10~s, and the output firing rate was the average among 10 trials.
+	The curves in Figures~\ref{Fig:lif_curr}(a) and (b) lined up the tests on same noise level.
 	
 	\begin{figure}
 		\centering
@@ -237,43 +239,7 @@ This section will provide solutions to the drawbacks of Siegert unit above.
 		\label{Fig:lif_curr}
 	\end{figure}
 	
-%	\begin{figure}
-%	\centering
-%	\begin{subfigure}[c]{0.45\textwidth}\raggedleft
-%		\myrowlabel{Orignal SAE}
-%		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
-%			{pics_sdlm/00_exp_SAE_Orig/exp2_weights_s.pdf}}\\
-%		\myrowlabel{Solution~1}
-%		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
-%			{pics_sdlm/01_exp_SAE_Orig_long/exp2_weights_s.pdf}}\\
-%		\myrowlabel{Solution~2}
-%		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
-%			{pics_sdlm/03_exp_SAE_noise_long/exp2_weights_s.pdf}}
-%		\myrowlabel{Solution~3}
-%		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
-%			{pics_sdlm/05_exp_SAE_teach_long/exp2_weights_s.pdf}}\\
-%		\myrowlabel{Combined Solutions}
-%		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
-%			{pics_sdlm/07_exp_SAE_all_long/exp2_weights_s.pdf}}
-%		\caption{Exp2 Weights}
-%	\end{subfigure}%
-%	\hspace{1em}
-%	\begin{subfigure}[c]{0.45\textwidth}\raggedleft
-%		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
-%			{pics_sdlm/00_exp_SAE_Orig/exp2_mse_nons.pdf}}\\
-%		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
-%			{pics_sdlm/01_exp_SAE_Orig_long/exp2_mse_nons.pdf}}\\
-%		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
-%			{pics_sdlm/03_exp_SAE_noise_long/exp2_mse_nons.pdf}}
-%		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
-%			{pics_sdlm/05_exp_SAE_teach_long/exp2_mse_nons.pdf}}\\
-%		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
-%			{pics_sdlm/07_exp_SAE_all_long/exp2_mse_nons.pdf}}
-%		\caption{Exp2 Loss}
-%	\end{subfigure}%
-%	\caption{Comparisons of weights and loss of solutions for training SAE. 10 visible units fully connected to 10 hidden units with Poisson spike trains of firing rate ranging from 10~Hz to 100~Hz.}
-%	\label{fig:sols_ae}
-%\end{figure}
+	The difference compared to the analytical results (thin lines) comes from the time resolution of the simulated noisy current.
 
 	A more realistic simulation of a noisy current is generated by a Poisson spike train, 
 	%assuming that large amount of small amplitude PSPs are required to reach the threshold and $\tau_syn$ limits to 0.
