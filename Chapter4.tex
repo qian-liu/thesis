@@ -136,7 +136,7 @@ This section will propose the Noisy Softplus function which provides solutions t
 	\begin{equation}
 	\lambda_\mathit{out}=
 	\left [ t_\mathit{ref}+\tau_m \int_{\frac{V_\mathit{rest}-\mu \tau_m }{\sigma \sqrt{\tau_m}}}^{\frac{V_{th}-\mu \tau_m }{\sigma \sqrt{\tau_m}}} \sqrt{\pi} \exp(u^{2}) (1+erf(u)) \D u \right ]^{-1} ~,
-	\label{equ:noiseI}
+	\label{equ:siegert}
 	\end{equation}
 	
 
@@ -148,7 +148,7 @@ This section will propose the Noisy Softplus function which provides solutions t
 		\label{Fig:physics}
 	\end{figure}
 	
-	Figure~\ref{Fig:physics} shows the response curves (Equation~\ref{equ:noiseI}) of a LIF neuron driven by noisy currents with Gaussian noise of $\mu$ mean and $\sigma$ standard deviation.
+	Figure~\ref{Fig:physics} shows the response curves (Equation~\ref{equ:siegert}) of a LIF neuron driven by noisy currents with Gaussian noise of $\mu$ mean and $\sigma$ standard deviation.
 	The parameters of the LIF neuron are all biologically valid (see the listed values in Table~\ref{tbl:pynnConfig}), and the same parameters are used throughout this chapter.
 	The solid (zero noise) line in Figure~\ref{Fig:physics} illustrates the response function of such an LIF neuron injected with constant current, which inspired the proposal of ReLUs.
 	As noise increases, the level of firing rates also rises, and the Softplus activation function approximates the response firing activity driven by current with Gaussian white noise adding on.
@@ -221,14 +221,9 @@ This section will propose the Noisy Softplus function which provides solutions t
 	
 	\subsection{LIF Neuron Simulation}
 	\label{subsec:practice}
-	To verify the response function in practice, simulation tests were carried out using PyNN~\cite{davison2008pynn} to compare with the analytical results.
-	The noisy current was produced by a constant current of $m_I$ adding up with a Gaussian white noise of zero mean and $s_I^2$ variance.
-	The noise was drawn from the Gaussian distribution in a time resolution of $dt$.
-	We chose $dt=1$~ms which is the finest resolution for common SNN simulators, and $dt=10$~ms for comparison.
-	For a given pair of $m_I$ and $s_I^2$, a noisy current was injected into a current-based LIF neuron for 10~s, and the output firing rate was the average among 10 trials.
-	The curves in Figures~\ref{Fig:lif_curr}(a) and (b) lined up the tests on same noise level.
 	
-	\begin{figure}
+	
+	\begin{figure}[tbp!]
 		\centering
 		\begin{subfigure}[t]{0.49\textwidth}
 			\includegraphics[width=\textwidth]{pics_iconip/2-1.pdf}
@@ -273,68 +268,85 @@ This section will propose the Noisy Softplus function which provides solutions t
 		\caption{Comparing the recorded firing rates of the LIF neuron simulation driven by noisy currents to the response function shown in Figure~\ref{Fig:physics}.}
 		\label{Fig:lif_curr}
 	\end{figure}
+
+	To verify the response function in practice, simulation tests were carried out using PyNN~\cite{davison2008pynn} to compare with the analytical results.
+	The noisy current was produced by a constant current of $m_I$ adding up with a Gaussian white noise of zero mean and $s_I^2$ variance.
+	The noise was drawn from the Gaussian distribution in a time resolution of $dt$.
+	We chose $dt=1$~ms which is the finest resolution for common SNN simulators, and $dt=10$~ms for comparison.
+	For a given pair of $m_I$ and $s_I^2$, a noisy current was injected into a current-based LIF neuron for 10~s, and the output firing rate was the average among 10 trials.
 	
+	The curves in Figures~\ref{Fig:lif_curr}(a) and (b) lined up the tests on same noise level.
 	The difference compared to the analytical results (thin lines) comes from the time resolution of the simulated noisy current, $dt$.
-	The discrete sampling of the noisy current introduces time correlation to the white noise, see Figures~\ref{Fig:signal-1} and \ref{Fig:signal-10}.
+	The discrete sampling of the noisy current introduces time correlation to the white noise, shown in  Figure~\ref{Fig:lif_curr}(d), where the current value during a time step $dt$ remains the same.
+	Although both the current signals followed the same Gauss distribution, see Figures~\ref{Fig:lif_curr}(e) and (f), as a sampling frequency of 1kHz the current is a white noise when $dt=1$~ms, but a coloured noise when $dt=10$~ms, see the spectrum analysis in Figures~\ref{Fig:lif_curr}(g) and (h).
+	Thus the Siegert formula, Equation~\ref{equ:siegert}, can only approximate the LIF response of noisy current with white noise.
 	
+\begin{figure}[btp!]
+	\centering
+	\begin{subfigure}[t]{0.49\textwidth}
+		\includegraphics[width=\textwidth]{pics_iconip/spiked_curve_1.pdf}
+		\caption{$\tau_{syn}$=1~ms}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.49\textwidth}
+		\includegraphics[width=\textwidth]{pics_iconip/spiked_curve_10.pdf}
+		\caption{$\tau_{syn}$=10~ms}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.49\textwidth}
+		\includegraphics[width=\textwidth]{pics_iconip/curr_tau1.pdf}
+		\caption{$\tau_{syn}$=1~ms}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.49\textwidth}
+		\includegraphics[width=\textwidth]{pics_iconip/curr_tau10.pdf}
+		\caption{$\tau_{syn}$=10~ms}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.49\textwidth}
+		\includegraphics[width=\textwidth]{pics_iconip/distr_tau1.pdf}
+		\caption{$\tau_{syn}$=1~ms}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.49\textwidth}
+		\includegraphics[width=\textwidth]{pics_iconip/distr_tau10.pdf}
+		\caption{$\tau_{syn}$=10~ms}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.49\textwidth}
+		\includegraphics[width=\textwidth]{pics_iconip/psd_tau1.pdf}
+		\caption{$\tau_{syn}$=1~ms}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.49\textwidth}
+		\includegraphics[width=\textwidth]{pics_iconip/psd_tau10.pdf}
+		\caption{$\tau_{syn}$=10~ms}
+	\end{subfigure}
+	\caption{Recorded response firing rate of a LIF neuron.
+		The driving noisy current is simulated with Poission spike trains and the results are compared to the noisy current source.}
+	\label{Fig:lif_pois}
+\end{figure}
 
 	A more realistic simulation of a noisy current is generated by a Poisson spike train, 
 	%assuming that large amount of small amplitude PSPs are required to reach the threshold and $\tau_syn$ limits to 0.
 	where the mean and variance are given by:
 	\begin{equation}
-	\mu = \tau_{syn}\sum_i w_i\lambda_{i}~,~\sigma^2=\frac{1}{2}\tau_{syn}\sum_i w_i^2\lambda_{i}~,
+	m_I = \tau_{syn}\sum_i w_i\lambda_{i}~, ~s_I^2=\frac{1}{2}\tau_{syn}\sum_i w_i^2\lambda_{i}~,
 	\label{equ:distr}
 	\end{equation}
 	where $\tau_{syn}$ is the synaptic time constant, and each Poisson spike train connects to the neuron with a strength of $w_i$ and a firing rate of $\lambda_i$.
 	Two populations of Poisson spike sources, for excitatory and inhibitory synapses respectively, were connected to a single LIF neuron to mimic the noisy currents.
-	The firing rates of the Poisson spike generators were determined by the given $\mu$ and $\sigma$.
-	Figure~\ref{Fig:lif_pois} illustrates the recorded firing rates responding to the spike trains compared to the result driven by noisy currents.
-	The use of noisy currents assumes that the post-synaptic potential (PSP) is a delta function, e.g. $\tau_{syn}$ tends to the limits of 0.
-	However, in practice the release of neurotransmitter takes time and the noise added to the mean current is not white noise, but pink noise.
-	Thus we observe the mismatch with the test of the injected noisy current. %todo rephrase
+	The firing rates of the Poisson spike generators were determined by the given $m_I$ and $s_I$.
+	Figures~\ref{Fig:lif_pois}(a) and (b) illustrate the recorded firing rates responding to the spike trains compared to the mean firing rate driven by noisy currents.
+	Notice that the estimation of LIF response activity requires noisy current with white noise, however
+%	The use of noisy currents assumes that the post-synaptic potential (PSP) is a delta function, e.g. $\tau_{syn}$ tends to the limits of 0.
+	in practice the release of neurotransmitter takes time ($\tau_{syn} >> 0$) and the synaptic current decays exponentially $I_{syn} = I_0 e^{\frac{-t}{\tau_{syn}}}$.
+	Figures~\ref{Fig:lif_pois}(c) and (d) show two examples of synaptic current of mean 0~nA and standard deviation 0.2 driven by 100 neurons firing at the same rate and with the same synaptic strength, but of different synaptic time constant.
+	Therefore, the current at any time t during decaying period is dependant to the value at previous time step, which makes the synaptic current a coloured noise, see Figures~\ref{Fig:lif_pois}(g) and (h).
+%	and the noise added to the mean current is not white noise, but pink noise.
+	We observe in Figure~\ref{Fig:lif_pois}(a) that the response firing rate to synaptic current is higher than the Gauss noisy current for all the 10 trials.
+	It is caused by the coarse resolution (1~ms) of the spikes, thus the standard deviation of the current signal is larger than 0.2, shown in Figure~\ref{Fig:lif_pois}(e).
+	While Figure~\ref{Fig:lif_pois}(b) shows a close estimation of the firing rate driven by synaptic current by providing the result of the Gauss noisy current test, because that both current signals have similar time correlation.
+	
 %	Thus the experiments show that a longer $\tau_{syn}$ increases the level of noise and widens the variance of the output firing rate.
 	
-	Due to the limited time resolution of common SNN simulators and the time taken for neurotransmitter release, various mismatches exist between the physical response function and the practical neural dynamics.
+	Therefore due to the limited time resolution of common SNN simulators and the time taken for neurotransmitter release, mismatches exist between the analytical response function and the practical neural dynamics.
 	As a result, a unified activation function is needed to model the response function of a LIF neuron with such amount of variables.
 
-	\begin{figure}
-		\centering
-		\begin{subfigure}[t]{0.49\textwidth}
-			\includegraphics[width=\textwidth]{pics_iconip/spiked_curve_1.pdf}
-			\caption{$\tau_{syn}$=1~ms}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.49\textwidth}
-			\includegraphics[width=\textwidth]{pics_iconip/spiked_curve_10.pdf}
-			\caption{$\tau_{syn}$=10~ms}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.49\textwidth}
-			\includegraphics[width=\textwidth]{pics_iconip/curr_tau1.pdf}
-			\caption{$\tau_{syn}$=1~ms}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.49\textwidth}
-			\includegraphics[width=\textwidth]{pics_iconip/curr_tau10.pdf}
-			\caption{$\tau_{syn}$=10~ms}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.49\textwidth}
-			\includegraphics[width=\textwidth]{pics_iconip/distr_tau1.pdf}
-			\caption{$\tau_{syn}$=1~ms}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.49\textwidth}
-			\includegraphics[width=\textwidth]{pics_iconip/distr_tau10.pdf}
-			\caption{$\tau_{syn}$=10~ms}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.49\textwidth}
-			\includegraphics[width=\textwidth]{pics_iconip/psd_tau1.pdf}
-			\caption{$\tau_{syn}$=1~ms}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.49\textwidth}
-			\includegraphics[width=\textwidth]{pics_iconip/psd_tau10.pdf}
-			\caption{$\tau_{syn}$=10~ms}
-		\end{subfigure}
-		\caption{Recorded response firing rate of a LIF neuron.
-			The driving noisy current is simulated with Poission spike trains and the results are compared to the noisy current source.}
-		\label{Fig:lif_pois}
-	\end{figure}
+
 	
 
 	
