@@ -331,48 +331,43 @@ This section will propose the Noisy Softplus function which provides solutions t
 	Two populations of Poisson spike sources, for excitatory and inhibitory synapses respectively, were connected to a single LIF neuron to mimic the noisy currents.
 	The firing rates of the Poisson spike generators were determined by the given $m_I$ and $s_I$.
 	Figures~\ref{Fig:lif_pois}(a) and (b) illustrate the recorded firing rates responding to the spike trains compared to the mean firing rate driven by noisy currents.
-	Notice that the estimation of LIF response activity requires noisy current with white noise, however
+	Note that the estimation of LIF response activity requires noisy current with white noise, however
 %	The use of noisy currents assumes that the post-synaptic potential (PSP) is a delta function, e.g. $\tau_{syn}$ tends to the limits of 0.
 	in practice the release of neurotransmitter takes time ($\tau_{syn} >> 0$) and the synaptic current decays exponentially $I_{syn} = I_0 e^{\frac{-t}{\tau_{syn}}}$.
 	Figures~\ref{Fig:lif_pois}(c) and (d) show two examples of synaptic current of mean 0~nA and standard deviation 0.2 driven by 100 neurons firing at the same rate and with the same synaptic strength, but of different synaptic time constant.
 	Therefore, the current at any time t during decaying period is dependant to the value at previous time step, which makes the synaptic current a coloured noise, see Figures~\ref{Fig:lif_pois}(g) and (h).
 %	and the noise added to the mean current is not white noise, but pink noise.
 	We observe in Figure~\ref{Fig:lif_pois}(a) that the response firing rate to synaptic current is higher than the Gauss noisy current for all the 10 trials.
-	It is caused by the coarse resolution (1~ms) of the spikes, thus the standard deviation of the current signal is larger than 0.2, shown in Figure~\ref{Fig:lif_pois}(e).
-	While Figure~\ref{Fig:lif_pois}(b) shows a close estimation of the firing rate driven by synaptic current by providing the result of the Gauss noisy current test, because that both current signals have similar time correlation.
+	It is caused by a) the coarse resolution (1~ms) of the spikes, thus the standard deviation of the current is larger than 0.2, shown in Figure~\ref{Fig:lif_pois}(e);
+	and b) the $\tau_{syn}$, even short as 1~ms, adds coloured noise instead of white noise to the current.
+	While Figure~\ref{Fig:lif_pois}(b) shows a similar firing rate of both the synaptic driven current and the Gauss noisy current, since both of the current signals have similar distribution and time correlation.
+	Nevertheless, both the practical simulations cannot be approximated by analytical response function.
 	
 %	Thus the experiments show that a longer $\tau_{syn}$ increases the level of noise and widens the variance of the output firing rate.
-	
-	Therefore due to the limited time resolution of common SNN simulators and the time taken for neurotransmitter release, mismatches exist between the analytical response function and the practical neural dynamics.
-	As a result, a unified activation function is needed to model the response function of a LIF neuron with such amount of variables.
-
-
-	
-
 	
 
 		
 	\subsection{Noisy Softplus}
+	Therefore, due to the limited time resolution of common SNN simulators and the time taken for neurotransmitter release, $\tau_{syn}$, mismatches exist between the analytical response function, Siegert formula, and the practical neural activities.
+	Consequently, a unified activation function is required to model the practical responses of a LIF neuron.
 	Inspired by the set of response functions triggered by different levels of noise, we propose the Noisy Softplus activation function:
 	\begin{equation}
 	y = f_{ns}(x, \sigma) = k \sigma \log [1 + \exp(\frac{x}{k \sigma})],
 	\label{equ:nsp}
 	\end{equation}
-	where $x$ refers to the mean current, $y$ is the normalised output firing rate, $\sigma$ plays an important role to define the noise level, and $k$, which is determined by the neuron parameters, controls the curve scaling.
+	where $x$ refers to the mean current, $y$ is the normalised output firing rate, $\sigma$ plays an important role to define the noise level, and $k$, which is determined by the neuron parameters, controls the shape of the curves.
 	Note that the novel activation function we propose contains two parameters, the current and its noise; both are naturally obtained in spiking neurons.
 	% With doubled information, more powerful training methods and network models are expected. 
-	Figures~\ref{Fig:nsp} and~\ref{Fig:3d} show the activation function in curve sets and in a 3D plot.
+	Figure~\ref{fig:nsp} shows the activation function in curve sets corresponding to different discrete noise level, and in a 3D plot.
 	\begin{figure}[thb!]
 		\centering
 		\begin{subfigure}[t]{0.7\textwidth}
 			\includegraphics[width=\textwidth]{pics_iconip/4.pdf}
 			\caption{Noisy Softplus}
-			\label{Fig:nsp}
 		\end{subfigure}\\
-		\begin{subfigure}[t]{0.7\textwidth}
+		\begin{subfigure}[t]{0.8\textwidth}
 			\includegraphics[width=\textwidth]{pics_iconip/5.pdf}
 			\caption{Noisy Softplus in 3D}
-			\label{Fig:3d}
 		\end{subfigure}
 		\caption{
 			Noisy Softplus fits to the response function of the LIF neuron.
@@ -380,14 +375,27 @@ This section will propose the Noisy Softplus function which provides solutions t
 		\label{fig:nsp}
 	\end{figure}	
 	
-	
-	The Noisy Softplus fits well to the recorded response firing rate of the LIF neuron with suitable calibration of $k$ and a scaling factor $S$, see Figure~\ref{Fig:nsptau1}:
+	The derivative is the logistic function scaled by $k\sigma$:
 	\begin{equation}
-	\lambda_{out} \simeq f_{ns}(\mu, \sigma) \times S
+	\frac{\partial f_{ns}(x,\sigma)}{\partial x} = \frac{1}{1+exp(-\frac{x}{k\sigma})}~~,
+	\label{equ:logist}
+	\end{equation}	
+	which could be easily applied to back propagation in any network training.
+	
+	The normalised activation function can be scaled up by a factor, $S$, to represent the firing rate $\lambda$ of a LIF neuron driven by a noisy current $x$.
+	\begin{equation}
+	\begin{aligned}
+	\lambda_{out} &\simeq f_{ns}(x, \sigma) \times S\\
+	&=k \sigma \log [1 + \exp(\frac{x}{k \sigma})] \times S
+	\end{aligned}
 	\label{equ:fit}
 	\end{equation}	
-	The calibration currently is conducted by linear least squares regression, however numerical analysis is considered for future work to express the relationship with the factors, $k$ and $S$, and the biological parameter $\tau_{syn}$.
-		
+	
+	The Noisy Softplus fits well to the practical response firing rate of the LIF neuron with suitable calibration of $k$ and $S$, see Figure~\ref{Fig:nsptau1}.
+	The parameter pair of $(k, S)$ is curve-fitted with the triple data points of $(\lambda, x, \sigma)$.
+	The fitted parameter was set to $(k, S)=(0.19,208.76)$ for the practical response firing rate driven by synaptic noisy current with $\tau_{syn}=1$~ms and was set to $(k, S)=(0.35,201.06)$ when $\tau_{syn}=10$~ms.
+	The calibration currently is conducted by linear least squares regression, however numerical analysis is considered for future work to express the factors, $k$ and $S$ with the biological parameters of a LIF neuron.
+	
 	\begin{figure}
 		\centering
 		\begin{subfigure}[t]{0.49\textwidth}
@@ -402,84 +410,110 @@ This section will propose the Noisy Softplus function which provides solutions t
 		\label{Fig:nsptau1}
 	\end{figure}		
 	
-	The derivative is the logistic function scaled by $k\sigma$:
-	\begin{equation}
-	\frac{\partial f_{ns}(x,\sigma)}{\partial x} = \frac{1}{1+exp(-\frac{x}{k\sigma})}.
-	\label{equ:logist}
-	\end{equation}	
-	
-	\begin{figure}[bt!]
-		\centering
-		\begin{subfigure}[t]{0.3\textwidth}
-			\includegraphics[width=\textwidth]{pics_iconip/6-2.pdf}
-		    \caption{Pixel firing rates}
-		    \label{Fig:62}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.3\textwidth}
-			\includegraphics[width=\textwidth]{pics_iconip/6-3.pdf}
-		    \caption{5x5 kernel}
-		    \label{Fig:63}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.3\textwidth}
-			\includegraphics[width=\textwidth]{pics_iconip/6-4.pdf}
-		    \caption{Output firing rates}
-		    \label{Fig:64}
-		\end{subfigure}
-		\\
-		\begin{subfigure}[t]{0.7\textwidth}
-			\includegraphics[width=\textwidth]{pics_iconip/6-1.png}
-		    \caption{10 input digits as a raster plot}
-		    \label{Fig:61}
-		\end{subfigure}\\
-		\begin{subfigure}[t]{0.7\textwidth}
-			\includegraphics[width=\textwidth]{pics_iconip/6-5.pdf}
-		    \caption{Observed `activation functions'}
-		    \label{Fig:65}
-		\end{subfigure}
-		\caption{
-			Noisy Softplus fits to the neural response firing rate in an SNN simulation.
-			The 28x28 Poisson spike trains in (a) firing rate, and (d) raster plots, are convolved with a 5x5 kernel (b).
-			(c) the convolved map with the firing rates of each neuron.
-			(e) the normalised firing rate compared with Noisy Softplus, Softplus and ReLU activation functions.}
-		\label{fig:cnn}
-	\end{figure}
 	
 \section{ANN-Trained SNNs}	
 	We have discussed modelling response firing activity of a LIF neuron with a unified activation function, Noisy Softplus, however the demonstration on training layered-up network is still required.
-	According to Equation~\ref{equ:distr}, the input of a network $x$ can be seen as $\lambda  \times \tau_{syn}$, thus the complete activation function between layers should be:
+	In ANNs, the input of any activation unit (an artificial neuron) is a weighted sum of the output of connected neurons in the previous layer: $x_i = \sum_j w_{ji}y_j$.
+	According to Equation~\ref{equ:distr}, the input $x$ of a Noisy Softplus unit for training SNNs can be seen as:
 	\begin{equation}
-	y = f_{ns}(\mu, \sigma) \times S \times \tau_{syn}~,
+	x = \lambda  \times \tau_{syn}~~.
 	\end{equation}
-	and also can be generalised as:
+	Thus the complete activation function between layers should be:
 	\begin{equation}
-	y = f_{activation}(x) \times S \times \tau_{syn}~,
+	\begin{aligned}
+	&y = f_{ns}(x, \sigma) \times S \times \tau_{syn}~~, ~~\textrm{where}\\
+	&x_i = \sum_j w_{ji}y_j~~, ~~\textrm{and}\\
+	&\sigma_i^2 = \frac{1}{2}\sum_j w_{ji}^2y_j~~,
+	\end{aligned}
+	\end{equation}
+	in which the $x_i$ is the input of the $i$th neuron in the current layer, $y_j$ is the $j$th neuron in the previous layer, and $w_{ji}$ is the synaptic strength between a pair of neurons.
+	The derivative function used when back propagates is:
+	\begin{equation}
+	\frac{\partial y}{\partial x} = \frac{1}{1+exp(-\frac{x}{k\sigma})} \times S \times \tau_{syn}~~.
+	\end{equation}
+	
+	The training method also can be generalised to any ReLU or Softplus-like activation functions by borrowing the Noisy Softplus calibrated scaling factor, $S$: 
+	\begin{equation}
+	y = f(x) \times S \times \tau_{syn}~~.
 	\end{equation}
 
+	Thus, using this method of ANN-trained SNNs, the activation functions are of lower complexity than Siegert formula, and their corresponding derivative functions can be directly used for back propagation.
+	Furthermore, the method enables ReLU-like activation functions for SNN training, thus to improve the recognition accuracy while keeping a relative lower firing rate compared to Sigmoid neurons. 
+	Most significantly, the ANN-trained weights are ready for use in SNNs without any transformation, and the output firing rate of any spiking neuron can be estimated in the ANN simulation.
 
 \section{Results}
 	A ConvNet model was trained on MNIST,
 	%	~\cite{lecun1998gradient}
-	a popular database in neuromorphic vision, using Noisy Softplus neurons.
+	a popular database in neuromorphic vision, using the ANN-trained SNN method stated above.
 	The architecture contains 28x28 input units, followed by two convolutional layers c5-2s-12c5-2s, and the 10 output neurons represents the classified digit.
-	All the convolution and average sampling neurons use Noisy Softplus units with no bias, while the output neurons are softmax units converting a vector of values into the range (0, 1) that add up to 1.
-	The weights were updated using a fixed learning rate, 50 images per batch and 10 epochs.
-	Before testing on spiking LIF neurons, the weights of each layer were scaled to ensure that input synaptic currents stay within a valid range.
+	
+		\begin{figure}[htb!]
+		\centering
+		\begin{subfigure}[t]{0.3\textwidth}
+			\includegraphics[width=\textwidth]{pics_iconip/6-2.pdf}
+			\caption{Pixel firing rates}
+			\label{Fig:62}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.3\textwidth}
+			\includegraphics[width=\textwidth]{pics_iconip/6-3.pdf}
+			\caption{5x5 kernel}
+			\label{Fig:63}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.3\textwidth}
+			\includegraphics[width=\textwidth]{pics_iconip/6-4.pdf}
+			\caption{Output firing rates}
+			\label{Fig:64}
+		\end{subfigure}
+		\\
+		\begin{subfigure}[t]{0.7\textwidth}
+			\includegraphics[width=\textwidth]{pics_iconip/6-1.png}
+			\caption{10 input digits as a raster plot}
+			\label{Fig:61}
+		\end{subfigure}
+		\caption{
+			Noisy Softplus fits to the neural response firing rate in an SNN simulation.
+			The 28x28 Poisson spike trains in (a) firing rate, and (d) raster plots, are convolved with a 5x5 kernel (b).
+			(c) the convolved map with the firing rates of each neuron.}
+		\label{fig:cnn}
+	\end{figure}
+	
+	Firstly, the training employed Noisy Softplus units only that all the convolution, average sampling, and the fully-connected neurons use Noisy Softplus function with no bias.
+	The parameters of the activation function, $(k, S)$, were calibrated for LIF neurons~(see~Tablel~\ref{tbl:pynnConfig}) of $\tau_{syn}=5$~ms.
+	The input images were scaled by 100~Hz to present the firing rates of input spikes.
+	The weights were updated using a decaying learning rate, 50 images per batch and 20 epochs.
+	After training, the ANN-trained weights are directly applied in the corresponding convolutional SNN for recognition tests.
 	
 	To validate how well the Noisy Softplus activation fits to the response firing rate of LIF neurons in a real application, we simulated the model on Nest using the Poisson MNIST dataset~\cite{liu2016bench} and the neurons of a convolutional map were observed.
-	Figure~\ref{fig:cnn} shows the convolution of a 5x5 kernel with an input digit `0' represented by spike trains.
-	The estimated spike counts using Noisy Softplus fit to the real recorded firing rate much more accurately than the Softplus and ReLU activation functions.
-	In Figure~\subref*{Fig:65}, we manually selected a suitable scaling factor for Softplus which located on the top slope of the response activity.
-	However, the scale factor remains static for all the neurons, thus resulting in a mismatch at different level of noise.
-	Noisy Softplus adapts to noise automatically.
-		\begin{figure}
+	
+
+		
+		\begin{figure}[bth!]
 			\centering
-			\includegraphics[width=0.7\textwidth]{pics_iconip/7.pdf}
+			\begin{subfigure}[t]{0.7\textwidth}
+				\includegraphics[width=\textwidth]{pics_iconip/6-5.pdf}
+				\caption{Observed `activation functions'}
+			\end{subfigure}
+			\caption{The normalised firing rate compared with Noisy Softplus, Softplus and ReLU activation functions.}
+			\label{fig:af_compare}
+		\end{figure}
+
+	Figure~\ref{fig:cnn}(d) shows the a sequence of 10 testing images presented in spike trains for 1~s each.  A 5x5 kernel (Figure~\ref{fig:cnn}(b)) were convolved with an input digit `0' (Figure~\ref{fig:cnn}(a)) and the convolved output of the map was shown in (Figure~\ref{fig:cnn}(c) as firing rate.
+	The estimated spike counts using Noisy Softplus fit to the real recorded firing rate much more accurately than the Softplus and ReLU activation functions, see~\ref{fig:af_compare}.
+	We manually selected a suitable scaling factor for Softplus which located on the top slope of the response activity, while Noisy Softplus adapts to noise automatically.
+	ReLU indicates the Noisy Softplus without noise.
+	
+	Figure~\ref{Fig:out} demonstrates the output firing rates of the 10 recognition neurons when tested with the digit sequence.
+	The SNN successfully classifies the digits with high firing rate indicating the possible candidates and very low firing rate for impossible options. 
+		\begin{figure}[tbp!]
+			\centering
+			\includegraphics[width=0.9\textwidth]{pics_iconip/7.pdf}
 			\caption{Output firing rates for recognising 10 hand written digits.}
 			\label{Fig:out}
 		\end{figure}
 	
 	
-	We compared the training using ReLU, Softplus, and Noisy Softplus by their loss during training averaged over 6 trials, see Figure\ref{fig:training}.
+	Secondy we focus on the training and recognition performance of the proposed ANN-trained SNN method.
+	Thus we compared the training using ReLU, Softplus, and Noisy Softplus by their loss during training averaged over 6 trials, see Figure\ref{fig:training}, and tested the trained model directly on both ANNs and SNNs.
 	The trained networks were scaled to SNNs and compared on recognition rates, 93.34\%, 96.43\% and 97.03\% with a conversion loss of 4.76\%, 0.91\% and 0.74\%.
 	As it is a major concern in neuromorphic vision, the recognition performance over short response times is also estimated in Figure~\ref{Fig:response}.
 	\begin{figure}[bt!]
