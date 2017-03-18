@@ -412,36 +412,96 @@ This section will propose the Noisy Softplus function which provides solutions t
 	
 	
 \section{ANN-Trained SNNs}	
-	We have discussed modelling response firing activity of a LIF neuron with a unified activation function, Noisy Softplus, however the demonstration on training layered-up network is still required.
-	In ANNs, the input of any activation unit (an artificial neuron) is a weighted sum of the output of connected neurons in the previous layer: $x_i = \sum_j w_{ji}y_j$.
-	According to Equation~\ref{equ:distr}, the input $x$ of a Noisy Softplus unit for training SNNs can be seen as:
-	\begin{equation}
-	x = \lambda  \times \tau_{syn}~~.
-	\end{equation}
-	Thus the complete activation function between layers should be:
+	We have discussed modelling response firing activity of a LIF neuron with a unified activation function, Noisy Softplus.
+	However the demonstration of mapping the physical activity to numerical ANN calculations is still required, thus to train the layered-up deep network.
+	
+	\subsection{Equivalent Input and Output}
+	
+	\begin{figure}[bt]
+		\centering
+		\includegraphics[width=0.7\textwidth]{pics_sdlm/neuron.pdf}
+		\caption{Artificial neuron model in ANNs. }
+		\label{Fig:neuron}
+	\end{figure}
+	Neurons in ANNs take inputs from their previous layer, and feed the weighted sum of their input, $net_j = \sum_i w_{ij}x_i$, to the activation function.
+	The transformed signal then forms the output of an artificial neuron, $y_j=f(net_j)$, see Figure~\ref{Fig:neuron}.
+	
+	Meanwhile, Noisy Softplus is able to predict the firing rate of a spiking neural driven by some noisy current, nevertheless an extra step is still needed to map the firing rate to numerical values in ANNs.
+	According to Equation~\ref{equ:distr}, the mean of the current feeding into a spiking neuron is equivalent to $net$ of artificial neurons, where
 	\begin{equation}
 	\begin{aligned}
-	&y = f_{ns}(x, \sigma) \times S \times \tau_{syn}~~, ~~\textrm{where}\\
-	&x_i = \sum_j w_{ji}y_j~~, ~~\textrm{and}\\
-	&\sigma_i^2 = \frac{1}{2}\sum_j w_{ji}^2y_j~~,
+		& {m_I}_j = \sum_i w_{ij}(\lambda_{i}\tau_{syn})~, \textrm{  thus}\\
+		& net_j= \sum_i w_{ij} x_i~~, \textrm{~~and~~}
+		x_i = \lambda_{i}\tau_{syn}~.
 	\end{aligned}
 	\end{equation}
-	in which the $x_i$ is the input of the $i$th neuron in the current layer, $y_j$ is the $j$th neuron in the previous layer, and $w_{ji}$ is the synaptic strength between a pair of neurons.
-	The derivative function used when back propagates is:
+	The noise level of Noisy Softplus, $\sigma^2$, is the variance of the current, which also can be seen as a weighted sum of the same input $x$ but with different weights:
 	\begin{equation}
-	\frac{\partial y}{\partial x} = \frac{1}{1+exp(-\frac{x}{k\sigma})} \times S \times \tau_{syn}~~.
+	\begin{aligned}
+		& {s_I^2}_j=\sum_i(\frac{1}{2} w_{ij}^2) (\lambda_{i}\tau_{syn})~, \textrm{  thus}\\
+		& \sigma^2_j= \sum_i (\frac{1}{2} w_{ij}^2) x_i~~.
+	\end{aligned}
 	\end{equation}
 	
-	The training method also can be generalised to any ReLU or Softplus-like activation functions by borrowing the Noisy Softplus calibrated scaling factor, $S$: 
+	
+	Noisy Softplus transforms the noisy current with parameters of $(net_j, \sigma_j)$ to the equivalent ANN output $y_j$ , where it can be scaled up by the scaling factor $S$ to the firing rate of SNNs.
+	Notice that the calculation of noise level is not necessary for activation functions other than Noisy Softplus, for example, it can be set to a constant for Softplus or 0 for ReLU.
+	And the entire artificial spiking neuron model is then generalised to any ReLU/Softplus-like activation functions, See Figure~\ref{Fig:sneuron}.
+	
+	\begin{figure}[bt]
+		\centering
+		\includegraphics[width=0.98\textwidth]{pics_sdlm/neuron_o.pdf}
+		\caption{Artificial spiking neuron model. }
+		\label{Fig:sneuron}
+	\end{figure}
+	
+	
+	\subsection{Layered-up Network}
+	
+	Figure~\ref{Fig:sneuron} shows an complete transformation process of a spiking neuron, which mimics the biological neurons taking and generating spike trains.
+	If we move the left end process of $\times \lambda$ to the right hand side, it then forms the same model structure as artificial neurons shown in Figure~\ref{Fig:neuron}: neurons takes $x$ as input and outputs $y$, See Figure~\ref{Fig:tneuron}.
+	The process within an artificial neuron is divided to weighted summation and activation, which also applied to the spiking neuron model by combining the scaling factor $S$ and the synaptic time constant $\tau_{syn}$ to activation functions.
+	Thus the combined activation function for artificial spiking neurons should be:
 	\begin{equation}
 	y = f(x) \times S \times \tau_{syn}~~.
 	\end{equation}
+	\begin{figure}[tbh!]
+		\centering
+		\includegraphics[width=0.8\textwidth]{pics_sdlm/neuron_t.pdf}
+		\caption{Transformed artificial spiking neuron model for ANNs. The combined activation links the firing activity of a spiking neuron to the numerical value of ANNs.}
+		\label{Fig:tneuron}
+	\end{figure}
+	
+	
+	
+	The derivative function used when back propagates is:
+	\begin{equation}
+	\frac{\partial y}{\partial x} = f'(x) \times S \times \tau_{syn}~~.
+	\end{equation}
+	
 
+	
 	Thus, using this method of ANN-trained SNNs, the activation functions are of lower complexity than Siegert formula, and their corresponding derivative functions can be directly used for back propagation.
 	Furthermore, the method enables ReLU-like activation functions for SNN training, thus to improve the recognition accuracy while keeping a relative lower firing rate compared to Sigmoid neurons. 
 	Most significantly, the ANN-trained weights are ready for use in SNNs without any transformation, and the output firing rate of any spiking neuron can be estimated in the ANN simulation.
-
+	
+	
+	\subsection{Fine Tuning}
+	The labels of data are always converted to binary values for ANN training.
+	It enlarges the disparities between the correct recognition label and the rest, thus to train the network with better classification capability.
+	However, SNNs are always active due to the noise of the synaptic current, which drives the neurons to fire even with negative current.
+	Thus on the top layer, the neurons which are supposed to be silent still generate sparse spikes.
+	Consequently, we train the network as stated above (with any activation function) and then fine tuning it with Noisy Softplus in order to take account of both accuracy and practical network activities of SNNs.
+	
+	We add a small number (0.01) to all the binary values of the data labels,	then replace the activation function by Noisy Softplus.
+	By doing so, it helps the training to loosen the strict objective function to predict exact with binary values.
+	Instead, it allows a small offset to the objective.
+	The result of fine tuning will be demonstrated in the Section~\ref{sec:iconipResult}.
+	An alternative method is to use Softmax function at the last layer, whose aim is the same.
+	However, without a limit on the output, it will be easy to reach the highest firing rate of a spiking neuron.
+	
 \section{Results}
+\label{sec:iconipResult}
 	A ConvNet model was trained on MNIST,
 	%	~\cite{lecun1998gradient}
 	a popular database in neuromorphic vision, using the ANN-trained SNN method stated above.
@@ -465,7 +525,7 @@ This section will propose the Noisy Softplus function which provides solutions t
 			\label{Fig:64}
 		\end{subfigure}
 		\\
-		\begin{subfigure}[t]{0.9\textwidth}
+		\begin{subfigure}[t]{0.8\textwidth}
 			\includegraphics[width=\textwidth]{pics_iconip/6-1.png}
 			\caption{10 input digits as a raster plot}
 			\label{Fig:61}
