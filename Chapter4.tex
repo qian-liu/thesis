@@ -434,6 +434,7 @@ This section will propose the Noisy Softplus function which provides solutions t
 		& net_j= \sum_i w_{ij} x_i~~, \textrm{~~and~~}
 		x_i = \lambda_{i}\tau_{syn}~.
 	\end{aligned}
+	\label{equ:mi_input}
 	\end{equation}
 	The noise level of Noisy Softplus, $\sigma^2$, is the variance of the current, which also can be seen as a weighted sum of the same input $x$ but with different weights:
 	\begin{equation}
@@ -441,6 +442,7 @@ This section will propose the Noisy Softplus function which provides solutions t
 		& {s_I^2}_j=\sum_i(\frac{1}{2} w_{ij}^2) (\lambda_{i}\tau_{syn})~, \textrm{  thus}\\
 		& \sigma^2_j= \sum_i (\frac{1}{2} w_{ij}^2) x_i~~.
 	\end{aligned}
+	\label{equ:si_input}
 	\end{equation}
 	
 	
@@ -464,6 +466,7 @@ This section will propose the Noisy Softplus function which provides solutions t
 	Thus the combined activation function for artificial spiking neurons should be:
 	\begin{equation}
 	y = f(x) \times S \times \tau_{syn}~~.
+	\label{equ:full_act}
 	\end{equation}
 	\begin{figure}[tbh!]
 		\centering
@@ -502,13 +505,28 @@ This section will propose the Noisy Softplus function which provides solutions t
 	
 \section{Results}
 \label{sec:iconipResult}
-	A ConvNet model was trained on MNIST,
+	A convolutional network model was trained on MNIST,
 	%	~\cite{lecun1998gradient}
 	a popular database in neuromorphic vision, using the ANN-trained SNN method stated above.
-	The architecture contains 28x28 input units, followed by two convolutional layers c5-2s-12c5-2s, and the 10 output neurons represents the classified digit.
+	The architecture contains $28\times28$ input units, followed by two convolutional layers 6c5-2s-12c5-2s, and the 10 output neurons fully connected to last pooling layer represent the classified digit.
+	
+	The training employed Noisy Softplus units only that all the convolution, average sampling, and the fully-connected neurons use Noisy Softplus function with no bias.
+	The parameters of the activation function were calibrated as, $(k=0.30, S=201)$,  for LIF neurons~(see~Tablel~\ref{tbl:pynnConfig}) of $\tau_{syn}=5$~ms.
+	The input images were scaled by 100~Hz to present the firing rates of input spikes.
+	The weights were updated using a decaying learning rate, 50 images per batch and 20 epochs.
+	The ANN-trained weights were then directly applied in the corresponding convolutional SNN without any conversion for recognition tasks.
+	
+	
+	\subsection{Neural Activity}
+	Firstly, to validate how well the Noisy Softplus activation fits to the response firing rate of LIF neurons in a real application, we simulated the model on Nest using the Poisson MNIST dataset~\cite{liu2016bench} and the neurons of a convolutional map were observed.
 	
 		\begin{figure}[tbh!]
 		\centering
+		\begin{subfigure}[t]{0.8\textwidth}
+			\includegraphics[width=\textwidth]{pics_iconip/6-1.png}
+			\caption{10 input digits as a raster plot}
+			\label{Fig:61}
+		\end{subfigure}\\
 		\begin{subfigure}[t]{0.3\textwidth}
 			\includegraphics[width=\textwidth]{pics_iconip/6-2.pdf}
 			\caption{Pixel firing rates}
@@ -524,77 +542,139 @@ This section will propose the Noisy Softplus function which provides solutions t
 			\caption{Output firing rates}
 			\label{Fig:64}
 		\end{subfigure}
-		\\
-		\begin{subfigure}[t]{0.8\textwidth}
-			\includegraphics[width=\textwidth]{pics_iconip/6-1.png}
-			\caption{10 input digits as a raster plot}
-			\label{Fig:61}
+		\caption{Images presented in spike trains convolve with a weight kernel. (a) The $28\times28$ Poisson spike trains in raster plot, representing 10 digits in MNIST. (b) The firing rate of all the 784 neurons of the fourth image, digit `0', is plotted as a 2D image.
+		(c) One out of six of the trained kernels ($5\times5$ size) in the first convolutional layer.
+		(d) The spike trains plotted as firing rate of the neurons in the convolved 2D map.}
+		\label{fig:cnn}
+	\end{figure}
+
+	Figure~\ref{fig:cnn} shows a small test of ten MNIST digits presented in Poisson spike trains for 1~s each.
+	A trained $5\times5$ kernel (Figure~\ref{fig:cnn}(c)) were convolved with these input digits, and the fourth digit `0' (Figure~\ref{fig:cnn}(b)) and its convolved output of the feature map was shown in Figure~\ref{fig:cnn}(d) as firing rate.
+	The output firing rate was recorded during a real-time SNN simulation on NEST, and compared to the modelled activations of Equation~\ref{equ:full_act} in ANNs.
+	
+	The input $x$ of the network was calculated as Equation~\ref{equ:mi_input}: $x_i=\lambda_i\tau_{syn}$, and so as the weighted sum of the synaptic current (see Equation~\ref{equ:mi_input}), $net_j$ and its variance (see Equation~\ref{equ:si_input}), $\sigma^2_j$.
+	With three combined activation functions as Equation~\ref{equ:full_act}:
+	\begin{equation}
+	\begin{aligned}
+	&\textrm{(1) Noisy Softplus:~~}  y_j=k \sigma_j \log [1 + \exp(\frac{net_j}{k \sigma_j})] \times S \times \tau_{syn}~~,  \\
+	&\textrm{(2) ReLU:~~ } y_j=max(0, net_j) \times S \times \tau_{syn}~~, \\
+	&\textrm{(3) Softplus:~~ } y_j=k \sigma \log [1 + \exp(\frac{net_j}{k \sigma})] \times S \times \tau_{syn}~~, ~~~\sigma=0.3,  
+ 	\end{aligned}
+	\end{equation}	
+	we compare the output to the recorded SNN simulations.
+	ReLU assumes a non-noise current, and Softplus takes a static noise level thus $\sigma_j$ is not used for either of them, meanwhile Noisy Softplus adapts to noise automatically with $\sigma_j$.
+	The experiment took the sequence of 10 digits shown in Figure~\ref{fig:cnn} to the same kernel and the estimated spike counts using Noisy Softplus fit to the real recorded firing rate much more accurately than ReLU and Softplus,  see~\ref{fig:af_compare}.
+	Figure~\ref{fig:af_stast} illustrated the statistics of error between the estimation and the recorded firing rate, $err = y_j - \lambda_j$ which formed normal distributions where Noisy Softplus hold the weakest mean (low in abstract) and lowest standard deviation.
+	We manually selected a static noise level of 0.45 for Softplus, whose estimated firing rates located roughly on the top slope of the real response activity.
+	Which resulted in the higher error than ReLU, since most of the input noisy currents were of relatively low noise level in this experiment.
+	
+			
+	\begin{figure}[tbh!]
+		\centering
+		\begin{subfigure}[t]{0.9\textwidth}
+			\includegraphics[width=\textwidth]{pics_iconip/6-5.pdf}
 		\end{subfigure}
 		\caption{
 			Noisy Softplus fits to the neural response firing rate in an SNN simulation.
-			The 28x28 Poisson spike trains in (a) firing rate, and (d) raster plots, are convolved with a 5x5 kernel (b).
-			(c) the convolved map with the firing rates of each neuron.}
-		\label{fig:cnn}
+			The recorded firing rate of the same kernel convolved with 10 images shown in Figure~\ref{fig:cnn} in SNN simulation, comparing to the prediction of activations of Noisy Softplus, Softplus and ReLU.}
+		\label{fig:af_compare}
 	\end{figure}
 	
-	Firstly, the training employed Noisy Softplus units only that all the convolution, average sampling, and the fully-connected neurons use Noisy Softplus function with no bias.
-	The parameters of the activation function, $(k, S)$, were calibrated for LIF neurons~(see~Tablel~\ref{tbl:pynnConfig}) of $\tau_{syn}=5$~ms.
-	The input images were scaled by 100~Hz to present the firing rates of input spikes.
-	The weights were updated using a decaying learning rate, 50 images per batch and 20 epochs.
-	After training, the ANN-trained weights are directly applied in the corresponding convolutional SNN for recognition tests.
-	
-	To validate how well the Noisy Softplus activation fits to the response firing rate of LIF neurons in a real application, we simulated the model on Nest using the Poisson MNIST dataset~\cite{liu2016bench} and the neurons of a convolutional map were observed.
-	
-
-		
-		\begin{figure}[tbh!]
-			\centering
-			\begin{subfigure}[t]{0.7\textwidth}
-				\includegraphics[width=\textwidth]{pics_iconip/6-5.pdf}
-				\caption{Observed `activation functions'}
-			\end{subfigure}
-			\caption{The normalised firing rate compared with Noisy Softplus, Softplus and ReLU activation functions.}
-			\label{fig:af_compare}
-		\end{figure}
-
-	Figure~\ref{fig:cnn}(d) shows the a sequence of 10 testing images presented in spike trains for 1~s each.  A 5x5 kernel (Figure~\ref{fig:cnn}(b)) were convolved with an input digit `0' (Figure~\ref{fig:cnn}(a)) and the convolved output of the map was shown in (Figure~\ref{fig:cnn}(c) as firing rate.
-	The estimated spike counts using Noisy Softplus fit to the real recorded firing rate much more accurately than the Softplus and ReLU activation functions, see~\ref{fig:af_compare}.
-	We manually selected a suitable scaling factor for Softplus which located on the top slope of the response activity, while Noisy Softplus adapts to noise automatically.
-	ReLU indicates the Noisy Softplus without noise.
-	
 	Figure~\ref{Fig:out} demonstrates the output firing rates of the 10 recognition neurons when tested with the digit sequence.
-	The SNN successfully classifies the digits with high firing rate indicating the possible candidates and very low firing rate for impossible options. 
+	The SNN successfully classified the digits where the correct label neuron fired the most.
+	We trained the network with binary labels on the output layer, thus the expected firing rate of correct classification was $1/\tau_{syn}=200$~Hz according to Equation~\ref{Fig:tneuron}.
+	The firing rates of the recognition test fell to the valid range around 0 to 200~Hz.
+	This shows another advantage of the proposed ANN-trained method that we can constrain the expected firing rate of the top layer, thus to prevent SNN from exploding its firing rate, e.g. 1000~Hz at the most when time resolution of SNN simulation set to 1~ms.
+	
 		\begin{figure}[tbp!]
 			\centering
-			\includegraphics[width=0.9\textwidth]{pics_iconip/7.pdf}
+			\includegraphics[width=0.7\textwidth]{pics_iconip/7.pdf}
 			\caption{Output firing rates for recognising 10 hand written digits.}
 			\label{Fig:out}
 		\end{figure}
 	
+	\subsection{Recognition Performance}
+	Secondly we focus on the recognition performance of the proposed ANN-trained SNN method.
+	Before we reach there, it is significant to see the learning capability of the proposed activation function, Noisy Softplus.
+	We compared the training using ReLU, Softplus, and Noisy Softplus by their loss during training averaged over 3 trials, see Figure\ref{fig:training}.
+	ReLU learned the fastest and reached the lowest loss, thanks to its steepest derivative and none-noise assumption.
+	To the contrary, Softplus accumulated spontaneous firing rates layer by layer and its derivative may experience gradients vanish during back propagation, which result in a more difficult training.
+	Noisy Softplus performed in between in terms of loss and learning speed.
+	However, the loss stabilised the fastest, which means a possible shorter training time.
+	\begin{figure}[tbp!]
+		\centering
+		\includegraphics[width=0.7\textwidth]{pics_iconip/8.pdf}
+		\caption{Loss during training.}
+		\label{Fig:loss_ns}
+	\end{figure}
+%	The trained networks were scaled to SNNs and compared on recognition rates, 93.34\%, 96.43\% and 97.03\% with a conversion loss of 4.76\%, 0.91\% and 0.74\%.
 	
-	Secondy we focus on the training and recognition performance of the proposed ANN-trained SNN method.
-	Thus we compared the training using ReLU, Softplus, and Noisy Softplus by their loss during training averaged over 6 trials, see Figure\ref{fig:training}, and tested the trained model directly on both ANNs and SNNs.
-	The trained networks were scaled to SNNs and compared on recognition rates, 93.34\%, 96.43\% and 97.03\% with a conversion loss of 4.76\%, 0.91\% and 0.74\%.
-	As it is a major concern in neuromorphic vision, the recognition performance over short response times is also estimated in Figure~\ref{Fig:response}.
+	
+	\begin{table}[ph!] 
+		\caption{Comparisons of ANN-trained convolutional neural models on original DNN, NEST simulated SNN, and SNN with fine-tuned model.}
+		\begin{center}
+			\bgroup
+			\def\arraystretch{2.5}
+			\begin{tabular} {r c  c c c c c c c c c}
+				%First line
+				Trial No.
+				&\multicolumn{3}{c}{1} 
+				&\multicolumn{3}{c}{2}
+				&\multicolumn{3}{c}{3}\\
+				\hline
+				Model
+				& DNN & SNN &FT
+				& DNN & SNN &FT
+				& DNN & SNN &FT\\
+				\hline
+				\textbf{Noisy Sofplus}
+				& 1.91 & 2.76 &2.45
+				& 1.79 & 2.56 &2.19
+				& 1.76 & 2.55 &2.10\\
+%				& 98.09 & 97.24 &97.55
+%				& 98.21 & 97.44 &97.81
+%				& 98.24 & 97.45 &97.90\\
+%				\hline
+				\textbf{ReLU}
+				& 1.36 & 2.03 &1.88
+				& 1.46 & 2.28 &2.00
+				& 1.36 & 2.25 &2.12\\
+%				& 98.64 & 97.97 &98.12
+%				& 98.54 & 97.72 &98.00
+%				& 98.64 & 97.75 &97.88\\
+%				\hline
+				\textbf{Sofplus}
+				& 2.30 & 5.66 &3.91
+				& 2.75 & 5.22 &3.55
+				& 2.42 & 6.62 &3.87\\
+%				& 97.70 & 94.34 &96.09
+%				& 97.25 & 94.78 &96.45
+%				& 97.58 & 93.38 &96.13\\
+				\hline
+			\end{tabular}
+			\egroup
+			\label{tbl:ns_result}
+		\end{center}
+	\end{table}
+	
+	
+	As it is a major concern in neuromorphic vision, the recognition performance over short response times is also estimated in Figure~\ref{fig:ca_time}(a).
 	\begin{figure}[bt!]
 		\centering
-		\begin{subfigure}[t]{0.7\textwidth}
-			\includegraphics[width=\textwidth]{pics_iconip/8.pdf}
-		    \caption{Loss over training}
-		    \label{Fig:loss}
-		\end{subfigure}\\
-		\begin{subfigure}[t]{0.7\textwidth}
+		\begin{subfigure}[t]{0.49\textwidth}
 			\includegraphics[width=\textwidth]{pics_iconip/8-2.pdf}
-		    \caption{Performance over time}
-		    \label{Fig:response}
+		    \caption{Before fine tuning}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.49\textwidth}
+			\includegraphics[width=\textwidth]{pics_iconip/8-2.pdf}
+		    \caption{After fine tuning.}
 		\end{subfigure}
 
-		\caption{
-			Classification performance is calculated by the firing rate of output neurons (a).
-			(b) shows how the loss varies over training.
-			(c) illustrates the accuracy over short response times.}
-		\label{fig:training}	
+		\caption{The classification accuracy over short response times, with (a) trained weights before fine tuning, and (b) after fine tuning.}
+		\label{fig:ca_time}	
 	\end{figure}
+
+	\subsection{Power Consumption}
 \section{Summery}
 	The Spiking Neural Network (SNN) has not achieved the recognition/classification performance of its non-spiking competitor, the Artificial Neural Network(ANN), particularly when used in deep neural networks.
 	How to equip SNNs with equivalent recognition capability as DNNs' thus to take advantages of their neuromorphic implementation attracts increased attention both in the neuromorphic community and the deep learning industry.
