@@ -223,51 +223,87 @@ This section will propose the Noisy Softplus function which provides solutions t
 	\label{subsec:practice}
 	
 	
-	\begin{figure}[tbp!]
-		\centering
-		\begin{subfigure}[t]{0.49\textwidth}
-			\includegraphics[width=\textwidth]{pics_iconip/2-1.pdf}
-			\caption{1~ms resolution}
-			\label{Fig:current-1}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.49\textwidth}
-			\includegraphics[width=\textwidth]{pics_iconip/2-10.pdf}
-			\caption{10~ms resolution}
-			\label{Fig:current-10}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.49\textwidth}
-			\includegraphics[width=\textwidth]{pics_iconip/curr_dt1.pdf}
-			\caption{1~ms resolution}
-			\label{Fig:signal-1}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.49\textwidth}
-			\includegraphics[width=\textwidth]{pics_iconip/curr_dt10.pdf}
-			\caption{10~ms resolution}
-			\label{Fig:signal-10}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.49\textwidth}
-			\includegraphics[width=\textwidth]{pics_iconip/distr_dt1.pdf}
-			\caption{1~ms resolution}
-			\label{Fig:gaussian-1}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.49\textwidth}
-			\includegraphics[width=\textwidth]{pics_iconip/distr_dt10.pdf}
-			\caption{10~ms resolution}
-			\label{Fig:gaussian-10}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.49\textwidth}
-			\includegraphics[width=\textwidth]{pics_iconip/psd_dt1.pdf}
-			\caption{1~ms resolution}
-			\label{Fig:spectrum-1}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.49\textwidth}
-			\includegraphics[width=\textwidth]{pics_iconip/psd_dt10.pdf}
-			\caption{10~ms resolution}
-			\label{Fig:spectrum-10}
-		\end{subfigure}
-		\caption{Comparing the recorded firing rates of the LIF neuron simulation driven by noisy currents to the response function shown in Figure~\ref{Fig:physics}.}
-		\label{Fig:lif_curr}
-	\end{figure}
+%	\begin{figure}[tbp!]
+%		\centering
+%		\begin{subfigure}[t]{0.49\textwidth}
+%			\includegraphics[width=\textwidth]{pics_iconip/2-1.png}
+%			\caption{1~ms resolution}
+%			\label{Fig:current-1}
+%		\end{subfigure}
+%		\begin{subfigure}[t]{0.49\textwidth}
+%			\includegraphics[width=\textwidth]{pics_iconip/2-10.png}
+%			\caption{10~ms resolution}
+%			\label{Fig:current-10}
+%		\end{subfigure}
+%		\begin{subfigure}[t]{0.49\textwidth}
+%			\includegraphics[width=\textwidth]{pics_iconip/curr_dt1.pdf}
+%			\caption{1~ms resolution}
+%			\label{Fig:signal-1}
+%		\end{subfigure}
+%		\begin{subfigure}[t]{0.49\textwidth}
+%			\includegraphics[width=\textwidth]{pics_iconip/curr_dt10.pdf}
+%			\caption{10~ms resolution}
+%			\label{Fig:signal-10}
+%		\end{subfigure}
+%		\begin{subfigure}[t]{0.49\textwidth}
+%			\includegraphics[width=\textwidth]{pics_iconip/distr_dt1.pdf}
+%			\caption{1~ms resolution}
+%			\label{Fig:gaussian-1}
+%		\end{subfigure}
+%		\begin{subfigure}[t]{0.49\textwidth}
+%			\includegraphics[width=\textwidth]{pics_iconip/distr_dt10.pdf}
+%			\caption{10~ms resolution}
+%			\label{Fig:gaussian-10}
+%		\end{subfigure}
+%		\begin{subfigure}[t]{0.49\textwidth}
+%			\includegraphics[width=\textwidth]{pics_iconip/psd_dt1.pdf}
+%			\caption{1~ms resolution}
+%			\label{Fig:spectrum-1}
+%		\end{subfigure}
+%		\begin{subfigure}[t]{0.49\textwidth}
+%			\includegraphics[width=\textwidth]{pics_iconip/psd_dt10.pdf}
+%			\caption{10~ms resolution}
+%			\label{Fig:spectrum-10}
+%		\end{subfigure}
+%		\caption{Comparing the recorded firing rates of the LIF neuron simulation driven by noisy currents to the response function shown in Figure~\ref{Fig:physics}.}
+%	\end{figure}
+\begin{figure}
+	\centering
+	\begin{subfigure}[c]{0.45\textwidth}\raggedleft
+		\myrowlabel{Response Firing Rate}
+		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
+			{pics_iconip/2-1.png}}\\
+		\myrowlabel{Current}
+		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
+			{pics_iconip/curr_dt1.pdf}}\\
+		\myrowlabel{Spectrum Analysis}
+		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
+			{pics_iconip/psd_dt1.pdf}}\\
+		\myrowlabel{Autocorrelation}
+		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
+			{pics_iconip/autocorr_dt1.pdf}}\\
+		\myrowlabel{Distribution}
+		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
+			{pics_iconip/distr_dt1.pdf}}
+		\caption{$\tau_{syn}$=1~ms}
+	\end{subfigure}%
+	\hspace{1em}
+	\begin{subfigure}[c]{0.45\textwidth}\raggedleft
+		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
+			{pics_iconip/2-10.png}}\\
+		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
+			{pics_iconip/curr_dt10.pdf}}\\
+		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
+			{pics_iconip/psd_dt10.pdf}}\\
+		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
+			{pics_iconip/autocorr_dt10.pdf}}
+		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
+			{pics_iconip/distr_dt10.pdf}}
+		\caption{$\tau_{syn}$=10~ms}
+	\end{subfigure}%
+	\caption{Recorded response firing rate of a LIF neuron driven by noisy current source (bold lines) comparing to the Siegert function (thin lines). The current source is shown in time domain and spectrum domain, so as its autocorrelation, and the distribution. (a) is tested when dt=1~ms, and (b) for dt=10~ms.}
+	\label{Fig:lif_curr}
+\end{figure}
 
 	To verify the response function in practice, simulation tests were carried out using PyNN~\cite{davison2008pynn} to compare with the analytical results.
 	The noisy current was produced by a constant current of $m_I$ adding up with a Gaussian white noise of zero mean and $s_I^2$ variance.
@@ -280,45 +316,82 @@ This section will propose the Noisy Softplus function which provides solutions t
 	The discrete sampling of the noisy current introduces time correlation to the white noise, shown in  Figure~\ref{Fig:lif_curr}(d), where the current value during a time step $dt$ remains the same.
 	Although both the current signals followed the same Gauss distribution, see Figures~\ref{Fig:lif_curr}(e) and (f), as a sampling frequency of 1kHz the current is a white noise when $dt=1$~ms, but a coloured noise when $dt=10$~ms, see the spectrum analysis in Figures~\ref{Fig:lif_curr}(g) and (h).
 	Thus the Siegert formula, Equation~\ref{equ:siegert}, can only approximate the LIF response of noisy current with white noise.
-	
-\begin{figure}[btp!]
+
+
+\begin{figure}
 	\centering
-	\begin{subfigure}[t]{0.49\textwidth}
-		\includegraphics[width=\textwidth]{pics_iconip/spiked_curve_1.pdf}
+	\begin{subfigure}[c]{0.45\textwidth}\raggedleft
+		\myrowlabel{Response Firing Rate}
+		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
+			{pics_iconip/spiked_curve_1.png}}\\
+		\myrowlabel{Current}
+		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
+			{pics_iconip/curr_tau1.pdf}}\\
+		\myrowlabel{Spectrum Analysis}
+		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
+			{pics_iconip/psd_tau1.pdf}}\\
+		\myrowlabel{Autocorrelation}
+		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
+			{pics_iconip/autocorr_tau1.pdf}}\\
+		\myrowlabel{Distribution}
+		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
+			{pics_iconip/distr_tau1.pdf}}
 		\caption{$\tau_{syn}$=1~ms}
-	\end{subfigure}
-	\begin{subfigure}[t]{0.49\textwidth}
-		\includegraphics[width=\textwidth]{pics_iconip/spiked_curve_10.pdf}
+	\end{subfigure}%
+	\hspace{1em}
+	\begin{subfigure}[c]{0.45\textwidth}\raggedleft
+		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
+			{pics_iconip/spiked_curve_10.png}}\\
+		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
+			{pics_iconip/curr_tau10.pdf}}\\
+		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
+			{pics_iconip/psd_tau10.pdf}}\\
+		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
+			{pics_iconip/autocorr_tau10.pdf}}
+		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
+			{pics_iconip/distr_tau10.pdf}}
 		\caption{$\tau_{syn}$=10~ms}
-	\end{subfigure}
-	\begin{subfigure}[t]{0.49\textwidth}
-		\includegraphics[width=\textwidth]{pics_iconip/curr_tau1.pdf}
-		\caption{$\tau_{syn}$=1~ms}
-	\end{subfigure}
-	\begin{subfigure}[t]{0.49\textwidth}
-		\includegraphics[width=\textwidth]{pics_iconip/curr_tau10.pdf}
-		\caption{$\tau_{syn}$=10~ms}
-	\end{subfigure}
-	\begin{subfigure}[t]{0.49\textwidth}
-		\includegraphics[width=\textwidth]{pics_iconip/distr_tau1.pdf}
-		\caption{$\tau_{syn}$=1~ms}
-	\end{subfigure}
-	\begin{subfigure}[t]{0.49\textwidth}
-		\includegraphics[width=\textwidth]{pics_iconip/distr_tau10.pdf}
-		\caption{$\tau_{syn}$=10~ms}
-	\end{subfigure}
-	\begin{subfigure}[t]{0.49\textwidth}
-		\includegraphics[width=\textwidth]{pics_iconip/psd_tau1.pdf}
-		\caption{$\tau_{syn}$=1~ms}
-	\end{subfigure}
-	\begin{subfigure}[t]{0.49\textwidth}
-		\includegraphics[width=\textwidth]{pics_iconip/psd_tau10.pdf}
-		\caption{$\tau_{syn}$=10~ms}
-	\end{subfigure}
-	\caption{Recorded response firing rate of a LIF neuron.
-		The driving noisy current is simulated with Poission spike trains and the results are compared to the noisy current source.}
+	\end{subfigure}%
+	\caption{Recorded response firing rate of a LIF neuron driven by synaptic current (bold lines) comparing to the noisy current source (thin lines). The synaptic current is shown in time domain and spectrum domain, so as its autocorrelation, and the distribution. (a) is tested when $\tau_{syn}$=1~ms, and (b) for $\tau_{syn}$=10~ms.}
 	\label{Fig:lif_pois}
 \end{figure}
+	
+%\begin{figure}[btp!]
+%	\centering
+%	\begin{subfigure}[t]{0.49\textwidth}
+%		\includegraphics[width=\textwidth]{pics_iconip/spiked_curve_1.png}
+%		\caption{$\tau_{syn}$=1~ms}
+%	\end{subfigure}
+%	\begin{subfigure}[t]{0.49\textwidth}
+%		\includegraphics[width=\textwidth]{pics_iconip/spiked_curve_10.png}
+%		\caption{$\tau_{syn}$=10~ms}
+%	\end{subfigure}
+%	\begin{subfigure}[t]{0.49\textwidth}
+%		\includegraphics[width=\textwidth]{pics_iconip/curr_tau1.pdf}
+%		\caption{$\tau_{syn}$=1~ms}
+%	\end{subfigure}
+%	\begin{subfigure}[t]{0.49\textwidth}
+%		\includegraphics[width=\textwidth]{pics_iconip/curr_tau10.pdf}
+%		\caption{$\tau_{syn}$=10~ms}
+%	\end{subfigure}
+%	\begin{subfigure}[t]{0.49\textwidth}
+%		\includegraphics[width=\textwidth]{pics_iconip/distr_tau1.pdf}
+%		\caption{$\tau_{syn}$=1~ms}
+%	\end{subfigure}
+%	\begin{subfigure}[t]{0.49\textwidth}
+%		\includegraphics[width=\textwidth]{pics_iconip/distr_tau10.pdf}
+%		\caption{$\tau_{syn}$=10~ms}
+%	\end{subfigure}
+%	\begin{subfigure}[t]{0.49\textwidth}
+%		\includegraphics[width=\textwidth]{pics_iconip/psd_tau1.pdf}
+%		\caption{$\tau_{syn}$=1~ms}
+%	\end{subfigure}
+%	\begin{subfigure}[t]{0.49\textwidth}
+%		\includegraphics[width=\textwidth]{pics_iconip/psd_tau10.pdf}
+%		\caption{$\tau_{syn}$=10~ms}
+%	\end{subfigure}
+%
+%\end{figure}
 
 	A more realistic simulation of a noisy current is generated by a Poisson spike train, 
 	%assuming that large amount of small amplitude PSPs are required to reach the threshold and $\tau_syn$ limits to 0.
@@ -399,11 +472,11 @@ This section will propose the Noisy Softplus function which provides solutions t
 	\begin{figure}
 		\centering
 		\begin{subfigure}[t]{0.49\textwidth}
-			\includegraphics[width=\textwidth]{pics_iconip/4-1.pdf}
+			\includegraphics[width=\textwidth]{pics_iconip/4-1.png}
 			\caption{$\tau_{syn}$=1~ms}
 		\end{subfigure}
 		\begin{subfigure}[t]{0.49\textwidth}
-			\includegraphics[width=\textwidth]{pics_iconip/4-10.pdf}
+			\includegraphics[width=\textwidth]{pics_iconip/4-10.png}
 			\caption{$\tau_{syn}$=10~ms}
 		\end{subfigure}
 		\caption{Noisy Softplus fits to the response firing rates of LIF neurons.}
@@ -564,15 +637,17 @@ This section will propose the Noisy Softplus function which provides solutions t
 	we compare the output to the recorded SNN simulations.
 	ReLU assumes a non-noise current, and Softplus takes a static noise level thus $\sigma_j$ is not used for either of them, meanwhile Noisy Softplus adapts to noise automatically with $\sigma_j$.
 	The experiment took the sequence of 10 digits shown in Figure~\ref{fig:cnn} to the same kernel and the estimated spike counts using Noisy Softplus fit to the real recorded firing rate much more accurately than ReLU and Softplus,  see~\ref{fig:af_compare}.
-	Figure~\ref{fig:af_stast} illustrated the statistics of error between the estimation and the recorded firing rate, $err = y_j - \lambda_j$ which formed normal distributions where Noisy Softplus hold the weakest mean (low in abstract) and lowest standard deviation.
+%	Figure~\ref{fig:af_stast} illustrated the statistics of error between the estimation and the recorded firing rate, $err = y_j - \lambda_j$ which formed normal distributions where Noisy Softplus hold the weakest mean (low in abstract) and lowest standard deviation.
+	The Euclidean distance, $\sqrt{\sum_{j}(y_j/\tau_{syn} - \lambda_j)}$, between the spike counts and the predicted firing rates by Noisy Softplus, ReLU and Softplus was 184.57, 361.64 and 1102.76 respectively.
 	We manually selected a static noise level of 0.45 for Softplus, whose estimated firing rates located roughly on the top slope of the real response activity.
-	Which resulted in the higher error than ReLU, since most of the input noisy currents were of relatively low noise level in this experiment.
+	Which resulted in longer Euclidean distance than using ReLU, since most of the input noisy currents were of relatively low noise level in this experiment.
+	In another word, the firing rate driven by lower noise level is closer to ReLU curve than Softplus.
 	
 			
 	\begin{figure}[tbh!]
 		\centering
-		\begin{subfigure}[t]{0.9\textwidth}
-			\includegraphics[width=\textwidth]{pics_iconip/6-5.pdf}
+		\begin{subfigure}[t]{0.8\textwidth}
+			\includegraphics[width=\textwidth]{pics_iconip/6-5.png}
 		\end{subfigure}
 		\caption{
 			Noisy Softplus fits to the neural response firing rate in an SNN simulation.
@@ -596,35 +671,53 @@ This section will propose the Noisy Softplus function which provides solutions t
 	\subsection{Recognition Performance}
 	Secondly we focus on the recognition performance of the proposed ANN-trained SNN method.
 	Before we reach there, it is significant to see the learning capability of the proposed activation function, Noisy Softplus.
-	We compared the training using ReLU, Softplus, and Noisy Softplus by their loss during training averaged over 3 trials, see Figure\ref{fig:training}.
+	We compared the training using ReLU, Softplus, and Noisy Softplus by their loss during training averaged over 3 trials, see Figure\ref{Fig:loss_ns}.
 	ReLU learned the fastest and reached the lowest loss, thanks to its steepest derivative and none-noise assumption.
 	To the contrary, Softplus accumulated spontaneous firing rates layer by layer and its derivative may experience gradients vanish during back propagation, which result in a more difficult training.
 	Noisy Softplus performed in between in terms of loss and learning speed.
 	However, the loss stabilised the fastest, which means a possible shorter training time.
 	\begin{figure}[tbp!]
 		\centering
-		\includegraphics[width=0.7\textwidth]{pics_iconip/8.pdf}
-		\caption{Loss during training.}
+		\includegraphics[width=0.7\textwidth]{pics_iconip/8.png}
+		\caption{Comparisons of Loss during training using Noisy Softplus, ReLU and Softplus activation functions. Bold lines show the average of three training trials, and the grey colour fills between the minimum and the maximum of the trials.  }
 		\label{Fig:loss_ns}
 	\end{figure}
 %	The trained networks were scaled to SNNs and compared on recognition rates, 93.34\%, 96.43\% and 97.03\% with a conversion loss of 4.76\%, 0.91\% and 0.74\%.
 	
-	\begin{figure}[tbp!]
+	The recognition test took the whole testing dataset of MNIST which contains $10,000$ images.
+	At first, all the trained models were tested on the same artificial neurons as used for training in ANNs, and these experiments were called `DNN' test since the network had a deep structure (5 layers).
+	Afterwards, the trained weights were then directly applied to SNN without any transformation, and these `SNN' experiments tested their recognition performance on NEST simulator.
+	The LIF neurons had the same parameters as in training.
+	The input images were converted to Poisson spike trains and presented for 1~s each.
+	The output neuron which fired the most predicted the classification of an input image.
+	Moreover, 'Fine tuning' test took the trained model for fine tuning, and the tuned weights were tested on the same SNN environment.
+	The tuning only ran for one epoch, 5\% cost of the ANN training, using Noisy Softplus neurons with labels shifted for $+0.01$.
+	
+	The classification error for all the tests are listed in Table~\ref{tbl:ns_result} and the averaged classification accuracy is shown in Figure~\ref{Fig:result_bar}.
+	From DNN to SNN, the classification error increases by 44.14\%, 56.94\% and 134.27\% for Noisy softplus, ReLU and Softplus, because of the mismatch between the activation models and the practical firing rates which is in accordance with the Euclidean distance result.
+	However, the fine tuning's little effort decreases the error by 14.36\%, 8.54\% and 35.25\% respectively, which improves the recognition capability of the SNNs.
+	The improvement of ReLU is not as much as the others, because there is no problem of layered-up accumulated offset.
+	Thus fine tuning mainly corrects the mismatch between ReLU and the firing rates in SNNs, and constraints the output firing rates of the network.
+	Softplus benefits the most from fine tuning, since the mismatch is much corrected by Noisy Softplus. 
+	
+	\begin{figure}[hbt!]
 		\centering
-		\includegraphics[width=0.8\textwidth]{pics_iconip/9-2.pdf}
+		\includegraphics[width=0.7\textwidth]{pics_iconip/9-2.pdf}
 		\caption{Classification accuracy compared among trained weights of Noisy Softplus, ReLU, Softplus on DNN, SNN and fine-tuned SNN.}
 		\label{Fig:result_bar}
 	\end{figure}
-	\begin{table}[ph!] 
-		\caption{Comparisons of ANN-trained convolutional neural models on original DNN, NEST simulated SNN, and SNN with fine-tuned model.}
+	
+	\begin{table}[tbh] 
+		\caption{Comparisons of classification accuracy (in \%) of ANN-trained convolutional neural models on original DNN, NEST simulated SNN, and SNN with fine-tuned (FT) model.}
 		\begin{center}
 			\bgroup
-			\def\arraystretch{2.5}
-			\begin{tabular} {r c  c c c c c c c c c}
+			\def\arraystretch{1.5}
+			\begin{tabular} {r |c  c c |c c c |c c c}
 				%First line
+				\hline
 				Trial No.
-				&\multicolumn{3}{c}{1} 
-				&\multicolumn{3}{c}{2}
+				&\multicolumn{3}{c|}{1} 
+				&\multicolumn{3}{c|}{2}
 				&\multicolumn{3}{c}{3}\\
 				\hline
 				Model
@@ -663,11 +756,19 @@ This section will propose the Noisy Softplus function which provides solutions t
 	\end{table}
 	
 	
-	As it is a major concern in neuromorphic vision, the recognition performance over short response times is also estimated in Figure~\ref{fig:ca_time}(a).
-	\begin{figure}[bt!]
+	
+	
+	The best classification accuracy achieved by SNNs was 98.12\%, 0.53\% drop from ANN test, which was trained with ReLU and fine-tuned by Noisy Softplus.
+	The most efficient training in terms of both classification accuracy and algorithm complexity, takes ReLU for ANN training and Noisy Softplus for fine tuning.
+	Softplus does not exhibit better classification capability and more importantly the manual selected static noise level hugely influences the mismatch between the predicted firing rates and the real data.
+	Although Noisy Softplus shows the least classification drop from ANNs to SNNs, the training performance is still worse than ReLU.
+	Improved back propagation or other learning algorithms using noise level will be listed in the future work. 
+	
+		
+	\begin{figure}[htb!]
 		\centering
 		\begin{subfigure}[t]{0.49\textwidth}
-			\includegraphics[width=\textwidth]{pics_iconip/8-2.pdf}
+			\includegraphics[width=\textwidth]{pics_iconip/8-2.png}
 		    \caption{Before fine tuning}
 		\end{subfigure}
 		\begin{subfigure}[t]{0.49\textwidth}
@@ -675,32 +776,53 @@ This section will propose the Noisy Softplus function which provides solutions t
 		    \caption{After fine tuning.}
 		\end{subfigure}
 
-		\caption{The classification accuracy over short response times, with (a) trained weights before fine tuning, and (b) after fine tuning.}
+		\caption{The classification accuracy of 3 trials (averaged in bold lines, grey lines show the range between minimum to maximum) over short response times, with (a) trained weights before fine tuning, and (b) after fine tuning.}
 		\label{fig:ca_time}	
 	\end{figure}
-
+	
+	As it is a major concern in neuromorphic vision, the recognition performance over short response times is also estimated in Figure~\ref{fig:ca_time}.
+	After fine tuning Softplus significantly reduced the mismatch, since the randomness among the three trials shrinks to similar range to other experiments.
+	More obviously fine tuning improved its classification accuracy and the response latency.
+	Notice that all of the networks trained by three different activation functions showed a very similar stabilisation curve against time, which means they all reached a close accuracy to their best taking 300~ms of test. 
+	
+	
 	\subsection{Power Consumption}
+	Noisy Softplus can be easily used for energy cost estimation for SNNs.
+	For a single neuron, the energy consumption of the synaptic events it triggers is:
+	\begin{equation}
+	\begin{aligned}
+	E_{j} &= \lambda_j N_j T E_{syn}\\
+	&= \dfrac{y_j N_j T E_{syn}}{\tau_{syn}}~~,
+	\end{aligned}
+	\end{equation}
+	where $\lambda_j$ is the output firing rate, $N_j$ is the number of post-synaptic neurons it connects to, $T$ is the testing time, and $E_{syn}$ is the energy cost for a synaptic event of some specific neuromorphic hardware, for example, about 8~nJ on SpiNNaker~\cite{stromatias2013power}.
+	Thus to estimate the whole network, we can sum up all the synaptic events of all the neurons:
+	\begin{equation}
+	\sum_j E_{j} =  \dfrac{T E_{syn}}{\tau_{syn}} \sum_{j}y_j N_j.
+	\end{equation}
+	Thus, it may cost SpiNNaker 0.064~W, thus 192~J running for $3,000$~s on synaptic events to classify $10,000$ images (300~ms each) with the best accuracy of 98.02\%.
 \section{Summery}
-	The Spiking Neural Network (SNN) has not achieved the recognition/classification performance of its non-spiking competitor, the Artificial Neural Network(ANN), particularly when used in deep neural networks.
-	How to equip SNNs with equivalent recognition capability as DNNs' thus to take advantages of their neuromorphic implementation attracts increased attention both in the neuromorphic community and the deep learning industry.
-	%TODO the scalability, power efficiency and real-time sensor interactive with the environment 
-	%	The mapping of a well-trained ANN to an SNN is a hot topic in this field, especially using spiking neurons with biological characteristics.
-	This Chapter proposes a new biologically-inspired activation function, Noisy Softplus, which is well-matched to the response function of LIF (Leaky Integrate-and-Fire) neurons.
-	A convolutional network (ConvNet) was trained on the MNIST database with Noisy Softplus units and converted to an SNN while maintaining a close classification accuracy.
-	This result demonstrates the equivalent recognition capability of the more biologically-realistic SNNs and bring biological features to the activation units in ANNs.
-	%TODO rewording
-	The proposed method uses the same conventional ANN training only, and the off-line trained model can be directly applied to SNN without conversion.
-	
-	The biologically-inspired activation function, Noisy Softplus, adapts to the noise level of input currents automatically, and is the first attempt to map activation units accurately to the firing response of LIF neurons.
-	Noisy Softplus not only brings more biological features to the activation function, but also proves capable of performing well in a spiking ConvNet recognition task.
-	The spiking version of Noisy Softplus wins on accuracy over the sigmoid neuron, compared to the result~\cite{Stromatias2015scalable} of using Siegert units.
-	As a result of its more accurate mapping, Noisy Softplus outperforms Softplus.
-	
-	The Noisy Softplus activation function proposed here is based on LIF neurons with biological characteristics, and is the first attempt to map a spiking neural response accurately to the activation unit of an ANN.
-	The resulting classification accuracy was tested on a spiking ConvNet; the performance was close to that of the original ConvNet, and was better than using Softplus.
-	This study brings a significant biological feature, noise, to the activation units of an ANN, in the hope of promoting research into noise-based computation.
-	
-	Future work on SNNs will include constraints during training to limit the function within the active range, which is equivalent to constraining the maximum firing rate of an LIF neuron.
-	As a result there should be no need for the scaling process after training.
-	For more accurate mapping, the scale factor $k$ should be (numerically) derived to avoid calibration.
-	In ANNs, it could be useful to study noise as extra information to be gathered by Softplus activation to enhance classification.
+	%A conclusion should be a short summary of the most pithy points in the chapter. It’s the thing that you’re going to leave the reader with. Given that they’ve just spent time reading the whole chapter, they don’t want to read it all again. What do you most want the reader to remember about this chapter? What is the key to the argument you’ve made, the most significant thing(s) that they have to keep in their mind as they go forward? In a thesis, a conclusion is usually fairly brief and to the point. Barbara and I call this ‘crunching’. Crunching the conclusion requires some thought – it’s not an afterthought. It is always about your take-home message, if you like. So don’t go on at length in the conclusion – Crunch.
+%	The Spiking Neural Network (SNN) has not achieved the recognition/classification performance of its non-spiking competitor, the Artificial Neural Network(ANN), particularly when used in deep neural networks.
+%	How to equip SNNs with equivalent recognition capability as DNNs' thus to take advantages of their neuromorphic implementation attracts increased attention both in the neuromorphic community and the deep learning industry.
+%	%TODO the scalability, power efficiency and real-time sensor interactive with the environment 
+%	%	The mapping of a well-trained ANN to an SNN is a hot topic in this field, especially using spiking neurons with biological characteristics.
+%	This Chapter proposes a new biologically-inspired activation function, Noisy Softplus, which is well-matched to the response function of LIF (Leaky Integrate-and-Fire) neurons.
+%	A convolutional network was trained on the MNIST database with Noisy Softplus units and directly applied to an SNN while maintaining a close classification accuracy.
+%	This result demonstrates the equivalent recognition capability of the more biologically-realistic SNNs and bring biological features to the activation units in ANNs.
+%	%TODO rewording
+%	The proposed method uses the same conventional ANN training only, and the off-line trained model can be directly applied to SNN without conversion.
+%	
+%	The biologically-inspired activation function, Noisy Softplus, adapts to the noise level of input currents automatically, and is the first attempt to map activation units accurately to the firing response of LIF neurons.
+%	Noisy Softplus not only brings more biological features to the activation function, but also proves capable of performing well in a spiking ConvNet recognition task.
+%	The spiking version of Noisy Softplus wins on accuracy over the sigmoid neuron, compared to the result~\cite{Stromatias2015scalable} of using Siegert units.
+%	As a result of its more accurate mapping, Noisy Softplus outperforms Softplus.
+%	
+%	The Noisy Softplus activation function proposed here is based on LIF neurons with biological characteristics, and is the first attempt to map a spiking neural response accurately to the activation unit of an ANN.
+%	The resulting classification accuracy was tested on a spiking ConvNet; the performance was close to that of the original ConvNet, and was better than using Softplus.
+%	This study brings a significant biological feature, noise, to the activation units of an ANN, in the hope of promoting research into noise-based computation.
+%	
+%	Future work on SNNs will include constraints during training to limit the function within the active range, which is equivalent to constraining the maximum firing rate of an LIF neuron.
+%	As a result there should be no need for the scaling process after training.
+%	For more accurate mapping, the scale factor $k$ should be (numerically) derived to avoid calibration.
+%	In ANNs, it could be useful to study noise as extra information to be gathered by Softplus activation to enhance classification.
