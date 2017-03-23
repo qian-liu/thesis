@@ -1,8 +1,9 @@
-\chapter{Training Spiking Deep Learning Models On-line Using Spike-based Rate Multiplication (SRM)}
+\chapter{Spike-based Rate Multiplication for On-line SNN Training}
 \label{cha:sdlm}
 %Paragraph One: LINK
 %Make a connection to what has immediately gone before. Recap the last chapter. In the last chapter I showed that… Having argued in the previous chapter that… As a result of x, which I established in the last chapter….. It is also possible to make a link between this chapter and the whole argument… The first step in answering my research question (repeat question) .. was to.. . In the last chapter I …
-Having argued in the previous chapter that it is feasible to construct deep SNNs off-line by training DNN with specific activation function, this chapter continues the hot topic of deep SNNs and takes extra step forward to biologically inspired, on-line, spike-based training.
+Having argued in the previous chapter that deep SNNs are equally capable of classifying digits as deep ANNs do, and can be trained simply just like ANNs.
+This chapter continues the hot topic of deep SNNs and takes extra step forward to biologically inspired, on-line, spike-based training.
 
 %Paragraph Two: FOCUS
 %Now focus the reader’s attention on what this chapter is specifically going to do and why it is important. In this chapter I will examine.. I will present… I will report … This is crucial in (aim of thesis/research question) in order to….
@@ -33,7 +34,7 @@ A review of training RBM algorithms is given in Section~\ref{sec:rbm}.
 The evtCD method divided the learning process into potentiating and depression parts, which formed the basic design of related research.
 As an initial attempt the mathematical analysis was mainly ignored, thus the best classification performance achieved was only about 81.5\% using purely spiking neurons.
 %1. Neftci
-Neftci et al.~\cite{neftci2013event} derived the division of potentiating and depression parts of CD algorithm, but conducted both on the same neural populations which was more biologically plausible.
+Neftci et al.~\cite{neftci2013event} derived the division of potentiating and depression to their event-based CD algorithm, but conducted both parts on the same neural populations which was more biologically plausible.
 Therefore, a global signal was needed to differentiate the potentiating and depression process.
 And the rhythmic oscillation of these processes generated the particular form of neural sampling~\cite{petrovici2013stochastic}.
 The work focused on the statistical aspect of the event-driven sampling, and was extended to the later work on Synaptic Sampling Machines (S2Ms)~\cite{neftci2016stochastic} with stochastic synapses.
