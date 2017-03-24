@@ -812,13 +812,16 @@ Consequently, we propose the new activation function, Noisy Softplus, to replace
 	
 	
 	
-	The best classification accuracy achieved by SNNs was 98.12\%, 0.53\% drop from ANN test, which was trained with ReLU and fine-tuned by Noisy Softplus.
+%	The best classification accuracy achieved by SNNs was trained with ReLU and fine-tuned by Noisy Softplus.
 	The most efficient training in terms of both classification accuracy and algorithm complexity, takes ReLU for ANN training and Noisy Softplus for fine tuning.
 	Softplus does not exhibit better classification capability and more importantly the manual selected static noise level hugely influences the mismatch between the predicted firing rates and the real data.
 	Although Noisy Softplus shows the least classification drop from ANNs to SNNs, the training performance is still worse than ReLU.
-	Improved back propagation or other learning algorithms using noise level will be listed in the future work. 
+%	Improved back propagation or other learning algorithms using noise level will be listed in the future work. 
 	
-		
+	The best classification accuracy achieved by SNN was 98.85\%, 0.20\% drop from ANN test (99.05\%), which was trained with ReLU and fine-tuned by Noisy Softplus.
+	The network structure was the same with the state-of-the-art model which reported the best classification accuracy of 99.1\%~\cite{diehl2015fast} in ANN-trained SNNs: 12c5-2s-64c5-2s-10fc.
+	Their nearly loss-less conversion from ANNs to SNNs was achieved by using IF neurons, while our network performs the best among SNNs consisted of LIF neurons to our knowledge.
+			
 	\begin{figure}[htb!]
 		\centering
 		\begin{subfigure}[t]{0.49\textwidth}
@@ -854,7 +857,8 @@ Consequently, we propose the new activation function, Noisy Softplus, to replace
 	\begin{equation}
 	\sum_j E_{j} =  \dfrac{T E_{syn}}{\tau_{syn}} \sum_{j}y_j N_j.
 	\end{equation}
-	Thus, it may cost SpiNNaker 0.064~W, 192~J running for $3,000$~s with synaptic events of $8\times10^6/s$ to classify $10,000$ images (300~ms each) with the best accuracy of 98.02\%.
+	Thus, it may cost SpiNNaker 0.064~W, 192~J running for $3,000$~s with synaptic events of $8\times10^6/s$ to classify $10,000$ images (300~ms each) with an accuracy of 98.02\%.
+	The best performance reported using the larger network may cost SpiNNaker 0.43~W operating synaptic event rate at $5.34\times10^7/s$, consume 4271.6~J to classify all the images for 1~s each.
 	
 \section{Summary}
 %\section{Discussions}
@@ -875,10 +879,10 @@ Consequently, we propose the new activation function, Noisy Softplus, to replace
 	Moreover, we put forward the complete SNN modelling method by using artificial neurons of combined activation.
 	This method can be generalised to activation units other than Noisy Softplus.
 	The training of an SNN model is exactly the same as ANN training, and the trained weights can be directly used in SNN without any transformation.
-	This method is more simpler and even more straight forward than the other ANN offline training methods which requires an extra step of converting ANN-trained weights to SNN's.
+	This method is simpler and even more straight forward than the other ANN offline training methods which requires an extra step of converting ANN-trained weights to SNN's.
 	
 	In terms of classification/recognition accuracy, the performance of ANN-trained SNNs is nearly equivalent as ANNs, and the performance loss can  be partially solved by fine tuning.
-%	The best classification accuracy of 98.12\% using LIF neurons in PyNN simulation outperforms most of the SNN models of LIF neurons which will be listed in Chapter~6, and is closely to the result using IF neurons~\cite{diehl2015fast}. 
+	The best classification accuracy of 98.85\% using LIF neurons in PyNN simulation outperforms state-of-the-art SNN models of LIF neurons which will be listed in Chapter~6, and is very close to the result using IF neurons~\cite{diehl2015fast}. 
 	
 
 	%A conclusion should be a short summary of the most pithy points in the chapter. It’s the thing that you’re going to leave the reader with. Given that they’ve just spent time reading the whole chapter, they don’t want to read it all again. What do you most want the reader to remember about this chapter? What is the key to the argument you’ve made, the most significant thing(s) that they have to keep in their mind as they go forward? In a thesis, a conclusion is usually fairly brief and to the point. Barbara and I call this ‘crunching’. Crunching the conclusion requires some thought – it’s not an afterthought. It is always about your take-home message, if you like. So don’t go on at length in the conclusion – Crunch.
