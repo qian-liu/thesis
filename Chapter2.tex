@@ -379,9 +379,9 @@ Thus, the weight gradient is calculated as:
 \Delta w_{ij} = \left \{
 	\begin{aligned}
 	& \eta h_i(v_j - v'_j), &net\_v'_j > 0 \\
-	&-\eta h_i v'_j, & net\_v'_j < = 0
+	& 0, & net\_v'_j < = 0
 	\end{aligned} 
-	= \eta h_i(v_j - v'_j)
+	%= \eta h_i(v_j - v'_j)
 \right.
 \end{equation}
 
