@@ -358,16 +358,16 @@ Figures in Section~\ref{sec:problem} showing the results of solutions for reduci
 		\myrowlabel{Orignal SAE}
 		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
 			{pics_sdlm/60_exp_SAE_Orig/exp2_weights_s.pdf}}\\
-		\myrowlabel{Solution~1}
+		\myrowlabel{S1}
 		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
 			{pics_sdlm/61_exp_SAE_Orig_long/exp2_weights_s.pdf}}\\
-		\myrowlabel{Solution~2}
+		\myrowlabel{S2}
 		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
 			{pics_sdlm/63_exp_SAE_noise_long/exp2_weights_s.pdf}}
-		\myrowlabel{Solution~3}
+		\myrowlabel{S3}
 		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
 			{pics_sdlm/65_exp_SAE_teach_long/exp2_weights_s.pdf}}\\
-		\myrowlabel{Combined Solutions}
+		\myrowlabel{S4}
 		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
 			{pics_sdlm/67_exp_SAE_all_long/exp2_weights_s.pdf}}
 		\caption{Exp2 Weights}
@@ -386,7 +386,7 @@ Figures in Section~\ref{sec:problem} showing the results of solutions for reduci
 			{pics_sdlm/67_exp_SAE_all_long/exp2_mse_nons.pdf}}
 		\caption{Exp2 Loss}
 	\end{subfigure}%
-	\caption{Comparisons of weights and loss of solutions for training SAEs of LIF neurons. To accelerate the training at the beginning, the initial weights are random chosen ranging from [0, 0.1]. 10 visible units fully connected to 10 hidden units with Poisson spike trains of firing rate ranging from 10~Hz to 100~Hz.}
+	\caption{Comparisons of weights and loss of solutions for training SAE on Exp2 using LIF neurons: [S1] longer STDP window, [S2] noisy threshold, [S3] teaching signal, and [S4] combined solutions. 10 visible units fully connected to 10 hidden units with Poisson spike trains of firing rate ranging from 10~Hz to 100~Hz.}
 	\label{fig:LIF_sae}
 \end{figure}
 
@@ -396,16 +396,16 @@ Figures in Section~\ref{sec:problem} showing the results of solutions for reduci
 		\myrowlabel{Orignal SRBM}
 		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
 			{pics_sdlm/70_exp_SRBM_Orig/exp2_weights_s.pdf}}\\
-		\myrowlabel{Solution~1}
+		\myrowlabel{S1}
 		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
 			{pics_sdlm/71_exp_SRBM_Orig_long/exp2_weights_s.pdf}}\\
-		\myrowlabel{Solution~2}
+		\myrowlabel{S2}
 		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
 			{pics_sdlm/73_exp_SRBM_noise_long/exp2_weights_s.pdf}}
-		\myrowlabel{Solution~3}
+		\myrowlabel{S3}
 		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
 			{pics_sdlm/75_exp_SRBM_teach_long/exp2_weights_s.pdf}}\\
-		\myrowlabel{Combined Solutions}
+		\myrowlabel{S4}
 		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
 			{pics_sdlm/77_exp_SRBM_all_long/exp2_weights_s.pdf}}
 		\caption{Exp2 Weights}
@@ -424,7 +424,7 @@ Figures in Section~\ref{sec:problem} showing the results of solutions for reduci
 			{pics_sdlm/77_exp_SRBM_all_long/exp2_mse_nons.pdf}}
 		\caption{Exp2 Loss}
 	\end{subfigure}%
-	\caption{Comparisons of weights and loss of solutions for training SRBMs of LIF neurons. To accelerate the training at the beginning, the initial weights are random chosen ranging from [0, 0.1]. 10 visible units fully connected to 10 hidden units with Poisson spike trains of firing rate ranging from 10~Hz to 100~Hz.}
+	\caption{Comparisons of weights and loss of solutions for training SRBM on Exp2 using LIF neurons: [S1] longer STDP window, [S2] noisy threshold, [S3] teaching signal, and [S4] combined solutions. 10 visible units fully connected to 10 hidden units with Poisson spike trains of firing rate ranging from 10~Hz to 100~Hz.}
 	\label{fig:LIF_srbm}
 \end{figure}
 

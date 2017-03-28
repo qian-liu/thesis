@@ -851,6 +851,7 @@ Consequently, we propose the new activation function, Noisy Softplus, to replace
 	E_{j} &= \lambda_j N_j T E_{syn}\\
 	&= \dfrac{y_j N_j T E_{syn}}{\tau_{syn}}~~,
 	\end{aligned}
+	\label{equ:energy}
 	\end{equation}
 	where $\lambda_j$ is the output firing rate, $N_j$ is the number of post-synaptic neurons it connects to, $T$ is the testing time, and $E_{syn}$ is the energy cost for a synaptic event of some specific neuromorphic hardware, for example, about 8~nJ on SpiNNaker~\cite{stromatias2013power}.
 	Thus to estimate the whole network, we can sum up all the synaptic events of all the neurons:
