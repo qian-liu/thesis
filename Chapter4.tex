@@ -5,8 +5,8 @@
 %Paragraph One: LINK
 The first step in answering my research question of validating the capability of real-time cognitive application built on neuromorphic platform was to build an object recognition prototype running completely on hardware in an absolute spike-based fashion.
 It built up the basis for the later research that neuromorphic hardware has been capable of running large applications standing alone without a general computer and has stepped into the era of improving its cognitive ability.
-It is also possible to make a link between this chapter and the whole argument that this work contributes to an effective, straight-forward Spike Neural Network~(SNN) training method which operates exactly as training Artificial Neural Network~(ANN).
-In addition the trained model directly fit to SNN without any transformation, and performs almost equivalently to ANNs on cognitive tasks.
+It is also possible to make a link between this chapter and the whole argument that this work contributes to an effective, straight-forward SNN training method which operates exactly as training ANN.
+In addition the trained model fits directly to SNN without any transformation, and performs almost equivalently to ANNs on cognitive tasks.
 
 %Paragraph Two: FOCUS
 %Now focus the reader’s attention on what this chapter is specifically going to do and why it is important. In this chapter I will examine.. I will present… I will report … This is crucial in (aim of thesis/research question) in order to….
@@ -15,8 +15,8 @@ Training SNNs by conventional ANN algorithms and mapping well-trained ANNs weigh
 %, especially the SNNs of spiking neurons with biological characteristics.
 In this chapter we will propose a new biologically-inspired activation function, Noisy Softplus, which is well-matched to the response firing activity of LIF (Leaky Integrate-and-Fire) neurons.
 Thus, any ANN employing Noisy Softplus neurons, even of deep architecture, can be trained simply by the traditional algorithm, for example Back Propagation~(BP), and the trained weights can be directly used in the spiking version of the same network without any conversion.
-Furthermore, the training method can be generalised to other activation units, for instance ReLU, to train deep SNNs off-line.
-This research is crucial to 1) provide an effective approach for SNN training, and 2) increase the classification accuracy of SNNs with biological characteristics and close the gap between the performance of SNNs and ANNs.
+Furthermore, the training method can be generalised to other activation units, for instance Rectified Linear Units (ReLU), to train deep SNNs off-line.
+This research is crucial to provide an effective approach for SNN training, and to increase the classification accuracy of SNNs with biological characteristics and to close the gap between the performance of SNNs and ANNs.
 
 %Paragraph Three: OVERVIEW
 %The third paragraph simply outlines the way that you are going to achieve the aim spelled out in the previous paragraph. It’s really just a statement of the contents in the order that the reader will encounter them. It is important to state these not simply as topics, but actually how they build up the internal chapter argument… I will begin by examining the definitions of, then move to seeing how these were applied… I first of all explain my orientation to the research process, positioning myself as a critical scholar.. I then explain the methodology that I used in the research, arguing that ethnography was the most suitable approach to provide answers to the question of… 
@@ -27,11 +27,11 @@ This research is crucial to 1) provide an effective approach for SNN training, a
 %Afterwards we argue why the learning algorithm is proper to train spiking Autoencoders (SAEs) and Spiking Restricted Boltzmann Machines (SRBM).
 %During the research we encountered the problem introduced by the correlated spikes, therefore we also propose solutions to decorrelate spike trains in Section~\ref{sec:problem}. 
 %Finally the detailed comparison of the traditional training and SRM learning on MNIST dataset demonstrates the equivalent learning ability and shows similar even surpassing recognition and reconstruction capability of SAE and SRBM.
-In this chapter, we begin by introducing the difficulty of SNN training, and lead to the existing solutions state-of-the-art.
-Then we put forward the proposed activation function, Noisy Softplus, and demonstrate how it fits the network dynamics composed of spiking neurons.
-Afterwards, a complete SNN training method is explained employing the Noisy Softplus activations and is generalised to other activation functions.
+In this chapter, we begin by introducing the difficulty of SNN training, and consider existing state-of-the-art solutions.
+We then propose an activation function, Noisy Softplus, and demonstrate how it fits the network dynamics composed of spiking neurons.
+A complete SNN training method is proposed employing Noisy Softplus activations and is generalised to other activation functions.
 To validate the classification accuracy, a convolutional network (ConvNet) is trained on the MNIST database following this training mechanism and tested directly on an SNN.
-The encouraging result demonstrates a close recognition capability of the more biologically-realistic SNNs compared to the conventional ANNs.
+The promising results of SNN simulations demonstrate a fairly close recognition capability to that of conventional ANNs'.
 
 \section{Introduction}	
 DNNs are the most promising research field in computer vision, even exceeding human-level performance on image classification tasks~\cite{he2015delving}.
@@ -43,36 +43,36 @@ Theoretical studies have shown that biologically-plausible learning, e.g. Spike-
 such as 
 %	Expectation Maximization~\cite{nessler2013bayesian}, 
 Contrastive Divergence~\cite{neftci2013event}, Markov Chain Monte Carlo~\cite{buesing2011neural} and Gradient Descent~\cite{o2016deep}.
-It is the stochasticity, in contrast with the continuously differentiable functions used by ANNs, that is intrinsic to the event-based spiking process, making network training difficult.
+It is the stochasticity, in contrast to the continuously differentiable functions used by ANNs, that is intrinsic to the event-based spiking process, making network training difficult.
 In practice, ANNs use neuron and synapse models very different from biological neurons, and it remains an unsolved problem to develop SNNs with equivalent performance.
 
 %How to map a well trained ANN to SNN is a hot topic in this field, especially using spiking neurons of biological scale.
 
 Conversely, the offline training of an ANN, which is then mapped to an SNN, has shown near loss-less conversion and state-of-the-art classification accuracy.
-These research aim to prove that SNNs are equally capable as their non-spiking rivals of pattern recognition, and at the same time are more biologically realistic and energy-efficient.
-Jug et. al.~\cite{Jug_etal_2012} first proposed the use of the Siegert function to replace the sigmoid activation function in training Restricted Boltzmann Machine (RBM).
+This research aims to prove that SNNs are equally capable as their non-spiking rivals of pattern recognition, and at the same time are more biologically realistic and energy-efficient.
+Jug et al.~\cite{Jug_etal_2012} first proposed the use of the Siegert function to replace the sigmoid activation function in training Restricted Boltzmann Machine (RBM).
 The Siegert units map incoming currents driven by Poisson spike trains to the response firing rate of a Leaky Integrate-and-Fire (LIF) neuron.
 The ratio of the spiking rate to its maximum is equivalent to the output of a sigmoid neuron.
 A spiking Deep Belief Network (DBN)~\cite{Stromatias2015scalable} of four layers of RBMs was implemented on neuromorphic hardware, SpiNNaker~\cite{furber2014spinnaker}, to recognise hand written digits in real time.
 
-However, cortical neurons seldom saturate their firing rate.
-Thus Rectified Linear Units (ReLU) were proposed to replace sigmoid neurons and surpassed the performance of other popular activation units thanks to their advantage of sparsity~\cite{glorot2011deep} and its robustness towards the vanishing gradient problem. % which will be described in Section~\ref{sec:activation}.
+However, cortical neurons seldom saturate their firing rate as sigmoid neurons.
+Thus ReLU were proposed to replace sigmoid neurons and surpassed the performance of other popular activation units thanks to their advantage of sparsity~\cite{glorot2011deep} and robustness towards the vanishing gradient problem. % which will be described in Section~\ref{sec:activation}.
 %TODO Chapter2 about relu and vanishing gradient problem.
 %	~\cite{dugas2001incorporating}.
 %trained with noisy input, the 4-layered spiking autoencoder reached 98.37\% accuracy on MNIST. 
-Recent development on ANN-trained SNN models has focused on using ReLU units and converting trained weights to SNNs.
-Better performance~\cite{cao2015spiking,diehl2015fast} than Siegert-trained RBM has been demonstrated in Spiking ConvNets, but this employed simple integrate and fire (IF) neurons without leak.
+Recent developments on ANN-trained SNN models has focused on using ReLU units and converting trained weights to fit in SNNs.
+Better performance~\cite{cao2015spiking,diehl2015fast} than Siegert-trained RBM has been demonstrated in Spiking ConvNets, but this employed simple integrate and fire (IF) neurons without leakage.
 The training used only ReLUs and zero bias to avoid negative outputs, and applied a deep learning technique, dropout~\cite{srivastava2014dropout}, to increase the classification accuracy.
-Normalising the trained weights for use on an SNN employing IF neurons only was relatively straightforward and maintained the classification accuracy.
+Normalising the trained weights for use on an SNN employing IF neurons only was relatively straightforward and maintained classification accuracy.
 This work was extended to a Recursive Neural Network (RNN)~\cite{diehl2016conversion} and run on the TrueNorth~\cite{merolla2014million} neuromorphic hardware platform.
 
-Except for the popular, simplified version of ReLU, $max(0,\sum w x)$, the other implementation of $\log(1+e^x)$, Softplus, is more biologically realistic.
+Except for the popular, simplified version of ReLU, $max(0,\sum w x)$, the other implementation of $\log(1+e^x)$, ``Softplus'', is more biologically realistic.
 Recent work~\cite{hunsberger2015spiking} proposed the Soft LIF response function for training SNNs, which is equivalent to Softplus activation of ANNs.
 	
 \section{Modelling The Activation Function}
 \label{sec:af_model}
 We have introduced the existing work of modelling the response firing activity of LIF neurons using Siegert~\cite{Jug_etal_2012} function.
-It created the idea of modelling activation functions for spiking neurons whose input is synaptic current generated by spike arrivals and output is the firing rate of a sequence of spike train.
+It suggested an approach to modelling activation functions for spiking neurons whose input is a synaptic current generated by spike arrivals and whose output is the firing rate of a sequence of spikes.
 This section will start from the neural science background to demonstrate those physical quantities used in the Siegert formula.
 Then we will compare and show the difference between analytical estimation and practical simulations of spiking neurons.
 Consequently, we propose the new activation function, Noisy Softplus, to replace Siegert function for modelling the practical spiking activities of LIF neurons.
@@ -94,14 +94,14 @@ Consequently, we propose the new activation function, Noisy Softplus, to replace
 	\label{equ:consI}
 	\end{equation}
 	otherwise the membrane potential cannot reach the threshold $V_{th}$ and the output firing rate is zero. 
-	The absolute refractory period $t_\mathit{ref}$ is included, where all input during this period is ignored.
+	The absolute refractory period $t_\mathit{ref}$ is included, during which period synaptic inputs are ignored.
 	
 	%TODO very important part
 	However, in practice, a noisy current generated by the random arrival of spikes, rather than a constant current, flows into the neurons.
 	%White noise
-	The noisy current is typically treated as a sum of deterministic constant term, $I_{const}$, and a white noise term, $I_{noise}$.
+	The noisy current is typically treated as a sum of a deterministic constant term, $I_{const}$, and a white noise term, $I_{noise}$.
 	Thus the value of the current is Gaussian distributed with $m_I$ mean and ${s_I}^2$ variance.
-	The white noise is a stochastic process $\xi(t)$ with mean 0 and variance 1, which is delta-correlated, i.e., the process is uncorrelated in time that a value $\xi(t)$ at time $t$ is totally independent of the value at any other time $t'$.
+	The white noise is a stochastic process $\xi(t)$ with mean 0 and variance 1, which is delta-correlated, i.e., the process is uncorrelated in time so that a value $\xi(t)$ at time $t$ is totally independent on the value at any other time $t'$.
 	Therefore, the noisy current can be seen as:
 	\begin{equation}
 	I(t) = I_{const}(t)+I_{noise}(t) = m_I + s_I\xi(t)~~,
@@ -217,15 +217,16 @@ Consequently, we propose the new activation function, Noisy Softplus, to replace
 	
 	Although the use of Siegert function opened the door for modelling response activities of LIF neurons as activation function used in ANNs, there are several drawbacks of this method:
 	\begin{itemize}
-		\item most importantly, the numerical analysis on an LIF response function is too far from practice.
-		`Practice' in the context means the simulation of SNN using LIF neurons. 
+		\item most importantly, the numerical analysis on an LIF response function is far from accurate in practice. 'Practice' in the chapter means SNN simulations using LIF neurons.
 		Thus the inaccurate model generates error between the estimation and the practical response firing rate.
 		This issue will be addressed in Section~\ref{subsec:practice}.
-		\item the high complexity of Siegert function causes much longer training time and more energy, let alone the high-cost computation on its derivative.
+		
+		
+		\item the high complexity of the Siegert function causes much longer training time and more energy, let alone the high-cost computation on its derivative.
 		\item the training uses Siegert function to estimate the output firing rate in the forward path, but uses the derivative of sigmoid function during back propagation for lower complexity.
-		However, due to the difference of Siegert and sigmoid functions, error is introduced. 
-		\item neurons have to fire at high frequency (higher than half of the maximum firing rate) so as to represent activation of a sigmoid unit, as a result the network activity requires high power dissipation.
-		\item better learning performance has been reported using ReLU, so modelling ReLU like activation function of Spiking neurons is needed.  
+		However, due to the difference between Siegert and sigmoid functions, error is introduced. 
+		\item neurons have to fire at high frequency (higher than half of the maximum firing rate) to represent the activation of a sigmoid unit; as a result the network activity results in high power dissipation.
+		\item better learning performance has been reported using ReLU, so modelling ReLU-like activation function for spiking neurons is needed.  
 	\end{itemize}
 	
 	Therefore, we propose the Noisy Softplus function which provides solutions to the drawbacks of Siegert unit.
@@ -327,16 +328,16 @@ Consequently, we propose the new activation function, Noisy Softplus, to replace
 %\end{figure}
 
 	To verify the response function in practice, simulation tests were carried out using PyNN~\cite{davison2008pynn} to compare with the analytical results.
-	The noisy current was produced by \textit{NoisyCurrentSource} in PyNN which is a constant current of $m_I$ adding up with a Gaussian white noise of zero mean and $s_I^2$ variance.
+	The noisy current was produced by \textit{NoisyCurrentSource} in PyNN which is a constant current of $m_I$ added to a Gaussian white noise of zero mean and $s_I^2$ variance.
 	The noise was drawn from the Gaussian distribution in a time resolution of $dt$.
 	We chose $dt=1$~ms which is the finest resolution for common SNN simulators, and $dt=10$~ms for comparison.
-	For a given pair of $m_I$ and $s_I^2$, a noisy current was injected into a current-based LIF neuron for 10~s, and the output firing rate was the average among 10 trials.
+	For a given pair of $m_I$ and $s_I^2$, a noisy current was injected into a current-based LIF neuron for 10~s, and the output firing rate was the average over 10 trials.
 	
-	The curves in Figures~\ref{Fig:current} lined up the tests on same noise level.
-	The difference compared to the analytical results (thin lines) comes from the time resolution, $dt$, of the \textit{NoisyCurrentSource}.
+	The curves in Figures~\ref{Fig:current} illustrate output firing rate driven by different level of noise
+	The differences relative to the analytical results (thin lines) is due to the time resolution, $dt$, of the \textit{NoisyCurrentSource}.
 	The sampled signals are shown in Figures~\ref{Fig:lif_curr}~(a) and (b).
 	The discrete sampling of the noisy current introduces time step correlation to the white noise, shown in Figures~\ref{Fig:lif_curr}~(e) and (f), where the value remains the same within a time step $dt$.
-	Although both the current signals followed the same Gauss distribution, see Figures~\ref{Fig:lif_curr}~(g) and (h), the current is a white noise when $dt=1$~ms, but a coloured noise, e.g. increased Power Spectral Density~(PSD) at lower frequency, when $dt=10$~ms, see Figures~\ref{Fig:lif_curr}~(c) and (d).
+	Although both current signals followed the same Gauss distribution, see Figures~\ref{Fig:lif_curr}~(g) and (h), the current is a white noise when $dt=1$~ms, but a coloured noise, e.g. increased Power Spectral Density~(PSD) at lower frequency, when $dt=10$~ms, see Figures~\ref{Fig:lif_curr}~(c) and (d).
 	Thus the Siegert formula, Equation~\ref{equ:siegert}, can only approximate the LIF response of noisy current with white noise.
 
 
@@ -444,14 +445,15 @@ Consequently, we propose the new activation function, Noisy Softplus, to replace
 	Figures~\ref{Fig:spike_curr} illustrate the recorded firing rates responding to the Poissoin spike trains compared to the mean firing rate driven by \textit{NoisyCurrentSource} in Figure~\ref{Fig:lif_curr}.
 	Note that the estimation of LIF response activity requires noisy current with white noise, however
 %	The use of noisy currents assumes that the post-synaptic potential (PSP) is a delta function, e.g. $\tau_{syn}$ tends to the limits of 0.
-	in practice the release of neurotransmitter takes time ($\tau_{syn} >> 0$) and the synaptic current decays exponentially $I_{syn} = I_0 e^{\frac{-t}{\tau_{syn}}}$.
+	in practice the release of neurotransmitter takes time ($\tau_{syn} >> 0$) and the synaptic current the decays exponentially $I_{syn} = I_0 e^{\frac{-t}{\tau_{syn}}}$.
 	Figures~\ref{Fig:lif_pois}~(a) and (b) show two examples of synaptic current of 0~nA mean and 0.2 standard deviation driven by 100 neurons firing at the same rate and with the same synaptic strength (half excitatory, half inhibitory), but of different synaptic time constant.
 	Therefore, the current at any time t during decaying period is dependant to the value at previous time step, which makes the synaptic current a coloured noise, see Figures~\ref{Fig:lif_pois}~(c) and (d).
 %	and the noise added to the mean current is not white noise, but pink noise.
+	
 	We observe in Figure~\ref{Fig:spike_curr}~(a) that the response firing rate to synaptic current is higher than the \textit{NoisyCurrentSource} for all the 10 trials.
-	This is caused by a) the coarse resolution (1~ms) of the spikes, thus the standard deviation of the current is larger than 0.2, shown in Figure~\ref{Fig:lif_pois}~(g);
-	and b) the $\tau_{syn}$, even short as 1~ms, adds coloured noise instead of white noise to the current.
-	While Figure~\ref{Fig:lif_pois}~(h) shows a similar firing rate of both the synaptic driven current and the \textit{NoisyCurrentSource}, since both of the current signals have similar distribution and time correlation.
+	This is caused by the coarse resolution (1~ms) of the spikes, thus the standard deviation of the current is larger than 0.2, shown in Figure~\ref{Fig:lif_pois}~(g);
+	and the $\tau_{syn}$, even short as 1~ms, adds coloured noise instead of white noise to the current.
+	However, Figure~\ref{Fig:lif_pois}~(h) shows a similar firing rate of both the synaptic driven current and the \textit{NoisyCurrentSource}, since both of the current signals have similar distribution and time correlation.
 	Nevertheless, the analytical response function, Siegert formula, cannot approximate either of the practical simulations.
 	
 %	Thus the experiments show that a longer $\tau_{syn}$ increases the level of noise and widens the variance of the output firing rate.
@@ -459,7 +461,7 @@ Consequently, we propose the new activation function, Noisy Softplus, to replace
 
 		
 	\subsection{Noisy Softplus}
-	Due to the limited time resolution of common SNN simulators and the time taken for neurotransmitter release, $\tau_{syn}$, mismatches exist between the analytical response function, Siegert formula, and the practical neural activities.
+	Due to the limited time resolution of common SNN simulators and the time taken for neurotransmitter release, $\tau_{syn}$, mismatches exist between the analytical response function, the Siegert formula, and practical neural activities.
 	Consequently, a unified activation function is required to model the practical responses of a LIF neuron.
 	Inspired by the set of response functions triggered by different levels of noise, we propose the Noisy Softplus activation function:
 	\begin{equation}
@@ -469,7 +471,7 @@ Consequently, we propose the new activation function, Noisy Softplus, to replace
 	where $x$ refers to the mean current, $y$ indicates the strength of the output firing rate, $\sigma$ plays an important role to define the noise level, and $k$, which is determined by the neuron parameters, controls the shape of the curves.
 	Note that the novel activation function we propose contains two parameters, the current and its noise; both are naturally obtained in spiking neurons.
 	% With doubled information, more powerful training methods and network models are expected. 
-	Figure~\ref{fig:nsp} shows the activation function in curve sets corresponding to different discrete noise level, and in a 3D plot.
+	Figure~\ref{fig:nsp} shows the activation function in curve sets corresponding to different discrete noise levels, and in a 3D plot.
 	\begin{figure}[thb!]
 		\centering
 		\begin{subfigure}[t]{0.6\textwidth}
@@ -503,10 +505,10 @@ Consequently, we propose the new activation function, Noisy Softplus, to replace
 	\label{equ:fit}
 	\end{equation}	
 	
-	The Noisy Softplus fits well to the practical response firing rate of the LIF neuron with suitable calibration of $k$ and $S$, see Figure~\ref{Fig:nsptau1}.
+	Noisy Softplus fits well to the practical response firing rate of the LIF neuron with suitable calibration of $k$ and $S$, see Figure~\ref{Fig:nsptau1}.
 	The parameter pair of $(k, S)$ is curve-fitted with the triple data points of $(\lambda, x, \sigma)$.
 	The fitted parameter was set to $(k, S)=(0.19,208.76)$ for the practical response firing rate driven by synaptic noisy current with $\tau_{syn}=1$~ms and was set to $(k, S)=(0.35,201.06)$ when $\tau_{syn}=10$~ms.
-	The calibration currently is conducted by linear least squares regression, however numerical analysis is considered for future work to express the factors with biological parameters of a LIF neuron.
+	The calibration currently is conducted by linear least squares regression; numerical analysis is considered however for future work to express the factors with biological parameters of a LIF neuron.
 	
 	\begin{figure}
 		\centering
@@ -525,7 +527,7 @@ Consequently, we propose the new activation function, Noisy Softplus, to replace
 	
 \section{ANN-Trained SNNs}	
 	We have discussed modelling response firing activity of a LIF neuron with a unified activation function, Noisy Softplus.
-	However the demonstration of mapping the physical activity to numerical ANN calculations is still required, thus to train the layered-up deep network.
+	However the demonstration of mapping the physical activity to numerical ANN calculations is still required to train the layered-up deep network.
 	
 	\subsection{Equivalent Input and Output}
 	
@@ -536,9 +538,8 @@ Consequently, we propose the new activation function, Noisy Softplus, to replace
 		\label{Fig:neuron}
 	\end{figure}
 	Neurons in ANNs take inputs from their previous layer, and feed the weighted sum of their input, $net_j = \sum_i w_{ij}x_i$, to the activation function.
-	The transformed signal then forms the output of an artificial neuron, $y_j=f(net_j)$, see Figure~\ref{Fig:neuron}.
-	
-	Meanwhile, Noisy Softplus is able to predict the firing rate of a spiking neural driven by some noisy current, nevertheless an extra step is still needed to map the firing rate to numerical values in ANNs.
+	The transformed signal then forms the output of an artificial neuron, $y_j=f(net_j)$, see Figure~\ref{Fig:neuron}.	
+	However, Noisy Softplus takes physical quantities of current, and firing rate as input/output, thus an extra step is still needed to map the firing rate to numerical values in ANNs.
 	According to Equation~\ref{equ:distr}, the mean of the current feeding into a spiking neuron is equivalent to $net$ of artificial neurons, where
 	\begin{equation}
 	\begin{aligned}
@@ -564,7 +565,7 @@ Consequently, we propose the new activation function, Noisy Softplus, to replace
 		\label{Fig:sneuron}
 	\end{figure}
 	
-	Noisy Softplus transforms the noisy current with parameters of $(net_j, \sigma_j)$ to the equivalent ANN output $y_j$ , where it can be scaled up by the scaling factor $S$ to the firing rate of SNNs.
+	Noisy Softplus transforms the noisy current with parameters of $(net_j, \sigma_j)$ to the equivalent ANN output $y_j$ , where it can be scaled up by the factor $S$ to the firing rate of SNNs.
 	Note that the calculation of noise level is not necessary for activation functions other than Noisy Softplus, for example, it can be set to a constant for Softplus or 0 for ReLU.
 	We name the neuron model `artificial spiking neurons' which takes firing rates of spike trains as input and output. 
 	The entire artificial spiking neuron model is then generalised to any ReLU/Softplus-like activation functions, See Figure~\ref{Fig:sneuron}.
@@ -575,8 +576,8 @@ Consequently, we propose the new activation function, Noisy Softplus, to replace
 	\subsection{Layered-up Network}
 	\label{subsec:ns_train}
 %	Figure~\ref{Fig:sneuron} shows an complete transformation process of a spiking neuron, which mimics the biological neurons taking and generating spike trains.
-	If we move the left end process of $\times \tau_{syn}$ to the right hand side, Figure~\ref{Fig:sneuron} forms the same model structure as artificial neurons shown in Figure~\ref{Fig:neuron}: neurons take $x$ as input and outputs $y$, and this conversion is illustrated in Figure~\ref{Fig:tneuron}.
-	The process within an artificial neuron is divided to weighted summation and activation, which also applies to the spiking neuron model by combining the scaling factor $S$ and the synaptic time constant $\tau_{syn}$ to activation functions.
+	Referred to Figure~\ref{Fig:sneuron}, if we move the left end process of $\times \tau_{syn}$ to the right end after $\lambda_j$, Figure~\ref{Fig:sneuron} forms the same model structure as artificial neurons shown in Figure~\ref{Fig:neuron}: neurons take $x$ as input and outputs $y$, and this conversion is illustrated in Figure~\ref{Fig:tneuron}.
+	The process within such an artificial neuron is divided into weighted summation and activation, which also applies to SNN modelling by combining the scaling factor $S$ and the synaptic time constant $\tau_{syn}$ to activation functions.
 	Thus the combined activation function for modelling SNNs should be:
 	\begin{equation}
 	y = f(x) \times S \times \tau_{syn}~~,
@@ -600,22 +601,22 @@ Consequently, we propose the new activation function, Noisy Softplus, to replace
 	
 
 	
-	Thus, using this method of ANN-trained SNNs, the activation functions are of lower complexity than Siegert formula, and their corresponding derivative functions can be directly used for back propagation.
-	Furthermore, the method enables ReLU-like activation functions for SNN training, thus to improve the recognition accuracy while keeping a relative lower firing rate compared to sigmoid neurons. 
+	Thus, using this method of ANN-trained SNNs, the activation functions are of lower complexity than the Siegert formula, and their corresponding derivative functions can be directly used for back propagation.
+	Furthermore, the method enables ReLU-like activation functions for SNN training, thus improving the recognition accuracy while keeping a relative lower firing rate compared to sigmoid neurons. 
 	Most significantly, the ANN-trained weights are ready for use in SNNs without any transformation, and the output firing rate of a spiking neuron can be estimated in the ANN simulation.
 	
 	
 	\subsection{Fine Tuning}
-	There are two aspects in the fine tuning which makes the ANN more close to SNNs:
+	There are two aspects to the fine tuning which makes the ANN closer to SNNs:
 	Firstly, using Noisy Softplus activation functions in a whole trained network operates every single neuron running in a similar noise level as in SNNs, thus the weights trained by other activation functions will be tuned to fit closer to SNNs.
 	Secondly, the output firing rate of any LIF neuron is greater than zero as long as noise exists in their synaptic input.
 	Thus adding up a small offset on the labels directs the model to approximate to practical SNNs. 
 	
 	The labels of data are always converted to binary values for ANN training.
 	This enlarges the disparities between the correct recognition label and the rest to train the network for better classification capability.
-	Consequently, we train the network as stated in Section~\ref{subsec:ns_train} with any activation function and then fine-tune it with Noisy Softplus in order to take account of both accuracy and practical network activities of SNNs.
+	Consequently, we train the network as stated in Section~\ref{subsec:ns_train} with any activation function and then fine-tune it with Noisy Softplus to take account of both accuracy and practical network activities of SNNs.
 	However, we add a small number, for example 0.01, to all the binary values of the data labels.
-	By doing so, it helps the training to loosen the strict objective function to predict exact with binary values.
+	Doing so helps the training to loosen the strict objective function to predict exact labels with binary values.
 	Instead, it allows a small offset to the objective.
 	An alternative method is to use Softmax function at the top layer, which aims to map real vectors to the range of $(0,1)$ that add up to 1. 
 	However, without a limit on the input of Softmax, it will be easy to reach or even exceed the highest firing rate of a spiking neuron.
@@ -627,9 +628,9 @@ Consequently, we propose the new activation function, Noisy Softplus, to replace
 	A convolutional network model was trained on MNIST,
 	%	~\cite{lecun1998gradient}
 	a popular database in neuromorphic vision, using the ANN-trained SNN method stated above.
-	The architecture contains $28\times28$ input units, followed by two convolutional layers 6c5-2s-12c5-2s, and the 10 output neurons fully connected to last pooling layer represent the classified digit.
+	The architecture contains $28\times28$ input units, followed by two convolutional layers 6c5-2s-12c5-2s, and 10 output neurons fully connected to the last pooling layer to represent the classified digit.
 	
-	The training employed Noisy Softplus units only that all the convolution, average sampling, and the fully-connected neurons use Noisy Softplus function with no bias.
+	The training only employed Noisy Softplus units that all the convolution, average sampling, and the fully-connected neurons use Noisy Softplus function with no bias.
 	The parameters of the activation function were calibrated as, $(k=0.30, S=201)$,  for LIF neurons~(see~Tablel~\ref{tbl:pynnConfig}) of $\tau_{syn}=5$~ms.
 	The input images were scaled by 100~Hz to present the firing rates of input spikes.
 	The weights were updated using a decaying learning rate, 50 images per batch and 20 epochs.
@@ -637,7 +638,7 @@ Consequently, we propose the new activation function, Noisy Softplus, to replace
 	
 	
 	\subsection{Neural Activity}
-	Firstly, to validate how well the Noisy Softplus activation fits to the response firing rate of LIF neurons in a real application, we simulated the model on NEST using the Poisson MNIST dataset~\cite{liu2016bench} and the neurons of a convolutional map were observed.
+	To validate how well the Noisy Softplus activation fits to the response firing rate of LIF neurons in a real application, we simulated the model on NEST using the Poisson MNIST dataset~\cite{liu2016bench} and the neurons of a convolutional map were observed.
 	
 		\begin{figure}[tbh!]
 		\centering
@@ -668,7 +669,7 @@ Consequently, we propose the new activation function, Noisy Softplus, to replace
 	\end{figure}
 
 	Figure~\ref{fig:cnn} shows a small test of ten MNIST digits presented in Poisson spike trains for 1~s each.
-	A trained $5\times5$ kernel (Figure~\ref{fig:cnn}(c)) were convolved with these input digits, and the fourth digit `0' (Figure~\ref{fig:cnn}(b)) and its convolved output of the feature map was shown in Figure~\ref{fig:cnn}(d) as firing rate.
+	A trained $5\times5$ kernel (Figure~\ref{fig:cnn}(c)) was convolved with these input digits, and the fourth digit `0' (Figure~\ref{fig:cnn}(b)) and its convolved output of the feature map was shown in Figure~\ref{fig:cnn}(d) as firing rate.
 	The output firing rate was recorded during a real-time SNN simulation on NEST, and compared to the modelled activations of Equation~\ref{equ:full_act} in ANNs.
 	
 	The input $x$ of the network was calculated as Equation~\ref{equ:mi_input}: $x_i=\lambda_i\tau_{syn}$, and so as the weighted sum of the synaptic current (see Equation~\ref{equ:mi_input}), $net_j$ and its variance (see Equation~\ref{equ:si_input}), $\sigma^2_j$.
@@ -686,8 +687,8 @@ Consequently, we propose the new activation function, Noisy Softplus, to replace
 %	Figure~\ref{fig:af_stast} illustrated the statistics of error between the estimation and the recorded firing rate, $err = y_j - \lambda_j$ which formed normal distributions where Noisy Softplus hold the weakest mean (low in abstract) and lowest standard deviation.
 	The Euclidean distance, $\sqrt{\sum_{j}(y_j/\tau_{syn} - \lambda_j)}$, between the spike counts and the predicted firing rates by Noisy Softplus, ReLU and Softplus was 184.57, 361.64 and 1102.76 respectively.
 	We manually selected a static noise level of 0.45 for Softplus, whose estimated firing rates located roughly on the top slope of the real response activity.
-	Which resulted in longer Euclidean distance than using ReLU, since most of the input noisy currents were of relatively low noise level in this experiment.
-	In another word, the firing rate driven by lower noise level is closer to ReLU curve than Softplus.
+	This resulted in longer Euclidean distance than using ReLU, since most of the input noisy currents were of relatively low noise level in this experiment.
+	Hence, the firing rate driven by lower noise level is closer to ReLU curve than Softplus.
 	
 			
 	\begin{figure}[tbh!]
@@ -711,7 +712,7 @@ Consequently, we propose the new activation function, Noisy Softplus, to replace
 	The SNN successfully classified the digits where the correct label neuron fired the most.
 	We trained the network with binary labels on the output layer, thus the expected firing rate of correct classification was $1/\tau_{syn}=200$~Hz according to Equation~\ref{Fig:tneuron}.
 	The firing rates of the recognition test fell to the valid range around 0 to 200~Hz.
-	This shows another advantage of the proposed ANN-trained method that we can constrain the expected firing rate of the top layer, thus to prevent SNN from exceeding its maximum firing rate, for example 1000~Hz when time resolution of SNN simulation set to 1~ms.
+	This shows another advantage of the proposed ANN-trained method that we can constrain the expected firing rate of the top layer, thus preventing SNN from exceeding its maximum firing rate, for example 1000~Hz when time resolution of SNN simulation set to 1~ms.
 	
 		\begin{figure}[tbp!]
 			\centering
@@ -722,37 +723,37 @@ Consequently, we propose the new activation function, Noisy Softplus, to replace
 	
 	\subsection{Recognition Performance}
 	\label{subsec:result_compare}
-	Secondly we focus on the recognition performance of the proposed ANN-trained SNN method.
-	Before we reach there, it is significant to see the learning capability of the proposed activation function, Noisy Softplus.
+	Here we focus on the recognition performance of the proposed ANN-trained SNN method.
+	Before looking into the recognition results, it is significant to see the learning capability of the proposed activation function, Noisy Softplus.
 	We compared the training using ReLU, Softplus, and Noisy Softplus by their loss during training averaged over 3 trials, see Figure~\ref{Fig:loss_ns}.
-	ReLU learned the fastest and reached the lowest loss, thanks to its steepest derivative and none-noise assumption.
-	To the contrary, Softplus accumulated spontaneous firing rates layer by layer and its derivative may experience vanishing gradients during back propagation, which result in a more difficult training.
-	Noisy Softplus performed in between in terms of loss and learning speed.
-	However, the loss stabilised the fastest, which means a possible shorter training time.
+	ReLU learned fastest with the lowest loss, thanks to its steepest derivative.
+	In comparison, Softplus accumulated spontaneous firing rates layer by layer and its derivative may experience vanishing gradients during back propagation, which result in a more difficult training.
+	Noisy Softplus performance lay between these two in terms of loss and learning speed.
+	However, the loss stabilised fastest, which means a possible shorter training time.
 	\begin{figure}[tbp!]
 		\centering
 		\includegraphics[width=0.7\textwidth]{pics_iconip/8.png}
-		\caption{Comparisons of Loss during training using Noisy Softplus, ReLU and Softplus activation functions. Bold lines show the average of three training trials, and the grey colour fills between the minimum and the maximum of the trials.  }
+		\caption{Comparisons of Loss during training using Noisy Softplus, ReLU and Softplus activation functions. Bold lines show the average of three training trials, and the grey colour illustrates the range between the minimum and the maximum values of the trials.  }
 		\label{Fig:loss_ns}
 	\end{figure}
 %	The trained networks were scaled to SNNs and compared on recognition rates, 93.34\%, 96.43\% and 97.03\% with a conversion loss of 4.76\%, 0.91\% and 0.74\%.
 	
 	The recognition test took the whole testing dataset of MNIST which contains $10,000$ images.
-	At first, all the trained models were tested on the same artificial neurons as used for training in ANNs, and these experiments were called `DNN' test since the network had a deep structure (5 layers).
-	Afterwards, the trained weights were then directly applied to SNN without any transformation, and these `SNN' experiments tested their recognition performance on the NEST simulator.
+	At first, all trained models were tested on the same artificial neurons as used for training in ANNs, and these experiments were called `DNN' test since the network had a deep structure (5 layers).
+	Subsequently, the trained weights were directly applied to SNN without any transformation, and these `SNN' experiments tested their recognition performance on the NEST simulator.
 	The LIF neurons had the same parameters as in training.
 	The input images were converted to Poisson spike trains and presented for 1~s each.
 	The output neuron which fired the most indicated the classification of an input image.
 	Moreover, a `Fine tuning' test took the trained model for fine tuning, and the tuned weights were tested on the same SNN environment.
 	The tuning only ran for one epoch, 5\% cost of the ANN training (20~epochs), using Noisy Softplus neurons with labels shifted for $+0.01$.
 	
-	The classification error for all the tests are listed in Table~\ref{tbl:ns_result} and the averaged classification accuracy is shown in Figure~\ref{Fig:result_bar}.
+	The classification errors for the tests are investigated in Table~\ref{tbl:ns_result} and the averaged classification accuracy is shown in Figure~\ref{Fig:result_bar}.
 	From DNN to SNN, the classification accuracy declines by 0.80\%, 0.79\% and 3.12\% on average for Noisy softplus, ReLU and Softplus
 	The accuracy loss was caused by the mismatch between the activations and the practical response firing rates, see example in Figure~\ref{fig:af_compare}, and the strict binary labels for Noisy Softplus and Softplus activations.
 	Fortunately, the problem is alleviated by fine tuning which increased the classification accuracy by 0.38\%, 0.19\% and 2.06\%, and resulted in the total loss of 0.43\%, 0.61\%, and 1.06\% respectively.
-	The improvement of ReLU is not as much as the others, because there is no problem of strict labels during training.
+	The improvement of ReLU is not as great as the others, because there is no problem of strict labels during training.
 %	Thus fine tuning mainly corrects the mismatch between ReLU and the firing rates in SNNs, and constraints the output firing rates of the network.
-	While Softplus benefits the most from fine tuning, since not only the huge mismatch of response firing rate is much corrected, but also the loosed labels helps the network to fit SNNs. 
+	Softplus benefits the most from fine tuning, since not only the huge mismatch of response firing rate is greatly corrected, but also the offset on the labels helps the network to fit SNNs. 
 	
 	\begin{figure}[hbt!]
 		\centering
@@ -818,7 +819,7 @@ Consequently, we propose the new activation function, Noisy Softplus, to replace
 	Although Noisy Softplus shows the least classification drop from ANNs to SNNs, the training performance is still worse than ReLU.
 %	Improved back propagation or other learning algorithms using noise level will be listed in the future work. 
 	
-	The best classification accuracy achieved by SNN was 98.85\%, 0.20\% drop from ANN test (99.05\%), which was trained with ReLU and fine-tuned by Noisy Softplus.
+	The best classification accuracy achieved by SNN was 98.85\%, a 0.20\% drop from ANN test (99.05\%), which was trained with ReLU and fine-tuned by Noisy Softplus.
 	The network structure was the same with the state-of-the-art model which reported the best classification accuracy of 99.1\%~\cite{diehl2015fast} in ANN-trained SNNs: 12c5-2s-64c5-2s-10fc.
 	Their nearly loss-less conversion from ANNs to SNNs was achieved by using IF neurons, while our network performs the best among SNNs consisted of LIF neurons to our knowledge.
 			
@@ -833,18 +834,18 @@ Consequently, we propose the new activation function, Noisy Softplus, to replace
 		    \caption{After fine tuning.}
 		\end{subfigure}
 
-		\caption{The classification accuracy of 3 trials (averaged in bold lines, grey lines show the range between minimum to maximum) over short response times, with (a) trained weights before fine tuning, and (b) after fine tuning.}
+		\caption{The classification accuracy of 3 trials (averaged in bold lines, grey shading shows the range between minimum to maximum) over short response times, with (a) trained weights before fine tuning, and (b) after fine tuning.}
 		\label{fig:ca_time}	
 	\end{figure}
 	
 	As it is a major concern in neuromorphic vision, the recognition performance over short response times is also estimated in Figure~\ref{fig:ca_time}.
-	After fine tuning Softplus significantly reduced the mismatch, since the randomness among the three trials shrinks to similar range to other experiments.
-	More obviously fine tuning improved its classification accuracy and the response latency.
-	Notice that all of the networks trained by three different activation functions showed a very similar stabilisation curve against time, which means they all reached a close accuracy to their best taking 300~ms of test. 
+	After fine tuning, Softplus significantly reduced the mismatch since the randomness among the three trials shrinks to a range similar to other experiments.
+	More obviously, fine tuning improved its classification accuracy and the response latency.
+	Notice that all of the networks trained by three different activation functions showed a very similar stabilisation curve against time, which means they all reached an accuracy close to their best by only taking 300~ms of test. 
 	
 	
 	\subsection{Power Consumption}
-	Noisy Softplus can be easily used for energy cost estimation for SNNs.
+	Noisy Softplus can easily be used for energy cost estimation for SNNs.
 	For a single neuron, the energy consumption of the synaptic events it triggers is:
 	\begin{equation}
 	\begin{aligned}
@@ -863,7 +864,7 @@ Consequently, we propose the new activation function, Noisy Softplus, to replace
 	
 \section{Summary}
 %\section{Discussions}
-	Most significantly, we proposed the Noisy Softplus activation function which accurately models response firing rate of LIF neurons and solved the drawbacks of Siegert units.
+	Most significantly, we proposed the Noisy Softplus activation function which accurately models response firing rate of LIF neurons and overcomes the drawbacks of Siegert units.
 %	 listed in Section~\ref{sec:af_model}: 
 %	\begin{itemize}
 %		\item Noisy Softplus takes account of time correlation of the noisy synaptic current, e.g. $\tau_{syn}$, which fits more to the actual response firing rate.
@@ -877,10 +878,10 @@ Consequently, we propose the new activation function, Noisy Softplus, to replace
 %		\item the learning performance of Noisy Softplus is between Softplus and ReLU, which is supposed to outperform most of the other popular activation functions: for instance sigmoid.
 %	\end{itemize}
 
-	Moreover, we put forward the complete SNN modelling method by using artificial neurons of combined activation.
-	This method can be generalised to activation units other than Noisy Softplus.
+	Moreover, we proposed complete SNN modelling method by using artificial neurons of combined activation;
+	this method can be generalised to activation units other than Noisy Softplus.
 	The training of an SNN model is exactly the same as ANN training, and the trained weights can be directly used in SNN without any transformation.
-	This method is simpler and even more straight forward than the other ANN offline training methods which requires an extra step of converting ANN-trained weights to SNN's.
+	This method is simpler and even more straight-forward than the other ANN offline training methods which requires an extra step of converting ANN-trained weights to SNN's.
 	
 	In terms of classification/recognition accuracy, the performance of ANN-trained SNNs is nearly equivalent as ANNs, and the performance loss can  be partially solved by fine tuning.
 	The best classification accuracy of 98.85\% using LIF neurons in PyNN simulation outperforms state-of-the-art SNN models of LIF neurons which will be listed in Chapter~6, and is very close to the result using IF neurons~\cite{diehl2015fast}. 
