@@ -57,11 +57,13 @@ The inputs of the ConvNet were continuous spike events instead of static images 
 The chip was capable of detecting the four suits in a 52-card deck which was browsed rapidly in only 410 ms.
 Similarly, a real-time gesture recognition model~\cite{liu2014real} was implemented on a neuromorphic system with a DVS as a front-end and a SpiNNaker~\cite{furber2014spinnaker} machine as the back-end, where LIF neurons built up the ConvNet configured with biological parameters.
 In this study's largest configuration, a network of 74,210 neurons and 15,216,512 synapses used 290 SpiNNaker cores in parallel and reached 93.0\% accuracy. 
+
 Spike-Timing-Dependent Plasticity (STDP) as  a learning mechanism based on biological observations has been applied to vision tasks.
 \cite{bichler2012extraction} demonstrated an unsupervised STDP learning model to classify car trajectories captured with a DVS retina. 
-A similar model was tested on a Poissonian spike presentation of the MNIST dataset achieving a performance of 95.0\%~\cite{diehl2015unsupervised}.
-Theoretical analysis~\cite{nessler2013bayesian} showed that unsupervised STDP was able to approximate a stochastic version of Expectation Maximisation, a powerful learning algorithm in machine learning.
-A computer simulation achieved a 93.3\% CA on MNIST and had the potential to be implemented using memristors~\cite{bill2014compound}. 
+A similar model trained with STDP on winner-take-all~(WTA) circuit was tested on a Poissonian spike presentation of the MNIST dataset achieving a performance of 95.0\%~\cite{diehl2015unsupervised}.
+%Theoretical analysis~\cite{nessler2013bayesian} showed that unsupervised STDP was able to approximate a stochastic version of Expectation Maximisation, a powerful learning algorithm in machine learning.
+Another STDP trained model tested on computer simulation reached a 93.3\% CA on MNIST and had the potential to be implemented using memristors~\cite{bill2014compound}. 
+Adding synaptic internal state enabled STDP to work on bistatble synapses, and this method achieved the best performance of 96.5\% among similar network architectures. 
 
 Deep Neural Networks (DNNs) have exceeded human-level performance on image classification tasks~\cite{he2015delving}, but mainstream DNN research is focussed on continuous rather than spiking neural networks.
 The spiking deep network has great potential to combine remarkable performance with energy-efficient training and operation.
@@ -71,9 +73,10 @@ Recent advances have contributed to better translation by using modified units i
 The latter paper claims a state-of-the-art performance (99.1\% on the MNIST dataset) compared to the original ConvNet.
 The current trend towards training Spiking DNNs on line using biologically-plausible learning methods is also promising.
 An event-driven Contrastive Divergence (CD) training algorithm for Restricted Boltzmann Machines (RBMs) was proposed for Deep Belief Networks (DBNs) using LIF neurons with STDP synapses and verified on MNIST with a CA of 91.9\%~\cite{neftci2013event}.
+The work extended to use stochastic synapses, and the recognition performance increased to 95.8\%~\cite{neftci2016stochastic}.
 
 
-Despite the promising research on SNN-based vision recognition, there is no commonly-used database in the format of spike stimuli.
+Despite the promising research on SNN-based vision recognition, there is no commonly used database in the format of spike stimuli.
 In the studies listed above, all of the vision data used are in one of the following formats:
 (1) raw grey-scale images data;
 (2) pixel-intensity-driven rate-based Poisson spike trains;
@@ -589,46 +592,55 @@ Following to the formatted evaluation as in Table~\ref{tb:model_eval}, Table~\re
 			
 			%
 			\begin{mycell}{0.5cm}~\cite{brader2007learning} \end{mycell} & 
-			\begin{mycell}{2cm} Normalisation \end{mycell} & % preprocessing
-			\begin{mycell}{3cm} Two layer, LIF neurons\end{mycell}&  % network
+			\begin{mycell}{2cm} Poisson \end{mycell} & % preprocessing
+			\begin{mycell}{3cm} Two layer,\\LIF neurons\\bistable synapse\end{mycell}&  % network
 			\begin{mycell}{3cm} Semi-supervised, STDP, calcium LTP/LTD\end{mycell}&  % training
 			\begin{mycell}{3cm} 96.5\% \end{mycell} \\% recognition
-			
+
 			%
-			\begin{mycell}{0.5cm}~\cite{beyeler2013categorization} \end{mycell} & 
-			\begin{mycell}{2cm} Scaling, V1 (edge),\\ Poisson\end{mycell} & % preprocessing
-			\begin{mycell}{3cm} V2 (orientation),\\ and competitive decision, Izhikevich neurons\end{mycell}&  % network
-			\begin{mycell}{3cm} Semi-supervised, STDP, \\ calcium LTP/LTD \end{mycell} &  % training
-			\begin{mycell}{3cm} 91.6\% \\ 300~ms per test \end{mycell} \\% recognition
+			\begin{mycell}{0.5cm}~\cite{diehl2015unsupervised} \end{mycell} & 
+			\centering Poisson&
+			\begin{mycell}{3cm} Two layers, LIF neurons, inhibitory feedback  \end{mycell}& 
+			\begin{mycell}{3cm} Unsupervised, WTA, STDP,\\ %adaptive membrane potential, 
+				%				$3,000,000$~s of training\\ 
+				$200,000$~s times\\ 15 iterations\end{mycell} & 
+			\begin{mycell}{3cm} 95\% \end{mycell}\\
+			%
+%			\begin{mycell}{0.5cm}~\cite{beyeler2013categorization} \end{mycell} & 
+%			\begin{mycell}{2cm} Scaling, V1 (edge),\\ Poisson\end{mycell} & % preprocessing
+%			\begin{mycell}{3cm} V2 (orientation),\\ and competitive decision, Izhikevich neurons\end{mycell}&  % network
+%			\begin{mycell}{3cm} Semi-supervised, STDP, \\ calcium LTP/LTD \end{mycell} &  % training
+%			\begin{mycell}{3cm} 91.6\% \\ 300~ms per test \end{mycell} \\% recognition
 			
 			%
 			\begin{mycell}{0.5cm}~\cite{neftci2013event} \end{mycell} & 
-			\begin{mycell}{2cm} Thresholding,\\ Synaptic current\end{mycell} & % preprocessing
-			\begin{mycell}{3cm} Two layer RBM, \\ LIF neurons \end{mycell}&  % network
+			\begin{mycell}{2cm} Thresholding, Poisson\end{mycell} & %  ,\\ Synaptic current
+			\begin{mycell}{3cm} Two layers, \\RBM, \\ LIF neurons \end{mycell}&  % network
 			\begin{mycell}{3cm} Event-driven contrastive divergence (eCD), unsupervised \end{mycell}&  % training
 			\begin{mycell}{3cm} 91.9\% \\ 1~s per test\end{mycell} \\% recognition
 			
 			\begin{mycell}{0.5cm}~\cite{neftci2016stochastic} \end{mycell} & 
-			\begin{mycell}{2cm} Thresholding,\\ Synaptic current\end{mycell} & % preprocessing
-			\begin{mycell}{3cm} Two layer RBM, \\ LIF neurons \end{mycell}&  % network
+			\begin{mycell}{2cm} Thresholding, Poisson\end{mycell} & % preprocessing Thresholding,\\ Synaptic current
+			\begin{mycell}{3cm} Two layers,\\RBM, \\ LIF neurons \end{mycell}&  % network
 			\begin{mycell}{3cm} Synaptic Sampling Machine + eCD, unsupervised \end{mycell}&  % training
 			\begin{mycell}{3cm} 95.8\% \\ 250~ms per test\end{mycell} \\% recognition
 			
-			%
-			\begin{mycell}{0.5cm}~\cite{diehl2015unsupervised} \end{mycell} & 
-			\centering Poisson &
-			\begin{mycell}{3cm} Two layers, LIF neurons, inhibitory feedback  \end{mycell}& 
-			\begin{mycell}{3cm} Unsupervised, STDP,\\ %adaptive membrane potential, 
-				%				$3,000,000$~s of training\\ 
-				$200,000$~s times\\ 15 iterations\end{mycell} & 
-			\begin{mycell}{3cm} 95\% \end{mycell}\\
+
 			
 			%
-			\begin{mycell}{0.5cm}~\cite{diehl2015fast}\end{mycell}  & 
+			\begin{mycell}{0.5cm} % %\cite{Stromatias2015scalable} \\ 
+				\cite{stromatias2015robustness} \end{mycell} & 
 			\begin{mycell}{2cm} Poisson \end{mycell} & % preprocessing
-			\begin{mycell}{3cm} ConvNet or \\Fully connected,\\ LIF neurons \end{mycell}& % network
+			\begin{mycell}{3cm} Four layers, \\RBM, \\ LIF neurons \end{mycell}&  % network
+			\begin{mycell}{3cm} Off-line trained, unsupervised \end{mycell}&  % training
+			\begin{mycell}{3cm} 94.94\%\\16 ms latency \\ 1.44M Sopbs\end{mycell} \\% recognition
+			
+			%
+			\begin{mycell}{0.5cm}~\cite{diehl2015fast}\end{mycell}& 
+			\begin{mycell}{2cm}Poisson\end{mycell} & % preprocessing
+			\begin{mycell}{3cm} Five layers,\\ConvNet, \\IF neurons\end{mycell}& % network
 			\begin{mycell}{3cm} Off-line trained with ReLU, weight normalisation \end{mycell}&   % training
-			\begin{mycell}{3cm} 99.1\% (ConvNet), \\ 98.6\% (Fully connected);\\0.5~s per test\end{mycell}\\ % recognition    
+			\begin{mycell}{3cm} 99.1\%, \\0.5~s per test\end{mycell}\\ % recognition    
 			%
 			\begin{mycell}{0.5cm}~\cite{zhao2014feedforward}\end{mycell}  & 
 			\begin{mycell}{2cm} Thresholding \\ or DVS \end{mycell}& % preprocessing 
@@ -636,19 +648,23 @@ Following to the formatted evaluation as in Table~\ref{tb:model_eval}, Table~\re
 			\begin{mycell}{3cm} Tempotron, supervised \end{mycell}& % training
 			\begin{mycell}{3cm} 91.3\%(Thresholding)\\ 11~s per test \\ 88.1\%(DVS),\\ 2~s per test\end{mycell}\\ % recognition
 			
-			%
-			\begin{mycell}{0.5cm} % %\cite{Stromatias2015scalable} \\ 
-				\cite{stromatias2015robustness} \end{mycell} & 
-			\begin{mycell}{2cm} Poisson \end{mycell} & % preprocessing
-			\begin{mycell}{3cm} Four layer RBM, \\ LIF neurons \end{mycell}&  % network
-			\begin{mycell}{3cm} Off-line trained, unsupervised \end{mycell}&  % training
-			\begin{mycell}{3cm} 94.94\%\\16 ms latency \\ 1.44M Sopbs\end{mycell} \\% recognition
+			\begin{mycell}{0.5cm}Chpt4\end{mycell}& 
+			\begin{mycell}{2cm}Poisson\end{mycell} & % preprocessing
+			\begin{mycell}{3cm} Five layers,\\ConvNet, \\LIF neurons\end{mycell}& % network
+			\begin{mycell}{3cm} Off-line trained with ReLU,\\ Noisy Softplus fine-tune\end{mycell}&   % training
+			\begin{mycell}{3cm} 98.85\%, \\1~s per test\\$53.4$M Sopbs\end{mycell}\\ % recognition    
+			
+			\begin{mycell}{0.5cm}Chpt5\end{mycell}& 
+			\begin{mycell}{2cm}Poisson\end{mycell} & % preprocessing
+			\begin{mycell}{3cm} Two layers,\\ Autoencoders~(AE), \\LIF neurons\end{mycell}& % network
+			\begin{mycell}{3cm} Event-driven, spike-based AE\\$18,000$~s training, unsupervised\end{mycell}&   % training
+			\begin{mycell}{3cm} 94.72\%, \\1~s per test\\$5.26$M Sopbs\end{mycell}\\ % recognition    
 			%
 			\begin{mycell}{0.5cm} Case Study \end{mycell}  & 
 			\begin{mycell}{2cm} Poisson \end{mycell}& % preprocessing 
 			\begin{mycell}{3cm} Fully connected decision layer, \\ LIF neurons \end{mycell}& % network
 			\begin{mycell}{3cm} K-means clusters,\\Supervised STDP\\$18,000$~s of training \end{mycell}& % training
-			\begin{mycell}{3cm} 92.99\%\\1~s per test\\0.2~s blank \\13.82~ms latency\\$4.17$M Sopbs\end{mycell} % recognition
+			\begin{mycell}{3cm} 92.99\%\\1~s per test \\13.82~ms latency\\$4.17$M Sopbs\end{mycell} % recognition
 		\end{tabular}
 		\egroup
 	\end{center}
