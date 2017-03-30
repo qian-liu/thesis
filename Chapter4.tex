@@ -3,10 +3,11 @@
 %{\fontsize{20pt}{0pt}\selectfont \textit{an Activation Function That Enables SNN to Be Trained Just Like ANNs}}
 
 %Paragraph One: LINK
-The first step in answering my research question of validating the capability of real-time cognitive application built on neuromorphic platform was to build an object recognition prototype running completely on hardware in an absolute spike-based fashion.
-It built up the basis for the later research that neuromorphic hardware has been capable of running large applications standing alone without a general computer and has stepped into the era of improving its cognitive ability.
+In the last chapter, we answered our first research question of validating the capability of real-time cognitive application built on neuromorphic platform by building an object recognition prototype running completely on hardware in an absolute spike-based fashion.
+It built up the basis for the later research that neuromorphic hardware has been capable of running large applications standing alone without a general computer.
+Here we proceed to the next step to equip these large neuromorphic systems with equivalent cognitive ability to that of state-of-the-art ANNs', which is addressed to the second research question.
 It is also possible to make a link between this chapter and the whole argument that this work contributes to an effective, straight-forward SNN training method which operates exactly as training ANN.
-In addition the trained model fits directly to SNN without any transformation, and performs almost equivalently to ANNs on cognitive tasks.
+More significantly, the trained model fits directly to SNN without any transformation, and performs almost equivalently to ANNs on cognitive tasks.
 
 %Paragraph Two: FOCUS
 %Now focus the reader’s attention on what this chapter is specifically going to do and why it is important. In this chapter I will examine.. I will present… I will report … This is crucial in (aim of thesis/research question) in order to….
@@ -217,7 +218,7 @@ Consequently, we propose the new activation function, Noisy Softplus, to replace
 	
 	Although the use of Siegert function opened the door for modelling response activities of LIF neurons as activation function used in ANNs, there are several drawbacks of this method:
 	\begin{itemize}
-		\item most importantly, the numerical analysis on an LIF response function is far from accurate in practice. 'Practice' in the chapter means SNN simulations using LIF neurons.
+		\item most importantly, the numerical analysis on an LIF response function is far from accurate in practice. ``Practice'' in the chapter means SNN simulations using LIF neurons.
 		Thus the inaccurate model generates error between the estimation and the practical response firing rate.
 		This issue will be addressed in Section~\ref{subsec:practice}.
 		
@@ -231,7 +232,7 @@ Consequently, we propose the new activation function, Noisy Softplus, to replace
 	
 	Therefore, we propose the Noisy Softplus function which provides solutions to the drawbacks of Siegert unit.
 	
-	\subsection{LIF Neuron Simulation}
+	\subsection{Mismatch of Siegert Function to Practice}
 	\label{subsec:practice}
 	
 	
