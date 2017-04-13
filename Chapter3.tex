@@ -1,626 +1,482 @@
-\chapter{Real-Time Pattern-Based Recognition on a Neuromorphic System}
-\label{cha:pattern}
-%Paragraph One: LINK
-%Make a connection to what has immediately gone before. Recap the last chapter. In the last chapter I showed that… Having argued in the previous chapter that… As a result of x, which I established in the last chapter….. It is also possible to make a link between this chapter and the whole argument… The first step in answering my research question (repeat question) .. was to.. . In the last chapter I … 
-
-In the last chapter we discussed the background knowledge from models of spiking neurons, via neurormphic hardware platforms, to the state-of-the-art cognitive capability achieved by deep learning.
-This chapter takes the first step in testing the research hypotheses that a complete neuromorphic platform standing alone is able to operate large object recognition models in real-time and in an absolute spike-based fashion.
-The hypothesis paves the way for further study on improving the cognitive capability of SNNs which may require large network size but at the same time benefit from real-time operation on energy-efficient neuromorphic system.
-
-
-
-%Paragraph Two: FOCUS
-%Now focus the reader’s attention on what this chapter is specifically going to do and why it is important. In this chapter I will examine.. I will present… I will report … This is crucial in (aim of thesis/research question) in order to….
-To build a real-time recognition prototype running on complete neuromorphic hardware, we successfully connected a biologically-inspired silicon retina\cite{lenero20113}, as a vision front-end, to a SpiNNaker system~\cite{furber2014spinnaker} where a SNN model operated as a hand posture recogniser in an event-driven and real-time fashion. 
-%which is a massive parallel computing platform aimed at real-time simulation of SNNs. 
-%SpiNNaker, as the back-end of the system, provides a flexible, event-driven mechanism for real-time simulation of SNNs, and is where the posture recogniser locates.
-%With this neuromorphic hardware system we have the ability to explore visual processing by mimicking the functions of vision neurons. 
-Building a real-time recognition system for dynamic hand postures is a first step of exploring cognition using spiking neurons of the thesis and is also a validation of the neuromorphic platform.
-%To match the image properties detailed earlier, the position, shape, size and trajectory of the hand postures can be detected from the retina output.
-%To keep the task simple at first, the postures are of similar size and the goal is to recognise the shape of a hand with moving positions.
-%Tracking the postures with a short memory will form part of the future work.
-
-%Dynamic recognition takes advantage of the intrinsic temporal processing of SNNs which are receiving considerable attention for undertaking vision processing.
-%Pattern information can be encoded in the delays between the pre- and post-synaptic spikes since the spiking neurons are capable of computing radial basis functions (RBFs)~\cite{hopfield1995pattern}.
-%Spatio-temporal information can also be stored in the exact firing time rather than relative delays~\cite{natschlager1998spatial}.
-
-
-We think that this presents a big opportunity for neuromor-
-phic engineering, which has always pursued the goal of provid-
-ing fast and energy efficient alternatives to conventional digital
-computing architectures for real-time brain-inspired cognitive systems.
-
-
-
-
-\section{The Neuromorphic Platform}
-\label{sec:np}
-The outline of the platform is illustrated in Fig.~\ref{fig:SysOverViewa}, where the hardware system is configured, controlled and monitored by the PC.
-%Fig.~\ref{fig:SysOverViewb} shows the combined hand posture recognition system; 
-The jAER~\cite{delbruck2008frame} event-based processing software on the PC configures the retina and displays the output spikes through a USB link.
-The host communicates to the SpiNNaker board via Ethernet to set up its runtime parameters and to download the neural network model off-line.
-It visualises~\cite{6252490} the spiking activity of the network in real-time.
-The photograph of the hardware platform, Fig.~\ref{fig:SysOverViewb}, shows that the silicon retina connects to the SpiNNaker 48-node system via a Spartan-6 FPGA board~\cite{galluppi2012real}.
-%, which was also applied to a sound localisation system.
-
-
-\begin{figure}
-\centering
-	\begin{subfigure}[t]{0.8\textwidth}
-		\includegraphics[width=\textwidth]{pics_icann/outline.pdf}
-	    \caption{Outline of the platform.}
-	    \label{fig:SysOverViewa}
-	\end{subfigure}
-	\\
-	\begin{subfigure}[t]{0.8\textwidth}
-		\includegraphics[width=\textwidth]{pics_icann/outline2.pdf}	    \caption{Picture of the hardware platform. From left to right: a silicon retina, a FPGA board, and a 48-node SpiNNaker system.}
-	    \label{fig:SysOverViewb}
-	\end{subfigure}	
-
-\caption{System overview of the dynamic hand posture recognition platform. 
-%The silicon retina connects to the SpiNNaker system through an FPGA board. 
-%Spikes from the retina are streamed to the SpiNNaker system through this Spartan-6 FPGA board.
-%The jAER software configures the retina and displays its outgoing spikes through the USB connection.
-%The host sets up the runtime parameters off-line and downloads the network model to the SpiNNaker system.
-}
-\label{fig:SysOverView}
-\end{figure}
-
-\subsection{Silicon Retina}
-The visual input is captured by a DVS silicon retina, which is quite different from conventional video cameras.
-Each pixel generates spikes when its change in brightness reaches a defined threshold.
-Thus, instead of buffering video into frames, the activity of pixels is sent out and processed continuously with time.
-The communication bandwidth is therefore optimised by sending activity only, which is encoded as pixel events using Address-Event Representation (AER~\cite{lazzaro1995multi}) protocol.
-The level of activity depends on the contrast change; pixels generate spikes faster and more frequently when they are subject to more active change.
-The sensor is capable of capturing very fast moving objects (e.g., up to 10 K rotations per second), which is equivalent to 100 K conventional frames per second~\cite{lenero20113}.
-
-\subsection{SpiNNaker System}
-The SpiNNaker project's architecture mimics the human brain's biological structure and functionality. 
-This offers the possibility of utilizing massive parallelism and redundancy, as the brain, to provide resilience in an environment of unreliability and failure of individual components.
-
-In the human brain, communication between its computing elements, or neurons, is achieved by the transmission of electrical `spikes' along connecting axons. 
-The biological processing of the neuron can be modelled by a digital processor and the axon connectivity can be represented by messages, or information packets, transmitted between a large number of processors which emulate the parallel operation of the billions of neurons comprising the brain.
-
-The engineering of the SpiNNaker concept is illustrated in Fig.~\ref{fig:sysdia} where the hierarchy of components can be identified. 
-Each element of the toroidal interconnection mesh is a multi-core processor known as the `SpiNNaker Chip' comprising 18 processing cores. 
-Each core is a complete processing sub-system with local memory.
-It is connected to its local peers via a Network-on-Chip (NoC) which provides high bandwidth on-chip communication and to other SpiNNaker chips via links between them. 
-In this way massive parallelism extending to thousands or millions of processors is possible.
-
-\begin{figure}
-\centering
-	\includegraphics[width=0.7\textwidth]{pics_icann/mesh_ctiff.jpg}
-	\caption{SpiNNaker system diagram.
-	Each element represents one chip with local memory.
-	Every chip connects to its neighbours through the six bi-directional on-board links. }
-	\label{fig:sysdia}
-\end{figure}
-
-%The knowledge content and learning ability of the brain is generally thought to be embodied in its evolvable interconnection pattern.
-%This structure routes a spike generated by one neuron to others which are interconnected with it via axons and these interconnections are modified and extended as a result of learning processes.
-%
-%In SpiNNaker a packet router within each multi-core processor controls the neural interconnection. 
-%Each transmitted packet represents a spike and simply identifies its source neuron.
-%This is used by routers to identify whether a packet should be routed to a processor core, or should be routed on to one of the six adjacent chips connected to it as part of the overall SpiNNaker network.
-
-The `103 machine' is the name given to the 48-node board which we use for the hand posture recognition system, see Fig.~\ref{fig:SysOverViewb}.
-It has 864 ARM processor cores, typically deployed as 768 application, 48 monitor and 48 spare cores. 
-%The `103 machine' requires a 12V 6A supply. 
-%The control interface is via two 100Mbps Ethernet connections, one for the board management processor and the second for the SpiNNaker array. 
-%There are options to use the nine on-board 3.0~Gbps high-speed serial interfaces (using SATA cables, but not necessarily the SATA protocol) for I/O; 
-%this will require suitable configuration of the on-board FPGAs that provide the high-speed serial interface support. 
-The boards can be connected together to form larger systems using high-speed serial interfaces. 
-
-%\begin{figure}
-%\centering
-%	\includegraphics[width=0.42\textwidth]{pics_icann/SpiNN5.pdf}
-%	\caption{`103 Machine' PCB}
-%	\label{fig:48node}
-%\end{figure}
-
-\subsection{Interfacing AER Sensors}
-Spikes from the silicon retina are injected directly into SpiNNaker via a SPARTAN-6 FPGA board that translates them into a SpiNNaker compatible AER format~\cite{appnote8}. 
-
-From a neural modelling point of view, interfacing the silicon retina is performed using pyNN~\cite{davison2008pynn}. 
-The retina is configured as a spike source population that resides on a virtual SpiNNaker chip, to which an AER sensor's spikes are directed, thus abstracting away the hardware details from the user\cite{galluppi2012real}.
-Besides the retina, we have successfully connected an AER based silicon cochlea~\cite{5537164} to SpiNNaker for a sound localisation task~\cite{6706931}.
-
-\section{Methods}
-The convolutional network is well-known as an example of a biologically-inspired model. 
-Fig.~\ref{fig:conv} shows a typical convolutional connection between two layers of neurons. 
-The repeated convolutional kernels are overlapped in the receptive fields of the input neurons. 
-\begin{figure}
-\centering
-	\includegraphics[width=0.7\textwidth]{pics_icann/conv.pdf}
-	\caption{Each individual neuron in the convolution layer (right matrix) connects to its receptive field using the same kernel. The value of the kernel is represented by the synaptic weights between the connected neurons.}
-	\label{fig:conv}
-\end{figure}
-
-There are two CNNs proposed to accomplish the dynamic hand posture recognition task.
-A straight forward method of template matching is employed at first, followed by a network of multi-layer perceptrons (MLP) trained to improve the recognition performance.
-
-
-\begin{figure}
-\centering
-	\includegraphics[width=0.9\textwidth]{pics_icann/model1.pdf}
-	\caption{Model 1. 
-	The retina input is convolved with Gabor filters in the second layer, and then shrinks the sizes in the pooling layer.
-	The templates are considered as convolution kernels in the last layer.
-	The WTA circuit can be used as an option to show the template matching result more clearly.
-	}
-	\label{fig:model1}
-\end{figure}
-%\subsubsection{Model 1. Template Matching}
-
-Model 1: Template Matching. Shown in Fig.~\ref{fig:model1} the first layer is the retina input, followed by the convolutional layer, where the kernels are Gabor filters responding to edges of four orientations.
-The third layer is the pooling layer where the size of the populations shrinks. 
-This down-sampling enables robust classification due to its tolerance to variations in the precise shape of the input. 
-The fourth layer is another convolution layer where the output from the pooling layer is convolved with the templates.
-The optional layer of Winner-Take-All (WTA) neurons enables a clearer classification result due to the inhibition between the neurons.
-In the Matlab simulation, the retina input spikes are buffered into 30~ms frames, and the neurons are simple linear perceptrons.
-The templates are chosen by sampling the output of the pooling layer when given some reference stimulus, see Fig.~\ref{fig:template}.
-
-\begin{figure}
-\centering
-	\includegraphics[width=0.9\textwidth]{pics_icann/gesture.pdf}
-	\caption{Templates of the five postures: `Fist',`Index Finger', `Victory Sign', `Full Hand' and `Thumb up'.}
-	\label{fig:template}
-\end{figure}
-
-The Gabor filter is well-known as a linear filter for edge detection in image processing. 
-A Gabor filter is a 2D convolution of a Gaussian kernel function and a sinusoidal plane wave; see~(\ref{equ:gabor}). 
+\chapter{Deep Neural Networks~(DNN)}
+\section{Convolutional Network}
+\section{Autoencoders}
+\label{sec:AE}
+Figure~\ref{fig:AE} shows a simplest architecture of an autoencoder, which is the same as a multilayer perceptron (MLP).
+The only difference lies to the number of the output units, where an autoencoder has as many output neurons as the input.
+In this example, the input layer feeds forward the data vector $\mathbf{v}$ to the hidden layer as weighted sum of the data, $\mathbf{net\_h}$.
+Then the hidden units are activated by the input $\mathbf{net\_h}$ according to the activation function: $\mathbf{h}=\sigma(\mathbf{net\_h})$.
+Finally, using the same approach the output of the network is generated, $\mathbf{v'}=\sigma(\mathbf{net\_v'})$, as the reconstruction of the input data.
+Thus, autoencoders are trained without given target values, work as unsupervised learning models.
 \begin{equation}
-\begin{array}{l}
-\mathrm{Real Parts} = \exp \left(\frac{-x^{'2}+y^{'2}}{2\sigma ^{2}}\right)\cos \left(2\pi\frac{{x}'}{\lambda }\right)
-\\
-\\
-\mathrm{Imaginary Parts} = \exp \left(\frac{-x^{'2}+y^{'2}}{2\sigma ^{2}}\right)\sin \left(2\pi\frac{{x}'}{\lambda }\right)
-\\
-\\
-\mathrm{where:}
-\\
-\\
-{x}'=x\cos (\theta ) + y\sin (\theta)
-\\
-\\
-{y}'=-x\sin (\theta ) + y\cos (\theta)
-\end{array}
-\label{equ:gabor}
+h_j=\sigma(\sum_i v_i w^T_{ij})
 \end{equation}
-$\theta$ represents the orientation of the filter, $\lambda$ is the wavelength of the sine wave, and $\sigma$ is the standard deviation of the Gaussian envelope. 
-The frequency and orientation features are similar to the responses of V1 neurons in the human visual system. 
-Only the real parts of the Gabor filters (see Fig.~\ref{fig:gabor}) are used as the convolutional kernels to configure the weights between the input layer and the Gabor filter layer.
+\begin{equation}
+v'_j=\sigma(\sum_i h_i w_{ij})
+\end{equation}
 
 \begin{figure}
-\centering
-	\includegraphics[width=0.9\textwidth]{pics_icann/gabor.pdf}
-	\caption{Real parts of the Gabor filters orienting four directions.}
-	\label{fig:gabor}
+	\centering
+	\includegraphics[width=0.5\textwidth]{pics_sdlm/AE.pdf}
+	\caption{A typical Autoencoder structure.}
+	\label{fig:AE}
 \end{figure}
 
-%The templates (see Fig.~\ref{fig:template}) are manually selected from the output of the pooling layer in the framed Matlab simulation. 
-The output score of a convolution is determined by the matching degree between the input and the kernel.
-Regarding the template matching layer, each neuron in a population responds to how closely its receptive field matches the specific template.
-The position of moving gesture is also naturally encoded in the address of template matching neuron.
-Thus, there are five populations of template matching neurons, one for each hand posture listed.
+%TODO why tied weights are good
+Notice that the connections used in the example are tied weights.
 
-%\subsubsection{Model 2. Trained MLP}
-Model 2: Trained MLP. 
-Inspired by the research of Lecun~\cite{lecun1998gradient}, we designed a combined network model with MLP and CNN (Fig.~\ref{fig:model2}). 
-The first three layers are exactly the same as the previous model.
-The training images for the 3-layered MLP are of same size and the posture is centred in the images.
-Therefore, a tracking layer plays an important role to find the most active region and forward the centred image to the next layer.
+Training an autoencoder is not different from backpropagation (BP) on an Multi-Layer Perceptrons(MLP).
+The objective of training is to minimise the prediction error of an MLP, which measured as a loss function.
+Accordingly, the loss function of an autoencoder can be described as:
+\begin{equation}
+L=\sum_{k=1}^{K}\|\mathbf{v}_{k}-\mathbf{v'}_{k}\|=\frac{1}{2}\sum_{k=1}^{K}(\mathbf{v}_{k}-\mathbf{v'}_{k})^{2}
+\end{equation}
+where k indicates the index of the training data $\mathbf{v}$, and each data vector $\mathbf{v}=\{v_0, v_1,...,v_N\}$ and its reconstruction $\mathbf{v'}=\{v'_0, v'_1,...,v'_N\}$ have N dimensions. 
 
-\begin{figure}
-\centering
-	\includegraphics[width=0.9\textwidth]{pics_icann/model2.pdf}
-	\caption{Model 2. 
-	The retina input convolves with Gabor filters in the second layer, and then shrinks the sizes in the pooling layer.
-	The following tracking layer finds the most active area of some fixed size, moves the posture to the centre and pushes the image to the trained MLP.
-	The winner-take-all (WTA) layer can be used as an option to show the template matching result more clearly.}
-	\label{fig:model2}
-\end{figure}
+%TODO rewording
+Backpropagation, an abbreviation for "backward propagation of errors", is a common method of training artificial neural networks used in conjunction with an optimization method such as gradient descent.
+The method calculates the gradient of a loss function with respect to all the weights in the network.
+The gradient is fed to the optimisation method which in turn uses it to update the weights, in an attempt to minimise the loss function:
+\begin{equation}
+\Delta W \propto -\frac{\partial L}{\partial W}.
+\end{equation}
 
-%Since the size of the input image of the MLP training is fixed and the position is centered, tracking plays a very important role to spot the valid region. 
-%Tracking is naturally embedded in the pooling layer of the convolutional network, for the active neurons directly point out the lively receptive field. 
+Applying stochastic gradient descent (SGD), the true gradient of the weight matrix, $\Delta W$, is approximated by a gradient at a single example with iterations.
+The reconstruction error $E_k$ of an input vector $\mathbf{v}_k$ is as given:
+\begin{equation}
+%	\begin{align*}
+E_k = \frac{1}{2}(\mathbf{v}_k - \mathbf{v'}_k)^2,
+%	\end{align*}
+\end{equation}
+and the gradient of the weight matrix is:
+\begin{equation}
+\Delta W \propto -\frac{\partial E_k}{\partial W}=-\eta \frac{\partial E_k}{\partial W},
+\end{equation}
+where $\eta$ is the learning rate.
 
-\section{Results}
+Since we use tied weights in the network, the weight tuning only needs to apply in the output layer.
+\begin{equation}
+\begin{aligned}
+\Delta w_{ij} = -\eta \frac{\partial E_k}{\partial w_{ij}} &= -\eta \frac{\partial E_k}{\partial v'_j} \frac{\partial v'_j}{\partial net\_v'_j} \frac{\partial net\_v'_j}{\partial w_{ij}}, \textrm{ where} \\
+\frac{\partial E_k}{\partial v'_j} &= \frac{\partial \frac{1}{2} \sum_l (v_l - {v'}_l)^2}{\partial v'_j}= \frac{\partial \frac{1}{2}(v_j - {v'}_j)^2}{\partial v'_j}= v'_j - v_j, \\
+%	\frac{\partial v'_j}{\partial net\_v'_j} &= \begin{cases} 1, v'_j>0\\0, v'_j<=0\\ \end{cases}, \textrm{using ReLU,}\\
+\frac{\partial v'_j}{\partial net\_v'_j} &=\left\{
+\begin{aligned}
+& 1, net\_v'_j > 0 \\
+& 0, net\_v'_j < = 0
+\end{aligned} 
+\right.    \textrm{using ReLU, }\\
+\frac{\partial net\_v'_j}{\partial w_{ij}} &= \frac{\partial h_i w_{ij}}{\partial w_{ij}} = h_i.
+\end{aligned}
+\end{equation}
+Thus, the weight gradient is calculated as:
+\begin{equation}
+\label{equ:ae_widrow_hoff}
+\Delta w_{ij} = \left \{
+\begin{aligned}
+& \eta h_i(v_j - v'_j), &net\_v'_j > 0 \\
+& 0, & net\_v'_j < = 0
+\end{aligned} 
+%= \eta h_i(v_j - v'_j)
+\right.
+\end{equation}
 
-In order to evaluate the cost and performance trade-offs in optimizing the number of neural components, both the convolutional models described above are tested at different scales. 
-Five videos of every posture are captured from the silicon retina in AER format, all of similar size and moving clock-wise in front of the retina. 
-The videos are cut into frames (30~ms per frame) and presented to the convolutional networks. 
-The configurations of the networks are listed in Table~\ref{tbl:nns}.
-The integration layer is not necessary in a convolutional network, but is used here to decrease the number of synaptic connections.
+\section{Restricted Boltzmann Machine}
+\label{sec:rbm}
+In order to implement training and testing of Spiking Deep~Belief~Networks~(SDBNs) on-line, this section studied:
+\begin{itemize}
+	\item \textit{Contrastive Divergence.}
+	The study starts from understanding the original problem, Products of Experts~(PoE), which was solved by using Contrastive~Divergence~(CD).
+	It involves utilising Markov~Chain~Monte~Carlo~(MCMC) sampling to present the distribution of a certain untraceable high-dimensional probability model function, e.g. PoE.
+	Among these sampling algorithms, Gibbs method is introduced and used in high dimensional problems.
+	Instead of minimising the original objective function of Kullback-Leibler divergence, the contrastive divergence is exploited to solve PoE.
+	\item \textit{Restricted Boltzmann Machine (RBM). }
+	Then the study continues on applying Gibbs sampling and CD to RBM, which builds the foundation of the light RBM training.
+	\item \textit{Deep Belief Network.} 
+	The greedy algorithm on training layered RBMs and the fine training on the whole DBN are studied.
+\end{itemize}
+Next, the study will carry on to on-line learning methods which only applies to spiking neurons for training spiking RBM and DBN.
+\subsection{Contrastive Divergence\cite{hinton2002training,woodfordnotes}}
+The probability of a vector point $ \mathbf{x} $ is modelled by the function $f(\mathbf{x} \mid \Theta )$ given the model parameters $ \Theta $, and normalised by a partition function $Z( \Theta)$:
 
-\begin{table}[ph!]
-\caption{Sizes of the convolutional neural networks.}
-\def\arraystretch{1.4}
-	\begin{subtable}{0.8\textwidth}
+\begin{equation}
+p(\mathbf{x} \mid \Theta ) = \dfrac{f(\mathbf{x} \mid \Theta )}{Z( \Theta)}
+\end{equation}
+where the partition function is defined as:
+\begin{equation}
+\label{equ:z_int}
+Z( \Theta) = \int f(\mathbf{x} \mid \Theta )\D\mathbf{x}, \text{when  $ \mathbf{x} $ is continuous, or}
+\end{equation}
+
+\begin{equation}
+\label{equ:z_dis}
+Z( \Theta) = \sum_{\mathbf{x}} f(\mathbf{x} \mid \Theta ), \text{when  $ \mathbf{x} $ is discrete.}
+\end{equation}
+Given a set of data points $ \mathbf{D}=(\mathbf{d}_1, \mathbf{d}_2, ..., \mathbf{d}_K) $ the purpose of learning is to tune the model parameter $ \Theta $ to fit the data $ \mathbf{D}  $. 
+The objective function is the probability product of all the independent data points of the data set, which is also called the likelihood function:
+\begin{equation}
+L (\Theta \mid \mathbf{D}) = p(\mathbf{D} \mid \Theta ) = \prod_{k=1}^K p(\mathbf{d}_k \mid \Theta ) =  \prod_{k=1}^K\dfrac{f(\mathbf{d}_k \mid \Theta )}{Z( \Theta)}.
+\end{equation}
+And the target is to maximise the likelihood given the data set $ \mathbf{D}  $, which equals to maximise the log of the probability product (the log-likelihood):
+\begin{equation}
+\log  L (\Theta \mid \mathbf{D}) = \log p(\mathbf{D} \mid \Theta ) = \sum_{k=1}^K\log f(\mathbf{d}_k \mid \Theta ) - K \log Z( \Theta),
+\end{equation}
+or the average log-likelihood:
+\begin{equation}
+\label{equ:like}
+\hat{l} (\Theta \mid \mathbf{D}) =\frac{1}{K}\log  L (\Theta \mid \mathbf{D}) 
+=\frac{1}{K}\sum_{k=1}^K\log f(\mathbf{d}_k \mid \Theta ) - \log Z( \Theta).
+\end{equation}
+Imagine three different conditions (probability function) as following.
+
+\textbf{First}, $f(\mathbf{x} \mid \Theta )$ is the probability density function (pdf) of a normal distribution $\mathcal{N}(x \mid \mu, \sigma )$.
+Data vector $ \mathbf{x} $ is just a one dimensional data point, $x$.
+$ Z( \Theta) $ equals to 1, thus $p(x \mid \Theta ) = \mathcal{N}(x \mid \mu, \sigma )$.
+\begin{equation}
+\hat{l} (\Theta \mid D) =  
+\frac{1}{K} \sum_{k=1}^K \log \left[ \frac{1}{\sigma \sqrt{2\pi}} \exp(-\frac{(d_k-\mu)^{2}}{2\sigma^{2}}) \right]
+\label{pdf}
+\end{equation}
+To maximise Equation~\ref{pdf} is to find the Maximum Likelihood Estimation (MLE) of parameters $ \mu $ and $ \sigma $, by deriving from the partial differential equations when they are equal to 0. 
+\begin{equation}
+\left\{
+\begin{aligned}
+&\dfrac{\partial \hat{l} (\Theta \mid D)}{\partial \mu}= \sum_{k=1}^K -\frac{1}{2\sigma^{2}}\dfrac{\partial (\mu-d_k)^{2}}{\partial \mu} = \sum_{k=1}^K -\frac{1}{\sigma^{2}}(\mu-d_k) = 0 \quad\\
+&\dfrac{\partial \hat{l} (\Theta \mid D) }{\partial \sigma^{2}}= -\frac{K}{2\sigma^{2}}+\frac{1}{2\sigma^{4}}\sum_{k=1}^K d_k^{2} -\frac{\mu}{\sigma^{4}}\sum_{k=1}^K d_k + \frac{K\mu^{2}}{2\sigma^{4}} = 0 \quad\\
+\end{aligned}
+\right.
+\end{equation}
+\begin{equation}
+\left\{
+\begin{aligned}
+&\mu= \frac{1}{K}\sum_{k=1}^K d_k  \quad\\
+&\sigma^{2} = \frac{1}{K}\sum_{k=1}^K d_k^{2} - (\frac{1}{K}\sum_{k=1}^K d_k)^{2}
+\end{aligned}
+\right.
+\end{equation}
+$\hat{l} (\Theta \mid D)$ here is the function of two dimensional parameters $\mu$ and $\theta$, and searching the highest point in the parameter space ``is equivalent to being in the field on a clear, sunny day,''~\cite{woodfordnotes} seeing the point straight away.
+
+\textbf{Second}, the probability model function changes to be the sum of N normal distributions: 
+\begin{equation}
+f(x \mid \Theta ) = \sum_{i=1}^N\mathcal{N}(x \mid \mu_i, \sigma_i ).
+\end{equation}
+Derived from Equation~(\ref{equ:like}), the objective function is:
+\begin{equation}
+\hat{l} (\Theta \mid D) = \frac{1}{K}\sum_{k=1}^K \log \sum_{i=1}^N \mathcal{N}(d_k \mid \mu_i, \sigma_i ) - \log N,
+\end{equation}
+where $\log Z( \Theta)$ still equals a constant, but the partial differential equation of any parameter depends on other model parameters.
+It is very hard to solve equation set of log of sum, thus iteration methods are introduced, e.g., gradient descent method. %and expectation maximization (EM) algorithm
+Searching for a local maximum of the likelihood function in the parameter space starts with an initial point, either random or well selected.
+For each iteration, the partial derivatives for every dimension of the parameter point are calculated as the gradient.
+The gradient determines the decent direction of the space search, the next parameter point is one step $ \eta $  towards the direction or is the highest point found by line search.
+
+The gradient descent method is equivalent to ``being in the field at night with a torch.''~\cite{woodfordnotes}.
+And then the descent direction is estimated and chosen by using the torch to see the relative heights of the field a short distance in each direction.
+Because partial differential equation of any parameter depends on other model parameters, we can only see the gradient for a small area.
+The search will follow the direction by walking one step or a certain distance (e.g. line search lowest point), and then start a new iteration.
+
+%\paragraph{PoE Problem} 
+\subsubsection{PoE Problem}
+\textbf{Finally}, the probability model function becomes the product of N normal distributions: 
+\begin{equation}
+f(x \mid \Theta ) = \prod_{i=1}^N\mathcal{N}(x \mid \mu_i, \sigma_i ),
+\end{equation}
+where the partition (normalisation) function $Z( \Theta)$ is no longer a constant, but varies accordance to all the parameters.
+Essentially, the integration of the probability model, see Equation~(\ref{equ:z_int}) and~(\ref{equ:z_dis}), is usually algebraically intractable.
+We have to use numerical integration method to evaluate the Equation~(\ref{equ:like}), whose partial derivative is (we are using vectors to generalise the problem):
+\begin{equation}
+\label{equ:part}
+\begin{aligned}
+\dfrac{\partial \hat{l} (\Theta \mid \mathbf{D})}{\partial \theta} 
+& = \frac{1}{K} \dfrac{\partial \sum_{k=1}^K\log f(\mathbf{d}_k \mid \Theta )}{\partial \theta} - \dfrac{\partial \log Z( \Theta)}{\partial \theta}\\
+& =  \frac{1}{K}\sum_{k=1}^K \dfrac{\partial \log f(\mathbf{d}_k \mid \Theta)}{\partial \theta} - \int p(\mathbf{x} \mid \Theta) \dfrac{\partial \log f(\mathbf{x} \mid \Theta)}{\partial \theta} \D \mathbf{x}\\
+& = \left \langle \dfrac{\partial \log f(\mathbf{d} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{D}} -\left \langle \dfrac{\partial \log f(\mathbf{c} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{C} \sim p(\mathbf{x} \mid \Theta)}  \\
+&=\left \langle \dfrac{\partial \log f(\mathbf{x} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{X}_{data}} - \left \langle \dfrac{\partial \log f(\mathbf{x} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{X}_{model}},
+\end{aligned}
+\end{equation}
+where  $ <\cdot>_x $ denotes the mean expectation of $ \cdot $ given distribution of $x$.
+The first term of the right-hand side is easy to get with the given data set $ \mathbf{D} $, and the second term can be approximated by generating data samples $ \mathbf{C} $ according to $ p(\mathbf{x} \mid \Theta) $.
+These generative samples is called ``fantasy data'' and can be generated using Monte Carlo Markov Chain (MCMC) sampling, see section~\ref{sec:mcmc}.
+The detailed derivation process can be found in Appendix~\ref{app:part}.
+Although in this example the integration of product of normal distribution is still tractable, it is also helpful to use numerical integration.
+
+Go back to the metaphor of the parameter field, solving PoE problem is like searching the highest point in a completely dark night without a torch.
+The computation of Equation~(\ref{equ:part}) is to ``feel the gradient of the field under our feet''.~\cite{woodfordnotes}.
+%The motivation underlining Contrastive Divergence algorithm is to boost the training speed of a Markov Chain in order to represent the distribution of a PoE (Product of Expert) model.
+%Thus the sampling can be followed using this trained Markov Chain model. 
+
+%\paragraph{MCMC Sampling}
+\subsubsection{MCMC Sampling}
+\label{sec:mcmc}
+In order to solve the integration of algebraically intractable equations we can use numerical integration to approximate.
+One of the popular method is Monte Carlo integration:
+\begin{equation}
+\int_{a}^{b} f(x) \D x = \int_{a}^{b}\frac{f(x)}{q(x)}q(x)\D x = \dfrac{1}{N}\sum_{i=1}^{N}\frac{f(x_i)}{q(x_i)}.
+\end{equation}
+The integration of $ f(x) $ transforms to the integration of a new function $ F(x) = f(x)/q(x)  $ times its probability function $ q(x) $.
+It could be approximated by sampling N data points $ x_i $ according to the probability distribution $ q(x) $, and calculate the average of $ F(x_i) $ as $ <F(x)>_{q(x)}$.
+So the main question following is how to sample from a probability distribution.
+
+MCMC algorithm was proposed by Metropolis in 1953 and it became a wide-used sampling method.
+The stationary distribution $ \pi $ exists when every two nodes in a Markov Chain are connected regardless of the initial state distribution $ \pi_0 $:
+\begin{equation}
+\begin{aligned}
+&\pi(j) = \sum_{i=1}^{\infty}\pi(i)P_{ij} \\
+&\pi P = \pi,
+\end{aligned}
+\end{equation}
+where $ P $ is the transition probability matrix, and $ \pi $ is in the state space of a MC and the sum, $ \sum_{i=1}^{\infty}\pi(i) $,of a state distribution is 1.
+Thus based on the useful theorem of MC, sampled sequence $ \{x_0, x_1, ..., x_n, ... \}$ from a MC complies with its stationary distribution $ \pi(x) $.
+Metropolis stated that if a MC has a stationary distribution, $ q(x) $, which is exactly needed to sample from, then we can easily obtain a sample sequence along the MC according to the transformation probability matrix $ P $.
+Here so far we are describing the MC with discrete states, however the it also applies to continuous $ \pi $ and $ P $.
+The problem here is to build $ P $ to make the stationary distribution equal to the required probability, $ \pi(x) = q(x) $.
+
+So the other useful theorem (detailed balance) lies here, if an aperiodic MC is reversible: $\pi (i) P_{ij} = \pi (j) P_{ji},$ then $ \pi $ is the stationary distribution.
+It is a stronger condition than the previous theorem, so most of the MCs are not generally eligible:
+\begin{equation}
+\pi (i) P_{ij} \neq \pi (j) P_{ji}.
+\end{equation}
+Thus we can introduce another parameter matrix, $ \alpha $ to make a general MC reversible:
+\begin{equation}
+\pi (i) P_{ij} \alpha_{ij} = \pi (j) P_{ji} \alpha_{ji}	,
+\end{equation}
+where $ \alpha_{ij} = \pi(j) P_{ji} $ and $ \alpha_{ji} = \pi(i) P_{ij}$.
+The altered transformation probability matrix is $ P'_{ij} =  P_{ij} \alpha_{ij}$ and $ P'_{ji} =  P_{ji} \alpha_{ji}$, and the MC complies the detailed balance condition: $\pi (i) P'_{ij} = \pi (j) P'_{ji}$.
+The matrix parameter $ \alpha $ is called as ``acceptance rate'', and its physic meaning is as follows: when state $ i $ transforms to state $ j $ with a probability of $ P_{ij} $, the transformation is accepted by the rate of $ \alpha_{ij} $.
+Since the accept rate may be too low for the sampling to move along the MC, we can normalise the $ \alpha $ pair to 1:
+\begin{equation}
+\alpha^{'}(i,j) = min \left\{\frac{\pi(j)P_{ji}}{\pi(i)P_{ij}},1\right\}.
+\end{equation}
+The algorithm is called Metropolis-Hastings and described in following:
+\begin{algorithm}[h]
+	\caption{Metropolis-Hastings Sampling}
+	\label{alg:mcmc}
+	\begin{algorithmic}
 		
-		\centering
-		\caption{Model 1: Template matching}
-		\begin{tabular}{p{0.2\textwidth}|p{0.2\textwidth}<{\centering}|p{0.2\textwidth}<{\centering}|p{0.2\textwidth}<{\centering}|p{0.2\textwidth}<{\centering}}
-		%Line 1
-		\Xhline{1.2pt}
-		    & \multicolumn{2}{c|}{\tabincell{c}{\textbf{Full Resolution } \\\textbf{128 $\times$ 128}}}  
-		    & \multicolumn{2}{c}{\tabincell{c}{\textbf{Sub-sampled Resolution} \\\textbf{32 $\times$ 32}}}
-		    \\ \cline{2-5}
-		%Line 2
-			& \tabincell{c}{Population \\ Size}
-			& \tabincell{c}{Connections \\ per Neuron}
-			& \tabincell{c}{Population \\ Size}
-			& \tabincell{c}{Connections \\ per Neuron}
-			\\ \Xhline{1.2pt}
-		%Line 3
-		\tabincell{l}{\textbf{Retinal} \\\textbf{Input}}
-			& 128 $\times$ 128	& 1	& 32 $\times$ 32	& 4 $\times$ 4
-			\\ \hline
-		%Line 4
-		\tabincell{l}{\textbf{Gabor} \\\textbf{Filter}}
-			& 112$\times$112$\times$4	& 17 $\times$ 17	& 28$\times$28$\times$4	& 5 $\times$ 5
-			\\ \hline
-		%Line 5
-		\tabincell{l}{\textbf{Pooling} \\\textbf{Layer}}
-			& 36$\times$36$\times$4	& 5 $\times$ 5	& null	& null
-			\\ \hline
-		%Line 6
-		\tabincell{l}{\textcolor[rgb]{0.55,0.55,0.55}{\textbf{Integration}} \\ \textcolor[rgb]{0.55,0.55,0.55}{\textbf{Layer}}}
-			& 36 $\times$ 36	& 4	& 28 $\times$ 28	& 4
-			\\ \hline
-		%Line 7
-		\tabincell{l}{\textbf{Template} \\\textbf{Matching}}
-			& 16$\times$16$\times$5	& 21 $\times$ 21	& 14$\times$14$\times$5	& 15 $\times$ 15
-			\\ \Xhline{1.5 pt}
-		%Line 8
-		\textbf{Total}
-			& $74,320$	& $15,216,512$	& $5,925$	& $318,420$
-			\\ \Xhline{1.2 pt}
-		\end{tabular}
-		\label{tbl:m1}
-	\end{subtable}
-	\par\bigskip
-	\begin{subtable}{0.8\textwidth}
-	\def\arraystretch{1.4}	
-		\centering
-		\caption{Model 2: Trained MLP}
-		\begin{tabular}{p{0.2\textwidth}|p{0.2\textwidth}<{\centering}|p{0.2\textwidth}<{\centering}|p{0.2\textwidth}<{\centering}|p{0.2\textwidth}<{\centering}}
-		%Line 1
-		\Xhline{1.2pt}
-		    & \multicolumn{2}{c|}{\tabincell{c}{\textbf{Full Resolution} \\\textbf{128 $\times$ 128}}}  
-		    & \multicolumn{2}{c}{\tabincell{c}{\textbf{Sub-sampled Resolution} \\\textbf{32 $\times$ 32}}}
-		    \\ \cline{2-5}
-		%Line 2
-			& \tabincell{c}{Population \\ Size}
-			& \tabincell{c}{Connections \\ per Neuron}
-			& \tabincell{c}{Population \\ Size}
-			& \tabincell{c}{Connections \\ per Neuron}
-			\\ \Xhline{1.2pt}
-		%Line 3
-		\tabincell{l}{\textbf{Tracked} \\\textbf{Input}}
-			& 21 $\times$ 21	& null	& 15 $\times$ 15	& null
-			\\ \hline
-		%Line 4
-		\tabincell{l}{\textbf{Hidden} \\\textbf{Layer}}
-			& 10	& 21$\times$21$\times$10	& 10	& 15$\times$15$\times$10
-			\\ \hline
-		%Line 5
-		\tabincell{l}{\textbf{Recognition} \\\textbf{Layer}}
-			& 5	& 5$\times$10	& 5	& 5$\times$10
-			\\ \Xhline{1.5pt}
-		%Line 6
-		\textbf{Total}
-			& $456$	& $4,460$	& $240$	& $2,300$
-			\\ \Xhline{1.2 pt}
-		\end{tabular}
-		\label{tbl:m2}
-	\end{subtable}
-	\label{tbl:nns}
-\end{table}
+		%	    \Procedure{Correction}{coeffs $C$, correlations $Q$}
+		\State Initialisation $x_0 = s_{random}$, \Comment{$ x $:sampling sequence and $s$:state in MC}
+		\For{$t=1, 2, ..., N$}
+		\State $y \sim p_(x \mid x_{t-1})$ 
+		\Comment{Random drawing the next state by the transformation probability matrix $P$}
+		\State $ u \sim Uniform[0,1] $ 
+		\Comment{Random drawing from a uniform distribution}
+		\If {$ u < \alpha^{'}(x_{t-1},y) = min \left\{\frac{q(y)p_(x_{t-1} \mid y)}{q(x_{t-1})p_(y \mid x_{t-1})},1\right\} $}
+		\State {$x_t = y$} \Comment{Accept the transformation when the random number is less than $\alpha$}
+		\Else \State {$x_t = x_{t-1}$}  \Comment{Transformation is refused elsewise}
+		\EndIf
+		\EndFor
+	\end{algorithmic}
+\end{algorithm}
 
-\begin{figure}
-\centering
-	\includegraphics[width=\textwidth]{pics_icann/rateMatlab.pdf}
-	\caption{Neural responses with time of four experiments to the same recorded moving postures.
-	The recognition output is normalised to \mbox{[-1, 1]}.
-	Every point represents the highest response in a specific population (different colour) for a 30~ms frame.
-	The 1st plot refers to Model 1 with the full input resolution, and the 2nd plot Model 1 with the sub-sampled input resolution; and the 3rd and fourth plots both refer to Model 2, and with high and low input resolution respectively. 
-	}
-	\label{fig:matlabrec}
-\end{figure}
+The probability model function as the product of N normal distributions can be approximated by using this Metropolis-Hastings sampling.
 
-
-
-
-In Fig.~\ref{fig:matlabrec} the first two plots refer to Model 1, using template matching. Each colour represents one of the recognition populations. 
-Each point in the plot is the highest neuronal response in the recognition population during the time of one frame (30~ms). 
-The neuronal response, `the spiking rate', is normalised to [-1, 1]. 
-It can be seen that the higher resolution input makes the boundaries between the classes clearer. 
-On the other hand, recognition only happens when the test image and template are similar enough. 
-The templates are only selected from the frames where the gestures are moving towards the right, and the gestures are moving clockwise in the videos, thus, all the peaks in plot 1 correspond with moments when the gesture moves towards right.  
-It is notable that the higher resolution causes the recogniser to be more sensitive to the differences between the test data and the template, while the smaller neural network can recognize more generalized patterns. 
-Therefore, a threshold is required to differentiate between data that is close enough and that which is not. 
-Since the gestures are moving in four different directions during the clockwise movement, a rejection rate (i.e. none of the template is matched) of 75\% is to be expected. 
-
-The latter two plots of Fig.~\ref{fig:matlabrec} refer to Model 2. 
-The three-layer MLP network significantly improves the recognition rate and can generalise the pattern. 
-There is no rejection rate for Model 2, since the MLP is trained with all the moving directions of the postures.
-
-Detailed results are listed in Table~\ref{tbl:rsl}. 
-The correct recognition rate is calculated from the non-rejected frames.
-The lower resolution of the 32$\times$32 retina input is adequate (85.83\%) for this gesture recognition task. 
-The smaller network uses only 1/10th the number of neurons and 1/50th the number of synaptic connections compared with the full resolution network, while the recognition rate drops only around by 9.0\% with Model 1 and 17.2\% with Model 2.
-
-\begin{table}[ph!]
-\centering
-\caption{Recognition results using linear perceptrons in \%}
-\def\arraystretch{1.5}
-	\begin{tabular}{p{0.15\textwidth}|p{0.10\textwidth}<{\centering}|p{0.11\textwidth}<{\centering}|p{0.11\textwidth}<{\centering}|p{0.11\textwidth}<{\centering}|p{0.11\textwidth}<{\centering}}
-		%Line 1
-		\Xhline{1.2pt}
-		    \multicolumn{2}{c|}{}	& \multicolumn{2}{c|}{\textbf{Model 1}}  
-		    & \multicolumn{2}{c}{\textbf{Model 2}}
-		    \\ \cline{3-6}
-		%Line 2
-		\multicolumn{2}{c|}{}	& \tabincell{c}{High \\ Resolution}
-			& \tabincell{c}{Low \\ Resolution}
-			& \tabincell{c}{High \\ Resolution}
-			& \tabincell{c}{Low \\ Resolution}
-			\\ \Xhline{1.2pt}
-		%Line 3-4	
-		\multirow{2}{*}{\tabincell{l}{\textbf{Fist}\\ (399 Frames)}}
-			& Correct & 99.11	& 99.23	& 96.24	& 84.21
-			\\ \cline{2-6}
-			& Reject  & 71.93 & 67.42 	& Null	& Null
-			\\ \hline
-		%Line 5-6
-		\multirow{2}{*}{\tabincell{l}{\textbf{Index Finger} \\ (392 Frames)}}
-			& Correct & 92.98	& 80.00	& 94.39	& 71.69
-			\\ \cline{2-6}
-			& Reject & 70.92	& 75.77 	& Null	& Null
-			\\ \hline
-		%Line 7-8
-		\multirow{2}{*}{\tabincell{l}{\textbf{Victory Sign} \\ (551 Frames)}}
-			& Correct & 96.56	& 93.07	& 95.64	& 87.66
-			\\ \cline{2-6}
-			& Reject & 73.68	& 81.67 	& Null	& Null
-			\\ \hline
-		%Line 9-10
-		\multirow{2}{*}{\tabincell{l}{\textbf{Full Hand} \\ (293 Frames)}}
-			& Correct & 95.65	& 72.41	& 93.52	& 72.01
-			\\ \cline{2-6}
-			& Reject & 92.15	& 90.10 	& Null	& Null
-			\\ \hline
-		%Line 10-11
-		\multirow{2}{*}{\tabincell{l}{\textbf{Thumb up} \\ (391 Frames)}}
-			& Correct & 89.61	& 84.44	& 96.68	& 74.68
-			\\ \cline{2-6}
-			& Reject & 80.31	& 76.98 	& Null	& Null
-			\\ \hline\hline
-		\multirow{2}{*}{\tabincell{l}{\textbf{Average}}}
-			& Correct & 94.78	& 85.83	& 95.29	& 78.05
-			\\ \cline{2-6}
-			& Reject & 77.80	& 78.39 	& Null	& Null
-			\\ \hline
-	\end{tabular}
-	\label{tbl:rsl}
-\end{table}
-
-\section{Real-Time Recognition on SpiNNaker}
-\subsection{Live Recognition}
-We implemented the prototype of the dynamic posture recognition system on SpiNNaker using LIF neurons. 
-The input retina layer consists of 128$\times$128 neurons; 
-each Gabor filter has 112$\times$112 valid neurons, since the kernel size is 17$\times$17; 
-each pooling layer is as big as 36$\times$36, convolving with five template kernels (21$\times$21); 
-thus, the recognition populations are 16$\times$16 neurons each. Altogether $74,320$ neurons and $15,216,512$ synapses, use up to 19 chips (290 cores) on a 48-node board, see Table~\ref{tbl:m1}. Regarding the lower resolution of 32$\times$32 retinal input, the network (Table~\ref{tbl:m2}) consists of $5,925$ neurons and $318,420$ synapses taking up only two chips (31 cores) of the board.
-
-Fig.~\ref{fig:live} shows snapshots of neural responses of some populations during real-time recognition.
-Fig.~\ref{fig:live1} is a snapshot of the Gabor population which prefers the horizontal direction, given the input posture of a `Fist';
-and Fig.~\ref{fig:live2} shows the activity of the neurons in the integration layer, given a 'Victory Sign'.
-And the active neurons in the visualiser in Fig.~\ref{fig:live3} are pointing out the position of the recognised pattern the `Index finger'. 
-All the supporting demonstrative videos can be found on YouTube~\cite{video1, video2, video3}. %\footnote{\url{
-%https://www.youtube.com/watch?v=PvJy6RKAJhw&feature=youtu.be&list=PLxZ1W-Upr3eoQuLxq87qpUL-CwSphtEBJ, http://youtu.be/FZJshPCJ1pg?list=PLxZ1W-Upr3eoQuLxq87qpUL-CwSphtEBJ, http://youtu.be/yxN90aGGKvg?list=PLxZ1W-Upr3eoQuLxq87qpUL-CwSphtEBJ}}.
-
-\begin{figure}
-\centering
-	\begin{subfigure}[t]{0.48\textwidth}
-		\includegraphics[width=\textwidth]{pics_icann/live1.png}
-	    \caption{Neural responses of the Gabor filter layer orienting to the horizontal direction~\cite{video1} }
-	    \label{fig:live1}
-	\end{subfigure}
-	\begin{subfigure}[t]{0.48\textwidth}
-		\includegraphics[width=\textwidth]{pics_icann/live2.png}
-		\caption{Neural responses of the integrate layer~\cite{video2}}
-	    \label{fig:live2}
-	\end{subfigure}
-	\\
-	\begin{subfigure}[t]{0.80\textwidth}
-		\includegraphics[width=\textwidth]{pics_icann/live.png}
-		\caption{Snapshot of the neuron responses of the template matching layer~\cite{video3}}
-	    \label{fig:live3}
-	\end{subfigure}	
-
-\caption{Snapshots of the real-time dynamic posture recognition system on SpiNNaker.
-}
-\label{fig:live}
-\end{figure}
-
-\subsection{Recognition of Recorded Data}
-To compare with the results of the experiments carried out with Matlab (in Section~\ref{sec:exp}), the same recorded retinal data is conducted into SpiNNaker.
-Only Model 1 is tested on the neuromorphic hardware platform, since tracking is still need to investigate using SNN (for Model 2) in the future. 
-The recorded data is presented as spike source array in the system with 128$\times$128 input (see Fig.~\ref{fig:ssa}) while the data is forwarded to a sub-sampling layer of 32$\times$32 resolution in the system of the smaller network (see Fig.~\ref{fig:ssa32}). 
-The output spikes generated from the recognition populations with time are shown in Fig.~\ref{fig:rps} and \ref{fig:rps32} for full resolution and lower systems respectively. 
-More spikes are generated during the period when the preferred input posture is shown. 
-
-
-\begin{figure}
-\centering
-	\includegraphics[width=\textwidth]{pics_icann/rateSpiNN.pdf}
-	\caption{Real-time neural responses of two experiments on SpiNNaker with time to the same recorded postures.
-	These two experiments only differ in input resolution.
-	The result of the high input resolution test is plotted the first with a sample frame of 30~ms; 
-	while the 3rd plot shows the same result with a sample frame of 300~ms.
-	The other two plots refer to the smaller input resolution.
-	Every point represents the over all number of spikes of a specific population (different colour) in a `frame'.
-	}
-	\label{fig:spikerec}
-\end{figure}
-
-Correspondingly, the spiking rates of each recognition population is sampled into frames (Fig.~\ref{fig:spikerec}) to make a comparison with the Matlab simulation. 
-Each colour represents one recognition population, and the spike activity goes higher when the input posture matches the template. 
-Firstly, the spike rates are sampled into 30~ms frames which is in accordance with the Matlab experiments.
-In the Matlab simulation, the templates are trained with cut frames and so the test images are also fixed to the same length frames.
-Otherwise, the recogniser will not work properly because of the replications of the moving posture.
-Contrasting this, the spiking rates can be sampled to various frame lengths.
-Thus, the other two plots in the figure illustrate the classification in a wider window of 300~ms.
-From Table~\ref{tbl:srr}, the recognition and rejection rates are quantified as percentages.
-
-Comparing with the results of Matlab simulation (Table~\ref{tbl:rsl}), the recognition rate is about 7.6\% lower at both high and low resolutions, and the rejection rate remains the same slightly above 75\%. 
-However, by changing the frame length to 300~ms recognition rates reach (93.0\% for the larger network) or exceed (86.4\% for smaller network ) the Matlab simulation, meanwhile the rejection rates also drop dramatically by 26.0\% and 22.4\%.
-This is in accordance with natural visual responses, which means, the longer an object shows, the more accurate the recognition will be.
-Between the two network scales there is also a smaller gap in recognition rates as the window length grows, i.e. 8.9\% and 6.6\% respectively.
-%Considering the cost and performance trade-off, with only 1/10th resources required, the small network, is acceptable and can be even improved after applying tracking and learning.
-%Regarding the latency between the retinal input and the recognition, we compared the spiking peak of the Matlab simulation and the real-time SpiNNaker test.
-%The overall latency is about 1150~ms from a posture being shown to its recognition. 
-
-\begin{figure}
-\centering
-	\begin{subfigure}[t]{0.48\textwidth}
-		\includegraphics[width=\textwidth]{pics_icann/figure_r.png}
-	    \caption{Retinal input population }
-	    \label{fig:ssa}
-	\end{subfigure}
-	\begin{subfigure}[t]{0.48\textwidth}
-		\includegraphics[width=\textwidth]{pics_icann/figure_1.png}
-		\caption{Template matching population, `Fist'}
-	    \label{fig:rec0}
-	\end{subfigure}
-	\\
-	\begin{subfigure}[t]{0.48\textwidth}
-		\includegraphics[width=\textwidth]{pics_icann/figure_2.png}
-		\caption{Template matching population, `Index Finger'}
-	    \label{fig:rec1}
-	\end{subfigure}	
-	\begin{subfigure}[t]{0.48\textwidth}
-		\includegraphics[width=\textwidth]{pics_icann/figure_3.png}
-		\caption{Template matching population, `Victory Sign'}
-	\end{subfigure}	
-	\\
-	\begin{subfigure}[t]{0.48\textwidth}
-		\includegraphics[width=\textwidth]{pics_icann/figure_4.png}
-		\caption{Template matching population, `Full Hand'}
-	    \label{fig:rec5}
-	\end{subfigure}	
-	\begin{subfigure}[t]{0.48\textwidth}
-		\includegraphics[width=\textwidth]{pics_icann/figure_5.png}
-		\caption{Template matching population, `Thumb Up'}
-	    \label{fig:rect}
-	\end{subfigure}	
-\caption{Spikes captured during the live recognition of the recorded retinal input with the resolution of 128$\times$128. }
-\label{fig:rps}
-\end{figure}
-\begin{figure}
-\centering
-	\begin{subfigure}[t]{0.48\textwidth}
-		\includegraphics[width=\textwidth]{pics_icann/figure_32_r.png}
-	    \caption{Retinal input population }
-	    \label{fig:ssa32}
-	\end{subfigure}
-	\begin{subfigure}[t]{0.48\textwidth}
-		\includegraphics[width=\textwidth]{pics_icann/figure_32_1.png}
-		\caption{Template matching population, `Fist'}
-	    \label{fig:rec032}
-	\end{subfigure}
-	\\
-	\begin{subfigure}[t]{0.48\textwidth}
-		\includegraphics[width=\textwidth]{pics_icann/figure_32_2.png}
-		\caption{Template matching population, `Index Finger'}
-	    \label{fig:rec132}
-	\end{subfigure}	
-	\begin{subfigure}[t]{0.48\textwidth}
-		\includegraphics[width=\textwidth]{pics_icann/figure_32_3.png}
-		\caption{Template matching population, `Victory Sign'}
-	\end{subfigure}	
-	\\
-	\begin{subfigure}[t]{0.48\textwidth}
-		\includegraphics[width=\textwidth]{pics_icann/figure_32_4.png}
-		\caption{Template matching population, `Full Hand'}
-	    \label{fig:rec532}
-	\end{subfigure}	
-	\begin{subfigure}[t]{0.48\textwidth}
-		\includegraphics[width=\textwidth]{pics_icann/figure_32_5.png}
-		\caption{Template matching population, `Thumb Up'}
-	    \label{fig:rect32}
-	\end{subfigure}	
-\caption{Spikes captured during the live recognition of the recorded retinal input with the resolution of 32$\times$32. }
-\label{fig:rps32}
-\end{figure}
-
-
-\begin{table}[ph!]
-\centering
-\caption{Real-time recognition results on SpiNNaker in \%}
-\def\arraystretch{1.5}
-	\begin{tabular}{p{0.15\textwidth}|p{0.10\textwidth}<{\centering}|p{0.11\textwidth}<{\centering}|p{0.11\textwidth}<{\centering}|p{0.11\textwidth}<{\centering}|p{0.11\textwidth}<{\centering}}
-		%Line 1
+%\paragraph{Gibbs Sampling}
+\subsubsection{Gibbs Sampling}
+\label{sec:Gibbs}
+For high dimensional data sampling, it is possible to make the accept rate to 1 which increases the convergence speed dramatically.
+According to conditional probability:
+\begin{equation}
+P(A \mid B) = \frac{P(A \cap B)}{P(B)}.
+\end{equation}
+For a $ n $ dimensional data $ (\mathbf{x}, y) $ where $ \mathbf{x}=(x_1,x_2,...,x_{n-1}) $, the joint probability of $p(\mathbf{x},y)$ is:
+\begin{equation}
+p(\mathbf{x},y) = p(y \mid \mathbf{x})p(\mathbf{x}).
+\end{equation}
+Thus, during sampling if we restrict the direction of transformation to one single axis(dimension), $ y $, from point $ A(\mathbf{x}_1, y_1) $ to point $ B(\mathbf{x}_1, y_2)$:
+\begin{equation}
+p(\mathbf{x}_1, y_1)p(y_2 \mid \mathbf{x}_1) = p(\mathbf{x}_1, y_2)p(y_1 \mid \mathbf{x}_1) = p(\mathbf{x}_1)p(y_1 \mid \mathbf{x}_1)p(y_2 \mid \mathbf{x}_1),
+\end{equation}
+then, the MC obeys the condition of detailed balance.
+So the stationary distribution $ \pi(x_1,x_2,...,x_n) $ equals to the joint probability $ p(x_1,x_2,...,x_n) $ and the transformation probability matrix P is consisted of the conditional probability of each dimension $ k $ $,  p(x_k \mid x_1,...,x_{k-1},x_{k+1},...,x_n) $.
+Therefore, given the conditional distribution of each variable for a multivariate distribution Gibbs sampling is able to approximate the joint distribution with long enough sample sequence.
+Gibbs sampling is described as follows:
+\begin{algorithm}[h]
+	\caption{Gibbs Sampling}
+	\label{alg:gibbs}
+	\begin{algorithmic}
 		
-		\Xhline{1.2pt}
-		    \multicolumn{2}{c|}{}	& \multicolumn{2}{c|}{\textbf{30~ms per frame}}  
-		    & \multicolumn{2}{c}{\textbf{300~ms per frame}}
-		    \\ \cline{3-6}
-		%Line 2
-		\multicolumn{2}{c|}{}	& \tabincell{c}{High \\ Resolution}
-			& \tabincell{c}{Low \\ Resolution}
-			& \tabincell{c}{High \\ Resolution}
-			& \tabincell{c}{Low \\ Resolution}
-			\\ \Xhline{1.2pt}
-		%Line 3-4	
-		\multirow{2}{*}{\tabincell{l}{\textbf{Fist}}}
-			& Correct & 91.78	& 78.02	& 100	& 92.31
-			\\ \cline{2-6}
-			& Reject  & 82.78 & 78.54 	& 70.73	& 68.29
-			\\ \hline
-		%Line 5-6
-		\multirow{2}{*}{\tabincell{l}{\textbf{Index Finger}}}
-			& Correct & 78.25	& 78.25	& 88.24	& 72.22
-			\\ \cline{2-6}
-			& Reject & 80.46	& 73.56 	& 57.50	& 55.00
-			\\ \hline
-		%Line 7-8
-		\multirow{2}{*}{\tabincell{l}{\textbf{Victory Sign} }}
-			& Correct & 96.48	& 86.27	& 95.00	& 92.50
-			\\ \cline{2-6}
-			& Reject & 64.46	& 72.68 	& 28.57	& 28.57
-			\\ \hline
-		%Line 9-10
-		\multirow{2}{*}{\tabincell{l}{\textbf{Full Hand}}}
-			& Correct & 85.29	& 60.78	& 90.00	& 75.00
-			\\ \cline{2-6}
-			& Reject & 67.31	& 83.65 	& 35.48	& 61.29
-			\\ \hline
-		%Line 10-11
-		\multirow{2}{*}{\tabincell{l}{\textbf{Thumb up}}}
-			& Correct & 84.09	& 88.10	& 91.67	& 100
-			\\ \cline{2-6}
-			& Reject & 87.54	& 73.81 	& 66.67	& 66.67
-			\\ \hline\hline
-		\multirow{2}{*}{\tabincell{l}{\textbf{Average}}}
-			& Correct & 87.18	& 78.28	& 92.98	& 86.41
-			\\ \cline{2-6}
-			& Reject & 76.51	& 76.45 	& 51.79	& 55.96
-			\\ \hline
-	\end{tabular}
-	\label{tbl:srr}
-\end{table}
-\section{Summary}
-\label{sec:cfw}
+		%	    \Procedure{Correction}{coeffs $C$, correlations $Q$}
+		\State Initialisation $\mathbf{x}_0 = [x_0(1),x_0(2),...,x_0(M)]$,  \Comment{Random initialise $\mathbf{x}_0$}
+		\For{$t=1, 2, ..., N$}
+		\For{$k=1, 2, ..., M$}
+		\State $ x_t(k) = p(x(k) \mid x_{t-1}(1),x_{t-1}(2),...,x_{t-1}(k-1),x_{t-1}(k+1),...,x_{t-1}(M))$\\
+		\Comment{Sampling by the conditional distribution}
+		\EndFor
+		\EndFor
+	\end{algorithmic}
+\end{algorithm}
 
-%Motivation
-To explore how brain may recognise objects in its general, accurate and energy-efficient manner, this paper proposes the use of a neuromorphic hardware system which includes a DVS retina connected to SpiNNaker, a real-time SNN simulator.
-%Problem
-Building a recognition system based on this bespoke hardware for dynamic hand postures is a first step in the study of object recognition using spiking neurons.
-%Methods
-Inspired by the structures of the primary visual cortex, convolutional neural networks are modelled using both linear perceptrons and LIF neurons.
-%Results
-The larger network of 74,210 neurons and 15,216,512 synapses runs smoothly in real-time on SpiNNaker using 290 cores within a 48-node board.
-The smaller network using 1/10 of the resources is able to recognise the postures in real-time with an accuracy about 86.4\% in average, which is 
-only 6.6\% lower than the former but with a better cost/performance ratio.
+%\paragraph{CD Instead of KL(Kullback-Leibler)}
+\subsubsection{CD Instead of KL(Kullback-Leibler)}
+\label{sec:CD}
+Kullback-Leibler divergence is the measure of how different two probability distributions are:
+\begin{equation}
+\begin{aligned}
+KL(P \mid \mid Q)
+&= \int P(\mathbf{x}) \log \frac{P(\mathbf{x})}{Q(\mathbf{x})} \D \mathbf{x}\\
+%= \sum_{\mathbf{x}} P(\mathbf{x}) \log \frac{P(\mathbf{x})}{Q(\mathbf{x})} \\
+&= \int P(\mathbf{x}) \log P(\mathbf{x}) \D \mathbf{x} - \int P(\mathbf{x}) \log Q(\mathbf{x}) \D \mathbf{x}\\
+%=  \sum_{\mathbf{x}} P(\mathbf{x}) \log P(\mathbf{x}) - \sum_{\mathbf{x}} P(\mathbf{x}) \log Q(\mathbf{x})\\
+&= \left \langle \log P(\mathbf{x}) \right \rangle_{\mathbf{X} \sim P(\mathbf{x})} - \left \langle \log Q(\mathbf{x}) \right \rangle_{\mathbf{X} \sim P(\mathbf{x})} ,
+\end{aligned}
+\end{equation}
+and the second term of the right hand side is the average log-likelihood function (see Equation~\ref{equ:like}) if $P(\mathbf{x})$ is the training data distribution and $Q(\mathbf{x})$ is the model distribution:
+\begin{equation}
+\begin{aligned}
+& KL \left( p(\mathbf{x} \mid \mathbf{D}) \mid \mid p(\mathbf{x} \mid \Theta) \right)
+=   \left \langle \log p(\mathbf{d} \mid \mathbf{D}) \right \rangle_{\mathbf{D}} - \left \langle \log p(\mathbf{d} \mid \Theta) \right \rangle_{\mathbf{D}}, \textit{where} \\
+& \hat{l} (\Theta \mid \mathbf{D}) =\frac{1}{K}\log  L (\Theta \mid \mathbf{D}) 
+=  \frac{1}{K}\log p(\mathbf{D} \mid \Theta ) 
+= \frac{1}{K} \sum_{k=1}^{\mathbf{K}} \log f(\mathbf{d}_k \mid \Theta )
+= \left \langle \log p(\mathbf{d} \mid \Theta) \right \rangle_{\mathbf{D}}.
+\end{aligned}
+\end{equation}
+We use $ \mathbf{D} $ instead of $ \mathbf{X} \sim p(\mathbf{x} \mid \mathbf{D}) $, for $ p(\mathbf{x} \mid \mathbf{D}) $ is the distribution of data set $ \mathbf{D} $.
+If we need to generate a sample sequence according to the distribution $ p(\mathbf{x} \mid \mathbf{D}) $, $ \mathbf{D} $ itself is the most approximated.
+Since $\left \langle \log p(\mathbf{d} \mid \mathbf{D}) \right \rangle_{\mathbf{D}}$ is independent with model parameters, the negative partial derivative is the same with Equation~(\ref{equ:part}):
+\begin{equation}
+\label{equ:kl}
+-\dfrac{\partial KL \left( p(\mathbf{x} \mid \mathbf{D}) \mid \mid p(\mathbf{x} \mid \Theta) \right)}{\partial \theta}
+= \dfrac{\partial \hat{l} (\Theta \mid \mathbf{D})}{\partial \theta} \\
+= \left \langle \dfrac{\partial \log f(\mathbf{d} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{D}} - \left \langle \dfrac{\partial \log f(\mathbf{c} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{C} \sim p(\mathbf{x} \mid \Theta)} .
+\end{equation}
+Therefore, for each iteration searching in the parameter space we use $ k $ number of training data $ \mathbf{D}=(\mathbf{d}_1, \mathbf{d}_2, ..., \mathbf{d}_k) $ and fantasy data $ \mathbf{C}=(\mathbf{c}_1, \mathbf{c}_2, ..., \mathbf{c}_k) $.
+If $ k $ is big enough, sampling sequences $ \mathbf{D} $ and $ \mathbf{C} $ are able to approximate the data and the model distribution thus to get derivatives of the KL function.
+However, if we just take a small number of data, even $ k = 1 $ per iteration~\cite{hinton2002training}, the KL divergence can be seen as a ``k-step contrastive convergence ($ CD_{k}) $'':
+\begin{equation}
+\label{equ:cdk}
+\dfrac{\partial CD_{k}}{\partial \theta} 
+= - \left \langle \dfrac{\partial \log f(\mathbf{d} \mid \Theta)}{\partial \theta}\right \rangle_{(\mathbf{d}_1, \mathbf{d}_2, ..., \mathbf{d}_k) } + \left \langle \dfrac{\partial \log f(\mathbf{c} \mid \Theta)}{\partial \theta}\right \rangle_{(\mathbf{c}_1, \mathbf{c}_2, ..., \mathbf{c}_k) \sim p(\mathbf{x} \mid \Theta)}.
+\end{equation}
+Since the searching step $ \eta $ is very small, the derivatives of points in a small area can be seen as the same.
+%	The step made for a single $ CD_{k} $ can be approximated by summation of $ k $ steps of $ CD_{1} $ as long as the searching does not go far.
+%	Otherwise the searching path may follow some direction for accumulated steps away from the original area, thus significantly reduces the training time.
+
+%\paragraph{Discussion}
+\subsubsection{Discussion}
+Although there is practical explanation on using $CD_1$ for parameter space searching, arguments exist over whether the search converge to the same maxima/minima as $CD_\infty$~\cite{wu2015bias}.
+Moreover, is the parameter searching still following the original objective function?	
+As an initial exploration over the problem we tested some experiments on Section~\ref{sec:cd1}. 
+%	Thus,
+%	\begin{equation}
+%		\dfrac{\partial [KL(p^0 \mid \mid p^{\infty}) - KL(p^1 \mid \mid p^{\infty})]}{\partial \theta}
+%		= \left \langle \dfrac{\partial \log f(\mathbf{x} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{p}^1} - \left \langle \dfrac{\partial \log f(\mathbf{x} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{p}^0},
+%	\end{equation}
+%	where the second term in equation~(\ref{equ:kl}) cancels out.
+%	So Hinton proposed \textcolor{red}{the new contrastive divergence CD to make Gibbs sampling with only 1 step}.
+%	Contrastive divergence is defined as:
+%	\begin{equation}
+%		CD_n = KL(p^0 \mid \mid p^{\infty}) - KL(p^n \mid \mid p^{\infty})
+%	\end{equation}
+\subsection{RBM\cite{zhang2013rbm}}
+RBM is a restricted version of Boltzman machine, where there are only connections between layers of units but not between units within a layer, see Figure~\ref{fig:RBM}.
+$ v $ is the layer of visible units representing the observable data $ \mathbf{v} $, while $ h $ are the hidden units which can be seen as feature extractors.
+The connections between the hidden layer and the visible layers are bidirectional weights, $ \mathbf{W} $.
+Note that, both visible and hidden units have their bias individually, $ \mathbf{a} $ and $ \mathbf{b} $.
+Thus the RBM consists of the data $ \mathbf{D} = \mathbf{V} = (\mathbf{v}_1, \mathbf{v}_2, ..., \mathbf{v}_K ) $, the model parameters $ \Theta = (\mathbf{a}, \mathbf{b}, \mathbf{W}) $ and the hidden units $ \mathbf{h} \sim p(\mathbf{h} \mid \mathbf{v}, \Theta) $.
+\begin{figure}[hbt]
+	\centering
+	\includegraphics[width=0.6\textwidth]{pics_sdbn/RBM.pdf}
+	\caption{A typical RBM structure.}
+	\label{fig:RBM}
+\end{figure}
+
+The Energy function~\cite{hopfield1982neural} of a RBM is defined as follows, which has $ n $ vision units and $ m $ hidden ones:
+\begin{equation}
+E(\mathbf{v}, \mathbf{h} \mid \Theta)= -\sum_{i=1}^n a_i v_i - \sum_{j=1}^m b_j h_j - \sum_{i=1}^n \sum_{j=m}^n v_i W_{ij} h_j.
+\end{equation}
+And the model function and its probability functions are as follows:
+\begin{equation}
+\begin{aligned}
+& f(\mathbf{v}, \mathbf{h} \mid \Theta) =e^{-E(\mathbf{v}, \mathbf{h} \mid \Theta)} \\
+& p(\mathbf{v}, \mathbf{h} \mid \Theta) =\frac{e^{-E(\mathbf{v}, \mathbf{h} \mid \Theta)}}{Z(\Theta)}\\
+& Z(\Theta) = \sum_{\mathbf{v}} \sum_{\mathbf{h}} e^{-E(\mathbf{v}, \mathbf{h} \mid \Theta)}.
+\end{aligned}
+\end{equation}
+Note that, the model function $ f(\mathbf{v}, \mathbf{h} \mid \Theta) $ is nicely defined as a PoE problem, and each hidden unit represent an expert.
+However, we are more interested in the marginal probability function: $ p(\mathbf{v} \mid \Theta) $:
+\begin{equation}
+p(\mathbf{v} \mid \Theta) =\frac{\sum_{ \mathbf{h}} e^{-E(\mathbf{v}, \mathbf{h} \mid \Theta)}}{Z(\Theta)}.
+\end{equation}	
+
+%\paragraph{Objective Function}	
+\subsubsection{Objective Function}
+Although $ p(\mathbf{v} \mid \Theta) $ is not a PoE problem, the partial derivation of the average log-likelihood function still applies to Equation~(\ref{equ:part}) and the intractable integration is the same problem here:
+\begin{equation}
+\label{equ:RBM}
+\begin{aligned}
+\dfrac{\partial \hat{l} (\Theta \mid \mathbf{D})}{\partial \theta} 
+& = \left \langle \dfrac{\partial -E(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{h} \sim p( \mathbf{h} \mid \mathbf{v}, \Theta), \mathbf{V}} 
+- \left \langle \dfrac{\partial -E(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{v}, \mathbf{h} \sim p( \mathbf{v}, \mathbf{h} \mid  \Theta)},  \\
+\end{aligned}
+\end{equation}
+The detailed derivation process, please see Appendix~\ref{app:RBM}.
+Regarding the specific RBM parameters,  $ \Theta = (\mathbf{a}, \mathbf{b}, \mathbf{W}) $, the derivatives are:
+\begin{equation}
+\label{equ:RBM_2}
+\begin{aligned}
+\dfrac{\partial \hat{l} (\Theta \mid \mathbf{D})}{\partial W_{ij}} 
+& = \left \langle v_i h_j \right \rangle_{\mathbf{h} \sim p( \mathbf{h} \mid \mathbf{v}, \Theta), \mathbf{V}} 
+- \left \langle  v_i h_j \right \rangle_{\mathbf{v}, \mathbf{h} \sim p( \mathbf{v}, \mathbf{h} \mid  \Theta)},  \\
+\dfrac{\partial \hat{l} (\Theta \mid \mathbf{D})}{\partial a_{i}} 
+& = \left \langle v_i \right \rangle_{\mathbf{h} \sim p( \mathbf{h} \mid \mathbf{v}, \Theta), \mathbf{V}} 
+- \left \langle  v_i \right \rangle_{\mathbf{v}, \mathbf{h} \sim p( \mathbf{v}, \mathbf{h} \mid  \Theta)},  \\
+\dfrac{\partial \hat{l} (\Theta \mid \mathbf{D})}{\partial b_{j}} 
+& = \left \langle h_j \right \rangle_{\mathbf{h} \sim p( \mathbf{h} \mid \mathbf{v}, \Theta), \mathbf{V}} 
+- \left \langle  h_j \right \rangle_{\mathbf{v}, \mathbf{h} \sim p( \mathbf{v}, \mathbf{h} \mid  \Theta)},  \\
+\end{aligned}
+\end{equation}
+%\paragraph{CD with 1-step Reconstruction} 
+\subsubsection{CD with 1-step Reconstruction}
+\label{sec:cd}
+Both terms of the derivatives of the average log-likelihood function (Equation~(\ref{equ:RBM})) are intractable, so generative models for sampling is needed.
+As stated in Section~\ref{sec:CD}, for each iteration only one sample is generated.
+
+Regarding to the first term, given a training data $ \mathbf{v}_0 $ we first generate a hidden vector according to the conditional distribution $ \mathbf{h}_0 \sim p( \mathbf{h} \mid \mathbf{v}_0, \Theta) $.
+Welling et al. have proposed~\cite{welling2004exponential} that both the hidden and visible units can be any exponential unit, such as softmax, Gaussian and Poissonian.
+Here we take a Bernoulli-Bernoulli RBM as an example, where each node is a sigmoidal unit.
+The conditional probability function is as follows:
+\begin{equation}
+p(h_i = 1 \mid \mathbf{v}) = \sigma(\sum_{j=1}^{m} W_{ij} \cdot \mathbf{v} + b_j).
+\end{equation}
+
+\begin{figure}[hbt]
+	\centering
+	\includegraphics[width=0.6\textwidth]{pics_sdbn/gibbs.png}
+	\caption{Gibbs sampling on RBM.}
+	\label{fig:gibbs}
+\end{figure}
+The second term is perfect fit for Gibbs sampling, since we can $ p(\mathbf{v}, \mathbf{h} \mid \Theta) $ as a 2D vector and generating the samples by jumping in a Markov Chain with the transformation probability matrix $ p(\mathbf{v} \mid \mathbf{h}, \Theta) $ and $ p(\mathbf{h} \mid \mathbf{v}, \Theta) $, see Figure~\ref{fig:gibbs} and Section~\ref{sec:Gibbs}.
+So, with the given data $ \mathbf{v}_0 $ and the sampling data $ \mathbf{h}_0 $, we have the initial data point in this Markov Chain,  ($ \mathbf{v}_0, \mathbf{h}_0$).
+The transformation starts from the axis of $ \mathbf{v} $, then we get $ \mathbf{v}_1 \sim p( \mathbf{v} \mid \mathbf{h}_0, \Theta) $.
+It follows the next axis $ \mathbf{h} $, similarly we get $ \mathbf{h}_1 \sim p( \mathbf{h} \mid \mathbf{v}_1, \Theta) $.
+So far we obtain the first sample along the Markov Chain, ($ \mathbf{v}_1, \mathbf{h}_1$) thus to solve the objective function with one iteration.
+The algorithm is described below:   
+\begin{algorithm}[h]
+	\caption{Learning on RBM Parameters with $ CD_1 $}
+	\label{alg:learn}
+	\begin{algorithmic}
+		%			\State Initialisation $\mathbf{x}_0 = [x_0(1),x_0(2),...,x_0(M)]$,  \Comment{Random initialise $\mathbf{x}_0$}
+		\For{$t=1, 2, ..., K$} \Comment{K number of training data $ \mathbf{V} $, 1 data each iteration}
+		%			\For{$k=1, 2, ..., M$}
+		\State $ \mathbf{h}_t \sim p( \mathbf{h} \mid \mathbf{v}_t, \Theta) $
+		\Comment{Generate $ \mathbf{h}_t $ given $ \mathbf{v}_t $ }
+		\State $ \mathbf{v}_{t+1} \sim p( \mathbf{v} \mid \mathbf{h}_{t}, \Theta) $
+		\Comment{Generate $ \mathbf{v}_{t+1} $ on v axis using Gibbs sampling }
+		\State $ \mathbf{h}_{t+1} \sim p( \mathbf{h} \mid \mathbf{v}_{t+1}, \Theta) $
+		\Comment{Generate $ \mathbf{h}_{t+1} $ on h axis using Gibbs sampling }
+		\State $ \dfrac{\partial \hat{l} (\Theta \mid \mathbf{D})}{\partial W_{ij}} = v_{t,i} h_{t,j} - v_{t+1,i} h_{t+1,j}$
+		\State $ \dfrac{\partial \hat{l} (\Theta \mid \mathbf{D})}{\partial a_{i}} = v_{t,i} - v_{t+1,i} $
+		\State $  \dfrac{\partial \hat{l} (\Theta \mid \mathbf{D})}{\partial b_{j}} = h_{t,j} - h_{t+1,j}$
+		\State $ \Delta W_{ij} = \eta ( v_{t,i} h_{t,j} - v_{t+1,i} h_{t+1,j}) $
+		\Comment{Update $ W_{ij} $}
+		\State $ \Delta a_{i} = \eta ( v_{t,i} - v_{t+1,i}) $
+		\Comment{Update $ a_{i} $}
+		\State $ \Delta b_{j} = \eta ( h_{t,j} - h_{t+1,j}) $
+		\Comment{Update $ b_{j} $}
+		%			\EndFor
+		\EndFor
+	\end{algorithmic}
+	\label{alg:rbm}
+\end{algorithm}
+

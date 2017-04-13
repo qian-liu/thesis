@@ -24,6 +24,11 @@
 \usepackage{footnote}
 \usepackage{setspace}
 
+
+\usepackage{breakcites}
+\usepackage[hidelinks]{hyperref}
+%\usepackage{hyperref}
+
 %\usepackage[caption=false,font=normalsize,labelfont=sf,textfont=sf]{subfig}
 %define some own functions
 \newenvironment{mycell}[1]
@@ -127,9 +132,9 @@
 \include{Chapter1}
 \include{Chapter2}
 \include{Chapter3}
-%\include{Chapter4}
-%\include{Chapter5}
-%\include{Chapter6}
+\include{Chapter4}
+\include{Chapter5}
+\include{Chapter6}
 \include{Conclusion}
 \include{Appendices}
 
@@ -137,7 +142,7 @@
 \bibliography{refs_intro,refs_bench,refs_iconip,refs_sdbn,refs_icann,refs_report}    % this causes the references to be listed
 
 %\bibliographystyle{alpha}
-\bibliographystyle{ieeetr}
+\bibliographystyle{apalike}
 %% the bibliography style determines the format  in which both citations and references are printed,
 %% other possible values are plain and abbrv
 %%
