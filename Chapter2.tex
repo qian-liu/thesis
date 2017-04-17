@@ -271,34 +271,67 @@
 
 %\section{Spatial Temporal Learning}
 %\label{sec:stl}
-The so-called third generation of neural networks~\cite{maass1997networks} introduces a different set of functions and parameters to model neurons;
-%these both model biological neurons more precisely~\cite{hodgkin1952quantitative} and increase the computational power of networks of neurons if compared to classical sigmoidal units.
-it models the biological neurons more precisely and increases the computational power of neural networks when compared to the classical sigmoid functions.
-Such networks rely on the propagation of an all-or-none signal, the action potential, which asynchronously carries information to its connected units by means of its timing.
+This chapter aims to introduce fundamental concepts of spiking neurons, which are the basic processing units of SNNs, and all the proposed work in the thesis will be built on such units.
+Hence, we will start from the elementary neuroscience notions in Section~\ref{sec:neuron_basic} to give a general impression of a spiking neuron and neural signals propagated among network of neurons.
+These neural signalling dynamics can be abstracted and simplified by mathematical models, for example leaky integrate-and-fire~(LIF) model, which will be a popular neural model used in our research.
+Thus, Section~\ref{sec:spike} will present neural dynamic modelling by taking the example of LIF neurons, and a modelled biological-plausible learning rule.
+To operate networks of spiking neurons, in Section~\ref{sec:snn_sim} we will introduce the simulators both in software and hardware, including neuromrophic systems.
+
+
+%The so-called third generation of neural networks~\cite{maass1997networks} introduces a different set of functions and parameters to model neurons;
+%%these both model biological neurons more precisely~\cite{hodgkin1952quantitative} and increase the computational power of networks of neurons if compared to classical sigmoidal units.
+%it models the biological neurons more precisely and increases the computational power of neural networks when compared to the classical sigmoid functions.
+%Such networks rely on the propagation of an all-or-none signal, the action potential, which asynchronously carries information to its connected units by means of its timing.
 \section{Neural System Basics}
-\label{sec:comp}
-\subsection{Composing Elements}
-\subsubsection{Neurons}
-Spiking neuron models can be divided into two major categories \cite{gernstbook} based on their level of abstraction: The conductance models and the threshold models.
-The conductance models simulate a lower level on the ion channels, while the threshold models represent a higher level of neuron abstraction where the threshold voltage is fixed and the neuron fires once the membrane potential reaches it.
+\label{sec:neuron_basic}
 
-In general, Conductance-Based models have been derived from the Nobel prize winners (1963) Hodgkin and Huxley, based on the experiments that they performed on the giant axon squid \cite{hhmodel}.
-Spikes arriving at a LIF neuron cause a temporary flow of current into (excitatory synapse) or out of (inhibitory synapse) the neuron, modelling the behaviour of synapses in biological neurons.
-The LIF neuron sums up this current over time, accumulating charge which gradually leaks away.
-If the membrane potential in the neuron reaches a certain threshold, it produces a spike and its charge is reset.
-LIF neurons have been extensively used in large spiking neural networks \cite{Delorme1999989} because of their ease of implementation and the low computational cost.
+	\begin{figure}[bt]
+		\centering
+		\includegraphics[width=0.98\textwidth]{pics_snn/neuron_pearson.jpg}
+		\caption{Two neurons connected by synapses~\cite{reece2011campbell}.}
+		\label{Fig:neuron_basic}
+	\end{figure}
 
-\subsubsection{Spikes}
+\subsection{Biological Neural Components}
+%\subsubsection{Neurons}
+What composes a spiking neuron?
+%Spiking neuron models can be divided into two major categories \cite{gernstbook} based on their level of abstraction: The conductance models and the threshold models.
+%The conductance models simulate a lower level on the ion channels, while the threshold models represent a higher level of neuron abstraction where the threshold voltage is fixed and the neuron fires once the membrane potential reaches it.
+%
+%In general, Conductance-Based models have been derived from the Nobel prize winners (1963) Hodgkin and Huxley, based on the experiments that they performed on the giant axon squid \cite{hhmodel}.
+%Spikes arriving at a LIF neuron cause a temporary flow of current into (excitatory synapse) or out of (inhibitory synapse) the neuron, modelling the behaviour of synapses in biological neurons.
+%The LIF neuron sums up this current over time, accumulating charge which gradually leaks away.
+%If the membrane potential in the neuron reaches a certain threshold, it produces a spike and its charge is reset.
+%LIF neurons have been extensively used in large spiking neural networks \cite{Delorme1999989} because of their ease of implementation and the low computational cost.
 
-\subsubsection{Synapses}
+%\subsubsection{Spikes}
+
+%\subsubsection{Synapses}
+
+\subsection{Neuronal Signals}
+
+What is the signal transited among neurons?
+and what are the codes.
+
+%Code:https://www.slideshare.net/ieee_cis_cyprus/jennie-si
+
+\begin{figure}[bt]
+	\centering
+	\includegraphics[width=0.98\textwidth]{pics_snn/v1.jpg}
+	\caption{v1~\cite{hubel1962receptive}.}
+	\label{Fig:v1}
+\end{figure}
 
 \subsection{Neural Dynamics}
+How these signals are generated and propagated?
+
 \subsubsection{Membrane Potential}
 \subsubsection{Postsynaptic Potential}
 PSP
 \subsubsection{Action Potential}
 
 \section{Modelling Spiking Neurons}
+\label{sec:spike}
 \subsection{Neural Models}
 \subsection{Synaptic Models}
 \subsection{Synaptic Plasticity}
@@ -312,6 +345,7 @@ As well as adjusting weights, some learning rules can also form entirely new con
 neurons \cite{bamford2010synaptic}.
 
 \section{Simulating Networks of Spiking Neurons}
+\label{sec:snn_sim}
 \subsection{Software Simulators}
 \subsection{Hardware Simulators}
 \subsection{Neuromorphic Systems}
