@@ -37,8 +37,8 @@ The neurons can be seen as a pre-synaptic cell which sends the signal, and a pos
 
 
 \subsection{Neuronal Signals}
-The neuronal signals propagated among neurons are short electrical pulses, and Figure~\ref{Fig:neuron_basic}(c) shows the original recording of such a so-called action potential observed by using an squid giant axon.
-A typical action potential, also known as a `spike', is of about 100~mV amplitude and lasts 1-2~ms.
+The neuronal signals propagated among neurons are short electrical pulses, and Figure~\ref{Fig:neuron_basic}(c) shows the original recording of such a so-called \textbf{action potential} observed by using an squid giant axon.
+A typical action potential, also known as a `\textbf{spike}', is of about 100~mV amplitude and lasts 1-2~ms.
 Usually, there is a time period immediately after a spike that the neuron is unresponsive to any further stimulus.
 This minimal time difference between two spikes of a single neuron is the absolute refractory period during which no spike can be generated.
 While it is difficult but possible to fire a spike during the relative refractory period which immediately follows the absolute.
@@ -87,6 +87,7 @@ Established from the context of fast object recognition, rank-order coding was p
 
 
 \subsection{Signal Transmission}
+\label{subsec:spike_trans}
 The spike, as an electrical signal, propagates to another neuron at the junction between these two neurons, a chemical synapse.
 The axon terminal of a pre-synaptic neuron approaches very close (about 20~nm) to the dendrites (or cell body) of a  post-synaptic neuron.
 The tiny space between neurons at a synapse is called the synaptic cleft, which is demonstrated in Figure~\ref{Fig:neuron_basic}(b).
@@ -130,7 +131,7 @@ Thus, a spike transmitted by an excitatory synapse triggers an positive change o
 
 \begin{figure}[bt!]
 	\centering
-	\includegraphics[width=0.9\textwidth]{pics_snn/PSP.png}
+	\includegraphics[width=0.9\textwidth]{pics_snn/psp.png}
 	\caption{Summation of post-synaptic potentials~\cite{reece2011campbell}. 
 		(a) Single EPSPs are usually not strong enough to trigger an action potential without summation. (b) Temporal summation of two EPSPs of the same synapse generates an action potential. (c) Spatial summation of two EPSPs of two synapse generates an action potential. (d) Spatial-temporal summation of both EPSP and IPSPs.
 	}
@@ -144,7 +145,7 @@ Figure~\ref{Fig:psp_sum} illustrates temporal and spatial summations of PSPs und
 
 
 
-\subsection{Neural Models}
+\subsection{Neuron Models}
 The keys of modelling a spiking neuron are: 
 \begin{itemize}
 	\item to mathematically formalise the evolution of membrane potential;
@@ -152,24 +153,6 @@ The keys of modelling a spiking neuron are:
 \end{itemize}
 
 \subsubsection{Leaky Integrate-and-Fire}
-The evolution of membrane potential can be simplified as a resistor–capacitor (RC) circuit which consists of a membrane capacitor, $C_m$ and a membrane resistance $R_m$, both driven by input current flow $I$, see Figure~\ref{Fig:rc}.
-In the resting state without any input, the membrane potential $V$ stays at the same potential as the battery $V_{rest}$.
-When current flows into the neuron, it will charge the capacitor $I_C(t)$ and flow through the resistance $I_R(t)$ to depolarise the membrane potential when the current stops the capacity charge will decay back to $V_{rest}$ by leaking through the resistance:
-\begin{equation}
-\begin{aligned}
-	I(t) &= I_R(t) + I_C(t) \\
-	&= \frac{V-V_{rest}}{R_m} + C_m \frac{\D u}{\D t}~~.
-\end{aligned}
-\end{equation}
-The standard form of the LIF model can be written as:
-\begin{equation}
-\begin{aligned}
-	\tau_m \frac{\D u}{\D t} &= -(V-V_{rest}) + R_m I(t)~, \textrm{~when~} V<V_{thresh}\\
-	V &= V_{rest}~,  \textrm{~when~} V>=V_{thresh}
-\end{aligned}
-\end{equation}
-where $V_{thresh}$ is the threshold of membrane potential and $\tau_m = C_m R_m$ is called the membrane time constant.
-
 \begin{figure}[tb!]
 	\centering
 	\includegraphics[width=0.3\textwidth]{pics_snn/RC.png}
@@ -177,51 +160,128 @@ where $V_{thresh}$ is the threshold of membrane potential and $\tau_m = C_m R_m$
 	\label{Fig:rc}
 \end{figure}
 
-The simple Leaky Integrate-and-Fire~(LIF) model uses: (1) a linear differential equation to describe the evolution of membrane potential;
-and (2) a threshold to generate a spike.
-
-Applying LIF models to synaptic spike transmissions, we can use two types of synapses: current-based and conductance-based models.
-Thus the synaptic efficacy $w$ determines either the input current intensity flowing through the synapse,
+The evolution of membrane potential can be simplified as a resistor–capacitor (RC) circuit which consists of a membrane capacitor, $C_m$ and a membrane resistance $R_m$, both driven by input current flow $I$, see Figure~\ref{Fig:rc}.
+In the resting state without any input, the membrane potential $V$ stays at the same potential as the battery $V_{rest}$.
+When current flows into the neuron, it will charge the capacitor $I_C(t)$ and flow through the resistance $I_R(t)$ to depolarise the membrane potential when the current stops the capacity charge will decay back to $V_{rest}$ by leaking through the resistance:
 \begin{equation}
-I(t) = w(t)~, \textrm{~current-based model;}
+\begin{aligned}
+	I(t) &= I_R(t) + I_C(t) \\[10pt]
+	&= \dfrac{V-V_{rest}}{R_m} + C_m \dfrac{\D V}{\D t}~~.
+\end{aligned}
+\label{equ:LIF_current}
 \end{equation}
-or the electric conductance $g_{syn}$ of the ion channel,
+The standard form of the LIF model describes the sub-threshold membrane potential evolution:
 \begin{equation}
-	I(t) = g_{syn}(t) (V-E_{syn}) = w(t) (V-E_{syn})~, \textrm{~conductance-based model}
+	\tau_m \dfrac{\D V}{\D t} = -(V-V_{rest}) + R_m I(t)~,
 \end{equation}
-where $E_{syn}$ indicates the reversal potential, a constant parameter of a neuron.
-
-The current flow usually takes much longer than an action potential and decays over time, thus an simple exponential decay can be used to model the decaying synaptic efficacy:
+where $\tau_m = C_m R_m$ is called the membrane time constant, and as soon as the membrane potential reaches the threshold $V_{thresh}$, it is set to a reset potential $V_{reset}$, which is usually lower than $V_{rest}$: 
 \begin{equation}
-w(t) = w_0 \exp^{-t/\tau_{syn}}~,
+V = V_{reset}~.
 \end{equation}
-assuming a spike is delivered at time $t=0$, the initial synaptic weight is set to $w_0$ and $\tau_{syn}$ is the synaptic time constant.
-
-This thesis employs LIF neurons and current-based synapse model with exponentially-decaying post-synaptic current by default.
+The simple LIF model uses: (1) a linear differential equation to describe the evolution of membrane potential;
+and (2) a threshold to generate a spike .
 
 \subsubsection{Hodgkin-Huxley}
-gari
+Hodgkin-Huxley is the Nobel Prize winning model that explains ionic mechanisms generating and transmitting action potentials in the squid giant axon~\cite{hodgkin1939action}.
+The current $I_R(t)$ which flows through the membrane resistance is determined by three ion channels: a leak channel with a conductance of $g_L$, the sodium channel of $g_{Na}$ conductance and the potassium channel of  $g_{K}$ conductance.
+The currents flow through these channels are all proportional to the difference between the membrane potential and the reversal potentials of the channels: $V-E_L$, $V-E_{Na}$, and $V-E_{K}$ respectively.
+Thus Equation~\ref{equ:LIF_current} is detailed as:
+\begin{equation}
+\begin{aligned}
+I(t) &= I_L(t) + I_{Na}(t) + I_{K}(t)+ I_C(t) \\
+&= g_L(V-E_L) + g_{Na}m^3h(V-E_{Na}) + g_{K}n^4(V-E_{K})  + C_m \dfrac{\D V}{\D t}~~.
+\end{aligned}
+\label{equ:HH_current}
+\end{equation}
+ 
+The Hodgkin–Huxley model can be seen as a non-linear differential equation with four state variables, $V$, $m$, $h$ and $n$ that change against time:
+\begin{equation}
+\begin{aligned}
+C_m \dfrac{\D V}{\D t} = I(t) - g_{K}n^4(V-E_{K}) &- g_{Na}m^3h(V-E_{Na}) - g_L(V-E_L)~, \textrm{~~and }\\[10pt]
+\dfrac{\D m}{\D t} &= \alpha_m(V)(1-m) - \beta_m(V)m~, \\[10pt]
+\dfrac{\D n}{\D t} &= \alpha_n(V)(1-n) - \beta_n(V)n~, \\[10pt]
+\dfrac{\D h}{\D t} &= \alpha_h(V)(1-h) - \beta_h(V)h~,
+\end{aligned}
+\end{equation} 
+where $\alpha(V)$ and  $\beta(V)$ are empirical functions of membrane potential.
+Regarding to the mechanism of spike initiation, it refers to the most significant property of the Hodgkin-Huxley model that the model is able to generate action potentials with the changes of those dynamic internal variables alone.
+
+The Hodgkin-Huxley equations provides a detailed, quantitative, and reasonable accurate mathematical model explaining the evolution of the membrane potential and the action potential~\cite{byrne2014molecules}.
+However, its numerical complexity and highly non-linearity prohibit it from being intuitively understood and make large-scale simulations too expensive.
+Therefore, neural model selection should take account of objectives, degree of detail and computational power.
 
 \subsubsection{Izhikevich}
-gari
+Izhikevich model is proposed to solve the problems of computational complexity of the Hodgkin-Huxley model and the insufficient capability of LIF model for reproducing complex dynamics of cortical neurons~\cite{izhikevich2003simple}.
+Thus the model can be employed to simulate large-scale brain models consisted of real biological neurons.
+
+The membrane potential evolves in accordance with a pair of differential equations:
+\begin{equation}
+\begin{aligned}
+\dfrac{\D v}{\D t} &= 0.04v^2 + 5v + 140 - u - I(t)~,\\[10pt]
+\dfrac{\D u}{\D t} &= a(bv - u)~,
+\end{aligned}
+\end{equation}
+where $v$ is the membrane potential and $u$ represents the membrane recovery which negatively feeds back to $v$.
+In terms of spike generation, the initiation part of an activation potential is produced by the equations, but a resetting scheme is needed:
+\begin{equation}
+\left\{
+\begin{aligned}
+v &= c \\
+u &= u + d
+\end{aligned}
+\right.
+\textrm{~~~~when~} v \geq 30.
+\end{equation}  
+$a$, $b$, $c$, and $d$ are constant parameters that can be configured to reproduce various neural dynamics of real biological neurons~\cite{izhikevich2004model}.
+
+\subsection{Synapse Model}
+Applying spiking neuron models to synaptic spike transmissions, we can use two types of synapses: current-based and conductance-based models.
+Thus the synaptic efficacy $w$ determines either the input current intensity flowing through the synapse: % (current-based model)
+\begin{equation}
+I(t) = w(t)~,
+\end{equation}
+or the electric conductance $g_{syn}$ of the ion channel: % (conductance-based model)
+\begin{equation}
+I(t) = g_{syn} (V-E_{syn}) = w(t) (V-E_{syn})~,
+\end{equation}
+where $E_{syn}$ indicates the reversal potential of a synapse.
+Both equations identify the strength of a synaptic current, thus simply adding up all the synaptic currents on the same post-synaptic neuron that the summation can be picked up as the external current by all the neuron models stated above.
+%\begin{equation}
+%I(t) = \sum_j I_{ij}(t)~.
+%\end{equation}
+
+The current flow usually takes much longer than an action potential and decays over time, thus an simple exponential decay is able to model the decaying synaptic efficacy.
+Assuming spikes are delivered at time $t={t_0, t_1, ..., t_n}$, the initial synaptic weight is set to $w_0$ and $\tau_{syn}$ is the synaptic time constant, the decaying synaptic current or the conductance can be described as:
+\begin{equation}
+w(t) = \sum_k w_0 \exp^{-(t-t_k)/\tau_{syn}}~.
+\end{equation}
+
+In the thesis we mostly employ LIF neurons and current-based synapse model with decaying synaptic efficacy, thanks to its simple mathematical expression, low numerical complexity and high-level abstraction that hiding much of detailed neural dynamics.
+Therefore, at the initial stage of merging artificial deep learning to biologcial-plausible SNNs, we can (1) analytically solve the linear differential equation thus to understand and to use the LIF model well; (2) simulate large-scale SNN with deep architectures without a tight limitation on computational power; and (3) have much fewer parameters to concern about resulting in a simplified problem.
+
 
 \subsection{Synaptic Plasticity}
-Jamie
+As mentioned in Section~\ref{subsec:spike_trans}, synaptic plasticity forms the neuronal level of learning and memory of the brain.
+%This synaptic plasticity was firstly proved by Bliss and L{\o}mo that if two neurons fired simultaneously then their synaptic connection would be strengthened~\ref{bliss1973long}.
+Biological observations have provided evidence that modulations on the synaptic efficacy depend on the relative timing of the pre- and post-synaptic spikes\cite{bi2001synaptic}.
+This mechanism is known as synaptic time-dependant plasticity (\textbf{STDP})~\cite{gerstner1996neuronal}.
 
 \begin{figure}[bt]
 	\centering
-	\includegraphics[width=0.8\textwidth]{pics_snn/fig_stdp_orig.jpg}
-	\caption{Synaptic Time Dependant Plasticity~\cite{gerstner2014neuronal}.}
+	\includegraphics[width=0.5\textwidth]{pics_snn/stdp.jpeg}
+	\caption{Synaptic time dependant plasticity~\cite{bi2001synaptic}.}
 	\label{Fig:STDP}
 \end{figure}
-%One of the key parameters of a neural network is the amount of influence each incoming spike has on a neuron.
-The influence each incoming spike has on a post-synaptic neuron is modelled by assigning a `weight' to each synapse;
-tuning on the weight scales the impact of a spike
-arriving via that synapse.
-Many learning models simulate the changes in weights over long periods of time observed within the brain.
-The exact rules by which these weights are adjusted is the subject of much active research though most promising approaches attempt to learn from the relative timing \cite{pfister2006triplets} or rate \cite{bienenstock1982theory} of spikes arriving at a neuron.
-As well as adjusting weights, some learning rules can also form entirely new connections between previously unconnected
-neurons \cite{bamford2010synaptic}.
+
+When a presynaptic spike
+arrives before a postsynaptic spike is emitted the synapse is potentiated (strength-
+ened). However, if a presynaptic spikes arrives after a postsynaptic spike has been
+emitted, the synapse is depressed (weakened). Furthermore the data recorded by
+Bi and Poo suggest that the magnitude of the changes in synaptic efficacy (∆w i j )
+is related to the relative spike timings with the following exponential functions
+
+
+
 
 \section{Simulating Networks of Spiking Neurons}
 \label{sec:snn_sim}
