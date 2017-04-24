@@ -45,7 +45,7 @@ This work aimed at constructing artificial machine learning algorithms closely t
 %4. remote (ReSuMe)
 The work we propose was mostly inspired from the supervised time-based spiking learning rule, ReSuMe~\cite{ponulak2010supervised}, where the output spikes of a post-synaptic neuron were trained to fire at expected time points as the teaching spikes do, see Figure~\ref{fig:resume}.
 %So with certain input pattern injected to the pre-synaptic neurons, see Figure~\ref{fig:resume}.
-The teaching signal always potentiates the synaptic strength while the output spikes of the post-synaptic neuron always depress the connection, and the weight change $\delta w$ updates in accordance with the exponential STDP curve against the time difference between a spike and a pre-synaptic spike.
+The teaching signal always potentiates the synaptic strength while the output spikes of the post-synaptic neuron always depress the connection, and the weight change $\Delta w$ updates in accordance with the exponential STDP curve against the time difference between a spike and a pre-synaptic spike.
 Therefore, as illustrated in Figure~\ref{fig:resume}, at the beginning a teaching spike fires earlier than a post-synaptic spike within an STDP window which makes the weight potentiates more than it depresses;
 thus driven by a stronger synaptic weight, the post-synaptic neuron fires earlier than it supposed to (the teaching spike), making the weight depresses a bit more than its potentiation;
 finally, the weight stays unchanged because the post-synaptic neuron fires coincidently with the teaching spike thus the weight's potentiation cancels out the depression.

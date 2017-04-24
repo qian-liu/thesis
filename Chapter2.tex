@@ -1,13 +1,12 @@
 \chapter{Spiking Neural Networks~(SNNs)}
 \label{cha:bkg}
-Biological studies have obtained increasing knowledge about facts, functions and anatomy of the brain.
-At the cellular level, the central nervous system consists of two types of cells: neurons, the elementary processing units, and glial cells, the structural and metabolic supporters. 
-Here we focus on the neurons, since they connect to each other forming the path from neural circuit and network to behaviour and cognition of the brain.
-The human brains contains around a hundred of billions ($10^11$) such processing units, and three more orders of magnitudes connections, that are about $10^3$ connections per neuron.
-The special structures of neurons enable them to send signals rapidly and precisely to other cells through these connections.
-
 
 \section{Biological Neural Components}
+%Biological studies have obtained increasing knowledge about facts, functions and anatomy of the brain.
+At the cellular level, the central nervous system consists of two types of cells: neurons, the elementary processing units, and glial cells, the structural and metabolic supporters. 
+Here we focus on the neurons, since they are the basic elements to form the path from neurons, neural circuits and networks to behaviour and cognition of the brain.
+The human brains contains around a hundred of billions ($10^{11}$) such processing units, and three more orders of magnitudes connections, that are about $10^3$ connections per neuron.
+The special structures of neurons enable them to send signals rapidly and precisely to other cells through these connections.
 \subsection{Neuron}
 	\begin{figure}[bt]
 	\centering
@@ -98,6 +97,7 @@ Thanks to the synaptic plasticity, changes of chemical synapses enables modulati
 
 \section{Modelling Spiking Neurons}
 \label{sec:spike}
+
 \subsection{Neural Dynamics}
 %\subsubsection{Membrane Potential}
 The effect of an ion influx on the post-synaptic neuron caused by spike transmission is the change of potential difference across the cell membrane.
@@ -105,7 +105,7 @@ This potential difference between the interior and exterior of the cell body, is
 The membrane potential of a post-synaptic neuron stays at a \textbf{resting potential}, when no input comes.
 As soon as a spike arrives, the membrane potential will be either depolarised (increased) or hyper-polarised (decreased) according to the type of synapses, and go back to the resting potential at last.
 The behaviour of the membrane potential change caused by a single spike is called the post-synaptic potential (\textbf{PSP}). 
-Thus, a spike transmitted by an excitatory synapse triggers an positive change of PSP, named excitatory post-synaptic potential (\textbf{EPSP}), see Figure~\ref{Fig:psp}(a), conversely the negative change, inhibitory post-synaptic potential (\textbf{IPSP}), is driven by inhibitory synaptic event and shown in Figure~\ref{Fig:psp}(b).
+Thus, a spike transmitted by an excitatory synapse triggers an positive change of PSP, named excitatory post-synaptic potential (\textbf{EPSP}), see Figure~\ref{Fig:psp}(a), and the negative change, inhibitory post-synaptic potential (\textbf{IPSP}), is driven by inhibitory synaptic event and shown in Figure~\ref{Fig:psp}(b).
 
 
 %\begin{figure}[tbh!]
@@ -253,7 +253,7 @@ Both equations identify the strength of a synaptic current, thus simply adding u
 The current flow usually takes much longer than an action potential and decays over time, thus an simple exponential decay is able to model the decaying synaptic efficacy.
 Assuming spikes are delivered at time $t={t_0, t_1, ..., t_n}$, the initial synaptic weight is set to $w_0$ and $\tau_{syn}$ is the synaptic time constant, the decaying synaptic current or the conductance can be described as:
 \begin{equation}
-w(t) = \sum_k w_0 \exp^{-(t-t_k)/\tau_{syn}}~.
+w(t) = \sum_k w_0 e^{-(t-t_k)/\tau_{syn}}~.
 \end{equation}
 
 In the thesis we mostly employ LIF neurons and current-based synapse model with decaying synaptic efficacy, thanks to its simple mathematical expression, low numerical complexity and high-level abstraction that hiding much of detailed neural dynamics.
@@ -263,24 +263,29 @@ Therefore, at the initial stage of merging artificial deep learning to biologcia
 \subsection{Synaptic Plasticity}
 As mentioned in Section~\ref{subsec:spike_trans}, synaptic plasticity forms the neuronal level of learning and memory of the brain.
 %This synaptic plasticity was firstly proved by Bliss and L{\o}mo that if two neurons fired simultaneously then their synaptic connection would be strengthened~\ref{bliss1973long}.
-Biological observations have provided evidence that modulations on the synaptic efficacy depend on the relative timing of the pre- and post-synaptic spikes\cite{bi2001synaptic}.
-This mechanism is known as synaptic time-dependant plasticity (\textbf{STDP})~\cite{gerstner1996neuronal}.
+Biological observations have provided evidence that modulations on the synaptic efficacy depend on the relative timing of the pre- and post-synaptic spikes~\cite{bi1998synaptic}.
+This mechanism is known as synaptic time-dependant plasticity (\textbf{STDP})~\cite{kempter1999hebbian}, and the standard STDP learning window is illustrated in Figure~\ref{Fig:STDP}:
+\begin{equation}
+\Delta W = \left\{
+\begin{aligned}
+A_+ e^{\Delta t/\tau_+} \textrm{,~~when~} \Delta t \geq 0~, \\
+-A_- e^{\Delta t/\tau_-} \textrm{,~~when~} \Delta t < 0~.
+\end{aligned}
+\right.
+\end{equation}
 
-\begin{figure}[bt]
+\begin{figure}[bt!]
 	\centering
 	\includegraphics[width=0.5\textwidth]{pics_snn/stdp.jpeg}
-	\caption{Synaptic time dependant plasticity~\cite{bi2001synaptic}.}
+	\caption{Synaptic time dependant plasticity~\cite{bi2001synaptic}.
+	The circles record the synaptic weight change of real biological observations on 60 pair of hippocampal neurons.
+	Curves of exponential decays against relative timing of pre- and post-synaptic spikes fit well to the real biological data.
+	}
 	\label{Fig:STDP}
 \end{figure}
 
-When a presynaptic spike
-arrives before a postsynaptic spike is emitted the synapse is potentiated (strength-
-ened). However, if a presynaptic spikes arrives after a postsynaptic spike has been
-emitted, the synapse is depressed (weakened). Furthermore the data recorded by
-Bi and Poo suggest that the magnitude of the changes in synaptic efficacy (∆w i j )
-is related to the relative spike timings with the following exponential functions
-
-
+The synaptic weight is potentiated when a post-synaptic spike fires later than a pre-synaptic spike, and the amplitude of such a potentiation is determined by the curve of exponential decay with a time constant $\tau_+$ and an initial quantity $A_+$;
+however, when a post-synaptic spike is generated before a pre-synaptic one, synaptic depression will occur according to the exponential decay defined by $\tau_-$ and $-A_-$.
 
 
 \section{Simulating Networks of Spiking Neurons}
