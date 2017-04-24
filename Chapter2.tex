@@ -1,38 +1,30 @@
 \chapter{Spiking Neural Networks~(SNNs)}
 \label{cha:bkg}
-This chapter aims to introduce fundamental concepts of spiking neurons, which are basic processing units of SNNs, and all the proposed work in the thesis will be built on such units.
-Hence, we will start from the elementary neuroscience notions in Section~\ref{sec:neuron_basic} to give a general impression of a spiking neuron and neural signals propagated among network of neurons.
-These neural signalling dynamics can be abstracted and simplified by mathematical models, for example leaky integrate-and-fire~(LIF) model, which will be a popular neural model used in our research.
-Thus, Section~\ref{sec:spike} will present neural dynamic modelling by taking the example of LIF neurons, and a modelled biological-plausible learning rule.
-To operate networks of spiking neurons, in Section~\ref{sec:snn_sim} we will introduce the simulators both in software and hardware, including neuromrophic systems.
+Biological studies have obtained increasing knowledge about facts, functions and anatomy of the brain.
+At the cellular level, the central nervous system consists of two types of cells: neurons, the elementary processing units, and glial cells, the structural and metabolic supporters. 
+Here we focus on the neurons, since they connect to each other forming the path from neural circuit and network to behaviour and cognition of the brain.
+The human brains contains around a hundred of billions ($10^11$) such processing units, and three more orders of magnitudes connections, that are about $10^3$ connections per neuron.
+The special structures of neurons enable them to send signals rapidly and precisely to other cells through these connections.
 
 
-%The so-called third generation of neural networks~\cite{maass1997networks} introduces a different set of functions and parameters to model neurons;
-%%these both model biological neurons more precisely~\cite{hodgkin1952quantitative} and increase the computational power of networks of neurons if compared to classical sigmoidal units.
-%it models the biological neurons more precisely and increases the computational power of neural networks when compared to the classical sigmoid functions.
-%Such networks rely on the propagation of an all-or-none signal, the action potential, which asynchronously carries information to its connected units by means of its timing.
-\section{Neural System Basics}
-\label{sec:neuron_basic}
-Over the past hundred years, biological research has accumulated an enormous amount of detailed knowledge about the structure and function of the brain.
-The elementary processing units in the central nervous system are neurons, which are connected to each other in an intricate pattern.
-In reality, cortical neurons and their connections are packed into a dense network with more than $10^{4}$ cell bodies and several kilometers of ‘wires’ per cubic millimeter. Across areas of the brain the wiring pattern may look different.
-In all areas, however, neurons of different sizes and shapes form the basic elements.
-
+\section{Biological Neural Components}
+\subsection{Neuron}
 	\begin{figure}[bt]
-		\centering
-		\includegraphics[width=0.98\textwidth]{pics_snn/neuron2.png}
-		\caption{Two neurons connected by synapses. 
-			A neuron mainly is composed of three functional parts: dendrites, the soma, and the axon. (a) A Presynaptic cell connects to its postsynaptic cell through synapses~\cite{reece2011campbell}, see (b)~\cite{reece2011campbell}, and the neural signal, action potential see (c)~\cite{hodgkin1939action}, propagates along the red arrows. }
-		\label{Fig:neuron_basic}
-	\end{figure}
+	\centering
+	\includegraphics[width=0.98\textwidth]{pics_snn/neuron2.png}
+	\caption{Two neurons connected by synapses. 
+		A neuron mainly is composed of three functional parts: dendrites, the soma, and the axon. (a) A pre-synaptic cell connects to its post-synaptic cell through synapses~\cite{reece2011campbell}, see (b)~\cite{reece2011campbell}, and the neural signal, action potential see (c)~\cite{hodgkin1939action}, propagates along the red arrows. }
+	\label{Fig:neuron_basic}
+\end{figure}
+A typical neuron consists of three functional parts: dendrites, a cell body (soma), and an axon, see Figure~\ref{Fig:neuron_basic}(a).
+The dendrites of a neuron receive stimuli from other neurons which the dendrites project to, and transmit the neural signal to the neuron's soma.
+The soma is the cell body of the neuron where nucleus locates at, and functions like a non-linear processor that it triggers an output signal when accumulated total input exceeds some threshold.
+The output signal initiates from the axon hillock where the axon emerges from the soma, and then propagated through the axon to other neurons.
+Most of the neurons contains only one axon, but it may connects to many neurons by branching out axon terminals. 
 
-\subsection{Biological Neural Components}
-%\subsubsection{Neurons}
-What composes a spiking neuron?
 
-A typical neuron can be divided into three functionally distinct parts, called dendrites, soma, and axon; see Fig. 1.2. Roughly speaking, the dendrites play the role of the ‘input device’ that collects signals from other neurons and transmits them to the soma. The soma is the ‘central processing unit’ that performs an important non-linear processing step: If the total input arriving at the soma exceeds a certain threshold, then an output signal is generated. The output signal is taken over by the ‘output device’, the axon, which delivers the signal to other neurons.
-
-The junction between two neurons is called a synapse. Let us suppose that a neuron sends a signal across a synapse. It is common to refer to the sending neuron as the presynaptic cell and to the receiving neuron as the postsynaptic cell. A single neuron in vertebrate cortex often connects to more than $10^{4}$ postsynaptic neurons. Many of its axonal branches end in the direct neighborhood of the neuron, but the axon can also stretch over several centimeters so as to reach neurons in other areas of the brain.
+The signal delivery from a neuron to another occurs at the junction between these two neurons, which is called a synapse, see Figure~\ref{Fig:neuron_basic}(b).
+The neurons can be seen as a pre-synaptic cell which sends the signal, and a post-synaptic cell which receives.
 
 %Spiking neuron models can be divided into two major categories \cite{gernstbook} based on their level of abstraction: The conductance models and the threshold models.
 %The conductance models simulate a lower level on the ion channels, while the threshold models represent a higher level of neuron abstraction where the threshold voltage is fixed and the neuron fires once the membrane potential reaches it.
@@ -43,145 +35,175 @@ The junction between two neurons is called a synapse. Let us suppose that a neur
 %If the membrane potential in the neuron reaches a certain threshold, it produces a spike and its charge is reset.
 %LIF neurons have been extensively used in large spiking neural networks \cite{Delorme1999989} because of their ease of implementation and the low computational cost.
 
-%\subsubsection{Spikes}
-
-%\subsubsection{Synapses}
 
 \subsection{Neuronal Signals}
+The neuronal signals propagated among neurons are short electrical pulses, and Figure~\ref{Fig:neuron_basic}(c) shows the original recording of such a so-called action potential observed by using an squid giant axon.
+A typical action potential, also known as a `spike', is of about 100~mV amplitude and lasts 1-2~ms.
+Usually, there is a time period immediately after a spike that the neuron is unresponsive to any further stimulus.
+This minimal time difference between two spikes of a single neuron is the absolute refractory period during which no spike can be generated.
+While it is difficult but possible to fire a spike during the relative refractory period which immediately follows the absolute.
 
-What is the signal transited among neurons?
-and what are the codes.
+The size and duration of the spikes do not vary much among different species, and maintain the same form as the electrical pulses propagates along the axon.
+Therefore, the form of an action potential carry little information, however it is the frequency and timing of the spikes that encode the messages.
+A sequence of action potential generated by a single neuron is called a spike train, which can be seen as binary events against discrete time that `on' indicates a spiking event whereas `off' means none.
+Information can be encoded in the frequency and timing of these binary events.
 
-The neuronal signals consist of short electrical pulses and can be observed by placing a fine electrode either on the soma or close to the soma or axon of a neuron; see Fig. 1.2. The pulses, so-called action potentials or spikes, have an amplitude of about 100 mV and typically a duration of 1-2 ms. The form of the pulse does not change as the action potential propagates along the axon. A chain of action potentials emitted by a single neuron is called a spike train – a sequence of stereotyped events which occur at regular or irregular intervals; see Fig. 1.3. Since isolated spikes of a given neuron look alike, the form of the action potential does not carry any information. Rather, it is the number and the timing of spikes which matter. The action potential is the elementary unit of signal transmission.
 
-Action potentials in a spike train are usually well separated. Even with very strong input, it is impossible to excite a second spike during or immediately after a first one. The minimal distance between two spikes defines the absolute refractory period of the neuron. The absolute refractory period is followed by a phase of relative refractoriness where it is difficult, but not impossible to excite an action potential.
-
-%Code:https://www.slideshare.net/ieee_cis_cyprus/jennie-si
-The rate coding model of neuronal firing communication states that as the intensity of a stimulus increases, the frequency or rate of action potentials, or ``spike firing'', increases. Rate coding is sometimes called frequency coding.
-An example of V1 simple cell responding to its visual stimuli is shown in Figure~\ref{Fig:v1}.
+The rate coding model states that the spiking rate represents the intensity of a stimulus, e.g. as the stimulus becomes stronger, the frequency of the action potentials also increases.
+An example of the tuning curve of a V1 simple cell responding to different stimulus orientation is shown in Figure~\ref{Fig:v1}.
+As the stimulus becomes more suitable to the preferred orientation ($0^\circ$) of the neuron, the firing rate increases.
 
 \begin{figure}[bt]
 	\centering
 	\includegraphics[width=0.8\textwidth]{pics_snn/v1.jpg}
-	\caption{Example of rate coding: cat V1~\cite{hubel1962receptive}.}
+	\caption{Example of rate coding: spike trains for different stimulus orientation (left) of a V1 simple cell of a cat, and the tuning curve (firing rate against stimulus orientation) of the neuron (right)~\cite{hubel1962receptive}.
+	The square indicates the visual receptive field of the neuron, and a bar places at different orientation and moves orthogonally is the stimulus.
+    As the stimulus becomes more suitable to the preferred orientation ($0^\circ$) of the neuron, the firing rate increases.}
 	\label{Fig:v1}
 \end{figure}
 
-For very brief stimuli, a neuron's maximum firing rate may not be fast enough to produce more than a single spike. Due to the density of information about the abbreviated stimulus contained in this single spike, it would seem that the timing of the spike itself would have to convey more information than simply the average frequency of action potentials over a given period of time. This temporal code is especially important for sound localization, which occurs within the brain on the order of milliseconds. The spikes generated phase-locked to input sound (sine wave) by an inner ear cell is shown in Figure~\ref{Fig:audio_fibre}. The brain must obtain a large quantity of information based on a relatively short neural response. Additionally, if low firing rates on the order of ten spikes per second must be distinguished from arbitrarily close rate coding for different stimuli, then a neuron trying to discriminate these two stimuli may need to wait for a second or more to accumulate enough information. This is not consistent with numerous organisms which are able to discriminate between stimuli in the time frame of milliseconds, suggesting that a rate code is not the only model at work.
+Rate coding works well when the stimulus is changing slowly and the observation time period is long enough to estimate the firing rate, however in practice the stimulus, e.g. visual sensory input, varies in a fast time scale and the neurons respond within a short reaction time.
+Thus, temporal coding is a candidate method to compensate the encoding of fast changing stimulus.
 
-
+Sound localisation requires temporal coding under precision of milliseconds, which is a good example of one of the temporal coding schemes, phase locking.
+Figure~\ref{Fig:audio_fibre} shows phase-locked spike trains generated by Inner Hair Cells in the cochlea.
+Phase locking forms the basis
+of detecting time differences of binaural sound inputs.
 \begin{figure}[bt]
 	\centering
 	\includegraphics[width=0.8\textwidth]{pics_snn/phaselocking.png}
-	\caption{Example of temporal coding: auditory fibre~\cite{liu2013modeling}.}
+	\caption{Example of temporal coding: phase-locked spike trains generated by Inner Hair Cells in the cochlea~\cite{liu2013modeling}.
+	A sound source generates a sine wave of a certain frequency and conducts to two ears with a time difference and different amplitude due to the angle and distance of the sound source to the head.
+	Two spike trains respond to different phases manipulated by a threshold of the sound waves.
+	Sound localisation should be resolved by calculating the time difference and level difference of these sound waves which are encoded in the spike trains.
+    }
 	\label{Fig:audio_fibre}
 \end{figure}
 
+Time-to-first-spike encodes the information according to the intensity of a stimulus where a spike shortly after a reference signal indicates a strong stimulation and a later action potential is interpreted as a weaker input.
+The tactile afferent information generated by forcing fingerprints from various directions are encoded in such a time-to-first-spike coding scheme~\cite{johansson2004first}.
+Synchrony coding also can be found in the brain, where neurons represent the same ``concept'' always fire at the same time~\cite{von1994correlation}, for example in object recognition~\cite{gray1989stimulus}.
+Established from the context of fast object recognition, rank-order coding was proposed that it discarded the precise time of spikes, but rather used the relative order of spikes among a group of neurons~\cite{gautrais1998rate}.
+
+
 \subsection{Signal Transmission}
-How these signals are propagated? 
-
-The site where the axon of a presynaptic neuron makes contact with the dendrite (or soma) of a postsynaptic cell is the synapse. The most common type of synapse in the vertebrate brain is a chemical synapse. At a chemical synapse, the axon terminal comes very close to the postsynaptic neuron, leaving only a tiny gap between pre- and postsynaptic cell membrane. This is called the synaptic cleft. When an action potential arrives at a synapse, it triggers a complex chain of bio-chemical processing steps that lead to a release of neurotransmitter from the presynaptic terminal into the synaptic cleft. As soon as transmitter molecules have reached the postsynaptic side, they will be detected by specialized receptors in the postsynaptic cell membrane and lead (either directly or via a biochemical signaling chain) to an opening of specific channels causing ions from the extracellular fluid to flow into the cell. The ion influx, in turn, changes the membrane potential at the postsynaptic site so that, in the end, the chemical signal is translated into an electrical response. The voltage response of the postsynaptic neuron to a presynaptic spike is called the postsynaptic potential.
-
-
-
+The spike, as an electrical signal, propagates to another neuron at the junction between these two neurons, a chemical synapse.
+The axon terminal of a pre-synaptic neuron approaches very close (about 20~nm) to the dendrites (or cell body) of a  post-synaptic neuron.
+The tiny space between neurons at a synapse is called the synaptic cleft, which is demonstrated in Figure~\ref{Fig:neuron_basic}(b).
+At such a chemical synapse, the action potential generated by the pre-synaptic neuron triggers chemical neurotransmitter molecules to release into the synaptic cleft, and once the post-synaptic neuron detects these neurotransmitters it opens specific ion channels to drive electrical current flowing in.
+Hence, synapses completes the transformation from electrical signal to chemical molecules and then back to ion influx.
+The amount of neurotransmitters determines how strong the current flows into the post-synaptic neuron.
+Thanks to the synaptic plasticity, changes of chemical synapses enables modulations on the synaptic efficacy, and forms the neuronal correlate of learning and memory.
 
 \section{Modelling Spiking Neurons}
 \label{sec:spike}
 \subsection{Neural Dynamics}
-\subsubsection{Membrane Potential}
-The effect of a spike on the postsynaptic neuron can be recorded with an intracellular electrode which measures the potential difference $V(t)$ between the interior of the cell and its surroundings. This potential difference is called the membrane potential. Without any input, the neuron is at rest corresponding to a constant membrane potential $V_{rest}$. After the arrival of a spike, the potential changes and finally decays back to the resting potential, Figure~\ref{Fig:neural_dynamics}(a).
-If the change is positive, the synapse is said to be excitatory. If the change is negative, the synapse is inhibitory.
+%\subsubsection{Membrane Potential}
+The effect of an ion influx on the post-synaptic neuron caused by spike transmission is the change of potential difference across the cell membrane.
+This potential difference between the interior and exterior of the cell body, is called the \textbf{membrane potential}.
+The membrane potential of a post-synaptic neuron stays at a \textbf{resting potential}, when no input comes.
+As soon as a spike arrives, the membrane potential will be either depolarised (increased) or hyper-polarised (decreased) according to the type of synapses, and go back to the resting potential at last.
+The behaviour of the membrane potential change caused by a single spike is called the post-synaptic potential (\textbf{PSP}). 
+Thus, a spike transmitted by an excitatory synapse triggers an positive change of PSP, named excitatory post-synaptic potential (\textbf{EPSP}), see Figure~\ref{Fig:psp}(a), conversely the negative change, inhibitory post-synaptic potential (\textbf{IPSP}), is driven by inhibitory synaptic event and shown in Figure~\ref{Fig:psp}(b).
 
-At rest, the cell membrane has already a strongly negative polarization of about –65 mV. An input at an excitatory synapse reduces the negative polarization of the membrane and is therefore called depolarizing. An input that increases the negative polarization of the membrane even further is called hyperpolarizing.
 
+%\begin{figure}[tbh!]
+%	\centering
+%	\begin{subfigure}[t]{0.8\textwidth}
+%		\includegraphics[width=\textwidth]{pics_snn/EI_PSP.JPG}
+%		\caption{An electrode measures the \textbf{membrane potential} of a post-synaptic neuron which connected by two pre-synaptic neurons.}
+%	\end{subfigure}\\
+%	\begin{subfigure}[t]{0.8\textwidth}
+%		\includegraphics[width=\textwidth]{pics_snn/psp.png}
+%		\caption{\textbf{post-synaptic potential (PSP)} generated by spikes of its pre-synaptic neurons adds up to its \textbf{membrane potential} change. }
+%	\end{subfigure}
+%	\caption{A post-synaptic neuron $i$ receives input from two pre-synaptic neurons $j=1,2$.}
+%	\label{Fig:neural_dynamics}
+%\end{figure}
 
-\begin{figure}[tbh!]
+\begin{figure}[tb!]
 	\centering
-	\begin{subfigure}[t]{0.7\textwidth}
-		\includegraphics[width=\textwidth]{pics_snn/x10.png}
-		\caption{An electrode measures the \textbf{membrane potential} of a postsynaptic neuron which connected by two presynaptic neurons.}
-	\end{subfigure}\\
-	\begin{subfigure}[t]{0.6\textwidth}
-		\includegraphics[width=\textwidth]{pics_snn/x11.png}
-		\caption{\textbf{Postsynaptic potential (PSP)} generated by spikes of its presynaptic neurons adds up to its \textbf{membrane potential} change. }
-	\end{subfigure}
-	\caption{A postsynaptic neuron $i$ receives input from two presynaptic neurons $j=1,2$.}
-	\label{Fig:neural_dynamics}
+	\includegraphics[width=0.9\textwidth]{pics_snn/EI_PSP.JPG}
+	\caption{Post-synaptic potential driven by a spike, where the red arrow represents a spike arriving at the neuron~\cite{marieb2007human}.}
+	\label{Fig:psp}
 \end{figure}
 
-%\begin{figure}[bt]
-%	\centering
-%	\includegraphics[width=0.6\textwidth]{pics_snn/x10.png}
-%	\caption{An electrode measures the membrane potential of a postsynpatic neuron~\cite{gerstner2014neuronal}.}
-%	\label{Fig:mem_potential}
-%\end{figure}
-%
-\subsubsection{Postsynaptic Potential}
-Let us formalize the above observation. We study the time course $V_i(t)$ of the membrane potential of neuron $i$. 
-Before the input spike has arrived, we have $V_i(t) = V_{rest}$. At t=0 t=0 the presynaptic neuron $j$ fires its first spike. For $t>0$, we see at the electrode a response of neuron $i$:
-\begin{equation}
-PSP_{ij}(t) = V_i(t) - V_{rest}~~.
-\end{equation}
-If the voltage difference is positive (negative) we have an excitatory (inhibitory) postsynaptic potential or short EPSP (IPSP). In Figure~\ref{Fig:neural_dynamics}(b) we have sketched four EPSPs caused by the arrival of spikes from presynaptic neurons at excitatory synapses of neuron $i$.
-As long as there are only few input spikes, the total change of the potential is approximately the sum of the individual PSPs:
-\begin{equation}
-V_i(t) = \sum_j\sum_f PSP_{ij}(t-t_j^{(f)}) + V_{rest}~~.
-\end{equation}
+\begin{figure}[bt!]
+	\centering
+	\includegraphics[width=0.9\textwidth]{pics_snn/PSP.png}
+	\caption{Summation of post-synaptic potentials~\cite{reece2011campbell}. 
+		(a) Single EPSPs are usually not strong enough to trigger an action potential without summation. (b) Temporal summation of two EPSPs of the same synapse generates an action potential. (c) Spatial summation of two EPSPs of two synapse generates an action potential. (d) Spatial-temporal summation of both EPSP and IPSPs.
+	}
+	\label{Fig:psp_sum}
+\end{figure}
 
-\subsubsection{Membrane Threshold}
+Singe PSPs have an accumulated effect on the membrane potential both in temporal and spatial.
+The accumulation performs simple summation of PSPs until the membrane potential reaches a \textbf{threshold}, that an action potential will be generated at the post-synaptic neuron.
+Figure~\ref{Fig:psp_sum} illustrates temporal and spatial summations of PSPs under different circumstances.
 
-As soon as the membrane potential reaches a critical value $V_{thresh}$, its trajectory shows a behaviour that is quite different from a simple summation of PSPs: The membrane potential exhibits a pulse-like excursion with an amplitude of about 100 mV. This short voltage pulse will propagate along the axon of neuron $i$ to the synapses with other neurons. After the pulse the membrane potential does not directly return to the resting potential, but passes, for many neuron types, through a phase of hyperpolarization below the resting value. This hyperpolarization is called ‘spike-afterpotential’.
 
-Single EPSPs have amplitudes in the range of one millivolt. The critical value for spike initiation is about 20 to 30 mV above the resting potential. In most neurons, four spikes – as shown schematically in Fig. 1.5C – are thus not sufficient to trigger an action potential. Instead, about 20-50 presynaptic spikes have to arrive within a short time window to trigger a postsynaptic action potential.
-%\begin{figure}[bt]
-%	\centering
-%	\includegraphics[width=0.6\textwidth]{pics_snn/x11.png}
-%	\caption{A postsynpatic neuron receives input from two neurons which fires at time $t$~\cite{gerstner2014neuronal}.}
-%	\label{Fig:psp}
-%\end{figure}
+
 
 \subsection{Neural Models}
-To model a spiking neuron is to mathematically formalise its neural dynamics of PSP, and the reset of its membrane potential after an action potential.
-% and the hyperpolarization below the resting potential.
+The keys of modelling a spiking neuron are: 
+\begin{itemize}
+	\item to mathematically formalise the evolution of membrane potential;
+	\item to states a mechanism of spike generation.
+\end{itemize}
 
 \subsubsection{Leaky Integrate-and-Fire}
-In order to analyze the circuit, we use the law of current conservation and split the driving current into two components,
-%
-%I(t)=IR+IC
-%I(t)=I_{R}+I_{C}
-%(1.3)
-%The first component is the resistive current IR I_{R} which passes through the linear resistor R R. It can be calculated from Ohm’s law as IR=uR/R I_{R}=u_{R}/R where uR=u−urest u_{R}=u-u_{\rm rest} is the voltage across the resistor. The second component IC I_{C} charges the capacitor C C. From the definition of the capacity as C=q/u C=q/u (where q q is the charge and u u the voltage), we find a capacitive current IC=dq/dt=Cdu/dt I_{C}={\text{d}}q/{\text{d}}t=C\,{\text{d}}u/{\text{d}}t. Thus
-%
-%I(t)=u(t)−urestR+Cdudt.
-%I(t)={u(t)-u_{\rm rest}\over R}+C\,{{\text{d}}u\over{\text{d}}t}\,.
-%(1.4)
-%We multiply Eq. (1.4) by R R and introduce the time constant τm=RC \tau_{m}=R\,C of the ‘leaky integrator’. This yields the standard form
-%
-%τmdudt=−[u(t)−urest]+RI(t).
-%\tau_{m}\,{{\text{d}}u\over{\text{d}}t}=-[u(t)-u_{\rm rest}]+R\,I(t)\,.
+The evolution of membrane potential can be simplified as a resistor–capacitor (RC) circuit which consists of a membrane capacitor, $C_m$ and a membrane resistance $R_m$, both driven by input current flow $I$, see Figure~\ref{Fig:rc}.
+In the resting state without any input, the membrane potential $V$ stays at the same potential as the battery $V_{rest}$.
+When current flows into the neuron, it will charge the capacitor $I_C(t)$ and flow through the resistance $I_R(t)$ to depolarise the membrane potential when the current stops the capacity charge will decay back to $V_{rest}$ by leaking through the resistance:
+\begin{equation}
+\begin{aligned}
+	I(t) &= I_R(t) + I_C(t) \\
+	&= \frac{V-V_{rest}}{R_m} + C_m \frac{\D u}{\D t}~~.
+\end{aligned}
+\end{equation}
+The standard form of the LIF model can be written as:
+\begin{equation}
+\begin{aligned}
+	\tau_m \frac{\D u}{\D t} &= -(V-V_{rest}) + R_m I(t)~, \textrm{~when~} V<V_{thresh}\\
+	V &= V_{rest}~,  \textrm{~when~} V>=V_{thresh}
+\end{aligned}
+\end{equation}
+where $V_{thresh}$ is the threshold of membrane potential and $\tau_m = C_m R_m$ is called the membrane time constant.
+
+\begin{figure}[tb!]
+	\centering
+	\includegraphics[width=0.3\textwidth]{pics_snn/RC.png}
+	\caption{Current flowing into a neuron functions like a resistor–capacitor (RC) circuit~\cite{gerstner2014neuronal}.}
+	\label{Fig:rc}
+\end{figure}
+
+The simple Leaky Integrate-and-Fire~(LIF) model uses: (1) a linear differential equation to describe the evolution of membrane potential;
+and (2) a threshold to generate a spike.
+
+Applying LIF models to synaptic spike transmissions, we can use two types of synapses: current-based and conductance-based models.
+Thus the synaptic efficacy $w$ determines either the input current intensity flowing through the synapse,
+\begin{equation}
+I(t) = w(t)~, \textrm{~current-based model;}
+\end{equation}
+or the electric conductance $g_{syn}$ of the ion channel,
+\begin{equation}
+	I(t) = g_{syn}(t) (V-E_{syn}) = w(t) (V-E_{syn})~, \textrm{~conductance-based model}
+\end{equation}
+where $E_{syn}$ indicates the reversal potential, a constant parameter of a neuron.
+
+The current flow usually takes much longer than an action potential and decays over time, thus an simple exponential decay can be used to model the decaying synaptic efficacy:
+\begin{equation}
+w(t) = w_0 \exp^{-t/\tau_{syn}}~,
+\end{equation}
+assuming a spike is delivered at time $t=0$, the initial synaptic weight is set to $w_0$ and $\tau_{syn}$ is the synaptic time constant.
+
+This thesis employs LIF neurons and current-based synapse model with exponentially-decaying post-synaptic current by default.
 
 \subsubsection{Hodgkin-Huxley}
 gari
 
 \subsubsection{Izhikevich}
 gari
- 
- 
-\subsection{Synaptic Models} 
-Current vs Conductance based models 
-%book 3.1
-In the previous chapter, we have encountered two classes of ion channels, namely voltage-activated and calcium-activated ion channels. The third type of ion channel we have to deal with are the transmitter-activated ion channels involved in synaptic transmission (see Fig. 3.1) and generally activated from outside the cell. Activation of a presynaptic neuron results in a release of neurotransmitters into the synaptic cleft. The transmitter molecules diffuse to the other side of the cleft and activate receptors that are located in the postsynaptic membrane. So-called ionotropic receptors have a direct influence on the state of an associated ion channel. Metabotropic receptors control the state of an ion channel by means of a biochemical cascade of G proteins and second-messengers. In both cases, the activation of the receptor results in the opening of certain ion channels and, thus, in an excitatory or inhibitory postsynaptic transmembrane current (EPSC or IPSC).
-
-
-Instead of developing a mathematical model of the transmitter concentration in the synaptic cleft, we keep things simple and describe transmitter-activated ion channels as an explicitly time-dependent conductivity $g_{syn}(t)$ that will open whenever a presynaptic spike arrives. The current that passes through a synaptic channel depends, as before, on the difference between its reversal potential $E_{syn}$ and the actual value of the membrane potential,
-\begin{equation}
-I_{syn}(t)=g_{syn}(t)(u(t)-E_{syn})~~.
-\end{equation}
-
-Post-synaptic current and conductance.
-Leaky integrate and fire model with fixed threshold and exponentially-decaying post-synaptic conductance.
-Leaky integrate and fire model with fixed threshold and alpha-function- shaped post-synaptic conductance.
-
 
 \subsection{Synaptic Plasticity}
 Jamie
