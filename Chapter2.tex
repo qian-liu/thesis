@@ -267,7 +267,7 @@ As mentioned in Section~\ref{subsec:spike_trans}, synaptic plasticity forms the 
 Biological observations have provided evidence that modulations on the synaptic efficacy depend on the relative timing of the pre- and post-synaptic spikes~\cite{bi1998synaptic}.
 This mechanism is known as synaptic time-dependant plasticity (\textbf{STDP})~\cite{song2000competitive}, and the standard STDP learning window is illustrated in Figure~\ref{Fig:STDP}:
 \begin{equation}
-\Delta W = \left\{
+\Delta w = \left\{
 \begin{aligned}
 A_+ e^{\Delta t/\tau_+} \textrm{,~~when~} \Delta t \geq 0~, \\
 -A_- e^{\Delta t/\tau_-} \textrm{,~~when~} \Delta t < 0~.
@@ -290,8 +290,27 @@ The synaptic weight is potentiated when a post-synaptic spike fires later than a
 however, when a post-synaptic spike is generated before a pre-synaptic one, synaptic depression will occur according to the exponential decay defined by $\tau_-$ and $-A_-$.
 
 Besides the standard STDP model~\cite{song2000competitive}, also known as the additive model, stated in Equation~\ref{equ:stdp}, variations of the STDP learning rule have been proposed to satisfy different learning speeds and classification accuracy.
-Multiplicative STDP~\cite{van2000stable} is an alternative model that the weight change is not only dependant on the relative timing, but also on the current synaptic efficacy.
+Multiplicative STDP~\cite{morrison2008phenomenological} is an alternative model that the weight change is not only dependant on the relative timing, but also on the current synaptic efficacy:
+\begin{equation}
+\left\{
+\begin{aligned}
+A_+ (w) &=  (w_{max} - w)\eta_+~~, \\
+A_- (w) &= w\eta_-~~,
+\end{aligned}
+\right.
+\end{equation}
+where $A_+$ and $A_-$ in Equation~\ref{equ:stdp} become functions of variable 
+$w$, $\eta_+$ and $\eta_-$ define the learning rate of the weight potentiation and depression, and $w_{max}$ is the maximum synaptic efficacy while 0 is the minimum.
 
+We use the multiplicative STDP model for SNN training in Section~\ref{sec:test}, and a much simplified version of asymmetric rectangular STDP in Chapter~\ref{cha:sdlm} where the STDP window is just a constant:
+\begin{equation}
+\Delta w = \left\{
+\begin{aligned}
+&\eta \textrm{~,~~when~~~} 0 \leq \Delta  t \leq \tau_{win}\\
+& 0 \textrm{~,~~otherwise}.
+\end{aligned}
+\right.
+\end{equation}
 
 \section{Simulating Networks of Spiking Neurons}
 \label{sec:snn_sim}
