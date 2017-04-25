@@ -837,7 +837,7 @@ In PyNN, $ R_{m} $ is presented by $ R_{m}=\tau_m/C_{m} $, where $C_{m} $ is the
 A spike is generated when the membrane potential goes beyond the threshold, $ V_{thresh} $ and the membrane potential then resets to $V_{reset}$.
 In addition, a neuron cannot fire within the refractory period, $ \tau_{refrac} $, after generating a spike.
 
-The connections between the input neurons and the decision neurons are plastic, so the connection weights can be modulated during training with a standard STDP learning rule.
+The connections between the input neurons and the decision neurons are plastic, so the connection weights can be modulated during training with a multiplicative STDP learning rule, referring to Section~\ref{subsec:STDP} for more detail.
 The model is described with PyNN and the code is published in
 %\footnote {https://github.com/qian-liu/benchmarking/tree/master/code/case\_study\_I}
 the Github repository with the dataset.

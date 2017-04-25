@@ -261,10 +261,11 @@ Therefore, at the initial stage of merging artificial deep learning to biologcia
 
 
 \subsection{Synaptic Plasticity}
+\label{subsec:STDP}
 As mentioned in Section~\ref{subsec:spike_trans}, synaptic plasticity forms the neuronal level of learning and memory of the brain.
 %This synaptic plasticity was firstly proved by Bliss and L{\o}mo that if two neurons fired simultaneously then their synaptic connection would be strengthened~\ref{bliss1973long}.
 Biological observations have provided evidence that modulations on the synaptic efficacy depend on the relative timing of the pre- and post-synaptic spikes~\cite{bi1998synaptic}.
-This mechanism is known as synaptic time-dependant plasticity (\textbf{STDP})~\cite{kempter1999hebbian}, and the standard STDP learning window is illustrated in Figure~\ref{Fig:STDP}:
+This mechanism is known as synaptic time-dependant plasticity (\textbf{STDP})~\cite{song2000competitive}, and the standard STDP learning window is illustrated in Figure~\ref{Fig:STDP}:
 \begin{equation}
 \Delta W = \left\{
 \begin{aligned}
@@ -272,6 +273,7 @@ A_+ e^{\Delta t/\tau_+} \textrm{,~~when~} \Delta t \geq 0~, \\
 -A_- e^{\Delta t/\tau_-} \textrm{,~~when~} \Delta t < 0~.
 \end{aligned}
 \right.
+\label{equ:stdp}
 \end{equation}
 
 \begin{figure}[bt!]
@@ -286,6 +288,9 @@ A_+ e^{\Delta t/\tau_+} \textrm{,~~when~} \Delta t \geq 0~, \\
 
 The synaptic weight is potentiated when a post-synaptic spike fires later than a pre-synaptic spike, and the amplitude of such a potentiation is determined by the curve of exponential decay with a time constant $\tau_+$ and an initial quantity $A_+$;
 however, when a post-synaptic spike is generated before a pre-synaptic one, synaptic depression will occur according to the exponential decay defined by $\tau_-$ and $-A_-$.
+
+Besides the standard STDP model~\cite{song2000competitive}, also known as the additive model, stated in Equation~\ref{equ:stdp}, variations of the STDP learning rule have been proposed to satisfy different learning speeds and classification accuracy.
+Multiplicative STDP~\cite{van2000stable} is an alternative model that the weight change is not only dependant on the relative timing, but also on the current synaptic efficacy.
 
 
 \section{Simulating Networks of Spiking Neurons}
