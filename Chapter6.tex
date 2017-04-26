@@ -30,7 +30,7 @@ Such rapid and highly accurate recognition is the target of modelling spike-base
 
 
 %In the case of visual processing, the central visual system consists of several cortical areas which, according to anatomical experiments, are placed in a hierarchical structure ~\cite{felleman1991distributed}.
-%Fast object recognition takes place in the feed-forward hierarchy of one of the two central visual pathways, the ventral pathway, which mainly handles the ``What'' tasks.
+%Fast object recognition takes place in the feed-forward hierarchy of one of the two central visual pathways, the ventral pathway, which mainly handles the `What' tasks.
 %Biological studies have revealed that the information is unfolded along the ventral stream to the IT (Inferior Temporal) cortex~\cite{dicarlo2012does}.
 %Inspired by these results, SNN models have successfully been adapted to computer vision tasks.  
 
@@ -88,8 +88,8 @@ However, in the field of conventional non-spiking computer vision, there are a n
 %As a good example of a database catching up with state-of-the-art technologies, Microsoft COCO aims to solve three problems - objects categorisation, context understanding and spatial labelling - in scene understanding by providing large-scale datasets (300,000+ images).
 %Similar examples can be found in video datasets.
 %Two early benchmarks, the KTH ~\cite{schuldt2004recognizing} and Weizmann~\cite{blank2005actions} datasets, have been used extensively in the past decade. 
-%These videos were produced with scripted behaviours in a controlled environment (``in the lab'').
-%The YouTube Action Dataset~\cite{liu2009recognizing} targets recognising realistic actions from videos ``in the wild'';
+%These videos were produced with scripted behaviours in a controlled environment (`in the lab').
+%The YouTube Action Dataset~\cite{liu2009recognizing} targets recognising realistic actions from videos `in the wild';
 %here the main challenge is in the massive variations due to the moving camera, background clutter, viewing angles, variable illumination and so on.
 In consequence, a new set of spike-based vision datasets is now needed to quantitatively measure progress within the rapidly advancing field of spike-based visual recognition and to provide resources to support fair competition between researchers.
 
@@ -144,13 +144,13 @@ Finally, Section~\ref{sec:summ} summarises the chapter.
 %\subsection{Action Datasets}
 %Similar examples could be found in video datasets.
 %Two early benchmarks, the KTH ~\cite{schuldt2004recognizing} and Weizmann~\cite{blank2005actions} datasets, have been used extensively in the past decade. 
-%These videos were produced with scripted behaviours in a controlled environment (``in the lab'').
+%These videos were produced with scripted behaviours in a controlled environment (`in the lab').
 %They contain single atomic actions, which are simple and neat: walking, running, sitting, etc.
 %
 %Taking the advantages of continuous spiking trains instead of frames of videos, spiking versions of such action datasets will be provided in our future work.
 %A DVS simulation may be needed to convert frames of images into spikes.
 %
-%The YouTube Action Dataset~\cite{liu2009recognizing} targets recognising realistic actions from videos ``in the wild''.
+%The YouTube Action Dataset~\cite{liu2009recognizing} targets recognising realistic actions from videos `in the wild'.
 %Thanks to the digital era, unconstrained videos are abundant on the Internet, e.g. YouTube.
 %This YouTube Action dataset is composed of 1,168 videos in 11 categories.
 %The main challenge relies on the massive variations due to the moving camera, background clutter, viewing angles, illuminations and so on.
@@ -201,7 +201,7 @@ The converted MNIST dataset consists of four subsets which were generated for di
 	\item \textit{FoCal~(Filter Overlap Correction ALgorithm)},
 	to promote the study of spatio-temporal algorithms applied to recognition tasks using small numbers of input spikes.
 	\item \textit{DVS recorded flashing input},
-	to encourage research into fast recognition methods to mimic the rapid and accurate ``core recognition'' in the primate ventral visual pathway~\cite{dicarlo2012does}.
+	to encourage research into fast recognition methods to mimic the rapid and accurate `core recognition' in the primate ventral visual pathway~\cite{dicarlo2012does}.
 	\item \textit{DVS recorded moving input},
 	to trigger the study of algorithms targeting continuous input from real-world sensors for implementation, for example, on mobile neuromorphic robots.
 \end{itemize}
@@ -237,7 +237,7 @@ The duration of the artificially-generated data can be configured using the Pyth
 	\includegraphics[width=0.8\textwidth]{pics_bench/fig1.jpg}
 	\caption{
 		Snapshots of the jAER software displaying spike-encoded videos.
-		The same image of digit ``0'' is transformed into spikes by (a) DVS recording and (b) Poisson generation.
+		The same image of digit `0' is transformed into spikes by (a) DVS recording and (b) Poisson generation.
 		(c) A raster plot of the Poisson spike trains.}
 	\label{fig:zero}
 \end{figure}
@@ -424,7 +424,7 @@ The detailed description of the algorithm is demonstrated in~\cite{liu2016bench}
 
 \subsubsection{DVS Sensor Output with Flashing Input}
 \label{subsec_flash}
-The purpose of including the subset with DVS-recorded flashing digits is to promote research into rapid and accurate ``core recognition'', thus to encourage applying non-rate-based algorithms, for example ROC, to short DVS output spike trains.
+The purpose of including the subset with DVS-recorded flashing digits is to promote research into rapid and accurate `core recognition', thus to encourage applying non-rate-based algorithms, for example ROC, to short DVS output spike trains.
 
 Each digit was shown alternating with a blank image and each display lasted one second.
 The digits were displayed on an LCD monitor in front of the DVS retina~\cite{serrano2013128} and were placed in the centre of the visual field of the camera.
@@ -486,7 +486,7 @@ The latency is measured as the time difference between the first spike generated
 A small number of total synaptic events generated by a recognition task indicates the efficiency of the SNN model.
 A spike event is a synaptic operation evoked when one action potential is transmitted through one synapse~\cite{sharp2012power}.
 Fewer spike events imply lower overall neural activity and lower energy consumption.
-The number of synaptic events can be measured as ``Sopbs'', synaptic operations per biological second.
+The number of synaptic events can be measured as `Sopbs', synaptic operations per biological second.
 %\begin{table*}[hbt!]
 %	\caption{SNN descriptions at the model level}
 %	\begin{center}

@@ -67,7 +67,7 @@ The training used only ReLUs and zero bias to avoid negative outputs, and applie
 Normalising the trained weights for use on an SNN employing IF neurons only was relatively straightforward and maintained classification accuracy.
 This work was extended to a Recursive Neural Network (RNN)~\cite{diehl2016conversion} and run on the TrueNorth~\cite{merolla2014million} neuromorphic hardware platform.
 
-Except for the popular, simplified version of ReLU, $max(0,\sum w x)$, the other implementation of $\log(1+e^x)$, ``Softplus'', is more biologically realistic.
+Except for the popular, simplified version of ReLU, $max(0,\sum w x)$, the other implementation of $\log(1+e^x)$, `Softplus', is more biologically realistic.
 Recent work~\cite{hunsberger2015spiking} proposed the Soft LIF response function for training SNNs, which is equivalent to Softplus activation of ANNs.
 	
 \section{Modelling The Activation Function}
@@ -218,7 +218,7 @@ Consequently, we propose the new activation function, Noisy Softplus, to replace
 	
 	Although the use of Siegert function opened the door for modelling response activities of LIF neurons as activation function used in ANNs, there are several drawbacks of this method:
 	\begin{itemize}
-		\item most importantly, the numerical analysis on an LIF response function is far from accurate in practice. ``Practice'' in the chapter means SNN simulations using LIF neurons.
+		\item most importantly, the numerical analysis on an LIF response function is far from accurate in practice. `Practice' in the chapter means SNN simulations using LIF neurons.
 		Thus the inaccurate model generates error between the estimation and the practical response firing rate.
 		This issue will be addressed in Section~\ref{subsec:practice}.
 		
@@ -639,7 +639,7 @@ Consequently, we propose the new activation function, Noisy Softplus, to replace
 	
 	
 	\subsection{Neural Activity}
-	To validate how well the Noisy Softplus activation fits to the response firing rate of LIF neurons in a real application, we simulated the model on NEST using the Poisson MNIST dataset~\cite{liu2016bench} and the neurons of a convolutional map were observed.
+	To validate how well the Noisy Softplus activation fits to the response firing rate of LIF neurons in a real application, we simulated the model on NEST~\cite{gewaltig2007nest} using the Poisson MNIST dataset~\cite{liu2016bench} and the neurons of a convolutional map were observed.
 	
 		\begin{figure}[tbh!]
 		\centering
