@@ -10,11 +10,14 @@ On the other hand Deep Learning arise in the research of ANNs has dominated the 
 To catch up with ANNs' beat-human performance, this work took object recognition as the cut-in point to explore the capability and learning ability of SNNs.
 
 %Methods
-The research started from a real-time hand posture recognition system built on a complete neuromorphic platform; it transformed the off-line training of connection weights to fit in SNNs.
-The weights transformation was then generalised to commonly used object recognition tasks in Computer Vision using a biologically plausible activation function, Noisy Softplus.
-This work extended to a formalised on-line learning algorithm for spiking deep neural networks.
+%The research started from a real-time hand posture recognition system built on a complete neuromorphic platform; it transformed the off-line training of connection weights to fit in SNNs.
+%The weights transformation was then generalised to commonly used object recognition tasks in Computer Vision using a biologically plausible activation function, Noisy Softplus.
+The research started from modelling neural dynamics of spiking neurons to simple but accurate activation functions using in ANNs, which enables SNN to be trained off-line just like deep learning architectures.
+We then took an extra step to formalise an on-line, biological-plausible, unsupervised learning algorithm for training deep SNNs.
 Moreover, a spike-based dataset was published to support fair competition between researchers and quantitatively measure progress in Neuromorphic Vision.
 
 %TAchievements and Limitations (Strong and Weak points)
-The results demonstrated the close correlation of the performance of SNNs compared to conventional ANNs thanks to the effective weights transformation, and the equivalent learning capability of spiking neurons to build up deep architectures.
+An off-line trained SNN achieved state-of-the-art classification accuracy, 98.85\% using standard leaky integrate-and-fire neuron, on MNIST dataset. 
+The on-line learning algorithm performs similar and even better classification and reconstruction than ANNs'. 
+The results demonstrated the equivalent performance and learning capability of spiking neurons comparing to conventional ANNs.
 %In reality, the recognition and learning were time consuming due to the limitations on the rate-based encoding.
