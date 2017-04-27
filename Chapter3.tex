@@ -1,12 +1,102 @@
-\chapter{Deep Neural Networks~(DNN)}
+\chapter{Deep Neural Networks~(DNNs)}
 Deep Learning research in the field of ANNs has dominated the state-of-the-art solutions on cognitive tasks, e.g. the exceeding human-level performance on image classification tasks~\cite{he2015delving}.
+Merging deep learning mechanism to training SNNs may provide an answer to the problem of how to operate SNNs to perform as well as ANNs in cognitive tasks. 
+In this chapter, we will give an overview of popular architectures and models of deep learning in Section~\ref{sec:dl_history}, and the rest of this chapter will illustrate the mechanism of convolutional network (ConvNet), autoencoder (AE), and restricted Boltzmann machine (RBM) in detail.
+
+\section{Deep Learning Models}
+\label{sec:dl_history}
+深度学习的概念源于人工神经网络的研究。含多隐层的多层感知器就是一种深度学习结构。深度学习通过组合低层特征形成更加抽象的高层表示属性类别或特征，以发现数据的分布式特征表示。 深度学习的概念由Hinton等人于2006年提出。基于深信度网(DBN)提出非监督贪心逐层训练算法，为解决深层结构相关的优化难题带来希望，随后提出多层自动编码器深层结构。此外Lecun等人提出的卷积神经网络是第一个真正多层结构学习算法，它利用空间相对关系减少参数数目以提高训练性能。 深度学习是机器学习研究中的一个新的领域，其动机在于建立、模拟人脑进行分析学习的神经网络，它模仿人脑的机制来解释数据，例如图像，声音和文本。 同机器学习方法一样，深度机器学习方法也有监督学习与无监督学习之分．不同的学习框架下建立的学习模型很是不同．例如，卷积神经网络（Convolutional neural networks，简称CNNs）就是一种深度的监督学习下的机器学习模型，而深度置信网（Deep Belief Nets，简称DBNs）就是一种无监督学习下的机器学习模型。 
+
+\subsection{Unsupervised Learning}
+Start deep learning.
+
+ae~\cite{vincent2008extracting}
+RBM~\cite{hinton2002training}
+由Hinton等人于2006年提出。基于深信度网(DBN)提出非监督贪心逐层训练算法，为解决深层结构相关的优化难题带来希望，随后提出多层自动编码器深层结构
+
+\subsection{Convolutional Neural Networks}~\cite{lecun1998gradient}
+LeNet AlexNet GoogLeNet VGG ResNet
+
+\subsection{Recurrent Neural Networks}
+RNN~\cite{graves2013speech} LSTM~\cite{hochreiter1997long}
+
+bengio的主要贡献在于：1.他对rnn的一系列推动包括经典的neural language model，gradient vanishing 的细致讨论，word2vec的雏形，以及现在的machine translation；2.他是神经网络复兴的主要的三个发起人之一（这一点他们三个人都承认，之前他们一直在谋划大事，正是他们三个人的坚持才有了现在的神经网络复兴，这点最高票答案说的很对）包括了pre－training的问题，如何initialize参数的问题，以denoising atuencoder为代表的各种各样的autoencoder结构，generative model等等。
+attention以及GAN了
+
+
+作者：saizheng
+链接：https://www.zhihu.com/question/37922364/answer/74125553
+来源：知乎
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+
+\subsection{Reinforcement learning}~\cite{mnih2015human}
+The theory of reinforcement learning provides a normative account 1 ,
+deeply rooted in psychological 2 and neuroscientific 3 perspectives on
+animal behaviour, of how agents may optimize their control of an
+environment. To use reinforcement learning successfully in situations
+approaching real-world complexity, however, agents are confronted
+with a difficult task: they must derive efficient representations of the
+environment from high-dimensional sensory inputs, and use these
+to generalize past experience to new situations. Remarkably, humans
+and other animals seem to solve this problem through a harmonious
+combination of reinforcement learning and hierarchical sensory pro-
+cessing systems 4,5 , the former evidenced by a wealth of neural data
+revealing notable parallels between the phasic signals emitted by dopa-
+minergic neurons and temporal difference reinforcement learning
+algorithms 3 . While reinforcement learning agents have achieved some
+successes in a variety of domains 6–8 , their applicability has previously
+been limited to domains in which useful features can be handcrafted,
+or to domains with fully observed, low-dimensional state spaces.
+Here we use recent advances in training deep neural networks 9–11 to
+develop a novel artificial agent, termed a deep Q-network, that can
+learn successful policies directly from high-dimensional sensory inputs
+using end-to-end reinforcement learning. We tested this agent on
+the challenging domain of classic Atari 2600 games 12 . We demon-
+strate that the deep Q-network agent, receiving only the pixels and
+the game score as inputs, was able to surpass the performance of all
+previous algorithms and achieve a level comparable to that of a pro-
+fessional human games tester across a set of 49 games, using the same
+algorithm, network architecture and hyperparameters. This work
+bridges the divide between high-dimensional sensory inputs and
+actions, resulting in the first artificial agent that is capable of learn-
+ing to excel at a diverse array of challenging tasks.
+
+
+
+
+RL is a general-purpose framework for decision-making
+RL is for an agent with the capacity to act
+Each action in uences the agent's future state
+Success is measured by a scalar reward signal
+Goal:  select actions to maximise future reward
+
+We seek a single agent which can solve any human-level task
+RL defines the objective
+DL gives the mechanism
+RL + DL = general intelligence
+
+
+Play games:  Atari, poker, Go, ...
+Navigate worlds:  3D worlds, Labyrinth, ...
+Control physical systems:  manipulate, walk, swim, ...
+Interact with users:  recommend, optimise, personalise
+
+
+\subsection{Generative Adversarial Networks (GAN)}~\cite{goodfellow2014generative}
+
+
+\subsection{Attention Model}~\cite{bahdanau2014neural}
+
+
+
 \section{Convolutional Network}
-crefeda
+LeNet
 
 
-\section{Brief History of Deep Learning}
 
-\section{Autoencoders}
+
+\section{Autoencoder}
 \label{sec:AE}
 Figure~\ref{fig:AE} shows a simplest architecture of an autoencoder, which is the same as a multilayer perceptron (MLP).
 The only difference lies to the number of the output units, where an autoencoder has as many output neurons as the input.

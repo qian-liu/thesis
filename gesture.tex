@@ -411,7 +411,8 @@ We implemented the prototype of the dynamic posture recognition system on SpiNNa
 The input retina layer consists of 128$\times$128 neurons; 
 each Gabor filter has 112$\times$112 valid neurons, since the kernel size is 17$\times$17; 
 each pooling layer is as big as 36$\times$36, convolving with five template kernels (21$\times$21); 
-thus, the recognition populations are 16$\times$16 neurons each. Altogether $74,320$ neurons and $15,216,512$ synapses, use up to 19 chips (290 cores) on a 48-node board, see Table~\ref{tbl:m1}. Regarding the lower resolution of 32$\times$32 retinal input, the network (Table~\ref{tbl:m2}) consists of $5,925$ neurons and $318,420$ synapses taking up only two chips (31 cores) of the board.
+thus, the recognition populations are 16$\times$16 neurons each.
+Altogether $74,320$ neurons and $15,216,512$ synapses, use up to 19 chips (290 cores) on a 48-node board, see Table~\ref{tbl:m1}. Regarding the lower resolution of 32$\times$32 retinal input, the network (Table~\ref{tbl:m2}) consists of $5,925$ neurons and $318,420$ synapses taking up only two chips (31 cores) of the board.
 
 Fig.~\ref{fig:live} shows snapshots of neural responses of some populations during real-time recognition.
 Fig.~\ref{fig:live1} is a snapshot of the Gabor population which prefers the horizontal direction, given the input posture of a `Fist';

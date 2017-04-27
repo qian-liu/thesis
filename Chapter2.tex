@@ -1,11 +1,15 @@
 \chapter{Spiking Neural Networks~(SNNs)}
 \label{cha:bkg}
+The so-called third generation of artificial neural network, SNN, is consisted of spiking neurons which mimic the dynamics of biological neural behaviours.
+In this chapter we will demonstrate the special features of spiking neurons that differ from neurons of ANNs, and these biological-plausible neuronal operations are the root of the research problem raised in the thesis: how to operate SNNs as competitive as ANNs in cognitive tasks.
+Section~\ref{sec:bio_neuron} will illustrate how biological neurons function and transmit signals among them, then the way neural dynamics are modelled by mathematical abstractions as spiking neurons in Section~\ref{sec:spike} , and finally introduce the existing SNN simulators in Section~\ref{sec:snn_sim}.
 
 \section{Biological Neural Components}
+\label{sec:bio_neuron}
 %Biological studies have obtained increasing knowledge about facts, functions and anatomy of the brain.
 At the cellular level, the central nervous system consists of two types of cells: neurons, the elementary processing units, and glial cells, the structural and metabolic supporters. 
 Here we focus on the neurons, since they are the basic elements to form the path from neurons, neural circuits and networks to behaviour and cognition of the brain.
-The human brains contains around a hundred of billions ($10^{11}$) such processing units, and three more orders of magnitudes connections, that are about $10^3$ connections per neuron.
+The human brains contains around a hundred of billions ($10^{11}$) such processing units, and up to four more orders of magnitudes connections, that are about $10^{15}$ all over the brain.
 The special structures of neurons enable them to send signals rapidly and precisely to other cells through these connections.
 \subsection{Neuron}
 	\begin{figure}[bt]
@@ -15,6 +19,7 @@ The special structures of neurons enable them to send signals rapidly and precis
 		A neuron mainly is composed of three functional parts: dendrites, the soma, and the axon. (a) A pre-synaptic cell connects to its post-synaptic cell through synapses~\cite{reece2011campbell}, see (b)~\cite{reece2011campbell}, and the neural signal, action potential see (c)~\cite{hodgkin1939action}, propagates along the red arrows. }
 	\label{Fig:neuron_basic}
 \end{figure}
+
 A typical neuron consists of three functional parts: dendrites, a cell body (soma), and an axon, see Figure~\ref{Fig:neuron_basic}(a).
 The dendrites of a neuron receive stimuli from other neurons which the dendrites project to, and transmit the neural signal to the neuron's soma.
 The soma is the cell body of the neuron where nucleus locates at, and functions like a non-linear processor that it triggers an output signal when accumulated total input exceeds some threshold.
@@ -142,8 +147,8 @@ Singe PSPs have an accumulated effect on the membrane potential both in temporal
 The accumulation performs simple summation of PSPs until the membrane potential reaches a \textbf{threshold}, that an action potential will be generated at the post-synaptic neuron.
 Figure~\ref{Fig:psp_sum} illustrates temporal and spatial summations of PSPs under different circumstances.
 
-
-
+Neural dynamics of the membrane potential, PSPs, and spike trains are all time dependant, while neurons of ANNs, e.g. sigmoid units, only cope with numerical values representing spiking rate, without timing information.
+This fundamental difference leads to special model description of spiking neurons (illustrated in the next section), and raises the problem of how to operate biological-plausible SNNs to be competent in cognitive tasks just like ANNs.
 
 \subsection{Neuron Models}
 \label{subsec:neuron_model}
@@ -326,7 +331,7 @@ Addressing this problem, existing solutions vary from software simulators to har
 \subsection{Software Simulators}
 Existing approaches of software simulations can be seen as: `clock-driven' where neural state is updated in some static time resolution, or `event-driven' that the membrane potential is only modified when a spike arrives.
 The synchronous `clock-driven' method uses numerical integration for solving ordinary differential equations (ODE), the evolution functions of membrane potential with respect to time.
-However, modifications only on the time clocks, the non-linear differential equations can only be approximated rather than solved, and the spike times lose precision since they are bounded to discrete time steps.
+However, modifications only on the time clocks (usually in 1~ms resolution), the non-linear differential equations can only be approximated rather than solved, and the spike times lose precision since they are bounded to discrete time steps.
 `Event-driven' approaches, on the other hand, are accurate since they use explicit solutions of the ODEs and the spike arrival time is not rounded to time bins.
 Unfortunately, except for LIF neurons, all the other models stated in Section~\ref{subsec:neuron_model} are unsolvable.
 In addition, compared to sparse events high synaptic event rate ($10^4$ Hz per neuron) takes no advantage of computational efficiency using this asynchronous approach.
@@ -337,30 +342,74 @@ Another software tool, PyNN~\cite{davison2008pynn}, is a description language fo
 Consequently, neuroscientists and SNN designers do not need to learn different `languages' for specific simulators, and the models written in PyNN are supposed to run freely on the supporting simulators.
 
 Most of the SNN models developed in the thesis are described in PyNN and ran on NEST, and some of them are also tested on a hardware simulator, SpiNNaker, which will be introduced in the following section.
-In Chapter~\ref{cha:sdlm} we develop our own SNN simulator to implement and test a proposed learning algorithm, and the simulator follows the synchronous manner thanks to its simplicity for programming and flexibility for neural models selections. 
+In Chapter~\ref{cha:sdlm} we develop our own SNN simulator to implement and test a proposed learning algorithm, and the simulator follows the synchronous manner thanks to its programming simplicity and flexible neural models selections. 
 
 \subsection{Neuromorphic Hardware}
-brain inspired computing
-Table from Steve
-\subsection{Standing-alone Neuromorphic Systems}
+\label{subsec:neuromorphic_hw}
+%TODO can be reworded more logical
+Neuromorphic systems can be categorised as analogue, digital, or mixed-mode analogue/digital, depending on how neurons, synapses and spike transmission are implemented. %VLSI circuits. 
+
+Some analogue implementations exploit sub-threshold transistor dynamics to emulate neurons and synapses directly in hardware~\cite{indiveri2011neuromorphic} and are more energy-efficient while requiring less area than their digital counterparts~\cite{joubert2012hardware}.
+However, the behaviour of analogue circuits is hard to control through the fabrication process due to transistor mismatch~\cite{indiveri2011neuromorphic,pedram2006thermal,linares2003compact}, and achievable wiring densities render direct point-to-point connections impractical for large-scale systems.
+
+The majority of mixed-mode analogue/digital neuromorphic platforms, such as the High Input Count Analog Neural Network (HI-CANN)~\cite{schemmel2010wafer}, Neurogrid~\cite{benjamin2014neurogrid}, HiAER-IFAT~\cite{yu201265k}, use analogue circuits to emulate neurons and digital packet-based technology to communicate spikes as Address-Event Representation (AER~\cite{lazzaro1995multi}) events.
+This enables reconfigurable connectivity patterns, while spike timing is expressed implicitly since typically a spike reaches its destination in less than a millisecond, thus fulfilling the real-time requirement.
+
+Digital neuromorphic platforms such as TrueNorth~\cite{merolla2014million} use digital circuits with finite precision to simulate neurons in an event-driven manner to minimise the active power dissipation.
+Such systems suffer from limited model flexibility, since neurons and synapses are fabricated directly in hardware with only a small subset of parameters under the control of the researcher.
+The SpiNNaker many-core neuromorphic architecture~\cite{furber2014spinnaker} uses low-power programmable cores and scalable event-driven communications hardware allowing neural and synaptic models to be implemented in software.
+While software modelling provides great flexibility, digital platforms generally have reduced precision (due to the inherent discretisation) and higher energy consumption when compared to analogue platforms.
+Furthermore, the processing cores used in SpiNNaker chips perform better when using integer or fixed-point arithmetic~\cite{Hopkins2015Accuracy}.
+Moreover, the requirement for real-time operations leads to constraints on the complexity of model that can be supported.
+
+\subsection{Neuromorphic Sensory and Processing Systems}
+\label{sec:morph}
+%\subsubsection{Neuromorphic Sensors}
+Neuromorphic engineers have successfully produced visual and auditory silicon devices mimicking the biological retina and cochlea, and boosted the applications of spike-based sensory processing in artificial vision and audition.
+
+The visual input is captured by a DVS silicon retina~\cite{serrano2013128, delbruck2008frame}, which is quite different from conventional video cameras.
+Each pixel generates spikes when its change in brightness reaches a defined threshold.
+Thus, instead of buffering video into frames, the activity of pixels is sent out and processed continuously with time.
+The communication bandwidth is therefore optimised by sending activity only, which is encoded as pixel events using AER~\cite{lazzaro1995multi} protocol.
+The level of activity depends on the contrast change; pixels generate spikes faster and more frequently when they are subject to more active change.
+The sensor is capable of capturing very fast moving objects (e.g., up to 10 K rotations per second), which is equivalent to 100 K conventional frames per second~\cite{lenero20113}.
+
+The binaural silicon cochlea~\cite{5537164} models the elementary functions of the cochlea including the basilar membrane, the inner hair cells~(IHCs), and the spiral Ganglion Cells (SGCs).
+The input sound wave of each cochlea is filtered by a 64 channel bank of cascaded filters to model the frequency distribution along the basilar membrane.
+IHCs locating at each frequency channel perform approximately to half-wave rectifiers, since they only release neurotransmitter when their stereocilia bend   in one direction driven by the membrane potential.
+The transformation from mechanical waves to electrical action potentials completes at the spiral SGCs, where four pulse-frequency modulators at each frequency channel act like SGCs and generate spikes with individual thresholds.
+
+
+The output spikes from the sensory devices are then communicated to back-end SNN processing using the asynchronous AER protocol.
+Visual/auditory recognition on such complete neuromorphic hardware systems have emerged for pursuing of efficient energy cost and low sensory latency.
+However, these hardware SNN simulators either running on FPGAs~\cite{neil2014minitaur, kiselev2016event} or analogue circuits~\cite{qiao2015reconfigurable} are limited to the current scale.
+
 	\begin{figure}[tbp!]
 	\centering
-	\begin{subfigure}[t]{0.9\textwidth}
+	\begin{subfigure}[t]{0.8\textwidth}
 		\includegraphics[width=\textwidth]{pics_snn/outline2.jpg}
-		\caption{Current sampled at $dt$=1~ms.}
+		\caption{Picture of the neuromorphic visual processing platform. From left to right: a silicon retina, an FPGA board which converts AER packets to SpiNNaker format, and a 48-node SpiNNaker system.}
 	\end{subfigure}\\
 	\begin{subfigure}[t]{0.528\textwidth}
 		\includegraphics[width=\textwidth]{pics_snn/photooutline_blurred.jpg}
-		\caption{Current sampled at $dt$=10~ms.}
+		\caption{Picture of the neuromorphic auditory processing platform which is similar to (a) that a silicon cochlea (up) connects to SpiNNaker board (lower right) through an FPGA (left).}
 	\end{subfigure}
+	~~
 	\begin{subfigure}[t]{0.4\textwidth}
 		\includegraphics[width=\textwidth]{pics_snn/omnibot.jpg}
-		\caption{Current sampled at $dt$=10~ms.}
+		\caption{Picture of the omni-directional platform with embedded low-level motor control and elementary sensors: stereo silicon retinas, wheel encoders, and a bump-sensor ring.}
 	\end{subfigure}
-	\caption{}
+	\caption{Three set-ups of neuromorphic sensory and processing hardware platform using SpiNNaker~\cite{furber2014spinnaker}.}
 	\label{Fig:close-loop}
 \end{figure}
-Papers listed.
-Vision and Auditory
-\label{sec:morph}
 
+Therefore, SpiNNaker provides an ideal platform for real-time visual/auditory processing with large SNN models.
+Figure~\ref{Fig:close-loop} shows three set-ups of such `standing-alone' neuromorphic sensory and processing hardware platform, which can be operated on its own as a closed-loop system (Figure~\ref{Fig:close-loop}(c)).
+The visual system, shown in Figure~\ref{Fig:close-loop}(a), ran a 5-layered SNN model~\cite{liu2014real} we designed for live gesture recognition, which contained a network of 74,210 neurons and 15,216,512 synapses, used 290 SpiNNaker cores in parallel and reached 93.0\% accuracy. 
+We also successfully implemented a sound localisation model of spiking neurons on an auditory system, see Figure~\ref{Fig:close-loop}(b), which could operate input spikes under 1~ms resolution~\cite{lagorce2015breaking}.
+These works prove that real-time, large-scale, sensory neuromorphic systems are ready for further study on effective cognition and genuine intelligence of such biological-plausible machines.
+
+\section{Summary}
+This chapter introduces the structure and behaviour of biological neurons.
+Then we illustrate how these neural dynamics can be modelled by mathematical abstractions as spiking neurons, which are the basic components of an SNN.
+Finally, we give an overview of all the tools and hardware platforms, which are used later in the thesis, for SNN simulations.

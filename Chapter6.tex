@@ -577,11 +577,11 @@ The combination of these two factors determines how much information is presente
 Following to the formatted evaluation as in Table~\ref{tb:model_eval}, Table~\ref{tb:software_comparison} lists a few SNN models of MNIST classification, although some details are missing. 
 %Most of these reports did not provide sufficiently detailed descriptions of the networks and the models were not completely evaluated in the way that we propose.
 
-\begin{table*}[hbt!] \small 
+\begin{table}[htbp] \small 
 	\caption{Model-level comparison}
 	\begin{center}
-		\bgroup
-		\def\arraystretch{1.5}
+%		\bgroup
+		\def\arraystretch{1}
 		\begin{tabular}{ l c c c c }
 			$ $ &
 			\begin{mycell}{2cm} Input\end{mycell} & 
@@ -624,9 +624,6 @@ Following to the formatted evaluation as in Table~\ref{tb:model_eval}, Table~\re
 			\begin{mycell}{3cm} Two layers,\\RBM, \\ LIF neurons \end{mycell}&  % network
 			\begin{mycell}{3cm} Synaptic Sampling Machine + eCD, unsupervised \end{mycell}&  % training
 			\begin{mycell}{3cm} 95.8\% \\ 250~ms per test\end{mycell} \\% recognition
-			
-
-			
 			%
 			\begin{mycell}{0.5cm} % %\cite{Stromatias2015scalable} \\ 
 				\cite{stromatias2015robustness} \end{mycell} & 
@@ -664,17 +661,17 @@ Following to the formatted evaluation as in Table~\ref{tb:model_eval}, Table~\re
 			\begin{mycell}{2cm} Poisson \end{mycell}& % preprocessing 
 			\begin{mycell}{3cm} Fully connected decision layer, \\ LIF neurons \end{mycell}& % network
 			\begin{mycell}{3cm} K-means clusters,\\Supervised STDP\\$18,000$~s of training \end{mycell}& % training
-			\begin{mycell}{3cm} 92.99\%\\1~s per test \\13.82~ms latency\\$4.17$M Sopbs\end{mycell} % recognition
+			\begin{mycell}{3cm} 92.99\%\\1~s per test \\13.82~ms latency\\$4.17$M Sopbs\end{mycell}\\ % recognition
 		\end{tabular}
-		\egroup
+%		\egroup
 	\end{center}
 	\label{tb:software_comparison}
-\end{table*}
+\end{table}
 
 \subsubsection{Hardware-Level Evaluation}
 \label{subsec:hw}
 
-\begin{sidewaystable*}[ph!] \small
+\begin{sidewaystable*}[htbp] \small
 	\caption{Hardware-level comparison}
 	\begin{center}
 		\begin{minipage}{\textwidth}
@@ -758,14 +755,7 @@ Following to the formatted evaluation as in Table~\ref{tb:model_eval}, Table~\re
 	\label{tb:hardware_comparison}
 \end{sidewaystable*}
 
-
-Neuromorphic systems can be categorised as analogue, digital, or mixed-mode analogue/digital, depending on how neurons, synapses and spike transmission are implemented. %VLSI circuits. 
-Some analogue implementations exploit sub-threshold transistor dynamics to emulate neurons and synapses directly in hardware~\cite{indiveri2011neuromorphic} and are more energy-efficient while requiring less area than their digital counterparts~\cite{joubert2012hardware}. However, the behaviour of analogue circuits is hard to control through the fabrication process due to transistor mismatch~\cite{indiveri2011neuromorphic,pedram2006thermal,linares2003compact}, and achievable wiring densities render direct point-to-point connections impractical for large-scale systems. The majority of mixed-mode analogue/digital neuromorphic platforms, such as the High Input Count Analog Neural Network (HI-CANN)~\cite{schemmel2010wafer}, Neurogrid~\cite{benjamin2014neurogrid}, HiAER-IFAT~\cite{yu201265k}, use analogue circuits to emulate neurons and digital packet-based technology to communicate spikes as AER events. This enables reconfigurable connectivity patterns, while spike timing is expressed implicitly since typically a spike reaches its destination in less than a millisecond, thus fulfilling the real-time requirement. Digital neuromorphic platforms such as TrueNorth~\cite{merolla2014million} use digital circuits with finite precision to simulate neurons in an event-driven manner to minimise the active power dissipation. Such systems suffer from limited model flexibility, since neurons and synapses are fabricated directly in hardware with only a small subset of parameters under the control of the researcher. 
-The SpiNNaker many-core neuromorphic architecture~\cite{furber2014spinnaker} uses low-power programmable cores and scalable event-driven communications hardware allowing neural and synaptic models to be implemented in software.
-While software modelling provides great flexibility, digital platforms generally have reduced precision (due to the inherent discretisation) and higher energy consumption when compared to analogue platforms. Furthermore, the processing cores used in SpiNNaker chips perform better when using integer or fixed-point arithmetic~\cite{Hopkins2015Accuracy}.
-Moreover, the requirement for the models to run in real time leads to constraints on the complexity of model that can be supported.
-
-A direct comparison between neuromorphic platforms is a non-trivial task due to the different hardware implementation technologies as mentioned above.
+A direct comparison between neuromorphic platforms is a non-trivial task due to the different hardware implementation technologies as mentioned in Section~\ref{subsec:neuromorphic_hw}.
 %Qian Liu modified
 Table~\ref{tb:hardware_comparison} attempts to describe the neuromorphic hardware platforms with reference to different aspects of SNN simulation.
 The scalability of a hardware platform determines the network size limit of a neural application running on it.

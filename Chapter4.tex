@@ -62,7 +62,7 @@ Thus ReLU were proposed to replace sigmoid neurons and surpassed the performance
 %	~\cite{dugas2001incorporating}.
 %trained with noisy input, the 4-layered spiking autoencoder reached 98.37\% accuracy on MNIST. 
 Recent developments on ANN-trained SNN models has focused on using ReLU units and converting trained weights to fit in SNNs.
-Better performance~\cite{cao2015spiking,diehl2015fast} than Siegert-trained RBM has been demonstrated in Spiking ConvNets, but this employed simple integrate and fire (IF) neurons without leakage.
+Better performance~\cite{cao2015spiking,diehl2015fast} than Siegert-trained RBM has been demonstrated in Spiking ConvNets, but this method is designed for simple integrate and fire (IF) neurons without leakage and requires extra step for converting ANN-trained weights for SNN use.
 The training used only ReLUs and zero bias to avoid negative outputs, and applied a deep learning technique, dropout~\cite{srivastava2014dropout}, to increase the classification accuracy.
 Normalising the trained weights for use on an SNN employing IF neurons only was relatively straightforward and maintained classification accuracy.
 This work was extended to a Recursive Neural Network (RNN)~\cite{diehl2016conversion} and run on the TrueNorth~\cite{merolla2014million} neuromorphic hardware platform.
