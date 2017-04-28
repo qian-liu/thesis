@@ -1,86 +1,87 @@
 \chapter{Deep Neural Networks~(DNNs)}
+\label{cha:dnn}
 Deep Learning research in the field of ANNs has dominated the state-of-the-art solutions on cognitive tasks, e.g. the exceeding human-level performance on image classification tasks~\cite{he2015delving}.
 Merging deep learning mechanism to training SNNs may provide an answer to the problem of how to operate SNNs to perform as well as ANNs in cognitive tasks. 
 In this chapter, we will give an overview of popular architectures and models of deep learning in Section~\ref{sec:dl_history}, and the rest of this chapter will illustrate the mechanism of convolutional network (ConvNet), autoencoder (AE), and restricted Boltzmann machine (RBM) in detail.
 
 \section{Deep Learning Models}
 \label{sec:dl_history}
-深度学习的概念源于人工神经网络的研究。含多隐层的多层感知器就是一种深度学习结构。深度学习通过组合低层特征形成更加抽象的高层表示属性类别或特征，以发现数据的分布式特征表示。 深度学习的概念由Hinton等人于2006年提出。基于深信度网(DBN)提出非监督贪心逐层训练算法，为解决深层结构相关的优化难题带来希望，随后提出多层自动编码器深层结构。此外Lecun等人提出的卷积神经网络是第一个真正多层结构学习算法，它利用空间相对关系减少参数数目以提高训练性能。 深度学习是机器学习研究中的一个新的领域，其动机在于建立、模拟人脑进行分析学习的神经网络，它模仿人脑的机制来解释数据，例如图像，声音和文本。 同机器学习方法一样，深度机器学习方法也有监督学习与无监督学习之分．不同的学习框架下建立的学习模型很是不同．例如，卷积神经网络（Convolutional neural networks，简称CNNs）就是一种深度的监督学习下的机器学习模型，而深度置信网（Deep Belief Nets，简称DBNs）就是一种无监督学习下的机器学习模型。 
+%深度学习的概念源于人工神经网络的研究。含多隐层的多层感知器就是一种深度学习结构。深度学习通过组合低层特征形成更加抽象的高层表示属性类别或特征，以发现数据的分布式特征表示。 深度学习的概念由Hinton等人于2006年提出。基于深信度网(DBN)提出非监督贪心逐层训练算法，为解决深层结构相关的优化难题带来希望，随后提出多层自动编码器深层结构。此外Lecun等人提出的卷积神经网络是第一个真正多层结构学习算法，它利用空间相对关系减少参数数目以提高训练性能。 深度学习是机器学习研究中的一个新的领域，其动机在于建立、模拟人脑进行分析学习的神经网络，它模仿人脑的机制来解释数据，例如图像，声音和文本。 同机器学习方法一样，深度机器学习方法也有监督学习与无监督学习之分．不同的学习框架下建立的学习模型很是不同．例如，卷积神经网络（Convolutional neural networks，简称CNNs）就是一种深度的监督学习下的机器学习模型，而深度置信网（Deep Belief Nets，简称DBNs）就是一种无监督学习下的机器学习模型。 
 
 \subsection{Unsupervised Learning}
-Start deep learning.
-
-ae~\cite{vincent2008extracting}
-RBM~\cite{hinton2002training}
-由Hinton等人于2006年提出。基于深信度网(DBN)提出非监督贪心逐层训练算法，为解决深层结构相关的优化难题带来希望，随后提出多层自动编码器深层结构
+%Start deep learning.
+%
+%ae~\cite{vincent2008extracting}
+%RBM~\cite{hinton2002training}
+%由Hinton等人于2006年提出。基于深信度网(DBN)提出非监督贪心逐层训练算法，为解决深层结构相关的优化难题带来希望，随后提出多层自动编码器深层结构
 
 \subsection{Convolutional Neural Networks}~\cite{lecun1998gradient}
-LeNet AlexNet GoogLeNet VGG ResNet
+%LeNet AlexNet GoogLeNet VGG ResNet
 
 \subsection{Recurrent Neural Networks}
-RNN~\cite{graves2013speech} LSTM~\cite{hochreiter1997long}
-
-bengio的主要贡献在于：1.他对rnn的一系列推动包括经典的neural language model，gradient vanishing 的细致讨论，word2vec的雏形，以及现在的machine translation；2.他是神经网络复兴的主要的三个发起人之一（这一点他们三个人都承认，之前他们一直在谋划大事，正是他们三个人的坚持才有了现在的神经网络复兴，这点最高票答案说的很对）包括了pre－training的问题，如何initialize参数的问题，以denoising atuencoder为代表的各种各样的autoencoder结构，generative model等等。
-attention以及GAN了
-
-
-作者：saizheng
-链接：https://www.zhihu.com/question/37922364/answer/74125553
-来源：知乎
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+%RNN~\cite{graves2013speech} LSTM~\cite{hochreiter1997long}
+%
+%bengio的主要贡献在于：1.他对rnn的一系列推动包括经典的neural language model，gradient vanishing 的细致讨论，word2vec的雏形，以及现在的machine translation；2.他是神经网络复兴的主要的三个发起人之一（这一点他们三个人都承认，之前他们一直在谋划大事，正是他们三个人的坚持才有了现在的神经网络复兴，这点最高票答案说的很对）包括了pre－training的问题，如何initialize参数的问题，以denoising atuencoder为代表的各种各样的autoencoder结构，generative model等等。
+%attention以及GAN了
+%
+%
+%作者：saizheng
+%链接：https://www.zhihu.com/question/37922364/answer/74125553
+%来源：知乎
+%著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
 
 \subsection{Reinforcement learning}~\cite{mnih2015human}
-The theory of reinforcement learning provides a normative account 1 ,
-deeply rooted in psychological 2 and neuroscientific 3 perspectives on
-animal behaviour, of how agents may optimize their control of an
-environment. To use reinforcement learning successfully in situations
-approaching real-world complexity, however, agents are confronted
-with a difficult task: they must derive efficient representations of the
-environment from high-dimensional sensory inputs, and use these
-to generalize past experience to new situations. Remarkably, humans
-and other animals seem to solve this problem through a harmonious
-combination of reinforcement learning and hierarchical sensory pro-
-cessing systems 4,5 , the former evidenced by a wealth of neural data
-revealing notable parallels between the phasic signals emitted by dopa-
-minergic neurons and temporal difference reinforcement learning
-algorithms 3 . While reinforcement learning agents have achieved some
-successes in a variety of domains 6–8 , their applicability has previously
-been limited to domains in which useful features can be handcrafted,
-or to domains with fully observed, low-dimensional state spaces.
-Here we use recent advances in training deep neural networks 9–11 to
-develop a novel artificial agent, termed a deep Q-network, that can
-learn successful policies directly from high-dimensional sensory inputs
-using end-to-end reinforcement learning. We tested this agent on
-the challenging domain of classic Atari 2600 games 12 . We demon-
-strate that the deep Q-network agent, receiving only the pixels and
-the game score as inputs, was able to surpass the performance of all
-previous algorithms and achieve a level comparable to that of a pro-
-fessional human games tester across a set of 49 games, using the same
-algorithm, network architecture and hyperparameters. This work
-bridges the divide between high-dimensional sensory inputs and
-actions, resulting in the first artificial agent that is capable of learn-
-ing to excel at a diverse array of challenging tasks.
-
-
-
-
-RL is a general-purpose framework for decision-making
-RL is for an agent with the capacity to act
-Each action in uences the agent's future state
-Success is measured by a scalar reward signal
-Goal:  select actions to maximise future reward
-
-We seek a single agent which can solve any human-level task
-RL defines the objective
-DL gives the mechanism
-RL + DL = general intelligence
-
-
-Play games:  Atari, poker, Go, ...
-Navigate worlds:  3D worlds, Labyrinth, ...
-Control physical systems:  manipulate, walk, swim, ...
-Interact with users:  recommend, optimise, personalise
+%The theory of reinforcement learning provides a normative account 1 ,
+%deeply rooted in psychological 2 and neuroscientific 3 perspectives on
+%animal behaviour, of how agents may optimize their control of an
+%environment. To use reinforcement learning successfully in situations
+%approaching real-world complexity, however, agents are confronted
+%with a difficult task: they must derive efficient representations of the
+%environment from high-dimensional sensory inputs, and use these
+%to generalize past experience to new situations. Remarkably, humans
+%and other animals seem to solve this problem through a harmonious
+%combination of reinforcement learning and hierarchical sensory pro-
+%cessing systems 4,5 , the former evidenced by a wealth of neural data
+%revealing notable parallels between the phasic signals emitted by dopa-
+%minergic neurons and temporal difference reinforcement learning
+%algorithms 3 . While reinforcement learning agents have achieved some
+%successes in a variety of domains 6–8 , their applicability has previously
+%been limited to domains in which useful features can be handcrafted,
+%or to domains with fully observed, low-dimensional state spaces.
+%Here we use recent advances in training deep neural networks 9–11 to
+%develop a novel artificial agent, termed a deep Q-network, that can
+%learn successful policies directly from high-dimensional sensory inputs
+%using end-to-end reinforcement learning. We tested this agent on
+%the challenging domain of classic Atari 2600 games 12 . We demon-
+%strate that the deep Q-network agent, receiving only the pixels and
+%the game score as inputs, was able to surpass the performance of all
+%previous algorithms and achieve a level comparable to that of a pro-
+%fessional human games tester across a set of 49 games, using the same
+%algorithm, network architecture and hyperparameters. This work
+%bridges the divide between high-dimensional sensory inputs and
+%actions, resulting in the first artificial agent that is capable of learn-
+%ing to excel at a diverse array of challenging tasks.
+%
+%
+%
+%
+%RL is a general-purpose framework for decision-making
+%RL is for an agent with the capacity to act
+%Each action in uences the agent's future state
+%Success is measured by a scalar reward signal
+%Goal:  select actions to maximise future reward
+%
+%We seek a single agent which can solve any human-level task
+%RL defines the objective
+%DL gives the mechanism
+%RL + DL = general intelligence
+%
+%
+%Play games:  Atari, poker, Go, ...
+%Navigate worlds:  3D worlds, Labyrinth, ...
+%Control physical systems:  manipulate, walk, swim, ...
+%Interact with users:  recommend, optimise, personalise
 
 
 \subsection{Generative Adversarial Networks (GAN)}~\cite{goodfellow2014generative}
@@ -177,294 +178,295 @@ Thus, the weight gradient is calculated as:
 \right.
 \end{equation}
 
-\section{Restricted Boltzmann Machine}
-\label{sec:rbm}
-In order to implement training and testing of Spiking Deep~Belief~Networks~(SDBNs) on-line, this section studied:
-\begin{itemize}
-	\item \textit{Contrastive Divergence.}
-	The study starts from understanding the original problem, Products of Experts~(PoE), which was solved by using Contrastive~Divergence~(CD).
-	It involves utilising Markov~Chain~Monte~Carlo~(MCMC) sampling to present the distribution of a certain untraceable high-dimensional probability model function, e.g. PoE.
-	Among these sampling algorithms, Gibbs method is introduced and used in high dimensional problems.
-	Instead of minimising the original objective function of Kullback-Leibler divergence, the contrastive divergence is exploited to solve PoE.
-	\item \textit{Restricted Boltzmann Machine (RBM). }
-	Then the study continues on applying Gibbs sampling and CD to RBM, which builds the foundation of the light RBM training.
-	\item \textit{Deep Belief Network.} 
-	The greedy algorithm on training layered RBMs and the fine training on the whole DBN are studied.
-\end{itemize}
-Next, the study will carry on to on-line learning methods which only applies to spiking neurons for training spiking RBM and DBN.
-\subsection{Contrastive Divergence\cite{hinton2002training,woodfordnotes}}
-The probability of a vector point $ \mathbf{x} $ is modelled by the function $f(\mathbf{x} \mid \Theta )$ given the model parameters $ \Theta $, and normalised by a partition function $Z( \Theta)$:
-
-\begin{equation}
-p(\mathbf{x} \mid \Theta ) = \dfrac{f(\mathbf{x} \mid \Theta )}{Z( \Theta)}
-\end{equation}
-where the partition function is defined as:
-\begin{equation}
-\label{equ:z_int}
-Z( \Theta) = \int f(\mathbf{x} \mid \Theta )\D\mathbf{x}, \text{when  $ \mathbf{x} $ is continuous, or}
-\end{equation}
-
-\begin{equation}
-\label{equ:z_dis}
-Z( \Theta) = \sum_{\mathbf{x}} f(\mathbf{x} \mid \Theta ), \text{when  $ \mathbf{x} $ is discrete.}
-\end{equation}
-Given a set of data points $ \mathbf{D}=(\mathbf{d}_1, \mathbf{d}_2, ..., \mathbf{d}_K) $ the purpose of learning is to tune the model parameter $ \Theta $ to fit the data $ \mathbf{D}  $. 
-The objective function is the probability product of all the independent data points of the data set, which is also called the likelihood function:
-\begin{equation}
-L (\Theta \mid \mathbf{D}) = p(\mathbf{D} \mid \Theta ) = \prod_{k=1}^K p(\mathbf{d}_k \mid \Theta ) =  \prod_{k=1}^K\dfrac{f(\mathbf{d}_k \mid \Theta )}{Z( \Theta)}.
-\end{equation}
-And the target is to maximise the likelihood given the data set $ \mathbf{D}  $, which equals to maximise the log of the probability product (the log-likelihood):
-\begin{equation}
-\log  L (\Theta \mid \mathbf{D}) = \log p(\mathbf{D} \mid \Theta ) = \sum_{k=1}^K\log f(\mathbf{d}_k \mid \Theta ) - K \log Z( \Theta),
-\end{equation}
-or the average log-likelihood:
-\begin{equation}
-\label{equ:like}
-\hat{l} (\Theta \mid \mathbf{D}) =\frac{1}{K}\log  L (\Theta \mid \mathbf{D}) 
-=\frac{1}{K}\sum_{k=1}^K\log f(\mathbf{d}_k \mid \Theta ) - \log Z( \Theta).
-\end{equation}
-Imagine three different conditions (probability function) as following.
-
-\textbf{First}, $f(\mathbf{x} \mid \Theta )$ is the probability density function (pdf) of a normal distribution $\mathcal{N}(x \mid \mu, \sigma )$.
-Data vector $ \mathbf{x} $ is just a one dimensional data point, $x$.
-$ Z( \Theta) $ equals to 1, thus $p(x \mid \Theta ) = \mathcal{N}(x \mid \mu, \sigma )$.
-\begin{equation}
-\hat{l} (\Theta \mid D) =  
-\frac{1}{K} \sum_{k=1}^K \log \left[ \frac{1}{\sigma \sqrt{2\pi}} \exp(-\frac{(d_k-\mu)^{2}}{2\sigma^{2}}) \right]
-\label{pdf}
-\end{equation}
-To maximise Equation~\ref{pdf} is to find the Maximum Likelihood Estimation (MLE) of parameters $ \mu $ and $ \sigma $, by deriving from the partial differential equations when they are equal to 0. 
-\begin{equation}
-\left\{
-\begin{aligned}
-&\dfrac{\partial \hat{l} (\Theta \mid D)}{\partial \mu}= \sum_{k=1}^K -\frac{1}{2\sigma^{2}}\dfrac{\partial (\mu-d_k)^{2}}{\partial \mu} = \sum_{k=1}^K -\frac{1}{\sigma^{2}}(\mu-d_k) = 0 \quad\\
-&\dfrac{\partial \hat{l} (\Theta \mid D) }{\partial \sigma^{2}}= -\frac{K}{2\sigma^{2}}+\frac{1}{2\sigma^{4}}\sum_{k=1}^K d_k^{2} -\frac{\mu}{\sigma^{4}}\sum_{k=1}^K d_k + \frac{K\mu^{2}}{2\sigma^{4}} = 0 \quad\\
-\end{aligned}
-\right.
-\end{equation}
-\begin{equation}
-\left\{
-\begin{aligned}
-&\mu= \frac{1}{K}\sum_{k=1}^K d_k  \quad\\
-&\sigma^{2} = \frac{1}{K}\sum_{k=1}^K d_k^{2} - (\frac{1}{K}\sum_{k=1}^K d_k)^{2}
-\end{aligned}
-\right.
-\end{equation}
-$\hat{l} (\Theta \mid D)$ here is the function of two dimensional parameters $\mu$ and $\theta$, and searching the highest point in the parameter space ``is equivalent to being in the field on a clear, sunny day,''~\cite{woodfordnotes} seeing the point straight away.
-
-\textbf{Second}, the probability model function changes to be the sum of N normal distributions: 
-\begin{equation}
-f(x \mid \Theta ) = \sum_{i=1}^N\mathcal{N}(x \mid \mu_i, \sigma_i ).
-\end{equation}
-Derived from Equation~(\ref{equ:like}), the objective function is:
-\begin{equation}
-\hat{l} (\Theta \mid D) = \frac{1}{K}\sum_{k=1}^K \log \sum_{i=1}^N \mathcal{N}(d_k \mid \mu_i, \sigma_i ) - \log N,
-\end{equation}
-where $\log Z( \Theta)$ still equals a constant, but the partial differential equation of any parameter depends on other model parameters.
-It is very hard to solve equation set of log of sum, thus iteration methods are introduced, e.g., gradient descent method. %and expectation maximization (EM) algorithm
-Searching for a local maximum of the likelihood function in the parameter space starts with an initial point, either random or well selected.
-For each iteration, the partial derivatives for every dimension of the parameter point are calculated as the gradient.
-The gradient determines the decent direction of the space search, the next parameter point is one step $ \eta $  towards the direction or is the highest point found by line search.
-
-The gradient descent method is equivalent to ``being in the field at night with a torch.''~\cite{woodfordnotes}.
-And then the descent direction is estimated and chosen by using the torch to see the relative heights of the field a short distance in each direction.
-Because partial differential equation of any parameter depends on other model parameters, we can only see the gradient for a small area.
-The search will follow the direction by walking one step or a certain distance (e.g. line search lowest point), and then start a new iteration.
-
-%\paragraph{PoE Problem} 
-\subsubsection{PoE Problem}
-\textbf{Finally}, the probability model function becomes the product of N normal distributions: 
-\begin{equation}
-f(x \mid \Theta ) = \prod_{i=1}^N\mathcal{N}(x \mid \mu_i, \sigma_i ),
-\end{equation}
-where the partition (normalisation) function $Z( \Theta)$ is no longer a constant, but varies accordance to all the parameters.
-Essentially, the integration of the probability model, see Equation~(\ref{equ:z_int}) and~(\ref{equ:z_dis}), is usually algebraically intractable.
-We have to use numerical integration method to evaluate the Equation~(\ref{equ:like}), whose partial derivative is (we are using vectors to generalise the problem):
-\begin{equation}
-\label{equ:part}
-\begin{aligned}
-\dfrac{\partial \hat{l} (\Theta \mid \mathbf{D})}{\partial \theta} 
-& = \frac{1}{K} \dfrac{\partial \sum_{k=1}^K\log f(\mathbf{d}_k \mid \Theta )}{\partial \theta} - \dfrac{\partial \log Z( \Theta)}{\partial \theta}\\
-& =  \frac{1}{K}\sum_{k=1}^K \dfrac{\partial \log f(\mathbf{d}_k \mid \Theta)}{\partial \theta} - \int p(\mathbf{x} \mid \Theta) \dfrac{\partial \log f(\mathbf{x} \mid \Theta)}{\partial \theta} \D \mathbf{x}\\
-& = \left \langle \dfrac{\partial \log f(\mathbf{d} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{D}} -\left \langle \dfrac{\partial \log f(\mathbf{c} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{C} \sim p(\mathbf{x} \mid \Theta)}  \\
-&=\left \langle \dfrac{\partial \log f(\mathbf{x} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{X}_{data}} - \left \langle \dfrac{\partial \log f(\mathbf{x} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{X}_{model}},
-\end{aligned}
-\end{equation}
-where  $ <\cdot>_x $ denotes the mean expectation of $ \cdot $ given distribution of $x$.
-The first term of the right-hand side is easy to get with the given data set $ \mathbf{D} $, and the second term can be approximated by generating data samples $ \mathbf{C} $ according to $ p(\mathbf{x} \mid \Theta) $.
-These generative samples is called ``fantasy data'' and can be generated using Monte Carlo Markov Chain (MCMC) sampling, see section~\ref{sec:mcmc}.
-The detailed derivation process can be found in Appendix~\ref{app:part}.
-Although in this example the integration of product of normal distribution is still tractable, it is also helpful to use numerical integration.
-
-Go back to the metaphor of the parameter field, solving PoE problem is like searching the highest point in a completely dark night without a torch.
-The computation of Equation~(\ref{equ:part}) is to ``feel the gradient of the field under our feet''.~\cite{woodfordnotes}.
-%The motivation underlining Contrastive Divergence algorithm is to boost the training speed of a Markov Chain in order to represent the distribution of a PoE (Product of Expert) model.
-%Thus the sampling can be followed using this trained Markov Chain model. 
-
-%\paragraph{MCMC Sampling}
-\subsubsection{MCMC Sampling}
-\label{sec:mcmc}
-In order to solve the integration of algebraically intractable equations we can use numerical integration to approximate.
-One of the popular method is Monte Carlo integration:
-\begin{equation}
-\int_{a}^{b} f(x) \D x = \int_{a}^{b}\frac{f(x)}{q(x)}q(x)\D x = \dfrac{1}{N}\sum_{i=1}^{N}\frac{f(x_i)}{q(x_i)}.
-\end{equation}
-The integration of $ f(x) $ transforms to the integration of a new function $ F(x) = f(x)/q(x)  $ times its probability function $ q(x) $.
-It could be approximated by sampling N data points $ x_i $ according to the probability distribution $ q(x) $, and calculate the average of $ F(x_i) $ as $ <F(x)>_{q(x)}$.
-So the main question following is how to sample from a probability distribution.
-
-MCMC algorithm was proposed by Metropolis in 1953 and it became a wide-used sampling method.
-The stationary distribution $ \pi $ exists when every two nodes in a Markov Chain are connected regardless of the initial state distribution $ \pi_0 $:
-\begin{equation}
-\begin{aligned}
-&\pi(j) = \sum_{i=1}^{\infty}\pi(i)P_{ij} \\
-&\pi P = \pi,
-\end{aligned}
-\end{equation}
-where $ P $ is the transition probability matrix, and $ \pi $ is in the state space of a MC and the sum, $ \sum_{i=1}^{\infty}\pi(i) $,of a state distribution is 1.
-Thus based on the useful theorem of MC, sampled sequence $ \{x_0, x_1, ..., x_n, ... \}$ from a MC complies with its stationary distribution $ \pi(x) $.
-Metropolis stated that if a MC has a stationary distribution, $ q(x) $, which is exactly needed to sample from, then we can easily obtain a sample sequence along the MC according to the transformation probability matrix $ P $.
-Here so far we are describing the MC with discrete states, however the it also applies to continuous $ \pi $ and $ P $.
-The problem here is to build $ P $ to make the stationary distribution equal to the required probability, $ \pi(x) = q(x) $.
-
-So the other useful theorem (detailed balance) lies here, if an aperiodic MC is reversible: $\pi (i) P_{ij} = \pi (j) P_{ji},$ then $ \pi $ is the stationary distribution.
-It is a stronger condition than the previous theorem, so most of the MCs are not generally eligible:
-\begin{equation}
-\pi (i) P_{ij} \neq \pi (j) P_{ji}.
-\end{equation}
-Thus we can introduce another parameter matrix, $ \alpha $ to make a general MC reversible:
-\begin{equation}
-\pi (i) P_{ij} \alpha_{ij} = \pi (j) P_{ji} \alpha_{ji}	,
-\end{equation}
-where $ \alpha_{ij} = \pi(j) P_{ji} $ and $ \alpha_{ji} = \pi(i) P_{ij}$.
-The altered transformation probability matrix is $ P'_{ij} =  P_{ij} \alpha_{ij}$ and $ P'_{ji} =  P_{ji} \alpha_{ji}$, and the MC complies the detailed balance condition: $\pi (i) P'_{ij} = \pi (j) P'_{ji}$.
-The matrix parameter $ \alpha $ is called as ``acceptance rate'', and its physic meaning is as follows: when state $ i $ transforms to state $ j $ with a probability of $ P_{ij} $, the transformation is accepted by the rate of $ \alpha_{ij} $.
-Since the accept rate may be too low for the sampling to move along the MC, we can normalise the $ \alpha $ pair to 1:
-\begin{equation}
-\alpha^{'}(i,j) = min \left\{\frac{\pi(j)P_{ji}}{\pi(i)P_{ij}},1\right\}.
-\end{equation}
-The algorithm is called Metropolis-Hastings and described in following:
-\begin{algorithm}[h]
-	\caption{Metropolis-Hastings Sampling}
-	\label{alg:mcmc}
-	\begin{algorithmic}
-		
-		%	    \Procedure{Correction}{coeffs $C$, correlations $Q$}
-		\State Initialisation $x_0 = s_{random}$, \Comment{$ x $:sampling sequence and $s$:state in MC}
-		\For{$t=1, 2, ..., N$}
-		\State $y \sim p_(x \mid x_{t-1})$ 
-		\Comment{Random drawing the next state by the transformation probability matrix $P$}
-		\State $ u \sim Uniform[0,1] $ 
-		\Comment{Random drawing from a uniform distribution}
-		\If {$ u < \alpha^{'}(x_{t-1},y) = min \left\{\frac{q(y)p_(x_{t-1} \mid y)}{q(x_{t-1})p_(y \mid x_{t-1})},1\right\} $}
-		\State {$x_t = y$} \Comment{Accept the transformation when the random number is less than $\alpha$}
-		\Else \State {$x_t = x_{t-1}$}  \Comment{Transformation is refused elsewise}
-		\EndIf
-		\EndFor
-	\end{algorithmic}
-\end{algorithm}
-
-The probability model function as the product of N normal distributions can be approximated by using this Metropolis-Hastings sampling.
-
-%\paragraph{Gibbs Sampling}
-\subsubsection{Gibbs Sampling}
-\label{sec:Gibbs}
-For high dimensional data sampling, it is possible to make the accept rate to 1 which increases the convergence speed dramatically.
-According to conditional probability:
-\begin{equation}
-P(A \mid B) = \frac{P(A \cap B)}{P(B)}.
-\end{equation}
-For a $ n $ dimensional data $ (\mathbf{x}, y) $ where $ \mathbf{x}=(x_1,x_2,...,x_{n-1}) $, the joint probability of $p(\mathbf{x},y)$ is:
-\begin{equation}
-p(\mathbf{x},y) = p(y \mid \mathbf{x})p(\mathbf{x}).
-\end{equation}
-Thus, during sampling if we restrict the direction of transformation to one single axis(dimension), $ y $, from point $ A(\mathbf{x}_1, y_1) $ to point $ B(\mathbf{x}_1, y_2)$:
-\begin{equation}
-p(\mathbf{x}_1, y_1)p(y_2 \mid \mathbf{x}_1) = p(\mathbf{x}_1, y_2)p(y_1 \mid \mathbf{x}_1) = p(\mathbf{x}_1)p(y_1 \mid \mathbf{x}_1)p(y_2 \mid \mathbf{x}_1),
-\end{equation}
-then, the MC obeys the condition of detailed balance.
-So the stationary distribution $ \pi(x_1,x_2,...,x_n) $ equals to the joint probability $ p(x_1,x_2,...,x_n) $ and the transformation probability matrix P is consisted of the conditional probability of each dimension $ k $ $,  p(x_k \mid x_1,...,x_{k-1},x_{k+1},...,x_n) $.
-Therefore, given the conditional distribution of each variable for a multivariate distribution Gibbs sampling is able to approximate the joint distribution with long enough sample sequence.
-Gibbs sampling is described as follows:
-\begin{algorithm}[h]
-	\caption{Gibbs Sampling}
-	\label{alg:gibbs}
-	\begin{algorithmic}
-		
-		%	    \Procedure{Correction}{coeffs $C$, correlations $Q$}
-		\State Initialisation $\mathbf{x}_0 = [x_0(1),x_0(2),...,x_0(M)]$,  \Comment{Random initialise $\mathbf{x}_0$}
-		\For{$t=1, 2, ..., N$}
-		\For{$k=1, 2, ..., M$}
-		\State $ x_t(k) = p(x(k) \mid x_{t-1}(1),x_{t-1}(2),...,x_{t-1}(k-1),x_{t-1}(k+1),...,x_{t-1}(M))$\\
-		\Comment{Sampling by the conditional distribution}
-		\EndFor
-		\EndFor
-	\end{algorithmic}
-\end{algorithm}
-
-%\paragraph{CD Instead of KL(Kullback-Leibler)}
-\subsubsection{CD Instead of KL(Kullback-Leibler)}
-\label{sec:CD}
-Kullback-Leibler divergence is the measure of how different two probability distributions are:
-\begin{equation}
-\begin{aligned}
-KL(P \mid \mid Q)
-&= \int P(\mathbf{x}) \log \frac{P(\mathbf{x})}{Q(\mathbf{x})} \D \mathbf{x}\\
-%= \sum_{\mathbf{x}} P(\mathbf{x}) \log \frac{P(\mathbf{x})}{Q(\mathbf{x})} \\
-&= \int P(\mathbf{x}) \log P(\mathbf{x}) \D \mathbf{x} - \int P(\mathbf{x}) \log Q(\mathbf{x}) \D \mathbf{x}\\
-%=  \sum_{\mathbf{x}} P(\mathbf{x}) \log P(\mathbf{x}) - \sum_{\mathbf{x}} P(\mathbf{x}) \log Q(\mathbf{x})\\
-&= \left \langle \log P(\mathbf{x}) \right \rangle_{\mathbf{X} \sim P(\mathbf{x})} - \left \langle \log Q(\mathbf{x}) \right \rangle_{\mathbf{X} \sim P(\mathbf{x})} ,
-\end{aligned}
-\end{equation}
-and the second term of the right hand side is the average log-likelihood function (see Equation~\ref{equ:like}) if $P(\mathbf{x})$ is the training data distribution and $Q(\mathbf{x})$ is the model distribution:
-\begin{equation}
-\begin{aligned}
-& KL \left( p(\mathbf{x} \mid \mathbf{D}) \mid \mid p(\mathbf{x} \mid \Theta) \right)
-=   \left \langle \log p(\mathbf{d} \mid \mathbf{D}) \right \rangle_{\mathbf{D}} - \left \langle \log p(\mathbf{d} \mid \Theta) \right \rangle_{\mathbf{D}}, \textit{where} \\
-& \hat{l} (\Theta \mid \mathbf{D}) =\frac{1}{K}\log  L (\Theta \mid \mathbf{D}) 
-=  \frac{1}{K}\log p(\mathbf{D} \mid \Theta ) 
-= \frac{1}{K} \sum_{k=1}^{\mathbf{K}} \log f(\mathbf{d}_k \mid \Theta )
-= \left \langle \log p(\mathbf{d} \mid \Theta) \right \rangle_{\mathbf{D}}.
-\end{aligned}
-\end{equation}
-We use $ \mathbf{D} $ instead of $ \mathbf{X} \sim p(\mathbf{x} \mid \mathbf{D}) $, for $ p(\mathbf{x} \mid \mathbf{D}) $ is the distribution of data set $ \mathbf{D} $.
-If we need to generate a sample sequence according to the distribution $ p(\mathbf{x} \mid \mathbf{D}) $, $ \mathbf{D} $ itself is the most approximated.
-Since $\left \langle \log p(\mathbf{d} \mid \mathbf{D}) \right \rangle_{\mathbf{D}}$ is independent with model parameters, the negative partial derivative is the same with Equation~(\ref{equ:part}):
-\begin{equation}
-\label{equ:kl}
--\dfrac{\partial KL \left( p(\mathbf{x} \mid \mathbf{D}) \mid \mid p(\mathbf{x} \mid \Theta) \right)}{\partial \theta}
-= \dfrac{\partial \hat{l} (\Theta \mid \mathbf{D})}{\partial \theta} \\
-= \left \langle \dfrac{\partial \log f(\mathbf{d} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{D}} - \left \langle \dfrac{\partial \log f(\mathbf{c} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{C} \sim p(\mathbf{x} \mid \Theta)} .
-\end{equation}
-Therefore, for each iteration searching in the parameter space we use $ k $ number of training data $ \mathbf{D}=(\mathbf{d}_1, \mathbf{d}_2, ..., \mathbf{d}_k) $ and fantasy data $ \mathbf{C}=(\mathbf{c}_1, \mathbf{c}_2, ..., \mathbf{c}_k) $.
-If $ k $ is big enough, sampling sequences $ \mathbf{D} $ and $ \mathbf{C} $ are able to approximate the data and the model distribution thus to get derivatives of the KL function.
-However, if we just take a small number of data, even $ k = 1 $ per iteration~\cite{hinton2002training}, the KL divergence can be seen as a ``k-step contrastive convergence ($ CD_{k}) $'':
-\begin{equation}
-\label{equ:cdk}
-\dfrac{\partial CD_{k}}{\partial \theta} 
-= - \left \langle \dfrac{\partial \log f(\mathbf{d} \mid \Theta)}{\partial \theta}\right \rangle_{(\mathbf{d}_1, \mathbf{d}_2, ..., \mathbf{d}_k) } + \left \langle \dfrac{\partial \log f(\mathbf{c} \mid \Theta)}{\partial \theta}\right \rangle_{(\mathbf{c}_1, \mathbf{c}_2, ..., \mathbf{c}_k) \sim p(\mathbf{x} \mid \Theta)}.
-\end{equation}
-Since the searching step $ \eta $ is very small, the derivatives of points in a small area can be seen as the same.
-%	The step made for a single $ CD_{k} $ can be approximated by summation of $ k $ steps of $ CD_{1} $ as long as the searching does not go far.
-%	Otherwise the searching path may follow some direction for accumulated steps away from the original area, thus significantly reduces the training time.
-
-%\paragraph{Discussion}
-\subsubsection{Discussion}
-Although there is practical explanation on using $CD_1$ for parameter space searching, arguments exist over whether the search converge to the same maxima/minima as $CD_\infty$~\cite{wu2015bias}.
-Moreover, is the parameter searching still following the original objective function?	
-As an initial exploration over the problem we tested some experiments on Section~\ref{sec:cd1}. 
-%	Thus,
-%	\begin{equation}
-%		\dfrac{\partial [KL(p^0 \mid \mid p^{\infty}) - KL(p^1 \mid \mid p^{\infty})]}{\partial \theta}
-%		= \left \langle \dfrac{\partial \log f(\mathbf{x} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{p}^1} - \left \langle \dfrac{\partial \log f(\mathbf{x} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{p}^0},
-%	\end{equation}
-%	where the second term in equation~(\ref{equ:kl}) cancels out.
-%	So Hinton proposed \textcolor{red}{the new contrastive divergence CD to make Gibbs sampling with only 1 step}.
-%	Contrastive divergence is defined as:
-%	\begin{equation}
-%		CD_n = KL(p^0 \mid \mid p^{\infty}) - KL(p^n \mid \mid p^{\infty})
-%	\end{equation}
-\subsection{RBM\cite{zhang2013rbm}}
+%\section{Restricted Boltzmann Machine}
+%\label{sec:rbm}
+%In order to implement training and testing of Spiking Deep~Belief~Networks~(SDBNs) on-line, this section studied:
+%\begin{itemize}
+%	\item \textit{Contrastive Divergence.}
+%	The study starts from understanding the original problem, Products of Experts~(PoE), which was solved by using Contrastive~Divergence~(CD).
+%	It involves utilising Markov~Chain~Monte~Carlo~(MCMC) sampling to present the distribution of a certain untraceable high-dimensional probability model function, e.g. PoE.
+%	Among these sampling algorithms, Gibbs method is introduced and used in high dimensional problems.
+%	Instead of minimising the original objective function of Kullback-Leibler divergence, the contrastive divergence is exploited to solve PoE.
+%	\item \textit{Restricted Boltzmann Machine (RBM). }
+%	Then the study continues on applying Gibbs sampling and CD to RBM, which builds the foundation of the light RBM training.
+%	\item \textit{Deep Belief Network.} 
+%	The greedy algorithm on training layered RBMs and the fine training on the whole DBN are studied.
+%\end{itemize}
+%Next, the study will carry on to on-line learning methods which only applies to spiking neurons for training spiking RBM and DBN.
+%\subsection{Contrastive Divergence\cite{hinton2002training,woodfordnotes}}
+%The probability of a vector point $ \mathbf{x} $ is modelled by the function $f(\mathbf{x} \mid \Theta )$ given the model parameters $ \Theta $, and normalised by a partition function $Z( \Theta)$:
+%
+%\begin{equation}
+%p(\mathbf{x} \mid \Theta ) = \dfrac{f(\mathbf{x} \mid \Theta )}{Z( \Theta)}
+%\end{equation}
+%where the partition function is defined as:
+%\begin{equation}
+%\label{equ:z_int}
+%Z( \Theta) = \int f(\mathbf{x} \mid \Theta )\D\mathbf{x}, \text{when  $ \mathbf{x} $ is continuous, or}
+%\end{equation}
+%
+%\begin{equation}
+%\label{equ:z_dis}
+%Z( \Theta) = \sum_{\mathbf{x}} f(\mathbf{x} \mid \Theta ), \text{when  $ \mathbf{x} $ is discrete.}
+%\end{equation}
+%Given a set of data points $ \mathbf{D}=(\mathbf{d}_1, \mathbf{d}_2, ..., \mathbf{d}_K) $ the purpose of learning is to tune the model parameter $ \Theta $ to fit the data $ \mathbf{D}  $. 
+%The objective function is the probability product of all the independent data points of the data set, which is also called the likelihood function:
+%\begin{equation}
+%L (\Theta \mid \mathbf{D}) = p(\mathbf{D} \mid \Theta ) = \prod_{k=1}^K p(\mathbf{d}_k \mid \Theta ) =  \prod_{k=1}^K\dfrac{f(\mathbf{d}_k \mid \Theta )}{Z( \Theta)}.
+%\end{equation}
+%And the target is to maximise the likelihood given the data set $ \mathbf{D}  $, which equals to maximise the log of the probability product (the log-likelihood):
+%\begin{equation}
+%\log  L (\Theta \mid \mathbf{D}) = \log p(\mathbf{D} \mid \Theta ) = \sum_{k=1}^K\log f(\mathbf{d}_k \mid \Theta ) - K \log Z( \Theta),
+%\end{equation}
+%or the average log-likelihood:
+%\begin{equation}
+%\label{equ:like}
+%\hat{l} (\Theta \mid \mathbf{D}) =\frac{1}{K}\log  L (\Theta \mid \mathbf{D}) 
+%=\frac{1}{K}\sum_{k=1}^K\log f(\mathbf{d}_k \mid \Theta ) - \log Z( \Theta).
+%\end{equation}
+%Imagine three different conditions (probability function) as following.
+%
+%\textbf{First}, $f(\mathbf{x} \mid \Theta )$ is the probability density function (pdf) of a normal distribution $\mathcal{N}(x \mid \mu, \sigma )$.
+%Data vector $ \mathbf{x} $ is just a one dimensional data point, $x$.
+%$ Z( \Theta) $ equals to 1, thus $p(x \mid \Theta ) = \mathcal{N}(x \mid \mu, \sigma )$.
+%\begin{equation}
+%\hat{l} (\Theta \mid D) =  
+%\frac{1}{K} \sum_{k=1}^K \log \left[ \frac{1}{\sigma \sqrt{2\pi}} \exp(-\frac{(d_k-\mu)^{2}}{2\sigma^{2}}) \right]
+%\label{pdf}
+%\end{equation}
+%To maximise Equation~\ref{pdf} is to find the Maximum Likelihood Estimation (MLE) of parameters $ \mu $ and $ \sigma $, by deriving from the partial differential equations when they are equal to 0. 
+%\begin{equation}
+%\left\{
+%\begin{aligned}
+%&\dfrac{\partial \hat{l} (\Theta \mid D)}{\partial \mu}= \sum_{k=1}^K -\frac{1}{2\sigma^{2}}\dfrac{\partial (\mu-d_k)^{2}}{\partial \mu} = \sum_{k=1}^K -\frac{1}{\sigma^{2}}(\mu-d_k) = 0 \quad\\
+%&\dfrac{\partial \hat{l} (\Theta \mid D) }{\partial \sigma^{2}}= -\frac{K}{2\sigma^{2}}+\frac{1}{2\sigma^{4}}\sum_{k=1}^K d_k^{2} -\frac{\mu}{\sigma^{4}}\sum_{k=1}^K d_k + \frac{K\mu^{2}}{2\sigma^{4}} = 0 \quad\\
+%\end{aligned}
+%\right.
+%\end{equation}
+%\begin{equation}
+%\left\{
+%\begin{aligned}
+%&\mu= \frac{1}{K}\sum_{k=1}^K d_k  \quad\\
+%&\sigma^{2} = \frac{1}{K}\sum_{k=1}^K d_k^{2} - (\frac{1}{K}\sum_{k=1}^K d_k)^{2}
+%\end{aligned}
+%\right.
+%\end{equation}
+%$\hat{l} (\Theta \mid D)$ here is the function of two dimensional parameters $\mu$ and $\theta$, and searching the highest point in the parameter space ``is equivalent to being in the field on a clear, sunny day,''~\cite{woodfordnotes} seeing the point straight away.
+%
+%\textbf{Second}, the probability model function changes to be the sum of N normal distributions: 
+%\begin{equation}
+%f(x \mid \Theta ) = \sum_{i=1}^N\mathcal{N}(x \mid \mu_i, \sigma_i ).
+%\end{equation}
+%Derived from Equation~(\ref{equ:like}), the objective function is:
+%\begin{equation}
+%\hat{l} (\Theta \mid D) = \frac{1}{K}\sum_{k=1}^K \log \sum_{i=1}^N \mathcal{N}(d_k \mid \mu_i, \sigma_i ) - \log N,
+%\end{equation}
+%where $\log Z( \Theta)$ still equals a constant, but the partial differential equation of any parameter depends on other model parameters.
+%It is very hard to solve equation set of log of sum, thus iteration methods are introduced, e.g., gradient descent method. %and expectation maximization (EM) algorithm
+%Searching for a local maximum of the likelihood function in the parameter space starts with an initial point, either random or well selected.
+%For each iteration, the partial derivatives for every dimension of the parameter point are calculated as the gradient.
+%The gradient determines the decent direction of the space search, the next parameter point is one step $ \eta $  towards the direction or is the highest point found by line search.
+%
+%The gradient descent method is equivalent to ``being in the field at night with a torch.''~\cite{woodfordnotes}.
+%And then the descent direction is estimated and chosen by using the torch to see the relative heights of the field a short distance in each direction.
+%Because partial differential equation of any parameter depends on other model parameters, we can only see the gradient for a small area.
+%The search will follow the direction by walking one step or a certain distance (e.g. line search lowest point), and then start a new iteration.
+%
+%%\paragraph{PoE Problem} 
+%\subsubsection{PoE Problem}
+%\textbf{Finally}, the probability model function becomes the product of N normal distributions: 
+%\begin{equation}
+%f(x \mid \Theta ) = \prod_{i=1}^N\mathcal{N}(x \mid \mu_i, \sigma_i ),
+%\end{equation}
+%where the partition (normalisation) function $Z( \Theta)$ is no longer a constant, but varies accordance to all the parameters.
+%Essentially, the integration of the probability model, see Equation~(\ref{equ:z_int}) and~(\ref{equ:z_dis}), is usually algebraically intractable.
+%We have to use numerical integration method to evaluate the Equation~(\ref{equ:like}), whose partial derivative is (we are using vectors to generalise the problem):
+%\begin{equation}
+%\label{equ:part}
+%\begin{aligned}
+%\dfrac{\partial \hat{l} (\Theta \mid \mathbf{D})}{\partial \theta} 
+%& = \frac{1}{K} \dfrac{\partial \sum_{k=1}^K\log f(\mathbf{d}_k \mid \Theta )}{\partial \theta} - \dfrac{\partial \log Z( \Theta)}{\partial \theta}\\
+%& =  \frac{1}{K}\sum_{k=1}^K \dfrac{\partial \log f(\mathbf{d}_k \mid \Theta)}{\partial \theta} - \int p(\mathbf{x} \mid \Theta) \dfrac{\partial \log f(\mathbf{x} \mid \Theta)}{\partial \theta} \D \mathbf{x}\\
+%& = \left \langle \dfrac{\partial \log f(\mathbf{d} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{D}} -\left \langle \dfrac{\partial \log f(\mathbf{c} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{C} \sim p(\mathbf{x} \mid \Theta)}  \\
+%&=\left \langle \dfrac{\partial \log f(\mathbf{x} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{X}_{data}} - \left \langle \dfrac{\partial \log f(\mathbf{x} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{X}_{model}},
+%\end{aligned}
+%\end{equation}
+%where  $ <\cdot>_x $ denotes the mean expectation of $ \cdot $ given distribution of $x$.
+%The first term of the right-hand side is easy to get with the given data set $ \mathbf{D} $, and the second term can be approximated by generating data samples $ \mathbf{C} $ according to $ p(\mathbf{x} \mid \Theta) $.
+%These generative samples is called ``fantasy data'' and can be generated using Monte Carlo Markov Chain (MCMC) sampling, see section~\ref{sec:mcmc}.
+%The detailed derivation process can be found in Appendix~\ref{app:part}.
+%Although in this example the integration of product of normal distribution is still tractable, it is also helpful to use numerical integration.
+%
+%Go back to the metaphor of the parameter field, solving PoE problem is like searching the highest point in a completely dark night without a torch.
+%The computation of Equation~(\ref{equ:part}) is to ``feel the gradient of the field under our feet''.~\cite{woodfordnotes}.
+%%The motivation underlining Contrastive Divergence algorithm is to boost the training speed of a Markov Chain in order to represent the distribution of a PoE (Product of Expert) model.
+%%Thus the sampling can be followed using this trained Markov Chain model. 
+%
+%%\paragraph{MCMC Sampling}
+%\subsubsection{MCMC Sampling}
+%\label{sec:mcmc}
+%In order to solve the integration of algebraically intractable equations we can use numerical integration to approximate.
+%One of the popular method is Monte Carlo integration:
+%\begin{equation}
+%\int_{a}^{b} f(x) \D x = \int_{a}^{b}\frac{f(x)}{q(x)}q(x)\D x = \dfrac{1}{N}\sum_{i=1}^{N}\frac{f(x_i)}{q(x_i)}.
+%\end{equation}
+%The integration of $ f(x) $ transforms to the integration of a new function $ F(x) = f(x)/q(x)  $ times its probability function $ q(x) $.
+%It could be approximated by sampling N data points $ x_i $ according to the probability distribution $ q(x) $, and calculate the average of $ F(x_i) $ as $ <F(x)>_{q(x)}$.
+%So the main question following is how to sample from a probability distribution.
+%
+%MCMC algorithm was proposed by Metropolis in 1953 and it became a wide-used sampling method.
+%The stationary distribution $ \pi $ exists when every two nodes in a Markov Chain are connected regardless of the initial state distribution $ \pi_0 $:
+%\begin{equation}
+%\begin{aligned}
+%&\pi(j) = \sum_{i=1}^{\infty}\pi(i)P_{ij} \\
+%&\pi P = \pi,
+%\end{aligned}
+%\end{equation}
+%where $ P $ is the transition probability matrix, and $ \pi $ is in the state space of a MC and the sum, $ \sum_{i=1}^{\infty}\pi(i) $,of a state distribution is 1.
+%Thus based on the useful theorem of MC, sampled sequence $ \{x_0, x_1, ..., x_n, ... \}$ from a MC complies with its stationary distribution $ \pi(x) $.
+%Metropolis stated that if a MC has a stationary distribution, $ q(x) $, which is exactly needed to sample from, then we can easily obtain a sample sequence along the MC according to the transformation probability matrix $ P $.
+%Here so far we are describing the MC with discrete states, however the it also applies to continuous $ \pi $ and $ P $.
+%The problem here is to build $ P $ to make the stationary distribution equal to the required probability, $ \pi(x) = q(x) $.
+%
+%So the other useful theorem (detailed balance) lies here, if an aperiodic MC is reversible: $\pi (i) P_{ij} = \pi (j) P_{ji},$ then $ \pi $ is the stationary distribution.
+%It is a stronger condition than the previous theorem, so most of the MCs are not generally eligible:
+%\begin{equation}
+%\pi (i) P_{ij} \neq \pi (j) P_{ji}.
+%\end{equation}
+%Thus we can introduce another parameter matrix, $ \alpha $ to make a general MC reversible:
+%\begin{equation}
+%\pi (i) P_{ij} \alpha_{ij} = \pi (j) P_{ji} \alpha_{ji}	,
+%\end{equation}
+%where $ \alpha_{ij} = \pi(j) P_{ji} $ and $ \alpha_{ji} = \pi(i) P_{ij}$.
+%The altered transformation probability matrix is $ P'_{ij} =  P_{ij} \alpha_{ij}$ and $ P'_{ji} =  P_{ji} \alpha_{ji}$, and the MC complies the detailed balance condition: $\pi (i) P'_{ij} = \pi (j) P'_{ji}$.
+%The matrix parameter $ \alpha $ is called as ``acceptance rate'', and its physic meaning is as follows: when state $ i $ transforms to state $ j $ with a probability of $ P_{ij} $, the transformation is accepted by the rate of $ \alpha_{ij} $.
+%Since the accept rate may be too low for the sampling to move along the MC, we can normalise the $ \alpha $ pair to 1:
+%\begin{equation}
+%\alpha^{'}(i,j) = min \left\{\frac{\pi(j)P_{ji}}{\pi(i)P_{ij}},1\right\}.
+%\end{equation}
+%The algorithm is called Metropolis-Hastings and described in following:
+%\begin{algorithm}[h]
+%	\caption{Metropolis-Hastings Sampling}
+%	\label{alg:mcmc}
+%	\begin{algorithmic}
+%		
+%		%	    \Procedure{Correction}{coeffs $C$, correlations $Q$}
+%		\State Initialisation $x_0 = s_{random}$, \Comment{$ x $:sampling sequence and $s$:state in MC}
+%		\For{$t=1, 2, ..., N$}
+%		\State $y \sim p_(x \mid x_{t-1})$ 
+%		\Comment{Random drawing the next state by the transformation probability matrix $P$}
+%		\State $ u \sim Uniform[0,1] $ 
+%		\Comment{Random drawing from a uniform distribution}
+%		\If {$ u < \alpha^{'}(x_{t-1},y) = min \left\{\frac{q(y)p_(x_{t-1} \mid y)}{q(x_{t-1})p_(y \mid x_{t-1})},1\right\} $}
+%		\State {$x_t = y$} \Comment{Accept the transformation when the random number is less than $\alpha$}
+%		\Else \State {$x_t = x_{t-1}$}  \Comment{Transformation is refused elsewise}
+%		\EndIf
+%		\EndFor
+%	\end{algorithmic}
+%\end{algorithm}
+%
+%The probability model function as the product of N normal distributions can be approximated by using this Metropolis-Hastings sampling.
+%
+%%\paragraph{Gibbs Sampling}
+%\subsubsection{Gibbs Sampling}
+%\label{sec:Gibbs}
+%For high dimensional data sampling, it is possible to make the accept rate to 1 which increases the convergence speed dramatically.
+%According to conditional probability:
+%\begin{equation}
+%P(A \mid B) = \frac{P(A \cap B)}{P(B)}.
+%\end{equation}
+%For a $ n $ dimensional data $ (\mathbf{x}, y) $ where $ \mathbf{x}=(x_1,x_2,...,x_{n-1}) $, the joint probability of $p(\mathbf{x},y)$ is:
+%\begin{equation}
+%p(\mathbf{x},y) = p(y \mid \mathbf{x})p(\mathbf{x}).
+%\end{equation}
+%Thus, during sampling if we restrict the direction of transformation to one single axis(dimension), $ y $, from point $ A(\mathbf{x}_1, y_1) $ to point $ B(\mathbf{x}_1, y_2)$:
+%\begin{equation}
+%p(\mathbf{x}_1, y_1)p(y_2 \mid \mathbf{x}_1) = p(\mathbf{x}_1, y_2)p(y_1 \mid \mathbf{x}_1) = p(\mathbf{x}_1)p(y_1 \mid \mathbf{x}_1)p(y_2 \mid \mathbf{x}_1),
+%\end{equation}
+%then, the MC obeys the condition of detailed balance.
+%So the stationary distribution $ \pi(x_1,x_2,...,x_n) $ equals to the joint probability $ p(x_1,x_2,...,x_n) $ and the transformation probability matrix P is consisted of the conditional probability of each dimension $ k $ $,  p(x_k \mid x_1,...,x_{k-1},x_{k+1},...,x_n) $.
+%Therefore, given the conditional distribution of each variable for a multivariate distribution Gibbs sampling is able to approximate the joint distribution with long enough sample sequence.
+%Gibbs sampling is described as follows:
+%\begin{algorithm}[h]
+%	\caption{Gibbs Sampling}
+%	\label{alg:gibbs}
+%	\begin{algorithmic}
+%		
+%		%	    \Procedure{Correction}{coeffs $C$, correlations $Q$}
+%		\State Initialisation $\mathbf{x}_0 = [x_0(1),x_0(2),...,x_0(M)]$,  \Comment{Random initialise $\mathbf{x}_0$}
+%		\For{$t=1, 2, ..., N$}
+%		\For{$k=1, 2, ..., M$}
+%		\State $ x_t(k) = p(x(k) \mid x_{t-1}(1),x_{t-1}(2),...,x_{t-1}(k-1),x_{t-1}(k+1),...,x_{t-1}(M))$\\
+%		\Comment{Sampling by the conditional distribution}
+%		\EndFor
+%		\EndFor
+%	\end{algorithmic}
+%\end{algorithm}
+%
+%%\paragraph{CD Instead of KL(Kullback-Leibler)}
+%\subsubsection{CD Instead of KL(Kullback-Leibler)}
+%\label{sec:CD}
+%Kullback-Leibler divergence is the measure of how different two probability distributions are:
+%\begin{equation}
+%\begin{aligned}
+%KL(P \mid \mid Q)
+%&= \int P(\mathbf{x}) \log \frac{P(\mathbf{x})}{Q(\mathbf{x})} \D \mathbf{x}\\
+%%= \sum_{\mathbf{x}} P(\mathbf{x}) \log \frac{P(\mathbf{x})}{Q(\mathbf{x})} \\
+%&= \int P(\mathbf{x}) \log P(\mathbf{x}) \D \mathbf{x} - \int P(\mathbf{x}) \log Q(\mathbf{x}) \D \mathbf{x}\\
+%%=  \sum_{\mathbf{x}} P(\mathbf{x}) \log P(\mathbf{x}) - \sum_{\mathbf{x}} P(\mathbf{x}) \log Q(\mathbf{x})\\
+%&= \left \langle \log P(\mathbf{x}) \right \rangle_{\mathbf{X} \sim P(\mathbf{x})} - \left \langle \log Q(\mathbf{x}) \right \rangle_{\mathbf{X} \sim P(\mathbf{x})} ,
+%\end{aligned}
+%\end{equation}
+%and the second term of the right hand side is the average log-likelihood function (see Equation~\ref{equ:like}) if $P(\mathbf{x})$ is the training data distribution and $Q(\mathbf{x})$ is the model distribution:
+%\begin{equation}
+%\begin{aligned}
+%& KL \left( p(\mathbf{x} \mid \mathbf{D}) \mid \mid p(\mathbf{x} \mid \Theta) \right)
+%=   \left \langle \log p(\mathbf{d} \mid \mathbf{D}) \right \rangle_{\mathbf{D}} - \left \langle \log p(\mathbf{d} \mid \Theta) \right \rangle_{\mathbf{D}}, \textit{where} \\
+%& \hat{l} (\Theta \mid \mathbf{D}) =\frac{1}{K}\log  L (\Theta \mid \mathbf{D}) 
+%=  \frac{1}{K}\log p(\mathbf{D} \mid \Theta ) 
+%= \frac{1}{K} \sum_{k=1}^{\mathbf{K}} \log f(\mathbf{d}_k \mid \Theta )
+%= \left \langle \log p(\mathbf{d} \mid \Theta) \right \rangle_{\mathbf{D}}.
+%\end{aligned}
+%\end{equation}
+%We use $ \mathbf{D} $ instead of $ \mathbf{X} \sim p(\mathbf{x} \mid \mathbf{D}) $, for $ p(\mathbf{x} \mid \mathbf{D}) $ is the distribution of data set $ \mathbf{D} $.
+%If we need to generate a sample sequence according to the distribution $ p(\mathbf{x} \mid \mathbf{D}) $, $ \mathbf{D} $ itself is the most approximated.
+%Since $\left \langle \log p(\mathbf{d} \mid \mathbf{D}) \right \rangle_{\mathbf{D}}$ is independent with model parameters, the negative partial derivative is the same with Equation~(\ref{equ:part}):
+%\begin{equation}
+%\label{equ:kl}
+%-\dfrac{\partial KL \left( p(\mathbf{x} \mid \mathbf{D}) \mid \mid p(\mathbf{x} \mid \Theta) \right)}{\partial \theta}
+%= \dfrac{\partial \hat{l} (\Theta \mid \mathbf{D})}{\partial \theta} \\
+%= \left \langle \dfrac{\partial \log f(\mathbf{d} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{D}} - \left \langle \dfrac{\partial \log f(\mathbf{c} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{C} \sim p(\mathbf{x} \mid \Theta)} .
+%\end{equation}
+%Therefore, for each iteration searching in the parameter space we use $ k $ number of training data $ \mathbf{D}=(\mathbf{d}_1, \mathbf{d}_2, ..., \mathbf{d}_k) $ and fantasy data $ \mathbf{C}=(\mathbf{c}_1, \mathbf{c}_2, ..., \mathbf{c}_k) $.
+%If $ k $ is big enough, sampling sequences $ \mathbf{D} $ and $ \mathbf{C} $ are able to approximate the data and the model distribution thus to get derivatives of the KL function.
+%However, if we just take a small number of data, even $ k = 1 $ per iteration~\cite{hinton2002training}, the KL divergence can be seen as a ``k-step contrastive convergence ($ CD_{k}) $'':
+%\begin{equation}
+%\label{equ:cdk}
+%\dfrac{\partial CD_{k}}{\partial \theta} 
+%= - \left \langle \dfrac{\partial \log f(\mathbf{d} \mid \Theta)}{\partial \theta}\right \rangle_{(\mathbf{d}_1, \mathbf{d}_2, ..., \mathbf{d}_k) } + \left \langle \dfrac{\partial \log f(\mathbf{c} \mid \Theta)}{\partial \theta}\right \rangle_{(\mathbf{c}_1, \mathbf{c}_2, ..., \mathbf{c}_k) \sim p(\mathbf{x} \mid \Theta)}.
+%\end{equation}
+%Since the searching step $ \eta $ is very small, the derivatives of points in a small area can be seen as the same.
+%%	The step made for a single $ CD_{k} $ can be approximated by summation of $ k $ steps of $ CD_{1} $ as long as the searching does not go far.
+%%	Otherwise the searching path may follow some direction for accumulated steps away from the original area, thus significantly reduces the training time.
+%
+%%\paragraph{Discussion}
+%\subsubsection{Discussion}
+%Although there is practical explanation on using $CD_1$ for parameter space searching, arguments exist over whether the search converge to the same maxima/minima as $CD_\infty$~\cite{wu2015bias}.
+%Moreover, is the parameter searching still following the original objective function?	
+%As an initial exploration over the problem we tested some experiments on Section~\ref{sec:cd1}. 
+%%	Thus,
+%%	\begin{equation}
+%%		\dfrac{\partial [KL(p^0 \mid \mid p^{\infty}) - KL(p^1 \mid \mid p^{\infty})]}{\partial \theta}
+%%		= \left \langle \dfrac{\partial \log f(\mathbf{x} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{p}^1} - \left \langle \dfrac{\partial \log f(\mathbf{x} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{p}^0},
+%%	\end{equation}
+%%	where the second term in equation~(\ref{equ:kl}) cancels out.
+%%	So Hinton proposed \textcolor{red}{the new contrastive divergence CD to make Gibbs sampling with only 1 step}.
+%%	Contrastive divergence is defined as:
+%%	\begin{equation}
+%%		CD_n = KL(p^0 \mid \mid p^{\infty}) - KL(p^n \mid \mid p^{\infty})
+%%	\end{equation}
+%%\subsection{RBM\cite{zhang2013rbm}}
+\section{RBM}
 RBM is a restricted version of Boltzman machine, where there are only connections between layers of units but not between units within a layer, see Figure~\ref{fig:RBM}.
 $ v $ is the layer of visible units representing the observable data $ \mathbf{v} $, while $ h $ are the hidden units which can be seen as feature extractors.
 The connections between the hidden layer and the visible layers are bidirectional weights, $ \mathbf{W} $.

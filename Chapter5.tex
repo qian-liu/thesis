@@ -7,10 +7,10 @@ This chapter continues the hot topic of deep SNNs and takes extra step forward t
 
 %Paragraph Two: FOCUS
 %Now focus the reader’s attention on what this chapter is specifically going to do and why it is important. In this chapter I will examine.. I will present… I will report … This is crucial in (aim of thesis/research question) in order to….
-In this chapter we will present the Spike-based Rate Multiplication method ~(SRM).
+In this chapter we will present the Spike-based Rate Multiplication method~(SRM).
 This algorithm successfully transfers multiplication operations to possibility of some specific firing events of a pair of rate-coded spike trains.
-Moreover, these firing events can be captured with Synaptic-Time-Dependent Plasticity (STDP) rule thus to update the weights accordingly in an on-line, event-based, and biologically-plausible manner.
-Such weight updates suit the conventional unsupervised deep learning modules, such as Autoencoders (AE) and Restricted Boltzmann Machines (RBMs), where multiplication of the neural outputs is the main operation.
+Moreover, these firing events can be captured with Synaptic-Time-Dependent Plasticity~(STDP) rule thus to update the weights accordingly in an on-line, event-based, and biologically-plausible manner.
+Such weight updates suit the conventional unsupervised deep learning modules, such as Autoencoders (AE) and Restricted Boltzmann Machine~(RBMs), where multiplication of the neural outputs is the main operation.
 %todo maybe sell online event-based STDP? At least in Chapter 2, when introducing learning algorithms.
 It is crucial to provide deep SNNs with effective on-line training algorithms not only for building successful spike-based object recognition applications, but also for better power efficiency and scalability when training on neuromorphic hardware.
 
@@ -193,11 +193,11 @@ The input vector, seen as an image, repeatedly fed into the network $5,000$ time
 \begin{figure}
 	\centering
 	\begin{subfigure}[t]{0.45\textwidth}
-		\includegraphics[width=\textwidth]{pics_sdlm/20_exp_AE/exp1_weights_non.pdf}
+		\includegraphics[width=\textwidth]{pics_sdlm/20_exp_AE/exp1_weights_non.png}
 		\caption{Weights of Exp1}
 	\end{subfigure}
 	\begin{subfigure}[t]{0.45\textwidth}
-		\includegraphics[width=\textwidth]{pics_sdlm/20_exp_AE/exp2_weights_non.pdf}
+		\includegraphics[width=\textwidth]{pics_sdlm/20_exp_AE/exp2_weights_non.png}
 		\caption{Weights of Exp2}
 	\end{subfigure}
 	\begin{subfigure}[t]{0.45\textwidth}
@@ -243,11 +243,11 @@ The reconstructions, shown in Figure~\ref{fig:ae_orig}(d), of smaller values sta
 \begin{figure}
 	\centering
 	\begin{subfigure}[t]{0.45\textwidth}
-		\includegraphics[width=\textwidth]{pics_sdlm/21_exp_AE_noise/exp1_weights_s.pdf}
+		\includegraphics[width=\textwidth]{pics_sdlm/21_exp_AE_noise/exp1_weights_s.png}
 		\caption{Weights of Exp1}
 	\end{subfigure}
 	\begin{subfigure}[t]{0.45\textwidth}
-		\includegraphics[width=\textwidth]{pics_sdlm/21_exp_AE_noise/exp2_weights_s.pdf}
+		\includegraphics[width=\textwidth]{pics_sdlm/21_exp_AE_noise/exp2_weights_s.png}
 		\caption{Weights of Exp2}
 	\end{subfigure}
 	\begin{subfigure}[t]{0.45\textwidth}
@@ -314,11 +314,11 @@ So was the reconstruction, which led to the lower level of loss.
 \begin{figure}
 	\centering
 	\begin{subfigure}[t]{0.45\textwidth}
-		\includegraphics[width=\textwidth]{pics_sdlm/30_exp_RBM/exp1_weights_non.pdf}
+		\includegraphics[width=\textwidth]{pics_sdlm/30_exp_RBM/exp1_weights_non.png}
 		\caption{Weights of Exp1}
 	\end{subfigure}
 	\begin{subfigure}[t]{0.45\textwidth}
-		\includegraphics[width=\textwidth]{pics_sdlm/30_exp_RBM/exp2_weights_non.pdf}
+		\includegraphics[width=\textwidth]{pics_sdlm/30_exp_RBM/exp2_weights_non.png}
 		\caption{Weights of Exp2}
 	\end{subfigure}
 	\begin{subfigure}[t]{0.45\textwidth}
@@ -353,11 +353,11 @@ So was the reconstruction, which led to the lower level of loss.
 \begin{figure}
 	\centering
 	\begin{subfigure}[t]{0.45\textwidth}
-		\includegraphics[width=\textwidth]{pics_sdlm/31_exp_RBM_noise/exp1_weights_s.pdf}
+		\includegraphics[width=\textwidth]{pics_sdlm/31_exp_RBM_noise/exp1_weights_s.png}
 		\caption{Weights of Exp1}
 	\end{subfigure}
 	\begin{subfigure}[t]{0.45\textwidth}
-		\includegraphics[width=\textwidth]{pics_sdlm/31_exp_RBM_noise/exp2_weights_s.pdf}
+		\includegraphics[width=\textwidth]{pics_sdlm/31_exp_RBM_noise/exp2_weights_s.png}
 		\caption{Weights of Exp2}
 	\end{subfigure}
 	\begin{subfigure}[t]{0.45\textwidth}
@@ -478,11 +478,11 @@ The shared weights, three individual populations of neurons compose the training
 \begin{figure}
 	\centering
 	\begin{subfigure}[t]{0.45\textwidth}
-		\includegraphics[width=\textwidth]{pics_sdlm/00_exp_SAE_Orig/exp1_weights_s.pdf}
+		\includegraphics[width=\textwidth]{pics_sdlm/00_exp_SAE_Orig/exp1_weights_s.png}
 		\caption{Weights of Exp1}
 	\end{subfigure}
 	\begin{subfigure}[t]{0.45\textwidth}
-		\includegraphics[width=\textwidth]{pics_sdlm/00_exp_SAE_Orig/exp2_weights_s.pdf}
+		\includegraphics[width=\textwidth]{pics_sdlm/00_exp_SAE_Orig/exp2_weights_s.png}
 		\caption{Weights of Exp2}
 	\end{subfigure}
 	\begin{subfigure}[t]{0.45\textwidth}
@@ -569,11 +569,11 @@ meanwhile, down-arrow highlights the weight depression when $v'_j$ generates a s
 \begin{figure}
 	\centering
 	\begin{subfigure}[t]{0.45\textwidth}
-		\includegraphics[width=\textwidth]{pics_sdlm/10_exp_SRBM_Orig/exp1_weights_s.pdf}
+		\includegraphics[width=\textwidth]{pics_sdlm/10_exp_SRBM_Orig/exp1_weights_s.png}
 		\caption{Weights of Exp1}
 	\end{subfigure}
 	\begin{subfigure}[t]{0.45\textwidth}
-		\includegraphics[width=\textwidth]{pics_sdlm/10_exp_SRBM_Orig/exp2_weights_s.pdf}
+		\includegraphics[width=\textwidth]{pics_sdlm/10_exp_SRBM_Orig/exp2_weights_s.png}
 		\caption{Weights of Exp2}
 	\end{subfigure}
 	\begin{subfigure}[t]{0.45\textwidth}
@@ -638,19 +638,19 @@ And the default parameters are the same as in Table\ref{tbl:srm}.
 	\begin{subfigure}[c]{0.45\textwidth}\raggedleft
 		\myrowlabel{Orignal SAE}
 		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
-			{pics_sdlm/00_exp_SAE_Orig/exp2_weights_s.pdf}}\\
+			{pics_sdlm/00_exp_SAE_Orig/exp2_weights_s.png}}\\
 		\myrowlabel{S1}
 		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
-			{pics_sdlm/01_exp_SAE_Orig_long/exp2_weights_s.pdf}}\\
+			{pics_sdlm/01_exp_SAE_Orig_long/exp2_weights_s.png}}\\
 		\myrowlabel{S2}
 		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
-			{pics_sdlm/03_exp_SAE_noise_long/exp2_weights_s.pdf}}
+			{pics_sdlm/03_exp_SAE_noise_long/exp2_weights_s.png}}
 		\myrowlabel{S3}
 		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
-			{pics_sdlm/05_exp_SAE_teach_long/exp2_weights_s.pdf}}\\
+			{pics_sdlm/05_exp_SAE_teach_long/exp2_weights_s.png}}\\
 		\myrowlabel{S4}
 		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
-			{pics_sdlm/07_exp_SAE_all_long/exp2_weights_s.pdf}}
+			{pics_sdlm/07_exp_SAE_all_long/exp2_weights_s.png}}
 		\caption{Exp2 Weights}
 	\end{subfigure}%
 	\hspace{1em}
@@ -676,19 +676,19 @@ And the default parameters are the same as in Table\ref{tbl:srm}.
 	\begin{subfigure}[c]{0.45\textwidth}\raggedleft
 		\myrowlabel{Orignal SRBM}
 		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
-			{pics_sdlm/10_exp_SRBM_Orig/exp2_weights_s.pdf}}\\
+			{pics_sdlm/10_exp_SRBM_Orig/exp2_weights_s.png}}\\
 		\myrowlabel{S1}
 		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
-			{pics_sdlm/11_exp_SRBM_Orig_long/exp2_weights_s.pdf}}\\
+			{pics_sdlm/11_exp_SRBM_Orig_long/exp2_weights_s.png}}\\
 		\myrowlabel{S2}
 		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
-			{pics_sdlm/13_exp_SRBM_noise_long/exp2_weights_s.pdf}}
+			{pics_sdlm/13_exp_SRBM_noise_long/exp2_weights_s.png}}
 		\myrowlabel{S3}
 		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
-				{pics_sdlm/15_exp_SRBM_teach_long/exp2_weights_s.pdf}}\\
+				{pics_sdlm/15_exp_SRBM_teach_long/exp2_weights_s.png}}\\
 		\myrowlabel{S4}
 		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
-			{pics_sdlm/17_exp_SRBM_all_long/exp2_weights_s.pdf}}
+			{pics_sdlm/17_exp_SRBM_all_long/exp2_weights_s.png}}
 		\caption{Exp2 Weights}
 	\end{subfigure}%
 	\hspace{1em}
@@ -764,15 +764,15 @@ V_i(t+1)=V_i(t) + \sum_j w_{ij} s_j(t) - l~.
 %\begin{figure}
 %	\centering
 %	\begin{subfigure}[t]{0.32\textwidth}
-%		\includegraphics[width=\textwidth]{pics_sdlm/21_exp_AE_noise/exp3_weights_s.pdf}
+%		\includegraphics[width=\textwidth]{pics_sdlm/21_exp_AE_noise/exp3_weights_s.png}
 %		\caption{Weights of AE}
 %	\end{subfigure}
 %	\begin{subfigure}[t]{0.32\textwidth}
-%		\includegraphics[width=\textwidth]{pics_sdlm/00_exp_SAE_Orig/exp3_weights_s.pdf}
+%		\includegraphics[width=\textwidth]{pics_sdlm/00_exp_SAE_Orig/exp3_weights_s.png}
 %		\caption{Weights of Original SAE}
 %	\end{subfigure}
 %	\begin{subfigure}[t]{0.32\textwidth}
-%		\includegraphics[width=\textwidth]{pics_sdlm/07_exp_SAE_all_long/exp3_weights_s.pdf}
+%		\includegraphics[width=\textwidth]{pics_sdlm/07_exp_SAE_all_long/exp3_weights_s.png}
 %		\caption{Weights of Optimised SAE}
 %	\end{subfigure}\\
 %	\begin{subfigure}[t]{0.32\textwidth}
@@ -817,15 +817,15 @@ V_i(t+1)=V_i(t) + \sum_j w_{ij} s_j(t) - l~.
 %\begin{figure}
 %	\centering
 %	\begin{subfigure}[t]{0.32\textwidth}
-%		\includegraphics[width=\textwidth]{pics_sdlm/31_exp_RBM_noise/exp3_weights_s.pdf}
+%		\includegraphics[width=\textwidth]{pics_sdlm/31_exp_RBM_noise/exp3_weights_s.png}
 %		\caption{Weights of RBM}
 %	\end{subfigure}
 %	\begin{subfigure}[t]{0.32\textwidth}
-%		\includegraphics[width=\textwidth]{pics_sdlm/10_exp_SRBM_Orig/exp3_weights_s.pdf}
+%		\includegraphics[width=\textwidth]{pics_sdlm/10_exp_SRBM_Orig/exp3_weights_s.png}
 %		\caption{Weights of Original SRBM}
 %	\end{subfigure}
 %	\begin{subfigure}[t]{0.32\textwidth}
-%		\includegraphics[width=\textwidth]{pics_sdlm/17_exp_SRBM_all_long/exp3_weights_s.pdf}
+%		\includegraphics[width=\textwidth]{pics_sdlm/17_exp_SRBM_all_long/exp3_weights_s.png}
 %		\caption{Weights of Optimised SRBM}
 %	\end{subfigure}\\
 %	\begin{subfigure}[t]{0.32\textwidth}
@@ -1253,12 +1253,11 @@ Conversely the SAE-S2 wins in energy-efficient training and testing on classific
 %	The Loss (Mean Squared Error) of each reconstruction is labelled under each figure.
 %	All the reconstructions are taken on the steps of 1K, 10K, 60K (1~epoch), 120K (2~epoch), and 160K (3~epoch) during training.}
 %\end{figure}
-\section{Discussions}	
 
 \section{Summary}
-SNNs can be trained with biologically-plausible synaptic plasticity and demonstrate competent learning capability as ANNs, even as state-of-the-art deep architectures: AEs and RBMs.
-The proposed Spike-based Rate Multiplication (SRM) and its improving solutions formalise a local learning algorithm based on STDP, the on-line, event-based learning rule, and have been applied to train spiking AEs and RBMs.
-%This is the first attempt of formalising the biological-plausible learning rule to compete with the unsupervised deep learning models.
-The promising results exhibit equivalent or superior classification and reconstruction capabilities for SAEs and SRBMs compared to their conventional methods.
+SNNs can be trained with biologically-plausible synaptic plasticity and demonstrate competent learning capability as ANNs, even as deep architectures: AEs and RBMs.
+The proposed Spike-based Rate Multiplication and its improving solutions formalise a local learning algorithm based on STDP, the on-line, event-based learning rule, and have been applied to train spiking AEs and RBMs.
+This is the first attempt of formalising the biological-plausible learning rule to compete with the unsupervised deep learning models.
+The promising results exhibit equivalent or even superior classification and reconstruction capabilities for SAEs and SRBMs compared to their conventional methods.
 In addition, the spike-based models can be implemented on neuromorphic systems in a very energy-efficient and scalable manner.
 %A conclusion should be a short summary of the most pithy points in the chapter. It’s the thing that you’re going to leave the reader with. Given that they’ve just spent time reading the whole chapter, they don’t want to read it all again. What do you most want the reader to remember about this chapter? What is the key to the argument you’ve made, the most significant thing(s) that they have to keep in their mind as they go forward? In a thesis, a conclusion is usually fairly brief and to the point. Barbara and I call this ‘crunching’. Crunching the conclusion requires some thought – it’s not an afterthought. It is always about your take-home message, if you like. So don’t go on at length in the conclusion – Crunch.

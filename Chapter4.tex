@@ -3,10 +3,10 @@
 %{\fontsize{20pt}{0pt}\selectfont \textit{an Activation Function That Enables SNN to Be Trained Just Like ANNs}}
 
 %Paragraph One: LINK
-In the last chapter, we answered our first research question of validating the capability of real-time cognitive application built on neuromorphic platform by building an object recognition prototype running completely on hardware in an absolute spike-based fashion.
-It built up the basis for the later research that neuromorphic hardware has been capable of running large applications standing alone without a general computer.
-Here we proceed to the next step to equip these large neuromorphic systems with equivalent cognitive ability to that of state-of-the-art ANNs', which is addressed to the second research question.
-It is also possible to make a link between this chapter and the whole argument that this work contributes to an effective, straight-forward SNN training method which operates exactly as training ANN.
+%In the last chapter, we answered our first research question of validating the capability of real-time cognitive application built on neuromorphic platform by building an object recognition prototype running completely on hardware in an absolute spike-based fashion.
+%It built up the basis for the later research that neuromorphic hardware has been capable of running large applications standing alone without a general computer.
+Here we start with our first research question to the next step to equip these large neuromorphic systems with equivalent cognitive ability to that of state-of-the-art ANNs', which is addressed to the second research question.
+It is also possible to make a link between this chapter and the whole argument that this work contributes to an effective, straight-forward SNN training method which operates exactly as training ANNs.
 More significantly, the trained model fits directly to SNN without any transformation, and performs almost equivalently to ANNs on cognitive tasks.
 
 %Paragraph Two: FOCUS
@@ -224,9 +224,9 @@ Consequently, we propose the new activation function, Noisy Softplus, to replace
 		
 		
 		\item the high complexity of the Siegert function causes much longer training time and more energy, let alone the high-cost computation on its derivative.
-		\item the training uses Siegert function to estimate the output firing rate in the forward path, but uses the derivative of sigmoid function during back propagation for lower complexity.
-		However, due to the difference between Siegert and sigmoid functions, error is introduced. 
-		\item neurons have to fire at high frequency (higher than half of the maximum firing rate) to represent the activation of a sigmoid unit; as a result the network activity results in high power dissipation.
+%		\item the training uses Siegert function to estimate the output firing rate in the forward path, but uses the derivative of sigmoid function during back propagation for lower complexity.
+%		However, due to the difference between Siegert and sigmoid functions, error is introduced. 
+		\item neurons have to fire at high frequency (higher than half of the maximum firing rate) to represent the activation of a sigmoid unit; thus the network activity results in high power dissipation.
 		\item better learning performance has been reported using ReLU, so modelling ReLU-like activation function for spiking neurons is needed.  
 	\end{itemize}
 	
@@ -862,7 +862,7 @@ Consequently, we propose the new activation function, Noisy Softplus, to replace
 	\end{equation}
 	Thus, it may cost SpiNNaker 0.064~W, 192~J running for $3,000$~s with synaptic events of $8\times10^6/s$ to classify $10,000$ images (300~ms each) with an accuracy of 98.02\%.
 	The best performance reported using the larger network may cost SpiNNaker 0.43~W operating synaptic event rate at $5.34\times10^7/s$, consume 4271.6~J to classify all the images for 1~s each.
-\section{Discussions}		
+
 \section{Summary}
 %\section{Discussions}
 	Most significantly, we proposed the Noisy Softplus activation function which accurately models response firing rate of LIF neurons and overcomes the drawbacks of Siegert units.
@@ -879,12 +879,12 @@ Consequently, we propose the new activation function, Noisy Softplus, to replace
 %		\item the learning performance of Noisy Softplus is between Softplus and ReLU, which is supposed to outperform most of the other popular activation functions: for instance sigmoid.
 %	\end{itemize}
 
-	Moreover, we proposed complete SNN modelling method by using artificial neurons of combined activation;
+	Moreover, we proposed a complete SNN modelling method by using artificial neurons of combined activation;
 	this method can be generalised to activation units other than Noisy Softplus.
 	The training of an SNN model is exactly the same as ANN training, and the trained weights can be directly used in SNN without any transformation.
 	This method is simpler and even more straight-forward than the other ANN offline training methods which requires an extra step of converting ANN-trained weights to SNN's.
 	
-	In terms of classification/recognition accuracy, the performance of ANN-trained SNNs is nearly equivalent as ANNs, and the performance loss can  be partially solved by fine tuning.
+	In terms of classification/recognition accuracy, the performance of ANN-trained SNNs is nearly equivalent as ANNs, and the performance loss can be partially solved by fine tuning.
 	The best classification accuracy of 98.85\% using LIF neurons in PyNN simulation outperforms state-of-the-art SNN models of LIF neurons which will be listed in Chapter~6, and is very close to the result using IF neurons~\cite{diehl2015fast}. 
 	
 
