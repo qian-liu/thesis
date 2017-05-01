@@ -48,9 +48,11 @@ training (40 individuals $\times$ 8 images) and testing data (40 individuals $\t
 %\cite{Qiao2015re} presented an analogue on-line learning neuromorphic classification system which responds selectively to images of cars and motorbikes selected from the Caltech 101 dataset.
 %Generic training algorithms for pattern recognition~\cite{schmuker2014neuromorphic} and regression/classification tasks~\cite{thakur2016low} have been implemented on neuromorphic platforms.
 %The Convolutional Neural Network (CNN), also known as the \textit{ConvNet}, developed by, is a widely-used model based on a cortex-like framework.
-\cite{hubel1962receptive} first discovered the model of orientation selectivity (simple cells) and pooling mechanism (complex cells) in the primary cortex in cats, which lay the foundation of the Convolutional Neural Network (CNN)~\cite{lecun1998gradient}.
-An early Convolutional Spiking Neural Network (CSNN) model identified the faces of 35 persons with a CA of 98.3\% exploiting simple integrate and fire neurons~\cite{matsugu2002convolutional}.
-Another CSNN model~\cite{zhao2014feedforward} was trained and tested both with DVS raw data and Leaky Integrate-and-Fire (LIF) neurons.
+%\cite{hubel1962receptive} first discovered the model of orientation selectivity (simple cells) and pooling mechanism (complex cells) in the primary cortex in cats, which lay the foundation of the Convolutional Neural Network (CNN)~\cite{lecun1998gradient}.
+
+Convolutional Neural Network (ConvNet), inspired from the receptive field of vision cortex, has been implemented on spiking neurons.
+An early Spiking ConvNet model identified the faces of 35 persons with a CA of 98.3\% exploiting simple integrate and fire neurons~\cite{matsugu2002convolutional}.
+Another Spiking ConvNet model~\cite{zhao2014feedforward} was trained and tested both with DVS raw data and Leaky Integrate-and-Fire (LIF) neurons.
 It was capable of recognising three moving postures with a CA of about 99.48\% and classifying hand-written digits with 88.14\% accuracy on the MNIST-DVS dataset (see Section~\ref{sec:data}).
 In a further step forward,~\cite{camunas2012event} implemented a convolution processor module in hardware which could be combined with a DVS for high-speed recognition tasks.
 The inputs of the ConvNet were continuous spike events instead of static images or frame-based videos. 

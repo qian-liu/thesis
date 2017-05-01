@@ -15,8 +15,19 @@ In this chapter, we will give an overview of popular architectures and models of
 %RBM~\cite{hinton2002training}
 %由Hinton等人于2006年提出。基于深信度网(DBN)提出非监督贪心逐层训练算法，为解决深层结构相关的优化难题带来希望，随后提出多层自动编码器深层结构
 
-\subsection{Convolutional Neural Networks}~\cite{lecun1998gradient}
-%LeNet AlexNet GoogLeNet VGG ResNet
+\subsection{Convolutional Neural Networks}
+ConvNets are biologically inspired from the significant discovery of Hubel and Wiesel that the orientation selectivity (simple cells) and pooling mechanism (complex cells) represent the basic functions in the primary cortex in cats~\cite{hubel1962receptive}.
+These simple cells fire at a high frequency to their preferred orientation of visual stimuli within their receptive fields~(shown in Figure~\ref{Fig:v1}), small sub-regions of the visual field.
+This means a single simple cell works like a pattern detector within its small receptive field thus also providing the exact spatial location of the detected feature in the entire visual field.
+Meanwhile, a complex cell corresponds to the existence of a pattern within a larger receptive field but loses the exact position of the pattern.
+%This means that its receptive field cannot be mapped into fixed excitatory and inhibitory zones. Rather, it will respond to patterns of light in a certain orientation within a large receptive field, regardless of the exact location.
+%The receptive fields composes of the entire visual field.
+%These cells act as local filters over the input space and are well-suited to exploit the strong spatially local correlation present in natural images.
+
+NeoCognitron~\cite{fukushima1982neocognitron} was the first to mimic the functions of V1 simple and complex neurons in artificial neural network, and later was improved by shared weights in LeNet-5~\cite{lecun1998gradient}, the typical ConvNet used today.
+The mechanism of shared weights forms the essence of convolution in a ConvNet, which hugely reduces the number of weights parameters in a network.
+The most significant milestones produced by deep ConvNet dominated the best performances in the annual ImageNet Challenge~\cite{russakovsky2015imagenet} for object detection and image classification: AlexNet~\cite{krizhevsky2012imagenet}, VGG Net~\cite{simonyan2014very}, GoogLeNet~\cite{szegedy2015going} and ResNet~\cite{he2016deep}.
+
 
 \subsection{Recurrent Neural Networks}
 %RNN~\cite{graves2013speech} LSTM~\cite{hochreiter1997long}
@@ -92,8 +103,13 @@ In this chapter, we will give an overview of popular architectures and models of
 
 
 \section{Convolutional Network}
-LeNet
-
+A typical ConvNet (LeNet) consists of three types of neural layers: convolutional layer of simple cells, pooling layer of complex cells and fully-connected~(FC) layer, shown in Figure~\ref{Fig:ConvNet}. 
+	\begin{figure}[bt]
+		\centering
+		\includegraphics[width=0.9\textwidth]{pics_snn/convnet.pdf}
+		\caption{Typical ConvNet architecture.}
+		\label{Fig:ConvNet}
+	\end{figure}
 
 
 
@@ -106,10 +122,10 @@ Then the hidden units are activated by the input $\mathbf{net\_h}$ according to 
 Finally, using the same approach the output of the network is generated, $\mathbf{v'}=\sigma(\mathbf{net\_v'})$, as the reconstruction of the input data.
 Thus, autoencoders are trained without given target values, work as unsupervised learning models.
 \begin{equation}
-h_j=\sigma(\sum_i v_i w^T_{ij})
+h_j=\sigma(net\_h_j)=\sigma(\sum_i v_i w^T_{ij})
 \end{equation}
 \begin{equation}
-v'_j=\sigma(\sum_i h_i w_{ij})
+v'_j=\sigma(net\_v_{j'})=\sigma(\sum_i h_i w_{ij})
 \end{equation}
 
 \begin{figure}
@@ -157,25 +173,26 @@ Since we use tied weights in the network, the weight tuning only needs to apply 
 \Delta w_{ij} = -\eta \frac{\partial E_k}{\partial w_{ij}} &= -\eta \frac{\partial E_k}{\partial v'_j} \frac{\partial v'_j}{\partial net\_v'_j} \frac{\partial net\_v'_j}{\partial w_{ij}}, \textrm{ where} \\
 \frac{\partial E_k}{\partial v'_j} &= \frac{\partial \frac{1}{2} \sum_l (v_l - {v'}_l)^2}{\partial v'_j}= \frac{\partial \frac{1}{2}(v_j - {v'}_j)^2}{\partial v'_j}= v'_j - v_j, \\
 %	\frac{\partial v'_j}{\partial net\_v'_j} &= \begin{cases} 1, v'_j>0\\0, v'_j<=0\\ \end{cases}, \textrm{using ReLU,}\\
-\frac{\partial v'_j}{\partial net\_v'_j} &=\left\{
-\begin{aligned}
-& 1, net\_v'_j > 0 \\
-& 0, net\_v'_j < = 0
-\end{aligned} 
-\right.    \textrm{using ReLU, }\\
+%\frac{\partial v'_j}{\partial net\_v'_j} &=\left\{
+%\begin{aligned}
+%& 1, net\_v'_j > 0 \\
+%& 0, net\_v'_j < = 0
+%\end{aligned} 
+%\right.    \textrm{using ReLU, }\\
+\frac{\partial v'_j}{\partial net\_v'_j} &= \sigma'(net\_{v'_j})~, \textrm{~derivative of the activation function} \\
 \frac{\partial net\_v'_j}{\partial w_{ij}} &= \frac{\partial h_i w_{ij}}{\partial w_{ij}} = h_i.
 \end{aligned}
 \end{equation}
 Thus, the weight gradient is calculated as:
 \begin{equation}
 \label{equ:ae_widrow_hoff}
-\Delta w_{ij} = \left \{
-\begin{aligned}
-& \eta h_i(v_j - v'_j), &net\_v'_j > 0 \\
-& 0, & net\_v'_j < = 0
-\end{aligned} 
-%= \eta h_i(v_j - v'_j)
-\right.
+%\Delta w_{ij} = \left \{
+%\begin{aligned}
+%& \eta h_i(v_j - v'_j), &net\_v'_j > 0 \\
+%& 0, & net\_v'_j < = 0
+%\end{aligned} 
+%\right.
+\Delta w_{ij} = \eta h_i \sigma'(net\_{v'_j}) (v_j - v'_j)~~.
 \end{equation}
 
 %\section{Restricted Boltzmann Machine}
