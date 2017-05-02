@@ -103,13 +103,36 @@ The most significant milestones produced by deep ConvNet dominated the best perf
 
 
 \section{Convolutional Network}
-A typical ConvNet (LeNet) consists of three types of neural layers: convolutional layer of simple cells, pooling layer of complex cells and fully-connected~(FC) layer, shown in Figure~\ref{Fig:ConvNet}. 
 	\begin{figure}[bt]
 		\centering
-		\includegraphics[width=0.9\textwidth]{pics_snn/convnet.pdf}
+		\includegraphics[width=0.95\textwidth]{pics_snn/convnet.pdf}
 		\caption{Typical ConvNet architecture.}
 		\label{Fig:ConvNet}
 	\end{figure}
+
+A typical ConvNet (LeNet) consists of three types of neural layers: convolutional layer of simple cells, pooling layer of complex cells and fully-connected~(FC) layer, shown in Figure~\ref{Fig:ConvNet}.
+From the left to right of Figure~\ref{Fig:ConvNet}, we illustrate the mechanism of ConvNet in detail.
+
+The pixels of input image are normalised and fed into the first convolution layer.
+Every simple cell takes inputs within its receptive field and the weights on each input pixel is determined by the convolutional kernel which has the same size as the receptive field.
+The output of convolving a kernel with some input image composes a feature map in convolutional layer, thus 6 feature maps in the first convolutional layer.
+The convolution is conducted with input size of $28\times28$, kernel size of $5\times5$, and stride of 1, then produces feature maps with size of $24\times24$.
+The size of these feature maps is calculated as $[(input_{width}- kernel_{width}+1)/stride]^2$.
+
+The complex neurons of pooling layers either output the maximum input within their receptive fields (max pooling) or the averaging (average pooling).
+The pooling process reduces the spatial size of the feature maps but keeps the amount of features.
+%TODO rewording
+A commonly used max pooling of $2\times2$, shown in Figure~\ref{Fig:ConvNet}, causes a filter of 2 by 2 to traverse over the feature map of the previous layer and picks the largest element from the receptive field to be included in the next feature map which is of size $12\times12$.
+
+The next convolution layer drives a 3D feature vectors of depth 6 (6 feature maps) to convolve with 12 3D kernels of $6\times5\times5$, and produces 12 feature maps.
+The example demonstrates a common set-up of using the whole 3D feature vectors, usually the feature maps can be selected to be involved in different convolutions.
+Then a pooling layer follows the convolution.
+Repeating these alternative presentation of a convolution layer followed by a pooling one builds up deeper ConvNet.
+
+FC layers connects to the last pooling layer with all to all connections, predicts the classification of the input image, and back propagates errors to all the preceding layers.
+%Chain rule, reduced parameter amounts. 
+ 
+
 
 
 
