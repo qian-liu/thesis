@@ -8,7 +8,7 @@ These tasks were once dominated by human intelligence and solved by biological n
 However, humans and many other animals still win against computers in practical tasks, such as vision, and outperform in terms of size and energy cost over several orders of magnitude.
 For instance, AlphaGO~\cite{silver2016mastering} consumed 1~MW of power on its 1920 CPUs and 280 GPUs when playing the game with one of the best human players whose brain only consumed about 20~W.
 Although we are still far from understanding the brain thoroughly, it is believed that the performance gap between computation in the biological nervous system and in a computer lies in the fundamental computing units and the way they act.
-Computers employ Boolean logic and deterministic digital operations based on usually synchronous clocks while nervous systems employ parallel-distributed, event-driven, stochastic unreliable components~\cite{indiveri2009artificial}.
+Computers employ Boolean logic and deterministic digital operations based usually on synchronous clocks while nervous systems employ parallel-distributed, event-driven, stochastic unreliable components~\cite{indiveri2009artificial}.
 The impressive disparities in cognitive capabilities and energy consumption drives the research into biologically-inspired computers.
 
 
@@ -27,27 +27,30 @@ The impressive disparities in cognitive capabilities and energy consumption driv
 %Two aims
 Neuromorphic engineering (NE) was proposed by Carver Mead in the late 1980s \cite{Mead:1989:AVN:64998} to build analogue circuits that mimic the biological neural cells and the architecture of the nervous system using very-large-scale integration (VLSI) technology.
 %``As engineers, we would be foolish to ignore the lessons of a billion years of evolution.''
-Figure~\ref{fig:intro} indicates the objectives of NE~\cite{furber2007neural}, 1) neuromorphic modelling: for neuroscientists to understand the brain by modelling and simulating the activities of the biological neurons; and 2) neuromorphic computing: for engineers to build brain-like machines by applying biological features to computers.
-This is a bidirectional process that building a biologically inspired computer requires a better understanding of the brain, and simulating the brain activities in large scale and in real time can be only feasible on massive-parallel neuromorphic hardware.
+Figure~\ref{fig:intro} indicates the objectives of NE~\cite{furber2007neural}:
+\begin{itemize}
+	\item neuromorphic modelling: for neuroscientists to understand the brain by modelling and simulating the activities of the biological neurons; 
+	\item 2) neuromorphic computing: for engineers to build brain-like machines by applying biological features to computers.
+\end{itemize}
+This is a bidirectional process that building a biologically inspired computer requires a better understanding of the brain, and simulating brain activities at large scale and in real time can be only feasible on massively-parallel neuromorphic hardware.
 
-Since around 2004 to 2005, ``Dennard's Law'' has no longer been followed~\cite{bohr200730}, that as transistors get smaller their power density stops staying constant but starts to increase.
-The breakdown of Dennard scaling and the problem of power dissipation drove the chip manufacturers to multi/many-core architecture.
-However, the increased number of active transistors in a multi-core chip cost more power consumption thus that some fraction of the cores remains completely powered-off given the thermal design power constraint.
+Since around 2004 to 2005, `Dennard's Law' has no longer been followed~\cite{bohr200730}, so as transistors get smaller their power density no longer stays constant but starts to increase.
+The breakdown of Dennard scaling and the problem of power dissipation drove chip manufacturers to multi/many-core architecture.
+However, the increased number of active transistors in a multi-core chip costs more power consumption thus creating the prospect that some fraction of the cores will have to remain completely powered-off given the thermal design power constraint.
 Dark silicon~\cite{esmaeilzadeh2011dark} addresses the issue of inactive areas of a multi-core chip, which could be 50\% of nodes in an 8~nm technology.
-Neuromorphic engineering provides the potential solutions for power dissipation by applying the biological features of event-driven, hybrid analogue/digital, unreliable components to computers.
-Moreover, most of the neural interconnections in the brain are local, and the ``memory'' units attach to the ``computation'' node in a neuron.
-Therefore, learning from the biology may give an computers alternative to conventional Von Neumann architecture and thus may solve the problem of microprocessor/memory performance gap~\cite{wulf1995hitting}, also known as Von Neumann bottleneck, where the system speed is determined and limited by the memory performance.
+Neuromorphic engineering offers a potential solution for power dissipation by applying the biological features of event-driven, hybrid analogue/digital, unreliable components to computers.
+Moreover, most of the neural interconnections in the brain are local, and the `memory' units attach to the `computation' node in a neuron.
+Therefore, learning from biology may give computers an alternative to the conventional Von Neumann architecture and thus may solve the problem of the microprocessor/memory performance gap~\cite{wulf1995hitting}, also known as the Von Neumann bottleneck, where the system speed is determined and limited by the memory performance.
 
 %SNN
 
 
 %Although there are a number of neuromorphic platforms available for large-scale SNN simulations,
 During the last decade, researchers have used the capabilities created by rapid developments in neuromorphic engineering to address the dual aims of understanding brain functions and building brain-like machines.
-Spiking Neural Networks (SNN) hold the key as the main approach for both of the goals.
-The, so-called, third generation of artificial neural network (ANN)~\cite{maass1997networks} introduces biological realism to neural modelling.
+Spiking Neural Networks (SNN) hold the key as the main approach for both goals.
+The so-called third generation of artificial neural network (ANN)~\cite{maass1997networks} introduces biological realism to neural modelling.
 The spiking neuron mathematically models the dynamics of a single neuron and the network describes the architecture of the neural connections and the information transmission among them.
-Neuroscientists reproduce the recorded neural dynamics and activities from \textit{in-vivo/vitro} experiments to verify their models and measure the progress of brain understanding.
-While computer engineers focus on the hardware implementations of the SNN models.
+Neuroscientists reproduce the recorded neural dynamics and activities from \textit{in-vivo/vitro} experiments to verify their models and measure the progress of brain understanding, While computer engineers focus on the hardware implementations of the SNN models.
 Hence, SNN simulation tools~\cite{davison2008pynn, gewaltig2007nest, goodman2008brian} and neuromorphic hardware platforms~\cite{furber2014spinnaker,  schemmel2010wafer,benjamin2014neurogrid,merolla2014million} have been developed to allow exploration of the brain by mimicking its functions and developing large-scale practical applications~\cite{eliasmith2012large}.
 In addition, neuromorphic engineering has delivered biologically-inspired sensors such as DVS~(Dynamic Vision Sensor) silicon retinas~\cite{serrano2013128, delbruck2008frame, yang2015dynamic, posch2014retinomorphic}, and DAS~(Dynamic Audition Sensor)~\cite{5537164}, which offer the prospect of low-cost sensory processing thanks to their event-driven and redundancy-reducing style of information representation.
 
@@ -56,34 +59,34 @@ The long-term ultimate goal of NE is to equip neuromorphic machines with genuine
 Today, in neuromorphic modelling, we know that information processing in the brain is conducted by the basic computing units, the spiking neurons.
 Information transmission takes place in the synapses and we can draw the connections among neurons from anatomical experiments.
 In neuromorphic computing, massive large-scale SNN hardware simulators are ready to use.
-How to operate these brain-like machines to be competent in cognitive applications still remains unsolved however.
+How to operate these brain-like machines to be competent in cognitive applications still remains unsolved, however.
 
 Deep Learning research in the field of ANNs has dominated the state-of-the-art solutions on cognitive tasks, e.g. the exceeding human-level performance on image classification tasks~\cite{he2015delving}.
 Figure~\ref{fig:intro} shows the diverging objectives of SNNs and ANNs, where SNNs focus on mimicking the brain while ANNs are active in solving engineering AI problems.
 %TODO need to modify
 Despite remarkable computational success, ANNs ignore the spiking nature of neural communication that is fundamental for biological neuronal networks.
-At the same time to catch up with ANNs' beat-human performance using SNNs, the shared ultimate goal emerge.
-The key problem of the thesis is to enable SNNs with cognitive capabilities, and the main challenge is to close the gap of the cognition performance of SNNs and ANNs.
+At the same time, to catch up with ANNs' ability to beat human performance using SNNs, a shared ultimate goal has emerged.
+The key problem of the research describe in this thesis is to enable SNNs to have cognitive capabilities, and the main challenge is to close the gap of the cognition performance of SNNs and ANNs.
 
 %TODO Why it motivates me (why it would be useful and important to have a solution)
 
 
 
-\section{Statement of The Problem}
+\section{Statement of the Problem}
 \label{sec:state_problem}
-Neuromorphic engineering has lead towards the development of biologically-inspired computer architectures which may provide an alternative to conventional Von Neumann and rival the Human brain in terms of energy efficiency and cognitive capabilities.
+Neuromorphic engineering has led towards the development of biologically-inspired computer architectures which may provide an alternative to conventional Von Neumann architecture and rival the Human brain in terms of energy efficiency and cognitive capabilities.
 Although there are a number of neuromorphic platforms available for large-scale SNN simulations, how to operate these brain-like machines to be competent in cognitive applications still remains unsolved.
-While Deep Learning within the research of ANNs has dominated the state-of-the-art solutions on AI applications and machine learning.
-SNN has not achieved the cognitive capability and learning ability of its non-spiking competitor, ANN.
-To reduce the gap of cognitive performance is the main objective of this research.
+While Deep Learning within the research of ANNs has dominated the state-of-the-art solutions in AI applications and machine learning.
+SNNs have not achieved the cognitive capability and learning ability of their non-spiking competitor, the ANN.
+The main objective of this research is to reduce the gap of cognitive performance.
 It raises the research question of: how to operate SNNs to perform as well as ANNs in cognitive tasks.
 
 \section{Hypotheses and Aims}
 \label{sec:aim}
-The main objective is to improve the cognitive capability and equip the equivalent learning ability of SNNs as ANNs' for AI applications.
+The main objective is to improve the cognitive capability of SNNs and equip them with the equivalent learning ability of ANNs for AI applications.
 %In addition, to run such a biologically-plausible model on a complete hardware platform validates the feasibility of real-time Neuromorphic Computing for cognitive tasks.
-Moreover, it is necessary to provide the community a uniform dataset and an evaluation methodology to compare the performance of SNN models and hardware platforms.
-
+Moreover, it is necessary to provide the community with a uniform dataset and an evaluation methodology to compare the performance of SNN models and hardware platforms.
+The goals at this ????? to show that:
 \begin{itemize}
 %	\item 
 %	An object recognition system can operate in real-time on a complete neuromorphic platform in an absolute spike-based fashion.
@@ -92,25 +95,25 @@ Moreover, it is necessary to provide the community a uniform dataset and an eval
 %	Aim: to build a real-time neuromorphic object recognition prototype running on hardware SNN simulator and receiving visual input from a DVS sensor.
 
 	\item 
-	SNNs can deliver equivalent cognitive capability as conventional ANNs for object recognition applications.
+	SNNs can deliver equivalent cognitive capability to conventional ANNs for object recognition applications.
 
 	Aim: to generalise a training method on conventional ANNs whose trained connections can be applied to corresponding SNNs with close recognition performance.
 
 	\item 
-	SNNs can be trained with biologically-realistic synaptic plasticity and demonstrate competent learning capability as ANNs, even as deep architectures.
+	SNNs can be trained with biologically-realistic synaptic plasticity and demonstrate learning capability as competent as ANNs, even as deep architectures.
 
 	Aim: to formalise a local learning algorithm based on synaptic plasticity for training deep SNNs.
 
 	\item 
-	A new set of spike-based vision datasets can provide resources to support fair competition between researchers since new concerns on energy efficiency and recognition latency emerge in Neuromorphic Vision.
+	A new set of spike-based vision datasets can provide resources to support fair competition between researchers since new concerns relating to energy efficiency and recognition latency emerge in Neuromorphic Vision.
 
-	Aim: to provide a unified spiking version of common-used dataset and complementary evaluation methodology to assess the performance of SNN algorithms.
+	Aim: to provide a unified spiking version of a commonly-used dataset and a complementary evaluation methodology to assess the performance of SNN algorithms.
 \end{itemize}
 
 
 \section{Contributions}
-The primary achievements of the thesis are the learning methods both off-line and on-line for SNNs, which close the gap of cognitive capability between SNNs and ANNs.
-The other achievements contributes to the concerns of the feasibility of neuromorphic hardware platforms and the performance evaluation.
+The primary achievements of the work described in this thesis are the learning methods, both off-line and on-line, for SNNs, which close the gap of cognitive capability between SNNs and ANNs.
+The other achievements contribute to the concerns of the feasibility of neuromorphic hardware platforms and the performance evaluation.
 \begin{itemize}
 %	\item 
 %	An implementation of a real-time hand postures recognition system on a neuromorphic hardware platform.
@@ -120,16 +123,16 @@ The other achievements contributes to the concerns of the feasibility of neuromo
 	
 	\item 
 	An off-line deep SNN training method employs a novel activation function, Noisy Softplus.
-	The activation function accurately model the neural response activity of spiking neurons.
-	In addition, it enables off-line SNN to be trained just like ANNs, and the trained weights can be directly use in SNNs without any conversion.
-	This network training is a generalised method and the activation function can be applied in any architecture of a neural network theoretically.
-	It was tested on a convolutional network and showed a close recognition capability comparing to the conventional ANN. 
+	The activation function accurately models the neural response activity of spiking neurons.
+	In addition, it enables an off-line SNN to be trained just like an ANN, and the trained weights can be directly used in SNNs without any conversion.
+	This network training is a generalised method and the activation function can be applied, in principle, in any architecture of a neural network.
+	It was tested on a convolutional network and showed a recognition capability a close to the conventional ANN. 
 
-	The proposal of Noisy Softplus contributes to Chapter 4 and was published and presented to International Conference on Neural Information Processing 2016;
-	and the extended work of directly training layered-up SNNs with conventional ANN methods will be submitted to Annual Conference on Neural Information Processing Systems (NIPS).
+	The proposal of Noisy Softplus contributes to Chapter 4 and was published and presented to the International Conference on Neural Information Processing 2016;
+	the extended work of directly training layered-up SNNs with conventional ANN methods will be submitted to the Annual Conference on Neural Information Processing Systems (NIPS).
 
 	\item 
-	A novel unsupervised learning algorithm purely working on event-based local STDP.
+	A novel unsupervised learning algorithm working purely on event-based local STDP.
 	The algorithm was applied to train an Autoencoder (AE) and a Restricted Boltzmann Machine (RBM).
 	The learning ability matched the non-spiking ANNs and verified the feasibility of unsupervised training on deep SNNs. 
 	
@@ -141,9 +144,9 @@ The other achievements contributes to the concerns of the feasibility of neuromo
 	This dataset also made the comparison of SNNs with conventional recognition methods possible by using converted spike representations of the same vision databases.
 	As far as we know, this was the first attempt at benchmarking neuromorphic vision recognition by providing public a spike-based dataset and evaluation metrics.
 	
-	The dataset was generated by the help of Garibaldi~Pineda-Garc\'ia and Teresa~Serrano-Gotarredona.
+	The dataset was generated with the help of Garibaldi~Pineda-Garc\'ia and Teresa~Serrano-Gotarredona.
 %	and the second case study was analysed by Evangelos~Stromatias.
-	This work comprises Chapter 6 and was published as a journal paper of Frontiers in Neuromorphic Engineering.
+	This work comprises Chapter 6 and was published as a journal paper in Frontiers in Neuromorphic Engineering.
 \end{itemize}
 
    
@@ -152,11 +155,11 @@ The other achievements contributes to the concerns of the feasibility of neuromo
 \begin{itemize}
 	\item 
 	\textbf{Q. Liu}, and S. Furber, “Real-Time Recognition of Dynamic Hand Postures on a Neuromorphic System”, International Conference on Artificial Neural Networks (ICANN 2015).
-	The paper contributes to the work of meromorphic hardware systems in Chapter~2.
+	The paper contributes to the work of neuromorphic hardware systems in Chapter~2.
 	
 	\item
 	\textbf{Q. Liu}, C. Patterson, S. Furber, Z. Huang, Y. Hou and H. Zhang, “Modeling Populations of Spiking Neurons for Fine Timing Sound Localization”, International Joint Conference on Neural Networks (IJCNN 2013)
-	The paper contributes to the work of meromorphic hardware systems in Chapter~2.
+	The paper contributes to the work of neuromorphic hardware systems in Chapter~2.
 	
 	\item 
 	\textbf{Q. Liu}, and S. Furber, “Noisy Softplus: A Biology Inspired Activation Function”, International Conference on Neural Information Processing (ICONIP 2016). 
@@ -179,49 +182,48 @@ The other achievements contributes to the concerns of the feasibility of neuromo
 \end{itemize}	
 
 \subsection{Workshops}
-It is essential for the author to participate in the workshops organised by the close community, 1) to establish and contribute to collaborations on mutual interests; 2) to catch up with the cutting-edge research and collect inspiration; 3) to discuss the author's own findings with the key researchers in the field.
+The author participated in workshops organised by the community, 1) to establish and contribute to collaborations on mutual interests; 2) to catch up with cutting-edge research and collect inspiration; 3) to discuss the author's own findings with key researchers in the field.
 \begin{itemize}
 	\item 
 	\textit{Capo Caccia Cognitive Neuromorphic Engineering Workshop 2012}.
 	
-	Contributed to successfully connections of SpiNNaker to neuromorphic sensors\footnote{\url{https://capocaccia.ethz.ch/capo/wiki/2012/csnQian}}. 
-	It formed the hardware platform for real-time SNN applications processing event-based sensor data.
+	Contributed to successful connections of SpiNNaker to neuromorphic sensors\footnote{\url{https://capocaccia.ethz.ch/capo/wiki/2012/csnQian}}. 
+	This formed the hardware platform for real-time SNN applications processing event-based sensor data.
 	
 	\item 
 	\textit{Telluride Neuromorphic Cognition Engineering Workshop 2013}.
 	
 	Developed a real-time sound localisation system on the neuromorphic platform as a main contributor\footnote{\url{http://neuromorphs.net/nm/wiki/sound_localization}}.
-	The work led to the publication of a journal paper\cite{lagorce2015breaking}.
+	The work led to the publication of a journal paper~\cite{lagorce2015breaking}.
 	
 	
 	\item 
 	\textit{Capo Caccia Cognitive Neuromorphic Engineering Workshop 2014}.
 	
-	Developed the real-time neural activity visualiser for the project of ``Integrated Neurorobotics for Real-World Cognitive Behaviour'' \footnote{\url{https://capocaccia.ethz.ch/capo//wiki/2014/integrneurobot14}}. 
+	Developed the real-time neural activity visualiser for the project of `Integrated Neurorobotics for Real-World Cognitive Behaviour' \footnote{\url{https://capocaccia.ethz.ch/capo//wiki/2014/integrneurobot14}}. 
 	
 	\item 
 	\textit{Capo Caccia Cognitive Neuromorphic Engineering Workshop 2015}.
 	
-	Fully inspired by the projects of deep learning in the workshop\footnote{\url{https://capocaccia.ethz.ch/capo//wiki/2015/spikednn15}}, the author later proposed the translation methods and the unsupervised learning algorithm of spiking deep networks.
-	And led the discussion of benchmarking neuromorphic vision in the workshop \footnote{\url{https://capocaccia.ethz.ch/capo//wiki/2015/visionbenchmark15}}. 	
+	Inspired by the projects on deep learning in the workshop\footnote{\url{https://capocaccia.ethz.ch/capo//wiki/2015/spikednn15}}, the author later proposed the translation methods and the unsupervised learning algorithm of spiking deep networks, and led the discussion of benchmarking neuromorphic vision in the workshop \footnote{\url{https://capocaccia.ethz.ch/capo//wiki/2015/visionbenchmark15}}. 	
 \end{itemize}
 \section{Thesis Structure}
 The thesis comprises the following seven chapters:
 
 \textbf{Chapter 1} introduces the origin and the motivation of the research, states the problem, defines the hypotheses and objectives, summarises the contributions and publications, and outlined the thesis. 
 
-\textbf{Chapter 2} briefs the short history of Neuromorphic Engineering which leads to the author's research, lists the common spiking neural models and learning approaches, introduces the neuromorphic hardware devices.
-% and reviews the state-of-the-art of spike-based object recognition applications. 
+\textbf{Chapter 2} %briefs the short history of Neuromorphic Engineering which leads to the author's research, lists the common spiking neural models and learning approaches, introduces the neuromorphic hardware devices.
+illustrates how biological neurons function, transmit signals between them, and are modelled by mathematical abstractions, thus to unveil the special features of spiking neurons that differ from neurons of ANNs; and introduces SNN simulators both in software and in hardware including neuromorphic systems.
 
-\textbf{Chapter 3} gives an overview of popular architectures and models of deep learning and illustrates the mechanism of convolutional network (ConvNet), autoencoder (AE), and restricted Boltzmann machine (RBM) in detail.
+\textbf{Chapter 3} gives an overview of popular architectures and models of Deep Learning and illustrates the mechanism of the convolutional network (ConvNet), the autoencoder (AE), and the restricted Boltzmann machine (RBM) in detail.
 
-\textbf{Chapter 4} demonstrates the novel biologically-inspired activation function, Noisy Softplus, which is well-matched to the response function of Leaky Integrate-and-Fir neurons; and validates the performance by testing on a convolutional network.
+\textbf{Chapter 4} demonstrates the novel biologically-inspired activation function, Noisy Softplus, which is well-matched to the response function of Leaky Integrate-and-Fire neurons; and validates the performance by testing on a convolutional network.
 
 \textbf{Chapter 5} proposes the STDP-based learning algorithm for training AEs and RBMs; and shows equivalent recognition capability of SNNs comparing to ANNs.
 
 \textbf{Chapter 6} puts forward the spike-based vision dataset and the evaluation methodology; and presents two case studies as tentative benchmarks running on SpiNNaker to assess the hardware-level performance against software simulators.
 
-\textbf{Chapter 7} summarises the research, discusses the contributions to the field, points out the future direction and concludes the thesis.
+\textbf{Chapter 7} summarises the research, discusses the contributions to the field, points out future directions and concludes the thesis.
 
 
 
