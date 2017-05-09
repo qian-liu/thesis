@@ -115,18 +115,18 @@ Therefore, this section aims to give an detailed introduction on ConvNet archite
 		\label{Fig:ConvNet}
 	\end{figure}
 
-A typical ConvNet (LeNet) consists of four types of neural layers: input layer, convolutional layer of simple cells, pooling layer of complex cells and fully-connected~(FC) layer, shown in Figure~\ref{Fig:ConvNet}.
+A typical ConvNet (LeNet) consists of four types of neural layers: input layer, convolutional~(Conv) layer of simple cells, pooling layer of complex cells and fully-connected~(FC) layer, shown in Figure~\ref{Fig:ConvNet}.
 From the left to right of Figure~\ref{Fig:ConvNet}, we illustrate the mechanism of ConvNet in detail.
 
-The pixels of input image are normalised and fed into the first convolution layer.
+The pixels of input image are normalised and fed into the first Conv layer.
 Every simple cell takes inputs within its receptive field and the weights on each input pixel is determined by the convolutional kernel which has the same size as the receptive field.
 The neurons work the same as demonstrated in Figure~\ref{Fig:compare_as}(a) performing a dot product between the weights and the input volume of a receptive field, which is followed by an activation function.
-Convolving a whole input image with a kernel composes a feature map in convolutional layer, thus there are 6 feature maps in the first convolutional layer.
+Convolving a whole input image with a kernel composes a feature map in Conv layer, thus there are 6 feature maps in the first Conv layer.
 Stride controls the output volume of a convolution that setting the stride to $step$ causes the kernel moving $step$ pixels at a time.
 Thus a small stride produces more output volume and highly overlapping receptive fields.
 Suppose an input image and an kernel are both squares with side lengths of $l_{in}$ and $l_k$, then the side length of the convolved feature map is $l_{in} - l_k + 1/stride$.
 
-The special characteristics of convolutional layers lie in the local connectivity and the parameter sharing, that a neuron only connects to a spatially local input volume, its receptive field, and the weights (convolutional kernel) are shared among all the receptive fields.
+The special characteristics of Conv layers lie in the local connectivity and the parameter sharing, that a neuron only connects to a spatially local input volume, its receptive field, and the weights (convolutional kernel) are shared among all the receptive fields.
 Consequently, the number of parameters (trainable weights) hugely decreases comparing to all to all connections of same network size. 
 
 The complex neurons of pooling layers either output the maximum input within their receptive fields (max pooling) or the averaging (average pooling).
@@ -134,127 +134,98 @@ The pooling process reduces the spatial size of the feature maps but keeps the a
 In Chapter~\ref{cha:Conv}, we will use average pooling of $2\times2$ for all the pooling layers, shown in Figure~\ref{Fig:ConvNet}.
 The average filter traverses over an entire feature map with the stride of 2, and outputs the averaged element of each receptive field to the next layer.
 
-The next convolution layer drives a 3D feature vectors with depth of 6 (six feature maps) to convolve with 12 3D kernels with size of $6\times5\times5$.
+The next Conv layer drives a 3D feature vectors with depth of 6 (six feature maps) to convolve with 12 3D kernels with size of $6\times5\times5$.
 The example demonstrates a common set-up of using the whole 3D feature vectors, usually the feature maps can be selected to be involved in different convolutions.
 Then a pooling layer follows the convolution.
-Repeating these alternative presentation of a convolution layer and a pooling layer builds up deeper ConvNet.
+Repeating these alternative presentation of a Conv layer and a pooling layer builds up deeper ConvNet.
 
-The trainable shared weights used in convolution layer hugely reduce the number of weights parameters in a ConvNet, while pooling layers use static convolutional kernels to shrink the size of networks.
-These convolutional connections can be described as 6c5-2s-12c5-2s, where $\alpha c \beta$ indicates $\alpha$ kernels of side length $\beta$ used in convolutional layer, and $2s$ specifies the side length and the stride of a pooling kernel.
+The trainable shared weights used in Conv layer hugely reduce the number of weights parameters in a ConvNet, while pooling layers use static convolutional kernels to shrink the size of networks.
+These convolutional connections can be described as 6c5-2s-12c5-2s, where $\alpha c \beta$ indicates $\alpha$ kernels of side length $\beta$ used in Conv layer, and $2s$ specifies the side length and the stride of a pooling kernel.
 However, a multilayer perceptron (MLP) network only possesses FC layers, where each neural layer fully connects to the next one.
 In a ConvNet an FC layer usually locates on the top (right in Figure~\ref{Fig:ConvNet}) of a network, connects the last pooling layer to the output neurons with all to all connections, predicts the classification of the input image.
 Strongest output among the label neurons addresses which class the input image belongs to, as illustrated in Figure~\ref{Fig:ConvNet} that the red neuron represents the first digit out of ten, `0'.
-There can be more than one FC layers consisting a MLP on the top of a ConvNet, here in this thesis, we will use only single FC layer.
+There can be more than one FC layers consisting a MLP on the top of a ConvNet, here in this thesis, we will use only a single FC layer.
 
 
 %Chain rule, reduced parameter amounts. 
 
-\subsection{Back Propagation on ConvNet}
+\subsection{Backpropagation}
 We have described the feed-forward path of a ConvNet to classify an input image, this section will demonstrate the training of a network by back-propagating errors and weights modification.
-%TODO rewording
-The training method, Backpropagation~(BP), 
-he algorithm repeats a two phase cycle, propagation and weight update. When an input vector is presented to the network, it is propagated forward through the network, layer by layer, until it reaches the output layer. The output of the network is then compared to the desired output, using a loss function, and an error value is calculated for each of the neurons in the output layer. The error values are then propagated backwards, starting from the output, until each neuron has an associated error value which roughly represents its contribution to the original output.
-
-Backpropagation uses these error values to calculate the gradient of the loss function with respect to the weights in the network. In the second phase, this gradient is fed to the optimization method, which in turn uses it to update the weights, in an attempt to minimize the loss function.
-
-Backpropagation, an abbreviation for "backward propagation of errors", is a common method of training artificial neural networks used in conjunction with an optimization method such as gradient descent.
-The method calculates the gradient of a loss function with respect to all the weights in the network.
-The gradient is fed to the optimisation method which in turn uses it to update the weights, in an attempt to minimise the loss function:
+The objective function (or loss function) estimates an error comparing the output vector of a network, $\mathbf{y}=(y_1,y_2,...,y_M)$, to the desired label vector, $\mathbf{t}=(t_1,t_2,...,t_M)$, and the error is to be minimised during training.
+Given a set of training data with desired labels $\mathbf{T}=\{\mathbf{t}^1, \mathbf{t}^2, ..., \mathbf{t}^K\}$ and the network output $\mathbf{Y}=\{\mathbf{y}^1, \mathbf{y}^2, ..., \mathbf{y}^K\}$ the mean squared error can be seen as the objective function:  
 \begin{equation}
-\Delta W \propto -\frac{\partial L}{\partial W}.
+L=MSE(\mathbf{T}, \mathbf{Y}) =\frac{1}{2K}\sum_{k=1}^K \sum_{m=1}^M (y^{k}_{m}-t^{k}_{m})^{2}~~.
 \end{equation}
 
-As illustrated in Figure~\ref{Fig:compare_as}(a), we use simplified artificial neuron without bias.
+Backpropagation~(BP), propagates the gradient of the loss with respect to the weights backwards to each connection in the network.
+The computation requires a closer look into the structure of a neuron, see Figure~\ref{Fig:neuron_net} where $N$ neurons connect to the $j^{th}$ neuron of the next layer, and the neuron converts the weighted summation of the input, $net_j$, to the output $y_j$ according to its activation function.
 \begin{figure}[bt]
-		\centering
-		\includegraphics[width=0.7\textwidth]{pics_iconip/neuron.pdf}
-		\caption{Artificial neuron model in ANNs. }
-		\label{Fig:neuron_net}
+	\centering
+	\includegraphics[width=0.7\textwidth]{pics_iconip/neuron.pdf}
+	\caption{ $N$ neurons connect to the $j_{th}$ neuron of the next layer. As illustrated in Figure~\ref{Fig:compare_as}(a), we use simplified artificial neuron without bias.}
+	\label{Fig:neuron_net}
 \end{figure}
-
-Training an autoencoder is not different from backpropagation (BP) on an Multi-Layer Perceptrons(MLP).
-The objective of training is to minimise the prediction error of an MLP, which measured as a loss function.
-Accordingly, the loss function of an autoencoder can be described as:
-\begin{equation}
-L=\sum_{k=1}^{K}\|\mathbf{v}_{k}-\mathbf{v'}_{k}\|=\frac{1}{2}\sum_{k=1}^{K}(\mathbf{v}_{k}-\mathbf{v'}_{k})^{2}
-\end{equation}
-where k indicates the index of the training data $\mathbf{v}$, and each data vector $\mathbf{v}=\{v_0, v_1,...,v_N\}$ and its reconstruction $\mathbf{v'}=\{v'_0, v'_1,...,v'_N\}$ have N dimensions. 
-
-Applying stochastic gradient descent (SGD), the true gradient of the weight matrix, $\Delta W$, is approximated by a gradient at a single example with iterations.
-The reconstruction error $E_k$ of an input vector $\mathbf{v}_k$ is as given:
-\begin{equation}
-%	\begin{align*}
-E_k = \frac{1}{2}(\mathbf{v}_k - \mathbf{v'}_k)^2,
-%	\end{align*}
-\end{equation}
-%Using SGD, the backpropagation on an AE can be written as:
-and the gradient of the weight matrix is:
-\begin{equation}
-\Delta W \propto -\frac{\partial E_k}{\partial W}=-\eta \frac{\partial E_k}{\partial W},
-\end{equation}
-where $\eta$ is the learning rate.
-
-Since we use tied weights in the network, the weight tuning only needs to apply in the output layer.
-
+Thus the gradient of the loss $L$ with respect to a weight $w_{ij}$ is as follows:
 \begin{equation}
 \begin{aligned}
-\Delta w_{ij} = -\eta \frac{\partial E_k}{\partial w_{ij}} &= -\eta \frac{\partial E_k}{\partial v'_j} \frac{\partial v'_j}{\partial net\_v'_j} \frac{\partial net\_v'_j}{\partial w_{ij}}, \textrm{ where} \\
-\frac{\partial E_k}{\partial v'_j} &= \frac{\partial \frac{1}{2} \sum_l (v_l - {v'}_l)^2}{\partial v'_j}= \frac{\partial \frac{1}{2}(v_j - {v'}_j)^2}{\partial v'_j}= v'_j - v_j, \\
-%	\frac{\partial v'_j}{\partial net\_v'_j} &= \begin{cases} 1, v'_j>0\\0, v'_j<=0\\ \end{cases}, \textrm{using ReLU,}\\
-%\frac{\partial v'_j}{\partial net\_v'_j} &=\left\{
-%\begin{aligned}
-%& 1, net\_v'_j > 0 \\
-%& 0, net\_v'_j < = 0
-%\end{aligned} 
-%\right.    \textrm{using ReLU, }\\
-\frac{\partial v'_j}{\partial net\_v'_j} &= f'(net\_{v'_j})~, \textrm{~derivative of the activation function} \\
-\frac{\partial net\_v'_j}{\partial w_{ij}} &= \frac{\partial h_i w_{ij}}{\partial w_{ij}} = h_i.
+\frac{\partial L}{\partial w_{ij}} &= \frac{\partial L}{\partial y_j} \frac{\partial y_j}{\partial net_j} \frac{\partial net_j}{\partial w_{ij}} = \delta_j x_i , \textrm{~~where~~}\\
+ \delta_j &=  \frac{\partial L}{\partial y_j} \frac{\partial y_j}{\partial net_j}~~,  \textrm{~~and~~}\\
+% \frac{\partial y_j}{\partial net_j} &= f'(net_j)~~, \\
+ \frac{\partial net_j}{\partial w_{ij}} &= x_i~~.
 \end{aligned}
 \end{equation}
-Thus, the weight gradient is calculated as:
+The term $ \delta_j $ represents the error gradient with respect to $net_j$, and can be expressed by a recursive definition:
 \begin{equation}
-\label{equ:hebb}
-%\Delta w_{ij} = \left \{
-%\begin{aligned}
-%& \eta h_i(v_j - v'_j), &net\_v'_j > 0 \\
-%& 0, & net\_v'_j < = 0
-%\end{aligned} 
-%\right.
-\Delta w_{ij} = \eta h_i f'(net\_{v'_j}) (v_j - v'_j)~~.
+\begin{aligned}
+\delta_j =  \frac{\partial L}{\partial y_j} \frac{\partial y_j}{\partial net_j} &= \left\{
+\begin{aligned}
+&\frac{1}{K}\sum_{k=1}^K (y^{k}_{j}-t^{k}_{j}) f'(net_j)  \textrm{~,~~if \textit{j} is in an output layer} \\
+&(\sum_l^L \delta_l w_{jl}) f'(net_j)  \textrm{~,~~if otherwise}
+\end{aligned}
+\right. \textrm{~,~~where}\\
+ \frac{\partial y_j}{\partial net_j} &=  f'(net_j) \textrm{~,~~the derivative of the activation function}.
+\end{aligned}
+\label{equ:derivative}
 \end{equation}
+It is easy to obtain the first term, $ \frac{\partial L}{\partial y_j}  $, of $ \delta_j $ if $j$ is an output neuron since it only involves single dimension of the output vector.
+However, when $j$ is in an inner layer of the network, which connects $L$ neurons on the next layer, we have to take total derivative with respect to $y_j$: $\sum_l^L \delta_l w_{jl}$.
+The error propagation applies to any form of connections in a network, such as FC and Conv layers, and the difference only appears in the summation where matrix product is used for FC layer and convolution for Conv layer.
+In addition, the weights used in BP are either transposed in FC layer or rotated in Conv layer compared to the forward path.
 
-%Since backpropagation uses the gradient descent method, one needs to calculate the derivative of the squared error function with respect to the weights of the network. Assuming one output neuron,[note 2] the squared error function is:
-%
-%E = 1 2 ( t − y ) 2 {\displaystyle E={\tfrac {1}{2}}(t-y)^{2}} E = \tfrac{1}{2}(t - y)^2,
-%
-%where
-%
-%E {\displaystyle E} E is the squared error,
-%t {\displaystyle t} t is the target output for a training sample, and
-%y {\displaystyle y} y is the actual output of the output neuron. 
+After error propagation, the BP algorithm then updates the weights by using the optimisation method, gradient descent, to minimize the objective function.
+It modifies the weights by small steps proportional to the negative of the gradients:
+\begin{equation}
+\Delta w_{ij} \propto -\frac{\partial L}{\partial w_{ij}} = -\eta \delta_j x_i~~,
+\end{equation}
+where $\eta$ defines the length of these updating steps which is also called learning rate.
+Moreover, applying stochastic gradient descent (SGD), the gradient over the full training set can be approximated by using only a single or a few training data.
+Therefore $k$ in Equation~\ref{equ:derivative} can be seen as randomly selected data index, and $K$ represents the number of elements in such a data subset, which is also known as a batch.
+Again, the weight update is also dependant on the layer of neurons, where a convolution of the input vector $\mathbf{x}$ with the error gradient  $\mathbf{\delta}$ is needed in Conv layer.
+A detailed description of BP training on ConvNet can be found in~\cite{bouvrie2006notes}.
+
 
 \subsection{Activation Function and Vanishing Gradient}
-CHAPTER 6. DEEP FEEDFORWARD NETWORKS
-0
-z
-0
-g(z) = max{0,z}
-Figure 6.3: The rectiﬁed linear activation function. This activation function is the default
-activation function recommended for use with most feedforward neural networks. Applying
-this function to the output of a linear transformation yields a nonlinear transformation.
-However, the function remains very close to linear, in the sense that is a piecewise linear
-function with two linear pieces. Because rectiﬁed linear units are nearly linear, they
-preserve many of the properties that make linear models easy to optimize with gradient-
-based methods. They also preserve many of the properties that make linear models
-generalize well. A common principle throughout computer science is that we can build
-complicated systems from minimal components. Much as a Turing machine’s memory
-needs only to be able to store 0 or 1 states, we can build a universal function approximator
-from rectiﬁed linear functions.
 
+\begin{figure}[hbt]
+	\centering
+	\includegraphics[width=0.6\textwidth]{pics_snn/af.pdf}
+	\caption{Activation functions: sigmoid and ReLU.}
+	\label{fig:af}
+\end{figure}
+
+Each error gradient propagated through layers of network consists of a chain of multiplied factors as illustrated in Equation~\ref{equ:derivative}.
+The deeper a network is and the closer a layer is to the input, more elements  are involved in the multiplication.
+The derivative of the activation function is one of the factors when the error gradient back propagated in each layer.
+Thus, the gradient may vanish if the derivative of the activation function is always less than 1.
+For example the sigmoid function, shown in Figure~\ref{fig:af}, its derivative keeps the maximum (around~1) only when the input is close to 0, and saturates to its minimum 0 as the input either increases or decreases.
+
+Rectified Linear Unit (ReLU) is proposed to tackle the problem of vanishing gradient in deep network architectures.
+ReLU, simply defined as $y = max(0,x)$ and shown in Figure~\ref{fig:af}, has gradient of 1 when the input is greater than 0.
+Hence, the error gradient is able to be back-propagated in deeper network by multiplying ReLU derivatives.
 
 \section{Autoencoder}
 \label{sec:AE}
-Figure~\ref{fig:AE} shows a simplest architecture of an autoencoder, which is the same as a multilayer perceptron (MLP).
+Figure~\ref{fig:AE} shows a simplest architecture of an autoencoder, which is the same as a MLP.
 The only difference lies to the number of the output units, where an autoencoder has as many output neurons as the input.
 In this example, the input layer feeds forward the data vector $\mathbf{v}$ to the hidden layer as weighted sum of the data, $\mathbf{net\_h}$.
 Then the hidden units are activated by the input $\mathbf{net\_h}$ according to the activation function: $\mathbf{h}=f(\mathbf{net\_h})$.
