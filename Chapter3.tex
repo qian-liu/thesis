@@ -92,7 +92,7 @@ In this chapter, we will give an overview of popular architectures and models of
 
 
 
-\section{Convolutional Network}
+\section{Convolutional Networks}
 ConvNets are biologically inspired from the significant discovery of Hubel and Wiesel that the orientation selectivity (simple cells) and pooling mechanism (complex cells) represent the basic functions in the primary cortex in cats~\cite{hubel1962receptive}.
 These simple cells fire at a high frequency to their preferred orientation of visual stimuli within their receptive fields~(shown in Figure~\ref{Fig:v1}), small sub-regions of the visual field.
 This means a single simple cell works like a pattern detector within its small receptive field thus also providing the exact spatial location of the detected feature in the entire visual field.
@@ -156,6 +156,7 @@ The objective function (or loss function) estimates an error comparing the outpu
 Given a set of training data with desired labels $\mathbf{T}=\{\mathbf{t}^1, \mathbf{t}^2, ..., \mathbf{t}^K\}$ and the network output $\mathbf{Y}=\{\mathbf{y}^1, \mathbf{y}^2, ..., \mathbf{y}^K\}$ the mean squared error can be seen as the objective function:  
 \begin{equation}
 L=MSE(\mathbf{T}, \mathbf{Y}) =\frac{1}{2K}\sum_{k=1}^K \sum_{m=1}^M (y^{k}_{m}-t^{k}_{m})^{2}~~.
+\label{equ:loss_all}
 \end{equation}
 
 Backpropagation~(BP), propagates the gradient of the loss with respect to the weights backwards to each connection in the network.
@@ -197,12 +198,24 @@ After error propagation, the BP algorithm then updates the weights by using the 
 It modifies the weights by small steps proportional to the negative of the gradients:
 \begin{equation}
 \Delta w_{ij} \propto -\frac{\partial L}{\partial w_{ij}} = -\eta \delta_j x_i~~,
+\label{equ:delta_w}
 \end{equation}
 where $\eta$ defines the length of these updating steps which is also called learning rate.
+Again, the weight update is also dependant on the types of layers, where a convolution of the input vector $\mathbf{x}$ with the error gradient  $\mathbf{\delta}$ is needed in Conv layers.
+A detailed description of BP training on ConvNet can be found in~\cite{bouvrie2006notes}.
+
 Moreover, applying stochastic gradient descent (SGD), the gradient over the full training set can be approximated by using only a single or a few training data.
 Therefore $k$ in Equation~\ref{equ:derivative} can be seen as randomly selected data index, and $K$ represents the number of elements in such a data subset, which is also known as a batch.
-Again, the weight update is also dependant on the layer of neurons, where a convolution of the input vector $\mathbf{x}$ with the error gradient  $\mathbf{\delta}$ is needed in Conv layer.
-A detailed description of BP training on ConvNet can be found in~\cite{bouvrie2006notes}.
+If we take only one data sample in each batch, the loss function~(Equation~\ref{equ:loss_all}) will be estimated by the error between an output vector $\mathbf{y}^k$ and the single label sample $\mathbf{t}^k$:
+\begin{equation}
+E^k = \frac{1}{2}\sum_{m=1}^M (y^{k}_{m}-t^{k}_{m})^{2}~~,
+\label{equ:error_conv}
+\end{equation}
+and the equation can be simplified by deleting the index $k$, assuming the error is computed for each data sample:
+\begin{equation}
+E = \frac{1}{2}\sum_{m=1}^M (y_{m}-t_{m})^{2}~~.
+\label{equ:error_non}
+\end{equation}
 
 
 \subsection{Activation Function and Vanishing Gradient}
@@ -224,20 +237,25 @@ Rectified Linear Unit (ReLU) is proposed to tackle the problem of vanishing grad
 ReLU, simply defined as $y = max(0,x)$ and shown in Figure~\ref{fig:af}, has gradient of 1 when the input is greater than 0.
 Hence, the error gradient is able to be back-propagated in deeper network by multiplying ReLU derivatives.
 
-\section{Autoencoder}
+\section{Autoencoders}
 \label{sec:AE}
-Figure~\ref{fig:AE} shows a simplest architecture of an autoencoder, which is the same as a MLP.
-The only difference lies to the number of the output units, where an autoencoder has as many output neurons as the input.
-In this example, the input layer feeds forward the data vector $\mathbf{v}$ to the hidden layer as weighted sum of the data, $\mathbf{net\_h}$.
-Then the hidden units are activated by the input $\mathbf{net\_h}$ according to the activation function: $\mathbf{h}=f(\mathbf{net\_h})$.
-Finally, using the same approach the output of the network is generated, $\mathbf{v'}=f(\mathbf{net\_v'})$, as the reconstruction of the input data.
-Thus, autoencoders are trained without given target values, work as unsupervised learning models.
-\begin{equation}
-h_j=f(net\_h_j)=f(\sum_i v_i w^T_{ij})
-\end{equation}
-\begin{equation}
-v'_j=f(net\_v_{j'})=f(\sum_i h_i w_{ij})
-\end{equation}
+Autoencoders are categorised as unsupervised learning, since AE aims to reconstruct its original input as closely as possible.
+Thus the output and input vectors have the same dimensionality.
+But the hidden layer in the middle is allowed to have either more or fewer neurons, for the purposes of compressing the inputs or mapping the inputs to higher dimensions.
+Hence AE is suitable to learn effective representation of the original inputs at the hidden layer, which can be seen as the encoding phase of AE, and reconstruct them on the output layer where the hidden vectors are decoded. 
+
+Multiple AEs can be stacked up to build deep AEs where the hidden layer of a lower AE represents the input of the upper block, and each AE block can be trained individually with greedy layer-wise training.
+A stacked AE takes advantages of greater expressive power as any deep network does.
+Taking image processing as an example, the lower AE blocks only learn simple features, such as edges and dots, however on the upper layers more complicated and abstract features are extracted: contours, symbols and even objects. 
+
+In this section, we will only describe the structure and training method of single AE blocks, since the greedy layer-wise training on stacked AEs are not different from training multiple single AEs except for different input data.
+Due to AE's simple network architecture and training algorithm, spiking AEs will be built and trained with biologically-plausible training mechanism in Chapter~\ref{cha:sdlm}.
+
+\subsection{Structure}
+Figure~\ref{fig:AE} shows the architecture of an AE, which is an MLP consisting of three layers of neurons: visible ($\mathbf{v}$), hidden ($\mathbf{h}$) and reconstruction ($\mathbf{v'}$) layer.
+Both visible and reconstruction layer have $N$ dimensions, and hidden layer has $M$.
+Note that AEs usually have tied weights where the connections ($\mathbf{W}^T$) between $\mathbf{v}$ and $\mathbf{h}$ are transposed to form the connections ($\mathbf{W}$) from $\mathbf{h}$ to $\mathbf{v'}$.
+
 
 \begin{figure}
 	\centering
@@ -246,65 +264,65 @@ v'_j=f(net\_v_{j'})=f(\sum_i h_i w_{ij})
 	\label{fig:AE}
 \end{figure}
 
-%TODO why tied weights are good
-Notice that the connections used in the example are tied weights.
 
-Training an autoencoder is not different from backpropagation (BP) on an Multi-Layer Perceptrons(MLP).
-The objective of training is to minimise the prediction error of an MLP, which measured as a loss function.
-Accordingly, the loss function of an autoencoder can be described as:
+\subsection{Training}
+The feedforward path of an AE, same as an MLP, non-linearly transforms the input through two FC layers, where each neuron performs weighted summation and activation as illustrated in Figure~\ref{Fig:neuron_net}.
+Training an AE is also similar to that of MLP, however the difference lies in the objective where AE aims to minimise the difference between the input $\mathbf{v}$ and its reconstruction $\mathbf{v'}$, instead of between the output and some labelled data (supervised learning).
+Therefore the loss function generated by single data sample $\mathbf{v}$, described in Equation~\ref{equ:error_non} for supervised learning, is as follow:
 \begin{equation}
-L=\sum_{k=1}^{K}\|\mathbf{v}_{k}-\mathbf{v'}_{k}\|=\frac{1}{2}\sum_{k=1}^{K}(\mathbf{v}_{k}-\mathbf{v'}_{k})^{2}
+E = \frac{1}{2}\sum_{n=1}^N (v'_{n}-v_{n})^{2}~~,
 \end{equation}
-where k indicates the index of the training data $\mathbf{v}$, and each data vector $\mathbf{v}=\{v_0, v_1,...,v_N\}$ and its reconstruction $\mathbf{v'}=\{v'_0, v'_1,...,v'_N\}$ have N dimensions. 
-
-Applying stochastic gradient descent (SGD), the true gradient of the weight matrix, $\Delta W$, is approximated by a gradient at a single example with iterations.
-The reconstruction error $E_k$ of an input vector $\mathbf{v}_k$ is as given:
+and the weight update, shown in Equation~\ref{equ:delta_w}, is proportional to the error gradient with respect to the weight:
 \begin{equation}
-%	\begin{align*}
-E_k = \frac{1}{2}(\mathbf{v}_k - \mathbf{v'}_k)^2,
-%	\end{align*}
+\Delta w_{ij} \propto -\frac{\partial E}{\partial w_{ij}} = -\eta \delta_j h_i~~,
 \end{equation}
-%Using SGD, the backpropagation on an AE can be written as:
-and the gradient of the weight matrix is:
+where $\eta$ is the learning rate, $h_i$ is the hidden neuron and the term $\delta^k_j$ is the error gradient with the respect to $net_j$, the weighted summation.
+The weight tuning only needs to be applied in the reconstruction layer, since study~\cite{xu1993least} has proved that updating the transposed weights $\mathbf{W}^T$ at the hidden layer does not improve the learning and the error gradients are usually small.
+Hence, $\delta^k_j$  can be calculated according to Equation~\ref{equ:derivative}:
 \begin{equation}
-\Delta W \propto -\frac{\partial E_k}{\partial W}=-\eta \frac{\partial E_k}{\partial W},
+\delta_j = (v'_{j}-v_{j}) f'(net_j)~~,
 \end{equation}
-where $\eta$ is the learning rate.
-
-Since we use tied weights in the network, the weight tuning only needs to apply in the output layer.
-%TODO 
-by contrast, the second term, which reflects the contribution from the changed feedforward
-connections, is non-local. It depends on the activities of every visible neuron; this information
-would not be available to a biological synapse. Previous authors have noted that the second term
-is often small [44], so that an approximate gradient descent using only the first term works nearly
-as well as the full equation [44, 45]. For linear reconstructions, where g 0 is a constant, this becomes
-the autoencoder learning rule (Eq 1). This is the rule that we will implement biologically.
+and the weight update can be simply described by:
 \begin{equation}
-\begin{aligned}
-\Delta w_{ij} = -\eta \frac{\partial E_k}{\partial w_{ij}} &= -\eta \frac{\partial E_k}{\partial v'_j} \frac{\partial v'_j}{\partial net\_v'_j} \frac{\partial net\_v'_j}{\partial w_{ij}}, \textrm{ where} \\
-\frac{\partial E_k}{\partial v'_j} &= \frac{\partial \frac{1}{2} \sum_l (v_l - {v'}_l)^2}{\partial v'_j}= \frac{\partial \frac{1}{2}(v_j - {v'}_j)^2}{\partial v'_j}= v'_j - v_j, \\
-%	\frac{\partial v'_j}{\partial net\_v'_j} &= \begin{cases} 1, v'_j>0\\0, v'_j<=0\\ \end{cases}, \textrm{using ReLU,}\\
-%\frac{\partial v'_j}{\partial net\_v'_j} &=\left\{
-%\begin{aligned}
-%& 1, net\_v'_j > 0 \\
-%& 0, net\_v'_j < = 0
-%\end{aligned} 
-%\right.    \textrm{using ReLU, }\\
-\frac{\partial v'_j}{\partial net\_v'_j} &= f'(net\_{v'_j})~, \textrm{~derivative of the activation function} \\
-\frac{\partial net\_v'_j}{\partial w_{ij}} &= \frac{\partial h_i w_{ij}}{\partial w_{ij}} = h_i.
-\end{aligned}
+\Delta w_{ij} = \eta h_i (v_{j}-v'_{j})  f'(net_j)~~.
 \end{equation}
-Thus, the weight gradient is calculated as:
+If we use ReLU as the activation function, then the above equation is as follow:
 \begin{equation}
 \label{equ:ae_widrow_hoff}
-%\Delta w_{ij} = \left \{
-%\begin{aligned}
-%& \eta h_i(v_j - v'_j), &net\_v'_j > 0 \\
-%& 0, & net\_v'_j < = 0
-%\end{aligned} 
-%\right.
-\Delta w_{ij} = \eta h_i f'(net\_{v'_j}) (v_j - v'_j)~~.
+\Delta w_{ij} = \left \{
+\begin{aligned}
+& \eta h_i(v_j - v'_j)~, & net_j > 0 \\
+& 0~, & net_j < = 0
+\end{aligned} 
+\right.
 \end{equation}
+
+%\begin{equation}
+%\begin{aligned}
+%\Delta w_{ij} = -\eta \frac{\partial E_k}{\partial w_{ij}} &= -\eta \frac{\partial E_k}{\partial v'_j} \frac{\partial v'_j}{\partial net\_v'_j} \frac{\partial net\_v'_j}{\partial w_{ij}}, \textrm{ where} \\
+%\frac{\partial E_k}{\partial v'_j} &= \frac{\partial \frac{1}{2} \sum_l (v_l - {v'}_l)^2}{\partial v'_j}= \frac{\partial \frac{1}{2}(v_j - {v'}_j)^2}{\partial v'_j}= v'_j - v_j, \\
+%%	\frac{\partial v'_j}{\partial net\_v'_j} &= \begin{cases} 1, v'_j>0\\0, v'_j<=0\\ \end{cases}, \textrm{using ReLU,}\\
+%%\frac{\partial v'_j}{\partial net\_v'_j} &=\left\{
+%%\begin{aligned}
+%%& 1, net\_v'_j > 0 \\
+%%& 0, net\_v'_j < = 0
+%%\end{aligned} 
+%%\right.    \textrm{using ReLU, }\\
+%\frac{\partial v'_j}{\partial net\_v'_j} &= f'(net\_{v'_j})~, \textrm{~derivative of the activation function} \\
+%\frac{\partial net\_v'_j}{\partial w_{ij}} &= \frac{\partial h_i w_{ij}}{\partial w_{ij}} = h_i.
+%\end{aligned}
+%\end{equation}
+%Thus, the weight gradient is calculated as:
+%\begin{equation}
+%\label{equ:ae_widrow_hoff}
+%%\Delta w_{ij} = \left \{
+%%\begin{aligned}
+%%& \eta h_i(v_j - v'_j), &net\_v'_j > 0 \\
+%%& 0, & net\_v'_j < = 0
+%%\end{aligned} 
+%%\right.
+%\Delta w_{ij} = \eta h_i f'(net\_{v'_j}) (v_j - v'_j)~~.
+%\end{equation}
 
 %\section{Restricted Boltzmann Machine}
 %\label{sec:rbm}
@@ -594,7 +612,11 @@ Thus, the weight gradient is calculated as:
 %%		CD_n = KL(p^0 \mid \mid p^{\infty}) - KL(p^n \mid \mid p^{\infty})
 %%	\end{equation}
 %%\subsection{RBM\cite{zhang2013rbm}}
-\section{RBM}
+\section{Restricted Boltzmann Machine}
+RBM shares similar idea, but uses stochastic approach. Instead of deterministic (e.g. logistic or ReLU) it uses stochastic units with particular (usually binary of Gaussian) distribution. Learning procedure consists of several steps of Gibbs sampling (propagate: sample hiddens given visibles; reconstruct: sample visibles given hiddens; repeat) and adjusting the weights to minimize reconstruction error. 
+Stacked RBMs are usually used for pre-training of deep networks.
+
+\subsection{RBM Describes a Markov Chain}
 RBM is a restricted version of Boltzman machine, where there are only connections between layers of units but not between units within a layer, see Figure~\ref{fig:RBM}.
 $ v $ is the layer of visible units representing the observable data $ \mathbf{v} $, while $ h $ are the hidden units which can be seen as feature extractors.
 The connections between the hidden layer and the visible layers are bidirectional weights, $ \mathbf{W} $.
@@ -607,6 +629,17 @@ Thus the RBM consists of the data $ \mathbf{D} = \mathbf{V} = (\mathbf{v}_1, \ma
 	\label{fig:RBM}
 \end{figure}
 
+Here we take a Bernoulli-Bernoulli RBM as an example, where each node is a sigmoidal unit.
+The conditional probability function is as follows:
+\begin{equation}
+\begin{aligned}
+& p(h_j = 1 \mid \mathbf{v}) = \sigma(\sum_{i=1}^{M} w_{ij}  v_i + b_j)~,\\
+& p(v_i = 1 \mid \mathbf{h}) = \sigma(\sum_{j=1}^{N} w_{ji}  h_j + a_i)~.
+\end{aligned}
+\end{equation}
+
+
+\subsection{An Energy Model}
 The Energy function~\cite{hopfield1982neural} of a RBM is defined as follows, which has $ n $ vision units and $ m $ hidden ones:
 \begin{equation}
 E(\mathbf{v}, \mathbf{h} \mid \Theta)= -\sum_{i=1}^n a_i v_i - \sum_{j=1}^m b_j h_j - \sum_{i=1}^n \sum_{j=m}^n v_i W_{ij} h_j.
@@ -625,8 +658,43 @@ However, we are more interested in the marginal probability function: $ p(\mathb
 p(\mathbf{v} \mid \Theta) =\frac{\sum_{ \mathbf{h}} e^{-E(\mathbf{v}, \mathbf{h} \mid \Theta)}}{Z(\Theta)}.
 \end{equation}	
 
-%\paragraph{Objective Function}	
-\subsubsection{Objective Function}
+Given a set of data points $ \mathbf{D}=(\mathbf{v}^1, \mathbf{v}^2, ..., \mathbf{v}^K) $ the purpose of learning is to tune the model parameter $ \Theta $ to fit the data $ \mathbf{D}  $. 
+The objective function is the probability product of all the independent data points of the data set, which is also called the likelihood function:
+\begin{equation}
+L (\Theta \mid \mathbf{D}) = p(\mathbf{D} \mid \Theta ) = \prod_{k=1}^K p(\mathbf{v}^k \mid \Theta ) =  \prod_{k=1}^K\dfrac{f(\mathbf{v}^k \mid \Theta )}{Z( \Theta)}.
+\end{equation}
+And the target is to maximise the likelihood given the data set $ \mathbf{D}  $, which equals to maximise the log of the probability product (the log-likelihood):
+\begin{equation}
+\log  L (\Theta \mid \mathbf{D}) = \log p(\mathbf{D} \mid \Theta ) = \sum_{k=1}^K\log f(\mathbf{v}^k \mid \Theta ) - K \log Z( \Theta),
+\end{equation}
+or the average log-likelihood:
+\begin{equation}
+\label{equ:like}
+\hat{l} (\Theta \mid \mathbf{D}) =\frac{1}{K}\log  L (\Theta \mid \mathbf{D}) 
+=\frac{1}{K}\sum_{k=1}^K\log f(\mathbf{v}^k \mid \Theta ) - \log Z( \Theta).
+\end{equation}
+
+
+
+\subsection{Weight Update}
+Essentially, the integration of the probability model, see Equation~(\ref{equ:z_int}) and~(\ref{equ:z_dis}), is usually algebraically intractable.
+We have to use numerical integration method to evaluate the Equation~(\ref{equ:like}), whose partial derivative is (we are using vectors to generalise the problem):
+\begin{equation}
+\label{equ:part}
+\begin{aligned}
+\dfrac{\partial \hat{l} (\Theta \mid \mathbf{D})}{\partial \theta} 
+& = \frac{1}{K} \dfrac{\partial \sum_{k=1}^K\log f(\mathbf{v}^k \mid \Theta )}{\partial \theta} - \dfrac{\partial \log Z( \Theta)}{\partial \theta}\\
+& =  \frac{1}{K}\sum_{k=1}^K \dfrac{\partial \log f(\mathbf{v}^k \mid \Theta)}{\partial \theta} - \int p(\mathbf{x} \mid \Theta) \dfrac{\partial \log f(\mathbf{x} \mid \Theta)}{\partial \theta} \D \mathbf{x}\\
+& = \left \langle \dfrac{\partial \log f(\mathbf{d} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{D}} -\left \langle \dfrac{\partial \log f(\mathbf{c} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{C} \sim p(\mathbf{x} \mid \Theta)}  \\
+&=\left \langle \dfrac{\partial \log f(\mathbf{x} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{X}_{data}} - \left \langle \dfrac{\partial \log f(\mathbf{x} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{X}_{model}},
+\end{aligned}
+\end{equation}
+where  $ <\cdot>_x $ denotes the mean expectation of $ \cdot $ given distribution of $x$.
+The first term of the right-hand side is easy to get with the given data set $ \mathbf{D} $, and the second term can be approximated by generating data samples $ \mathbf{C} $ according to $ p(\mathbf{x} \mid \Theta) $.
+These generative samples is called ``fantasy data'' and can be generated using Monte Carlo Markov Chain (MCMC) sampling, see section~\ref{sec:mcmc}.
+The detailed derivation process can be found in Appendix~\ref{app:part}.
+Although in this example the integration of product of normal distribution is still tractable, it is also helpful to use numerical integration.
+
 Although $ p(\mathbf{v} \mid \Theta) $ is not a PoE problem, the partial derivation of the average log-likelihood function still applies to Equation~(\ref{equ:part}) and the intractable integration is the same problem here:
 \begin{equation}
 \label{equ:RBM}
