@@ -164,7 +164,7 @@ Last but not least, we state the property of SRM algorithm:
 \section{Training Deep SNNs}
 \label{sec:dSNN}
 Following the idea of supervising a spike-based, single-layered ADALINE network by STDP learning, we then seek solutions for training deep neural architectures.
-In Sections~\ref{sec:AE} and \ref{sec:rbm}, we have derived the training algorithms of AEs and RBMs in detail, whose learning rules are of same structure as Widrow-Hoff~(Equation~\ref{equ:widrow-hoff}) for ADALINE, see Equation~\ref{equ:ae_widrow_hoff}, and Algorithm~\ref{alg:learn}.
+In Sections~\ref{sec:AE} and \ref{sec:rbm}, we have derived the training algorithms of AEs and RBMs in detail, whose learning rules are of same structure as Widrow-Hoff~(Equation~\ref{equ:widrow-hoff}) for ADALINE, see Equations~\ref{equ:ae_widrow_hoff} and~\ref{equ:rbm_train}.
 Consequently, we can easily apply SRM in training spiking AEs and RBMs and conduct experiments to compare conventional deep learning modules with the spiking versions.
 
 \begin{figure}

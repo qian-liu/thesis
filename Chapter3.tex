@@ -233,7 +233,7 @@ The derivative of the activation function is one of the factors when the error g
 Thus, the gradient may vanish if the derivative of the activation function is always less than 1.
 For example the sigmoid function, shown in Figure~\ref{fig:af}, its derivative keeps the maximum (around~1) only when the input is close to 0, and saturates to its minimum 0 as the input either increases or decreases.
 
-Rectified Linear Unit (ReLU) is proposed to tackle the problem of vanishing gradient in deep network architectures.
+Rectified Linear Unit (ReLU) is proposed to tace the problem of vanishing gradient in deep network architectures.
 ReLU, simply defined as $y = max(0,x)$ and shown in Figure~\ref{fig:af}, has gradient of 1 when the input is greater than 0.
 Hence, the error gradient is able to be back-propagated in deeper network by multiplying ReLU derivatives.
 
@@ -254,7 +254,7 @@ Due to AE's simple network architecture and training algorithm, spiking AEs will
 \subsection{Structure}
 Figure~\ref{fig:AE} shows the architecture of an AE, which is an MLP consisting of three layers of neurons: visible ($\mathbf{v}$), hidden ($\mathbf{h}$) and reconstruction ($\mathbf{v'}$) layer.
 Both visible and reconstruction layer have $N$ dimensions, and hidden layer has $M$.
-Note that AEs usually have tied weights where the connections ($\mathbf{W}^T$) between $\mathbf{v}$ and $\mathbf{h}$ are transposed to form the connections ($\mathbf{W}$) from $\mathbf{h}$ to $\mathbf{v'}$.
+Note that AEs usually have tied weights where the connections ($\mathbf{w}^T$) between $\mathbf{v}$ and $\mathbf{h}$ are transposed to form the connections ($\mathbf{w}$) from $\mathbf{h}$ to $\mathbf{v'}$.
 
 
 \begin{figure}
@@ -277,7 +277,7 @@ and the weight update, shown in Equation~\ref{equ:delta_w}, is proportional to t
 \Delta w_{ij} \propto -\frac{\partial E}{\partial w_{ij}} = -\eta \delta_j h_i~~,
 \end{equation}
 where $\eta$ is the learning rate, $h_i$ is the hidden neuron and the term $\delta^k_j$ is the error gradient with the respect to $net_j$, the weighted summation.
-The weight tuning only needs to be applied in the reconstruction layer, since study~\cite{xu1993least} has proved that updating the transposed weights $\mathbf{W}^T$ at the hidden layer does not improve the learning and the error gradients are usually small.
+The weight tuning only needs to be applied in the reconstruction layer, since study~\cite{xu1993least} has proved that updating the transposed weights $\mathbf{w}^T$ at the hidden layer does not improve the learning and the error gradients are usually small.
 Hence, $\delta^k_j$  can be calculated according to Equation~\ref{equ:derivative}:
 \begin{equation}
 \delta_j = (v'_{j}-v_{j}) f'(net_j)~~,
@@ -613,164 +613,198 @@ If we use ReLU as the activation function, then the above equation is as follow:
 %%	\end{equation}
 %%\subsection{RBM\cite{zhang2013rbm}}
 \section{Restricted Boltzmann Machine}
-RBM shares similar idea, but uses stochastic approach. Instead of deterministic (e.g. logistic or ReLU) it uses stochastic units with particular (usually binary of Gaussian) distribution. Learning procedure consists of several steps of Gibbs sampling (propagate: sample hiddens given visibles; reconstruct: sample visibles given hiddens; repeat) and adjusting the weights to minimize reconstruction error. 
-Stacked RBMs are usually used for pre-training of deep networks.
+\label{sec:rbm}
+RBMs share similar idea of unsupervised learning as AEs, but aim to present data distribution of some training dataset, rather than reconstructing each element of the dataset.
+Thus, RBM is an energy-based model and uses stochastic approach.
+Besides that, the structure of RBMs, see Figure~\ref{fig:RBM}, is also similar to AEs' where the visible units $\mathbf{v}$ bidirectionally connect to the hidden units $\mathbf{h}$ with strength $\mathbf{w}$.
 
-\subsection{RBM Describes a Markov Chain}
-RBM is a restricted version of Boltzman machine, where there are only connections between layers of units but not between units within a layer, see Figure~\ref{fig:RBM}.
-$ v $ is the layer of visible units representing the observable data $ \mathbf{v} $, while $ h $ are the hidden units which can be seen as feature extractors.
-The connections between the hidden layer and the visible layers are bidirectional weights, $ \mathbf{W} $.
-Note that, both visible and hidden units have their bias individually, $ \mathbf{a} $ and $ \mathbf{b} $.
-Thus the RBM consists of the data $ \mathbf{D} = \mathbf{V} = (\mathbf{v}_1, \mathbf{v}_2, ..., \mathbf{v}_K ) $, the model parameters $ \Theta = (\mathbf{a}, \mathbf{b}, \mathbf{W}) $ and the hidden units $ \mathbf{h} \sim p(\mathbf{h} \mid \mathbf{v}, \Theta) $.
+
 \begin{figure}[hbt]
 	\centering
-	\includegraphics[width=0.6\textwidth]{pics_sdbn/RBM.pdf}
+	\includegraphics[width=0.6\textwidth]{pics_sdlm/rbm_o.pdf}
 	\caption{A typical RBM structure.}
 	\label{fig:RBM}
 \end{figure}
 
-Here we take a Bernoulli-Bernoulli RBM as an example, where each node is a sigmoidal unit.
-The conditional probability function is as follows:
-\begin{equation}
-\begin{aligned}
-& p(h_j = 1 \mid \mathbf{v}) = \sigma(\sum_{i=1}^{M} w_{ij}  v_i + b_j)~,\\
-& p(v_i = 1 \mid \mathbf{h}) = \sigma(\sum_{j=1}^{N} w_{ji}  h_j + a_i)~.
-\end{aligned}
-\end{equation}
+Despite the various statistical models involved in RBMs and their training method, the actual training algorithm is rather simple thanks to the use of Contrastive Divergence~(CD)~\cite{hinton2002training}.
+We can only illustrate some of the statistical models and sampling methods involved in RBM training, a detailed description can be found in~\cite{fischer2012introduction}. 
+Stacked RBMs are also trained by layer-wise greedy algorithms, like stacked AEs, thus this section will focus on training single RBM block.
 
+\subsection{Energy-based Model}
+In energy-based models, the probability of data point $x$ is defined by a model function $f(x)$, its energy function $E(x)$ and a partition function $Z$ which normalises the model function to possibilities by adding up all possible $f(x)$:
+\begin{equation}
+%\begin{aligned}
+ p(x) = \dfrac{f(x)}{Z}~~, \textrm{~~where~~} f(x) =e^{-E(x)}~~,  \textrm{~~and~~}
+ Z = \sum_{x} e^{-E(x)}~~.
+%\end{aligned}
+\end{equation} 
+The energy function~\cite{hopfield1982neural} of a RBM is defined as follows:
+\begin{equation}
+E(\mathbf{v}, \mathbf{h} \mid \Theta)= -\sum_{i=1}^N a_i v_i - \sum_{j=1}^M b_j h_j - \sum_{i=1}^N \sum_{j=1}^M v_i w_{ij} h_j~~,
+\label{equ:energy_complete}
+\end{equation}
+where visible layer has $ N $ units, hidden layer has $ M $, and $ \Theta$ are the model parameters used in RBMs $ \Theta =\{\mathbf{a}, \mathbf{b}, \mathbf{w}\} $ including biases on visible layer, $\mathbf{a}$, hidden layer, $\mathbf{b}$, and weights between the layers $\mathbf{w}$.
+As mentioned in Section~\ref{sec:spike}, for simplicity we use neurons without biases in this thesis.
+Therefore only the third term of the complete energy function~(Equation~\ref{equ:energy_complete}) is kept:
+\begin{equation}
+E(\mathbf{v}, \mathbf{h} \mid \Theta)= - \sum_{i=1}^N \sum_{j=1}^M v_i w_{ij} h_j~~,
+\label{equ:rbm_energy}
+\end{equation}
+and the model parameters are reduced to  $ \Theta = \{\mathbf{w}\} $.
+Thus the joint probability of the visible vector (input) $\mathbf{v}$ and the output of hidden units $\mathbf{h}$ is defined as follows: 
+\begin{equation}
+%\begin{aligned}
+p(\mathbf{v}, \mathbf{h} \mid \Theta) =\frac{f(\mathbf{v}, \mathbf{h} \mid \Theta)}{Z(\Theta)}~,  \textrm{~where~} 
+f(\mathbf{v}, \mathbf{h} \mid \Theta) =e^{-E(\mathbf{v}, \mathbf{h} \mid \Theta)}~,  \textrm{~and~} 
+Z(\Theta) = \sum_{\mathbf{v}} \sum_{\mathbf{h}} e^{-E(\mathbf{v}, \mathbf{h} \mid \Theta)}~.
+%\end{aligned}
+\label{equ:rbm_prob}
+\end{equation}
+%However, we are more interested in the marginal probability function: $ p(\mathbf{v} \mid \Theta) $:
+%\begin{equation}
+%p(\mathbf{v} \mid \Theta) =\frac{\sum_{ \mathbf{h}} e^{-E(\mathbf{v}, \mathbf{h} \mid \Theta)}}{Z(\Theta)}~~,
+%\end{equation}	
 
-\subsection{An Energy Model}
-The Energy function~\cite{hopfield1982neural} of a RBM is defined as follows, which has $ n $ vision units and $ m $ hidden ones:
+\subsection{Objective Function}
+Given a set of outcomes data $ \mathbf{D}=\{\mathbf{v}^1, \mathbf{v}^2, ..., \mathbf{v}^K\} $, the likelihood function of model parameters $\Theta$ defines the probability of the outcomes $ \mathbf{D}$ given $\Theta$:
 \begin{equation}
-E(\mathbf{v}, \mathbf{h} \mid \Theta)= -\sum_{i=1}^n a_i v_i - \sum_{j=1}^m b_j h_j - \sum_{i=1}^n \sum_{j=m}^n v_i W_{ij} h_j.
+L (\Theta \mid \mathbf{D}) = p(\mathbf{D} \mid \Theta ) = \prod_{k=1}^K p(\mathbf{v}^k \mid \Theta ) =  \prod_{k=1}^K\dfrac{f(\mathbf{v}^k \mid \Theta )}{Z( \Theta)}~~.
+\label{equ:likelihood}
 \end{equation}
-And the model function and its probability functions are as follows:
-\begin{equation}
-\begin{aligned}
-& f(\mathbf{v}, \mathbf{h} \mid \Theta) =e^{-E(\mathbf{v}, \mathbf{h} \mid \Theta)} \\
-& p(\mathbf{v}, \mathbf{h} \mid \Theta) =\frac{e^{-E(\mathbf{v}, \mathbf{h} \mid \Theta)}}{Z(\Theta)}\\
-& Z(\Theta) = \sum_{\mathbf{v}} \sum_{\mathbf{h}} e^{-E(\mathbf{v}, \mathbf{h} \mid \Theta)}.
-\end{aligned}
-\end{equation}
-Note that, the model function $ f(\mathbf{v}, \mathbf{h} \mid \Theta) $ is nicely defined as a PoE problem, and each hidden unit represent an expert.
-However, we are more interested in the marginal probability function: $ p(\mathbf{v} \mid \Theta) $:
-\begin{equation}
-p(\mathbf{v} \mid \Theta) =\frac{\sum_{ \mathbf{h}} e^{-E(\mathbf{v}, \mathbf{h} \mid \Theta)}}{Z(\Theta)}.
-\end{equation}	
-
-Given a set of data points $ \mathbf{D}=(\mathbf{v}^1, \mathbf{v}^2, ..., \mathbf{v}^K) $ the purpose of learning is to tune the model parameter $ \Theta $ to fit the data $ \mathbf{D}  $. 
-The objective function is the probability product of all the independent data points of the data set, which is also called the likelihood function:
-\begin{equation}
-L (\Theta \mid \mathbf{D}) = p(\mathbf{D} \mid \Theta ) = \prod_{k=1}^K p(\mathbf{v}^k \mid \Theta ) =  \prod_{k=1}^K\dfrac{f(\mathbf{v}^k \mid \Theta )}{Z( \Theta)}.
-\end{equation}
-And the target is to maximise the likelihood given the data set $ \mathbf{D}  $, which equals to maximise the log of the probability product (the log-likelihood):
-\begin{equation}
-\log  L (\Theta \mid \mathbf{D}) = \log p(\mathbf{D} \mid \Theta ) = \sum_{k=1}^K\log f(\mathbf{v}^k \mid \Theta ) - K \log Z( \Theta),
-\end{equation}
-or the average log-likelihood:
+Thus the objective is to maximise the likelihood $L (\Theta \mid \mathbf{D})$ that is to say, the model parameters $ \Theta $ best defines the given data $\mathbf{D}$.
+Furthermore, in order to simplified the product on the right-hand term in Equation~\ref{equ:likelihood} the objective function can be replaced with the average log-likelihood:
 \begin{equation}
 \label{equ:like}
 \hat{l} (\Theta \mid \mathbf{D}) =\frac{1}{K}\log  L (\Theta \mid \mathbf{D}) 
-=\frac{1}{K}\sum_{k=1}^K\log f(\mathbf{v}^k \mid \Theta ) - \log Z( \Theta).
+=\frac{1}{K}\sum_{k=1}^K\log f(\mathbf{v}^k \mid \Theta ) - \log Z( \Theta)~~.
 \end{equation}
 
+%Note that, both visible and hidden units have their bias individually, $ \mathbf{a} $ and $ \mathbf{b} $.
+%Thus the RBM consists of the data $ \mathbf{D} = \mathbf{V} = (\mathbf{v}_1, \mathbf{v}_2, ..., \mathbf{v}_K ) $, the model parameters $ \Theta = (\mathbf{a}, \mathbf{b}, \mathbf{w}) $ and the hidden units $ \mathbf{h} \sim p(\mathbf{h} \mid \mathbf{v}, \Theta) $.
+%
+%
+%Here we take a Bernoulli-Bernoulli RBM as an example, where each node is a sigmoidal unit.
+%The conditional probability function is as follows:
+%\begin{equation}
+%\begin{aligned}
+%& p(h_j = 1 \mid \mathbf{v}) = \sigma(\sum_{i=1}^{M} w_{ij}  v_i + b_j)~,\\
+%& p(v_i = 1 \mid \mathbf{h}) = \sigma(\sum_{j=1}^{N} w_{ji}  h_j + a_i)~.
+%\end{aligned}
+%\end{equation}
 
 
-\subsection{Weight Update}
-Essentially, the integration of the probability model, see Equation~(\ref{equ:z_int}) and~(\ref{equ:z_dis}), is usually algebraically intractable.
-We have to use numerical integration method to evaluate the Equation~(\ref{equ:like}), whose partial derivative is (we are using vectors to generalise the problem):
+%SDG search in parameter space.
+%
+%Essentially, the integration of the probability model, see Equation~(\ref{equ:z_int}) and~(\ref{equ:z_dis}), is usually algebraically intractable.
+%We have to use numerical integration method to evaluate the Equation~(\ref{equ:like}), whose partial derivative is (we are using vectors to generalise the problem):
+The loss derivative with respect to a parameter $\theta$ is as follows:
 \begin{equation}
 \label{equ:part}
 \begin{aligned}
 \dfrac{\partial \hat{l} (\Theta \mid \mathbf{D})}{\partial \theta} 
 & = \frac{1}{K} \dfrac{\partial \sum_{k=1}^K\log f(\mathbf{v}^k \mid \Theta )}{\partial \theta} - \dfrac{\partial \log Z( \Theta)}{\partial \theta}\\
-& =  \frac{1}{K}\sum_{k=1}^K \dfrac{\partial \log f(\mathbf{v}^k \mid \Theta)}{\partial \theta} - \int p(\mathbf{x} \mid \Theta) \dfrac{\partial \log f(\mathbf{x} \mid \Theta)}{\partial \theta} \D \mathbf{x}\\
-& = \left \langle \dfrac{\partial \log f(\mathbf{d} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{D}} -\left \langle \dfrac{\partial \log f(\mathbf{c} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{C} \sim p(\mathbf{x} \mid \Theta)}  \\
-&=\left \langle \dfrac{\partial \log f(\mathbf{x} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{X}_{data}} - \left \langle \dfrac{\partial \log f(\mathbf{x} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{X}_{model}},
+& =  \frac{1}{K}\sum_{k=1}^K \dfrac{\partial \log f(\mathbf{v}^k \mid \Theta)}{\partial \theta} - \sum_x p(\mathbf{x} \mid \Theta) \dfrac{\partial \log f(\mathbf{x} \mid \Theta)}{\partial \theta}\\
+& = \left \langle \dfrac{\partial \log f(\mathbf{v} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{D}} -\left \langle \dfrac{\partial \log f(\mathbf{v} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{C} \sim p(\mathbf{v} \mid \Theta)} ~~,
+%\\
+%&=\left \langle \dfrac{\partial \log f(\mathbf{x} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{X}_{data}} - \left \langle \dfrac{\partial \log f(\mathbf{x} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{X}_{model}},
 \end{aligned}
 \end{equation}
-where  $ <\cdot>_x $ denotes the mean expectation of $ \cdot $ given distribution of $x$.
-The first term of the right-hand side is easy to get with the given data set $ \mathbf{D} $, and the second term can be approximated by generating data samples $ \mathbf{C} $ according to $ p(\mathbf{x} \mid \Theta) $.
-These generative samples is called ``fantasy data'' and can be generated using Monte Carlo Markov Chain (MCMC) sampling, see section~\ref{sec:mcmc}.
+where  $ <\cdot>_{\mathbf{X}} $ denotes the mean expectation of $ \cdot $ given data set $\mathbf{X}$.
+The first term of the right-hand side is easy to get with the given data, $\mathbf{d} \in \mathbf{D} $, and the second term can be approximated by generating data samples $\mathbf{C} $ according to $ p(\mathbf{x} \mid \Theta) $.
+%These generative samples is called ``fantasy data'' and can be generated using Monte Carlo Markov Chain (MCMC) sampling, see section~\ref{sec:mcmc}.
 The detailed derivation process can be found in Appendix~\ref{app:part}.
-Although in this example the integration of product of normal distribution is still tractable, it is also helpful to use numerical integration.
-
-Although $ p(\mathbf{v} \mid \Theta) $ is not a PoE problem, the partial derivation of the average log-likelihood function still applies to Equation~(\ref{equ:part}) and the intractable integration is the same problem here:
+%Although in this example the integration of product of normal distribution is still tractable, it is also helpful to use numerical integration.
+%Although $ p(\mathbf{v} \mid \Theta) $ is not a PoE problem, the partial derivation of the average log-likelihood function still applies to Equation~(\ref{equ:part}) and the intractable integration is the same problem here:
+Applying model function of RBMs in Equation~\ref{equ:rbm_prob} to the loss derivative (Equation~\ref{equ:part}), Appendix~\ref{app:RBM} derives the loss function of RBMs in detail:
 \begin{equation}
 \label{equ:RBM}
 \begin{aligned}
 \dfrac{\partial \hat{l} (\Theta \mid \mathbf{D})}{\partial \theta} 
-& = \left \langle \dfrac{\partial -E(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{h} \sim p( \mathbf{h} \mid \mathbf{v}, \Theta), \mathbf{V}} 
-- \left \langle \dfrac{\partial -E(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{v}, \mathbf{h} \sim p( \mathbf{v}, \mathbf{h} \mid  \Theta)},  \\
+& = \left \langle \dfrac{\partial -E(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\{\mathbf{D}, \mathbf{D}_h\} \sim p( \mathbf{h} \mid \mathbf{v}, \Theta)} 
+- \left \langle \dfrac{\partial -E(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\{\mathbf{C_v}, \mathbf{C_h}\} \sim p( \mathbf{v}, \mathbf{h} \mid  \Theta)},  \\
 \end{aligned}
 \end{equation}
-The detailed derivation process, please see Appendix~\ref{app:RBM}.
-Regarding the specific RBM parameters,  $ \Theta = (\mathbf{a}, \mathbf{b}, \mathbf{W}) $, the derivatives are:
+Then we plug the energy function of RBMs (Equation~\ref{equ:rbm_energy}) into the equation above, the loss derivative with respect to the weight is:
 \begin{equation}
 \label{equ:RBM_2}
-\begin{aligned}
-\dfrac{\partial \hat{l} (\Theta \mid \mathbf{D})}{\partial W_{ij}} 
-& = \left \langle v_i h_j \right \rangle_{\mathbf{h} \sim p( \mathbf{h} \mid \mathbf{v}, \Theta), \mathbf{V}} 
-- \left \langle  v_i h_j \right \rangle_{\mathbf{v}, \mathbf{h} \sim p( \mathbf{v}, \mathbf{h} \mid  \Theta)},  \\
-\dfrac{\partial \hat{l} (\Theta \mid \mathbf{D})}{\partial a_{i}} 
-& = \left \langle v_i \right \rangle_{\mathbf{h} \sim p( \mathbf{h} \mid \mathbf{v}, \Theta), \mathbf{V}} 
-- \left \langle  v_i \right \rangle_{\mathbf{v}, \mathbf{h} \sim p( \mathbf{v}, \mathbf{h} \mid  \Theta)},  \\
-\dfrac{\partial \hat{l} (\Theta \mid \mathbf{D})}{\partial b_{j}} 
-& = \left \langle h_j \right \rangle_{\mathbf{h} \sim p( \mathbf{h} \mid \mathbf{v}, \Theta), \mathbf{V}} 
-- \left \langle  h_j \right \rangle_{\mathbf{v}, \mathbf{h} \sim p( \mathbf{v}, \mathbf{h} \mid  \Theta)},  \\
-\end{aligned}
+%\begin{aligned}
+\dfrac{\partial \hat{l} (\Theta \mid \mathbf{D})}{\partial w_{ij}} 
+= \left \langle v_i h_j \right \rangle_{\{\mathbf{D}, \mathbf{D}_h\} \sim p( \mathbf{h} \mid \mathbf{v}, \Theta)}
+- \left \langle  v_i h_j \right \rangle_{\{\mathbf{C_v}, \mathbf{C_h}\} \sim p( \mathbf{v}, \mathbf{h} \mid  \Theta)}~~. %  \\
+%\dfrac{\partial \hat{l} (\Theta \mid \mathbf{D})}{\partial a_{i}} 
+%& = \left \langle v_i \right \rangle_{\mathbf{h} \sim p( \mathbf{h} \mid \mathbf{v}, \Theta), \mathbf{V}} 
+%- \left \langle  v_i \right \rangle_{\mathbf{v}, \mathbf{h} \sim p( \mathbf{v}, \mathbf{h} \mid  \Theta)},  \\
+%\dfrac{\partial \hat{l} (\Theta \mid \mathbf{D})}{\partial b_{j}} 
+%& = \left \langle h_j \right \rangle_{\mathbf{h} \sim p( \mathbf{h} \mid \mathbf{v}, \Theta), \mathbf{V}} 
+%- \left \langle  h_j \right \rangle_{\mathbf{v}, \mathbf{h} \sim p( \mathbf{v}, \mathbf{h} \mid  \Theta)},  \\
+%\end{aligned}
 \end{equation}
 %\paragraph{CD with 1-step Reconstruction} 
-\subsubsection{CD with 1-step Reconstruction}
+\subsection{Weight update with Contrastive Divergence}
 \label{sec:cd}
-Both terms of the derivatives of the average log-likelihood function (Equation~(\ref{equ:RBM})) are intractable, so generative models for sampling is needed.
-As stated in Section~\ref{sec:CD}, for each iteration only one sample is generated.
-
-Regarding to the first term, given a training data $ \mathbf{v}_0 $ we first generate a hidden vector according to the conditional distribution $ \mathbf{h}_0 \sim p( \mathbf{h} \mid \mathbf{v}_0, \Theta) $.
-Welling et al. have proposed~\cite{welling2004exponential} that both the hidden and visible units can be any exponential unit, such as softmax, Gaussian and Poissonian.
-Here we take a Bernoulli-Bernoulli RBM as an example, where each node is a sigmoidal unit.
-The conditional probability function is as follows:
+Generating data samples for the negative term of Equation~\ref{equ:RBM_2} requires Gibbs sampling on a Markov chain with infinite steps to convergence.
+Gibbs sampling approximate the joint probability $p( \mathbf{v}, \mathbf{h} \mid  \Theta)$ with conditionally probability defined in RBMs:
 \begin{equation}
-p(h_i = 1 \mid \mathbf{v}) = \sigma(\sum_{j=1}^{m} W_{ij} \cdot \mathbf{v} + b_j).
-\end{equation}
+\begin{aligned}
+& p(h_j = 1 \mid \mathbf{v}) = \sigma(\sum_{i=1}^{M} w_{ij} v_i)~~, \\
+& p(v_i = 1 \mid \mathbf{h}) = \sigma(\sum_{j=1}^{N} w_{ji} h_j)~~,
+\end{aligned}
+\end{equation} 
+where $\sigma$ represents Sigmoid activation function for Bernoulli-Bernoulli RBMs.
+Figure~\ref{fig:gibbs} illustrates the Gibbs sampling on an RBM by $k$ steps where each pair of $(\mathbf{v}, \mathbf{h})$ composes a state of the Markov chain, and the joint probability $p( \mathbf{v}, \mathbf{h} \mid  \Theta)$ is approximated by conditional probabilities embedded in the weights.
 
 \begin{figure}[hbt]
 	\centering
-	\includegraphics[width=0.6\textwidth]{pics_sdbn/gibbs.png}
-	\caption{Gibbs sampling on RBM.}
+	\includegraphics[width=0.98\textwidth]{pics_sdlm/gibbs_sampling.pdf}
+	\caption{Gibbs sampling on a RBM.}
 	\label{fig:gibbs}
 \end{figure}
-The second term is perfect fit for Gibbs sampling, since we can $ p(\mathbf{v}, \mathbf{h} \mid \Theta) $ as a 2D vector and generating the samples by jumping in a Markov Chain with the transformation probability matrix $ p(\mathbf{v} \mid \mathbf{h}, \Theta) $ and $ p(\mathbf{h} \mid \mathbf{v}, \Theta) $, see Figure~\ref{fig:gibbs} and Section~\ref{sec:Gibbs}.
-So, with the given data $ \mathbf{v}_0 $ and the sampling data $ \mathbf{h}_0 $, we have the initial data point in this Markov Chain,  ($ \mathbf{v}_0, \mathbf{h}_0$).
-The transformation starts from the axis of $ \mathbf{v} $, then we get $ \mathbf{v}_1 \sim p( \mathbf{v} \mid \mathbf{h}_0, \Theta) $.
-It follows the next axis $ \mathbf{h} $, similarly we get $ \mathbf{h}_1 \sim p( \mathbf{h} \mid \mathbf{v}_1, \Theta) $.
-So far we obtain the first sample along the Markov Chain, ($ \mathbf{v}_1, \mathbf{h}_1$) thus to solve the objective function with one iteration.
-The algorithm is described below:   
-\begin{algorithm}[h]
-	\caption{Learning on RBM Parameters with $ CD_1 $}
-	\label{alg:learn}
-	\begin{algorithmic}
-		%			\State Initialisation $\mathbf{x}_0 = [x_0(1),x_0(2),...,x_0(M)]$,  \Comment{Random initialise $\mathbf{x}_0$}
-		\For{$t=1, 2, ..., K$} \Comment{K number of training data $ \mathbf{V} $, 1 data each iteration}
-		%			\For{$k=1, 2, ..., M$}
-		\State $ \mathbf{h}_t \sim p( \mathbf{h} \mid \mathbf{v}_t, \Theta) $
-		\Comment{Generate $ \mathbf{h}_t $ given $ \mathbf{v}_t $ }
-		\State $ \mathbf{v}_{t+1} \sim p( \mathbf{v} \mid \mathbf{h}_{t}, \Theta) $
-		\Comment{Generate $ \mathbf{v}_{t+1} $ on v axis using Gibbs sampling }
-		\State $ \mathbf{h}_{t+1} \sim p( \mathbf{h} \mid \mathbf{v}_{t+1}, \Theta) $
-		\Comment{Generate $ \mathbf{h}_{t+1} $ on h axis using Gibbs sampling }
-		\State $ \dfrac{\partial \hat{l} (\Theta \mid \mathbf{D})}{\partial W_{ij}} = v_{t,i} h_{t,j} - v_{t+1,i} h_{t+1,j}$
-		\State $ \dfrac{\partial \hat{l} (\Theta \mid \mathbf{D})}{\partial a_{i}} = v_{t,i} - v_{t+1,i} $
-		\State $  \dfrac{\partial \hat{l} (\Theta \mid \mathbf{D})}{\partial b_{j}} = h_{t,j} - h_{t+1,j}$
-		\State $ \Delta W_{ij} = \eta ( v_{t,i} h_{t,j} - v_{t+1,i} h_{t+1,j}) $
-		\Comment{Update $ W_{ij} $}
-		\State $ \Delta a_{i} = \eta ( v_{t,i} - v_{t+1,i}) $
-		\Comment{Update $ a_{i} $}
-		\State $ \Delta b_{j} = \eta ( h_{t,j} - h_{t+1,j}) $
-		\Comment{Update $ b_{j} $}
-		%			\EndFor
-		\EndFor
-	\end{algorithmic}
-	\label{alg:rbm}
-\end{algorithm}
 
+If $ k $ is big enough thus the Markov chain converges, Equation~\ref{equ:part} will obtains the derivative of Kullback-Leibler~(KL) divergence with respect to parameter $\theta$, where KL divergence measures the distance between two probability distributions.
+However, if we just take a few steps, the KL divergence can be seen as a `k-step contrastive convergence ($ CD_{k}) $'.
+Even $ CD_1 $ has performed surprisingly well in RBM training~\cite{hinton2002training}.
+Hence the RBM training using SGD is as follows :
+\begin{equation}
+\Delta w_{ij} = \eta (v^0_i h^0_j-v^1_i h^1_j)~~.
+\label{equ:rbm_train}
+\end{equation}
+
+
+
+%The second term is perfect fit for Gibbs sampling, since we can $ p(\mathbf{v}, \mathbf{h} \mid \Theta) $ as a 2D vector and generating the samples by jumping in a Markov Chain with the transformation probability matrix $ p(\mathbf{v} \mid \mathbf{h}, \Theta) $ and $ p(\mathbf{h} \mid \mathbf{v}, \Theta) $, see Figure~\ref{fig:gibbs} and Section~\ref{sec:Gibbs}.
+%So, with the given data $ \mathbf{v}_0 $ and the sampling data $ \mathbf{h}_0 $, we have the initial data point in this Markov Chain,  ($ \mathbf{v}_0, \mathbf{h}_0$).
+%The transformation starts from the axis of $ \mathbf{v} $, then we get $ \mathbf{v}_1 \sim p( \mathbf{v} \mid \mathbf{h}_0, \Theta) $.
+%It follows the next axis $ \mathbf{h} $, similarly we get $ \mathbf{h}_1 \sim p( \mathbf{h} \mid \mathbf{v}_1, \Theta) $.
+%So far we obtain the first sample along the Markov Chain, ($ \mathbf{v}_1, \mathbf{h}_1$) thus to solve the objective function with one iteration.
+%The algorithm is described below:   
+%\begin{algorithm}[h]
+%	\caption{Learning on RBM Parameters with $ CD_1 $}
+%	\label{alg:learn}
+%	\begin{algorithmic}
+%		%			\State Initialisation $\mathbf{x}_0 = [x_0(1),x_0(2),...,x_0(M)]$,  \Comment{Random initialise $\mathbf{x}_0$}
+%		\For{$t=1, 2, ..., K$} \Comment{K number of training data $ \mathbf{V} $, 1 data each iteration}
+%		%			\For{$k=1, 2, ..., M$}
+%		\State $ \mathbf{h}_t \sim p( \mathbf{h} \mid \mathbf{v}_t, \Theta) $
+%		\Comment{Generate $ \mathbf{h}_t $ given $ \mathbf{v}_t $ }
+%		\State $ \mathbf{v}_{t+1} \sim p( \mathbf{v} \mid \mathbf{h}_{t}, \Theta) $
+%		\Comment{Generate $ \mathbf{v}_{t+1} $ on v axis using Gibbs sampling }
+%		\State $ \mathbf{h}_{t+1} \sim p( \mathbf{h} \mid \mathbf{v}_{t+1}, \Theta) $
+%		\Comment{Generate $ \mathbf{h}_{t+1} $ on h axis using Gibbs sampling }
+%		\State $ \dfrac{\partial \hat{l} (\Theta \mid \mathbf{D})}{\partial W_{ij}} = v_{t,i} h_{t,j} - v_{t+1,i} h_{t+1,j}$
+%		\State $ \dfrac{\partial \hat{l} (\Theta \mid \mathbf{D})}{\partial a_{i}} = v_{t,i} - v_{t+1,i} $
+%		\State $  \dfrac{\partial \hat{l} (\Theta \mid \mathbf{D})}{\partial b_{j}} = h_{t,j} - h_{t+1,j}$
+%		\State $ \Delta W_{ij} = \eta ( v_{t,i} h_{t,j} - v_{t+1,i} h_{t+1,j}) $
+%		\Comment{Update $ W_{ij} $}
+%		\State $ \Delta a_{i} = \eta ( v_{t,i} - v_{t+1,i}) $
+%		\Comment{Update $ a_{i} $}
+%		\State $ \Delta b_{j} = \eta ( h_{t,j} - h_{t+1,j}) $
+%		\Comment{Update $ b_{j} $}
+%		%			\EndFor
+%		\EndFor
+%	\end{algorithmic}
+%	\label{alg:rbm}
+%\end{algorithm}
+
+\section{Summary}
+This chapter briefly introduced the most popular deep learning techniques and models for potential use in spiking neural networks.
+Then we illustrated the structure and training procedure of three deep learning models: Convolutional networks, Autoencoders and Restricted Boltzmann Machines, which will be applied in spiking deep networks in the following chapters.
