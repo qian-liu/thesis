@@ -630,12 +630,20 @@ Consequently, we propose the new activation function, Noisy Softplus, to replace
 	%	~\cite{lecun1998gradient}
 	a popular database in neuromorphic vision, using the ANN-trained SNN method stated above.
 	The architecture contains $28\times28$ input units, followed by two convolutional layers 6c5-2s-12c5-2s, and 10 output neurons fully connected to the last pooling layer to represent the classified digit.
+	The detailed network structure and training procedure can be found in Section~\ref{sec:convnet}.
 	
 	The training only employed Noisy Softplus units that all the convolution, average sampling, and the fully-connected neurons use Noisy Softplus function with no bias.
 	The parameters of the activation function were calibrated as, $(k=0.30, S=201)$,  for LIF neurons~(see~Tablel~\ref{tbl:pynnConfig}) of $\tau_{syn}=5$~ms.
 	The input images were scaled by 100~Hz to present the firing rates of input spikes.
 	The weights were updated using a decaying learning rate, 50 images per batch and 20 epochs.
 	The ANN-trained weights were then directly applied in the corresponding convolutional SNN without any conversion for recognition tasks.
+	Figure~\ref{Fig:spike_ConvNet} illustrates the working scheme of a spiking version of convolution and pooling neurons.
+	\begin{figure}[bt]
+		\centering
+		\includegraphics[width=0.95\textwidth]{pics_iconip/spike_conv.png}
+		\caption{Spike neurons work in convolution and pooling layers, whose firing rates of the spike train represents the intensities of neural activations.}
+		\label{Fig:spike_ConvNet}
+	\end{figure}
 	
 	
 	\subsection{Neural Activity}
