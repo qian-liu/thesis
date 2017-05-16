@@ -36,37 +36,21 @@ As the training mechanism becomes more mature, for example using the long short-
 
 
 \subsection{Combined Approaches}
-Current trend of deep learning is to combine other machine learning algorithms to work on other objectives: decision making and generative models.
-Reinforcement learning, GAN
+Current trend of deep learning is to combine other machine learning algorithms towards more complex objectives: such as decision making and data generation.
 
-
-%深度学习的概念源于人工神经网络的研究。含多隐层的多层感知器就是一种深度学习结构。深度学习通过组合低层特征形成更加抽象的高层表示属性类别或特征，以发现数据的分布式特征表示。 深度学习的概念由Hinton等人于2006年提出。基于深信度网(DBN)提出非监督贪心逐层训练算法，为解决深层结构相关的优化难题带来希望，随后提出多层自动编码器深层结构。此外Lecun等人提出的卷积神经网络是第一个真正多层结构学习算法，它利用空间相对关系减少参数数目以提高训练性能。 深度学习是机器学习研究中的一个新的领域，其动机在于建立、模拟人脑进行分析学习的神经网络，它模仿人脑的机制来解释数据，例如图像，声音和文本。 同机器学习方法一样，深度机器学习方法也有监督学习与无监督学习之分．不同的学习框架下建立的学习模型很是不同．例如，卷积神经网络（Convolutional neural networks，简称CNNs）就是一种深度的监督学习下的机器学习模型，而深度置信网（Deep Belief Nets，简称DBNs）就是一种无监督学习下的机器学习模型。 
-
-\subsubsection{Unsupervised Learning}
-%Start deep learning.
-%
-%ae~\cite{vincent2008extracting}
-%RBM~\cite{hinton2002training}
-%由Hinton等人于2006年提出。基于深信度网(DBN)提出非监督贪心逐层训练算法，为解决深层结构相关的优化难题带来希望，随后提出多层自动编码器深层结构
-
-\subsubsection{Convolutional Neural Networks}
+Reinforcement learning (RL) is inspired from animal behaviour that agents learn to make sequential optimised decisions to control an environment.
+To address complex decision making problems in practical life, RL requires a sufficient abstract representation of the high-dimensional environment, where deep learning provides a good complementation.
+The milestone achieved by integration of RL and deep network, the deep reinforcement learning, drew everyone's attention on artificial intelligence that AlphaGo beat a professional human player in Go~\cite{silver2016mastering}.
+%which has been successfully applied to various tasks: such as games~\cite{mnih2015human}, robotics~\cite{schulman2015trust} and question-and-answer systems.
+%Potential in real-time neuromorphic system
+%These real-time decision making systems, especially used for robotics~\cite{schulman2015trust}, are ideal for meromorphic hardware systems which takes advantages in event-based processing and energy efficiency.
+%http://blog.aylien.com/introduction-generative-adversarial-networks-code-tensorflow/
+GANs are an interesting idea that were first introduced in 2014 by a group of researchers at the University of Montreal lead by Ian Goodfellow (now at OpenAI). The main idea behind a GAN is to have two competing neural network models. One takes noise as input and generates samples (and so is called the generator). The other model (called the discriminator) receives samples from both the generator and the training data, and has to be able to distinguish between the two sources. These two networks play a continuous game, where the generator is learning to produce more and more realistic samples, and the discriminator is learning to get better and better at distinguishing generated data from real data. These two networks are trained simultaneously, and the hope is that the competition will drive the generated samples to be indistinguishable from real data.  
 
 
 
-\subsubsection{Recurrent Neural Networks}
-%RNN~\cite{graves2013speech} LSTM~\cite{hochreiter1997long}
-%
-%bengio的主要贡献在于：1.他对rnn的一系列推动包括经典的neural language model，gradient vanishing 的细致讨论，word2vec的雏形，以及现在的machine translation；2.他是神经网络复兴的主要的三个发起人之一（这一点他们三个人都承认，之前他们一直在谋划大事，正是他们三个人的坚持才有了现在的神经网络复兴，这点最高票答案说的很对）包括了pre－training的问题，如何initialize参数的问题，以denoising atuencoder为代表的各种各样的autoencoder结构，generative model等等。
-%attention以及GAN了
-%
-%
-%作者：saizheng
-%链接：https://www.zhihu.com/question/37922364/answer/74125553
-%来源：知乎
-%著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
-
-\subsubsection{Reinforcement learning}~\cite{mnih2015human}
+%\subsubsection{Reinforcement learning}~\cite{mnih2015human}
 %The theory of reinforcement learning provides a normative account 1 ,
 %deeply rooted in psychological 2 and neuroscientific 3 perspectives on
 %animal behaviour, of how agents may optimize their control of an
