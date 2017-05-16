@@ -1,18 +1,43 @@
-\chapter{Deep Neural Networks~(DNNs)}
+\chapter{Deep Learning}
 \label{cha:dnn}
-Deep Learning research in the field of ANNs has dominated the state-of-the-art solutions on cognitive tasks, e.g. the exceeding human-level performance on image classification tasks~\cite{he2015delving}.
+Deep Learning research in the field of artificial neural networks~(ANNs) has dominated the state-of-the-art solutions on cognitive tasks, e.g. the exceeding human-level performance on image classification tasks~\cite{he2015delving}.
 Merging deep learning mechanism to training SNNs may provide an answer to the problem of how to operate SNNs to perform as well as ANNs in cognitive tasks. 
-In this chapter, we will give an overview of popular architectures and models of deep learning in Section~\ref{sec:dl_history}, and the rest of this chapter will illustrate the mechanism of convolutional network (ConvNet), autoencoder (AE), and restricted Boltzmann machine (RBM) in detail which will be used in following chapters.
+In this chapter, we will give an overview of popular architectures and models of deep learning in Section~\ref{sec:dl_history}, and the rest of this chapter will illustrate the mechanism of convolutional network (ConvNet), autoencoder (AE), and restricted Boltzmann machine~(RBM) in detail which will be used in following chapters.
 
-\section{Deep Learning Models}
+\section{Brief Overview}
 \label{sec:dl_history}
 Deep learning seems to have become the answer to all artificial intelligence problems overnight since Geoffrey Hinton proposed the training method of a type of ANN, deep belief network, in 2006~\cite{hinton2006fast}.
 However, deep learning is not a new `magic', but rather has a history over a few decades and its sudden success is the result of the increasing amount of training data, growing size of network models and greater computational power.
-
-Therefore, all the classical deep learning architectures were dated back to the last contrary when deep learning was not given a name.
+Therefore, all the classical deep learning architectures were dated back to the last century when deep learning was not given a name.
 However, at that time, deep networks were hardly to be trained mainly because of the limit on computational power.
 
 
+\subsection{Classical Models}
+We call the well-known and widely-used deep learning models `classical' and give a brief introduction to those models in this section. 
+As mentioned above, the first break-through of training deep, not shallow ($\le 3$ layers), networks was the greedy layer-wise strategy~\cite{hinton2006fast} proposed to train stacked RBMs, which will be described in more detail in Section~\ref{sec:rbm}.
+Shortly after that this method was proved to be efficient for training other kinds of deep networks including stacked AEs~\cite{bengio2007greedy} (stated in Section~\ref{sec:AE}).
+RBMs and AEs are suitable for dimensionality reduction and feature extraction when trained with unsupervised learning on unlabelled data.
+In 2012, using such a unsupervised deep learning architecture the Google Brain team achieved a milestone in the deep learning era, that the neural network learned to recognise cats by `watching' 10 million images generated from random frames of YouTube videos~\cite{le2013building}.
+
+ConvNets are biologically inspired from the significant discovery of Hubel and Wiesel that the orientation selectivity (simple cells) and pooling mechanism (complex cells) represent the basic functions in the primary cortex in cats~\cite{hubel1962receptive}.
+These simple cells fire at a high frequency to their preferred orientation of visual stimuli within their receptive fields~(shown in Figure~\ref{Fig:v1}), small sub-regions of the visual field.
+%This means a single simple cell works like a pattern detector within its small receptive field thus also providing the exact spatial location of the detected feature in the entire visual field.
+Meanwhile, a complex cell corresponds to the existence of a pattern within a larger receptive field but loses the exact position of the pattern.
+%This means that its receptive field cannot be mapped into fixed excitatory and inhibitory zones. Rather, it will respond to patterns of light in a certain orientation within a large receptive field, regardless of the exact location.
+%The receptive fields composes of the entire visual field.
+%These cells act as local filters over the input space and are well-suited to exploit the strong spatially local correlation present in natural images.
+NeoCognitron~\cite{fukushima1982neocognitron} was the first to mimic the functions of V1 simple and complex neurons in artificial neural network, and later was improved by shared weights in LeNet-5~\cite{lecun1998gradient}, the typical ConvNet used today.
+The mechanism of shared weights forms the essence of convolution in a ConvNet, which hugely reduces the number of weights parameters in a network.
+The most significant milestones produced by deep ConvNet dominated the best performances in the annual ImageNet Challenge~\cite{russakovsky2015imagenet}: AlexNet~\cite{krizhevsky2012imagenet}, VGG Net~\cite{simonyan2014very}, GoogLeNet~\cite{szegedy2015going} and ResNet~\cite{he2016deep}.
+
+Despite the powerful capabilities of these feed-forward deep networks, sequence processing is a challenge for them since the input and output vectors are of static size.
+Thus recurrent neural networks~(RNNs) containing feed-back connections, are ideal solutions for dealing with sequential information, since their current output is always dependant on the previous `memory'.
+As the training mechanism becomes more mature, for example using the long short-term memory or (LSTM)~\cite{hochreiter1997long}, RNNs have shown great success in many natural language processing tasks: language modelling~\cite{mikolov2010recurrent}, machine translation~\cite{sutskever2014sequence}, speech recognition~\cite{graves2014towards} and image caption generation~\cite{karpathy2015deep}.
+
+
+\subsection{Combined Approaches}
+Current trend of deep learning is to combine other machine learning algorithms to work on other objectives: decision making and generative models.
+Reinforcement learning, GAN
 
 
 %深度学习的概念源于人工神经网络的研究。含多隐层的多层感知器就是一种深度学习结构。深度学习通过组合低层特征形成更加抽象的高层表示属性类别或特征，以发现数据的分布式特征表示。 深度学习的概念由Hinton等人于2006年提出。基于深信度网(DBN)提出非监督贪心逐层训练算法，为解决深层结构相关的优化难题带来希望，随后提出多层自动编码器深层结构。此外Lecun等人提出的卷积神经网络是第一个真正多层结构学习算法，它利用空间相对关系减少参数数目以提高训练性能。 深度学习是机器学习研究中的一个新的领域，其动机在于建立、模拟人脑进行分析学习的神经网络，它模仿人脑的机制来解释数据，例如图像，声音和文本。 同机器学习方法一样，深度机器学习方法也有监督学习与无监督学习之分．不同的学习框架下建立的学习模型很是不同．例如，卷积神经网络（Convolutional neural networks，简称CNNs）就是一种深度的监督学习下的机器学习模型，而深度置信网（Deep Belief Nets，简称DBNs）就是一种无监督学习下的机器学习模型。 
@@ -103,18 +128,6 @@ However, at that time, deep networks were hardly to be trained mainly because of
 
 \section{Convolutional Networks}
 \label{sec:convnet}
-ConvNets are biologically inspired from the significant discovery of Hubel and Wiesel that the orientation selectivity (simple cells) and pooling mechanism (complex cells) represent the basic functions in the primary cortex in cats~\cite{hubel1962receptive}.
-These simple cells fire at a high frequency to their preferred orientation of visual stimuli within their receptive fields~(shown in Figure~\ref{Fig:v1}), small sub-regions of the visual field.
-This means a single simple cell works like a pattern detector within its small receptive field thus also providing the exact spatial location of the detected feature in the entire visual field.
-Meanwhile, a complex cell corresponds to the existence of a pattern within a larger receptive field but loses the exact position of the pattern.
-%This means that its receptive field cannot be mapped into fixed excitatory and inhibitory zones. Rather, it will respond to patterns of light in a certain orientation within a large receptive field, regardless of the exact location.
-%The receptive fields composes of the entire visual field.
-%These cells act as local filters over the input space and are well-suited to exploit the strong spatially local correlation present in natural images.
-
-NeoCognitron~\cite{fukushima1982neocognitron} was the first to mimic the functions of V1 simple and complex neurons in artificial neural network, and later was improved by shared weights in LeNet-5~\cite{lecun1998gradient}, the typical ConvNet used today.
-The mechanism of shared weights forms the essence of convolution in a ConvNet, which hugely reduces the number of weights parameters in a network.
-The most significant milestones produced by deep ConvNet dominated the best performances in the annual ImageNet Challenge~\cite{russakovsky2015imagenet} for object detection and image classification: AlexNet~\cite{krizhevsky2012imagenet}, VGG Net~\cite{simonyan2014very}, GoogLeNet~\cite{szegedy2015going} and ResNet~\cite{he2016deep}.
-
 In Chapter~\ref{cha:Conv}, we will use a convolutional network to demonstrate a training method on spiking deep architectures.
 Therefore, this section aims to give an detailed introduction on ConvNet architectures and its training with back propagation.
 \subsection{Network Architecture}
@@ -254,7 +267,7 @@ Thus the output and input vectors have the same dimensionality.
 But the hidden layer in the middle is allowed to have either more or fewer neurons, for the purposes of compressing the inputs or mapping the inputs to higher dimensions.
 Hence AE is suitable to learn effective representation of the original inputs at the hidden layer, which can be seen as the encoding phase of AE, and reconstruct them on the output layer where the hidden vectors are decoded. 
 
-Multiple AEs can be stacked up to build deep AEs where the hidden layer of a lower AE represents the input of the upper block, and each AE block can be trained individually with greedy layer-wise training.
+Multiple AEs can be stacked up to build deep AEs where the hidden layer of a lower AE represents the input of the upper block, and each AE block can be trained individually with greedy layer-wise training~\cite{hinton2006fast}.
 A stacked AE takes advantages of greater expressive power as any deep network does.
 Taking image processing as an example, the lower AE blocks only learn simple features, such as edges and dots, however on the upper layers more complicated and abstract features are extracted: contours, symbols and even objects. 
 
