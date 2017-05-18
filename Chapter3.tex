@@ -34,7 +34,6 @@ Despite the powerful capabilities of these feed-forward deep networks, sequence 
 Thus recurrent neural networks~(RNNs) containing feed-back connections, are ideal solutions for dealing with sequential information, since their current output is always dependant on the previous `memory'.
 As the training mechanism becomes more mature, for example using the long short-term memory or (LSTM)~\cite{hochreiter1997long}, RNNs have shown great success in many natural language processing tasks: language modelling~\cite{mikolov2010recurrent}, machine translation~\cite{sutskever2014sequence}, speech recognition~\cite{graves2014towards} and image caption generation~\cite{karpathy2015deep}.
 
-
 \subsection{Combined Approaches}
 Current trend of deep learning is to combine other machine learning algorithms towards more complex objectives: such as decision making and data generation.
 
@@ -45,70 +44,11 @@ The milestone achieved by integration of RL and deep network, the deep reinforce
 %Potential in real-time neuromorphic system
 %These real-time decision making systems, especially used for robotics~\cite{schulman2015trust}, are ideal for meromorphic hardware systems which takes advantages in event-based processing and energy efficiency.
 %http://blog.aylien.com/introduction-generative-adversarial-networks-code-tensorflow/
-GANs are an interesting idea that were first introduced in 2014 by a group of researchers at the University of Montreal lead by Ian Goodfellow (now at OpenAI). The main idea behind a GAN is to have two competing neural network models. One takes noise as input and generates samples (and so is called the generator). The other model (called the discriminator) receives samples from both the generator and the training data, and has to be able to distinguish between the two sources. These two networks play a continuous game, where the generator is learning to produce more and more realistic samples, and the discriminator is learning to get better and better at distinguishing generated data from real data. These two networks are trained simultaneously, and the hope is that the competition will drive the generated samples to be indistinguishable from real data.  
 
-
-
-
-%\subsubsection{Reinforcement learning}~\cite{mnih2015human}
-%The theory of reinforcement learning provides a normative account 1 ,
-%deeply rooted in psychological 2 and neuroscientific 3 perspectives on
-%animal behaviour, of how agents may optimize their control of an
-%environment. To use reinforcement learning successfully in situations
-%approaching real-world complexity, however, agents are confronted
-%with a difficult task: they must derive efficient representations of the
-%environment from high-dimensional sensory inputs, and use these
-%to generalize past experience to new situations. Remarkably, humans
-%and other animals seem to solve this problem through a harmonious
-%combination of reinforcement learning and hierarchical sensory pro-
-%cessing systems 4,5 , the former evidenced by a wealth of neural data
-%revealing notable parallels between the phasic signals emitted by dopa-
-%minergic neurons and temporal difference reinforcement learning
-%algorithms 3 . While reinforcement learning agents have achieved some
-%successes in a variety of domains 6–8 , their applicability has previously
-%been limited to domains in which useful features can be handcrafted,
-%or to domains with fully observed, low-dimensional state spaces.
-%Here we use recent advances in training deep neural networks 9–11 to
-%develop a novel artificial agent, termed a deep Q-network, that can
-%learn successful policies directly from high-dimensional sensory inputs
-%using end-to-end reinforcement learning. We tested this agent on
-%the challenging domain of classic Atari 2600 games 12 . We demon-
-%strate that the deep Q-network agent, receiving only the pixels and
-%the game score as inputs, was able to surpass the performance of all
-%previous algorithms and achieve a level comparable to that of a pro-
-%fessional human games tester across a set of 49 games, using the same
-%algorithm, network architecture and hyperparameters. This work
-%bridges the divide between high-dimensional sensory inputs and
-%actions, resulting in the first artificial agent that is capable of learn-
-%ing to excel at a diverse array of challenging tasks.
-%
-%
-%
-%
-%RL is a general-purpose framework for decision-making
-%RL is for an agent with the capacity to act
-%Each action in uences the agent's future state
-%Success is measured by a scalar reward signal
-%Goal:  select actions to maximise future reward
-%
-%We seek a single agent which can solve any human-level task
-%RL defines the objective
-%DL gives the mechanism
-%RL + DL = general intelligence
-%
-%
-%Play games:  Atari, poker, Go, ...
-%Navigate worlds:  3D worlds, Labyrinth, ...
-%Control physical systems:  manipulate, walk, swim, ...
-%Interact with users:  recommend, optimise, personalise
-
-
-\subsubsection{Generative Adversarial Networks (GAN)}~\cite{goodfellow2014generative}
-
-
-\subsubsection{Attention Model}~\cite{bahdanau2014neural}
-
-
+Generative Adversarial Networks (GANs)~~\cite{goodfellow2014generative} are proposed for training generative models of complex data.
+Instead of training discrimination networks (e.g. image classification using CovNets ) and generation networks (e.g. data sampling on RBMs) separately with different objectives, GANs train two competing networks, one is the discriminator and the other is the generator, simultaneously by continuously making them play games with each other.
+Thus the generator learns to produce more realistic data to cheat the discriminator, meanwhile the discriminator learns to become better on distinguishing generated data from real data.
+Exciting achievements have been reported on generating complex data: such as realistic image generation based on description in text~\cite{radford2015unsupervised}.
 
 \section{Convolutional Networks}
 \label{sec:convnet}
@@ -704,6 +644,7 @@ Furthermore, in order to simplified the product on the right-hand term in Equati
 %
 %Essentially, the integration of the probability model, see Equation~(\ref{equ:z_int}) and~(\ref{equ:z_dis}), is usually algebraically intractable.
 %We have to use numerical integration method to evaluate the Equation~(\ref{equ:like}), whose partial derivative is (we are using vectors to generalise the problem):
+
 The loss derivative with respect to a parameter $\theta$ is as follows:
 \begin{equation}
 \label{equ:part}
@@ -712,8 +653,6 @@ The loss derivative with respect to a parameter $\theta$ is as follows:
 & = \frac{1}{K} \dfrac{\partial \sum_{k=1}^K\log f(\mathbf{v}^k \mid \Theta )}{\partial \theta} - \dfrac{\partial \log Z( \Theta)}{\partial \theta}\\
 & =  \frac{1}{K}\sum_{k=1}^K \dfrac{\partial \log f(\mathbf{v}^k \mid \Theta)}{\partial \theta} - \sum_x p(\mathbf{x} \mid \Theta) \dfrac{\partial \log f(\mathbf{x} \mid \Theta)}{\partial \theta}\\
 & = \left \langle \dfrac{\partial \log f(\mathbf{v} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{D}} -\left \langle \dfrac{\partial \log f(\mathbf{v} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{C} \sim p(\mathbf{v} \mid \Theta)} ~~,
-%\\
-%&=\left \langle \dfrac{\partial \log f(\mathbf{x} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{X}_{data}} - \left \langle \dfrac{\partial \log f(\mathbf{x} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{X}_{model}},
 \end{aligned}
 \end{equation}
 where  $ <\cdot>_{\mathbf{X}} $ denotes the mean expectation of $ \cdot $ given data set $\mathbf{X}$.
@@ -753,7 +692,7 @@ Generating data samples for the negative term of Equation~\ref{equ:RBM_2} requir
 Gibbs sampling approximate the joint probability $p( \mathbf{v}, \mathbf{h} \mid  \Theta)$ with conditionally probability defined in RBMs:
 \begin{equation}
 \begin{aligned}
-& p(h_j = 1 \mid \mathbf{v}) = \sigma(\sum_{i=1}^{M} w_{ij} v_i)~~, \\
+& p(h_j = 1 \mid \mathbf{v}) = \sigma(\sum_{i=1}^{M} w_{ij} v_i)~~,
 & p(v_i = 1 \mid \mathbf{h}) = \sigma(\sum_{j=1}^{N} w_{ji} h_j)~~,
 \end{aligned}
 \end{equation} 

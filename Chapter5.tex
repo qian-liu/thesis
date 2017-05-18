@@ -391,18 +391,19 @@ So was the reconstruction, which led to the lower level of loss.
 
 \subsection{Noisy Restricted Boltzmann Machines (nRBMs)}
 Instead of using binary units and sigmoid activations in RBM, we employed noisy ReLU (NReLU) units to construct nRBM which was closer to biology and performed better in classification tasks~\cite{nair2010rectified}.
-Leaving the learning algorithm unchanged, see Algorithm~\ref{alg:rbm} in Section~\ref{sec:rbm}, the new sampling method NReLU is equivalent to generating multiple samples in the meantime and averaging them: $max(0, x+\mathcal{N}(0, \sigma(x))$.
-The lower the variance of the normal distribution, the more samples are taken for averaging;
-zero variance (equivalent to ReLU) is used when unlimited samples are generated, but at the same time the sampling itself loses the randomness.
-In our experiments the variance of the normal distribution used in NReLU was 0.1 during training.
-While in testing, we used ReLU for the deterministic reconstructions. 
-To keep the similar network architecture and the learning rule with AEs, we used RBM with zero bias as well.
-Thus the weight updating rule in Algorithm~\ref{alg:rbm} can be simplified as:
+Leaving the learning algorithm unchanged, see Equation~\ref{equ:rbm_train} in Section~\ref{sec:rbm}:
 \begin{equation}
 \Delta w_{ij} = \eta (h_iv_j - h'_iv'_j),
 \label{equ:rbm}
 \end{equation} 
-where $h'_i$ and $v'_j$ is a pair of Gibbs sampling.
+where $h'_i$ and $v'_j$ is a pair of Gibbs sampling, and the new sampling method NReLU is equivalent to generating multiple samples in the meantime and averaging them: $max(0, x+\mathcal{N}(0, \sigma(x))$.
+The lower the variance of the normal distribution, the more samples are taken for averaging;
+zero variance (equivalent to ReLU) is used when unlimited samples are generated, but at the same time the sampling itself loses the randomness.
+In our experiments the variance of the normal distribution used in NReLU was 0.1 during training.
+%While in testing, we used ReLU for the deterministic reconstructions. 
+%To keep the similar network architecture and the learning rule with AEs, we used RBM with zero bias as well.
+%Thus the weight updating rule in Equation~\ref{equ:rbm_train} can be described as:
+
 
 Figure~\ref{fig:rbm_orig} demonstrates the training process and the testing result of nRBM; both experiments stabilised earlier than AE training: about 400 and $1,000$ steps respectively.
 Due to randomness of the sampling in nRBM, there were noisy fluctuations adding on the weight change during training, the reconstructions and the output of hidden units in deterministic testing.
