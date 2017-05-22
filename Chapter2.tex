@@ -286,6 +286,7 @@ The current flow usually takes much longer than an action potential and decays o
 Assuming spikes are delivered at time $t={t_0, t_1, ..., t_n}$, the initial synaptic weight is set to $w_0$ and $\tau_{syn}$ is the synaptic time constant, the decaying synaptic current or the conductance can be described as:
 \begin{equation}
 w(t) = \sum_k w_0 e^{-(t-t_k)/\tau_{syn}}~.
+%I(t) = \sum_i \sum_k W_i e^{-(t-t_{ik})/\tau_{syn}}~.
 \end{equation}
 
 In this thesis we mostly employ LIF neurons and a current-based synapse model with decaying synaptic efficacy, due to its simple mathematical expression, low numerical complexity and high-level abstraction hiding much of the detailed neural dynamics.
