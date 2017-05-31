@@ -1,0 +1,62 @@
+% Delete the MSc option if you are doing a PhD, or replace it with MPhil
+% for a Master of Philosophy thesis
+%
+% The 12pt option is required by the 2001/02 thesis regulations
+% Last update 15th August 2007: new Abstract format and Copyright Statement
+
+% Replace MSc with PhD for PhD theses
+% Remove the twoside option for single-sided printing
+\documentclass[12pt,PhD,twoside]{muthesis}
+\include{thesis_env}
+
+\begin{document}
+	\title{Deep Spiking Neural Networks}
+	\author{Qian Liu}
+	\school{Computer Science}
+	\faculty{Engineering and Physical Sciences}
+	\def\wordcount{33225}
+	
+	% Uncomment the line below to suppress the `List of Tables' page (optional)
+	%\tablespagefalse
+	
+	% Uncomment the line below to suppress the `List of Figures' page (optional)
+%	\figurespagefalse
+	
+	% Uncomment the line below to use a customised Declaration statement
+	%\def\declaration{All the work in this thesis has been sourced from Google.}
+	
+	\beforeabstract
+	\input{abstract}
+	%Write your abstract here: Remember, it must fit on this A4 page and should
+	%describe contents of the thesis/dissertation. Here might also be a good place
+	%to indicate what you have achieved in the thesis/dissertation and, in the
+	%case of a PhD, what new results you have discovered. Note that for a PhD
+	%single-spacing is used throughout the Abstract, including displayed equations.
+	
+	\afterabstract
+	
+	% The next part is optional; however it is a good place to thank your
+	% supervisor and the people responsible for providing computer support ;-)
+	\prefacesection{Acknowledgements}
+	\input{ack}
+	
+	% The next line is NOT optional and MUST appear
+	\afterpreface
+	
+	
+	% Finally, you can start writing about all the new theorems you have proved
+	% and all the new results that you have discovered
+	\include{Chapter1}
+	\include{Chapter2}
+	\include{Chapter3}
+	\include{Chapter4}
+	\include{Chapter5}
+	\include{Chapter6}
+	\include{Conclusion}
+	
+	\appendix
+	\include{Appendices}
+	
+	\bibliography{refs_intro,refs_bench,refs_iconip,refs_sdbn,refs_icann,refs_snn} 
+	\bibliographystyle{apalike}
+\end{document}

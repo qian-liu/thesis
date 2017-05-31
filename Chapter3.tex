@@ -615,11 +615,11 @@ E(\mathbf{v}, \mathbf{h} \mid \Theta)= - \sum_{i=1}^N \sum_{j=1}^M v_i w_{ij} h_
 and the model parameters are reduced to  $ \Theta = \{\mathbf{w}\} $.
 Thus the joint probability of the visible vector (input) $\mathbf{v}$ and the output of hidden units $\mathbf{h}$ is defined as follows: 
 \begin{equation}
-%\begin{aligned}
-p(\mathbf{v}, \mathbf{h} \mid \Theta) =\frac{f(\mathbf{v}, \mathbf{h} \mid \Theta)}{Z(\Theta)}~,  \textrm{~where~} 
-f(\mathbf{v}, \mathbf{h} \mid \Theta) =e^{-E(\mathbf{v}, \mathbf{h} \mid \Theta)}~,  \textrm{~and~} 
-Z(\Theta) = \sum_{\mathbf{v}} \sum_{\mathbf{h}} e^{-E(\mathbf{v}, \mathbf{h} \mid \Theta)}~.
-%\end{aligned}
+\begin{aligned}
+p(\mathbf{v}, \mathbf{h} \mid \Theta) &=\frac{f(\mathbf{v}, \mathbf{h} \mid \Theta)}{Z(\Theta)}~,  \textrm{~where~} \\
+f(\mathbf{v}, \mathbf{h} \mid \Theta) &=e^{-E(\mathbf{v}, \mathbf{h} \mid \Theta)}~,  \textrm{~and~} \\
+Z(\Theta) &= \sum_{\mathbf{v}} \sum_{\mathbf{h}} e^{-E(\mathbf{v}, \mathbf{h} \mid \Theta)}~.
+\end{aligned}
 \label{equ:rbm_prob}
 \end{equation}
 %However, we are more interested in the marginal probability function: $ p(\mathbf{v} \mid \Theta) $:
