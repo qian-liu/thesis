@@ -1,22 +1,32 @@
 \chapter{Benchmarking Neuromorphic Vision}
 \label{cha:bench}
 
-Today, increasing attention is being paid to research into spike-based neural computation both to gain a better understanding of the brain and to explore biologically-inspired computation.
-Within this field, the primate visual pathway and its hierarchical organisation have been extensively studied.
-Spiking Neural Networks (SNNs), inspired by the understanding of observed biological structure and function, have been successfully applied to visual recognition and classification tasks.
-In addition, implementations on neuromorphic hardware have enabled large-scale networks to run in (or even faster than) real time, making spike-based neural vision processing accessible on mobile robots.
-Neuromorphic sensors such as silicon retinas are able to feed such mobile systems with real-time visual stimuli.
+%Today, increasing attention is being paid to research into spike-based neural computation both to gain a better understanding of the brain and to explore biologically-inspired computation.
+%Within this field, the primate visual pathway and its hierarchical organisation have been extensively studied.
+%Spiking Neural Networks (SNNs), inspired by the understanding of observed biological structure and function, have been successfully applied to visual recognition and classification tasks.
+%In addition, implementations on neuromorphic hardware have enabled large-scale networks to run in (or even faster than) real time, making spike-based neural vision processing accessible on mobile robots.
+%Neuromorphic sensors such as silicon retinas are able to feed such mobile systems with real-time visual stimuli.
 
-A new set of vision benchmarks for spike-based neural processing are now needed to measure progress quantitatively within this rapidly advancing field.
-We propose that a large dataset of spike-based visual stimuli is needed to provide meaningful comparisons between different systems, and a corresponding evaluation methodology is also required to measure the performance of SNN models and their hardware implementations.
+The last two chapters have answered the main research question of this thesis that Spiking Neural Networks (SNNs) can be trained both on-line and off-line to achieve the equivalent cognitive capabilities of Artificial Neural Networks~(ANNs).
+To provide meaningful comparisons between theses proposed SNN models and other existing methods within this rapidly advancing field of Neuromorphic Engineering~(NE), we propose that a large dataset of spike-based visual stimuli is needed and a corresponding evaluation methodology is also required to overall estimate the performance of SNN models and their hardware implementations.
 
-In this chapter we first propose an initial NE (Neuromorphic Engineering) dataset based on standard computer vision benchmarksand that uses digits from the MNIST database.
+%A new set of vision benchmarks for spike-based neural processing are now needed to measure progress quantitatively within this rapidly advancing field.
+%
+
+In this chapter we first propose an initial NE dataset based on standard computer vision benchmarks and that uses digits from the MNIST database.
 This dataset is compatible with the state of current research on spike-based image recognition.
 The corresponding spike trains are produced using a range of techniques: rate-based Poisson spike generation, rank order encoding, and recorded output from a silicon retina with both flashing and oscillating input stimuli.
 In addition, a complementary evaluation methodology is presented to assess both model-level and hardware-level performance.
 Finally, we demonstrate the use of the dataset and the evaluation methodology using an SNN model to validate the performance of the models and their hardware implementations.
 
 With this dataset we hope to (1) promote meaningful comparison between algorithms in the field of neural computation, (2) allow comparison with conventional image recognition methods, (3) provide an assessment of the state of the art in spike-based visual recognition, and (4) help researchers identify future directions and advance the field.
+
+In Section~\ref{sec:chapt6_intro}, diverse neuromorphic vision tasks are introduced to illustrate the requirements for a unified spike-based dataset.
+The rest of this chapter is structured as follows: Section~\ref{sec:method} elaborates the purpose and protocols of the proposed dataset and describes the sub-datasets and the methods employed to generate them; it also demonstrates the suggested evaluation methodology for use with the dataset.
+%The sub-datasets and their generation methods are described in detail in Section~\ref{sec:data}.
+%In accordance with the dataset, its evaluation methodology is demonstrated in Section~\ref{sec:eval}.
+Section~\ref{sec:test} presents an SNN case study as demonstrations of using the dataset to assess model performance and benchmark hardware platforms.
+Finally, Section~\ref{sec:summ} summarises the chapter.
 
 \section{Introduction}
 \label{sec:chapt6_intro}
@@ -105,12 +115,7 @@ Therefore a set of common metrics for performance evaluation in spike-based visi
 In this chapter we propose a large dataset of spike-based visual stimuli and a complementary evaluation methodology.
 Just as research in this field is an expanding and evolving activity, the dataset will be adapted and extended to fit new requirements presented by advances in the field.
 
-%In Section~\ref{sec:Related}, some example datasets of conventional non-spiking computer vision are introduced.
-The rest of this chapter is structured as follows: Section~\ref{sec:method} elaborates the purpose and protocols of the proposed dataset and describes the sub-datasets and the methods employed to generate them; it also demonstrates the suggested evaluation methodology for use with the dataset.
-%The sub-datasets and their generation methods are described in detail in Section~\ref{sec:data}.
-%In accordance with the dataset, its evaluation methodology is demonstrated in Section~\ref{sec:eval}.
-Section~\ref{sec:test} presents an SNN case study as demonstrations of using the dataset to assess model performance and benchmark hardware platforms.
-Finally, Section~\ref{sec:summ} summarises the chapter.
+
 
 %\section{Related Work}
 %\label{sec:Related}
