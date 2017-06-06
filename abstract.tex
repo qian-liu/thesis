@@ -15,10 +15,10 @@
 %The research described in this thesis aims to equip SNNs with equivalent cognitive ability to ANNs by analysing network dynamics and exploring new learning algorithms, thus putting SNN models into practical applications, such as object recognition.
 
 %Motivation of the problem
-Neuromorphic Engineering~(NE) has led to the development of biologically-inspired computer architectures which may provide an alternative to the conventional Von Neumann architecture and achieve the performance of human brain in terms of energy efficiency and cognitive capabilities.
+Neuromorphic Engineering~(NE) has led to the development of biologically-inspired computer architectures which may provide an alternative to the conventional Von Neumann architecture and approach the performance of the human brain in terms of energy efficiency and cognitive capabilities.
 Although there are a number of neuromorphic platforms available for large-scale Spiking Neural Network~(SNN) simulations, programming these brain-like machines to be competent in cognitive applications still remains unsolved.
 On the other hand Deep Learning has emerged in Artificial Neural Network (ANN) research to dominate state-of-the-art solutions for cognitive tasks.
-Thus it raises the main research problem of how to operate and train biologically-plausible SNNs to close the gap of cognitive capabilities between SNNs and ANNs?
+Thus the main research problem emerges of how to operate and train biologically-plausible SNNs to close the gap of cognitive capabilities between SNNs and ANNs.
 %make them as competent as ANNs.
 %To catch up with ANNs' better-than-human performance, this work takes object recognition as the cut-in point to explore the capability and learning ability of SNNs.
 
@@ -31,21 +31,20 @@ Thus it raises the main research problem of how to operate and train biologicall
 
 SNNs can be trained by first training an equivalent ANN and then transferring the trained weights to the SNN.
 This method is called `off-line' training, since it does not take place on SNNs directly, but rather on ANNs instead.
-However, previous work on such off-line training methods have struggled in poor modelling accuracy of spiking neurons and high computation complexity.
-In this thesis we propose a simple and novel activation function, Noisy Softplus~(NSP), to closely model the
-response firing activity of biologically-plausible
-spiking neurons;
+However, previous work on such off-line training methods has struggled in terms of poor modelling accuracy of spiking neurons and high computation complexity.
+In this thesis we propose a simple and novel activation function, Noisy Softplus~(NSP), to closely model the response firing activity of biologically-plausible spiking neurons,
 and introduce a generalised off-line training method using the parametric activation function~(PAF: $y = p \times f(x)$) to map the abstract numerical values of the ANN to concrete physical units in the SNN, such as current and firing rate.
 Based on this generalised training method and its fine tuning, we achieve the state-of-the-art accuracy on the MNIST task using spiking neurons, 99.07\%, on a deep spiking convolutional neural network~(ConvNet).
 
 
 We then take the step forward to `on-line' training methods, where Deep Learning modules are trained purely on SNNs in an event-driven manner.
-The existing works have failed to provide SNNs with equivalent recognition accuracy of ANNs due to the lack of mathematical analysis. 
-Thus we propose a formalised Spike-based Rate Multiplication method~(SRM) which transfers numerical multiplications to possibility of some specific firing events of a pair of rate-coded spike trains.
-Moreover, these firing events can be captured with Synaptic-Time-Dependent Plasticity~(STDP) rule thus to update the weights accordingly in an on-line, event-based, and biologically-plausible manner.
-The promising results of training spiking Autoencoders~(AEs) and Restricted Boltzmann Machines~(RBMs) exhibit equivalent, sometimes, even superior classification and reconstruction capabilities compared to their non-spiking methods.
+Existing work has failed to provide SNNs with recognition accuracy equivalent to ANNs due to the lack of mathematical analysis. 
+Thus we propose a formalised Spike-based Rate Multiplication~(SRM) method which transforms the product of firing rates to the number of coincident spikes of a pair of rate-coded spike trains.
+%possibility of some specific firing events of a pair of rate-coded spike trains.
+Moreover, these coincident spikes can be captured by the Spike-Time-Dependent Plasticity~(STDP) rule to update the weights in an on-line, event-based, and biologically-plausible manner.
+The promising results of training spiking Autoencoders~(AEs) and Restricted Boltzmann Machines~(RBMs) exhibit equivalent, sometimes even superior classification and reconstruction capabilities compared to their equivalent non-spiking methods.
 
-To provide meaningful comparisons between theses proposed SNN models and other existing methods within this rapidly advancing field of NE, we propose a large dataset of spike-based visual stimuli and a corresponding evaluation methodology to overall estimate the performance of SNN models and their hardware implementations.
+To provide meaningful comparisons between theses proposed SNN models and other existing methods within this rapidly advancing field of NE, we propose a large dataset of spike-based visual stimuli and a corresponding evaluation methodology to estimate the overall performance of SNN models and their hardware implementations.
 With this dataset we hope to (1) promote meaningful comparison between algorithms in the field of neural computation, (2) allow comparison with conventional image recognition methods, (3) provide an assessment of the state of the art in spike-based visual recognition, and (4) help researchers identify future directions and advance the field.
 
 %Methods
