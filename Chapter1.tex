@@ -177,42 +177,56 @@ The contributions are:
 \end{itemize}
 
    
-\section{Publications and Workshops}
-\subsection{Publications}
+\section{Papers and Workshops}
 
+\subsection{Papers}
+	Much of the work contributed to solving the main research problem of this thesis has either previously been published or been in the process of submission.
 \begin{itemize}
-	Much of the work discussed in this thesis has either previously been presented or been in the process of submission.
+
 	\item 
-	\textbf{Q. Liu}, and S. Furber, \textit{Real-Time Recognition of Dynamic Hand Postures on a Neuromorphic System}, International Conference on Artificial Neural Networks (ICANN 2015).
-	The paper contributes to the work of the neuromorphic hardware system of vision processing in Chapter~2.
+	\textbf{Q. Liu}, and S. Furber, \textbf{Noisy Softplus: A Biology Inspired Activation Function}, International Conference on Neural Information Processing (ICONIP 2016). 
+	This paper~\cite{liu2016noisy} introduces the novel activation function, NSP, 
+	which solves the problem of accurately modelling the response firing activity of LIF neurons using conventional abstract activation function.
+	This paper comprises the first half of Chapter~\ref{cha:Conv}.
+	
+	\item 
+	\textbf{Q. Liu}, Y. Chen, G. Garc\'ia, and S. Furber, \textbf{Generalised Training of Spiking Neural Networks}, Annual Conference on Neural Information Processing Systems (submitted to NIPS 2017).
+	This paper extends the work of the NSP to solve the problem of mapping abstract numerical values of activation functions to concrete physical units in spiking neurons using PAF, and successfully formalises a simple off-line SNN training method which is also generalised to ReLU-like activation functions.
+%	This paper extends the work of the NSP to generalise a simple off-line SNN training method using PAF.
+	The paper presents the work described in the rest of Chapter~\ref{cha:Conv}.
+	
+	
+	\item 
+	\textbf{Q. Liu}, and S. Furber, \textbf{Spike-based Rate Multiplication for On-line SNN Training}, International Joint Conference on Neural Network (to be submitted to Neural Computation).
+	This paper mainly comprises the work of Chapter~\ref{cha:sdlm}, which proposes an on-line unsupervised training of SNNs equivalent to the conventional Deep Learning techniques: AEs and RBMs.
+	
+	\item 
+	\textbf{Q. Liu}, G. Garc\'ia, E. Stromatias, T. Gotarredona, and S. Furber, \textbf{Benchmarking Spike-Based Visual Recognition: A Dataset and Evaluation}, Frontiers in Neuromorphic Engineering.
+	The work presented in this paper~\cite{liu2016bench} mainly comprises the spike-based dataset \textbf{NE15-MNIST} and its corresponding evaluation method for Neuromorphic Vision proposed in Chapter~\ref{cha:bench}.
+	In addition, the paper also includes the contributions of the co-authors: the detailed description of a subset of this database and a case study as an example to validate the dataset and its evaluation. 
+	
+\end{itemize}
+
+	Other publications build up the neuromorphic hardware system for complete event-based visual and auditory processing, providing deep spiking neural networks a valid hardware platform for running applications in biologically real time.
+\begin{itemize}
+	\item 
+	\textbf{Q. Liu}, and S. Furber, \textbf{Real-Time Recognition of Dynamic Hand Postures on a Neuromorphic System}, International Conference on Artificial Neural Networks (ICANN 2015).
+	We develop an object recognition system operating in real-time on a complete neuromorphic platform in an absolute spike-based fashion.
+	This paper paves the way for further study with solid proof of the capability of real-time cognitive application built on neuromorphic platform.
+	In Chapter~~\ref{cha:bkg}, we introduce this system as an existing vision-based neuromorphic hardware platform which comprises a Dynamic Vision Sensor~(DVS) as front-end and a massive-parallel SNN hardware simulator as the back-end. 
 	
 	\item
-	\textbf{Q. Liu}, C. Patterson, S. Furber, Z. Huang, Y. Hou and H. Zhang, \textit{Modeling Populations of Spiking Neurons for Fine Timing Sound Localization}, International Joint Conference on Neural Networks (IJCNN 2013)
-	The paper contributes to the work of the neuromorphic hardware system of sound localisation in Chapter~2.
+	\textbf{Q. Liu}, C. Patterson, S. Furber, Z. Huang, Y. Hou and H. Zhang, \textbf{Modeling Populations of Spiking Neurons for Fine Timing Sound Localization}, International Joint Conference on Neural Networks (IJCNN 2013)
+	This paper~\cite{liu2013modeling} presents a model of sound localisation to solve the problem of coarse time resolution of SNN simulations.
+	Such an auditory processing system can be implemented on a similar neuromorphic hardware platform described above, which uses a silicon cochlea as the input (see Chapter~\ref{cha:bkg}).
 	
 	\item 
-	\textbf{Q. Liu}, and S. Furber, \textit{Noisy Softplus: A Biology Inspired Activation Function}, International Conference on Neural Information Processing (ICONIP 2016). 
-	The paper mainly comprises the work of Chapter~4.
-	
-	\item 
-	\textbf{Q. Liu}, Y. Chen, G. Garc\'ia, and S. Furber, \textit{Generalised Training of Spiking Neural Networks}, Annual Conference on Neural Information Processing Systems (submitted to NIPs 2017). 
-	The paper comprises the rest of Chapter~4.
-	
-	
-	\item 
-	\textbf{Q. Liu}, and S. Furber, \textit{Spike-based Rate Multiplication for On-line SNN Training}, International Joint Conference on Neural Network (to be submitted to Neural Computation).
-	The paper mainly comprises the work of Chapter~5.
-	
-	\item 
-	\textbf{Q. Liu}, G. Garc\'ia, E. Stromatias, T. Gotarredona, and S. Furber, \textit{Benchmarking Spike-Based Visual Recognition: A Dataset and Evaluation}, Frontiers in Neuromorphic Engineering.
-	The paper comprises the work of Chapter~6.
-	
+	G. Garc\'ia, P. Camilleri, \textbf{Q. Liu}, and S. Furber, \textbf{pyDVS: An Extensible, Real-time Dynamic Vision Sensor Emulator using Off-the-Shelf Hardware}, The 2016 IEEE Symposium Series on Computational Intelligence (IEEE SSCI 2016).
+	This paper~\cite{7850249} proposes a visual input system inspired by the behaviour of a DVS but using a conventional digital camera as a sensor and a
+	PC to encode the images.
+	We mentioned the neuromorphic input sensors in Chapter~\ref{cha:bkg}).
+\end{itemize}
 
-	\item 
-	G. Garc\'ia, P. Camilleri, \textbf{Q. Liu}, and S. Furber, \textit{pyDVS: An Extensible, Real-time Dynamic Vision Sensor Emulator using Off-the-Shelf Hardware}, The 2016 IEEE Symposium Series on Computational Intelligence (IEEE SSCI 2016).
-	
-	
-\end{itemize}	
 
 \subsection{Workshops}
 The author participated in workshops organised by the community, 1) to establish and contribute to collaborations on mutual interests; 2) to catch up with cutting-edge research and collect inspiration; 3) to discuss the author's own findings with key researchers in the field.
@@ -243,16 +257,16 @@ The author participated in workshops organised by the community, 1) to establish
 \section{Thesis Structure}
 The thesis comprises the following seven chapters:
 
-\textbf{Chapter 1} introduces the origin and the motivation of the research, states the problem, defines the hypotheses and objectives, summarises the contributions and publications, and outlined the thesis. 
+\textbf{Chapter 1} introduces the origin and the motivation of the research, states the problem, defines the hypotheses and objectives, summarises the contributions and publications, and outlines the thesis. 
 
-\textbf{Chapter 2} %briefs the short history of Neuromorphic Engineering which leads to the author's research, lists the common spiking neural models and learning approaches, introduces the neuromorphic hardware devices.
-illustrates how biological neurons function, transmit signals between them, and are modelled by mathematical abstractions, thus to unveil the special features of spiking neurons that differ from neurons of ANNs; and introduces SNN simulators both in software and in hardware including neuromorphic systems.
+\textbf{Chapter 2} %briefs the short history	 of Neuromorphic Engineering which leads to the author's research, lists the common spiking neural models and learning approaches, introduces the neuromorphic hardware devices.
+illustrates how biological neurons function, transmit signals between them, and are modelled by mathematical abstractions, thus to unveil the special features of spiking neurons that differ from the neurons of ANNs; and introduces SNN simulators both in software and in hardware including neuromorphic systems.
 
 \textbf{Chapter 3} gives an overview of popular architectures and models of Deep Learning and illustrates the mechanism of the convolutional network~(ConvNet), the Autoencode~(AE), and the Restricted Boltzmann Machine~(RBM) in detail.
 
-\textbf{Chapter 4} demonstrates the generalised off-line SNN training method by using novel biologically-inspired activation function, Noisy Softplus, which is well-matched to the response function of Leaky Integrate-and-Fire neurons; and validates the performance by testing on a convolutional network.
+\textbf{Chapter 4} demonstrates the generalised off-line SNN training method by using a novel biologically-inspired activation function, Noisy Softplus, which is well-matched to the response function of Leaky Integrate-and-Fire neurons; and validates the performance by testing on a convolutional network.
 
-\textbf{Chapter 5} proposes the STDP-based learning algorithm for training spiking AEs and RBMs; and shows equivalent recognition capability of SNNs comparing to ANNs.
+\textbf{Chapter 5} proposes the STDP-based learning algorithm for training spiking AEs and RBMs; and shows equivalent recognition capability of SNNs compared to ANNs.
 
 \textbf{Chapter 6} puts forward the spike-based vision dataset and the evaluation methodology; and presents two case studies as tentative benchmarks running on SpiNNaker to assess the hardware-level performance against software simulators.
 
