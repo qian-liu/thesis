@@ -2,30 +2,40 @@
 \label{cha:sdlm}
 %Paragraph One: LINK
 %Make a connection to what has immediately gone before. Recap the last chapter. In the last chapter I showed that… Having argued in the previous chapter that… As a result of x, which I established in the last chapter….. It is also possible to make a link between this chapter and the whole argument… The first step in answering my research question (repeat question) .. was to.. . In the last chapter I …
-Having argued in the previous chapter that deep SNNs are equally capable of classifying digits as deep ANNs do, and can be trained simply just like ANNs.
-This chapter continues the discussion of training deep SNNs and takes extra step forward to the second research problem of biologically inspired, on-line, spike-based SNN training.
+Having argued in the previous chapter that deep SNNs are equally capable of classifying digits as are deep ANNs, and can be trained simply just like ANNs, this chapter continues the discussion of training deep SNNs and takes an extra step forward to the second research problem of biologically inspired, on-line, spike-based SNN training.
 
 %Paragraph Two: FOCUS
 %Now focus the reader’s attention on what this chapter is specifically going to do and why it is important. In this chapter I will examine.. I will present… I will report … This is crucial in (aim of thesis/research question) in order to….
-In this chapter we will present the Spike-based Rate Multiplication method~(SRM).
-This algorithm successfully transforms the product of firing rates to the number of coincidence spikes of a pair of rate-coded spike trains.
-Moreover, these coincidence spikes can be captured by the Spike-Time-Dependent Plasticity~(STDP) rule to update the weights in an on-line, event-based, and biologically-plausible manner.
-Such weight updates suit the conventional unsupervised deep learning modules, such as Autoencoders (AE) and Restricted Boltzmann Machine~(RBMs), where multiplication of the neural outputs is the main operation.
-%todo maybe sell online event-based STDP? At least in Chapter 2, when introducing learning algorithms.
-It is crucial to provide deep SNNs with effective on-line training algorithms not only for building successful spike-based object recognition applications, but also for better power efficiency and scalability when training on neuromorphic hardware.
+In this chapter we present an on-line unsupervised learning algorithm, Spike-based Rate Multiplication~(SRM), working purely on event-based local STDP for training spiking Autoencoders and Restricted Boltzmann Machines.
+The SRM method represents the product of numerical values used in these unsupervised Deep Learning techniques with rate multiplication.
+The SRM then transforms the rate multiplication to the number of coincident spikes emitted from a pair of rate-coded spike trains, and the simultaneous events can be obtained by the biologically-plausible learning rule: Spike-Time-Dependant-Plasticity~(STDP).
+This on-line training method achieves better performance than existing algorithms and approaches the same, sometimes better performance of the equivalent non-spiking methods.
+It is crucial to provide deep SNNs with effective on-line training algorithms not only for building successful spike-based object recognition applications, but also for better power efficiency and scalability provided by the biologically-plausible SNN training on neuromorphic hardware.
+
+
+
+%This algorithm successfully transforms the product of firing rates to the number of coincidence spikes of a pair of rate-coded spike trains.
+%Moreover, these coincidence spikes can be captured by the Spike-Time-Dependent Plasticity~(STDP) rule to update the weights in an on-line, event-based, and biologically-plausible manner.
+%Such weight updates suit conventional unsupervised Deep Learning modules, such as Autoencoders (AE) and Restricted Boltzmann Machine~(RBMs), where multiplication of the neural outputs is the main operation.
+%%todo maybe sell online event-based STDP? At least in Chapter 2, when introducing learning algorithms.
+%It is crucial to provide deep SNNs with effective on-line training algorithms not only for building successful spike-based object recognition applications, but also for better power efficiency and scalability when training on neuromorphic hardware.
 
 
 %Paragraph Three: OVERVIEW
 %The third paragraph simply outlines the way that you are going to achieve the aim spelled out in the previous paragraph. It’s really just a statement of the contents in the order that the reader will encounter them. It is important to state these not simply as topics, but actually how they build up the internal chapter argument… I will begin by examining the definitions of, then move to seeing how these were applied… I first of all explain my orientation to the research process, positioning myself as a critical scholar.. I then explain the methodology that I used in the research, arguing that ethnography was the most suitable approach to provide answers to the question of… 
 %https://patthomson.net/2014/01/16/connecting-chapterschapter-introductions/
-We explore the research question of on-line, event-based deep SNN training in the literature, describe SRM in mathematical expression, and explain the factors influencing the accuracy of the method and the factors not. 
-We argue why the learning algorithm is suited to train spiking Autoencoders (SAEs) and Spiking Restricted Boltzmann Machines (SRBM).
-During the research we encountered the problem introduced by correlated spikes, and propose solutions to decorrelate spike trains in Section~\ref{sec:problem}. 
-Finally, the online, spike-based learning algorithms demonstrated similar even surpassing recognition and reconstruction capabilities over conventional DNN training on the detailed comparison on the MNIST dataset.
+
+To begin with Section~\ref{sec:SRM_related}, we explore the research question of on-line, event-based deep SNN training in the literature.
+In Section~\ref{sec:SRM} we describe SRM mathematically, and explain the factors influencing the accuracy of the method.
+We then argue why the learning algorithm is suited to train spiking Autoencoders (SAEs) and Spiking Restricted Boltzmann Machines (SRBMs) in Section~\ref{sec:dSNN}.
+During the research we encountered the problem of correlated spikes, and propose solutions to decorrelate spike trains in Section~\ref{sec:problem}.
+Finally, experiments in Section~\ref{sec:SRM_result} show that this on-line training method achieves better performance than existing algorithms and approaches the same, sometimes superior performance of the equivalent non-spiking methods on the detailed comparison on the MNIST dataset.
+%Finally, the online, spike-based learning algorithms demonstrate similar recognition and reconstruction capabilities to conventional DNN training on the detailed comparison on the MNIST dataset;
 
 
 
 \section{Related Works}
+\label{sec:SRM_related}
 %To start with evidence of energy efficiency: maybe should refer to Chapter 2 or 1.
 The current trend towards training deep SNNs on-line using biologically-plausible learning methods is promising due to its potential benefit on low-energy hardware implementation.
 %0. Dan Neil: Online Learning in Event-based Restricted Boltzmann Machines
@@ -40,7 +50,7 @@ And the rhythmic oscillation of these processes generated the particular form of
 The work focused on the statistical aspect of the event-driven sampling, and was extended to the later work on Synaptic Sampling Machines (S2Ms)~\cite{neftci2016stochastic} with stochastic synapses.
 The classification accuracy of MNIST was 91.9\%, 1.7\% lower than the conventional RBM.
 Another similar work on SRBM training~\cite{burbank2015mirrored} applied STDP rule to train SAEs in a very much biologically-plausible manner.
-This work aimed at constructing artificial machine learning algorithms closely to biology, whereas the other works above focused on training spiking deep learning modules with equivalent recognition capability as alternative deep learning methods.
+This work aimed at constructing artificial machine learning algorithms closely to biology, whereas the other works above focused on training spiking Deep Learning modules with equivalent recognition capability as alternative Deep Learning methods.
 
 %4. remote (ReSuMe)
 The work we propose was mostly inspired from the supervised time-based spiking learning rule, ReSuMe~\cite{ponulak2010supervised}, where the output spikes of a post-synaptic neuron were trained to fire at expected time points as the teaching spikes do, see Figure~\ref{fig:resume}.
@@ -149,7 +159,7 @@ In terms of the Widrow-Hoff learning algorithm, $\eta_s$ is set to be:
     \right.
     \label{equ:eta_s}
 \end{equation}
-%In Section~\ref{sec:AE}, we demonstrate how Widrow-Hoff algorithm successfully is applied to training AEs (see Equation~\ref{equ:ae_widrow_hoff}) and in Section~\ref{subsec:SAE} we describe the implementation of SRM algorithm to deep learning models of spiking AEs and RBMs.
+%In Section~\ref{sec:AE}, we demonstrate how Widrow-Hoff algorithm successfully is applied to training AEs (see Equation~\ref{equ:ae_widrow_hoff}) and in Section~\ref{subsec:SAE} we describe the implementation of SRM algorithm to Deep Learning models of spiking AEs and RBMs.
 
 Last but not least, we state the property of SRM algorithm:
 \begin{itemize}
@@ -165,7 +175,7 @@ Last but not least, we state the property of SRM algorithm:
 \label{sec:dSNN}
 Following the idea of supervising a spike-based, single-layered ADALINE network by STDP learning, we then seek solutions for training deep neural architectures.
 In Sections~\ref{sec:AE} and \ref{sec:rbm}, we have derived the training algorithms of AEs and RBMs in detail, whose learning rules are of same structure as Widrow-Hoff~(Equation~\ref{equ:widrow-hoff}) for ADALINE, see Equations~\ref{equ:ae_widrow_hoff} and~\ref{equ:rbm_train}.
-Consequently, we can easily apply SRM in training spiking AEs and RBMs and conduct experiments to compare conventional deep learning modules with the spiking versions.
+Consequently, we can easily apply SRM in training spiking AEs and RBMs and conduct experiments to compare conventional Deep Learning modules with the spiking versions.
 
 \begin{figure}
 	\centering
@@ -279,7 +289,7 @@ The reconstructions, shown in Figure~\ref{fig:ae_orig}(d), of smaller values sta
 	\label{fig:ae_noise}
 \end{figure}
 
-The same experiments were repeated with noisy training and testing data to provide a fair comparison with the spike-based deep learning modules, see Figure~\ref{fig:ae_noise}.
+The same experiments were repeated with noisy training and testing data to provide a fair comparison with the spike-based Deep Learning modules, see Figure~\ref{fig:ae_noise}.
 The noisy data was gathered from the SNN experiments in Section~\ref{subsec:SAE}, and the corresponding SRM parameters were listed in Table~\ref{tbl:srm}.
 All the SNN experiments used the same training and testing Poisson spike trains for the purpose of the unified experimental environment.
 The firing rates of the input values were scaled up by the factor $K = 100$, thus $\lambda_1 = [100, 100, 100, ..., 100]$ Hz and $\lambda_2 = [10, 20, 30, ..., 100]$ Hz.
@@ -630,7 +640,7 @@ On the contrary, the decreasing weights appear in the opposite situation when $h
 Regarding to SRBM, the training is even more effected by the correlations where the values of the weights diverge at a faster pace.
  
  
-This section proposes three solutions to reduce the correlation between layers of neurons, with the purpose of training spiking deep learning models approximately to the process of their conventional training methods.
+This section proposes three solutions to reduce the correlation between layers of neurons, with the purpose of training spiking Deep Learning models approximately to the process of their conventional training methods.
 The aim is to modulate the weight updates close to AE and RBM training under the premise of keeping a similar level of loss.
 To highlight the performance of the solutions, we apply these methods on the same experiments above.
 And the default parameters are the same as in Table\ref{tbl:srm}.
@@ -870,6 +880,7 @@ V_i(t+1)=V_i(t) + \sum_j w_{ij} s_j(t) - l~.
 
 
 \section{Results: MNIST Test}
+\label{sec:SRM_result}
 Having discussed the problem of training of SAEs and SRBMs, we finally applied the proposed methods to image recognition tasks of MNIST;
 the network architecture was shown in Figure~\ref{fig:MNSIT}.
 The training was conducted using a one-layer AE or RBM, which consisted of 794 visible units including 784 neurons representing the images, 10 label units marking the classification, and 500 neurons for the hidden layer.
@@ -1258,7 +1269,7 @@ Conversely the SAE-S2 wins in energy-efficient training and testing on classific
 \section{Summary}
 SNNs can be trained with biologically-plausible synaptic plasticity and demonstrate competent learning capability as ANNs, even as deep architectures: AEs and RBMs.
 The proposed Spike-based Rate Multiplication and its improving solutions formalise a local learning algorithm based on STDP, the on-line, event-based learning rule, and have been applied to train spiking AEs and RBMs.
-This is the first attempt of formalising the biological-plausible learning rule to compete with the unsupervised deep learning models.
+This is the first attempt of formalising the biological-plausible learning rule to compete with the unsupervised Deep Learning models.
 The promising results exhibit equivalent or even superior classification and reconstruction capabilities for SAEs and SRBMs compared to their conventional methods.
 In addition, the spike-based models can be implemented on neuromorphic systems in a very energy-efficient and scalable manner.
 %A conclusion should be a short summary of the most pithy points in the chapter. It’s the thing that you’re going to leave the reader with. Given that they’ve just spent time reading the whole chapter, they don’t want to read it all again. What do you most want the reader to remember about this chapter? What is the key to the argument you’ve made, the most significant thing(s) that they have to keep in their mind as they go forward? In a thesis, a conclusion is usually fairly brief and to the point. Barbara and I call this ‘crunching’. Crunching the conclusion requires some thought – it’s not an afterthought. It is always about your take-home message, if you like. So don’t go on at length in the conclusion – Crunch.
