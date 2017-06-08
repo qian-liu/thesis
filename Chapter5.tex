@@ -37,28 +37,28 @@ Finally, experiments in Section~\ref{sec:SRM_result} show that this on-line trai
 \section{Related Works}
 \label{sec:SRM_related}
 %To start with evidence of energy efficiency: maybe should refer to Chapter 2 or 1.
-The current trend towards training deep SNNs on-line using biologically-plausible learning methods is promising due to its potential benefit on low-energy hardware implementation.
+The current trend towards training deep SNNs on-line using biologically-plausible learning methods is promising due to its potential benefit on low-energy hardware implementations.
 %0. Dan Neil: Online Learning in Event-based Restricted Boltzmann Machines
-The first on-line training algorithm of unsupervised learning is event-based contrastive divergence (evtCD)~\cite{neil2013online} for SRBM, which established the feasibility of applying STDP rule to approximate CD algorithm.
-A review of training RBM algorithms is given in Section~\ref{sec:rbm}.
-The evtCD method divided the learning process into potentiating and depression parts, which formed the basic design of related research.
-As an initial attempt the mathematical analysis was mainly ignored, thus the best classification performance achieved was only about 81.5\% using purely spiking neurons.
+The first on-line training algorithm for unsupervised learning is event-based Contrastive Divergence (evtCD)~\cite{neil2013online} for SRBMs, which established the feasibility of applying the STDP rule to an approximate CD algorithm.
+A review of training methods for RBM algorithms is given in Section~\ref{sec:rbm}.
+The evtCD method divided the learning process into potentiation and depression parts, which forms the basic design of related research.
+In an initial attempts mathematical analysis was mainly ignored, thus the best classification performance achieved was only about 81.5\% using purely spiking neurons.
 %1. Neftci
-Neftci et al.~\cite{neftci2013event} derived the division of potentiating and depression to their event-based CD algorithm, but conducted both parts on the same neural populations which was more biologically plausible.
-Therefore, a global signal was needed to differentiate the potentiating and depression process.
+Neftci et al.~\cite{neftci2013event} derived the division of potentiation and depression to their event-based CD algorithm, but conducted both parts on the same neural populations which was more biologically plausible.
+Therefore, a global signal was needed to differentiate the potentiation and depression process.
 And the rhythmic oscillation of these processes generated the particular form of neural sampling~\cite{petrovici2013stochastic}.
 The work focused on the statistical aspect of the event-driven sampling, and was extended to the later work on Synaptic Sampling Machines (S2Ms)~\cite{neftci2016stochastic} with stochastic synapses.
 The classification accuracy of MNIST was 91.9\%, 1.7\% lower than the conventional RBM.
-Another similar work on SRBM training~\cite{burbank2015mirrored} applied STDP rule to train SAEs in a very much biologically-plausible manner.
-This work aimed at constructing artificial machine learning algorithms closely to biology, whereas the other works above focused on training spiking Deep Learning modules with equivalent recognition capability as alternative Deep Learning methods.
+Another similar work on SRBM training~\cite{burbank2015mirrored} applied the STDP rule to train SAEs in a very much biologically-plausible manner.
+This work aimed at constructing artificial machine learning algorithms close to biology, whereas the other works above focused on training spiking Deep Learning modules with equivalent recognition capability as alternative Deep Learning methods.
 
 %4. remote (ReSuMe)
-The work we propose was mostly inspired from the supervised time-based spiking learning rule, ReSuMe~\cite{ponulak2010supervised}, where the output spikes of a post-synaptic neuron were trained to fire at expected time points as the teaching spikes do, see Figure~\ref{fig:resume}.
+The work we propose was mostly inspired from the supervised time-based spiking learning rule, ReSuMe~\cite{ponulak2010supervised}, where the output spikes of a post-synaptic neuron were trained to fire at the same times as the teaching spikes, see Figure~\ref{fig:resume}.
 %So with certain input pattern injected to the pre-synaptic neurons, see Figure~\ref{fig:resume}.
 The teaching signal always potentiates the synaptic strength while the output spikes of the post-synaptic neuron always depress the connection, and the weight change $\Delta w$ updates in accordance with the exponential STDP curve against the time difference between a spike and a pre-synaptic spike.
-Therefore, as illustrated in Figure~\ref{fig:resume}, at the beginning a teaching spike fires earlier than a post-synaptic spike within an STDP window which makes the weight potentiates more than it depresses;
-thus driven by a stronger synaptic weight, the post-synaptic neuron fires earlier than it supposed to (the teaching spike), making the weight depresses a bit more than its potentiation;
-finally, the weight stays unchanged because the post-synaptic neuron fires coincidently with the teaching spike thus the weight's potentiation cancels out the depression.
+Therefore, as illustrated in Figure~\ref{fig:resume}, at the beginning a teaching spike fires earlier than a post-synaptic spike within an STDP window which makes the weight potentiat more than it depresses;
+thus driven by a stronger synaptic weight, the post-synaptic neuron fires earlier than it is supposed to, making the weight depresses a bit more than its potentiation;
+finally, the weight stays unchanged because the post-synaptic neuron fires coincidently with the teaching spike, thus the weight's potentiation cancels out the depression.
 \begin{figure}
 	\centering
 %	\begin{minipage}[c]{0.25\textwidth} 
@@ -79,11 +79,11 @@ finally, the weight stays unchanged because the post-synaptic neuron fires coinc
 	\label{fig:resume}
 \end{figure}
 
-The basic idea of the proposed method is to provide equivalent learning rule as ReSuMe on rate-encoded SNNs.
+The basic idea of the proposed method is to provide an equivalent learning rule as ReSuMe on rate-encoded SNNs.
 The objective is to supervise the post-synaptic neuron to fire at the frequency of the teaching spike train. 
 Accordingly, the weight decreases if the output neuron fires stronger than the teaching neuron, and vice versa.
-The synaptic strength stops changing as the output neuron fires at the same frequency of the teaching signal.
-In the following section, we will firstly demonstrate how this idea was derived to mathematical descriptions of a biological-plausible learning rule, STDP.
+The synaptic strength stops changing as the output neuron fires at the same frequency as the teaching signal.
+In the following section, we will firstly describe this idea mathematically using the proposed term SRM, and equip learning to the method by biological-plausible STDP rule.
 %The algorithm is simply divided into spike-based rate multiplication (SRM) problems, and we will demonstrate the SRM method in following Section~\ref{sec:SRM}.
 %The learning rule can be easily applied to SAEs if we use input spikes as teaching signals to the visible units, moreover the CD algorithm of training SRBMs is still not more than two operations of SRMs.
 %Section~\ref{sec:dSNN} explains the specific training on SAEs and SRBMs in detail.
