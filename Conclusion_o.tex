@@ -1,0 +1,206 @@
+\chapter{Conclusion and Future Work}
+\label{cha:conc}
+Neuromorphic engineering has been developed for large-scale, energy-efficient, simulations on networks comprising of biologically-plausible spiking neurons.
+%Nevertheless, these brain-like machines can do little and are far from being intelligent as the brain.
+Nevertheless the Spiking Neural Network (SNN) has not achieved the cognitive capability and learning ability of its non-spiking counterpart, the Artificial Neural Network (ANN).
+%Nevertheless, the intrinsic energy efficiency of the SNN system continues to draw attention towards the field of neuromorphic engineering.
+Since deep learning techniques has driven simple rate-based artificial neurons to perform surpassing human-level capabilities in cognitive tasks which human used to dominate only. 
+Thus, Chapter~\ref{cha:bkg} has revealed the special features of spiking neurons that differ from neurons of conventional ANNs.
+%the core reason of the difference in cognitive abilities that the time-driven neural dynamics of spiking neuron models intrinsically differ from the abstracted rate-driven artificial neurons.
+The fundamental difference between a biologically-plausible spiking neuron and an abstract artificial one raises the research problem: how to operate and train networks of biologically-plausible spiking neurons to close the gap of cognitive capabilities between SNNs and ANNs in AI tasks?
+
+Embedding deep learning mechanisms for training SNNs may provide an answer to the problem.
+In Chapter~\ref{cha:dnn}, the most popular and influencing deep learning models and mechanisms have been introduced, and three of them have been demonstrated in detail and later successfully applied on SNNs.
+Most significantly, in Chapter~\ref{cha:Conv} and Chapter~\ref{cha:sdlm} we answered the main research problem of how to operate and train biologically-plausible SNNs to close the gap of cognitive capabilities between SNNs and ANNs by proposing SNN training methods both off-line and on-line.
+Chapter~\ref{cha:bench} has provided the neuromorphic community with a uniform dataset to evaluate SNNs' performance both at model and hardware level to provide meaningful comparisons between theses proposed SNN models and other existing methods within this rapidly advancing field of NE.%, thus to answer the research problem with strong evidence comparing to ANNs.
+
+In this chapter, we will firstly answer the research question by confirming its hypotheses left in Chapter~\ref{cha:intro}.
+It involves sub-topics on how we arrived at this confirmation, what are the main contributions, and how this work challenges previous research.
+This will be followed by statements of current limitations of our study, the potential methods of tackling these limitations, and directions for further research.
+
+%One paragraph stating what you researched and what your original contribution to the field is…then break into sections
+%Be enthused by the prospect of writing your conclusion… “It’s downhill from here…!”
+
+%The primary achievements of the thesis are the learning methods both off-line and on-line for SNNs, which close the gap of cognitive capability between SNNs and ANNs.
+%The other achievements contributes to the concerns of the feasibility of neuromorphic hardware platforms and the performance evaluation.
+
+\section{Confirming Research Hypotheses}
+\paragraph{1. Deep SNNs can be successfully and simply trained off-line where the training takes place on equivalent ANNs and then transferring the trained weights back to SNNs, thus to make them as competent as ANNs in cognitive tasks.}
+This hypothesis aims to generalise a training method on conventional ANNs whose trained connections can be transferred to corresponding SNNs with close recognition performance.
+
+In Chapter~\ref{cha:Conv} we proposed a generalised SNN training method to train an equivalent ANN and transfer the trained weights back to SNNs.
+This training procedure consists of two simple stages: first, estimate parameter $p$ for parametric activation function~(PAF: $y = p \times f(x)$) with the help of the activation function we proposed, Noisy Softplus~(NSP), and second, use a PAF version of conventional activation functions for ANN training. % can be generalised to activation units other than NSP.
+%The training of a SNN model is exactly the same as ANN training, and 
+The trained weights can be directly used in SNN without any further transformation.
+This method requires the least computation complexity while performing most effectively among existing algorithms.
+% and even more straight-forward than the other ANN offline training methods which requires an extra step of converting ANN-trained weights to SNN's.
+
+In terms of classification/recognition accuracy, the performance of ANN-trained SNNs is nearly equivalent to ANNs, and the performance loss can be partially solved by fine tuning.
+The best classification accuracy of 99.07\% using LIF neurons in a PyNN simulation outperforms state-of-the-art SNN models of LIF neurons and is equivalent to the best result achieved using IF neurons~\cite{diehl2015fast}.
+An important feature of accurately modelling LIF neurons in ANNs is the acquisition of spiking neuron firing rates. These will aid deployment of SNNs in neuromorphic hardware by providing power and communication estimates, which would allow better usage or customisation of the platforms.
+
+With the first contributions of a simple, but effective, off-line deep SNN training method and a novel activation function, Noisy Softplus, and the achievements of successful training on an deep spiking ConvNet which has performed close to original ANN's even surpassing the state-of-the-art classification accuracy, we confirm the hypothesis. 
+
+This proposed SNN training method is simpler and even more straight-forward than the other ANN-based training approach~\cite{cao2015spiking,diehl2015fast} which requires an extra step of converting ANN-trained weights to SNN's.
+In addition, the normalisation algorithm~\cite{diehl2015fast}, proposed for weights transformation, only works for simple integrate-and-fire neurons, and cannot be generalised for biologically-plausible neurons.
+Moreover, the novel activation function, Noisy Softplus, tackles all the problems raised by the Siegert formula which used to model sigmoid-like spiking neurons~\cite{Jug_etal_2012} as follows: 
+	\begin{itemize}
+		\item accounting of time correlation of the noisy synaptic current, e.g. $\tau_{syn}$, thus better fitting the actual response firing rate of an LIF neuron. % compared to Siegert function.
+		
+%		\item easily applied to any training method, for example BP, thanks to its derivative function defined in Equation~\ref{equ:logist}.
+		
+		\item the calculation on Noisy Softplus and its derivative is no more than Softplus function, except for doubled computation on weighted sum of its input ($net$ and $\sigma$ in Equations~\ref{equ:mi_input} and~\ref{equ:si_input}).
+		They are yet much more simplified than Siergert function which saves training time and energy.
+		
+		\item as one of the ReLU-liked activation functions, the output firing rate seldom exceeds the working range of a LIF neuron, for example the firing rates were around 0-200~Hz in the ConvNet model.
+		
+		\item the learning performance of Noisy Softplus lies between that of Softplus and ReLU, which is supposed to outperform most of the other popular activation functions.
+	\end{itemize}
+
+\paragraph{2. Unsupervised Deep Learning modules can be trained on-line on SNNs with biologically-plausible synaptic plasticity to demonstrate a learning capability as competent as ANNs.}
+This hypothesis targets the formalising of a local learning rule based on synaptic plasticity for unsupervised, event-based, biologically-plausible training of deep SNNs in order to catch up the recognition performances of ANNs.
+
+In Chapter~\ref{cha:sdlm} we proposed unsupervised deep learning algorithms to train SNNs purely with event-based local STDP, using a Spike-based Rate Multiplication method~(SRM).
+This SRM method successfully transfers multiplication operations to possibility of some specific firing events of a pair of rate-coded spike trains.
+Moreover, these firing events can be captured with the STDP rule and thus to update the weights accordingly in an on-line, event-based, and biologically-plausible manner.
+Such weight updates suit the conventional unsupervised deep learning modules, such as Autoencoders~(AE) and Restricted Boltzmann Machines~(RBM), where multiplication of the neural outputs is the main operation.
+During the research we encountered the problem introduced by correlated spikes, and proposed solutions to decorrelate pairs of spike trains.
+It is crucial to provide deep SNNs with effective on-line training algorithms, not only for building successful spike-based object recognition applications, but also for better power efficiency and scalability when training on neuromorphic hardware.
+
+Our second contribution is the formalisation of an STDP-based unsupervised learning algorithms of spiking AE~(SAE) and spiking RBM~(SRBM).
+These training methods have realised the on-line, event-based, biologically-plausible learning on spiking deep architectures in an unsupervised fashion.
+The promising results of equivalent or even superior classification and reconstruction capabilities of SAEs and SRBMs compared to their conventional ANN-based methods confirms the hypothesis that SNNs have competent learning ability as deep ANNs.
+
+Thanks to the formalisation of these proposed learning algorithms with numerical analysis, the classification results (94.72\% for SAE and 94.35\% for SRBM) have outperformed other existing SAE and SRBM models.
+The first on-line training algorithm proposed by~\cite{neil2013online}, ignored the mathematical analysis thus achieved its best classification performance only at 81.5\%.
+Neftci et al.~\cite{neftci2013event} conducted the training on recurrent network which was more biologically plausible but required a global signal to control the direction of the synapses and resulted in a worse classification of 91.9\% even with a bigger network comparing to our work.
+
+
+\paragraph{3. A new set of spike-based vision datasets can provide resources to support fair competition between researchers as new concerns on energy efficiency and recognition latency emerge in Neuromorphic Vision.}
+This hypothesis is expected to provide a unified spiking version of common-used dataset and complementary evaluation methodology to assess the performance of SNN algorithms.
+
+%A dataset and the corresponding evaluation methodology for comparisons of Neuromorphic Vision.
+%This dataset also made the comparison of SNNs with conventional recognition methods possible by using converted spike representations of the same vision databases.
+%As far as we know, this was the first attempt at benchmarking neuromorphic vision recognition by providing public a spike-based dataset and evaluation metrics.
+%
+%
+%The first version of the dataset is published as NE15-MNIST, which contains four different spike representations of the MNIST stationary hand-written digit database.
+%The Poissonian subset is intended for benchmarking existing rate-based recognition methods.
+%The rank-order coded subset, FoCal, encourages research into spatio-temporal algorithms on recognition applications using only small numbers of input spikes.
+%Fast recognition can be verified on the DVS recorded flashing input subset, since just 30~ms of useful spike trains are recorded for each image.
+%Looking forward, the continuous spike trains captured from the DVS recorded moving input can be used to test mobile neuromorphic robots.
+%\cite{orchard2015convert} have presented a neuromorphic dataset using a similar approach, but the spike trains were obtained with micro-saccades.
+%This dataset aims to convert static images to neuromorphic vision input, while the recordings of moving input in our paper are intended to promote position-invariant recognition.
+%Therefore, the datasets complement each other.
+%
+%The proposed complementary evaluation methodology is essential to assess both the model-level and hardware-level performance of SNNs.
+%In addition to classification accuracy, response latency and the number of synaptic events are specific evaluation metrics for spike-based processing.
+%Moreover, it is important to describe an SNN model in sufficient detail to share the network design, and relevant SNN characteristics were highlighted in the paper.  
+%%For a neural network model, its topology, neuron and synapse models, and training methods are major descriptions for any kind of neural networks, including SNNs.
+%%While the recognition accuracy, network latency and also the biological time taken for both training and testing are specific performance measurements of a spike-based model.
+%The network size of an SNN model that can be built on a hardware platform will be constrained by the scalability of the hardware.
+%Neural and synaptic models are limited to the ones that are physically implemented, unless the hardware platform supports programmability.
+%Any attempt to implement an on-line learning algorithm on neuromorphic hardware must be backed by synaptic plasticity support.
+%Therefore running an identical SNN model on different neuromorphic hardware exposes the capabilities of such platforms.
+%If the model runs smoothly on a hardware platform, it then can be used to benchmark the performance of the hardware simulator in terms of simulation time and energy usage.
+%Classification accuracy (CA) is also a useful metric for hardware evaluation because of the limited precision of the membrane potential and synaptic weights.
+%
+%%Although spike-based algorithms have not surpassed their non-spiking counterparts in terms of recognition accuracy, they have shown great performance in response time and energy efficiency.
+In Chapter~\ref{cha:bench} we presented a dataset which contains four different spike representations of the MNIST stationary hand-written digit database. % rate-based code, rank-order code, DVS recorded flashing and moving inputs. 
+The Poissonian subset is intended for benchmarking existing rate-based recognition methods.
+The rank-order coded subset, FoCal, encourages research into spatio-temporal algorithms on recognition applications using only small numbers of input spikes.
+Fast recognition can be verified on the DVS recorded flashing input subset, since just 30~ms of useful spike trains are recorded for each image.
+Looking forward, the continuous spike trains captured from the DVS recorded moving input can be used to test mobile neuromorphic robots.
+\cite{orchard2015convert} have presented a neuromorphic dataset using a similar approach, but the spike trains were obtained with micro-saccades.
+This dataset aims to convert static images to neuromorphic vision input, while the recordings of moving input in our paper are intended to promote position-invariant recognition.
+Therefore, the datasets complement each other.
+
+The proposed complementary evaluation methodology is essential to assess both the model-level and hardware-level performance of SNNs.
+In addition to classification accuracy, response latency and the number of synaptic events are specific evaluation metrics for spike-based processing.
+Moreover, it is important to describe an SNN model in sufficient detail to share the network design, and relevant SNN characteristics were highlighted in the paper.  
+The network size of an SNN model that can be built on a hardware platform will be constrained by the scalability of the hardware.
+Neural and synaptic models are limited to those that are physically implemented, unless the hardware platform supports programmability.
+Any attempt to implement an on-line learning algorithm on neuromorphic hardware must be backed by synaptic plasticity support.
+Therefore running an identical SNN model on different neuromorphic hardware exposes the capabilities of such platforms.
+If the model runs smoothly on a hardware platform, it then can be used to benchmark the performance of the hardware simulator in terms of simulation time and energy usage.
+Classification accuracy (CA) is also a useful metric for hardware evaluation because of the limited precision of the membrane potential and synaptic weights.
+
+
+A third contribution of the thesis provided the community with a dataset and its corresponding evaluation methodology for comparisons of Neuromorphic Vision.
+The published NE15-MNIST dataset contains imperative spike-based representations of the popular hand-written digits database, MNIST.
+Moreover, the carefully selected evaluation metrics highlight the strengths of spike-based vision tasks and the dataset design also promotes the research into rapid and low energy recognition (e.g. flashing digits).
+The successful baseline test of a benchmark system has been evaluated using the Poissonian subset of the NE15-MNIST dataset, which validates the feasibility of the database and its evaluation.
+There, we confirm the hypothesis of that the dataset provides resources and supports fair comparisons among SNN models and their hardware implementations.
+
+%
+%As far as we know, this has been the first attempt at benchmarking neuromorphic vision recognition by providing public a spike-based dataset and evaluation metrics.
+%In accordance with the suggestions from~\cite{tan2015bench}, the evaluation metrics highlight the strengths of spike-based vision tasks and the dataset design also promotes the research into rapid and low energy recognition (e.g. flashing digits).
+%A benchmark system has been evaluated using the Poissonian subset of the NE15-MNIST dataset.
+%%The models were described and their performance on accuracy, network latency, simulation time and energy usage were presented.
+%These example benchmarking system has demonstrated a recommended way of using the dataset, describing the SNN models and evaluating the system performance.
+%%They provide a baseline for comparisons and encourage improved algorithms and models to make use of the dataset.
+%The case study has provided baselines for robust comparisons between SNN models and their hardware implementations.
+
+
+
+\section{Future Work}
+\subsection{Off-line SNN Training}
+The current limitation prohibiting this off-line SNN training method from wide use lies in the lack of supporting tools.
+This requires the development of a supporting tool which enables SNN training in popular deep learning platforms e.g. Tensorflow~\cite{tensorflow2015-whitepaper}, and an other automation tool that reads platform-dependant trained weights into PyNN~\cite{davison2008pynn} language.
+
+An other issue is the parameter calibration on the scaling factor of the combined activation, thus numerical analysis is considered for future work to express the factors with biological parameters of a LIF neuron.
+
+Interesting applications have started with collaborations to extend the off-line SNN training method.
+Ensemble models~\cite{rokach2010ensemble} have been considered to train by this method and run their SNN models on SpiNNaker to take advantage of itss massive-parallel simulating ability.
+Speech recognition of cochlea generated spikes has achieved a promising accuracy at the initial test-idea stage.
+A further goal is to implement deep networks fit for ImageNet~\cite{deng2009imagenet} tasks, which will also requires modelling various structures of deep learning, for example recurrent neural networks.
+
+
+\subsection{On-line biologically-plausible Learning}
+Although rate coding has shown great potential for on-line STDP learning, time-based coding carrying more information is expected to have a better or faster learning capability.
+We have proposed a similar, precise-timing based learning algorithm, which although still in the test-idea stage, the prototype has shown much faster learning speed than the rate-coding mechanism.
+
+%TODO reword this line
+The modulation of STDP by a third factor such as dopamine has potentially interesting functional consequences that turn STDP from unsupervised learning into a reward-based learning paradigm~\cite{izhikevich2007solving}.
+It consists to the hot research field of reinforcement learning.
+Merging advanced neuroscience findings and deep learning mechanisms to SNN will be the trend for future work.
+
+
+Synaptic Sampling Machines (S2Ms)~\cite{neftci2016stochastic} employing a dropout~\cite{srivastava2014dropout} mechanism hugely improved the performance of its original model from 91.9\% to 95.6\%.
+Thus applying novel deep learning techniques for SNN training is in the future work.
+
+
+\subsection{Evaluation on Neuromorphic Vision}
+The database proposed in Chapter~\ref{cha:bench} will be expanded by converting more popular vision datasets to spike representations.
+As mentioned in Section~\ref{sec:chapt6_intro}, face recognition has become a hot topic in SNN approaches, however there is no unified spike-based dataset to benchmark these networks.
+Thus, the next development step for our dataset is to include face recognition databases.
+While viewing an image, saccades direct high-acuity visual analysis to a particular object or a region of interest and useful information is gathered during the fixation of several saccades in a second.
+It is possible to measure the scan path or trajectory of the eyeball and those trajectories show particular interest in eyes, nose and mouth while viewing a human face~\cite{yarbus1967eye}.
+Therefore, our plan is also to embed modulated trajectory information to direct the recording using DVS sensors to simulate human saccades.
+
+There will be more methods and algorithms for converting images to spikes.
+Although Poisson spikes are the most commonly used external input to an SNN system, there are several \textit{in-vivo} recordings in different cortical areas showing that the inter-spike intervals (ISI) are not Poissonian~\cite{deger2012statistical}. 
+Thus~\cite{deger2012statistical} proposed new algorithms to generate superposition spike trains of Poisson processes with dead-time (PPD) and of Gamma processes.
+Including novel spike generation algorithms in the dataset is one aspect of future work which will be carried out.
+
+%While the major stumbling crux of the computer object recognition systems lies in the invariance problem.
+Each encounter of an object on the retina is unique, because of the illumination (lighting condition), position (projection location on the retina), scale (distance and size), pose (viewing angle), and clutter (visual context) variabilities.
+The brain, however, recognises a huge number of objects rapidly and effortlessly even in cluttered and natural scenes.
+To explore invariant object recognition, the dataset will include the NORB (NYU Object Recognition Benchmark) dataset~\cite{lecun2004learning}, which contains images of objects that are first photographed in ideal conditions and then moved and placed in front of natural scene images.
+
+Action recognition will be the first problem of video processing to be introduced in the dataset.
+The initial plan is to use the DVS retina to convert the KTH and Weizmann benchmarks to spiking versions.
+Meanwhile, providing a software DVS retina simulator to transform frames into spike trains is also on the schedule.
+By doing this, a huge number of videos, such as those in YouTube, can automatically be converted into spikes, therefore providing researchers with more time to work on their own applications.
+
+Overall, it is impossible for the dataset proposers to provide enough datasets, converting methods and benchmarking results, thus we encourage other researchers to contribute to the dataset allowing future comparisons using the same data source.
+They can also share their spike conversion algorithms by generating datasets to promote the corresponding recognition methods.
+Neuromorphic hardware owners are welcome to provide benchmarking results to compare their system's performance.
+\section{Summary}
+%conclusion of the concolusion
+%Be enthused by the prospect of writing your conclusion… “It’s downhill from here…!”
+%what are the all contributions, and the significance
+%what are the furture work-optional
+
+The concluding chapter reflects the research question and hypotheses raised in the first Chapter, highlights the main contributions of the work, discusses the work in the context of literature, and propose potential methods to tackle existing limitations and promising directions for future work.
+This thesis has achieved closure of the gap between the cognition capability of SNNs' to ANNs', and brightly paved the way for further study to improve and understand learning performance of these biologically-plausible spiking units.
