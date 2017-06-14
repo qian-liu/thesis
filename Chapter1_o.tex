@@ -3,15 +3,15 @@
 %Problem, motivation and significance
 %TODO the origin of neuromorphic computing
 %Neuromorphic computing has lead towards the development of biologically-inspired computer architectures 
-Advances in computing power and machine learning have benefited computers with a rapid growing performance in cognitive tasks, such as recognising objects~\cite{deng2009imagenet} and playing GO~\cite{silver2016mastering}). 
+Advances in computing power and machine learning have benefited computers with a rapid growing performance in cognitive tasks, such as recognising objects~\citep{deng2009imagenet} and playing GO~\citep{silver2016mastering}). 
 These tasks were once dominated by human intelligence and solved by biological neurons in the brain.
 However, humans and many other animals still win against computers in practical tasks, such as vision, and outperform in terms of size and energy cost over several orders of magnitude.
-For instance, AlphaGO~\cite{silver2016mastering} consumed 1~MW of power on its 1920 CPUs and 280 GPUs when playing the game with one of the best human players whose brain only consumed about 20~W.
+For instance, AlphaGO~\citep{silver2016mastering} consumed 1~MW of power on its 1920 CPUs and 280 GPUs when playing the game with one of the best human players whose brain only consumed about 20~W.
 %Although we are still far from understanding the brain thoroughly, it is believed that the performance gap between computation in the biological nervous system and in a computer lies in the fundamental computing units and the way they act.
-%Computers employ Boolean logic and deterministic digital operations based usually on synchronous clocks while nervous systems employ parallel-distributed, event-driven, stochastic unreliable components~\cite{indiveri2009artificial}.
+%Computers employ Boolean logic and deterministic digital operations based usually on synchronous clocks while nervous systems employ parallel-distributed, event-driven, stochastic unreliable components~\citep{indiveri2009artificial}.
 %The impressive disparities in cognitive capabilities and energy consumption drives the research into biologically-inspired computers.
 Although we are still far from understanding the brain thoroughly, it is believed that the performance gap between computation in the biological nervous system and in a computer lies in the fundamental computing units and how they compute.
-Computers employ Boolean logic and deterministic digital operations based usually on synchronous clocks while nervous systems employ parallel-distributed, event-driven, stochastically unreliable components~\cite{indiveri2009artificial}, neurons.
+Computers employ Boolean logic and deterministic digital operations based usually on synchronous clocks while nervous systems employ parallel-distributed, event-driven, stochastically unreliable components~\citep{indiveri2009artificial}, neurons.
 The impressive disparities in cognitive capabilities and energy consumption drives the research into biologically-plausible spiking neurons and brain inspired computers, known as neuromorphic engineering~(NE).
 
 
@@ -28,22 +28,22 @@ The impressive disparities in cognitive capabilities and energy consumption driv
 \end{figure}
 %which may alternate conventional Von Neumann and rival the Human brain in terms of energy efficiency and cognitive capabilities.
 %Two aims
-NE was proposed by Carver Mead in the late 1980s \cite{Mead:1989:AVN:64998} to build analogue circuits that mimic the biological neural cells and the architecture of the nervous system using very-large-scale integration (VLSI) technology.
+NE was proposed by Carver Mead in the late 1980s \citep{Mead:1989:AVN:64998} to build analogue circuits that mimic the biological neural cells and the architecture of the nervous system using very-large-scale integration (VLSI) technology.
 %``As engineers, we would be foolish to ignore the lessons of a billion years of evolution.''
-Figure~\ref{fig:intro} indicates the objectives of NE~\cite{furber2007neural}:
+Figure~\ref{fig:intro} indicates the objectives of NE~\citep{furber2007neural}:
 \begin{itemize}
 	\item neuromorphic modelling: for neuroscientists to understand the brain by modelling and simulating the activities of the biological neurons; 
 	\item neuromorphic computing: for engineers to build brain-like machines by applying biological features to computers.
 \end{itemize}
 This is a bidirectional process that building a biologically inspired computer requires a better understanding of the brain, and simulating brain activities at large scale and in real time can be only feasible on massively-parallel neuromorphic hardware.
 
-Since around 2004 to 2005, `Dennard's Law' has no longer been followed~\cite{bohr200730}, so as transistors get smaller their power density no longer stays constant but starts to increase.
+Since around 2004 to 2005, `Dennard's Law' has no longer been followed~\citep{bohr200730}, so as transistors get smaller their power density no longer stays constant but starts to increase.
 The breakdown of Dennard scaling and the problem of power dissipation drove chip manufacturers to multi/many-core architecture.
 However, the increased number of active transistors in a multi-core chip costs more power consumption thus creating the prospect that some fraction of the cores will have to remain completely powered-off given the thermal design power constraint.
-Dark silicon~\cite{esmaeilzadeh2011dark} addresses the issue of inactive areas of a multi-core chip, which could be 50\% of nodes in an 8~nm technology.
+Dark silicon~\citep{esmaeilzadeh2011dark} addresses the issue of inactive areas of a multi-core chip, which could be 50\% of nodes in an 8~nm technology.
 Neuromorphic engineering offers a potential solution for power dissipation by applying the biological features of event-driven, hybrid analogue/digital, unreliable components to computers.
 Moreover, most of the neural interconnections in the brain are local, and the `memory' units attach to the `computation' node in a neuron.
-Therefore, learning from biology may give computers an alternative to the conventional Von Neumann architecture and thus may solve the problem of the microprocessor/memory performance gap~\cite{wulf1995hitting}, also known as the Von Neumann bottleneck, where the system speed is determined and limited by the memory performance.
+Therefore, learning from biology may give computers an alternative to the conventional Von Neumann architecture and thus may solve the problem of the microprocessor/memory performance gap~\citep{wulf1995hitting}, also known as the Von Neumann bottleneck, where the system speed is determined and limited by the memory performance.
 
 %SNN
 
@@ -51,20 +51,20 @@ Therefore, learning from biology may give computers an alternative to the conven
 %Although there are a number of neuromorphic platforms available for large-scale SNN simulations,
 During the last decade, researchers have used the capabilities created by rapid developments in neuromorphic engineering to address the dual aims of understanding brain functions and building brain-like machines.
 Spiking Neural Networks (SNN) hold the key as the main approach for both goals.
-The so-called third generation of artificial neural network (ANN)~\cite{maass1997networks} introduces biological realism to neural modelling.
+The so-called third generation of artificial neural network (ANN)~\citep{maass1997networks} introduces biological realism to neural modelling.
 The spiking neuron mathematically models the dynamics of a single neuron and the network describes the architecture of the neural connections and the information transmission among them.
 Neuroscientists reproduce the recorded neural dynamics and activities from \textit{in-vivo/vitro} experiments to verify their models and measure the progress of brain understanding, While computer engineers focus on the hardware implementations of the SNN models.
-Hence, SNN simulation tools~\cite{davison2008pynn, gewaltig2007nest, goodman2008brian} and neuromorphic hardware platforms~\cite{furber2014spinnaker,  schemmel2010wafer,benjamin2014neurogrid,merolla2014million} have been developed to allow exploration of the brain by mimicking its functions and developing large-scale practical applications~\cite{eliasmith2012large}.
-In addition, neuromorphic engineering has delivered biologically-inspired sensors such as DVS~(Dynamic Vision Sensor) silicon retinas~\cite{serrano2013128, delbruck2008frame, yang2015dynamic, posch2014retinomorphic}, and DAS~(Dynamic Audition Sensor)~\cite{5537164}, which offer the prospect of low-cost sensory processing thanks to their event-driven and redundancy-reducing style of information representation.
+Hence, SNN simulation tools~\citep{davison2008pynn, gewaltig2007nest, goodman2008brian} and neuromorphic hardware platforms~\citep{furber2014spinnaker,  schemmel2010wafer,benjamin2014neurogrid,merolla2014million} have been developed to allow exploration of the brain by mimicking its functions and developing large-scale practical applications~\citep{eliasmith2012large}.
+In addition, neuromorphic engineering has delivered biologically-inspired sensors such as DVS~(Dynamic Vision Sensor) silicon retinas~\citep{serrano2013128, delbruck2008frame, yang2015dynamic, posch2014retinomorphic}, and DAS~(Dynamic Audition Sensor)~\citep{5537164}, which offer the prospect of low-cost sensory processing thanks to their event-driven and redundancy-reducing style of information representation.
 
 %how to operate these brain-like machines to be competent in cognitive applications still remains unsolved.
-The long-term ultimate goal of NE is to equip neuromorphic machines with genuine intelligence~\cite{konar1999artificial}.
+The long-term ultimate goal of NE is to equip neuromorphic machines with genuine intelligence~\citep{konar1999artificial}.
 Today, in neuromorphic modelling, we know that information processing in the brain is conducted by the basic computing units, the spiking neurons.
 Information transmission takes place in the synapses and we can draw the connections among neurons from anatomical experiments.
 In neuromorphic computing, massive large-scale SNN hardware simulators are ready to use.
 However, due to the fundamental difference of data representation and neural computation between spiking and artificial neurons, how to operate these brain-like machines to be competent in cognitive applications still remains unsolved.
 
-Deep Learning research in the field of ANNs has dominated the state-of-the-art solutions on cognitive tasks, e.g. the exceeding human-level performance on image classification tasks~\cite{he2015delving}.
+Deep Learning research in the field of ANNs has dominated the state-of-the-art solutions on cognitive tasks, e.g. the exceeding human-level performance on image classification tasks~\citep{he2015delving}.
 Figure~\ref{fig:intro} shows the diverging objectives of SNNs and ANNs, where SNNs focus on mimicking the brain while ANNs are active in solving engineering AI problems.
 %TODO need to modify
 Despite remarkable computational success, ANNs ignore the spiking nature of neural communication that is fundamental for biological neuronal networks.
@@ -218,7 +218,7 @@ The author participated in workshops organised by the community, 1) to establish
 	\textit{Telluride Neuromorphic Cognition Engineering Workshop 2013}.
 	
 	Developed a real-time sound localisation system on the neuromorphic platform as a main contributor\footnote{\url{http://neuromorphs.net/nm/wiki/sound_localization}}.
-	The work led to the publication of a journal paper~\cite{lagorce2015breaking}.
+	The work led to the publication of a journal paper~\citep{lagorce2015breaking}.
 	
 	
 	\item 

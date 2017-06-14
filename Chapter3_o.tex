@@ -1,12 +1,12 @@
 \chapter{Deep Learning}
 \label{cha:dnn}
-Deep Learning research in the field of artificial neural networks~(ANNs) has dominated state-of-the-art solutions on cognitive tasks, e.g. the performance exceeding human-level  on image classification tasks~\cite{he2015delving} and playing GO~\cite{silver2016mastering}).
+Deep Learning research in the field of artificial neural networks~(ANNs) has dominated state-of-the-art solutions on cognitive tasks, e.g. the performance exceeding human-level  on image classification tasks~\citep{he2015delving} and playing GO~\citep{silver2016mastering}).
 Merging deep learning techniques into SNNs may provide an answer to the problem of how to operate SNNs to perform as well as ANNs in cognitive tasks. 
 In this chapter, we will give an overview of popular architectures and models of deep learning in Section~\ref{sec:dl_history}, and the rest of this chapter will illustrate the mechanisms of convolutional networks (ConvNets), autoencoders (AEs), and restricted Boltzmann machines~(RBMs) in detail which will be used in following chapters.
 
 \section{Brief Overview}
 \label{sec:dl_history}
-Deep learning seems to have become the answer to all artificial intelligence problems overnight since Geoffrey Hinton proposed the training method of a type of ANN, deep belief network, in 2006~\cite{hinton2006fast}.
+Deep learning seems to have become the answer to all artificial intelligence problems overnight since Geoffrey Hinton proposed the training method of a type of ANN, deep belief network, in 2006~\citep{hinton2006fast}.
 However, deep learning is not a new `magic', but rather has a history over a few decades and its sudden success is the result of the availability of an increasing amount of training data, growing size of network models and greater computational power.
 Therefore, all the classical deep learning architectures date back to the last century when deep learning un-named.
 However, at that time, deep networks were hardly to be trained mainly because of the limit on computational power.
@@ -14,41 +14,41 @@ However, at that time, deep networks were hardly to be trained mainly because of
 
 \subsection{Classical Models}
 We call the well-known and widely-used deep learning models `classical' and give a brief introduction to those models in this section. 
-As mentioned above, the first break-through of training deep, not shallow ($\le 3$ layers), networks was the greedy layer-wise strategy~\cite{hinton2006fast} proposed to train stacked RBMs, which will be described in more detail in Section~\ref{sec:rbm}.
-Shortly after that this method was proved to be efficient for training other kinds of deep networks including stacked AEs~\cite{bengio2007greedy} (stated in Section~\ref{sec:AE}).
+As mentioned above, the first break-through of training deep, not shallow ($\le 3$ layers), networks was the greedy layer-wise strategy~\citep{hinton2006fast} proposed to train stacked RBMs, which will be described in more detail in Section~\ref{sec:rbm}.
+Shortly after that this method was proved to be efficient for training other kinds of deep networks including stacked AEs~\citep{bengio2007greedy} (stated in Section~\ref{sec:AE}).
 RBMs and AEs are suitable for dimensionality reduction and feature extraction when trained with unsupervised learning on unlabelled data.
-In 2012, using such a unsupervised deep learning architecture the Google Brain team achieved a milestone in the deep learning era; the neural network learned to recognise cats by `watching' 10 million images generated from random frames of YouTube videos~\cite{le2013building}.
+In 2012, using such a unsupervised deep learning architecture the Google Brain team achieved a milestone in the deep learning era; the neural network learned to recognise cats by `watching' 10 million images generated from random frames of YouTube videos~\citep{le2013building}.
 
-ConvNets are biologically inspired from the significant discovery of Hubel and Wiesel that the orientation selectivity (simple cells) and pooling mechanism (complex cells) represent the basic functions in the primary visual cortex in cats~\cite{hubel1962receptive}.
+ConvNets are biologically inspired from the significant discovery of Hubel and Wiesel that the orientation selectivity (simple cells) and pooling mechanism (complex cells) represent the basic functions in the primary visual cortex in cats~\citep{hubel1962receptive}.
 These simple cells fire at a high frequency to their preferred orientation of visual stimuli within their receptive fields~(shown in Figure~\ref{Fig:v1}), small sub-regions of the visual field.
 %This means a single simple cell works like a pattern detector within its small receptive field thus also providing the exact spatial location of the detected feature in the entire visual field.
 Meanwhile, a complex cell corresponds to the existence of a pattern within a larger receptive field but loses the exact position of the pattern.
 %This means that its receptive field cannot be mapped into fixed excitatory and inhibitory zones. Rather, it will respond to patterns of light in a certain orientation within a large receptive field, regardless of the exact location.
 %The receptive fields composes of the entire visual field.
 %These cells act as local filters over the input space and are well-suited to exploit the strong spatially local correlation present in natural images.
-NeoCognitron~\cite{fukushima1982neocognitron} was the first to mimic the functions of V1 simple and complex neurons in an artificial neural network, and later this feature detection of single cells was improved by sharing weights among receptive fields in LeNet-5~\cite{lecun1998gradient}, the typical ConvNet used today.
+NeoCognitron~\citep{fukushima1982neocognitron} was the first to mimic the functions of V1 simple and complex neurons in an artificial neural network, and later this feature detection of single cells was improved by sharing weights among receptive fields in LeNet-5~\citep{lecun1998gradient}, the typical ConvNet used today.
 The mechanism of shared weights forms the essence of convolution in a ConvNet, which hugely reduces the number of weight parameters in a network.
-The most significant milestones produced by deep ConvNet dominated the best performances in the annual ImageNet Challenge~\cite{russakovsky2015imagenet}: AlexNet~\cite{krizhevsky2012imagenet}, VGG Net~\cite{simonyan2014very}, GoogLeNet~\cite{szegedy2015going} and ResNet~\cite{he2016deep}.
+The most significant milestones produced by deep ConvNet dominated the best performances in the annual ImageNet Challenge~\citep{russakovsky2015imagenet}: AlexNet~\citep{krizhevsky2012imagenet}, VGG Net~\citep{simonyan2014very}, GoogLeNet~\citep{szegedy2015going} and ResNet~\citep{he2016deep}.
 
 Despite the powerful capabilities of these feed-forward deep networks, sequence processing is a challenge for them since the input and output vectors are of static size.
 Thus recurrent neural networks~(RNNs), containing feed-back connections, are ideal solutions for dealing with sequential information since their current output is always dependant on the previous `memory'.
-As training mechanisms have become more mature, for example using the long short-term memory or (LSTM)~\cite{hochreiter1997long}, RNNs have shown great success in many natural language processing tasks: language modelling~\cite{mikolov2010recurrent}, machine translation~\cite{sutskever2014sequence}, speech recognition~\cite{graves2014towards} and image caption generation~\cite{karpathy2015deep}.
+As training mechanisms have become more mature, for example using the long short-term memory or (LSTM)~\citep{hochreiter1997long}, RNNs have shown great success in many natural language processing tasks: language modelling~\citep{mikolov2010recurrent}, machine translation~\citep{sutskever2014sequence}, speech recognition~\citep{graves2014towards} and image caption generation~\citep{karpathy2015deep}.
 
 \subsection{Combined Approaches}
 Current trend of deep learning is to combine machine learning algorithms towards more complex objectives: such as decision making and data generation.
 
 Reinforcement learning (RL) is inspired from animal behaviour when agents learn to make sequential optimised decisions to control an environment.
 To address complex decision making problems in practical life, RL requires a sufficiently abstract representation of the high-dimensional environment, where deep learning is exactly clever at dimensionality reduction and feature extraction.
-The milestone achieved by integration of RL and deep networks, the deep reinforcement learning, drew everyone's attention on artificial intelligence when AlphaGo beat a professional human player in Go~\cite{silver2016mastering}.
-%which has been successfully applied to various tasks: such as games~\cite{mnih2015human}, robotics~\cite{schulman2015trust} and question-and-answer systems.
+The milestone achieved by integration of RL and deep networks, the deep reinforcement learning, drew everyone's attention on artificial intelligence when AlphaGo beat a professional human player in Go~\citep{silver2016mastering}.
+%which has been successfully applied to various tasks: such as games~\citep{mnih2015human}, robotics~\citep{schulman2015trust} and question-and-answer systems.
 %Potential in real-time neuromorphic system
-%These real-time decision making systems, especially used for robotics~\cite{schulman2015trust}, are ideal for meromorphic hardware systems which takes advantages in event-based processing and energy efficiency.
+%These real-time decision making systems, especially used for robotics~\citep{schulman2015trust}, are ideal for meromorphic hardware systems which takes advantages in event-based processing and energy efficiency.
 %http://blog.aylien.com/introduction-generative-adversarial-networks-code-tensorflow/
 
-Generative Adversarial Networks (GANs)~~\cite{goodfellow2014generative} are proposed for training generative models of complex data.
+Generative Adversarial Networks (GANs)~~\citep{goodfellow2014generative} are proposed for training generative models of complex data.
 Instead of training discrimination networks (e.g. image classification using CovNets ) and generation networks (e.g. data sampling on RBMs) separately with different objectives, GANs train two competing networks, one the discriminator, the other the generator, simultaneously by continuously using them to play games with each other.
 Thus, the generator learns to produce more realistic data to cheat the discriminator; meanwhile the discriminator learns to become better at distinguishing generated from real data.
-Exciting achievements have been reported on generating complex data such as realistic image generation based on description in text~\cite{radford2015unsupervised}.
+Exciting achievements have been reported on generating complex data such as realistic image generation based on description in text~\citep{radford2015unsupervised}.
 
 \section{Convolutional Networks}
 \label{sec:convnet}
@@ -149,7 +149,7 @@ It modifies the weights by small steps proportional to the negative of the gradi
 \end{equation}
 where $\eta$ defines the length of these updating steps which is also called learning rate.
 Again, the weight update is also dependant on the types of layers, where a convolution of the input vector $\mathbf{x}$ with the error gradient  $\mathbf{\delta}$ is needed in Conv layers.
-A detailed description of BP training on ConvNet can be found in~\cite{bouvrie2006notes}.
+A detailed description of BP training on ConvNet can be found in~\citep{bouvrie2006notes}.
 
 Moreover, applying stochastic gradient descent (SGD), the gradient over the full training set can be approximated using only a single or a few training data.
 Therefore $k$ in Equation~\ref{equ:derivative} can be seen as a randomly selected data index, and $K$ represents the number of elements in such a data subset, which is also known as a batch.
@@ -206,7 +206,7 @@ Thus the output and input vectors have the same dimensionality.
 But the hidden middle layer is allowed to have either more, or fewer, neurons for the purpose of compressing the inputs or mapping them to higher dimensions.
 Hence AE is suitable to learn effective representation of the original inputs at the hidden layer, which can be seen as the encoding phase of AE, and reconstruct them on the output layer where the hidden vectors are decoded. 
 
-Multiple AEs can be stacked to build deep AEs where the hidden layer of a lower AE represents the input of the upper block, and each AE block can be trained individually with greedy layer-wise training~\cite{hinton2006fast}.
+Multiple AEs can be stacked to build deep AEs where the hidden layer of a lower AE represents the input of the upper block, and each AE block can be trained individually with greedy layer-wise training~\citep{hinton2006fast}.
 A stacked AE takes advantage of greater expressive power as does any deep network.
 Taking image processing as an example, the lower AE blocks learn only simple features, such as edges and dots, however on the upper layers more complicated and abstract features are extracted: contours, symbols and even objects. 
 
@@ -239,7 +239,7 @@ and the weight update, shown in Equation~\ref{equ:delta_w}, is proportional to t
 \Delta w_{ij} \propto -\frac{\partial E}{\partial w_{ij}} = -\eta \delta_j h_i~~,
 \end{equation}
 where $\eta$ is the learning rate, $h_i$ is the hidden neuron and the term $\delta^k_j$ is the error gradient with the respect to $net_j$, the weighted summation.
-The weight tuning needs only to be applied in the reconstruction layer, since study~\cite{xu1993least} has proved that updating the transposed weights $\mathbf{w}^T$ at the hidden layer does not improve the learning and the error gradients are usually small.
+The weight tuning needs only to be applied in the reconstruction layer, since study~\citep{xu1993least} has proved that updating the transposed weights $\mathbf{w}^T$ at the hidden layer does not improve the learning and the error gradients are usually small.
 Hence, $\delta^k_j$  can be calculated according to Equation~\ref{equ:derivative}:
 \begin{equation}
 \delta_j = (v'_{j}-v_{j}) f'(net_j)~~,
@@ -301,7 +301,7 @@ If we use ReLU as the activation function, then the above equation is as follow:
 %	The greedy algorithm on training layered RBMs and the fine training on the whole DBN are studied.
 %\end{itemize}
 %Next, the study will carry on to on-line learning methods which only applies to spiking neurons for training spiking RBM and DBN.
-%\subsection{Contrastive Divergence\cite{hinton2002training,woodfordnotes}}
+%\subsection{Contrastive Divergence\citep{hinton2002training,woodfordnotes}}
 %The probability of a vector point $ \mathbf{x} $ is modelled by the function $f(\mathbf{x} \mid \Theta )$ given the model parameters $ \Theta $, and normalised by a partition function $Z( \Theta)$:
 %
 %\begin{equation}
@@ -359,7 +359,7 @@ If we use ReLU as the activation function, then the above equation is as follow:
 %\end{aligned}
 %\right.
 %\end{equation}
-%$\hat{l} (\Theta \mid D)$ here is the function of two dimensional parameters $\mu$ and $\theta$, and searching the highest point in the parameter space ``is equivalent to being in the field on a clear, sunny day,''~\cite{woodfordnotes} seeing the point straight away.
+%$\hat{l} (\Theta \mid D)$ here is the function of two dimensional parameters $\mu$ and $\theta$, and searching the highest point in the parameter space ``is equivalent to being in the field on a clear, sunny day,''~\citep{woodfordnotes} seeing the point straight away.
 %
 %\textbf{Second}, the probability model function changes to be the sum of N normal distributions: 
 %\begin{equation}
@@ -375,7 +375,7 @@ If we use ReLU as the activation function, then the above equation is as follow:
 %For each iteration, the partial derivatives for every dimension of the parameter point are calculated as the gradient.
 %The gradient determines the decent direction of the space search, the next parameter point is one step $ \eta $  towards the direction or is the highest point found by line search.
 %
-%The gradient descent method is equivalent to ``being in the field at night with a torch.''~\cite{woodfordnotes}.
+%The gradient descent method is equivalent to ``being in the field at night with a torch.''~\citep{woodfordnotes}.
 %And then the descent direction is estimated and chosen by using the torch to see the relative heights of the field a short distance in each direction.
 %Because partial differential equation of any parameter depends on other model parameters, we can only see the gradient for a small area.
 %The search will follow the direction by walking one step or a certain distance (e.g. line search lowest point), and then start a new iteration.
@@ -406,7 +406,7 @@ If we use ReLU as the activation function, then the above equation is as follow:
 %Although in this example the integration of product of normal distribution is still tractable, it is also helpful to use numerical integration.
 %
 %Go back to the metaphor of the parameter field, solving PoE problem is like searching the highest point in a completely dark night without a torch.
-%The computation of Equation~(\ref{equ:part}) is to ``feel the gradient of the field under our feet''.~\cite{woodfordnotes}.
+%The computation of Equation~(\ref{equ:part}) is to ``feel the gradient of the field under our feet''.~\citep{woodfordnotes}.
 %%The motivation underlining Contrastive Divergence algorithm is to boost the training speed of a Markov Chain in order to represent the distribution of a PoE (Product of Expert) model.
 %%Thus the sampling can be followed using this trained Markov Chain model. 
 %
@@ -547,7 +547,7 @@ If we use ReLU as the activation function, then the above equation is as follow:
 %\end{equation}
 %Therefore, for each iteration searching in the parameter space we use $ k $ number of training data $ \mathbf{D}=(\mathbf{d}_1, \mathbf{d}_2, ..., \mathbf{d}_k) $ and fantasy data $ \mathbf{C}=(\mathbf{c}_1, \mathbf{c}_2, ..., \mathbf{c}_k) $.
 %If $ k $ is big enough, sampling sequences $ \mathbf{D} $ and $ \mathbf{C} $ are able to approximate the data and the model distribution thus to get derivatives of the KL function.
-%However, if we just take a small number of data, even $ k = 1 $ per iteration~\cite{hinton2002training}, the KL divergence can be seen as a ``k-step contrastive convergence ($ CD_{k}) $'':
+%However, if we just take a small number of data, even $ k = 1 $ per iteration~\citep{hinton2002training}, the KL divergence can be seen as a ``k-step contrastive convergence ($ CD_{k}) $'':
 %\begin{equation}
 %\label{equ:cdk}
 %\dfrac{\partial CD_{k}}{\partial \theta} 
@@ -559,7 +559,7 @@ If we use ReLU as the activation function, then the above equation is as follow:
 %
 %%\paragraph{Discussion}
 %\subsubsection{Discussion}
-%Although there is practical explanation on using $CD_1$ for parameter space searching, arguments exist over whether the search converge to the same maxima/minima as $CD_\infty$~\cite{wu2015bias}.
+%Although there is practical explanation on using $CD_1$ for parameter space searching, arguments exist over whether the search converge to the same maxima/minima as $CD_\infty$~\citep{wu2015bias}.
 %Moreover, is the parameter searching still following the original objective function?	
 %As an initial exploration over the problem we tested some experiments on Section~\ref{sec:cd1}. 
 %%	Thus,
@@ -573,7 +573,7 @@ If we use ReLU as the activation function, then the above equation is as follow:
 %%	\begin{equation}
 %%		CD_n = KL(p^0 \mid \mid p^{\infty}) - KL(p^n \mid \mid p^{\infty})
 %%	\end{equation}
-%%\subsection{RBM\cite{zhang2013rbm}}
+%%\subsection{RBM\citep{zhang2013rbm}}
 \section{Restricted Boltzmann Machine}
 \label{sec:rbm}
 RBMs share similar ideas of unsupervised learning with AEs, but aim to present a data distribution of some training dataset, rather than reconstructing each element of the dataset.
@@ -588,8 +588,8 @@ Besides that, the structure of RBMs, see Figure~\ref{fig:RBM}, is also similar t
 	\label{fig:RBM}
 \end{figure}
 
-Despite the various statistical models involved in RBMs and their training method, the actual training algorithm is rather simple thanks to the use of Contrastive Divergence~(CD)~\cite{hinton2002training}.
-We can only illustrate some of the statistical models and sampling methods involved in RBM training, a detailed description can be found in~\cite{fischer2012introduction}. 
+Despite the various statistical models involved in RBMs and their training method, the actual training algorithm is rather simple thanks to the use of Contrastive Divergence~(CD)~\citep{hinton2002training}.
+We can only illustrate some of the statistical models and sampling methods involved in RBM training, a detailed description can be found in~\citep{fischer2012introduction}. 
 Stacked RBMs are also trained by layer-wise greedy algorithms, like stacked AEs, thus this section will focus on training a single RBM block.
 
 \subsection{Energy-based Model}
@@ -600,7 +600,7 @@ In energy-based models, the probability of data point $x$ is defined by a model 
  Z = \sum_{x} e^{-E(x)}~~.
 %\end{aligned}
 \end{equation} 
-The energy function~\cite{hopfield1982neural} of a RBM is defined as follows:
+The energy function~\citep{hopfield1982neural} of a RBM is defined as follows:
 \begin{equation}
 E(\mathbf{v}, \mathbf{h} \mid \Theta)= -\sum_{i=1}^N a_i v_i - \sum_{j=1}^M b_j h_j - \sum_{i=1}^N \sum_{j=1}^M v_i w_{ij} h_j~~,
 \label{equ:energy_complete}
@@ -725,7 +725,7 @@ Figure~\ref{fig:gibbs} illustrates the Gibbs sampling on an RBM by $k$ steps whe
 If $ k \to \infty $, the Markov chain will converge to an equilibrium which represents the distribution of the model-generated data $\{\mathbf{C_v}, \mathbf{C_h}\}$ described by the RBM, and Equation~\ref{equ:RBM} will represent the derivative of Kullback-Leibler~(KL) divergence with respect to parameter $\theta$.
 The KL divergence measures the distance between two probability distributions: the training dataset $\{\mathbf{D}, \mathbf{D_h}\}$ and the generated Gibbs samples, $\{\mathbf{C_v}, \mathbf{C_h}\}$.
 However, if we just take a few steps, the KL divergence can be seen as a k-step contrastive convergence ($ CD_{k}) $.
-Even $ CD_1 $ has performed surprisingly well in RBM training~\cite{hinton2002training}.
+Even $ CD_1 $ has performed surprisingly well in RBM training~\citep{hinton2002training}.
 Hence the RBM training using SGD is as follows :
 \begin{equation}
 \Delta w_{ij} = \eta (v^0_i h^0_j-v^1_i h^1_j)~~.

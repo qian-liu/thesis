@@ -36,14 +36,14 @@ This method requires the least computation complexity while performing most effe
 % and even more straight-forward than the other ANN offline training methods which requires an extra step of converting ANN-trained weights to SNN's.
 
 In terms of classification/recognition accuracy, the performance of ANN-trained SNNs is nearly equivalent to ANNs, and the performance loss can be partially solved by fine tuning.
-The best classification accuracy of 99.07\% using LIF neurons in a PyNN simulation outperforms state-of-the-art SNN models of LIF neurons and is equivalent to the best result achieved using IF neurons~\cite{diehl2015fast}.
+The best classification accuracy of 99.07\% using LIF neurons in a PyNN simulation outperforms state-of-the-art SNN models of LIF neurons and is equivalent to the best result achieved using IF neurons~\citep{diehl2015fast}.
 An important feature of accurately modelling LIF neurons in ANNs is the acquisition of spiking neuron firing rates. These will aid deployment of SNNs in neuromorphic hardware by providing power and communication estimates, which would allow better usage or customisation of the platforms.
 
 With the first contributions of a simple, but effective, off-line deep SNN training method and a novel activation function, Noisy Softplus, and the achievements of successful training on an deep spiking ConvNet which has performed close to original ANN's even surpassing the state-of-the-art classification accuracy, we confirm the hypothesis. 
 
-This proposed SNN training method is simpler and even more straight-forward than the other ANN-based training approach~\cite{cao2015spiking,diehl2015fast} which requires an extra step of converting ANN-trained weights to SNN's.
-In addition, the normalisation algorithm~\cite{diehl2015fast}, proposed for weights transformation, only works for simple integrate-and-fire neurons, and cannot be generalised for biologically-plausible neurons.
-Moreover, the novel activation function, Noisy Softplus, tackles all the problems raised by the Siegert formula which used to model sigmoid-like spiking neurons~\cite{Jug_etal_2012} as follows: 
+This proposed SNN training method is simpler and even more straight-forward than the other ANN-based training approach~\citep{cao2015spiking,diehl2015fast} which requires an extra step of converting ANN-trained weights to SNN's.
+In addition, the normalisation algorithm~\citep{diehl2015fast}, proposed for weights transformation, only works for simple integrate-and-fire neurons, and cannot be generalised for biologically-plausible neurons.
+Moreover, the novel activation function, Noisy Softplus, tackles all the problems raised by the Siegert formula which used to model sigmoid-like spiking neurons~\citep{Jug_etal_2012} as follows: 
 	\begin{itemize}
 		\item accounting of time correlation of the noisy synaptic current, e.g. $\tau_{syn}$, thus better fitting the actual response firing rate of an LIF neuron. % compared to Siegert function.
 		
@@ -72,8 +72,8 @@ These training methods have realised the on-line, event-based, biologically-plau
 The promising results of equivalent or even superior classification and reconstruction capabilities of SAEs and SRBMs compared to their conventional ANN-based methods confirms the hypothesis that SNNs have competent learning ability as deep ANNs.
 
 Thanks to the formalisation of these proposed learning algorithms with numerical analysis, the classification results (94.72\% for SAE and 94.35\% for SRBM) have outperformed other existing SAE and SRBM models.
-The first on-line training algorithm proposed by~\cite{neil2013online}, ignored the mathematical analysis thus achieved its best classification performance only at 81.5\%.
-Neftci et al.~\cite{neftci2013event} conducted the training on recurrent network which was more biologically plausible but required a global signal to control the direction of the synapses and resulted in a worse classification of 91.9\% even with a bigger network comparing to our work.
+The first on-line training algorithm proposed by~\citep{neil2013online}, ignored the mathematical analysis thus achieved its best classification performance only at 81.5\%.
+Neftci et al.~\citep{neftci2013event} conducted the training on recurrent network which was more biologically plausible but required a global signal to control the direction of the synapses and resulted in a worse classification of 91.9\% even with a bigger network comparing to our work.
 
 
 \paragraph{3. A new set of spike-based vision datasets can provide resources to support fair competition between researchers as new concerns on energy efficiency and recognition latency emerge in Neuromorphic Vision.}
@@ -89,7 +89,7 @@ This hypothesis is expected to provide a unified spiking version of common-used 
 %The rank-order coded subset, FoCal, encourages research into spatio-temporal algorithms on recognition applications using only small numbers of input spikes.
 %Fast recognition can be verified on the DVS recorded flashing input subset, since just 30~ms of useful spike trains are recorded for each image.
 %Looking forward, the continuous spike trains captured from the DVS recorded moving input can be used to test mobile neuromorphic robots.
-%\cite{orchard2015convert} have presented a neuromorphic dataset using a similar approach, but the spike trains were obtained with micro-saccades.
+%\citep{orchard2015convert} have presented a neuromorphic dataset using a similar approach, but the spike trains were obtained with micro-saccades.
 %This dataset aims to convert static images to neuromorphic vision input, while the recordings of moving input in our paper are intended to promote position-invariant recognition.
 %Therefore, the datasets complement each other.
 %
@@ -111,7 +111,7 @@ The Poissonian subset is intended for benchmarking existing rate-based recogniti
 The rank-order coded subset, FoCal, encourages research into spatio-temporal algorithms on recognition applications using only small numbers of input spikes.
 Fast recognition can be verified on the DVS recorded flashing input subset, since just 30~ms of useful spike trains are recorded for each image.
 Looking forward, the continuous spike trains captured from the DVS recorded moving input can be used to test mobile neuromorphic robots.
-\cite{orchard2015convert} have presented a neuromorphic dataset using a similar approach, but the spike trains were obtained with micro-saccades.
+\citep{orchard2015convert} have presented a neuromorphic dataset using a similar approach, but the spike trains were obtained with micro-saccades.
 This dataset aims to convert static images to neuromorphic vision input, while the recordings of moving input in our paper are intended to promote position-invariant recognition.
 Therefore, the datasets complement each other.
 
@@ -134,7 +134,7 @@ There, we confirm the hypothesis of that the dataset provides resources and supp
 
 %
 %As far as we know, this has been the first attempt at benchmarking neuromorphic vision recognition by providing public a spike-based dataset and evaluation metrics.
-%In accordance with the suggestions from~\cite{tan2015bench}, the evaluation metrics highlight the strengths of spike-based vision tasks and the dataset design also promotes the research into rapid and low energy recognition (e.g. flashing digits).
+%In accordance with the suggestions from~\citep{tan2015bench}, the evaluation metrics highlight the strengths of spike-based vision tasks and the dataset design also promotes the research into rapid and low energy recognition (e.g. flashing digits).
 %A benchmark system has been evaluated using the Poissonian subset of the NE15-MNIST dataset.
 %%The models were described and their performance on accuracy, network latency, simulation time and energy usage were presented.
 %These example benchmarking system has demonstrated a recommended way of using the dataset, describing the SNN models and evaluating the system performance.
@@ -146,14 +146,14 @@ There, we confirm the hypothesis of that the dataset provides resources and supp
 \section{Future Work}
 \subsection{Off-line SNN Training}
 The current limitation prohibiting this off-line SNN training method from wide use lies in the lack of supporting tools.
-This requires the development of a supporting tool which enables SNN training in popular deep learning platforms e.g. Tensorflow~\cite{tensorflow2015-whitepaper}, and an other automation tool that reads platform-dependant trained weights into PyNN~\cite{davison2008pynn} language.
+This requires the development of a supporting tool which enables SNN training in popular deep learning platforms e.g. Tensorflow~\citep{tensorflow2015-whitepaper}, and an other automation tool that reads platform-dependant trained weights into PyNN~\citep{davison2008pynn} language.
 
 An other issue is the parameter calibration on the scaling factor of the combined activation, thus numerical analysis is considered for future work to express the factors with biological parameters of a LIF neuron.
 
 Interesting applications have started with collaborations to extend the off-line SNN training method.
-Ensemble models~\cite{rokach2010ensemble} have been considered to train by this method and run their SNN models on SpiNNaker to take advantage of itss massive-parallel simulating ability.
+Ensemble models~\citep{rokach2010ensemble} have been considered to train by this method and run their SNN models on SpiNNaker to take advantage of itss massive-parallel simulating ability.
 Speech recognition of cochlea generated spikes has achieved a promising accuracy at the initial test-idea stage.
-A further goal is to implement deep networks fit for ImageNet~\cite{deng2009imagenet} tasks, which will also requires modelling various structures of deep learning, for example recurrent neural networks.
+A further goal is to implement deep networks fit for ImageNet~\citep{deng2009imagenet} tasks, which will also requires modelling various structures of deep learning, for example recurrent neural networks.
 
 
 \subsection{On-line biologically-plausible Learning}
@@ -161,12 +161,12 @@ Although rate coding has shown great potential for on-line STDP learning, time-b
 We have proposed a similar, precise-timing based learning algorithm, which although still in the test-idea stage, the prototype has shown much faster learning speed than the rate-coding mechanism.
 
 %TODO reword this line
-The modulation of STDP by a third factor such as dopamine has potentially interesting functional consequences that turn STDP from unsupervised learning into a reward-based learning paradigm~\cite{izhikevich2007solving}.
+The modulation of STDP by a third factor such as dopamine has potentially interesting functional consequences that turn STDP from unsupervised learning into a reward-based learning paradigm~\citep{izhikevich2007solving}.
 It consists to the hot research field of reinforcement learning.
 Merging advanced neuroscience findings and deep learning mechanisms to SNN will be the trend for future work.
 
 
-Synaptic Sampling Machines (S2Ms)~\cite{neftci2016stochastic} employing a dropout~\cite{srivastava2014dropout} mechanism hugely improved the performance of its original model from 91.9\% to 95.6\%.
+Synaptic Sampling Machines (S2Ms)~\citep{neftci2016stochastic} employing a dropout~\citep{srivastava2014dropout} mechanism hugely improved the performance of its original model from 91.9\% to 95.6\%.
 Thus applying novel deep learning techniques for SNN training is in the future work.
 
 
@@ -175,18 +175,18 @@ The database proposed in Chapter~\ref{cha:bench} will be expanded by converting 
 As mentioned in Section~\ref{sec:chapt6_intro}, face recognition has become a hot topic in SNN approaches, however there is no unified spike-based dataset to benchmark these networks.
 Thus, the next development step for our dataset is to include face recognition databases.
 While viewing an image, saccades direct high-acuity visual analysis to a particular object or a region of interest and useful information is gathered during the fixation of several saccades in a second.
-It is possible to measure the scan path or trajectory of the eyeball and those trajectories show particular interest in eyes, nose and mouth while viewing a human face~\cite{yarbus1967eye}.
+It is possible to measure the scan path or trajectory of the eyeball and those trajectories show particular interest in eyes, nose and mouth while viewing a human face~\citep{yarbus1967eye}.
 Therefore, our plan is also to embed modulated trajectory information to direct the recording using DVS sensors to simulate human saccades.
 
 There will be more methods and algorithms for converting images to spikes.
-Although Poisson spikes are the most commonly used external input to an SNN system, there are several \textit{in-vivo} recordings in different cortical areas showing that the inter-spike intervals (ISI) are not Poissonian~\cite{deger2012statistical}. 
-Thus~\cite{deger2012statistical} proposed new algorithms to generate superposition spike trains of Poisson processes with dead-time (PPD) and of Gamma processes.
+Although Poisson spikes are the most commonly used external input to an SNN system, there are several \textit{in-vivo} recordings in different cortical areas showing that the inter-spike intervals (ISI) are not Poissonian~\citep{deger2012statistical}. 
+Thus~\citep{deger2012statistical} proposed new algorithms to generate superposition spike trains of Poisson processes with dead-time (PPD) and of Gamma processes.
 Including novel spike generation algorithms in the dataset is one aspect of future work which will be carried out.
 
 %While the major stumbling crux of the computer object recognition systems lies in the invariance problem.
 Each encounter of an object on the retina is unique, because of the illumination (lighting condition), position (projection location on the retina), scale (distance and size), pose (viewing angle), and clutter (visual context) variabilities.
 The brain, however, recognises a huge number of objects rapidly and effortlessly even in cluttered and natural scenes.
-To explore invariant object recognition, the dataset will include the NORB (NYU Object Recognition Benchmark) dataset~\cite{lecun2004learning}, which contains images of objects that are first photographed in ideal conditions and then moved and placed in front of natural scene images.
+To explore invariant object recognition, the dataset will include the NORB (NYU Object Recognition Benchmark) dataset~\citep{lecun2004learning}, which contains images of objects that are first photographed in ideal conditions and then moved and placed in front of natural scene images.
 
 Action recognition will be the first problem of video processing to be introduced in the dataset.
 The initial plan is to use the DVS retina to convert the KTH and Weizmann benchmarks to spiking versions.
