@@ -15,6 +15,12 @@ These impressive disparities in cognitive capabilities and energy consumption dr
 	``As engineers, we would be foolish to ignore the lessons of a billion years of evolution.'' - Carver Mead, 1993
 \end{quotation}
 
+%Today	we	stand	poised	on	the	brink	of	a	new	era	of	compu:ng	in	which	technology	is	more	
+%consumable,	insight-driven	and	cogni:ve.	IBM	Research	is	exploring	and	developing	the	
+%enabling	technologies	that	will	transform	the	way	computers	are	used	
+%Ginni	Rome]y	
+%IBM	President,	Chairman	and	CEO	
+
 %Two aims
 NE was proposed by Carver Mead in the late 1980s \citep{Mead:1989:AVN:64998} to build analogue circuits that mimic biological neural cells and the architecture of the nervous system using Very-Large-Scale Integration (VLSI) technology.
 
@@ -33,38 +39,35 @@ This is a bidirectional process; building a biologically inspired computer requi
 %Moreover, most of the neural interconnections in the brain are local, and the `memory' units attach to the `computation' node in a neuron.
 %Therefore, learning from biology may give computers an alternative to the conventional Von Neumann architecture and thus may solve the problem of the microprocessor/memory performance gap~\citep{wulf1995hitting}, also known as the Von Neumann bottleneck, where the system speed is determined and limited by the memory performance.
 
-%SNN
+%Why SNN
 Spiking Neural Networks (SNNs), comprised of spiking neurons, hold the key to address the dual aims of understanding brain functions and building brain-like machines.
 The spiking neuron mathematically models the dynamics of a single neuron with biological realism and the network describes the architecture of the neural connections and the information transmission among them.
 Therefore, neuroscientists are able to reproduce the recorded neural dynamics and activities from \textit{in-vivo/vitro} experiments of varies network sizes to verify their models and measure the progress of brain understanding;
 while computer engineers can focus on the hardware implementations of the spiking neurons and the interconnections between them to build energy-efficient neuromorphic hardware.
 
-%TODO SNN are used to simulate networks of what sizes?
-
-%TODO How large a neuromorphic hardware can simulate? and how energy efficient they are compared to brain. non-Von Noman
-
-
-
-%TODO Problem of SNN not in engineering.
-This kind of neural network can in principle be used for information processing applications the same way as traditional artificial neural networks.[3] In addition, spiking neural networks can model the central nervous system of a virtual insect for seeking food without the prior knowledge of the environment.[4] However, due to their more realistic properties, they can also be used to study the operation of biological neural circuits. Starting with a hypothesis about the topology of a biological neuronal circuit and its function, the electrophysiological recordings of this circuit can be compared to the output of the corresponding spiking artificial neural network simulated on computer, determining the plausibility of the starting hypothesis.
-
-In practice, there is a major difference between the theoretical power of spiking neural networks and what has been demonstrated. They have proved useful in neuroscience, but not (yet) in engineering. Some large scale neural network models have been designed that take advantage of the pulse coding found in spiking neural networks, these networks mostly rely on the principles of reservoir computing. However, the real world application of large scale spiking neural networks has been limited because the increased computational costs associated with simulating realistic neural models have not been justified by commensurate benefits in computational power. As a result, there has been little application of large scale spiking neural networks to solve computational tasks of the order and complexity that are commonly addressed using rate coded (second generation) neural networks. In addition it can be difficult to adapt second generation neural network models into real time, spiking neural networks (especially if these network algorithms are defined in discrete time). It is relatively easy to construct a spiking neural network model and observe its dynamics. It is much harder to develop a model with stable behavior that computes a specific function.[citation needed]
+%TODO Problem of SNN why not in engineering.
+Simulations of massive SNNs have proved to be useful in neuroscience~\citep{markram2006blue,ananthanarayanan2009cat}, and the NE hardware systems have successfully decreased the power consumption of conventional SNN simulations on supercomputers~\citep{de2010world,sharp2012power}.
+However, SNNs are not (yet) widely used in functional simulations of cognitive tasks.
+Although SNNs can in principle be used for AI tasks the same way as traditional artificial neural networks~(ANNs), there is a major difference between the theoretical power of SNNs and what has been demonstrated.
+There are two significant problems prohibiting intelligent SNNs from developing: first, the computation cost for simulating large SNNs of size as big as commonly-used ANNs;
+second, it is difficult to transform ANN models to SNN algorithms which are defined in discrete time.
+Therefore it is relatively easy to construct a spiking neural network model and observe its dynamics in use of neuroscience, but much harder to develop a model with stable behaviour that computes a specific function in intelligent applications.
 
 
-%%Spiking neurons  dynamics 
-%During the last decade, researchers have used the capabilities created by rapid developments in neuromorphic engineering to address the dual aims of understanding brain functions and building brain-like machines.
-%Spiking Neural Networks (SNN) hold the key as the main approach for both goals.
-%The so-called third generation of artificial neural network (ANN)~\citep{maass1997networks} introduces biological realism to neural modelling.
-%The spiking neuron mathematically models the dynamics of a single neuron and the network describes the architecture of the neural connections and the information transmission among them.
-%Neuroscientists reproduce the recorded neural dynamics and activities from \textit{in-vivo/vitro} experiments to verify their models and measure the progress of brain understanding, while computer engineers focus on the hardware implementations of the SNN models.
-%Hence, SNN simulation tools~\citep{davison2008pynn, gewaltig2007nest, goodman2008brian} and neuromorphic hardware platforms~\citep{furber2014spinnaker,  schemmel2010wafer,benjamin2014neurogrid,merolla2014million} have been developed to allow exploration of the brain by mimicking its functions and developing large-scale practical applications~\citep{eliasmith2012large}.
-%In addition, neuromorphic engineering has delivered biologically-inspired sensors such as DVS~(Dynamic Vision Sensor) silicon retinas~\citep{serrano2013128, delbruck2008frame, yang2015dynamic, posch2014retinomorphic}, and DAS~(Dynamic Audition Sensor)~\citep{5537164}, which offer the prospect of low-cost sensory processing thanks to their event-driven and redundancy-reducing style of information representation.
 
-%how to operate these brain-like machines to be competent in cognitive applications still remains unsolved.
+%The SNN simulations of brain models `quantitatively simulate the generic behaviour and internal dynamics of a certain subsystem of the brain, but without precisely functionally simulating that subsystem~\citep{de2010world}.'
+%Simulations NE are working well and better fitted than supercomputer and etc.
+%TODO non-Von Noman
+
+
+
+
 The ultimate goal of NE is to equip neuromorphic machines with genuine intelligence~\citep{konar1999artificial}.
 Today, in neuromorphic computing, massive large-scale SNN hardware simulators are ready to use.
+%Unfunctional
 However, in neuromorphic modelling, we know that information processing in the brain is conducted by the basic computing units, the spiking neurons.
 Information transmission takes place in the synapses and we can draw the connections among neurons from anatomical experiments.
+%Functoinal
 However, due to the fundamental difference of data representation and neural computation between spiking and artificial neurons, understanding how to operate these brain-like machines to be competent in cognitive applications still remains unsolved.
 
 Deep Learning research in the field of ANNs has dominated state-of-the-art solutions for cognitive tasks, e.g. exceeding human-level performance on image classification tasks~\citep{he2015delving}.
