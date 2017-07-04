@@ -23,8 +23,7 @@ These impressive disparities in cognitive capabilities and energy consumption dr
 
 %Two aims
 NE was proposed by Carver Mead in the late 1980s \citep{Mead:1989:AVN:64998} to build analogue circuits that mimic biological neural cells and the architecture of the nervous system using Very-Large-Scale Integration (VLSI) technology.
-
-The objectives of NE can be summarised as follows~\citep{furber2007neural}:
+With the ultimate goal of equipping neuromorphic machines with genuine intelligence~\citep{konar1999artificial}, the objectives of NE can be summarised as follows~\citep{furber2007neural}:
 \begin{itemize}
 	\item neuromorphic modelling: for neuroscientists to understand the brain by modelling and simulating the activities of biological neurons; 
 	\item neuromorphic computing: for engineers to build brain-like machines by applying biological principles to computers.
@@ -45,32 +44,25 @@ The spiking neuron mathematically models the dynamics of a single neuron with bi
 Therefore, neuroscientists are able to reproduce the recorded neural dynamics and activities from \textit{in-vivo/vitro} experiments of varies network sizes to verify their models and measure the progress of brain understanding;
 while computer engineers can focus on the hardware implementations of the spiking neurons and the interconnections between them to build energy-efficient neuromorphic hardware.
 
+Today, in neuromorphic computing, massive large-scale SNN hardware simulators (the neuromorphic hardware) are ready to use, such as the High Input Count Analog Neural Network (HI-CANN)~\citep{schemmel2010wafer}, Neurogrid~\citep{benjamin2014neurogrid}, SpiNNaker~\citep{furber2014spinnaker}, TrueNorth~\citep{merolla2014million}, and HiAER-IFAT~\citep{yu201265k}.
+Some of these neuromorphic computers~\citep{schemmel2010wafer,benjamin2014neurogrid,merolla2014million} uses non-Von Neumann architecture to mimic the neural system where the `computational units', neurons, locally attach to their `memory units', the synapses.
+Therefore this novel architecture may solve the problem of the microprocessor/memory performance gap~\citep{wulf1995hitting}, also known as the Von Neumann bottleneck, where the system speed is determined and limited by the memory performance.
+
+Simulations of massive SNNs~\citep{markram2006blue,ananthanarayanan2009cat} have proved to be useful in understanding the brain, and the neuromorphic hardware systems have successfully decreased the power consumption of conventional SNN simulations on supercomputers~\citep{de2010world,sharp2012power}.
+However, the SNN simulations only reconstruct the non-functional network behaviours and neural dynamics of some subsystem of the brain, `but without precisely functionally simulating that subsystem'~\citep{de2010world}.
+Therefore, the SNN simulations can be used to guide neuroscience and developing neuromorphic hardware systems, but are not directly useful for solving cognitive tasks, such that SNNs have not been widely used in Artificial Intelligence~(AI) engineering problems.
+
 %TODO Problem of SNN why not in engineering.
-Simulations of massive SNNs have proved to be useful in neuroscience~\citep{markram2006blue,ananthanarayanan2009cat}, and the NE hardware systems have successfully decreased the power consumption of conventional SNN simulations on supercomputers~\citep{de2010world,sharp2012power}.
-However, SNNs are not (yet) widely used in functional simulations of cognitive tasks.
-Although SNNs can in principle be used for AI tasks the same way as traditional artificial neural networks~(ANNs), there is a major difference between the theoretical power of SNNs and what has been demonstrated.
-There are two significant problems prohibiting intelligent SNNs from developing: first, the computation cost for simulating large SNNs of size as big as commonly-used ANNs;
-second, it is difficult to transform ANN models to SNN algorithms which are defined in discrete time.
-Therefore it is relatively easy to construct a spiking neural network model and observe its dynamics in use of neuroscience, but much harder to develop a model with stable behaviour that computes a specific function in intelligent applications.
+%Although SNNs can in principle be used for AI tasks the same way as traditional artificial neural networks~(ANNs), there is a major difference between the theoretical power of SNNs and what has been demonstrated.
+Theoretical studies have shown that biologically-plausible learning, e.g. Spike-Timing-Dependent Plasticity (STDP), could approximate a stochastic version of powerful machine learning algorithms~\citep{nessler2013bayesian,neftci2013event,o2016deep}, such as Expectation Maximization~\citep{nessler2013bayesian}, Contrastive Divergence~\citep{neftci2013event}, Markov Chain Monte Carlo~\citep{buesing2011neural} and Gradient Descent~\citep{o2016deep}.
+%Stochasticity, in contrast with the continuously differentiable functions used by ANNs, is intrinsic to the event-based spiking process, making network training difficult.
+In practice, there are two significant problems prohibiting intelligent SNNs from developing: first, the computation cost for simulating large SNNs of size as big as commonly-used deep ANNs, which has been gradually and would be solved by NE;
+second, the fundamental difference of data representation and neural computation between spiking and artificial neurons makes it difficult to transform ANN models to SNN algorithms.
+ANNs use neuron and synapse models very different from biologically-plausible spiking neurons, and it remains an unsolved problem to develop SNNs with equivalent performance.
+Therefore it is relatively easy to construct a spiking neural network model and observe its dynamics in use of neuroscience, but much harder to develop a model with stable behaviour that computes a specific function in cognitive applications.
+%understanding how to operate these brain-like machines to be competent in cognitive applications still remains unsolved.
 
-
-
-%The SNN simulations of brain models `quantitatively simulate the generic behaviour and internal dynamics of a certain subsystem of the brain, but without precisely functionally simulating that subsystem~\citep{de2010world}.'
-%Simulations NE are working well and better fitted than supercomputer and etc.
-%TODO non-Von Noman
-
-
-
-
-The ultimate goal of NE is to equip neuromorphic machines with genuine intelligence~\citep{konar1999artificial}.
-Today, in neuromorphic computing, massive large-scale SNN hardware simulators are ready to use.
-%Unfunctional
-However, in neuromorphic modelling, we know that information processing in the brain is conducted by the basic computing units, the spiking neurons.
-Information transmission takes place in the synapses and we can draw the connections among neurons from anatomical experiments.
-%Functoinal
-However, due to the fundamental difference of data representation and neural computation between spiking and artificial neurons, understanding how to operate these brain-like machines to be competent in cognitive applications still remains unsolved.
-
-Deep Learning research in the field of ANNs has dominated state-of-the-art solutions for cognitive tasks, e.g. exceeding human-level performance on image classification tasks~\citep{he2015delving}.
+Meanwhile, deep Learning research in the field of ANNs has dominated state-of-the-art solutions for cognitive tasks, e.g. exceeding human-level performance on image classification tasks~\citep{he2015delving}.
 Figure~\ref{fig:intro} shows the diverging objectives of SNNs and ANNs, where SNNs focus on mimicking the brain while ANNs are used to solve engineering AI problems.
 %TODO need to modify
 Despite remarkable computational success, ANNs ignore the spiking nature of neural communication that is fundamental for biological neuronal networks.
