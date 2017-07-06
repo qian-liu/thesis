@@ -719,9 +719,7 @@ Following the formatted evaluation as in Table~\ref{tb:model_eval}, Table~\ref{t
 					\begin{mycell}{2.0cm}No plasticity\end{mycell}& 
 					\begin{mycell}{2.2cm}122 bits \\params \& states,
 						%       	 per neuron
-						\\4-bit/\\4 values\\synapses 
-						%\\(4 signed int + on/off state)
-						\footnote[1]{We consider them 4-bit synapses because it is only possible to choose between 4 different signed integers and whether the synapse is active or not.}
+						\\4-bit/\\4 values\\synapses\footnotemark[1]
 					\end{mycell}& 
 					\begin{mycell}{2.0cm}Real-time\end{mycell}& 
 					\begin{mycell}{2.0cm}26 pJ/SE\end{mycell} \\
@@ -739,8 +737,7 @@ Following the formatted evaluation as in Table~\ref{tb:model_eval}, Table~\ref{t
 					\begin{mycell}{4.0cm}Fixed models,\\Config params\end{mycell}& 
 					\begin{mycell}{2.0cm}Fixed rule\end{mycell}& 
 					\begin{mycell}{2.0cm}4-bit/\\16 values\\synapses\end{mycell}& 
-					\begin{mycell}{2.0cm}Faster than\\ real-time
-						\footnote[2]{A maximum speed-up of up to $10^5$ times real time has been reported.}
+					\begin{mycell}{2.0cm}Faster than\\ real-time\footnotemark[2]
 					\end{mycell}&
 					\begin{mycell}{2.0cm} 7.41 nJ/SE\\(network only) \end{mycell}\\
 					%
@@ -760,7 +757,10 @@ Following the formatted evaluation as in Table~\ref{tb:model_eval}, Table~\ref{t
 		\end{minipage}
 	\end{center}
 	\label{tb:hardware_comparison}
+	\footnotetext[1]{We consider them 4-bit synapses because it is only possible to choose between 4 different signed integers and whether the synapse is active or not.}
+	\footnotetext[2]{A maximum speed-up of up to $10^5$ times real time has been reported.}
 \end{sidewaystable*}
+
 
 A direct comparison between neuromorphic platforms is a non-trivial task due to the different hardware implementation technologies as mentioned in Section~\ref{subsec:neuromorphic_hw}.
 %Qian Liu modified
