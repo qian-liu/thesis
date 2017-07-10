@@ -248,7 +248,7 @@ The converted MNIST dataset consists of four subsets which were generated for di
 	\item \textit{DVS recorded moving input},
 	to trigger the study of algorithms targeting continuous input from real-world sensors for implementation, for example, on mobile neuromorphic robots.
 \end{itemize}
-The dataset \DIFdelbegin \DIFdel{can be found }\DIFdelend \DIFaddbegin \DIFadd{is published }\DIFaddend in the GitHub\DIFdelbegin \DIFdel{repository at: https://github.com/NEvision/NE15}\DIFdelend \DIFaddbegin \DIFadd{: }\url{https://github.com/NEvision/NE15}\DIFaddend .
+The dataset \DIFdelbegin \DIFdel{can be found }\DIFdelend \DIFaddbegin \DIFadd{is published }\DIFaddend in the GitHub\DIFdelbegin \DIFdel{repository at: https: //github.com/NEvision/NE15}\DIFdelend \DIFaddbegin \DIFadd{: }\url{https://github.com/NEvision/NE15}\DIFaddend .
 \subsection{Data Description}
 Two file formats are supported in the dataset: the jAER format~\citep{delbruck2008frame} (.dat or .aedat), and binary files in NumPy~\citep{numpyPython} (.npy) format.
 %The AER interface has been widely used in neuromorphic systems, especially for vision sensors.
@@ -479,7 +479,7 @@ Each digit was shown alternating with a blank image and each display lasted one 
 The digits were displayed on an LCD monitor in front of the DVS retina~\citep{serrano2013128} and were placed in the centre of the visual field of the camera.
 Since there are two spike polarities - `ON' indicating an increase in the intensity while `OFF' indicates a decrease - there are `ON' and `OFF' flashing recordings respectively per digit.
 In Figure~\ref{fig:flash}, the burstiness of the spikes is illustrated where most of the spikes occur in a 30~ms time slot. 
-In total, this subset of the database contains 2 $\times$60K ecordings for training and 2 $\times$10K for testing.
+%In total, this subset of the database contains 2\DIFdelbegin \DIFdel{$\times\begin{displaymath}60,000$ \end{displaymath}\DIFdelend \DIFaddbegin \DIFadd{$\times$60K }\DIFaddend recordings for training and 2\DIFdelbegin \DIFdel{$\times}10,000$ }\DIFdelend \DIFaddbegin \DIFadd{$\times$10K }\DIFaddend for testing.
 
 \begin{figure}[tbh!]
 	\centering
@@ -767,10 +767,12 @@ Following \DIFdelbegin \DIFdel{to }\DIFdelend the formatted evaluation as in Tab
 					\begin{mycell}{2.0cm}No plasticity\end{mycell}& 
 					\begin{mycell}{2.2cm}122 bits \\params \& states,
 						%       	 per neuron
-						\\4-bit/\\4 values\\synapses 
-						%\\(4 signed int + on/off state)
-%						\footnote[1]{We consider them 4-bit synapses because it is only possible to choose between 4 different signed integers and whether the synapse is active or not.}
-					\end{mycell}& 
+						\\4-bit/\\4 values\\synapses%DIF < \\(4 signed int + on/off state)
+%						\DIFdelbegin \footnote[1]{\DIFdel{We consider them 4-bit synapses because it is only possible to choose between 4 different signed integers and whether the synapse is active or not.}}
+					%DIFAUXCMD
+\addtocounter{footnote}{-1}%DIFAUXCMD
+\DIFdelend \DIFaddbegin \footnotemark[1]
+					\DIFaddend \end{mycell}& 
 					\begin{mycell}{2.0cm}Real-time\end{mycell}& 
 					\begin{mycell}{2.0cm}26 pJ/SE\end{mycell} \\
 
@@ -788,8 +790,10 @@ Following \DIFdelbegin \DIFdel{to }\DIFdelend the formatted evaluation as in Tab
 					\begin{mycell}{2.0cm}Fixed rule\end{mycell}& 
 					\begin{mycell}{2.0cm}4-bit/\\16 values\\synapses\end{mycell}& 
 					\begin{mycell}{2.0cm}Faster than\\ real-time
-%						\footnote[2]{A maximum speed-up of up to $10^5$ times real time has been reported.}
-					\end{mycell}&
+					%DIFAUXCMD
+\addtocounter{footnote}{-1}%DIFAUXCMD
+\DIFdelend \DIFaddbegin \footnotemark[2]
+					\DIFaddend \end{mycell}&
 					\begin{mycell}{2.0cm} 7.41 nJ/SE\\(network only) \end{mycell}\\
 					%
 					\begin{mycell}{1.8cm} HiAER-IFAT \citep{yu201265k}\end{mycell} & 
@@ -808,7 +812,10 @@ Following \DIFdelbegin \DIFdel{to }\DIFdelend the formatted evaluation as in Tab
 		\end{minipage}
 	\end{center}
 	\label{tb:hardware_comparison}
-\end{sidewaystable*}
+	\DIFaddbegin \footnotetext[1]{\DIFadd{We consider them 4-bit synapses because it is only possible to choose between 4 different signed integers and whether the synapse is active or not.}}
+	\footnotetext[2]{\DIFadd{A maximum speed-up of up to $10^5$ times real time has been reported.}}
+\DIFaddend \end{sidewaystable*}
+
 
 A direct comparison between neuromorphic platforms is a non-trivial task due to the different hardware implementation technologies as mentioned in Section~\ref{subsec:neuromorphic_hw}.
 %Qian Liu modified
