@@ -15,10 +15,11 @@
 %The research described in this thesis aims to equip SNNs with equivalent cognitive ability to ANNs by analysing network dynamics and exploring new learning algorithms, thus putting SNN models into practical applications, such as object recognition.
 
 %Motivation of the problem
-Neuromorphic Engineering~(NE) has led to the development of biologically-inspired computer architectures which may provide an alternative to the conventional Von Neumann architecture and approach the performance of the human brain in terms of energy efficiency and cognitive capabilities.
-Although there are a number of neuromorphic platforms available for large-scale Spiking Neural Network~(SNN) simulations, programming these brain-like machines to be competent in cognitive applications still remains unsolved.
-On the other hand Deep Learning has emerged in Artificial Neural Network (ANN) research to dominate state-of-the-art solutions for cognitive tasks.
-Thus the main research problem emerges of how to operate and train biologically-plausible SNNs to close the gap of cognitive capabilities between SNNs and ANNs.
+Neuromorphic Engineering~(NE) has led to the development of biologically-inspired computer architectures which may approach the performance of the human brain in terms of energy efficiency and cognitive capabilities.
+% provide an alternative to the conventional Von Neumann architecture and 
+Although there are a number of neuromorphic platforms available for large-scale Spiking Neural Network~(SNN) simulations, the problem of programming these brain-like machines to be competent in cognitive applications still remains unsolved.
+On the other hand, Deep Learning has emerged in Artificial Neural Network (ANN) research to dominate state-of-the-art solutions for cognitive tasks.
+Thus the main research problem emerges of understanding how to operate and train biologically-plausible SNNs to close the gap in cognitive capabilities between SNNs and ANNs.
 %make them as competent as ANNs.
 %To catch up with ANNs' better-than-human performance, this work takes object recognition as the cut-in point to explore the capability and learning ability of SNNs.
 
@@ -30,10 +31,10 @@ Thus the main research problem emerges of how to operate and train biologically-
 %5. In one sentence, how did you go about doing the research that follows from your big idea. Did you run experiments? Build a piece of software? Carry out case studies? This is likely to be the longest sentence, especially if it’s a PhD thesis – after all you’re probably covering several years worth of research. But don’t overdo it – we’re still looking for a sentence that you could read aloud without having to stop for breath. Remember, the word ‘abstract’ means a summary of the main ideas with most of the detail left out. So feel free to omit detail! (For those of you who got this far and are still insisting on writing an essay rather than signing up for a PhD, this sentence is really an elaboration of sentence 4 – explore the consequences of your new perspective).
 
 SNNs can be trained by first training an equivalent ANN and then transferring the tuned weights to the SNN.
-This method is called `off-line' training, since it does not take place on SNNs directly, but rather on ANNs instead.
+This method is called `off-line' training, since it does not take place the SNN directly, but rather on an ANN instead.
 However, previous work on such off-line training methods has struggled in terms of poor modelling accuracy of the spiking neurons and high computational complexity.
 In this thesis we propose a simple and novel activation function, Noisy Softplus~(NSP), to closely model the response firing activity of biologically-plausible spiking neurons,
-and introduce a generalised off-line training method using the parametric activation function~(PAF: $y = p \times f(x)$) to map the abstract numerical values of the ANN to concrete physical units in the SNN, such as current and firing rate.
+and introduce a generalised off-line training method using the parametric activation function~(PAF) to map the abstract numerical values of the ANN to concrete physical units, such as current and firing rate in the SNN.
 Based on this generalised training method and its fine tuning, we achieve the state-of-the-art accuracy on the MNIST task using spiking neurons, 99.07\%, on a deep spiking convolutional neural network~(ConvNet).
 
 
