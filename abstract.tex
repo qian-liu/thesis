@@ -31,14 +31,14 @@ Thus the main research problem emerges of understanding how to operate and train
 %5. In one sentence, how did you go about doing the research that follows from your big idea. Did you run experiments? Build a piece of software? Carry out case studies? This is likely to be the longest sentence, especially if it’s a PhD thesis – after all you’re probably covering several years worth of research. But don’t overdo it – we’re still looking for a sentence that you could read aloud without having to stop for breath. Remember, the word ‘abstract’ means a summary of the main ideas with most of the detail left out. So feel free to omit detail! (For those of you who got this far and are still insisting on writing an essay rather than signing up for a PhD, this sentence is really an elaboration of sentence 4 – explore the consequences of your new perspective).
 
 SNNs can be trained by first training an equivalent ANN and then transferring the tuned weights to the SNN.
-This method is called `off-line' training, since it does not take place the SNN directly, but rather on an ANN instead.
+This method is called `off-line' training, since it does not take place on an SNN directly, but rather on an ANN instead.
 However, previous work on such off-line training methods has struggled in terms of poor modelling accuracy of the spiking neurons and high computational complexity.
 In this thesis we propose a simple and novel activation function, Noisy Softplus~(NSP), to closely model the response firing activity of biologically-plausible spiking neurons,
 and introduce a generalised off-line training method using the parametric activation function~(PAF) to map the abstract numerical values of the ANN to concrete physical units, such as current and firing rate in the SNN.
-Based on this generalised training method and its fine tuning, we achieve the state-of-the-art accuracy on the MNIST task using spiking neurons, 99.07\%, on a deep spiking convolutional neural network~(ConvNet).
+Based on this generalised training method and its fine tuning, we achieve the state-of-the-art accuracy on the MNIST classification task using spiking neurons, 99.07\%, on a deep spiking convolutional neural network~(ConvNet).
 
 
-We then take the step forward to `on-line' training methods, where Deep Learning modules are trained purely on SNNs in an event-driven manner.
+We then take a step forward to `on-line' training methods, where Deep Learning modules are trained purely on SNNs in an event-driven manner.
 Existing work has failed to provide SNNs with recognition accuracy equivalent to ANNs due to the lack of mathematical analysis. 
 Thus we propose a formalised Spike-based Rate Multiplication~(SRM) method which transforms the product of firing rates to the number of coincident spikes of a pair of rate-coded spike trains.
 %possibility of some specific firing events of a pair of rate-coded spike trains.

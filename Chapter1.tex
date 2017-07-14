@@ -11,8 +11,8 @@
 %TODO the origin of neuromorphic computing
 %Neuromorphic computing has lead towards the development of biologically-inspired computer architectures 
 Advances in computing power and machine learning have endowed computers with a rapidly growing performance in cognitive tasks such as recognising objects~\citep{deng2009imagenet} and playing GO~\citep{silver2016mastering};
-these tasks were once mastered by human intelligence and solved by biological neurons in the brain.
-However, humans and many other animals still dominate computers in practical tasks, such as vision, and outperform them in terms of size and energy cost by several orders of magnitude.
+these tasks were once dominated by human intelligence and solved by biological neurons in the brain.
+However, humans and many other animals still win against computers in practical tasks, such as vision, and outperform them in terms of size and energy cost by several orders of magnitude.
 For instance, AlphaGO~\citep{silver2016mastering} has a power consumption of 1~MW on its 1920 CPUs and 280 GPUs when playing the game with one of the best human players whose brain is rated at 20~W.
 Although we are still far from understanding the brain thoroughly, it is believed that the performance gap between computation in the biological nervous system and in a computer lies in the nature of the fundamental computing units and how they compute.
 Computers employ Boolean logic and deterministic digital operations usually based on synchronous clocks while nervous systems employ parallel, distributed, event-driven, stochastically unreliable components~\citep{indiveri2009artificial}: neurons.
@@ -28,12 +28,14 @@ These impressive disparities in cognitive capabilities and energy consumption dr
 
 %Two aims
 NE was proposed by Carver Mead in the late 1980s \citep{Mead:1989:AVN:64998} to build analogue circuits which mimic biological neural cells and the architecture of the nervous system using Very-Large-Scale Integration (VLSI) technology.
-With the ultimate goal of equipping neuromorphic machines with genuine intelligence~\citep{konar1999artificial}, also known as `Neuromorphic Cognition'~\citep{indiveri2009artificial}, the objectives of NE can be summarised as follows~\citep{furber2007neural}:
+With the ultimate goal of equipping neuromorphic machines with genuine intelligence, 
+%~\citep{konar1999artificial}, also known as `Neuromorphic Cognition'~\citep{indiveri2009artificial},
+the objectives of NE can be summarised as follows~\citep{furber2007neural}:
 \begin{itemize}
 	\item brain modelling: for neuroscientists to understand the brain by modelling and simulating the activities of biological neurons; 
 	\item neuromorphic computing: for engineers to build brain-like machines by applying biological principles to computers.
 \end{itemize}
-The dual aims of NE is a bidirectional process; building a biologically inspired computer requires a better understanding of the brain, and simulating brain activities at large scale and in real time is feasible only on massively-parallel neuromorphic hardware.
+The aims complement each other; building a biologically inspired computer requires a better understanding of the brain, and simulating brain activities at large scale and in real time is feasible only on massively-parallel neuromorphic hardware.
 
 
 
@@ -51,17 +53,49 @@ The spiking neuron mathematically models the dynamics of a single neuron with bi
 Therefore, neuroscientists are able to reproduce the recorded neural dynamics and activities from \textit{in-vivo/vitro} experiments to verify their models and measure the progress of brain understanding;
 while computer engineers can focus on the hardware implementations of the spiking neurons and the interconnections between them to build energy-efficient neuromorphic hardware.
 
-Today, in neuromorphic computing, massively large-scale SNN hardware simulators (indicated in Chapter~\ref{cha:bkg}) are ready to use, such as the High Input Count Analog Neural Network (HI-CANN)~\citep{schemmel2010wafer}, Neurogrid~\citep{benjamin2014neurogrid}, SpiNNaker~\citep{furber2014spinnaker}, TrueNorth~\citep{merolla2014million}, and HiAER-IFAT~\citep{yu201265k}.
-Some of these neuromorphic computers~\citep{schemmel2010wafer,benjamin2014neurogrid,merolla2014million} use non-Von Neumann architectures to mimic the characteristics of parallelism, scalability, and fault-tolerance of the neural system.
-Instead of executing sequential instructions and building systems of separated computing and memory units, they rather copy the nature of the brain; implementing neurons, synapses and neuronal communications on analogue/digital microelectronics.
-Therefore this novel architecture may solve the problem of the microprocessor/memory performance gap~\citep{wulf1995hitting}, also known as the Von Neumann bottleneck, where the system speed is determined and limited by the memory performance;
-and at the same time, these neuromorphic computers develop into energy-efficient systems by reducing the energy used for data movement between processors and memories, and by employing event-based computing. 
+As the considerable development of NE, massively large-scale SNN hardware simulators (indicated in Chapter~\ref{cha:bkg}) are ready to use, such as the High Input Count Analog Neural Network (HI-CANN)~\citep{schemmel2010wafer}, Neurogrid~\citep{benjamin2014neurogrid}, SpiNNaker~\citep{furber2014spinnaker}, TrueNorth~\citep{merolla2014million}, and HiAER-IFAT~\citep{yu201265k}.
+%Some of these neuromorphic computers~\citep{schemmel2010wafer,benjamin2014neurogrid,merolla2014million} use non-Von Neumann architectures to mimic the characteristics of parallelism, scalability, and fault-tolerance of the neural system.
+%Instead of executing sequential instructions and building systems of separated computing and memory units, they rather copy the nature of the brain; implementing neurons, synapses and neuronal communications on analogue/digital microelectronics.
+%Therefore this novel architecture may solve the problem of the microprocessor/memory performance gap~\citep{wulf1995hitting}, also known as the Von Neumann bottleneck, where the system speed is determined and limited by the memory performance;
+%and at the same time, these neuromorphic computers develop into energy-efficient systems by reducing the energy used for data movement between processors and memories, and by employing event-based computing. 
+Moreover, simulations of massive SNNs~\citep{markram2006blue,ananthanarayanan2009cat} have proved to be useful in understanding the brain, and the neuromorphic hardware systems have successfully decreased the power consumption of conventional SNN simulations on supercomputers~\citep{de2010world,sharp2012power}.
+However, the SNN simulations only reconstruct the network behaviours and neural dynamics of some subsystem of the brain, `but without precisely functionally simulating that subsystem'~\citep{de2010world}.
+Thus, this type of SNN simulation can be used to guide neuroscience and the development of neuromorphic hardware systems, but is not directly useful for solving cognitive tasks, such that SNNs have not been widely used in Artificial Intelligence~(AI) engineering problems.
+Therefore, \citet{indiveri2009artificial} argued that towards the ultimate goal of genuine intelligence on neuromorphic hardware, the next significant challenge of NE is to enable these brain-inspired computers to solve cognitive tasks, also known as `Neuromorphic Cognition'.
 
 
-
-Simulations of massive SNNs~\citep{markram2006blue,ananthanarayanan2009cat} have proved to be useful in understanding the brain, and the neuromorphic hardware systems have successfully decreased the power consumption of conventional SNN simulations on supercomputers~\citep{de2010world,sharp2012power}.
-However, the SNN simulations only reconstruct the non-functional network behaviours and neural dynamics of some subsystem of the brain, `but without precisely functionally simulating that subsystem'~\citep{de2010world}.
-Therefore, this type of SNN simulation can be used to guide neuroscience and the development of neuromorphic hardware systems, but is not directly useful for solving cognitive tasks, such that SNNs have not been widely used in Artificial Intelligence~(AI) engineering problems.
+%Today, however, NE stands before a large con-
+%ceptual challenge that must be met before there will be
+%significant progress toward an age of genuinely intelligent
+%neuromorphic machines. The challenge is to bridge the gap
+%from reactive systems to ones that are cognitive in quality.
+%In NE, as in neuroscience and computer science, we
+%understand very little about how to configure these large
+%systems to achieve the sophistication of processing that we
+%could regard as effective cognition.
+%
+%In the case of NE and neuroscience, the question is
+%sharpened by the need to understand cognition in the
+%context of the nervous systems’ peculiar hardware and
+%style of processing. We know, for instance, that nervous
+%systems can exhibit context-dependent behavior, can exe-
+%cute ‘‘programs’’ consisting of series of flexible steps, and
+%can conditionally branch to alternative behaviors, using
+%spiking neurons and dynamic synapses as basic computa-
+%tional modules.
+%
+%The NE community has recently developed efficient
+%VLSI implementations of such types of computational
+%modules: next to several designs of conductance-based and
+%integrate-and-fire neurons [19, 25, 38, 58, 66], NE
+%researchers proposed circuits that implement VLSI
+%dynamic synapses [7], spike-based plasticity mechanisms
+%[32, 34, 50, 68], and soft winner-take-all (WTA) networks
+%[16], for example.VLSI implementations of WTA networks
+%of spiking neurons, with plastic dynamic synapse circuits
+%are particularly important, because recent theoretical
+%studies demonstrated that recurrent neural networks
+%arranged in a way to implement soft WTA performance can
 
 
 Meanwhile, Deep Learning research in the field of artificial neural networks~(ANNs) has dominated state-of-the-art solutions for AI engineering tasks, e.g. exceeding human-level performance on image classification~\citep{he2015delving}, see Chapter~\ref{cha:dnn} for more examples.
