@@ -60,8 +60,10 @@ As the considerable development of NE, massively large-scale SNN hardware simula
 %and at the same time, these neuromorphic computers develop into energy-efficient systems by reducing the energy used for data movement between processors and memories, and by employing event-based computing. 
 Moreover, simulations of massive SNNs~\citep{markram2006blue,ananthanarayanan2009cat} have proved to be useful in understanding the brain, and the neuromorphic hardware systems have successfully decreased the power consumption of conventional SNN simulations on supercomputers~\citep{de2010world,sharp2012power}.
 However, the SNN simulations only reconstruct the network behaviours and neural dynamics of some subsystem of the brain, `but without precisely functionally simulating that subsystem'~\citep{de2010world}.
-Thus, this type of SNN simulation can be used to guide neuroscience and the development of neuromorphic hardware systems, but is not directly useful for solving cognitive tasks, such that SNNs have not been widely used in Artificial Intelligence~(AI) engineering problems.
-Therefore, \citet{indiveri2009artificial} argued that towards the ultimate goal of genuine intelligence on neuromorphic hardware, the next significant challenge of NE is to enable these brain-inspired computers to solve cognitive tasks, also known as `Neuromorphic Cognition'.
+Therefore, this type of SNN simulation can be used to guide neuroscience and the development of neuromorphic hardware systems, but is not directly useful for solving cognitive tasks;
+\citet{indiveri2009artificial} argued that the next challenge of NE is to make these brain-inspired computers effectively cognitive, also known as `Neuromorphic Cognition'.
+%such that SNNs have not been widely used in Artificial Intelligence~(AI) engineering problems.
+%Therefore, \citet{indiveri2009artificial} argued that towards the ultimate goal of genuine intelligence on neuromorphic hardware, the next significant challenge of NE is to enable these brain-inspired computers to solve cognitive tasks, also known as `Neuromorphic Cognition'.
 
 
 %Today, however, NE stands before a large con-
@@ -98,16 +100,27 @@ Therefore, \citet{indiveri2009artificial} argued that towards the ultimate goal 
 %arranged in a way to implement soft WTA performance can
 
 
-Meanwhile, Deep Learning research in the field of artificial neural networks~(ANNs) has dominated state-of-the-art solutions for AI engineering tasks, e.g. exceeding human-level performance on image classification~\citep{he2015delving}, see Chapter~\ref{cha:dnn} for more examples.
-Although theoretical studies have shown that biologically-plausible learning, e.g. Spike-Timing-Dependent Plasticity~(STDP), could approximate a stochastic version of powerful machine learning algorithms, such as Expectation Maximization~\citep{nessler2013bayesian}, Contrastive Divergence~\citep{neftci2013event}, Markov Chain Monte Carlo \citep{buesing2011neural} and Gradient Descent~\citep{o2016deep},
-%%Stochasticity, in contrast with the continuously differentiable functions used by ANNs, is intrinsic to the event-based spiking process, making network training difficult.
-in practice, there have been two significant problems prohibiting the SNN from becoming as `intelligent' as its non-spiking counterpart, the ANN.
-Firstly, the fundamental differences in data representation and neural computation between spiking and artificial neurons make it difficult to transform ANN models to SNN algorithms, see Chapter~\ref{cha:bkg} for more detail.
-%%Therefore it is relative easy to build SNN models and observe their dynamics for use in neuroscience, but much harder to construct SNNs with biological realism and specific functions for AI applications.
-Secondly, the computation cost for simulating large SNNs of size comparable to commonly-used deep ANNs was considered to be infeasible, but has been gradually solved by NE.
-Chapter~\ref{cha:bench} summarises recent developments in applying SNNs in AI tasks, where these SNN models perform as `reactive' systems and exploit Winner-Take-All~(WTA) circuits and spike-based plasticity~\citep{bill2014compound,diehl2015unsupervised}.
-These models are `reactive' since they typically comprise only two neural layers, where the output neurons simply react to the input.
+In SNNs, Spike-Timing-Dependent Plasticity (STDP) as a learning mechanism based on biological observations has been theoretically proved to be equivalent to a stochastic version of powerful machine learning algorithms, such as Expectation Maximization~\citep{nessler2013bayesian}, Contrastive Divergence~\citep{neftci2013event}, Markov Chain Monte Carlo \citep{buesing2011neural} and Gradient Descent~\citep{o2016deep}.
+However, in practice, there have been two significant problems prohibiting the SNN from becoming as `intelligent' as its non-spiking counterpart, the Artificial Neural Network~(ANN).
+Firstly, Deep Learning research has made great achievements in the field of ANNs and dominated state-of-the-art solutions for AI engineering tasks, e.g. exceeding human-level performance on image classification~\citep{he2015delving}, see Chapter~\ref{cha:dnn} for more examples.
+Secondly, the fundamental differences in data representation and neural computation between spiking and artificial neurons make it difficult to transform ANN models to SNN algorithms, see Chapter~\ref{cha:bkg} for more detail.
+%Secondly, the computation cost for simulating large SNNs of size comparable to commonly-used deep ANNs was considered to be infeasible, but has been gradually solved by NE.
+Thus, recent SNN applications~\citep{bill2014compound,diehl2015unsupervised} in AI tasks (summarised in Chapter~\ref{cha:bench}) typically comprise only two neural layers and exploit STDP learning rules and/or Winner-Take-All~(WTA) circuits on the synaptic connections.
+These models are `reactive' systems since the output neurons simply react to the sensory input.
 Therefore, such SNNs cannot perform sophisticated effective cognition as can deep ANNs.
+
+%These models are `reactive' since they typically comprise only two neural layers, where the output neurons simply react to the input.
+%Therefore, such SNNs cannot perform sophisticated effective cognition as can deep ANNs.
+%Meanwhile, Deep Learning research in the field of artificial neural networks~(ANNs) has dominated state-of-the-art solutions for AI engineering tasks, e.g. exceeding human-level performance on image classification~\citep{he2015delving}, see Chapter~\ref{cha:dnn} for more examples.
+%Although theoretical studies have shown that biologically-plausible learning, e.g. Spike-Timing-Dependent Plasticity~(STDP), could approximate a stochastic version of powerful machine learning algorithms, such as Expectation Maximization~\citep{nessler2013bayesian}, Contrastive Divergence~\citep{neftci2013event}, Markov Chain Monte Carlo \citep{buesing2011neural} and Gradient Descent~\citep{o2016deep},
+%%Stochasticity, in contrast with the continuously differentiable functions used by ANNs, is intrinsic to the event-based spiking process, making network training difficult.
+%in practice, there have been two significant problems prohibiting the SNN from becoming as `intelligent' as its non-spiking counterpart, the ANN.
+%Firstly, the fundamental differences in data representation and neural computation between spiking and artificial neurons make it difficult to transform ANN models to SNN algorithms, see Chapter~\ref{cha:bkg} for more detail.
+%%Therefore it is relative easy to build SNN models and observe their dynamics for use in neuroscience, but much harder to construct SNNs with biological realism and specific functions for AI applications.
+%Secondly, the computation cost for simulating large SNNs of size comparable to commonly-used deep ANNs was considered to be infeasible, but has been gradually solved by NE.
+%Chapter~\ref{cha:bench} summarises recent developments in applying SNNs in AI tasks, where these SNN models perform as `reactive' systems and exploit Winner-Take-All~(WTA) circuits and spike-based plasticity~\citep{bill2014compound,diehl2015unsupervised}.
+%These models are `reactive' since they typically comprise only two neural layers, where the output neurons simply react to the input.
+%Therefore, such SNNs cannot perform sophisticated effective cognition as can deep ANNs.
 
 
 %Therefore, with neuromorphic hardware ready, the increasing knowledge of SNNs and the success of Deep Learning in ANNs, it is time to take an extra step towards the ultimate goal of NE by equipping neuromorphic computers with equivalent performance as ANNs' to solve AI engineering tasks.
@@ -117,8 +130,8 @@ Therefore, such SNNs cannot perform sophisticated effective cognition as can dee
 
 %Meanwhile, Deep Learning research in the field of ANNs has dominated state-of-the-art solutions for AI engineering tasks, e.g. exceeding human-level performance on image classification~\citep{he2015delving}, see Chapter~\ref{cha:dnn} for more examples.
 
-This, therefore, is the main research problem: to improve the cognitive performance of SNNs to catch up with that of ANNs.
-Hence, researchers turn to Deep Learning to build `smarter' SNNs.
+With neuromorphic hardware ready for massive SNN simulations, the main research problem arises: how to improve the cognitive performance of SNNs to catch up with that of ANNs.
+Researchers turn to Deep Learning to build `smarter' SNNs.
 Initial studies have shown that SNNs can be trained by first training an equivalent deep ANN and then transferring the tuned weights to the SNN;
 this method is called `off-line' training, since it does not take place on SNNs directly, but rather on ANNs instead.
 Chapter~\ref{cha:Conv} discusses these `off-line' training models in detail, and proposes a simple, generalised, off-line SNN training method to overcome the problems of poor modelling accuracy and high computational complexity of the existing methods~\citep{Jug_etal_2012,hunsberger2015spiking,diehl2015fast}.
@@ -130,7 +143,7 @@ To provide meaningful comparisons between these proposed SNN models and other ex
 \section{Motivation and Aims}
 %\section{Statement of the Problem}
 \label{sec:state_problem}
-NE has led to the development of biologically-inspired computer architectures which may provide an alternative to the conventional Von Neumann architecture and approach the performance of the human brain in terms of energy efficiency and cognitive capabilities.
+NE has led to the development of biologically-inspired computer architectures which may approach the performance of the human brain in terms of energy efficiency and cognitive capabilities.
 Although there are a number of neuromorphic platforms available for large-scale SNN simulations, programming these brain-like machines to be competent in cognitive applications still remains unsolved.
 On the other hand Deep Learning has emerged in ANN research to dominate state-of-the-art solutions for cognitive tasks.
 Thus the main research problem emerges of how to operate and train biologically-plausible SNNs to close the gap of cognitive capabilities between SNNs and ANNs on AI tasks.
@@ -319,7 +332,7 @@ illustrates how biological neurons function, transmit signals between them, and 
 
 \textbf{Chapter~\ref{cha:sdlm}} proposes the STDP-based learning algorithm for training spiking AEs and RBMs; and shows equivalent recognition capability of SNNs compared to ANNs.
 
-\textbf{Chapter~\ref{cha:bench}} puts forward the spike-based vision dataset and the evaluation methodology and presents two case studies as tentative benchmarks running on SpiNNaker to assess the hardware-level performance against software simulators.
+\textbf{Chapter~\ref{cha:bench}} puts forward the spike-based vision dataset and the evaluation methodology and presents a case study as a tentative benchmark running on SpiNNaker to assess the hardware-level performance against software simulators.
 
 \textbf{Chapter~\ref{cha:conc}} summarises the research, discusses the contributions to the field, points out future directions and concludes the thesis.
 
