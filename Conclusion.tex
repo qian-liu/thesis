@@ -35,13 +35,13 @@ The trained weights can be used directly in the SNN without any further transfor
 This method requires the least computation complexity while performing most effectively among existing algorithms.
 % and even more straight-forward than the other ANN offline training methods which requires an extra step of converting ANN-trained weights to SNN's.
 
-In terms of classification/recognition accuracy, the performance of ANN-trained SNNs is nearly equivalent to ANNs, and the performance loss can be partially solved by fine tuning.
+In terms of classification/recognition accuracy, the performance of the off-line trained SNN models is nearly equivalent to ANNs, and the performance loss can be partially solved by fine tuning.
 The best classification accuracy of 99.07\% using LIF neurons in a PyNN simulation outperforms state-of-the-art SNN models of LIF neurons and is equivalent to the best result achieved using IF neurons~\citep{diehl2015fast}.
-An important feature of accurately modelling LIF neurons in ANNs is the acquisition of spiking neuron firing rates. These will aid deployment of SNNs in neuromorphic hardware by providing power and communication estimates, which allow better usage or customisation of the platforms.
+Moreover, an important feature of accurately modelling LIF neurons in ANNs is the acquisition of spiking neuron firing rates. These will aid deployment of SNNs in neuromorphic hardware by providing power and communication estimates, which allow better usage or customisation of the platforms.
 
 With the first contributions of a simple, but effective, off-line deep SNN training method and a novel activation function, Noisy Softplus, and the achievements of successful training on a deep spiking ConvNet which has performed close to the original ANN's, even surpassing the state-of-the-art classification accuracy, we confirm the hypothesis. 
 
-This proposed SNN training method is simpler and even more straight-forward than the other ANN-based training approach~\citep{cao2015spiking,diehl2015fast} which requires an extra step of converting ANN-trained weights for use at the SNN.
+This proposed SNN training method is simpler and even more straight-forward than the other ANN-based training approach~\citep{cao2015spiking,diehl2015fast} which requires an extra step of converting THE trained weights for use at the SNN.
 In addition, the normalisation algorithm~\citep{diehl2015fast}, proposed for weight transformation, only works for simple integrate-and-fire neurons, and cannot be generalised for biologically-plausible neurons.
 Moreover, the novel activation function, Noisy Softplus, tackles all the problems raised by the Siegert formula which has been used to model sigmoid-like spiking neurons~\citep{Jug_etal_2012} as follows: 
 	\begin{itemize}
@@ -52,7 +52,7 @@ Moreover, the novel activation function, Noisy Softplus, tackles all the problem
 		\item the calculation of NSP and its derivative is no more calculations than the Softplus function, except for double computation on the weighted sum of its input ($net$ and $\sigma$ in Equations~\ref{equ:mi_input}).
 		They are also much simpler than the Siergert function, which saves training time and energy.
 		
-		\item as one of the ReLU-liked activation functions, the output firing rate seldom exceeds the working range of an LIF neuron, for example the firing rates were around 0-200~Hz in the ConvNet model.
+		\item as one of the ReLU-liked activation functions, the output firing rate seldom exceeds the working range of an LIF neuron, for example the firing rates were around 0-200~Hz in the ConvNet model in Chapter~\ref{cha:Conv}.
 		
 		\item the learning performance of Noisy Softplus lies between that of Softplus and ReLU, which is supposed to outperform most of the other popular activation functions.
 	\end{itemize}
