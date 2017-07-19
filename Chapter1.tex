@@ -68,7 +68,7 @@ Recent SNN applications~\citep{bill2014compound,diehl2015unsupervised} in AI tas
 These two-layered SNN models are considered to be `reactive' since the output neurons simply react to the sensory input.
 Consequently, such SNNs cannot perform sophisticated effective cognition as can the brain;
 thus programming these neuromorphic machines to be competent in cognitive applications still remains unsolved.
-\citet{indiveri2009artificial} argued that the next challenge of NE is to make these brain-like computers effectively cognitive, also known as `Neuromorphic Cognition'.
+\citet{indiveri2009artificial} argued that the next substantial challenge of NE is to make these brain-like computers effectively cognitive, also known as `Neuromorphic Cognition'.
 %such that SNNs have not been widely used in Artificial Intelligence~(AI) engineering problems.
 %Therefore, \citet{indiveri2009artificial} argued that towards the ultimate goal of genuine intelligence on neuromorphic hardware, the next significant challenge of NE is to enable these brain-inspired computers to solve cognitive tasks, also known as `Neuromorphic Cognition'.
 
@@ -139,7 +139,7 @@ Secondly, the computation cost for simulating large SNNs of size comparable to c
 
 %With neuromorphic hardware ready for massive SNN simulations, the main research problem arises: how to improve the cognitive performance of SNNs to catch up with that of ANNs.
 
-This, therefore, is the main research problem: to improve the cognitive performance of SNNs to catch up with that of ANNs.
+With the neuromorphic platforms ready for massive SNN simulations, this, therefore, is the main research problem: to improve the cognitive performance of SNNs to catch up with that of ANNs.
 Hence, researchers turn to Deep Learning to build `smarter' SNNs.
 Initial studies have shown that SNNs can be trained by first training an equivalent deep ANN and then transferring the tuned weights to the SNN;
 this method is called `off-line' training, since it does not take place on SNNs directly, but rather on ANNs instead.
@@ -154,9 +154,10 @@ To provide meaningful comparisons between these proposed SNN models and other ex
 %\section{Statement of the Problem}
 \label{sec:state_problem}
 NE has led to the development of biologically-inspired computer architectures which may approach the performance of the human brain in terms of energy efficiency and cognitive capabilities.
-Although there are a number of neuromorphic platforms available for large-scale SNN simulations, programming these brain-like machines to be competent in cognitive applications still remains unsolved.
-On the other hand Deep Learning has emerged in ANN research to dominate state-of-the-art solutions for cognitive tasks.
-Thus the main research problem emerges of how to operate and train biologically-plausible SNNs to close the gap of cognitive capabilities between SNNs and ANNs on AI tasks.
+% provide an alternative to the conventional Von Neumann architecture and 
+Although there are a number of neuromorphic platforms available for large-scale Spiking Neural Network~(SNN) simulations, the problem of programming these brain-like machines to be competent in cognitive applications still remains unsolved.
+On the other hand, Deep Learning has emerged in Artificial Neural Network (ANN) research to dominate state-of-the-art solutions for cognitive tasks.
+Thus the main research problem emerges of understanding how to operate and train biologically-plausible SNNs to close the gap in cognitive capabilities between SNNs and ANNs on AI tasks.
 
 %TODO Why it motivates me (why it would be useful and important to have a solution)
 %This thesis aims to provide the NE community with generalised SNN training methods and performance evaluation methodologies
@@ -208,12 +209,12 @@ The contributions are:
 %	This work comprises Chapter 3 and was published and presented to the International Conference on Artificial Neural Networks 2015.
 	
 	\item 
-	A generalised SNN training method to train an equivalent ANN and transfer the trained weights back to SNNs.
+	\textbf{A generalised SNN training method to train an equivalent ANN and transfer the trained weights back to SNNs.}
 	
 	This simple method addresses the problems of inaccurate modelling and high computation complexity of existing approaches.
-	This training procedure consists of two simple stages: first, estimate parameter $p$ for the Parametric Activation Function~(PAF: $y = p \times f(x)$) using the proposed activation function Noisy Softplus~(NSP), and second, use a PAF version of conventional activation functions for ANN training. % can be generalised to activation units other than NSP.
+	This training procedure consists of two simple stages: first, estimate parameter $p$ for the Parametric Activation Function~(PAF) using the proposed activation function Noisy Softplus~(NSP), and second, use a PAF version of conventional activation functions, e.g. Rectified Linear Unit~(ReLU), for ANN training. % can be generalised to activation units other than NSP.
 	%The training of a SNN model is exactly the same as ANN training, and 
-	The trained weights can be used directly in the SNN without any further transformation.
+	The tuned weights can be used directly in the SNN without any further transformation.
 	This method involves the least computational complexity while performing most effectively among existing algorithms.
 
 %	A simple and generalised off-line SNN training method which employs a novel activation function, Noisy Softplus.
@@ -223,13 +224,13 @@ The contributions are:
 %	It was tested on a convolutional network and showed a recognition capability a close to the conventional ANN. 
 
 	NSP is described in Chapter~\ref{cha:Conv} and was published and presented at the International Conference on Neural Information Processing (ICONIP 2016);
-	the generalised SNN training using PAF has been submitted to the Annual Conference on Neural Information Processing Systems (NIPS 2017).
+	the work of generalised SNN training using PAF has been submitted to the Annual Conference on Neural Information Processing Systems (NIPS 2017).
 
 	\item 
-	An on-line unsupervised learning algorithm working purely on event-based local STDP for training spiking Autoencoders and Restricted Boltzmann Machines.
+	\textbf{An on-line unsupervised learning algorithm working purely on event-based local STDP for training spiking Autoencoders and Restricted Boltzmann Machines.}
 	
 	The proposed Spike-based Rate Multiplication~(SRM) method represents the product of numerical values used in these unsupervised Deep Learning techniques with rate multiplication.
-	The SRM then transforms the rate multiplication to the number of coincident spikes emitted from a pair of rate-coded spike trains, and the simultaneous events can be captured by the weight change of the biologically-plausible learning rule: Spike-Time-Dependent-Plasticity~(STDP).
+	The SRM then transforms the rate multiplication to the number of coincident spikes emitted from a pair of rate-coded spike trains, and the simultaneous events can be captured by the weight change of the biologically-plausible learning rule: STDP.
 	This on-line training method achieves a better performance than existing algorithms and approaches the same, sometimes even superior, classification and reconstruction capabilities compared to their equivalent non-spiking methods.
 %	
 %	The numerical analysis of the proposed algorithm accurately estimate the configurations of parameters thus to closely mimic the unsupervised learning on these modules and improves the recognition performance of SNNs to reach the ANNs'.
@@ -239,7 +240,7 @@ The contributions are:
 	A paper on these findings is in preparation to submit to the journal of Neural Computation.
 	
 	\item 
-	A dataset and the corresponding evaluation methodology for comparisons of Neuromorphic Vision systems.
+	\textbf{A dataset and the corresponding evaluation methodology for comparisons of SNN models and their hardware implementations.}
 	
 	This dataset aims to (1) promote meaningful comparisons between algorithms in the field of neural computation, (2) allow comparison with conventional image recognition methods, (3) provide an assessment of the state of the art in spike-based visual recognition, and (4) help researchers identify future directions and advance the field.
 %	This dataset also made the comparison of SNNs with conventional recognition methods possible by using converted spike representations of the same vision databases.
