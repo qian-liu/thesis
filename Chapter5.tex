@@ -112,7 +112,7 @@ Firstly, the multiplier $a$ and the multiplicand $b$ are encoded into Poisson sp
 Secondly, a Poisson generator fires a sequence of spikes according to its firing rate, $\lambda$~Hz, which is assigned linearly to the original multiplier/multiplicand by a factor of $K$.
 Hence, the firing rate ($\lambda_x$) of the Poisson generator is $K$ times the numerical value x, and can be approximated by the average spike count, $N_T(s_x)$, of the generated spike train $s_x(t)$ over time $T$~ms:
 \begin{equation}
-\lambda_x = Kx \approx N_T(s_x) = \frac{1000}{T} \sum_{t=0}^{T} s_x(t)~,
+\lambda_x = Kx \approx N_T(s_x) = \frac{1000}{T} \sum_{t=1}^{T} s_x(t)~,
 \end{equation} 
 1000 is the scale factor to transfer frequency per millisecond to frequency per second.
 Significantly, the approximation is more accurate as the observing time ($T$) grows since more spikes are generated over time and the average spike count becomes more reliable.
@@ -126,15 +126,15 @@ Finally, if we combine the concept of the STDP learning window with equation~\re
 Consequently, the rate multiplication can be conducted within only the local events in terms of time, although the accuracy may drop.
 The rate multiplication is then approximated by:
 \begin{equation}
-\lambda_a \lambda_b \approx \frac{10^6}{\tau_{\textit{\textrm{dur}}} \tau_{\textit{\textrm{win}}}} \sum_{t=0}^{\tau_{\textit{\textrm{dur}}}} [s_a(t) \sum_{t_b=t}^{t+\tau_{\textit{\textrm{win}}}} s_b(t_b)]~,
+\lambda_a \lambda_b \approx \frac{10^6}{\tau_{\textit{\textrm{dur}}} \tau_{\textit{\textrm{win}}}} \sum_{t=1}^{\tau_{\textit{\textrm{dur}}}} [s_a(t) \sum_{t_b=t}^{t+\tau_{\textit{\textrm{win}}}} s_b(t_b)]~,
 \end{equation} 
 where $\tau_{\textit{\textrm{dur}}}$ replaces $T$ to represent the length of generated spike trains during SNN simulation.
 The weight rise/drop according to a rectangular STDP curve can detect the spike events of a pair of neurons when a post-synaptic spike occurs coincidently (no later than $\tau_{\textit{\textrm{win}}}$), see Figure~\ref{fig:rtg_stdp}.
 Therefore, the overall weight change during time $\tau_{\textit{\textrm{dur}}}$ is determined by the number of coincident spikes of the pair of neurons, indicating the rate multiplication, and is described by SRM:
 \begin{equation}
 \begin{aligned}
-\Delta w = SRM(s_a, s_b) &= \eta_s \sum_{t=0}^{\tau_{\textit{\textrm{dur}}}} [s_a(t) \sum_{t_b=t}^{t+\tau_{\textit{\textrm{win}}}} s_b(t_b)] \text{~,~and}\\
-c=ab=\frac{\lambda_a \lambda_b}{K^2} &\approx \frac{10^6}{K^2 \tau_{\textit{\textrm{dur}}} \tau_{\textit{\textrm{win}}}} \sum_{t=0}^{\tau_{\textit{\textrm{dur}}}} [s_a(t) \sum_{t_b=t}^{t+\tau_{\textit{\textrm{win}}}} s_b(t_b)] \\
+\Delta w = SRM(s_a, s_b) &= \eta_s \sum_{t=1}^{\tau_{\textit{\textrm{dur}}}} [s_a(t) \sum_{t_b=t}^{t+\tau_{\textit{\textrm{win}}}} s_b(t_b)] \text{~,~and}\\
+c=ab=\frac{\lambda_a \lambda_b}{K^2} &\approx \frac{10^6}{K^2 \tau_{\textit{\textrm{dur}}} \tau_{\textit{\textrm{win}}}} \sum_{t=1}^{\tau_{\textit{\textrm{dur}}}} [s_a(t) \sum_{t_b=t}^{t+\tau_{\textit{\textrm{win}}}} s_b(t_b)] \\
 &\approx  \frac{10^6 SRM(s_a, s_b)}{K^2 \tau_{\textit{\textrm{dur}}} \tau_{\textit{\textrm{win}}}  \eta_s}~.
 \end{aligned}
 \label{equ:srm}
