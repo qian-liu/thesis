@@ -213,14 +213,14 @@ The contributions are:
 %	\textbf{A generalised SNN training method to train an equivalent ANN and transfer the trained weights back to SNNs.}
 	
 	The core elements of the training methods are a pair of novel activation functions used in ANNs: the Noisy Softplus~(NSP) and the Parametric Activation Function~(PAF).
-	NSP successfully models the firing activities of biologically-plausible spiking neurons on conventional activation functions of abstract values;
+	NSP successfully models the firing activities of biologically-plausible spiking neurons with conventional activation functions of abstract values;
 	and PAF maps these numerical values to concrete physical units in SNNs: current in nA and firing rates in Hz.
 	The proposed activation functions completely solve the problem of the fundamental differences in data representation and neural computations between ANNs and SNNs, thus tackle the difficulties of transforming ANN models to SNNs.
 	Moreover, they address the problems of inaccurate modelling and high computational complexity of existing approaches.
 	
 	This off-line training method consists of three simple steps: firstly, estimate parameter $p$ for the PAF, $y = p \times f(x)$, using the proposed activation function NSP; secondly, use a PAF version of conventional activation functions, e.g. Rectified Linear Unit~(ReLU), for ANN training; % can be generalised to activation units other than NSP.
 	%The training of a SNN model is exactly the same as ANN training, and 
-	thirdly, the tuned weights can be transferred directly in the SNN without any further transformation.
+	thirdly, the tuned weights can be transferred directly into the SNN without any further transformation.
 	This method involves the least computational complexity while performing most effectively among existing algorithms.
 
 %	A simple and generalised off-line SNN training method which employs a novel activation function, Noisy Softplus.
@@ -249,7 +249,7 @@ The contributions are:
 	\item 
 	\textbf{A dataset and the corresponding evaluation methodology for comparisons of SNN models and their hardware implementations.}
 	
-	To objectively compare theses proposed SNN models with other existing methods, we propose a Neuromorphic Vision dataset NE15 which is comprised of spike-based visual stimuli based on a standard computer vision benchmark, the MNIST~\citep{lecun1998gradient} dataset.
+	To objectively compare theses proposed SNN models with other existing methods, we propose a Neuromorphic Vision dataset NE15-MNIST which is comprised of spike-based visual stimuli based on a standard computer vision benchmark, the MNIST~\citep{lecun1998gradient} dataset.
 	The unified dataset satisfies the requirement for quantitatively measure progress within the rapidly advancing field of NE and provides resources to support objective comparisons between researchers.
 	In addition, a complementary evaluation methodology is presented to estimate the overall performance of SNN models and their hardware implementations, since new concerns relating to energy efficiency and recognition latency emerge in SNNs run on NE platforms.
 	
@@ -308,9 +308,8 @@ The contributions are:
 	
 	\item 
 	G. Garc\'ia, P. Camilleri, \textbf{Q. Liu}, and S. Furber, \textbf{pyDVS: An Extensible, Real-time Dynamic Vision Sensor Emulator using Off-the-Shelf Hardware}, The 2016 IEEE Symposium Series on Computational Intelligence (IEEE SSCI 2016).
-	This paper~\citep{7850249} proposes a visual input system inspired by the behaviour of a DVS but using a conventional digital camera as a sensor and a
-	PC to encode the images.
-	We mention the neuromorphic input sensors in Chapter~\ref{cha:bkg}).
+	This paper~\citep{7850249} proposes a visual input system inspired by the behaviour of a DVS but using a conventional digital camera as a sensor and a PC to encode the images (see Chapter~\ref{cha:bkg}).
+%	We mention the neuromorphic input sensors in Chapter~\ref{cha:bkg}).
 \end{itemize}
 
 
