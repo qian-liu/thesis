@@ -81,7 +81,6 @@ The best classification accuracy was 99.07\% on MNIST task using LIF neurons whi
 
 With the first contributions of a simple, but effective, generalised, off-line deep SNN training method and two novel activation functions, NSP and PAF, and the achievements of successful training on a deep spiking ConvNet which has performed close to the original ANN's, even surpassing the state-of-the-art classification accuracy, we confirm the hypothesis.
 
-
 \paragraph{2. Unsupervised Deep Learning modules can be trained on-line on SNNs with biologically-plausible synaptic plasticity to demonstrate a learning capability as competent as ANNs.}
 This hypothesis targets the formalising of a local learning rule based on synaptic plasticity for unsupervised, event-based, biologically-plausible training of deep SNNs. %in order to catch up with the recognition performance of ANNs.
 
@@ -90,10 +89,13 @@ This hypothesis targets the formalising of a local learning rule based on synapt
 %The SRM then transforms the rate multiplication to the number of coincident spikes emitted from a pair of rate-coded spike trains, and the simultaneous events can be captured by the weight change of the biologically-plausible learning rule: Spike-Time-Dependant-Plasticity~(STDP).
 %During the research we encountered the problem introduced by correlated spikes, and proposed solutions to decorrelate pairs of spike trains.
 
-Multiplying two numerical values, which is the core operation in the algorithms of training the Deep Learning modules of AEs and RBMs, can be represented with rate multiplication of a pair of rate-coded spike trains.
-In Chapter~\ref{cha:sdlm} the proposed formalised Spike-based Rate Multiplication~(SRM) method transforms the product of rates to the number of coincident spikes emitted from a pair of connected spiking neurons, and the simultaneous events can be captured by the change of the synaptic efficacy using the biologically-plausible learning rule: STDP.
+Instead of transforming off-line trained ANN models to SNNs, on-line methods face the problem of translating numerical computations for training Deep Learning modules to biologically-plausible, spike-based, synaptic plasticity rules.
+Multiplication is the core operation in the unsupervised Deep Learning algorithms: Autoencoders~(AEs) and Restricted Boltzmann Machines~(RBMs).
+In Chapter~\ref{cha:sdlm} we found that the product of two numerical values could be represented with rate multiplication of a pair of rate-coded spike trains;
+and the proposed formalised Spike-based Rate Multiplication~(SRM) method precisely transformed the product of rates to the number of simultaneous spikes generated from a pair of connected spiking neurons.
+Most importantly, the simultaneous events were captured by the weight change of the synaptic connection using Spike-Timing-Dependent Plasticity~(STDP) learning rule.
+Therefore, the SRM tackles the problem of translating the weight tuning from numerical computations to event-based, local, biologically-plausible learning rules in SNNs.
 
-The SRM successfully tackles the problem of translating the weight tuning from numerical computations to event-based, local, biologically-plausible learning rules in SNNs.
 Thus, spiking AEs and RBMs can be trained with SRM and approach the same, sometimes even superior, classification and reconstruction capabilities compared to their equivalent non-spiking models.
 In addition, the numerical analysis of the proposed algorithm accurately estimates the parameters, thus closely mimicking the learning behaviour of the AE and RBM modules, and improves the learning performance compared to existing methods.
 
@@ -162,7 +164,7 @@ If the model runs smoothly on a hardware platform, it then can be used to benchm
 Classification accuracy (CA) is also a useful metric for hardware evaluation because of the limited precision of the membrane potential and synaptic weights.
 
 
-A third contribution of the thesis provides the community with a dataset and its corresponding evaluation methodology for comparisons of Neuromorphic Vision.
+A third contribution of the thesis provides the community with a dataset and its corresponding evaluation methodology for comparisons of SNN models and NE platforms.
 The published NE15-MNIST dataset contains spike-based representations of the popular hand-written digits database, MNIST.
 Moreover, the carefully selected evaluation metrics highlight the strengths of spike-based vision tasks and the dataset design also promotes the research into rapid and low energy recognition (e.g. flashing digits).
 The successful baseline test of a benchmark system has been evaluated using the Poissonian subset of the NE15-MNIST dataset, which validates the feasibility of the database and its evaluation.
