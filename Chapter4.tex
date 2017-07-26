@@ -1187,9 +1187,9 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking ConvN
 \section{Summary}
 %\section{Discussions}
 	We presented a generalised SNN training method to train an equivalent ANN and transfer the trained weights back to SNNs.
-	This training procedure consists of two simple stages: first, estimate parameter $p$ for PAF using NSP, and second, use a PAF version of conventional activation functions for ANN training. % can be generalised to activation units other than NSP.
+	This training procedure consists of three simple stages: first, estimate parameter $p$ for PAF using NSP; second, use a PAF version of conventional activation functions for ANN training; % can be generalised to activation units other than NSP.
 	%The training of a SNN model is exactly the same as ANN training, and 
-	The trained weights can be directly used in the SNN without any further transformation.
+	third, the trained weights can be directly transferred to the SNN without any further transformation.
 	This method requires the least computation complexity while performing most effectively among existing algorithms.
 	% and even more straight-forward than the other ANN offline training methods which requires an extra step of converting ANN-trained weights to SNN's.
 	
