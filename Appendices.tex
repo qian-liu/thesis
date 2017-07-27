@@ -35,40 +35,43 @@
 \end{aligned}
 \end{equation}
 
-\chapter{More Results of Chapter~\ref{cha:sdlm}}
+\chapter{More Experimental Results of Chapter~\ref{cha:sdlm}}
 \label{sec:app2}
-Figures in Section~\ref{sec:problem} showing the results of solutions for reducing correlations in training SAEs and SRBMs.
+Figures~\ref{fig:sols_ae} and \ref{fig:sols_rbm} show the comparisons of different solutions for reducing correlations in training spiking Autoencoders~(SAEs) and spiking Restricted Boltzmann Machines~(SRBMs).
+In this section, Figures~\ref{fig:sol1_ae} to \ref{fig:sol4_rbm} present the detailed experimental results for this comparison.
+
+To validate the learning capability of the proposed off-line training method on Leaky Integrate-and-Fire(LIF) neurons, Figures~\ref{fig:LIF_sae} and \ref{fig:LIF_srbm} demonstrate the results conducting the same experiments shown in Figures~\ref{fig:sols_ae} and \ref{fig:sols_rbm}.
 \begin{figure}
 	\centering
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/01_exp_SAE_Orig_long/exp1_weights_s.png}
 		\caption{Weights of Exp1}
 	\end{subfigure}
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/01_exp_SAE_Orig_long/exp2_weights_s.png}
 		\caption{Weights of Exp2}
 	\end{subfigure}
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/01_exp_SAE_Orig_long/exp1_recon_s.pdf}
 		\caption{Reconstruction of visible units in Exp1}
 	\end{subfigure}
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/01_exp_SAE_Orig_long/exp2_recon_s.pdf}
 		\caption{Reconstruction of visible units in Exp2}
 	\end{subfigure}\\
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/01_exp_SAE_Orig_long/exp1_hid_s.pdf}
 		\caption{Output of hidden units in Exp1}
 	\end{subfigure}
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/01_exp_SAE_Orig_long/exp2_hid_s.pdf}
 		\caption{Output of hidden units in Exp2}
 	\end{subfigure}\\
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/01_exp_SAE_Orig_long/exp1_mse_nons.pdf}
 		\caption{Loss of Exp1}
 	\end{subfigure}
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/01_exp_SAE_Orig_long/exp2_mse_nons.pdf}
 		\caption{Loss of Exp2}
 	\end{subfigure}
@@ -79,35 +82,35 @@ Figures in Section~\ref{sec:problem} showing the results of solutions for reduci
 
 \begin{figure}
 	\centering
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/11_exp_SRBM_Orig_long/exp1_weights_s.png}
 		\caption{Weights of Exp1}
 	\end{subfigure}
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/11_exp_SRBM_Orig_long/exp2_weights_s.png}
 		\caption{Weights of Exp2}
 	\end{subfigure}
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/11_exp_SRBM_Orig_long/exp1_recon_s.pdf}
 		\caption{Reconstruction of visible units in Exp1}
 	\end{subfigure}
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/11_exp_SRBM_Orig_long/exp2_recon_s.pdf}
 		\caption{Reconstruction of visible units in Exp2}
 	\end{subfigure}\\
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/11_exp_SRBM_Orig_long/exp1_hid_s.pdf}
 		\caption{Output of hidden units in Exp1}
 	\end{subfigure}
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/11_exp_SRBM_Orig_long/exp2_hid_s.pdf}
 		\caption{Output of hidden units in Exp2}
 	\end{subfigure}\\
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/11_exp_SRBM_Orig_long/exp1_mse_nons.pdf}
 		\caption{Loss of Exp1}
 	\end{subfigure}
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/11_exp_SRBM_Orig_long/exp2_mse_nons.pdf}
 		\caption{Loss of Exp2}
 	\end{subfigure}
@@ -118,35 +121,35 @@ Figures in Section~\ref{sec:problem} showing the results of solutions for reduci
 
 \begin{figure}
 	\centering
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/03_exp_SAE_noise_long/exp1_weights_s.png}
 		\caption{Weights of Exp1}
 	\end{subfigure}
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/03_exp_SAE_noise_long/exp2_weights_s.png}
 		\caption{Weights of Exp2}
 	\end{subfigure}
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/03_exp_SAE_noise_long/exp1_recon_s.pdf}
 		\caption{Reconstruction of visible units in Exp1}
 	\end{subfigure}
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/03_exp_SAE_noise_long/exp2_recon_s.pdf}
 		\caption{Reconstruction of visible units in Exp2}
 	\end{subfigure}\\
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/03_exp_SAE_noise_long/exp1_hid_s.pdf}
 		\caption{Output of hidden units in Exp1}
 	\end{subfigure}
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/03_exp_SAE_noise_long/exp2_hid_s.pdf}
 		\caption{Output of hidden units in Exp2}
 	\end{subfigure}\\
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/03_exp_SAE_noise_long/exp1_mse_nons.pdf}
 		\caption{Loss of Exp1}
 	\end{subfigure}
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/03_exp_SAE_noise_long/exp2_mse_nons.pdf}
 		\caption{Loss of Exp2}
 	\end{subfigure}
@@ -157,35 +160,35 @@ Figures in Section~\ref{sec:problem} showing the results of solutions for reduci
 
 \begin{figure}
 	\centering
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/13_exp_SRBM_noise_long/exp1_weights_s.png}
 		\caption{Weights of Exp1}
 	\end{subfigure}
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/13_exp_SRBM_noise_long/exp2_weights_s.png}
 		\caption{Weights of Exp2}
 	\end{subfigure}
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/13_exp_SRBM_noise_long/exp1_recon_s.pdf}
 		\caption{Reconstruction of visible units in Exp1}
 	\end{subfigure}
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/13_exp_SRBM_noise_long/exp2_recon_s.pdf}
 		\caption{Reconstruction of visible units in Exp2}
 	\end{subfigure}\\
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/13_exp_SRBM_noise_long/exp1_hid_s.pdf}
 		\caption{Output of hidden units in Exp1}
 	\end{subfigure}
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/13_exp_SRBM_noise_long/exp2_hid_s.pdf}
 		\caption{Output of hidden units in Exp2}
 	\end{subfigure}\\
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/13_exp_SRBM_noise_long/exp1_mse_nons.pdf}
 		\caption{Loss of Exp1}
 	\end{subfigure}
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/13_exp_SRBM_noise_long/exp2_mse_nons.pdf}
 		\caption{Loss of Exp2}
 	\end{subfigure}
@@ -196,35 +199,35 @@ Figures in Section~\ref{sec:problem} showing the results of solutions for reduci
 
 \begin{figure}
 	\centering
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/05_exp_SAE_teach_long/exp1_weights_s.png}
 		\caption{Weights of Exp1}
 	\end{subfigure}
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/05_exp_SAE_teach_long/exp2_weights_s.png}
 		\caption{Weights of Exp2}
 	\end{subfigure}
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/05_exp_SAE_teach_long/exp1_recon_s.pdf}
 		\caption{Reconstruction of visible units in Exp1}
 	\end{subfigure}
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/05_exp_SAE_teach_long/exp2_recon_s.pdf}
 		\caption{Reconstruction of visible units in Exp2}
 	\end{subfigure}\\
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/05_exp_SAE_teach_long/exp1_hid_s.pdf}
 		\caption{Output of hidden units in Exp1}
 	\end{subfigure}
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/05_exp_SAE_teach_long/exp2_hid_s.pdf}
 		\caption{Output of hidden units in Exp2}
 	\end{subfigure}\\
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/05_exp_SAE_teach_long/exp1_mse_nons.pdf}
 		\caption{Loss of Exp1}
 	\end{subfigure}
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/05_exp_SAE_teach_long/exp2_mse_nons.pdf}
 		\caption{Loss of Exp2}
 	\end{subfigure}
@@ -235,35 +238,35 @@ Figures in Section~\ref{sec:problem} showing the results of solutions for reduci
 
 \begin{figure}
 	\centering
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/15_exp_SRBM_teach_long/exp1_weights_s.png}
 		\caption{Weights of Exp1}
 	\end{subfigure}
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/15_exp_SRBM_teach_long/exp2_weights_s.png}
 		\caption{Weights of Exp2}
 	\end{subfigure}
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/15_exp_SRBM_teach_long/exp1_recon_s.pdf}
 		\caption{Reconstruction of visible units in Exp1}
 	\end{subfigure}
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/15_exp_SRBM_teach_long/exp2_recon_s.pdf}
 		\caption{Reconstruction of visible units in Exp2}
 	\end{subfigure}\\
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/15_exp_SRBM_teach_long/exp1_hid_s.pdf}
 		\caption{Output of hidden units in Exp1}
 	\end{subfigure}
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/15_exp_SRBM_teach_long/exp2_hid_s.pdf}
 		\caption{Output of hidden units in Exp2}
 	\end{subfigure}\\
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/15_exp_SRBM_teach_long/exp1_mse_nons.pdf}
 		\caption{Loss of Exp1}
 	\end{subfigure}
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/15_exp_SRBM_teach_long/exp2_mse_nons.pdf}
 		\caption{Loss of Exp2}
 	\end{subfigure}
@@ -274,35 +277,35 @@ Figures in Section~\ref{sec:problem} showing the results of solutions for reduci
 
 \begin{figure}
 	\centering
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/07_exp_SAE_all_long/exp1_weights_s.png}
 		\caption{Weights of Exp1}
 	\end{subfigure}
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/07_exp_SAE_all_long/exp2_weights_s.png}
 		\caption{Weights of Exp2}
 	\end{subfigure}
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/07_exp_SAE_all_long/exp1_recon_s.pdf}
 		\caption{Reconstruction of visible units in Exp1}
 	\end{subfigure}
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/07_exp_SAE_all_long/exp2_recon_s.pdf}
 		\caption{Reconstruction of visible units in Exp2}
 	\end{subfigure}\\
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/07_exp_SAE_all_long/exp1_hid_s.pdf}
 		\caption{Output of hidden units in Exp1}
 	\end{subfigure}
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/07_exp_SAE_all_long/exp2_hid_s.pdf}
 		\caption{Output of hidden units in Exp2}
 	\end{subfigure}\\
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/07_exp_SAE_all_long/exp1_mse_nons.pdf}
 		\caption{Loss of Exp1}
 	\end{subfigure}
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/07_exp_SAE_all_long/exp2_mse_nons.pdf}
 		\caption{Loss of Exp2}
 	\end{subfigure}
@@ -313,35 +316,35 @@ Figures in Section~\ref{sec:problem} showing the results of solutions for reduci
 
 \begin{figure}
 	\centering
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/17_exp_SRBM_all_long/exp1_weights_s.png}
 		\caption{Weights of Exp1}
 	\end{subfigure}
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/17_exp_SRBM_all_long/exp2_weights_s.png}
 		\caption{Weights of Exp2}
 	\end{subfigure}
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/17_exp_SRBM_all_long/exp1_recon_s.pdf}
 		\caption{Reconstruction of visible units in Exp1}
 	\end{subfigure}
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/17_exp_SRBM_all_long/exp2_recon_s.pdf}
 		\caption{Reconstruction of visible units in Exp2}
 	\end{subfigure}\\
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/17_exp_SRBM_all_long/exp1_hid_s.pdf}
 		\caption{Output of hidden units in Exp1}
 	\end{subfigure}
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/17_exp_SRBM_all_long/exp2_hid_s.pdf}
 		\caption{Output of hidden units in Exp2}
 	\end{subfigure}\\
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/17_exp_SRBM_all_long/exp1_mse_nons.pdf}
 		\caption{Loss of Exp1}
 	\end{subfigure}
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/17_exp_SRBM_all_long/exp2_mse_nons.pdf}
 		\caption{Loss of Exp2}
 	\end{subfigure}
@@ -353,7 +356,7 @@ Figures in Section~\ref{sec:problem} showing the results of solutions for reduci
 %
 \begin{figure}
 	\centering
-	\begin{subfigure}[c]{0.45\textwidth}\raggedleft
+	\begin{subfigure}[c]{0.48\textwidth}\raggedleft
 		\myrowlabel{Orignal SAE}
 		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
 			{pics_sdlm/60_exp_SAE_Orig/exp2_weights_s.png}}\\
@@ -372,7 +375,7 @@ Figures in Section~\ref{sec:problem} showing the results of solutions for reduci
 		\caption{Exp2 Weights}
 	\end{subfigure}%
 	\hspace{1em}
-	\begin{subfigure}[c]{0.45\textwidth}\raggedleft
+	\begin{subfigure}[c]{0.48\textwidth}\raggedleft
 		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
 			{pics_sdlm/60_exp_SAE_Orig/exp2_mse_nons.pdf}}\\
 		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
@@ -391,7 +394,7 @@ Figures in Section~\ref{sec:problem} showing the results of solutions for reduci
 
 \begin{figure}
 	\centering
-	\begin{subfigure}[c]{0.45\textwidth}\raggedleft
+	\begin{subfigure}[c]{0.48\textwidth}\raggedleft
 		\myrowlabel{Orignal SRBM}
 		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
 			{pics_sdlm/70_exp_SRBM_Orig/exp2_weights_s.png}}\\
@@ -410,7 +413,7 @@ Figures in Section~\ref{sec:problem} showing the results of solutions for reduci
 		\caption{Exp2 Weights}
 	\end{subfigure}%
 	\hspace{1em}
-	\begin{subfigure}[c]{0.45\textwidth}\raggedleft
+	\begin{subfigure}[c]{0.48\textwidth}\raggedleft
 		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
 			{pics_sdlm/70_exp_SRBM_Orig/exp2_mse_nons.pdf}}\\
 		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
