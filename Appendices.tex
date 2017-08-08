@@ -1,43 +1,46 @@
 %\chapter{Appendices}
 %\label{cha:appx}
 
-\chapter{Derivation process of Equation~(\ref{equ:part})}
-\label{app:part}
+\chapter{Detailed Derivation Process of Equations}
+
+In Chapter~\ref{cha:dnn}, we investigated the derivative of the log-likelihood with the respect to a parameter $\theta$ in general format~(Equation~\ref{equ:part}) and in RBM~(Equation~\ref{equ:RBM}).
+The following Equations~\ref{app_equ:part} and \ref{app_equ:RBM} give the detailed derivation process.
 \begin{equation}
 \begin{aligned}
 \dfrac{\partial \log Z(\Theta)}{\partial \theta}
 =&\frac{1}{Z(\Theta)}\dfrac{\partial Z(\Theta)}{\partial \theta}\\
-=&\frac{1}{Z(\Theta)} \sum_{\textbf{x}}^{max} \dfrac{\partial f(\mathbf{x} \mid \Theta)}{\partial \theta} \\
+=&\frac{1}{Z(\Theta)} \sum_{\textbf{x}} \dfrac{\partial f(\mathbf{x} \mid \Theta)}{\partial \theta} \\
 =&\frac{1}{Z(\Theta)}  \sum_{\textbf{x}} f(\mathbf{x} \mid \Theta) \frac{1}{f(\mathbf{x} \mid \Theta)} \dfrac{\partial  f(\mathbf{x} \mid \Theta)}{\partial \theta} \\
 =&  \sum_{\textbf{x}} \frac{f(\mathbf{x} \mid \Theta) }{Z(\Theta)} \dfrac{\partial \log f(\mathbf{x} \mid \Theta)}{\partial \theta} \\
 =&  \sum_{\textbf{x}}  p(\mathbf{x} \mid \Theta) \dfrac{\partial \log f(\mathbf{x} \mid \Theta)}{\partial \theta} \\
 =&\left \langle \dfrac{\partial \log f(\mathbf{c} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{C} \sim p(\mathbf{x} \mid \Theta)}
 \end{aligned}
+\label{app_equ:part}
 \end{equation}
-\chapter{Derivation process of Equation~(\ref{equ:RBM})  }
-\label{app:RBM}
+
 \begin{equation}
 \begin{aligned}
 \dfrac{\partial \hat{l} (\Theta \mid \mathbf{D})}{\partial \theta} 
 & = \left \langle \dfrac{\partial \log f(\mathbf{d} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{D}} -\left \langle \dfrac{\partial \log f(\mathbf{c} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{C} \sim p(\mathbf{x} \mid \Theta)}  \\
-& = \left \langle \dfrac{\partial \log \sum_{ \mathbf{h}} e^{-E(\mathbf{v}, \mathbf{h} \mid \Theta)}}{\partial \theta}\right \rangle_{\mathbf{D}} 
--\left \langle \dfrac{\partial \log \sum_{ \mathbf{h}} e^{-E(\mathbf{v}, \mathbf{h} \mid \Theta)} }{\partial \theta}\right \rangle_{\mathbf{C} \sim p(\mathbf{v} \mid \Theta)}  \\
-& = \left \langle \sum_{ \mathbf{h}} \frac{e^{-E(\mathbf{v}, \mathbf{h} \mid \Theta)}}{\sum_{ \mathbf{h}} e^{-E(\mathbf{v}, \mathbf{h} \mid \Theta)}} \cdot \dfrac{\partial -E(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{D}} 
-- \left \langle \sum_{ \mathbf{h}} \frac{e^{-E(\mathbf{v}, \mathbf{h} \mid \Theta)}}{\sum_{ \mathbf{h}} e^{-E(\mathbf{v}, \mathbf{h} \mid \Theta)}} \cdot \dfrac{\partial -E(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{C} \sim p(\mathbf{v} \mid \Theta)}  \\
-& = \left \langle \sum_{ \mathbf{h}} \frac{p(\mathbf{v}, \mathbf{h} \mid \Theta)}{p(\mathbf{v} \mid \Theta)} \cdot \dfrac{\partial -E(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{D}} 
-- \left \langle \sum_{ \mathbf{h}}  \frac{p(\mathbf{v}, \mathbf{h} \mid \Theta)}{p(\mathbf{v} \mid \Theta)} \cdot \dfrac{\partial -E(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{C} \sim p(\mathbf{v} \mid \Theta)}  \\
-& = \left \langle \sum_{ \mathbf{h}} p( \mathbf{h} \mid \mathbf{v}, \Theta) \cdot \dfrac{\partial -E(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{D}} 
-- \left \langle \sum_{ \mathbf{h}} p( \mathbf{h} \mid \mathbf{v}, \Theta) \cdot \dfrac{\partial -E(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{C} \sim p(\mathbf{v} \mid \Theta)}  \\
-& = \left \langle \left \langle \dfrac{\partial -E(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{D_h} \sim p( \mathbf{h} \mid \mathbf{v}, \Theta)} \right \rangle_{\mathbf{D}}
-- \left \langle \left \langle \dfrac{\partial -E(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{C_h} \sim p( \mathbf{h} \mid \mathbf{v}, \Theta)} \right \rangle_{\mathbf{C_v} \sim p(\mathbf{v} \mid \Theta)}  \\
-& = \left \langle \dfrac{\partial -E(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\{\mathbf{D}, \mathbf{D}_h\} \sim p( \mathbf{h} \mid \mathbf{v}, \Theta)}
-- \left \langle \dfrac{\partial -E(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\{\mathbf{C_v}, \mathbf{C_h}\} \sim p( \mathbf{v}, \mathbf{h} \mid  \Theta)} \\
+& = \left \langle \dfrac{\partial \log \sum_{ \mathbf{h}} e^{{-E}(\mathbf{v}, \mathbf{h} \mid \Theta)}}{\partial \theta}\right \rangle_{\mathbf{D}} 
+-\left \langle \dfrac{\partial \log \sum_{ \mathbf{h}} e^{{-E}(\mathbf{v}, \mathbf{h} \mid \Theta)} }{\partial \theta}\right \rangle_{\mathbf{C} \sim p(\mathbf{v} \mid \Theta)}  \\
+& = \left \langle \sum_{ \mathbf{h}} \frac{e^{{-E}(\mathbf{v}, \mathbf{h} \mid \Theta)}}{\sum_{ \mathbf{h}} e^{{-E}(\mathbf{v}, \mathbf{h} \mid \Theta)}} \cdot \dfrac{\partial {-E}(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{D}} 
+- \left \langle \sum_{ \mathbf{h}} \frac{e^{{-E}(\mathbf{v}, \mathbf{h} \mid \Theta)}}{\sum_{ \mathbf{h}} e^{{-E}(\mathbf{v}, \mathbf{h} \mid \Theta)}} \cdot \dfrac{\partial {-E}(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{C} \sim p(\mathbf{v} \mid \Theta)}  \\
+& = \left \langle \sum_{ \mathbf{h}} \frac{p(\mathbf{v}, \mathbf{h} \mid \Theta)}{p(\mathbf{v} \mid \Theta)} \cdot \dfrac{\partial {-E}(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{D}} 
+- \left \langle \sum_{ \mathbf{h}}  \frac{p(\mathbf{v}, \mathbf{h} \mid \Theta)}{p(\mathbf{v} \mid \Theta)} \cdot \dfrac{\partial {-E}(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{C} \sim p(\mathbf{v} \mid \Theta)}  \\
+& = \left \langle \sum_{ \mathbf{h}} p( \mathbf{h} \mid \mathbf{v}, \Theta) \cdot \dfrac{\partial {-E}(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{D}} 
+- \left \langle \sum_{ \mathbf{h}} p( \mathbf{h} \mid \mathbf{v}, \Theta) \cdot \dfrac{\partial {-E}(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{C} \sim p(\mathbf{v} \mid \Theta)}  \\
+& = \left \langle \left \langle \dfrac{\partial {-E}(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{D_h} \sim p( \mathbf{h} \mid \mathbf{v}, \Theta)} \right \rangle_{\mathbf{D}}
+- \left \langle \left \langle \dfrac{\partial {-E}(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{C_h} \sim p( \mathbf{h} \mid \mathbf{c_v}, \Theta)} \right \rangle_{\mathbf{C_v} \sim p(\mathbf{v} \mid \Theta)}  \\
+& = \left \langle \dfrac{\partial {-E}(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\{\mathbf{D}, \mathbf{D}_h\} \sim p( \mathbf{h} \mid \mathbf{v}, \Theta)}
+- \left \langle \dfrac{\partial {-E}(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\{\mathbf{C_v}, \mathbf{C_h}\} \sim p( \mathbf{v}, \mathbf{h} \mid  \Theta)} \\
 \end{aligned}
+\label{app_equ:RBM}
 \end{equation}
 
-\chapter{More Experimental Results of Chapter~\ref{cha:sdlm}}
+\chapter{More Experimental Results}
 \label{sec:app2}
-Figures~\ref{fig:sols_ae} and \ref{fig:sols_rbm} show the comparisons of different solutions for reducing correlations in training spiking Autoencoders~(SAEs) and spiking Restricted Boltzmann Machines~(SRBMs).
+In Chapter~\ref{cha:sdlm}, Figures~\ref{fig:sols_ae} and \ref{fig:sols_rbm} show the comparisons of different solutions for reducing correlations in training spiking Autoencoders~(SAEs) and spiking Restricted Boltzmann Machines~(SRBMs).
 In this section, Figures~\ref{fig:sol1_ae} to \ref{fig:sol4_rbm} present the detailed experimental results for this comparison.
 
 To validate the learning capability of the proposed off-line training method on Leaky Integrate-and-Fire(LIF) neurons, Figures~\ref{fig:LIF_sae} and \ref{fig:LIF_srbm} demonstrate the results conducting the same experiments shown in Figures~\ref{fig:sols_ae} and \ref{fig:sols_rbm}.
