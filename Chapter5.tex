@@ -1,16 +1,32 @@
-\chapter{Spike-based Rate Multiplication for On-line SNN Training}
+\chapter[On-line SNN training with SRM]{On-line SNN training with Spike-Based Rate Multiplication}
 \label{cha:sdlm}
 %Paragraph One: LINK
 %Make a connection to what has immediately gone before. Recap the last chapter. In the last chapter I showed that… Having argued in the previous chapter that… As a result of x, which I established in the last chapter….. It is also possible to make a link between this chapter and the whole argument… The first step in answering my research question (repeat question) .. was to.. . In the last chapter I …
-Having argued in the previous chapter that deep SNNs are equally capable of classifying digits as are deep ANNs, and can be trained simply just like ANNs, this chapter continues the discussion of training deep SNNs and takes an extra step forward to the second research problem of biologically inspired, on-line, spike-based SNN training.
+In the previous chapter we have argued that deep SNNs are equally capable of classifying digits as are deep ANNs, and can be trained simply off-line on an equivalent ANN.
+This chapter continues the discussion of training deep SNNs and takes an extra step towards Neuromorphic Cognition by using biologically-plausible synaptic plasticity  rules.
+
+
+the second research problem of biologically inspired, on-line, spike-based SNN training.
 
 %Paragraph Two: FOCUS
 %Now focus the reader’s attention on what this chapter is specifically going to do and why it is important. In this chapter I will examine.. I will present… I will report … This is crucial in (aim of thesis/research question) in order to….
-In this chapter we present an on-line unsupervised learning algorithm, Spike-based Rate Multiplication~(SRM), working purely on event-based local STDP for training spiking Autoencoders and Restricted Boltzmann Machines.
-The SRM method represents the product of numerical values used in these unsupervised Deep Learning techniques with rate multiplication.
-The SRM then transforms the rate multiplication to the number of coincident spikes emitted from a pair of rate-coded spike trains, and the simultaneous events can be obtained by the biologically-plausible learning rule: Spike-Time-Dependant-Plasticity~(STDP).
-This on-line training method achieves better performance than existing algorithms and approaches the same, sometimes better performance of the equivalent non-spiking methods.
-It is crucial to provide deep SNNs with effective on-line training algorithms not only for building successful spike-based object recognition applications, but also for better power efficiency and scalability provided by the biologically-plausible SNN training on neuromorphic hardware.
+%In this chapter we present an on-line unsupervised learning algorithm, Spike-based Rate Multiplication~(SRM), working purely on event-based local STDP for training spiking Autoencoders and Restricted Boltzmann Machines.
+%The SRM method represents the product of numerical values used in these unsupervised Deep Learning techniques with rate multiplication.
+%The SRM then transforms the rate multiplication to the number of coincident spikes emitted from a pair of rate-coded spike trains, and the simultaneous events can be obtained by the biologically-plausible learning rule: Spike-Time-Dependant-Plasticity~(STDP).
+%This on-line training method achieves better performance than existing algorithms and approaches the same, sometimes better performance of the equivalent non-spiking methods.
+%It is crucial to provide deep SNNs with effective on-line training algorithms not only for building successful spike-based object recognition applications, but also for better power efficiency and scalability provided by the biologically-plausible SNN training on neuromorphic hardware.
+
+On-line training aims to bring biologically-plausible learning rules to SNNs to equip neuromorphic computers with genuine learning capabilities.
+Instead of transforming off-line trained ANN models to SNNs, on-line methods face the problem of translating numerical computations for training Deep Learning modules into spike-based synaptic plasticity rules.
+Multiplication is the core operation in the unsupervised Deep Learning algorithms, Autoencoders~(AEs) and Restricted Boltzmann Machines~(RBMs): $\Delta w \propto ab-cd$.
+In Chapter~\ref{cha:sdlm} we found that the product of two numerical values could be represented with rate multiplication of a pair of rate-coded spike trains;
+and the proposed formalised Spike-based Rate Multiplication~(SRM) method precisely transformed the product of rates to the number of simultaneous spikes generated from a pair of connected spiking neurons.
+Most importantly, the simultaneous events were captured by the weight change of the synaptic connection using the Spike-Timing-Dependent Plasticity~(STDP) learning rule.
+Therefore, the SRM tackles the problem of translating the weight tuning from numerical computations to event-based, biologically-plausible learning rules in SNNs.
+
+Spiking AEs and RBMs can be trained with SRM by sharing the synaptic weights between $ab$ and $cd$, and applying symmetric learning rate $\pm \eta_s$ on the weight change respectively.
+The performance approaches the same, sometimes even superior, classification and reconstruction capabilities compared to their equivalent non-spiking models.
+In addition, the numerical analysis of the proposed algorithm accurately estimates the learning rate $\pm \eta_s$, thus closely mimicking the learning behaviour of the AE and RBM modules, and improves the learning performance compared to existing methods.
 
 
 
