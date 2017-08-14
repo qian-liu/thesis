@@ -19,7 +19,7 @@
 %Thus, to equip these powerful brain-inspired neuromorphic computers with cognitive capabilities, the thesis aims to understand how to close the gap of the performance between SNNs and ANNs on Artificial Intelligence~(AI) tasks. 
 
 
-In this chapter, we will confirm the hypotheses proposed in Chapter~\ref{cha:intro} to answer the thesis question: how to close the gap of the cognitive capabilities between Spiking Neural Networks~(SNNs) and Artificial Neural Networks~(ANNs) on Artificial Intelligence~(AI) tasks.
+In this chapter, we will confirm the hypotheses proposed in Chapter~\ref{cha:intro} to answer the thesis question: how to close the gap between the cognitive capabilities of Spiking Neural Networks~(SNNs) and Artificial Neural Networks~(ANNs) on Artificial Intelligence~(AI) tasks.
 This involves introducing sub-topics on how we arrived at this confirmation, what are the main contributions, and how this work challenges previous research.
 This will be followed by a statement of the current limitations of our study, potential methods for tackling these limitations, and directions for further research.
 
@@ -49,9 +49,9 @@ Moreover, the training of PAF-NSP neurons can be generalised to a PAF version of
 %firstly, estimate parameter $p$ for the PAF, $y = p \times f(x)$, using NSP;
 %secondly, use a PAF version of a conventional activation function, e.g. Rectified Linear Unit~(ReLU), to train an equivalent ANN;
 %thirdly, transfer the tuned weights directly into the SNN.
-At one hand, this research contributes to the NE community a simple off-line SNN training method.
-It enables any feed-forward SNN to be modelled and trained on an equivalent ANN, thus resolves the difficulties of transforming ANN models to SNNs.
-At the other hand, the method is generalised in terms of spiking neural models and hardware platforms, since it works on standard LIF neurons which are supported by most of the neuromorphic hardware.
+On one hand, this research contributes to the NE community a simple off-line SNN training method.
+It enables any feed-forward SNN to be modelled and trained on an equivalent ANN, and thus resolves the difficulties of transforming ANN models to SNNs.
+On the other hand, the method is generalised in terms of spiking neural models and hardware platforms, since it works on standard LIF neurons which are supported by most neuromorphic hardware.
 Hence, AI engineers are capable of implementing their ANN models on NE platforms without knowledge of SNN or hardware-specific programming, and furthermore get benefit from neuromorphic hardware in many ways: such as energy-efficiency, biological realism, low latency and real-time processing.
 
 
@@ -64,10 +64,10 @@ Hence, AI engineers are capable of implementing their ANN models on NE platforms
 %This method requires the least computation complexity while performing most effectively among existing algorithms.
 %% and even more straight-forward than the other ANN offline training methods which requires an extra step of converting ANN-trained weights to SNN's.
 
-Among the existing approaches, this method is the first and only that unifies the representation of neurons in ANNs and the spiking ones in SNNs using abstract activation functions, while some other approaches~\citep{Jug_etal_2012,hunsberger2015spiking} directly handle physical units.
-In terms of modelling accuracy, NSP not only takes the noise of the current influx into account which is missing in soft LIF~\citep{hunsberger2015spiking}, but also includes coloured noise where Siegert formula~\citep{Jug_etal_2012} only works on white noise.
-Regarding simplicity, this training method performs effectively using Rectified Linear Unit~(ReLU), however, other studies~\citep{Jug_etal_2012,hunsberger2015spiking} suffer from high computational complexity.
-In addition, thanks to the accurate modelling of PAF, the trained weights are ready to use on SNNs, while previous approaches ~\citep{cao2015spiking,diehl2015fast} require an extra step to make the trained weights adaptive to the SNN.
+Among the existing approaches, this method is the first and only one that unifies the representation of neurons in ANNs and the spiking ones in SNNs using abstract activation functions, while some other approaches~\citep{Jug_etal_2012,hunsberger2015spiking} directly handle physical units.
+In terms of modelling accuracy, NSP not only takes the noise of the current influx into account, which is missing in soft LIF~\citep{hunsberger2015spiking}, but also includes coloured noise where the Siegert formula~\citep{Jug_etal_2012} only works on white noise.
+Regarding simplicity, this training method performs effectively using Rectified Linear Units~(ReLUs), however, other studies~\citep{Jug_etal_2012,hunsberger2015spiking} suffer from high computational complexity.
+In addition, thanks to the accurate modelling of PAF, the trained weights are ready to use on SNNs, while previous approaches ~\citep{cao2015spiking,diehl2015fast} require an extra step to adapt the trained weights to the SNN.
 Moreover, comparing to the requirements of specific neural models~\citep{cao2015spiking,diehl2015fast} and the hardware-specific training methods~\citep{diehl2016conversion,diehl2016truehappiness,esser2015backpropagation}, our approach is generalised to target standard LIF neurons and neuromorphic hardware platforms.
 
 %This proposed SNN training method is simpler and even more straightforward than the previous ANN-based training approaches~\citep{cao2015spiking,diehl2015fast} which require an extra step of converting the trained weights for use at the SNN.
@@ -92,7 +92,7 @@ Moreover, comparing to the requirements of specific neural models~\citep{cao2015
 
 To validate the cognitive capability of the SNN models, we compared the classification accuracy of the spiking ConvNets to the non-spiking ANNs.
 The performance was nearly equivalent, and the best classification accuracy achieved 99.07\% on the MNIST task which outperformed state-of-the-art SNN model of LIF neurons~\citep{hunsberger2015spiking} and equalled the best result using simplified IF neurons~\citep{diehl2015fast}.
-Therefore, we confirm the hypothesis with the first contribution of this thesis: providing NE community a simple, but effective, generalised, off-line deep SNN training method.
+Therefore, we confirm the hypothesis with the first contribution of this thesis: providing the NE community a simple, but effective, generalised, off-line deep SNN training method.
 
 \paragraph{2. Unsupervised Deep Learning modules can be trained on-line on SNNs with biologically-plausible synaptic plasticity to demonstrate a learning capability as competent as ANNs.\\}
 %This hypothesis targets the formalising of a local learning rule based on synaptic plasticity for unsupervised, event-based, biologically-plausible training of deep SNNs. %in order to catch up with the recognition performance of ANNs.
@@ -110,7 +110,7 @@ and the proposed formalised Spike-based Rate Multiplication~(SRM) method precise
 Most importantly, the simultaneous events were captured by the weight change of the synaptic connection using the Spike-Timing-Dependent Plasticity~(STDP) learning rule.
 Therefore, the SRM tackles the problem of translating the weight tuning from numerical computations to event-based, biologically-plausible learning rules in SNNs.
 
-Spiking AEs and RBMs can be trained with SRM by sharing the synaptic weights between $ab$ and $cd$, and applying symmetric learning rate $\pm \eta_s$ on the weight change respectively.
+Spiking AEs and RBMs can be trained with SRM by sharing the synaptic weights between $ab$ and $cd$, and applying symmetric learning rates $\pm \eta_s$ on the weight changes respectively.
 The performance approaches the same, sometimes even superior, classification and reconstruction capabilities compared to their equivalent non-spiking models.
 In addition, the numerical analysis of the proposed algorithm accurately estimates the learning rate $\pm \eta_s$, thus closely mimicking the learning behaviour of the AE and RBM modules, and improves the learning performance compared to existing methods.
 
@@ -235,7 +235,7 @@ One of the major future goals is to propose a general method to run recurrent SN
 The simple off-line SNN training method has enabled and encouraged interesting applications to run in SNNs.
 
 \begin{itemize}
-	\item Ensemble models~\citep{krogh1995neural} have been trained with NSP neurons and will be transferred onto SpiNNaker system~\citep{furber2014spinnaker} to take the advantages of energy-efficiency and massively-parallel processing.
+	\item Ensemble models~\citep{krogh1995neural} have been trained with NSP neurons and will be transferred onto the SpiNNaker system~\citep{furber2014spinnaker} to take the advantages of energy-efficiency and massively-parallel processing.
 	\item Speech recognition of simulated cochlea generated spikes has achieved a promising accuracy at the initial test-idea stage.
 	The next step is to implement the model entirely on neuromorphic hardware including the cochlea and the SNN, thus to run it in real time.
 	\item An 18-layer residual network~\citep{he2016deep} has been trained for the task of recognising human facial expressions using the KDEF dataset~\citep{lundqvist1998karolinska}.
@@ -272,7 +272,7 @@ Thus applying novel Deep Learning techniques for SNN training is also in the fut
 \paragraph{Neuromorphic Hardware.}
 On-line training is a necessary means towards Neuromorphic Cognition where the hardware computers learn while they operate.
 The main concerns are the learning speed and the power consumption, which will be compared to off-line training methods and conventional ANN training.
-It is still an open question that how to perform the human-level cognition and at the same time achieve the low power cost by on-line learning.
+It is still an open question how to perform the human-level cognition and at the same time achieve the low power cost by on-line learning.
 
 
 
@@ -317,7 +317,7 @@ Neuromorphic hardware owners are welcome to provide benchmarking results to comp
 %The concluding chapter reflects the research question and hypotheses raised in the first Chapter, highlights the main contributions of the work, discusses the work in the context of literature, and propose potential methods to tackle existing limitations and promising directions for future work.
 %This thesis has achieved closure of the gap between the cognition capability of SNN to ANN, and brightly paved the way for further study to improve and understand the learning performance of these biologically-plausible spiking units.
 
-Energy-efficient neuromorphic hardware platforms have been successfully contributed to large-scale simulations of biologically-plausible SNNs for brain understanding, but they are still far from intelligent to achieve Neuromorphic Cognition.
+Energy-efficient neuromorphic hardware platforms have been successfully used to support large-scale simulations of biologically-plausible SNNs for brain understanding, but they are still far from intelligent enough to achieve Neuromorphic Cognition.
 Meanwhile, Deep Learning techniques in the field of ANN have driven simple rate-based artificial neurons to surpass human-level capabilities in cognitive tasks, e.g. vision.
 Thus, to equip these powerful brain-inspired neuromorphic computers with cognitive capabilities, this thesis contributes to close the gap of the performance between SNNs and ANNs on AI tasks.
 
@@ -328,10 +328,10 @@ The success of the generalised off-line method paves the way to energy-efficient
 
 Taking one step towards Neuromorphic Cognition, the on-line learning method has also been investigated to train Deep Learning modules on SNNs.
 The proposed method tackles the problem of accurately translating the weight tuning of AEs and RBMs from numerical computations to event-based, biologically-plausible STDP rules in SNNs.
-It leads the future work to formalise event-based learning to closely mimic the numerical computations in conventional ANNs.
+It directs the future work to formalise event-based learning to closely mimic the numerical computations in conventional ANNs.
 The development of on-line training will equip the neuromorphic computers with genuine learning capabilities.
 
-The last but not least, this work contributes to the NE community with a uniform dataset to evaluate SNNs' performance at both model and hardware level.
+Last but not least, this work contributes to the NE community with a uniform dataset to evaluate SNNs' performance at both model and hardware level.
 The corresponding evaluation methodology will promote meaningful comparisons between these proposed SNN models and other existing methods within this rapidly advancing field.
 Moreover, we hope to provide objective comparisons between conventional ANNs and SNNs, in order to give prominence to low latency and energy consumption on neuromorphic hardware.
 

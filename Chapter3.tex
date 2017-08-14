@@ -8,14 +8,14 @@ In this chapter, we will give an overview of popular architectures and models of
 \label{sec:dl_history}
 Deep Learning seems to have become the answer to all artificial intelligence problems overnight since Geoffrey Hinton proposed the training method of a type of ANN, the Deep Belief Network, in 2006~\citep{hinton2006fast}.
 However, Deep Learning is not a new `magic', but rather has a history over a few decades and its sudden success is the result of the availability of an increasing amount of training data, the growing size of network models and greater computational power.
-Therefore, all the classical Deep Learning architectures date back to the last century before the `Deep Learning' named was coined.
+Therefore, all the classical Deep Learning architectures date back to the last century before the `Deep Learning' name was coined.
 However, at that time, deep networks could hardly be trained, mainly because of the limits on computational power.
 
 
 \subsection{Classical Models}
 We call the well-known and widely-used Deep Learning models `classical' and give a brief introduction to those models in this section. 
 As mentioned above, the first break-through in training deep, as opposed to shallow ($\le 3$ layers), networks was the greedy layer-wise strategy~\citep{hinton2006fast} proposed to train stacked RBMs, which will be described in more detail in Section~\ref{sec:rbm}.
-Shortly after that this method was proved to be efficient for training other kinds of deep networks including stacked AEs~\citep{bengio2007greedy} (stated in Section~\ref{sec:AE}).
+Shortly after, this method was proved also to be efficient for training other kinds of deep networks including stacked AEs~\citep{bengio2007greedy} (stated in Section~\ref{sec:AE}).
 RBMs and AEs are suitable for dimensionality reduction and feature extraction when trained with unsupervised learning on unlabelled data.
 In 2012, using such an unsupervised Deep Learning architecture, the Google Brain team achieved a milestone in the Deep Learning era; the neural network learned to recognise cats by `watching' 10 million images generated from random frames of YouTube videos~\citep{le2013building}.
 
@@ -47,7 +47,7 @@ The milestone achieved by the integration of RL and deep networks, deep RL, drew
 %http://blog.aylien.com/introduction-generative-adversarial-networks-code-tensorflow/
 
 Generative Adversarial Networks (GANs)~~\citep{goodfellow2014generative} are proposed for training generative models of complex data.
-Instead of training discrimination networks (e.g. image classification using CovNets ) and generation networks (e.g. data sampling on RBMs) separately with different objectives, GANs train two competing networks, one the discriminator, the other the generator, simultaneously by continuously making them to play games with each other.
+Instead of training discrimination networks (e.g. image classification using CovNets ) and generation networks (e.g. data sampling on RBMs) separately with different objectives, GANs train two competing networks, one the discriminator, the other the generator, simultaneously by continuously making them play games with each other.
 Thus, the generator learns to produce more realistic data to fool the discriminator; meanwhile the discriminator learns to become better at distinguishing generated from real data.
 Exciting achievements have been reported in generating complex data such as realistic image generation based on descriptions in text~\citep{radford2015unsupervised}.
 
@@ -86,7 +86,7 @@ The average filter traverses an entire feature map with a stride of 2, and outpu
 The next Conv layer drives 3D feature vectors with a depth of 6 (six feature maps) to convolve with 12 3D kernels with size of $6\times5\times5$.
 The example demonstrates a common set-up using all the feature maps of the 3D feature vectors; usually it is feasible to select a subset of the input feature maps to involve in the convolutions with each kernel.
 Then a Pool layer follows the convolution.
-Repeating these alternative presentations of a Conv layer and a Pool layer builds up a deeper ConvNet.
+Repeating these alternating presentations of a Conv layer and a Pool layer builds up a deeper ConvNet.
 
 The trainable shared weights used in the Conv layer hugely reduce the number of weight parameters in a ConvNet, while Pool layers use static convolutional kernels to shrink the size of the network.
 These convolutional connections can be described as 6c5-2s-12c5-2s, where $\alpha c \beta$ indicates $\alpha$ kernels of side length $\beta$ used in the Conv layer, and $2s$ specifies the side length and the stride of a pooling kernel.
@@ -201,7 +201,7 @@ For the sigmoid function example, shown in Figure~\ref{fig:af}(a), the derivativ
 
 The Rectified Linear Unit (ReLU) is proposed to tackle the problem of vanishing gradients in deep networks.
 ReLU, simply defined as $y = max(0,x)$ and shown in Figure~\ref{fig:af}, has a gradient of 1 when the input is greater than 0.
-Hence, the error gradient is able to be back-propagated in deeper network by multiplying ReLU derivatives.
+Hence, the error gradient is able to be back-propagated in deeper networks by multiplying ReLU derivatives.
 
 \section{Autoencoders}
 \label{sec:AE}
@@ -579,7 +579,7 @@ If we use ReLU as the activation function, then the above equation is as follow:
 %%\subsection{RBM\citep{zhang2013rbm}}
 \section{Restricted Boltzmann Machine}
 \label{sec:rbm}
-The RBMs share similar ideas of unsupervised learning with AEs, but aim to present a data distribution of some training dataset, rather than reconstructing each sample of the dataset.
+RBMs share similar ideas of unsupervised learning with AEs, but aim to present a data distribution of some training dataset, rather than reconstructing each sample of the dataset.
 Thus, the RBM is an energy-based model and uses a stochastic approach.
 Besides that, the structure of an RBM, see Figure~\ref{fig:RBM}, is also similar to an AE where the visible units $\mathbf{v}$ bidirectionally connect to the hidden units $\mathbf{h}$ with strength $\mathbf{w}$.
 
@@ -676,7 +676,7 @@ The derivative of the log-likelihood with respect to a parameter $\theta$ is as 
 where  $ <\cdot>_{\mathbf{X}} $ denotes the mean expectation of $ \cdot $ given data set $\mathbf{X}$.
 The first term of the right-hand side is easy to get with the given data, $\mathbf{d} \in \mathbf{D} $, and the second term can be approximated by generating data samples $\mathbf{C} $ according to $ p(\mathbf{x} \mid \Theta) $.
 %These generative samples is called ``fantasy data'' and can be generated using Monte Carlo Markov Chain (MCMC) sampling, see section~\ref{sec:mcmc}.
-The detailed derivation process can be found in Appendix (Equation~\ref{app_equ:part}).
+The detailed derivation process can be found in the Appendix (Equation~\ref{app_equ:part}).
 %Although in this example the integration of product of normal distribution is still tractable, it is also helpful to use numerical integration.
 %Although $ p(\mathbf{v} \mid \Theta) $ is not a PoE problem, the partial derivation of the average log-likelihood function still applies to Equation~(\ref{equ:part}) and the intractable integration is the same problem here:
 Applying the RBM model function in Equation~\ref{equ:rbm_prob} to the loss derivative (Equation~\ref{equ:part}), Equation~\ref{app_equ:RBM} derives the loss function of RBMs in detail:

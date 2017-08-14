@@ -59,7 +59,7 @@ These neuromorphic computers develop into energy-efficient systems by implementi
 %Instead of executing sequential instructions and building systems of separated computing and memory units, they rather copy the nature of the brain; implementing neurons, synapses and neuronal communications on analogue/digital microelectronics.
 %Therefore this novel architecture may solve the problem of the microprocessor/memory performance gap~\citep{wulf1995hitting}, also known as the Von Neumann bottleneck, where the system speed is determined and limited by the memory performance;
 %and at the same time, these neuromorphic computers develop into energy-efficient systems by reducing the energy used for data movement between processors and memories, and by employing event-based computing. 
-Thus, the neuromorphic hardware systems have successfully decreased the power consumption of conventional SNN simulations on supercomputers~\citep{de2010world,sharp2012power}.
+Thus, the neuromorphic hardware systems composed with those have successfully demonstrated decreased energy cost of SNN simulations on supercomputers~\citep{de2010world,sharp2012power}.
 
 However, the SNN simulations only reconstruct the network behaviours and neural dynamics of some subsystem of the brain, `but without precisely functionally simulating that subsystem'~\citep{de2010world}.
 Therefore, this type of SNN simulation can be used to guide neuroscience and the development of neuromorphic hardware systems, but is not directly useful for solving cognitive tasks.
@@ -235,7 +235,7 @@ The contributions are:
 	\item 
 	\textbf{An on-line unsupervised learning algorithm working purely on event-based STDP for training spiking Autoencoders~(AEs) and Restricted Boltzmann Machines~(RBMs).}
 	
-	Multiplying two numerical values, which is the core operation in the algorithms of training the Deep Learning modules of AEs and RBMs, can be represented with rate multiplication of a pair of rate-coded spike trains.
+	Multiplying two numerical values, which is the core operation in the algorithms for training the Deep Learning modules of AEs and RBMs, can be represented with rate multiplication of a pair of rate-coded spike trains.
 	The proposed formalised Spike-based Rate Multiplication~(SRM) method transforms the product of rates to the number of coincident spikes emitted from a pair of connected spiking neurons, and the simultaneous events can be captured by the change of the synaptic efficacy using the biologically-plausible learning rule: STDP.
 	
 	The SRM successfully tackles the problem of translating the weight tuning from numerical computations to event-based, biologically-plausible learning rules in SNNs.
@@ -249,8 +249,8 @@ The contributions are:
 	\item 
 	\textbf{A dataset and the corresponding evaluation methodology for comparisons of SNN models and their hardware implementations.}
 	
-	To objectively compare theses proposed SNN models with other existing methods, we propose a Neuromorphic Vision dataset NE15-MNIST which is comprised of spike-based visual stimuli based on a standard computer vision benchmark, the MNIST~\citep{lecun1998gradient} dataset.
-	The unified dataset satisfies the requirement for quantitatively measure progress within the rapidly advancing field of NE and provides resources to support objective comparisons between researchers.
+	To objectively compare these proposed SNN models with other existing methods, we propose a Neuromorphic Vision dataset NE15-MNIST which is comprised of spike-based visual stimuli based on a standard computer vision benchmark, the MNIST~\citep{lecun1998gradient} dataset.
+	The unified dataset satisfies the requirement for quantitatively measuring progress within the rapidly advancing field of NE and provides resources to support objective comparisons between researchers.
 	In addition, a complementary evaluation methodology is presented to estimate the overall performance of SNN models and their hardware implementations, since new concerns relating to energy efficiency and recognition latency emerge in SNNs run on NE platforms.
 	
 	This work contributes to (1) promoting meaningful comparisons between algorithms and neuromorphic platforms in the field of NE, (2) allowing comparison with conventional image recognition methods, (3) providing an assessment of the state of the art in spike-based visual recognition, and (4) helping researchers identify future directions and advance the field.
@@ -266,7 +266,7 @@ The contributions are:
 \section{Papers and Workshops}
 
 \subsection{Papers}
-	Much of the work contributed to solving the main research problem of this thesis has either previously been published or is in the process of submission.
+	Much of the work contributed to solving the main research problem of this thesis has either been published or is in the process of submission for publication.
 \begin{itemize}
 
 	\item 
@@ -284,7 +284,7 @@ The contributions are:
 	
 	\item 
 	\textbf{Q. Liu}, and S. Furber, \textbf{Spike-based Rate Multiplication for On-line SNN Training} (to be submitted to Neural Computation).
-	This paper mainly comprises the work of Chapter~\ref{cha:sdlm}, which proposes an on-line unsupervised training of SNNs equivalent to the conventional Deep Learning techniques: AEs and RBMs.
+	This paper mainly comprises the work of Chapter~\ref{cha:sdlm}, which proposes a method for on-line unsupervised training of SNNs equivalent to the conventional Deep Learning techniques: AEs and RBMs.
 	
 	\item 
 	\textbf{Q. Liu}, G. Garc\'ia, E. Stromatias, T. Gotarredona, and S. Furber, \textbf{Benchmarking Spike-Based Visual Recognition: A Dataset and Evaluation}, Frontiers in Neuromorphic Engineering.
@@ -293,12 +293,12 @@ The contributions are:
 	
 \end{itemize}
 
-	Other publications build up the neuromorphic hardware system for complete event-based visual and auditory processing, providing deep spiking neural networks a valid hardware platform for running applications in biologically real time.
+	Other publications build up the neuromorphic hardware system for complete event-based visual and auditory processing, providing deep spiking neural networks a valid hardware platform for running applications in biological real time.
 \begin{itemize}
 	\item 
 	\textbf{Q. Liu}, and S. Furber, \textbf{Real-Time Recognition of Dynamic Hand Postures on a Neuromorphic System}, International Conference on Artificial Neural Networks (ICANN 2015).
 	We develop an object recognition system operating in real-time on a complete neuromorphic platform in an absolute spike-based fashion.
-	This paper paves the way for further study with solid proof of the capability of real-time cognitive application built on neuromorphic platform.
+	This paper paves the way for further study with solid proof of the capability of a real-time cognitive application built on a neuromorphic platform.
 	In Chapter~~\ref{cha:bkg}, we introduce this system as an existing vision-based neuromorphic hardware platform which comprises a Dynamic Vision Sensor~(DVS) as the front-end and a massive-parallel SNN hardware simulator as the back-end. 
 	
 	\item
@@ -373,4 +373,4 @@ illustrates how biological neurons function, transmit signals between them, and 
 	Although progress has been made in both directions, it is still far from achieving the long term goal of Neuromorphic Cognition.
 	With the support of accumulated knowledge of SNNs and the massive neuromorphic SNN simulators (both refer to Chapter~\ref{cha:bkg}), plus the huge success of Deep Learning in ANNs (see Chapter~\ref{cha:dnn}), the research aims at understanding how to operate and train biologically-plausible SNNs to close the gap in cognitive capabilities between SNNs and ANNs on AI tasks, thus approaching Neuromorphic Cognition.
 	
-	To achieve the thesis aim, we propose an on-line (Chapter~\ref{cha:Conv}) and an off-line (Chapter~\ref{cha:sdlm}) SNN training method to bring Deep Learning advantages to SNNs, and provide a spike-based dataset and its corresponding evaluation methodology to measure the performance of SNNs models and their hardware implementations in Chapter~\ref{cha:bench}.
+	To achieve the thesis aim, we propose an on-line (Chapter~\ref{cha:Conv}) and an off-line (Chapter~\ref{cha:sdlm}) SNN training method to bring Deep Learning advantages to SNNs, and provide a spike-based dataset and its corresponding evaluation methodology to measure the performance of SNN models and their hardware implementations in Chapter~\ref{cha:bench}.
