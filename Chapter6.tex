@@ -19,10 +19,10 @@ The corresponding spike trains are produced using a range of techniques: rate-ba
 In addition, a complementary evaluation methodology is presented to assess both model-level and hardware-level performance.
 Finally, we demonstrate the use of the dataset and the evaluation methodology using an SNN model to validate the performance of the models and their hardware implementations.
 
-With this dataset we hope to (1) promote meaningful comparison between algorithms in the field of neural computation, (2) allow comparison with conventional image recognition methods, (3) provide an assessment of the state of the art in spike-based visual recognition, and (4) help researchers identify future directions and advance the field.
+With this dataset we hope to (1) promote meaningful comparisons between algorithms and neuromorphic platforms in the field of NE, (2) allow comparison with conventional non-spiking methods on image recognition, (3) provide an assessment of the state of the art in spike-based visual recognition, and (4) help researchers identify future directions and advance the field.
 
 In Section~\ref{sec:chapt6_intro}, diverse neuromorphic vision tasks are introduced to illustrate the requirements for a unified spike-based dataset.
-The rest of this chapter is structured as follows: Section~\ref{sec:method} elaborates the purpose and protocols of the proposed dataset and describes the sub-datasets and the methods employed to generate them; it also demonstrates the suggested evaluation methodology for use with the dataset.
+The rest of this chapter is structured as follows: Section~\ref{sec:method} elaborates the purpose and protocols of the proposed dataset and describes the sub-datasets and the methods employed to generate them; Section~\ref{sec:eval} demonstrates the suggested evaluation methodology for use with the dataset.
 %The sub-datasets and their generation methods are described in detail in Section~\ref{sec:data}.
 %In accordance with the dataset, its evaluation methodology is demonstrated in Section~\ref{sec:eval}.
 Section~\ref{sec:test} presents an SNN case study as demonstrations of using the dataset to assess model performance and benchmark hardware platforms.
@@ -470,7 +470,7 @@ MNIST digits were scaled to three different sizes, using smooth interpolation al
 The same DVS~\citep{serrano2013128} used in Section~\ref{subsec_flash} captured the movements of the digits and generated spike trains for each pixel in its 128$\times$128 resolution.
 A total of 30K recordings were made: 10 digits, at 3 different scales, 1K different handwritten samples for each.
 
-\subsection{Performance Evaluation}
+\section{Performance Evaluation}
 \label{sec:eval}
 As a result of the spike-based processing used in SNN models, new concerns about the latency and energy cost arise over performance assessment.
 Therefore we propose corresponding evaluation metrics and suggest a sufficient description of SNN models in this section.
@@ -479,7 +479,7 @@ This model-specific assessment provides more robust comparisons between hardware
 A complementary evaluation methodology is essential to provide common metrics and assess both the model-level and hardware-level performance.
 
 
-\subsubsection{Model-Level Evaluation}
+\subsection{Model-Level Evaluation}
 \label{subsec:model}
 
 A suggested description of an SNN model is shown in Table~\ref{tb:model_eval} where the performance evaluation metrics are in bold and the SNN specific description is in italics.
@@ -656,13 +656,13 @@ Following the formatted evaluation as in Table~\ref{tb:model_eval}, Table~\ref{t
 			\begin{mycell}{2cm}Poisson\end{mycell} & % preprocessing
 			\begin{mycell}{3cm} Six layers,\\ConvNet, \\LIF neurons\end{mycell}& % network
 			\begin{mycell}{3cm} Off-line trained with ReLU,\\ Noisy Softplus fine-tune\end{mycell}&   % training
-			\begin{mycell}{3cm} 99.07\%, \\1~s per test\\$53.4$M Sopbs\end{mycell}\\ % recognition    
+			\begin{mycell}{3cm} 99.07\%, \\1~s per test\\35.24~ms\\$53.4$M Sopbs\end{mycell}\\ % recognition    
 			
 			\begin{mycell}{0.5cm}Chpt5\end{mycell}& 
 			\begin{mycell}{2cm}Poisson\end{mycell} & % preprocessing
 			\begin{mycell}{3cm} Two layers,\\ Autoencoders~(AE), \\LIF neurons\end{mycell}& % network
 			\begin{mycell}{3cm} Event-driven, spike-based AE\\18K~s training, unsupervised\end{mycell}&   % training
-			\begin{mycell}{3cm} 94.72\%, \\1~s per test\\$5.26$M Sopbs\end{mycell}\\ % recognition    
+			\begin{mycell}{3cm} 94.72\%, \\1~s per test\\21.68~ms\\$5.26$M Sopbs\end{mycell}\\ % recognition    
 			%
 			\begin{mycell}{0.5cm} Case Study \end{mycell}  & 
 			\begin{mycell}{2cm} Poisson \end{mycell}& % preprocessing 
@@ -675,7 +675,7 @@ Following the formatted evaluation as in Table~\ref{tb:model_eval}, Table~\ref{t
 	\label{tb:software_comparison}
 \end{table}
 
-\subsubsection{Hardware-Level Evaluation}
+\subsection{Hardware-Level Evaluation}
 \label{subsec:hw}
 
 \begin{sidewaystable*}[htbp] \small
