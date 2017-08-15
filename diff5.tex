@@ -1,22 +1,41 @@
-\chapter{Spike-based Rate Multiplication for On-line SNN Training}
+\DIFdelbegin %DIFDELCMD < \chapter{%%%
+\DIFdel{Spike-based Rate Multiplication for }\DIFdelend \DIFaddbegin \chapter[On-line SNN training with SRM]{\DIFaddend On-line SNN \DIFdelbegin \DIFdel{Training}\DIFdelend \DIFaddbegin \DIFadd{training with Spike-Based Rate Multiplication}\DIFaddend }
 \label{cha:sdlm}
 %Paragraph One: LINK
 %Make a connection to what has immediately gone before. Recap the last chapter. In the last chapter I showed that… Having argued in the previous chapter that… As a result of x, which I established in the last chapter….. It is also possible to make a link between this chapter and the whole argument… The first step in answering my research question (repeat question) .. was to.. . In the last chapter I …
-Having argued in the previous chapter that deep SNNs are equally capable of classifying digits as \DIFdelbegin \DIFdel{deep ANNs do}\DIFdelend \DIFaddbegin \DIFadd{are deep ANNs}\DIFaddend , and can be trained simply just like ANNs\DIFdelbegin \DIFdel{.
-This }\DIFdelend \DIFaddbegin \DIFadd{, this }\DIFaddend chapter continues the discussion of training deep SNNs and takes \DIFaddbegin \DIFadd{an }\DIFaddend extra step forward to the second research problem of biologically inspired, on-line, spike-based SNN training.
+\DIFdelbegin \DIFdel{Having argued in }\DIFdelend \DIFaddbegin \DIFadd{In }\DIFaddend the previous chapter \DIFaddbegin \DIFadd{we have argued }\DIFaddend that deep SNNs are equally capable of classifying digits as \DIFdelbegin \DIFdel{deep ANNs do}\DIFdelend \DIFaddbegin \DIFadd{are deep ANNs}\DIFaddend , and can be trained simply \DIFdelbegin \DIFdel{just like ANNs}\DIFdelend \DIFaddbegin \DIFadd{off-line on an equivalent ANN}\DIFaddend .
+This chapter continues the discussion of training deep SNNs and takes \DIFdelbegin \DIFdel{extra step forward to }\DIFdelend \DIFaddbegin \DIFadd{an extra step towards Neuromorphic Cognition by using biologically-plausible synaptic plasticity  rules.
+}
+
+
+\DIFaddend the second research problem of biologically inspired, on-line, spike-based SNN training.
 
 %Paragraph Two: FOCUS
 %Now focus the reader’s attention on what this chapter is specifically going to do and why it is important. In this chapter I will examine.. I will present… I will report … This is crucial in (aim of thesis/research question) in order to….
-In this chapter we \DIFdelbegin \DIFdel{will present the }\DIFdelend \DIFaddbegin \DIFadd{present an on-line unsupervised learning algorithm, }\DIFaddend Spike-based Rate Multiplication\DIFdelbegin \DIFdel{method}\DIFdelend ~(SRM)\DIFdelbegin \DIFdel{.
-This algorithm successfully transfers multiplication operations to possibility of some specific firing events of }\DIFdelend \DIFaddbegin \DIFadd{, working purely on event-based local STDP for training spiking Autoencoders and Restricted Boltzmann Machines.
-The SRM method represents the product of numerical values used in these unsupervised Deep Learning techniques with rate multiplication.
-The SRM then transforms the rate multiplication to the number of coincident spikes emitted from }\DIFaddend a pair of rate-coded spike trains\DIFdelbegin \DIFdel{.
-Moreover, these firing }\DIFdelend \DIFaddbegin \DIFadd{, and the simultaneous }\DIFaddend events can be \DIFdelbegin \DIFdel{captured with Synaptic-Time-Dependent Plasticity}\DIFdelend \DIFaddbegin \DIFadd{obtained by the biologically-plausible learning rule: Spike-Time-Dependant-Plasticity}\DIFaddend ~(STDP)\DIFdelbegin \DIFdel{rule thus to update the weights accordingly in an }\DIFdelend \DIFaddbegin \DIFadd{.
-This }\DIFaddend on-line \DIFdelbegin \DIFdel{, event-based, and biologically-plausible manner.
+\DIFdelbegin \DIFdel{In this chapter we will present the }\DIFdelend %DIF > In this chapter we present an on-line unsupervised learning algorithm, Spike-based Rate Multiplication~(SRM), working purely on event-based local STDP for training spiking Autoencoders and Restricted Boltzmann Machines.
+%DIF > The SRM method represents the product of numerical values used in these unsupervised Deep Learning techniques with rate multiplication.
+%DIF > The SRM then transforms the rate multiplication to the number of coincident spikes emitted from a pair of rate-coded spike trains, and the simultaneous events can be obtained by the biologically-plausible learning rule: Spike-Time-Dependant-Plasticity~(STDP).
+%DIF > This on-line training method achieves better performance than existing algorithms and approaches the same, sometimes better performance of the equivalent non-spiking methods.
+%DIF > It is crucial to provide deep SNNs with effective on-line training algorithms not only for building successful spike-based object recognition applications, but also for better power efficiency and scalability provided by the biologically-plausible SNN training on neuromorphic hardware.
+\DIFaddbegin 
+
+\DIFadd{On-line training aims to bring biologically-plausible learning rules to SNNs to equip neuromorphic computers with genuine learning capabilities.
+Instead of transforming off-line trained ANN models to SNNs, on-line methods face the problem of translating numerical computations for training Deep Learning modules into spike-based synaptic plasticity rules.
+Multiplication is the core operation in the unsupervised Deep Learning algorithms, Autoencoders~(AEs) and Restricted Boltzmann Machines~(RBMs): $\Delta w \propto ab-cd$.
+In Chapter~\ref{cha:sdlm} we found that the product of two numerical values could be represented with rate multiplication of a pair of rate-coded spike trains;
+and the proposed formalised }\DIFaddend Spike-based Rate Multiplication\DIFdelbegin \DIFdel{method}\DIFdelend ~(SRM) \DIFdelbegin \DIFdel{.
+This algorithm successfully transfers multiplication operations to possibility of some specific firing events of }\DIFdelend \DIFaddbegin \DIFadd{method precisely transformed the product of rates to the number of simultaneous spikes generated from }\DIFaddend a pair of \DIFdelbegin \DIFdel{rate-coded spike trains.
+Moreover, these firing events can be captured with Synaptic-Time-Dependent }\DIFdelend \DIFaddbegin \DIFadd{connected spiking neurons.
+Most importantly, the simultaneous events were captured by the weight change of the synaptic connection using the Spike-Timing-Dependent }\DIFaddend Plasticity~(STDP) \DIFdelbegin \DIFdel{rule thus to update the weights accordingly in an on-line, }\DIFdelend \DIFaddbegin \DIFadd{learning rule.
+Therefore, the SRM tackles the problem of translating the weight tuning from numerical computations to }\DIFaddend event-based, \DIFdelbegin \DIFdel{and }\DIFdelend biologically-plausible \DIFdelbegin \DIFdel{manner.
 Such weight updates suit the conventional unsupervised deep learning modules, such as Autoencoders (AE) and Restricted Boltzmann Machine~(RBMs), where multiplication of the neural outputs is the main operation.
 %DIF < todo maybe sell online event-based STDP? At least in Chapter 2, when introducing learning algorithms.
-}\DIFdelend \DIFaddbegin \DIFadd{training method achieves better performance than existing algorithms and approaches the same, sometimes better performance of the equivalent non-spiking methods.
-}\DIFaddend It is crucial to provide deep SNNs with effective on-line training algorithms not only for building successful spike-based object recognition applications, but also for better power efficiency and scalability \DIFdelbegin \DIFdel{when }\DIFdelend \DIFaddbegin \DIFadd{provided by the biologically-plausible SNN }\DIFaddend training on neuromorphic hardware.
+It is crucial to provide deep SNNs with effective on-line training algorithms not only for building successful spike-based object recognition applications, but also for better power efficiency and scalability when training on neuromorphic hardware}\DIFdelend \DIFaddbegin \DIFadd{learning rules in SNNs.
+}
+
+\DIFadd{Spiking AEs and RBMs can be trained with SRM by sharing the synaptic weights between $ab$ and $cd$, and applying symmetric learning rate $\pm \eta_s$ on the weight change respectively.
+The performance approaches the same, sometimes even superior, classification and reconstruction capabilities compared to their equivalent non-spiking models.
+In addition, the numerical analysis of the proposed algorithm accurately estimates the learning rate $\pm \eta_s$, thus closely mimicking the learning behaviour of the AE and RBM modules, and improves the learning performance compared to existing methods}\DIFaddend .
 
 
 

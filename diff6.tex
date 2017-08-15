@@ -19,10 +19,10 @@ The corresponding spike trains are produced using a range of techniques: rate-ba
 In addition, a complementary evaluation methodology is presented to assess both model-level and hardware-level performance.
 Finally, we demonstrate the use of the dataset and the evaluation methodology using an SNN model to validate the performance of the models and their hardware implementations.
 
-With this dataset we hope to (1) promote meaningful comparison between algorithms in the field of neural computation, (2) allow comparison with conventional image recognition methods, (3) provide an assessment of the state of the art in spike-based visual recognition, and (4) help researchers identify future directions and advance the field.
+With this dataset we hope to (1) promote meaningful \DIFdelbegin \DIFdel{comparison between algorithms }\DIFdelend \DIFaddbegin \DIFadd{comparisons between algorithms and neuromorphic platforms }\DIFaddend in the field of \DIFdelbegin \DIFdel{neural computation}\DIFdelend \DIFaddbegin \DIFadd{NE}\DIFaddend , (2) allow comparison with conventional \DIFdelbegin \DIFdel{image recognition methods}\DIFdelend \DIFaddbegin \DIFadd{non-spiking methods on image recognition}\DIFaddend , (3) provide an assessment of the state of the art in spike-based visual recognition, and (4) help researchers identify future directions and advance the field.
 
 In Section~\ref{sec:chapt6_intro}, diverse neuromorphic vision tasks are introduced to illustrate the requirements for a unified spike-based dataset.
-The rest of this chapter is structured as follows: Section~\ref{sec:method} elaborates the purpose and protocols of the proposed dataset and describes the sub-datasets and the methods employed to generate them; it also demonstrates the suggested evaluation methodology for use with the dataset.
+The rest of this chapter is structured as follows: Section~\ref{sec:method} elaborates the purpose and protocols of the proposed dataset and describes the sub-datasets and the methods employed to generate them; \DIFdelbegin \DIFdel{it also }\DIFdelend \DIFaddbegin \DIFadd{Section~\ref{sec:eval} }\DIFaddend demonstrates the suggested evaluation methodology for use with the dataset.
 %The sub-datasets and their generation methods are described in detail in Section~\ref{sec:data}.
 %In accordance with the dataset, its evaluation methodology is demonstrated in Section~\ref{sec:eval}.
 Section~\ref{sec:test} presents an SNN case study as demonstrations of using the dataset to assess model performance and benchmark hardware platforms.
@@ -34,7 +34,7 @@ Researchers are using the capabilities created by rapid developments in neuromor
 Neuromorphic engineering has delivered biologically-inspired sensors such as DVS~(Dynamic Vision Sensor) silicon retinas~\citep{serrano2013128, delbruck2008frame, yang2015dynamic, posch2014retinomorphic}, which offer the prospect of low-cost visual processing thanks to their event-driven and redundancy-reducing style of information representation.
 Moreover, SNN simulation tools~\citep{davison2008pynn, gewaltig2007nest, goodman2008brian} and neuromorphic hardware platforms~\citep{furber2014spinnaker,  schemmel2010wafer,benjamin2014neurogrid,merolla2014million} have been developed to allow exploration of the brain by mimicking its functions and developing large-scale practical applications~\citep{eliasmith2012large}.
 %TODO Vision Recognition on SNNs. Aims: brain like -> feed_forward structure, accuracy, latency and energy efficiency.
-Achieving the brain's energy efficiency motivates the development of neuromorphic hardware, since the human brain consumes only about 20~W of power~\citep{drubach2000brain}.
+Achieving the brain's energy efficiency motivates the development of neuromorphic hardware, since the human brain \DIFdelbegin \DIFdel{consumes }\DIFdelend \DIFaddbegin \DIFadd{has a power consumption of }\DIFaddend only about 20~W\DIFdelbegin \DIFdel{of power}\DIFdelend ~\citep{drubach2000brain}.
 In the case of visual processing, the brain can accurately recognise objects remarkably quickly, e.g. in 200~ms in monkeys~\citep{fabre1998rapid}, even with short presentations (less than 100~ms) of the target objects~\citep{keysers2001speed}.
 Such rapid and highly accurate recognition is the target of modelling spike-based visual recognition.
 
@@ -60,7 +60,8 @@ Recently~\DIFdelbegin \DIFdel{\mbox{%DIFAUXCMD
 \citet{fu2012spiking}
 }%DIFAUXCMD
 }\DIFaddend reported that their SNN implementation was capable of recognising facial expressions with a classification accuracy (CA) of 97.35\% on the JAFFE dataset~\citep{lyons1998coding} which contains 213 images of 7 facial expressions posed by 10 individuals.
-%They employed simple integrate-and-fire neurons with rank order coding (ROC) where the earliest pre-synaptic spikes have the strongest impact on the post-synaptic potentials.
+%DIF < They employed simple integrate-and-fire neurons with rank order coding (ROC) where the earliest pre-synaptic spikes have the strongest impact on the post-synaptic potentials.
+%DIF > They employed simple integrate-and-fire~(IF) neurons with rank order coding (ROC) where the earliest pre-synaptic spikes have the strongest impact on the post-synaptic potentials.
 According to~\DIFdelbegin \DIFdel{\mbox{%DIFAUXCMD
 \citep{vanrullen2002surfing}
 }%DIFAUXCMD
@@ -68,7 +69,7 @@ According to~\DIFdelbegin \DIFdel{\mbox{%DIFAUXCMD
 \citet{vanrullen2002surfing}
 }%DIFAUXCMD
 }\DIFaddend , the first wave of spikes carry explicit information through the ventral stream and in each stage meaningful information is extracted and spikes are regenerated. 
-Using one spike per neuron, similar to the first spiking wave in biology,~\DIFdelbegin \DIFdel{\mbox{%DIFAUXCMD
+\DIFdelbegin \DIFdel{Using }\DIFdelend \DIFaddbegin \DIFadd{Therefore, using }\DIFaddend one spike per neuron, similar to the first spiking wave in biology,~\DIFdelbegin \DIFdel{\mbox{%DIFAUXCMD
 \citep{delorme2001face}
 }%DIFAUXCMD
 }\DIFdelend \DIFaddbegin \DIFadd{\mbox{%DIFAUXCMD
@@ -100,11 +101,12 @@ The chip was capable of detecting the four suits in a 52-card deck which was bro
 Similarly, a real-time gesture recognition model~\citep{liu2014real} was implemented on a neuromorphic system with a DVS as a front-end and a SpiNNaker~\citep{furber2014spinnaker} machine as the back-end, where LIF neurons built up the ConvNet configured with biological parameters.
 In this study's largest configuration, a network of 74,210 neurons and 15,216,512 synapses used 290 SpiNNaker cores in parallel and reached 93.0\% accuracy. 
 
-Spike-Timing-Dependent Plasticity (STDP) as  a learning mechanism based on biological observations has been applied to vision tasks.
+Spike-Timing-Dependent Plasticity (STDP) as a learning mechanism based on biological observations has been applied to vision tasks.
 \DIFdelbegin \DIFdel{\mbox{%DIFAUXCMD
 \citep{bichler2012extraction}
 }%DIFAUXCMD
-}\DIFdelend \DIFaddbegin \DIFadd{\mbox{%DIFAUXCMD
+}\DIFdelend \DIFaddbegin \DIFadd{As mentioned in Chapter~\ref{cha:intro}, these models typically comprise only two neural layers and exploit STDP and/or Winner-Take-All~(WTA) circuits on the synaptic connections.
+\mbox{%DIFAUXCMD
 \citet{bichler2012extraction}
 }%DIFAUXCMD
 }\DIFaddend demonstrated an unsupervised STDP learning model to classify car trajectories captured with a DVS retina. 
@@ -200,7 +202,7 @@ Just as research in this field is an expanding and evolving activity, the datase
 %It also aims to detect complex action (non-atomic), e.g. long jump, which consists of several continuous atomic actions.
 
 
-\section{Materials and Methods}
+\section{\DIFdelbegin \DIFdel{Materials and Methods}\DIFdelend \DIFaddbegin \DIFadd{NE Dataset}\DIFaddend }
 \label{sec:method}
 \subsection{Guiding Principles}
 The NE database we propose here is a developing and evolving dataset consisting of various spike-based representations of images and videos.
@@ -210,17 +212,17 @@ AER was originally proposed as a time-multiplexed spike communication protocol w
 The recorded AER data consists of a list of events, each one containing the time stamp of a spike and the address of the neuron which generated the spike.
 With the NE dataset we hope:
 \begin{itemize}
-	\item \textit{to promote meaningful comparisons of algorithms in the field of spiking neural computation.}
+	\item \textit{to promote meaningful comparisons \DIFdelbegin \DIFdel{of }\DIFdelend \DIFaddbegin \DIFadd{between }\DIFaddend algorithms \DIFaddbegin \DIFadd{and neuromorphic platforms }\DIFaddend in the field of \DIFdelbegin \DIFdel{spiking neural computation}\DIFdelend \DIFaddbegin \DIFadd{NE}\DIFaddend .}
 	The NE dataset provides a unified format of AER data to meet the demands of spike-based visual stimuli.
 	It also encourages researchers to publish and contribute their data to build up the NE dataset.
-	\item \textit{to allow comparison with conventional image recognition methods.}
+	\item \textit{to allow comparison with conventional \DIFaddbegin \DIFadd{non-spiking methods on }\DIFaddend image recognition\DIFdelbegin \DIFdel{methods}\DIFdelend .}
 	We expect the dataset to support this comparison using spiking versions of existing vision datasets.
 	Thus, conversion methods are required to transform datasets of images and frame-based videos into spike stimuli.
 	More biologically-accurate and better information preserving schemes are welcome.
 	%	With the growing understanding of biological vision, new methodologies and algorithms that can convert these conventional datasets into spikes in more biologically-accurate ways are welcome.
 	%	Other spike representation schemes may do a better job of preserving information from the original stimuli.
 
-	\item \textit{to provide an assessment of the state of the art in spike-based visual recognition on neuromorphic hardware.}
+	\item \textit{to provide an assessment of the state of the art in spike-based visual recognition\DIFdelbegin \DIFdel{on neuromorphic hardware}\DIFdelend .}
 	To reveal the accuracy, speed, and energy-efficient recognition of neuromorphic approaches, we need not only a spike-based dataset but also an appropriate evaluation methodology.
 	The evaluation methodology will be constantly improving along with the evolution of the dataset.
 	\item \textit{to help researchers identify future directions and advance the field.}
@@ -248,7 +250,7 @@ The converted MNIST dataset consists of four subsets which were generated for di
 	\item \textit{DVS recorded moving input},
 	to trigger the study of algorithms targeting continuous input from real-world sensors for implementation, for example, on mobile neuromorphic robots.
 \end{itemize}
-The dataset \DIFdelbegin \DIFdel{can be found }\DIFdelend \DIFaddbegin \DIFadd{is published }\DIFaddend in the GitHub\DIFdelbegin \DIFdel{repository at: https: //github.com/NEvision/NE15}\DIFdelend \DIFaddbegin \DIFadd{: }\url{https://github.com/NEvision/NE15}\DIFaddend .
+The dataset \DIFdelbegin \DIFdel{can be found }\DIFdelend \DIFaddbegin \DIFadd{is published }\DIFaddend in the GitHub\DIFdelbegin \DIFdel{repository at: https://github.com/NEvision/NE15}\DIFdelend \DIFaddbegin \DIFadd{: }\url{https://github.com/NEvision/NE15}\DIFaddend .
 \subsection{Data Description}
 Two file formats are supported in the dataset: the jAER format~\citep{delbruck2008frame} (.dat or .aedat), and binary files in NumPy~\citep{numpyPython} (.npy) format.
 %The AER interface has been widely used in neuromorphic systems, especially for vision sensors.
@@ -473,9 +475,12 @@ The detailed description of the algorithm is demonstrated \DIFdelbegin \DIFdel{i
 
 \subsubsection{DVS Sensor Output with Flashing Input}
 \label{subsec_flash}
-The purpose of including the subset with DVS-recorded flashing digits is to promote research into rapid and accurate `core recognition', thus to encourage applying non-rate-based algorithms, for example ROC, to short DVS output spike trains.
+The purpose of including the subset with DVS-recorded flashing digits is to promote research into rapid and accurate `core recognition', thus to encourage \DIFdelbegin \DIFdel{applying }\DIFdelend \DIFaddbegin \DIFadd{the research of }\DIFaddend non-rate-based algorithms \DIFdelbegin \DIFdel{, for example ROC, to short DVS output spike trains}\DIFdelend \DIFaddbegin \DIFadd{to shorten the recognition time}\DIFaddend .
 
-Each digit was shown alternating with a blank image and each display lasted one second.
+%DIF > applying non-rate-based algorithms, for example ROC, to short the DVS output spike trains.
+\DIFaddbegin 
+
+\DIFaddend Each digit was shown alternating with a blank image and each display lasted one second.
 The digits were displayed on an LCD monitor in front of the DVS retina~\citep{serrano2013128} and were placed in the centre of the visual field of the camera.
 Since there are two spike polarities - `ON' indicating an increase in the intensity while `OFF' indicates a decrease - there are `ON' and `OFF' flashing recordings respectively per digit.
 In Figure~\ref{fig:flash}, the burstiness of the spikes is illustrated where most of the spikes occur in a 30~ms time slot. 
@@ -506,14 +511,19 @@ In total, this subset of the database contains 2$\times$60K recordings for train
 
 \subsubsection{DVS Sensor Output with Moving Input}
 
-The subset with DVS recorded moving digits is provided by a collaborator, Teresa~Serrano-Gotarredona, and is  presented to address the challenges of position- and scale- invariance in computer vision.
+The subset \DIFdelbegin \DIFdel{with }\DIFdelend \DIFaddbegin \DIFadd{of }\DIFaddend DVS recorded moving digits is provided by \DIFdelbegin \DIFdel{a collaborator, }\DIFdelend Teresa~Serrano-Gotarredona, and is  presented to address the challenges of position- and scale- invariance in computer vision.
+\DIFdelbegin %DIFDELCMD < 
 
-MNIST digits were scaled to three different sizes, using smooth interpolation algorithms to increase their size from the original 28x28 pixels, and displayed on the monitor with slow motion. 
+%DIFDELCMD < %%%
+\DIFdelend MNIST digits were scaled to three different sizes, using smooth interpolation algorithms to increase their size from the original \DIFdelbegin \DIFdel{28x28 }\DIFdelend \DIFaddbegin \DIFadd{28$\times$28 }\DIFaddend pixels, and displayed on the monitor with slow motion. 
 The same DVS~\citep{serrano2013128} used in Section~\ref{subsec_flash} captured the movements of the digits and generated spike trains for each pixel in its 128$\times$128 resolution.
 A total of \DIFdelbegin \DIFdel{$30,000$ }\DIFdelend \DIFaddbegin \DIFadd{30K }\DIFaddend recordings were made: 10 digits, at 3 different scales, \DIFdelbegin \DIFdel{$1,000$ }\DIFdelend \DIFaddbegin \DIFadd{1K }\DIFaddend different handwritten samples for each.
 
-\subsection{Performance Evaluation}
-\label{sec:eval}
+\DIFdelbegin \subsection{\DIFdel{Performance Evaluation}}
+%DIFAUXCMD
+\addtocounter{subsection}{-1}%DIFAUXCMD
+\DIFdelend \DIFaddbegin \section{\DIFadd{Performance Evaluation}}
+\DIFaddend \label{sec:eval}
 As a result of the spike-based processing used in SNN models, new concerns about the latency and energy cost arise over performance assessment.
 Therefore we propose corresponding evaluation metrics and suggest a sufficient description of SNN models in this section.
 Once a model is implemented on a neuromorphic platform, the hardware performance can be evaluated by running the particular model.
@@ -521,14 +531,21 @@ This model-specific assessment provides more robust comparisons between hardware
 A complementary evaluation methodology is essential to provide common metrics and assess both the model-level and hardware-level performance.
 
 
-\subsubsection{Model-Level Evaluation}
-\label{subsec:model}
+\DIFdelbegin \subsubsection{\DIFdel{Model-Level Evaluation}}
+%DIFAUXCMD
+\addtocounter{subsubsection}{-1}%DIFAUXCMD
+\DIFdelend \DIFaddbegin \subsection{\DIFadd{Model-Level Evaluation}}
+\DIFaddend \label{subsec:model}
 
 A suggested description of an SNN model is shown in Table~\ref{tb:model_eval} where the performance evaluation metrics are in bold and the SNN specific description is in italics.
+\DIFdelbegin %DIFDELCMD < 
 
-Because SNNs introduce the time dimension and spike-based processing, additional performance metrics become relevant in addition to classification accuracy: recognition latency and the number of synaptic events.
+%DIFDELCMD < %%%
+\DIFdelend Because SNNs introduce the time dimension and spike-based processing, additional performance metrics become relevant in addition to classification accuracy: recognition latency and the number of synaptic events.
 %Both of the metrics are proposed according to the biological aspects.
-Recognition latency measures how fast spikes are conveyed through the layers of network to trigger the recognition neurons.
+\DIFaddbegin 
+
+\DIFaddend Recognition latency measures how fast spikes are conveyed through the layers of network to trigger the recognition neurons.
 \DIFdelbegin \DIFdel{\mbox{%DIFAUXCMD
 \citep{dicarlo2012does}
 }%DIFAUXCMD
@@ -538,8 +555,11 @@ considers }\DIFdelend \DIFaddbegin \DIFadd{\mbox{%DIFAUXCMD
 considered }\DIFaddend the rapid ($<$200~ms) and accurate vision recognition in the brain as the essential problem of object recognition.
 For real-time systems with live visual inputs, such as robotic systems, a short response latency helps make fast decisions and take rapid action.
 The latency is measured as the time difference between the first spike generated by the output layer and the first spike from the input layer.
-A small number of total synaptic events generated by a recognition task indicates the efficiency of the SNN model.
-A spike event is a synaptic operation evoked when one action potential is transmitted through one synapse~\citep{sharp2012power}.
+\DIFdelbegin \DIFdel{A small number of total synaptic events generated by a recognition task indicates the efficiency of the SNN model.
+}\DIFdelend \DIFaddbegin 
+
+%DIF > A small number of total synaptic events generated by a recognition task indicates the efficiency of the SNN model.
+\DIFaddend A spike event is a synaptic operation evoked when one action potential is transmitted through one synapse~\citep{sharp2012power}.
 Fewer spike events imply lower overall neural activity and lower energy consumption.
 The number of synaptic events can be measured as `Sopbs', synaptic operations per biological second.
 %\begin{table*}[hbt!]
@@ -704,13 +724,13 @@ Following \DIFdelbegin \DIFdel{to }\DIFdelend the formatted evaluation as in Tab
 			\begin{mycell}{2cm}Poisson\end{mycell} & % preprocessing
 			\begin{mycell}{3cm} Six layers,\\ConvNet, \\LIF neurons\end{mycell}& % network
 			\begin{mycell}{3cm} Off-line trained with ReLU,\\ Noisy Softplus fine-tune\end{mycell}&   % training
-			\begin{mycell}{3cm} 99.07\%, \\1~s per test\\$53.4$M Sopbs\end{mycell}\\ % recognition    
+			\begin{mycell}{3cm} 99.07\%, \\1~s per test\\\DIFaddbeginFL \DIFaddFL{35.24~ms}\\\DIFaddendFL $53.4$M Sopbs\end{mycell}\\ % recognition    
 
 			\begin{mycell}{0.5cm}Chpt5\end{mycell}& 
 			\begin{mycell}{2cm}Poisson\end{mycell} & % preprocessing
 			\begin{mycell}{3cm} Two layers,\\ Autoencoders~(AE), \\LIF neurons\end{mycell}& % network
 			\begin{mycell}{3cm} Event-driven, spike-based AE\\\DIFdelbeginFL \DIFdelFL{$18,000$}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{18K}\DIFaddendFL ~s training, unsupervised\end{mycell}&   % training
-			\begin{mycell}{3cm} 94.72\%, \\1~s per test\\$5.26$M Sopbs\end{mycell}\\ % recognition    
+			\begin{mycell}{3cm} 94.72\%, \\1~s per test\\\DIFaddbeginFL \DIFaddFL{21.68~ms}\\\DIFaddendFL $5.26$M Sopbs\end{mycell}\\ % recognition    
 			%
 			\begin{mycell}{0.5cm} Case Study \end{mycell}  & 
 			\begin{mycell}{2cm} Poisson \end{mycell}& % preprocessing 
@@ -723,8 +743,11 @@ Following \DIFdelbegin \DIFdel{to }\DIFdelend the formatted evaluation as in Tab
 	\label{tb:software_comparison}
 \end{table}
 
-\subsubsection{Hardware-Level Evaluation}
-\label{subsec:hw}
+\DIFdelbegin \subsubsection{\DIFdel{Hardware-Level Evaluation}}
+%DIFAUXCMD
+\addtocounter{subsubsection}{-1}%DIFAUXCMD
+\DIFdelend \DIFaddbegin \subsection{\DIFadd{Hardware-Level Evaluation}}
+\DIFaddend \label{subsec:hw}
 
 \begin{sidewaystable*}[htbp] \small
 	\caption{Hardware-level comparison}
@@ -876,14 +899,14 @@ The case study is a simple two-layer network where the input neurons receive Poi
 There is at least one decision neuron per digit to classify a test input.
 The neuron with \DIFaddbegin \DIFadd{the }\DIFaddend highest output firing rate classifies a test image as the digit it represents.
 The model utilises LIF neurons, and the parameters are all biologically valid, see the listed values in Table~\ref{tbl:pynnSetting}.
-The LIF neuron model follows the membrane potential dynamics:
+The LIF neuron model follows the membrane potential dynamics\DIFaddbegin \DIFadd{~(Equation~\ref{equ:LIF_V})}\DIFaddend :
 
 \begin{equation}
-\tau_m \frac{\D V}{\D t}=V_{rest} - V + R_{m} I_{syn}(t) ~~~,
+\tau_m \frac{\D V}{\D t}=V_{rest} - V + R_{m} I\DIFdelbegin \DIFdel{_{syn}}\DIFdelend (t) ~~~,
 \label{eq:LIF}
 \end{equation}
 
-where $\tau_m$ is the membrane time constant, $ V_{rest} $ is the resting potential, $ R_{m} $ is the membrane resistance and $ I_{syn} $ is the synaptic input current.
+where $\tau_m$ is the membrane time constant, $ V_{rest} $ is the resting potential, $ R_{m} $ is the membrane resistance and \DIFdelbegin \DIFdel{$ I_{syn} $ }\DIFdelend \DIFaddbegin \DIFadd{$ I $ }\DIFaddend is the synaptic input current.
 In PyNN, $ R_{m} $ is \DIFdelbegin \DIFdel{presented }\DIFdelend \DIFaddbegin \DIFadd{represented }\DIFaddend by $ R_{m}=\tau_m/C_{m} $, where $C_{m} $ is the membrane capacitance.
 A spike is generated when the membrane potential goes beyond the threshold, $ V_{thresh} $ and the membrane potential then resets to $V_{reset}$.
 In addition, a neuron cannot fire within the refractory period, $ \tau_{refrac} $, after generating a spike.
@@ -899,7 +922,7 @@ This makes performance evaluation on different simulators possible with the unif
 In terms of this case study, the performance of the model was evaluated with both software simulation (on NEST~\citep{gewaltig2007nest}) and \DIFaddbegin \DIFadd{on a }\DIFaddend hardware implementation (on SpiNNaker).
 
 In order to fully assess the performance, different settings were configured on the network, such as network size, input rate and test image duration.
-For simplicity of describing the system, one standard configuration is set as the example in the following sections.
+For simplicity of describing the system, \DIFdelbegin \DIFdel{one }\DIFdelend \DIFaddbegin \DIFadd{a set of }\DIFaddend standard configuration is \DIFdelbegin \DIFdel{set }\DIFdelend \DIFaddbegin \DIFadd{used }\DIFaddend as the example in the following sections.
 
 \begin{table}[hbbp]
 	\centering
@@ -1323,9 +1346,31 @@ This result provides a baseline for comparison with other SNN models and neuromo
 
 \section{Summary}
 \label{sec:summ}
-This chapter puts forward the NE dataset as a baseline for comparisons of vision based SNN models and neuromorphic platforms.
-It contains spike-based versions of existing widely-used databases in the vision recognition field.
+\DIFdelbegin \DIFdel{This chapter puts forward the NE dataset as a baseline for comparisons of vision based SNN models and neuromorphic platforms.
+It contains }\DIFdelend %DIF > This chapter puts forward the NE dataset as a baseline for comparisons of vision based SNN models and neuromorphic platforms.
+\DIFaddbegin \DIFadd{The NE dataset proposed in this chapter makes the comparison of SNNs with conventional recognition methods possible by using converted spike representations of the same vision databases.
+As far as we know, this is the first attempt at benchmarking neuromorphic vision recognition by providing public a }\DIFaddend spike-based \DIFdelbegin \DIFdel{versions of existing widely-used databases in the vision recognition field.
 Since new problems will continue to arise before vision becomes a solved question, the dataset will evolve as research progresses. 
-The conversion methods for transforming images and videos into spike trains will advance. The number of vision datasets will increase and the corresponding evaluation methodologies will evolve.
-The dataset aims to provide unified spike-based vision benchmarks and complementary evaluation methodologies to assess the performance of SNN algorithms.
+The conversion methods for transforming images and videos into spike trains will advance.The number of vision datasets will increase and the corresponding evaluation methodologies will evolve.
+The datasetaims to provide unified }\DIFdelend \DIFaddbegin \DIFadd{dataset and evaluation metrics.
+In accordance with the suggestions from~\mbox{%DIFAUXCMD
+\cite{tan2015bench}
+}%DIFAUXCMD
+, the evaluation metrics highlight the strengths of }\DIFaddend spike-based \DIFdelbegin \DIFdel{vision benchmarks and complementary evaluation methodologies to assess the performance of SNN algorithms.
+}\DIFdelend \DIFaddbegin \DIFadd{vision tasks and the dataset design also promotes the research into rapid and low energy recognition (e.g. flashing digits).
+}
+
+\DIFadd{A benchmark system is evaluated using the Poissonian subset of the NE15-MNIST dataset.
+%DIF > The models were described and their performance on accuracy, network latency, simulation time and energy usage were presented.
+This example benchmarking system demonstrates a recommended way of using the dataset, describing the SNN models and evaluating the system performance.
+%DIF > They provide a baseline for comparisons and encourage improved algorithms and models to make use of the dataset.
+The case study provides a baseline for robust comparisons between SNN models and their hardware implementations.
+}
+
+
+%DIF > It contains spike-based versions of existing widely-used databases in the vision recognition field.
+%DIF > Since new problems will continue to arise before vision becomes a solved question, the dataset will evolve as research progresses. 
+%DIF > The conversion methods for transforming images and videos into spike trains will advance. The number of vision datasets will increase and the corresponding evaluation methodologies will evolve.
+%DIF > The dataset aims to provide unified spike-based vision benchmarks and complementary evaluation methodologies to assess the performance of SNN algorithms.
+\DIFaddend 
 

@@ -208,10 +208,15 @@ Though the research aim has been mostly achieved by the work presented in this t
 In addition, this work has inspired new directions for future work to continue and expand the current research.
 
 \subsection{Off-line SNN Training}
+The current limitation prohibiting the off-line SNN training method from wide use lies in the lack of supporting tools.
+This requires the development of a set of software and libraries.
+Besides, we will look into the networks with feedback connections, the Recurrent Neural Networks~(RNNs), thus to adapt the off-line training method to most network architectures.
+Moreover, some initial studies have successfully applied the proposed method to various applications. 
+
 
 \paragraph{Supporting software tools.}
-The current limitation prohibiting the off-line SNN training method from wide use lies in the lack of supporting tools.
-This requires the development of a set of software and libraries:
+%The current limitation prohibiting the off-line SNN training method from wide use lies in the lack of supporting tools.
+The plan of developing software and libraries in the near future includes:
 
 \begin{itemize}
 	\item parameter calibration of $p$ for PAF given LIF neuron configurations, which involves automatic SNN simulations with different levels of current and noise, followed by curve fit with the activation function NSP. 
@@ -225,7 +230,7 @@ This requires the development of a set of software and libraries:
 	\item a translation tool that converts the tuned ANN models into SNNs described in the PyNN~\citep{davison2008pynn} language, thus the SNN model can run on any software simulator or neuromorphic hardware as long as PyNN is supported.
 \end{itemize}
 
-\paragraph{Recurrent Neural Networks~(RNNs).}
+\paragraph{Recurrent Neural Networks.}
 It is difficult to make SNNs work with recurrent architectures, since a spiking neuron simultaneously takes input from both the lower level on the feed-forward path and the upper level on the feedback path.
 However, in ANNs the feed-forward and feedback paths work alternately on separate steps.
 Therefore, the proposed SNN training method only applies to feed-forward networks.
@@ -248,6 +253,9 @@ The simple off-line SNN training method has enabled and encouraged interesting a
 
 
 \subsection{On-line Biologically-Plausible Learning}
+The proposed on-line learning method is limited to rate coding and greedy layer-wise training.
+Thus, we will explore alternative coding schemes and training algorithms to increase the effectiveness of the on-line learning methods.
+In addition, we will merge novel Deep Learning techniques into the biologically-plausible SNN training to improve the cognitive performance and also decrease the energy consumption when running on neuromorphic hardware.
 \paragraph{Beyond rate coding.}
 Although rate coding has shown good performance on training spiking Deep Learning modules on-line, time-based coding and rank-order coding which carry more information per spike, are expected to have better or faster learning capabilities~\citep{gautrais1998rate}.
 We have proposed a similar on-line learning algorithm for training precise-timing based spiking AEs and RBMs, which although still in the test-idea stage, the prototype has shown much faster learning speed than the rate-coding mechanism.
@@ -277,6 +285,9 @@ It is still an open question how to perform the human-level cognition and at the
 
 
 \subsection{Evaluation on Neuromorphic Vision}
+Since new problems will continue to arise before vision becomes a solved question, the NE dataset will evolve as research progresses. 
+The number of vision datasets will increase and the corresponding evaluation methodologies will evolve.
+The conversion methods for transforming images and videos into spike trains will advance.
 
 \paragraph{Face recognition dataset.}
 %The database proposed in Chapter~\ref{cha:bench} will be expanded by converting more popular vision datasets to spike representations.

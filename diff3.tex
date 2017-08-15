@@ -8,14 +8,14 @@ In this chapter, we will give an overview of popular architectures and models of
 \label{sec:dl_history}
 Deep \DIFdelbegin \DIFdel{learning }\DIFdelend \DIFaddbegin \DIFadd{Learning }\DIFaddend seems to have become the answer to all artificial intelligence problems overnight since Geoffrey Hinton proposed the training method of a type of ANN, \DIFdelbegin \DIFdel{deep belief network}\DIFdelend \DIFaddbegin \DIFadd{the Deep Belief Network}\DIFaddend , in 2006~\citep{hinton2006fast}.
 However, \DIFdelbegin \DIFdel{deep learning }\DIFdelend \DIFaddbegin \DIFadd{Deep Learning }\DIFaddend is not a new `magic', but rather has a history over a few decades and its sudden success is the result of the availability of an increasing amount of training data, \DIFaddbegin \DIFadd{the }\DIFaddend growing size of network models and greater computational power.
-Therefore, all the classical \DIFdelbegin \DIFdel{deep learning }\DIFdelend \DIFaddbegin \DIFadd{Deep Learning }\DIFaddend architectures date back to the last century \DIFdelbegin \DIFdel{when deep learning un-named}\DIFdelend \DIFaddbegin \DIFadd{before the `Deep Learning' named was coined}\DIFaddend .
+Therefore, all the classical \DIFdelbegin \DIFdel{deep learning }\DIFdelend \DIFaddbegin \DIFadd{Deep Learning }\DIFaddend architectures date back to the last century \DIFdelbegin \DIFdel{when deep learning un-named}\DIFdelend \DIFaddbegin \DIFadd{before the `Deep Learning' name was coined}\DIFaddend .
 However, at that time, deep networks \DIFdelbegin \DIFdel{were hardly to be trained}\DIFdelend \DIFaddbegin \DIFadd{could hardly be trained, }\DIFaddend mainly because of the \DIFdelbegin \DIFdel{limit }\DIFdelend \DIFaddbegin \DIFadd{limits }\DIFaddend on computational power.
 
 
 \subsection{Classical Models}
 We call the well-known and widely-used \DIFdelbegin \DIFdel{deep learning }\DIFdelend \DIFaddbegin \DIFadd{Deep Learning }\DIFaddend models `classical' and give a brief introduction to those models in this section. 
 As mentioned above, the first break-through \DIFdelbegin \DIFdel{of }\DIFdelend \DIFaddbegin \DIFadd{in }\DIFaddend training deep, \DIFdelbegin \DIFdel{not }\DIFdelend \DIFaddbegin \DIFadd{as opposed to }\DIFaddend shallow ($\le 3$ layers), networks was the greedy layer-wise strategy~\citep{hinton2006fast} proposed to train stacked RBMs, which will be described in more detail in Section~\ref{sec:rbm}.
-Shortly after that this method was proved to be efficient for training other kinds of deep networks including stacked AEs~\citep{bengio2007greedy} (stated in Section~\ref{sec:AE}).
+Shortly after\DIFdelbegin \DIFdel{that }\DIFdelend \DIFaddbegin \DIFadd{, }\DIFaddend this method was proved \DIFaddbegin \DIFadd{also }\DIFaddend to be efficient for training other kinds of deep networks including stacked AEs~\citep{bengio2007greedy} (stated in Section~\ref{sec:AE}).
 RBMs and AEs are suitable for dimensionality reduction and feature extraction when trained with unsupervised learning on unlabelled data.
 In 2012, using such \DIFdelbegin \DIFdel{a unsupervised deep learning architecture}\DIFdelend \DIFaddbegin \DIFadd{an unsupervised Deep Learning architecture, }\DIFaddend the Google Brain team achieved a milestone in the \DIFdelbegin \DIFdel{deep learning }\DIFdelend \DIFaddbegin \DIFadd{Deep Learning }\DIFaddend era; the neural network learned to recognise cats by `watching' 10 million images generated from random frames of YouTube videos~\citep{le2013building}.
 
@@ -47,7 +47,7 @@ The milestone achieved by \DIFaddbegin \DIFadd{the }\DIFaddend integration of RL
 %http://blog.aylien.com/introduction-generative-adversarial-networks-code-tensorflow/
 
 Generative Adversarial Networks (GANs)~~\citep{goodfellow2014generative} are proposed for training generative models of complex data.
-Instead of training discrimination networks (e.g. image classification using CovNets ) and generation networks (e.g. data sampling on RBMs) separately with different objectives, GANs train two competing networks, one the discriminator, the other the generator, simultaneously by continuously \DIFdelbegin \DIFdel{using }\DIFdelend \DIFaddbegin \DIFadd{making }\DIFaddend them to play games with each other.
+Instead of training discrimination networks (e.g. image classification using CovNets ) and generation networks (e.g. data sampling on RBMs) separately with different objectives, GANs train two competing networks, one the discriminator, the other the generator, simultaneously by continuously \DIFdelbegin \DIFdel{using them to }\DIFdelend \DIFaddbegin \DIFadd{making them }\DIFaddend play games with each other.
 Thus, the generator learns to produce more realistic data to \DIFdelbegin \DIFdel{cheat }\DIFdelend \DIFaddbegin \DIFadd{fool }\DIFaddend the discriminator; meanwhile the discriminator learns to become better at distinguishing generated from real data.
 Exciting achievements have been reported \DIFdelbegin \DIFdel{on }\DIFdelend \DIFaddbegin \DIFadd{in }\DIFaddend generating complex data such as realistic image generation based on \DIFdelbegin \DIFdel{description }\DIFdelend \DIFaddbegin \DIFadd{descriptions }\DIFaddend in text~\citep{radford2015unsupervised}.
 
@@ -86,7 +86,7 @@ The average filter traverses \DIFdelbegin \DIFdel{over }\DIFdelend an entire fea
 The next Conv layer drives 3D feature vectors with a depth of 6 (six feature maps) to convolve with 12 3D kernels with size of $6\times5\times5$.
 The example demonstrates a common set-up using \DIFdelbegin \DIFdel{the whole }\DIFdelend \DIFaddbegin \DIFadd{all the feature maps of the }\DIFaddend 3D feature vectors; usually \DIFdelbegin \DIFdel{the feature maps can be selected to be involved in different convolutions }\DIFdelend \DIFaddbegin \DIFadd{it is feasible to select a subset of the input feature maps to involve in the convolutions with each kernel}\DIFaddend .
 Then a \DIFdelbegin \DIFdel{pooling }\DIFdelend \DIFaddbegin \DIFadd{Pool }\DIFaddend layer follows the convolution.
-Repeating these alternative \DIFdelbegin \DIFdel{presentation }\DIFdelend \DIFaddbegin \DIFadd{presentations }\DIFaddend of a Conv layer and a \DIFdelbegin \DIFdel{pooling }\DIFdelend \DIFaddbegin \DIFadd{Pool }\DIFaddend layer builds up \DIFaddbegin \DIFadd{a }\DIFaddend deeper ConvNet.
+Repeating these \DIFdelbegin \DIFdel{alternative presentation }\DIFdelend \DIFaddbegin \DIFadd{alternating presentations }\DIFaddend of a Conv layer and a \DIFdelbegin \DIFdel{pooling }\DIFdelend \DIFaddbegin \DIFadd{Pool }\DIFaddend layer builds up \DIFaddbegin \DIFadd{a }\DIFaddend deeper ConvNet.
 
 The trainable shared weights used in the Conv layer hugely \DIFdelbegin \DIFdel{reduces }\DIFdelend \DIFaddbegin \DIFadd{reduce }\DIFaddend the number of weight parameters in a ConvNet, while \DIFdelbegin \DIFdel{pooling }\DIFdelend \DIFaddbegin \DIFadd{Pool }\DIFaddend layers use static convolutional kernels to shrink the size of \DIFdelbegin \DIFdel{networks}\DIFdelend \DIFaddbegin \DIFadd{the network}\DIFaddend .
 These convolutional connections can be described as 6c5-2s-12c5-2s, where $\alpha c \beta$ indicates $\alpha$ kernels of side length $\beta$ used in \DIFaddbegin \DIFadd{the }\DIFaddend Conv layer, and $2s$ specifies the side length and the stride of a pooling kernel.
@@ -206,7 +206,7 @@ For the sigmoid function example, shown in Figure~\ref{fig:af}(a), \DIFdelbegin 
 
 \DIFaddbegin \DIFadd{The }\DIFaddend Rectified Linear Unit (ReLU) is proposed to tackle the problem of vanishing \DIFdelbegin \DIFdel{gradient }\DIFdelend \DIFaddbegin \DIFadd{gradients }\DIFaddend in deep networks.
 ReLU, simply defined as $y = max(0,x)$ and shown in Figure~\ref{fig:af}, has a gradient of 1 when the input is greater than 0.
-Hence, the error gradient is able to be back-propagated in deeper network by multiplying ReLU derivatives.
+Hence, the error gradient is able to be back-propagated in deeper \DIFdelbegin \DIFdel{network }\DIFdelend \DIFaddbegin \DIFadd{networks }\DIFaddend by multiplying ReLU derivatives.
 
 \section{Autoencoders}
 \label{sec:AE}
@@ -585,7 +585,7 @@ If we use ReLU as the activation function, then the above equation is as follow:
 %%\subsection{RBM\citep{zhang2013rbm}}
 \section{Restricted Boltzmann Machine}
 \label{sec:rbm}
-\DIFaddbegin \DIFadd{The }\DIFaddend RBMs share similar ideas of unsupervised learning with AEs, but aim to present a data distribution of some training dataset, rather than reconstructing each \DIFdelbegin \DIFdel{element }\DIFdelend \DIFaddbegin \DIFadd{sample }\DIFaddend of the dataset.
+RBMs share similar ideas of unsupervised learning with AEs, but aim to present a data distribution of some training dataset, rather than reconstructing each \DIFdelbegin \DIFdel{element }\DIFdelend \DIFaddbegin \DIFadd{sample }\DIFaddend of the dataset.
 Thus, \DIFaddbegin \DIFadd{the }\DIFaddend RBM is an energy-based model and uses a stochastic approach.
 Besides that, the structure of \DIFdelbegin \DIFdel{RBMs}\DIFdelend \DIFaddbegin \DIFadd{an RBM}\DIFaddend , see Figure~\ref{fig:RBM}, is also similar to \DIFdelbegin \DIFdel{AEs' }\DIFdelend \DIFaddbegin \DIFadd{an AE }\DIFaddend where the visible units $\mathbf{v}$ bidirectionally connect to the hidden units $\mathbf{h}$ with strength $\mathbf{w}$.
 
@@ -682,7 +682,7 @@ The \DIFdelbegin \DIFdel{loss derivative }\DIFdelend \DIFaddbegin \DIFadd{deriva
 where  $ <\cdot>_{\mathbf{X}} $ denotes the mean expectation of $ \cdot $ given data set $\mathbf{X}$.
 The first term of the right-hand side is easy to get with the given data, $\mathbf{d} \in \mathbf{D} $, and the second term can be approximated by generating data samples $\mathbf{C} $ according to $ p(\mathbf{x} \mid \Theta) $.
 %These generative samples is called ``fantasy data'' and can be generated using Monte Carlo Markov Chain (MCMC) sampling, see section~\ref{sec:mcmc}.
-The detailed derivation process can be found in Appendix \DIFdelbegin \DIFdel{~\ref{app:part}}\DIFdelend \DIFaddbegin \DIFadd{(Equation~\ref{app_equ:part})}\DIFaddend .
+The detailed derivation process can be found in \DIFdelbegin \DIFdel{Appendix~\ref{app:part}}\DIFdelend \DIFaddbegin \DIFadd{the Appendix (Equation~\ref{app_equ:part})}\DIFaddend .
 %Although in this example the integration of product of normal distribution is still tractable, it is also helpful to use numerical integration.
 %Although $ p(\mathbf{v} \mid \Theta) $ is not a PoE problem, the partial derivation of the average log-likelihood function still applies to Equation~(\ref{equ:part}) and the intractable integration is the same problem here:
 Applying the \DIFdelbegin \DIFdel{model function of RBMs }\DIFdelend \DIFaddbegin \DIFadd{RBM model function }\DIFaddend in Equation~\ref{equ:rbm_prob} to the loss derivative (Equation~\ref{equ:part}), \DIFdelbegin \DIFdel{Appendix~\ref{app:RBM} }\DIFdelend \DIFaddbegin \DIFadd{Equation~\ref{app_equ:RBM} }\DIFaddend derives the loss function of RBMs in detail:

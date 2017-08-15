@@ -2,12 +2,12 @@
 \label{cha:Conv}
 %Paragraph One: LINK
 In the last chapter, we described the promising Deep Learning research in the field of artificial neural networks~(ANNs). 
-An intuitive idea of bringing these Deep Learning techniques to spiking neural networks~(SNNs) is either transferring well-tuned deep ANN models into SNNs or translating numerical calculations of weight tuning to biologically-plausible synaptic learning rules.
+An intuitive idea of bringing these Deep Learning techniques to spiking neural networks~(SNNs) is either transferring well-tuned deep ANN models into SNNs or translating numerical calculations of weight modulation to biologically-plausible synaptic learning rules.
 %operate deep SNNs using the trained weights of the equivalent ANNs.
 %Hence SNNs can be trained by first training an equivalent ANN and then transferring the trained weights to the SNN.
 %We call this method `off-line', since the training does not take place on SNNs directly, but rather on ANNs instead.
-Based on the former solution, this chapter proposes a generalised training method to train SNNs off-line on equivalent ANNs and transfer the tuned weights back to the SNNs;
-while next chapter explores the latter idea of converting deep learning algorithms directly to on-line synaptic plasticity rules.
+Based on the former solution, this chapter proposes a generalised method to train SNNs off-line on equivalent ANNs and transfer the tuned weights back to the SNNs;
+while next chapter explores the latter idea of converting Deep Learning algorithms directly to on-line synaptic plasticity rules.
 Both chapters address the thesis question: how to operate and train SNNs to make them as competent as ANNs on Artificial Intelligence~(AI) tasks.
 
 %Paragraph Two: FOCUS
@@ -15,9 +15,8 @@ Both chapters address the thesis question: how to operate and train SNNs to make
 
 There are two significant problems to be solved when training SNNs off-line.
 First, an accurate activation function is needed to model the neural dynamics of spiking neurons.
-In this chapter, we propose an activation function, 
-Noisy Softplus~(NSP), which closely simulates the firing activity of Leaky Integrate-and-Fire~(LIF) neurons driven by noisy current influx.
-The second problem is mapping the abstract numerical values of the ANN to physical variables, current (nA) and firing rate (Hz), in the SNN.
+In this chapter, we propose a novel activation function used in ANNs, Noisy Softplus~(NSP), to closely simulate the firing activity of Leaky Integrate-and-Fire~(LIF) neurons driven by noisy current influx.
+The second problem is to map the abstract numerical values of the ANNs to physical variables, current (nA) and firing rate (Hz), in the SNNs.
 Consequently we introduce the Parametric Activation Function~(PAF: $y = p \times f(x)$), which successfully includes physical units to conventional activation functions thus unifies the representations of neurons in ANNs and the ones in SNNs.
 Therefore, an SNN is able to be modelled and trained on an ANN using the same conventional training algorithms, such as Backpropagation~(BP).
 %With these problems solved, SNN training can be simplified as: (1) estimate parameter $p$ for the PAF according to biological configurations of LIF neurons, and (2) use the PAF instead of conventional activation functions to train an equivalent ANN.
@@ -28,10 +27,10 @@ Therefore, an SNN is able to be modelled and trained on an ANN using the same co
 The significance lies in the simplicity and generalisation of the proposed method.
 SNN training, now, can be simplified as: firstly, estimate parameter $p$ for the PAF using NSP; secondly, use the PAF version of conventional activation functions to train an equivalent ANN; and finally transfer the tuned weights directly into the SNN without any conversion.
 Regarding the generalisation, it works exactly the same as training ANNs: the same feed-forward network architecture, BP algorithm and activation functions, and uses the most common spiking neurons, standard LIF, that run on most neuromorphic hardware platforms.
-In addition, the proposed method also preserves state-of-the-art accuracy of MNIST task using standard LIF neurons.
+%In addition, the proposed method also preserves state-of-the-art accuracy of MNIST task using standard LIF neurons.
 
 Therefore, most importantly, this research provides the Neuromorphic Engineering~(NE) community a simple, but effective and generalised off-line SNN training method which notably simplifies the development of Artificial Intelligence~(AI) applications on neuromorphic hardware.
-In turn, it enables ANN users to implement their models on neuromorphic hardware without the knowledge of spiking networks or programming on specific hardware;
+In turn, it enables ANN users to implement their models on neuromorphic hardware without the knowledge of spiking neurons or programming on specific hardware;
 however, at the same time, benefit from the advantages of neuromorphic computers: such as real-time processing, low latency, biological realism and energy efficiency.
 Furthermore, the success of the proposed off-line training method paves the way to energy-efficient AI on neuromorphic machines scaling from mobile devices to huge computer clusters.
 

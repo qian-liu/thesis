@@ -27,19 +27,19 @@ The fundamental difference between a biologically-plausible spiking neuron and a
 %DIF > Thus, to equip these powerful brain-inspired neuromorphic computers with cognitive capabilities, the thesis aims to understand how to close the gap of the performance between SNNs and ANNs on Artificial Intelligence~(AI) tasks. 
 
 
-\DIFadd{In this chapter, we will confirm the hypotheses proposed in Chapter~\ref{cha:intro} to answer the thesis question}\DIFaddend : how to \DIFdelbegin \DIFdel{operate and train networks of biologically-plausible spiking neurons to }\DIFdelend close the gap of \DIFaddbegin \DIFadd{the }\DIFaddend cognitive capabilities between \DIFdelbegin \DIFdel{SNNs and ANNs in AI tasks?
+\DIFadd{In this chapter, we will confirm the hypotheses proposed in Chapter~\ref{cha:intro} to answer the thesis question}\DIFaddend : how to \DIFdelbegin \DIFdel{operate and train networks of biologically-plausible spiking neurons to }\DIFdelend close the gap \DIFdelbegin \DIFdel{of cognitive capabilities between SNNs and ANNs in AI tasks?
 }%DIFDELCMD < 
 
 %DIFDELCMD < %%%
 \DIFdel{Embedding deep learning mechanisms for training SNNs may provide an answer to the problem.
 In Chapter~\ref{cha:dnn}, the most popular and influencing deep learning models and mechanisms have been introduced, and three of them have been demonstrated in detail and later successfully applied on SNNs.
-Most significantly, in Chapter~\ref{cha:Conv} and Chapter~\ref{cha:sdlm} we answered the main research problem of how to operate and train biologically-plausible SNNs to close the gap of cognitive capabilities between SNNs and ANNsby proposing SNN training methods both off-line and on-line.
+Most significantly, in Chapter~\ref{cha:Conv} and Chapter~\ref{cha:sdlm} we answered the main research problem of how to operate and train biologically-plausible SNNs to close the gap of cognitive capabilities between SNNs and ANNs by proposing SNN training methods both off-line and on-line.
 Chapter~\ref{cha:bench} has provided the neuromorphic community with a uniform dataset to evaluate SNNs' performance both at model and hardware level to provide meaningful comparisons between theses proposed SNN models and other existing methods within this rapidly advancing field of NE.%DIF < , thus to answer the research problem with strong evidence comparing to ANNs.
 }%DIFDELCMD < 
 
 %DIFDELCMD < %%%
 \DIFdel{In this chapter, we will firstly answer the research question by confirming its hypotheses left in Chapter~\ref{cha:intro}.
-It involves }\DIFdelend \DIFaddbegin \DIFadd{Spiking Neural Networks~(SNNs) and Artificial Neural Networks~(ANNs) on Artificial Intelligence~(AI) tasks.
+It involves }\DIFdelend \DIFaddbegin \DIFadd{between the cognitive capabilities of Spiking Neural Networks~(SNNs) and Artificial Neural Networks~(ANNs) on Artificial Intelligence~(AI) tasks.
 This involves introducing }\DIFaddend sub-topics on how we arrived at this confirmation, what are the main contributions, and how this work challenges previous research.
 This will be followed by \DIFdelbegin \DIFdel{statements of }\DIFdelend \DIFaddbegin \DIFadd{a statement of the }\DIFaddend current limitations of our study, \DIFdelbegin \DIFdel{the potential methods of }\DIFdelend \DIFaddbegin \DIFadd{potential methods for }\DIFaddend tackling these limitations, and directions for further research.
 
@@ -87,10 +87,10 @@ Moreover, the training of PAF-NSP neurons can be generalised to a PAF version of
 %DIF > firstly, estimate parameter $p$ for the PAF, $y = p \times f(x)$, using NSP;
 %DIF > secondly, use a PAF version of a conventional activation function, e.g. Rectified Linear Unit~(ReLU), to train an equivalent ANN;
 %DIF > thirdly, transfer the tuned weights directly into the SNN.
-\DIFadd{At one hand, this research contributes to the NE community a simple }\DIFaddend off-line \DIFdelbegin \DIFdel{deep }\DIFdelend SNN training method\DIFdelbegin \DIFdel{and a novel activation function, Noisy Softplus, and the achievements of successful training on an deep spiking ConvNet which has performed close to original ANN 's even surpassing the state-of-the-art classification accuracy, we confirm the hypothesis. 
-}\DIFdelend \DIFaddbegin \DIFadd{.
-It enables any feed-forward SNN to be modelled and trained on an equivalent ANN, thus resolves the difficulties of transforming ANN models to SNNs.
-At the other hand, the method is generalised in terms of spiking neural models and hardware platforms, since it works on standard LIF neurons which are supported by most of the neuromorphic hardware.
+\DIFadd{On one hand, this research contributes to the NE community a simple }\DIFaddend off-line \DIFdelbegin \DIFdel{deep }\DIFdelend SNN training method\DIFdelbegin \DIFdel{and a novel activation function, Noisy Softplus, and }\DIFdelend \DIFaddbegin \DIFadd{.
+It enables any feed-forward SNN to be modelled and trained on an equivalent ANN, and thus resolves the difficulties of transforming ANN models to SNNs.
+On the other hand, }\DIFaddend the \DIFdelbegin \DIFdel{achievements of successful training on an deep spiking ConvNet which has performed close to original ANN 's even surpassing the state-of-the-art classification accuracy, we confirm the hypothesis. 
+}\DIFdelend \DIFaddbegin \DIFadd{method is generalised in terms of spiking neural models and hardware platforms, since it works on standard LIF neurons which are supported by most neuromorphic hardware.
 Hence, AI engineers are capable of implementing their ANN models on NE platforms without knowledge of SNN or hardware-specific programming, and furthermore get benefit from neuromorphic hardware in many ways: such as energy-efficiency, biological realism, low latency and real-time processing.
 }\DIFaddend 
 
@@ -124,25 +124,25 @@ $\tau_{syn}$, thus better fitting the actual response firing rate of an LIF neur
 
 \DIFdelbegin %DIFDELCMD < \item %%%
 \DIFdel{the calculation on Noisy Softplus and its derivative is no more than Softplus function, except for doubled computation on weighted sum of its input ($net$ and $\sigma$ in Equations~\ref{equ:mi_input} and ~\ref{equ:si_input}).
-		They are yet much more simplified than Siergert function which saves training time and energy}\DIFdelend \DIFaddbegin \DIFadd{Among the existing approaches, this method is the first and only that unifies the representation of neurons in ANNs and the spiking ones in SNNs using abstract activation functions, while some other approaches~\mbox{%DIFAUXCMD
+		They are yet much more simplified than Siergert function which saves training time and energy}\DIFdelend \DIFaddbegin \DIFadd{Among the existing approaches, this method is the first and only one that unifies the representation of neurons in ANNs and the spiking ones in SNNs using abstract activation functions, while some other approaches~\mbox{%DIFAUXCMD
 \citep{Jug_etal_2012,hunsberger2015spiking}
 }%DIFAUXCMD
 directly handle physical units.
-In terms of modelling accuracy, NSP not only takes the noise of the current influx into account which is missing in soft LIF~\mbox{%DIFAUXCMD
+In terms of modelling accuracy, NSP not only takes the noise of the current influx into account, which is missing in soft LIF~\mbox{%DIFAUXCMD
 \citep{hunsberger2015spiking}
 }%DIFAUXCMD
-, but also includes coloured noise where Siegert formula~\mbox{%DIFAUXCMD
+, but also includes coloured noise where the Siegert formula~\mbox{%DIFAUXCMD
 \citep{Jug_etal_2012}
 }%DIFAUXCMD
 only works on white noise.
-Regarding simplicity, this training method performs effectively using Rectified Linear Unit~(ReLU), however, other studies~\mbox{%DIFAUXCMD
+Regarding simplicity, this training method performs effectively using Rectified Linear Units~(ReLUs), however, other studies~\mbox{%DIFAUXCMD
 \citep{Jug_etal_2012,hunsberger2015spiking}
 }%DIFAUXCMD
 suffer from high computational complexity.
 In addition, thanks to the accurate modelling of PAF, the trained weights are ready to use on SNNs, while previous approaches ~\mbox{%DIFAUXCMD
 \citep{cao2015spiking,diehl2015fast}
 }%DIFAUXCMD
-require an extra step to make the trained weights adaptive to the SNN.
+require an extra step to adapt the trained weights to the SNN.
 Moreover, comparing to the requirements of specific neural models~\mbox{%DIFAUXCMD
 \citep{cao2015spiking,diehl2015fast}
 }%DIFAUXCMD
@@ -190,7 +190,7 @@ and equalled the best result using simplified IF neurons~\mbox{%DIFAUXCMD
 \citep{diehl2015fast}
 }%DIFAUXCMD
 .
-Therefore, we confirm the hypothesis with the first contribution of this thesis: providing NE community a simple, but effective, generalised, off-line deep SNN training method.
+Therefore, we confirm the hypothesis with the first contribution of this thesis: providing the NE community a simple, but effective, generalised, off-line deep SNN training method.
 }
 
 \paragraph{\DIFadd{2. Unsupervised Deep Learning modules can be trained on-line on SNNs with biologically-plausible synaptic plasticity to demonstrate a learning capability as competent as ANNs.}\\}
@@ -217,7 +217,7 @@ During the research we encountered the problem introduced by correlated spikes, 
 It is crucial to provide deep SNNs with effective on-line training algorithms, not only for building successful spike-based object recognition applications, but also for better power efficiency and scalability when training on neuromorphic hardware}\DIFdelend \DIFaddbegin \DIFadd{learning rules in SNNs}\DIFaddend .
 
 \DIFdelbegin \DIFdel{Our second contribution is the formalisation of an STDP-based unsupervised learning algorithms of spiking AE~(SAE) and spiking RBM~(SRBM).
-These training methods have realised the on-line}\DIFdelend \DIFaddbegin \DIFadd{Spiking AEs and RBMs can be trained with SRM by sharing the synaptic weights between $ab$ and $cd$, and applying symmetric learning rate $\pm \eta_s$ on the weight change respectively.
+These training methods have realised the on-line}\DIFdelend \DIFaddbegin \DIFadd{Spiking AEs and RBMs can be trained with SRM by sharing the synaptic weights between $ab$ and $cd$, and applying symmetric learning rates $\pm \eta_s$ on the weight changes respectively.
 The performance approaches the same, sometimes even superior}\DIFaddend , \DIFdelbegin \DIFdel{event-based, biologically-plausible learning on spiking deep architectures in an unsupervised fashion.
 The promising results of equivalent or even superior}\DIFdelend classification and reconstruction capabilities \DIFdelbegin \DIFdel{of SAEs and SRBMs }\DIFdelend compared to their \DIFdelbegin \DIFdel{conventional ANN-based methods confirms the hypothesis that SNNs have competent learning ability as deep ANNs}\DIFdelend \DIFaddbegin \DIFadd{equivalent non-spiking models.
 In addition, the numerical analysis of the proposed algorithm accurately estimates the learning rate $\pm \eta_s$, thus closely mimicking the learning behaviour of the AE and RBM modules, and improves the learning performance compared to existing methods}\DIFaddend .
@@ -349,11 +349,16 @@ In addition, this work has inspired new directions for future work to continue a
 }
 
 \DIFaddend \subsection{Off-line SNN Training}
-\DIFaddbegin 
+The current limitation prohibiting \DIFdelbegin \DIFdel{this }\DIFdelend \DIFaddbegin \DIFadd{the }\DIFaddend off-line SNN training method from wide use lies in the lack of supporting tools.
+This requires the development of a \DIFdelbegin \DIFdel{supporting tool which enables }\DIFdelend \DIFaddbegin \DIFadd{set of software and libraries.
+Besides, we will look into the networks with feedback connections, the Recurrent Neural Networks~(RNNs), thus to adapt the off-line training method to most network architectures.
+Moreover, some initial studies have successfully applied the proposed method to various applications. 
+}
+
 
 \paragraph{\DIFadd{Supporting software tools.}}
-\DIFaddend The current limitation prohibiting \DIFdelbegin \DIFdel{this }\DIFdelend \DIFaddbegin \DIFadd{the }\DIFaddend off-line SNN training method from wide use lies in the lack of supporting tools.
-This requires the development of a \DIFdelbegin \DIFdel{supporting tool which enables }\DIFdelend \DIFaddbegin \DIFadd{set of software and libraries:
+%DIF > The current limitation prohibiting the off-line SNN training method from wide use lies in the lack of supporting tools.
+\DIFadd{The plan of developing software and libraries in the near future includes:
 }
 
 \begin{itemize}
@@ -373,7 +378,7 @@ This requires the development of a \DIFdelbegin \DIFdel{supporting tool which en
 }\end{itemize}
 \DIFaddend 
 
-\DIFdelbegin \DIFdel{An other issue is the parameter calibration on the scaling factor of the combined activation, thus numerical analysis is considered for future work to express the factors with biological parameters of a LIF neuron}\DIFdelend \DIFaddbegin \paragraph{\DIFadd{Recurrent Neural Networks~(RNNs).}}
+\DIFdelbegin \DIFdel{An other issue is the parameter calibration on the scaling factor of the combined activation, thus numerical analysis is considered for future work to express the factors with biological parameters of a LIF neuron}\DIFdelend \DIFaddbegin \paragraph{\DIFadd{Recurrent Neural Networks.}}
 \DIFadd{It is difficult to make SNNs work with recurrent architectures, since a spiking neuron simultaneously takes input from both the lower level on the feed-forward path and the upper level on the feedback path.
 However, in ANNs the feed-forward and feedback paths work alternately on separate steps.
 Therefore, the proposed SNN training method only applies to feed-forward networks.
@@ -392,7 +397,7 @@ have been considered to train by this method and run their SNN models on SpiNNak
 	}\DIFdelend \DIFaddbegin \DIFadd{\mbox{%DIFAUXCMD
 \citep{krogh1995neural}
 }%DIFAUXCMD
-have been trained with NSP neurons and will be transferred onto SpiNNaker system~\mbox{%DIFAUXCMD
+have been trained with NSP neurons and will be transferred onto the SpiNNaker system~\mbox{%DIFAUXCMD
 \citep{furber2014spinnaker}
 }%DIFAUXCMD
 to take the advantages of energy-efficiency and massively-parallel processing.
@@ -414,7 +419,10 @@ has been trained for the task of recognising human facial expressions using the 
 
 
 \DIFaddend \subsection{On-line \DIFdelbegin \DIFdel{biologically-plausible }\DIFdelend \DIFaddbegin \DIFadd{Biologically-Plausible }\DIFaddend Learning}
-\DIFaddbegin \paragraph{\DIFadd{Beyond rate coding.}}
+\DIFaddbegin \DIFadd{The proposed on-line learning method is limited to rate coding and greedy layer-wise training.
+Thus, we will explore alternative coding schemes and training algorithms to increase the effectiveness of the on-line learning methods.
+In addition, we will merge novel Deep Learning techniques into the biologically-plausible SNN training to improve the cognitive performance and also decrease the energy consumption when running on neuromorphic hardware.
+}\paragraph{\DIFadd{Beyond rate coding.}}
 \DIFaddend Although rate coding has shown \DIFdelbegin \DIFdel{great potential for }\DIFdelend \DIFaddbegin \DIFadd{good performance on training spiking Deep Learning modules }\DIFaddend on-line\DIFdelbegin \DIFdel{STDP learning}\DIFdelend , time-based coding \DIFdelbegin \DIFdel{carrying more information is }\DIFdelend \DIFaddbegin \DIFadd{and rank-order coding which carry more information per spike, are }\DIFaddend expected to have \DIFdelbegin \DIFdel{a }\DIFdelend better or faster learning \DIFdelbegin \DIFdel{capability}\DIFdelend \DIFaddbegin \DIFadd{capabilities~\mbox{%DIFAUXCMD
 \citep{gautrais1998rate}
 }%DIFAUXCMD
@@ -451,12 +459,16 @@ Thus applying novel \DIFdelbegin \DIFdel{deep learning }\DIFdelend \DIFaddbegin 
 }\DIFdelend \DIFaddbegin \paragraph{\DIFadd{Neuromorphic Hardware.}}
 \DIFadd{On-line training is a necessary means towards Neuromorphic Cognition where the hardware computers learn while they operate.
 The main concerns are the learning speed and the power consumption, which will be compared to off-line training methods and conventional ANN training.
-It is still an open question that how to perform the human-level cognition and at the same time achieve the low power cost by on-line learning.
+It is still an open question how to perform the human-level cognition and at the same time achieve the low power cost by on-line learning.
 }
 
 
 
 \subsection{\DIFadd{Evaluation on Neuromorphic Vision}}
+\DIFadd{Since new problems will continue to arise before vision becomes a solved question, the NE dataset will evolve as research progresses. 
+The number of vision datasets will increase and the corresponding evaluation methodologies will evolve.
+The conversion methods for transforming images and videos into spike trains will advance.
+}
 
 \paragraph{\DIFadd{Face recognition dataset.}}
 %DIF > The database proposed in Chapter~\ref{cha:bench} will be expanded by converting more popular vision datasets to spike representations.
@@ -509,8 +521,8 @@ This thesis has achieved closure of the gap between the cognition capability of 
 %DIF > This thesis has achieved closure of the gap between the cognition capability of SNN to ANN, and brightly paved the way for further study to improve and understand the learning performance of these biologically-plausible spiking units.
 \DIFaddbegin 
 
-\DIFadd{Energy-efficient neuromorphic hardware platforms have been successfully contributed to large-scale simulations of }\DIFaddend biologically-plausible \DIFdelbegin \DIFdel{spiking units.
-}\DIFdelend \DIFaddbegin \DIFadd{SNNs for brain understanding, but they are still far from intelligent to achieve Neuromorphic Cognition.
+\DIFadd{Energy-efficient neuromorphic hardware platforms have been successfully used to support large-scale simulations of }\DIFaddend biologically-plausible \DIFdelbegin \DIFdel{spiking units.
+}\DIFdelend \DIFaddbegin \DIFadd{SNNs for brain understanding, but they are still far from intelligent enough to achieve Neuromorphic Cognition.
 Meanwhile, Deep Learning techniques in the field of ANN have driven simple rate-based artificial neurons to surpass human-level capabilities in cognitive tasks, e.g. vision.
 Thus, to equip these powerful brain-inspired neuromorphic computers with cognitive capabilities, this thesis contributes to close the gap of the performance between SNNs and ANNs on AI tasks.
 }
@@ -523,11 +535,11 @@ The success of the generalised off-line method paves the way to energy-efficient
 
 \DIFadd{Taking one step towards Neuromorphic Cognition, the on-line learning method has also been investigated to train Deep Learning modules on SNNs.
 The proposed method tackles the problem of accurately translating the weight tuning of AEs and RBMs from numerical computations to event-based, biologically-plausible STDP rules in SNNs.
-It leads the future work to formalise event-based learning to closely mimic the numerical computations in conventional ANNs.
+It directs the future work to formalise event-based learning to closely mimic the numerical computations in conventional ANNs.
 The development of on-line training will equip the neuromorphic computers with genuine learning capabilities.
 }
 
-\DIFadd{The last but not least, this work contributes to the NE community with a uniform dataset to evaluate SNNs' performance at both model and hardware level.
+\DIFadd{Last but not least, this work contributes to the NE community with a uniform dataset to evaluate SNNs' performance at both model and hardware level.
 The corresponding evaluation methodology will promote meaningful comparisons between these proposed SNN models and other existing methods within this rapidly advancing field.
 Moreover, we hope to provide objective comparisons between conventional ANNs and SNNs, in order to give prominence to low latency and energy consumption on neuromorphic hardware.
 }
