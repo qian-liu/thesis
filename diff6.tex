@@ -85,7 +85,7 @@ training (40 individuals $\times$ 8 images) and testing data (40 individuals $\t
 %The Convolutional Neural Network (CNN), also known as the \textit{ConvNet}, developed by, is a widely-used model based on a cortex-like framework.
 %\citep{hubel1962receptive} first discovered the model of orientation selectivity (simple cells) and pooling mechanism (complex cells) in the primary cortex in cats, which lay the foundation of the Convolutional Neural Network (CNN)~\citep{lecun1998gradient}.
 
-Convolutional Neural \DIFdelbegin \DIFdel{Network (ConvNet}\DIFdelend \DIFaddbegin \DIFadd{Networks (ConvNets}\DIFaddend ), inspired from the receptive field of vision cortex, \DIFdelbegin \DIFdel{has }\DIFdelend \DIFaddbegin \DIFadd{have }\DIFaddend been implemented on spiking neurons.
+Convolutional Neural \DIFdelbegin \DIFdel{Network (ConvNet}\DIFdelend \DIFaddbegin \DIFadd{Networks (ConvNets}\DIFaddend ), inspired \DIFdelbegin \DIFdel{from the receptive field of vision cortex, has }\DIFdelend \DIFaddbegin \DIFadd{by the receptive fields of the visual cortex, have }\DIFaddend been implemented on spiking neurons.
 An early Spiking ConvNet model identified the faces of 35 persons with a CA of 98.3\% exploiting simple integrate and fire neurons~\citep{matsugu2002convolutional}.
 Another Spiking ConvNet model~\citep{zhao2014feedforward} was trained and tested both with DVS raw data and Leaky Integrate-and-Fire (LIF) neurons.
 It was capable of recognising three moving postures with a CA of about 99.48\% and classifying hand-written digits with 88.14\% accuracy on the MNIST-DVS dataset (see Section~\ref{sec:data}).
@@ -110,7 +110,7 @@ Spike-Timing-Dependent Plasticity (STDP) as a learning mechanism based on biolog
 \citet{bichler2012extraction}
 }%DIFAUXCMD
 }\DIFaddend demonstrated an unsupervised STDP learning model to classify car trajectories captured with a DVS retina. 
-A similar model trained with STDP on winner-take-all~(WTA) circuit was tested on a Poissonian spike presentation of the MNIST dataset achieving a performance of 95.0\%~\citep{diehl2015unsupervised}.
+A similar model trained with STDP \DIFdelbegin \DIFdel{on }\DIFdelend \DIFaddbegin \DIFadd{using a }\DIFaddend winner-take-all~(WTA) circuit was tested on a Poissonian spike presentation of the MNIST dataset achieving a performance of 95.0\%~\citep{diehl2015unsupervised}.
 %Theoretical analysis~\citep{nessler2013bayesian} showed that unsupervised STDP was able to approximate a stochastic version of Expectation Maximisation, a powerful learning algorithm in machine learning.
 Another STDP trained model tested on computer simulation reached a 93.3\% CA on MNIST and had the potential to be implemented using memristors~\citep{bill2014compound}. 
 Adding synaptic internal state enabled STDP to work on \DIFdelbegin \DIFdel{bistatble }\DIFdelend \DIFaddbegin \DIFadd{bistable }\DIFaddend synapses, and this method achieved the best performance of 96.5\% among similar network architectures. 
@@ -250,7 +250,7 @@ The converted MNIST dataset consists of four subsets which were generated for di
 	\item \textit{DVS recorded moving input},
 	to trigger the study of algorithms targeting continuous input from real-world sensors for implementation, for example, on mobile neuromorphic robots.
 \end{itemize}
-The dataset \DIFdelbegin \DIFdel{can be found }\DIFdelend \DIFaddbegin \DIFadd{is published }\DIFaddend in the GitHub\DIFdelbegin \DIFdel{repository at: https://github.com/NEvision/NE15}\DIFdelend \DIFaddbegin \DIFadd{: }\url{https://github.com/NEvision/NE15}\DIFaddend .
+The dataset \DIFdelbegin \DIFdel{can be found }\DIFdelend \DIFaddbegin \DIFadd{is published }\DIFaddend in the GitHub\DIFdelbegin \DIFdel{repository at: https: //github.com/NEvision/NE15}\DIFdelend \DIFaddbegin \DIFadd{: }\url{https://github.com/NEvision/NE15}\DIFaddend .
 \subsection{Data Description}
 Two file formats are supported in the dataset: the jAER format~\citep{delbruck2008frame} (.dat or .aedat), and binary files in NumPy~\citep{numpyPython} (.npy) format.
 %The AER interface has been widely used in neuromorphic systems, especially for vision sensors.
@@ -363,10 +363,10 @@ Rank-ordered spike trains have been used in vision tasks under a biological plau
 Rank order coding (ROC) can be performed using an algorithm known as the
 {FoCal algorithm~\citep{sen2009evaluating}}.
 This algorithm models the foveola, the highest resolution area of the retina, with four ganglion cell layers each with a different scale of centre-surround receptive field~\citep{kolb2003retina}.
-The detailed description of the algorithm is demonstrated \DIFdelbegin \DIFdel{in~\mbox{%DIFAUXCMD
+The detailed description of the algorithm \DIFdelbegin \DIFdel{is demonstrated in~\mbox{%DIFAUXCMD
 \citep{liu2016bench}
 }%DIFAUXCMD
-}\DIFdelend by Garibaldi~Pineda-Garc\'ia\,\DIFaddbegin \DIFadd{~\mbox{%DIFAUXCMD
+}\DIFdelend \DIFaddbegin \DIFadd{was demonstrated }\DIFaddend by Garibaldi~Pineda-Garc\'ia\,\DIFaddbegin \DIFadd{~\mbox{%DIFAUXCMD
 \citep{liu2016bench}
 }%DIFAUXCMD
 }\DIFaddend and the source Python scripts to transform images to ROC spike trains, and to convert the results into AER and PyNN spike source arrays, can be found in the dataset website.
@@ -475,7 +475,7 @@ The detailed description of the algorithm is demonstrated \DIFdelbegin \DIFdel{i
 
 \subsubsection{DVS Sensor Output with Flashing Input}
 \label{subsec_flash}
-The purpose of including the subset with DVS-recorded flashing digits is to promote research into rapid and accurate `core recognition', thus to encourage \DIFdelbegin \DIFdel{applying }\DIFdelend \DIFaddbegin \DIFadd{the research of }\DIFaddend non-rate-based algorithms \DIFdelbegin \DIFdel{, for example ROC, to short DVS output spike trains}\DIFdelend \DIFaddbegin \DIFadd{to shorten the recognition time}\DIFaddend .
+The purpose of including the subset with DVS-recorded flashing digits is to promote research into rapid and accurate `core recognition', thus to encourage \DIFdelbegin \DIFdel{applying }\DIFdelend \DIFaddbegin \DIFadd{research into }\DIFaddend non-rate-based algorithms \DIFdelbegin \DIFdel{, for example ROC, to short DVS output spike trains}\DIFdelend \DIFaddbegin \DIFadd{to shorten the recognition time}\DIFaddend .
 
 %DIF > applying non-rate-based algorithms, for example ROC, to short the DVS output spike trains.
 \DIFaddbegin 
