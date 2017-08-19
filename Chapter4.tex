@@ -12,6 +12,8 @@ Both chapters address the thesis question: how to operate and train SNNs to make
 %Paragraph Two: FOCUS
 %Now focus the reader’s attention on what this chapter is specifically going to do and why it is important. In this chapter I will examine.. I will present… I will report … This is crucial in (aim of thesis/research question) in order to….
 
+\section{Introduction}
+\label{sec:intro_NSP}
 There are two significant problems to be solved when training SNNs off-line.
 First, an accurate activation function is needed to model the neural dynamics of spiking neurons.
 In this chapter, we propose a novel activation function used in ANNs, Noisy Softplus~(NSP), to closely simulate the firing activity of Leaky Integrate-and-Fire~(LIF) neurons driven by noisy current influx.
@@ -41,8 +43,8 @@ We then propose the novel activation function, NSP, and demonstrate how it fits 
 Section~\ref{sec:genrial_SNN} illustrates the generalised SNN training method using PAFs.
 In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking ConvNet, and compare the proposed method to existing training algorithms.
 
-\section{Introduction}
-\label{sec:intro_NSP}
+\section{Related Work}
+\label{sec:NSP_relate}
 
 %%How to map a well trained ANN to SNN is a hot topic in this field, especially using spiking neurons of biological scale.
 %
@@ -1026,6 +1028,12 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking ConvN
 %	In comparison, Softplus accumulated spontaneous firing rates layer by layer and its derivative may experience vanishing gradients during back propagation, which result in a more difficult training.
 %	Noisy Softplus performance lay between these two in terms of loss and learning speed.
 %	However, the loss stabilised fastest, which means a possible shorter training time.
+	\begin{figure}[tbp!]
+		\centering
+		\includegraphics[width=0.7\textwidth]{pics_iconip/8.png}
+		\caption{Comparisons of Loss during training using Noisy Softplus, ReLU and Softplus activation functions. Bold lines show the average of three training trials, and the grey colour illustrates the range between the minimum and the maximum values of the trials.  }
+		\label{Fig:loss_ns}
+	\end{figure}
 	Before looking into the recognition results, it is significant to see the learning capability of the novel activation function, NSP.
 	We compared the training using ReLU, Softplus, and NSP by their loss during training averaged over three trials, see Figure~\ref{Fig:loss_ns}.
 	ReLU learned fastest with the lowest loss, thanks to its steepest derivative.
@@ -1036,12 +1044,7 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking ConvN
 	However, the learning stabilised the fastest using NSP which may be caused by the accurate modelling of the noise.
 	Similar findings have shown that networks with added noise, e.g. dropout~\cite{srivastava2014dropout}, are much faster to train. 
 	The result is promising that NSP may shorten the training time.
-	\begin{figure}[tbp!]
-		\centering
-		\includegraphics[width=0.7\textwidth]{pics_iconip/8.png}
-		\caption{Comparisons of Loss during training using Noisy Softplus, ReLU and Softplus activation functions. Bold lines show the average of three training trials, and the grey colour illustrates the range between the minimum and the maximum values of the trials.  }
-		\label{Fig:loss_ns}
-	\end{figure}
+
 %	The trained networks were scaled to SNNs and compared on recognition rates, 93.34\%, 96.43\% and 97.03\% with a conversion loss of 4.76\%, 0.91\% and 0.74\%.
 
 \subsection{Recognition Performance}
@@ -1160,8 +1163,8 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking ConvN
 				\begin{mycell}{3cm} Method \end{mycell} & 
 				%  					\begin{mycell}{1.8cm} Computation\\Complexity \end{mycell} & 
 				\begin{mycell}{1.8cm}Activation\\Function\end{mycell} &
-				\begin{mycell}{1.8cm} Biologically-\\plausibility \end{mycell} &  
-				\begin{mycell}{1.8cm} Additional\\Processing \end{mycell} &
+				\begin{mycell}{2.5cm} Biologically-\\plausibility \end{mycell} &  
+				\begin{mycell}{2.2cm} Additional\\Processing \end{mycell} &
 				\begin{mycell}{1.8cm} Conversion \end{mycell} & 
 				\begin{mycell}{3cm} Classification\\Accuracy(\%) \end{mycell} 
 				\\
@@ -1169,34 +1172,34 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking ConvN
 				\begin{mycell}{3cm} \citep{Jug_etal_2012} \end{mycell} & 
 				%  					\begin{mycell}{1.8cm} 1st \end{mycell} & 
 				\begin{mycell}{1.8cm}Siegert \end{mycell} &
-				\begin{mycell}{1.8cm} \textbf{Yes} \end{mycell} &  
-				\begin{mycell}{1.8cm} \textbf{No} \end{mycell} & 
-				\begin{mycell}{1.8cm} \textbf{No} \end{mycell} & 
+				\begin{mycell}{2.5cm} \textbf{Yes} \end{mycell} &  
+				\begin{mycell}{2.2cm} \textbf{No} \end{mycell} & 
+				\begin{mycell}{2.2cm} \textbf{No} \end{mycell} & 
 				\begin{mycell}{3cm} 94.94\\~\citep{Stromatias2015scalable} \end{mycell} 
 				\\
 				\begin{mycell}{3cm} \citep{hunsberger2015spiking} \end{mycell} & 
 				%  					\begin{mycell}{1.8cm} 2nd \end{mycell} & 
 				\begin{mycell}{1.8cm} Soft LIF \end{mycell} &
-				\begin{mycell}{1.8cm} \textbf{Yes} \end{mycell} &  
-				\begin{mycell}{2.2cm} Noisy inputs\\ \&Activations \end{mycell} & 
+				\begin{mycell}{2.5cm} \textbf{Yes} \end{mycell} &  
+				\begin{mycell}{2.2cm} Noisy inputs\\ and activations \end{mycell} & 
 				\begin{mycell}{1.8cm} \textbf{No} \end{mycell} & 
 				\begin{mycell}{3cm} 98.37 \end{mycell}
 				\\
 				\begin{mycell}{3cm} \citep{diehl2015fast} \end{mycell} & 
 				%  					\begin{mycell}{1.8cm} 3rd \end{mycell} & 
 				\begin{mycell}{1.8cm} \textbf{ReLU} \end{mycell} &
-				\begin{mycell}{1.8cm} No \end{mycell} &  
-				\begin{mycell}{1.8cm} Dropout  \end{mycell} & %\&\\Conversion
+				\begin{mycell}{2.5cm} No \end{mycell} &  
+				\begin{mycell}{2.2cm} Dropout  \end{mycell} & %\&\\Conversion
 				\begin{mycell}{1.8cm} Yes \end{mycell} &  
 				\begin{mycell}{3cm} \textbf{99.1} \end{mycell} 
 				\\
 				\begin{mycell}{3cm} This\\Chapter \end{mycell} & 
 				%  					\begin{mycell}{1.8cm} 3rd \end{mycell} & 
 				\begin{mycell}{1.8cm} \textbf{PAF}\\($p\times$ReLU)\end{mycell} &
-				\begin{mycell}{1.8cm} \textbf{Yes} \end{mycell} &  
+				\begin{mycell}{2.5cm} \textbf{Yes} \end{mycell} &  
 				\begin{mycell}{2.2cm} \textbf{No} \\or fine tune  \end{mycell} & 
 				\begin{mycell}{1.8cm} \textbf{No} \end{mycell} & 
-				\begin{mycell}{3cm} 98.72\\ \textbf{99.07(fine tune)} \end{mycell}  
+				\begin{mycell}{3cm} 98.72\\ \textbf{99.07\\(fine tune)} \end{mycell}  
 				\\
 				\cline{1-6}
 				% contents!
@@ -1257,10 +1260,16 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking ConvN
 	This training procedure consists of three simple stages: first, estimate parameter $p$ for PAF using NSP; second, use a PAF version of conventional activation functions for ANN training; % can be generalised to activation units other than NSP.
 	%The training of a SNN model is exactly the same as ANN training, and 
 	third, the trained weights can be directly transferred to the SNN without any further transformation.
-	Regarding the generalisation, the training not only uses popular activation functions in ANNs, but also targets standard LIF neurons which are widely used on neuromorphic hardware. 
+	Another important feature of accurately modelling LIF neurons in ANNs is the acquisition of spiking neuron firing rates. These will aid deployment of SNNs in neuromorphic hardware by providing power and communication estimates, which would allow better usage or customisation of the hardware platforms.
+	
+	
+	Regarding the generalisation, the training not only uses popular activation functions in ANNs, e.g. ReLU, but also targets standard LIF neurons which are widely used on neuromorphic hardware.
+	Therefore, the proposed method remarkably simplifies the training of AI applications for neuromorphic hardware;
+	thereby paves the way to energy-efficient AI on the brain-like computers: from neuromorphic robots to clusters.
+	Moreover, it lowers the barrier for AI engineers to easily access the neuromorphic hardware without the understanding SNNs or the hardware.
+	
 	Furthermore, this method requires the least computation complexity while performing most effectively among existing algorithms.
 	% and even more straight-forward than the other ANN offline training methods which requires an extra step of converting ANN-trained weights to SNN's.
-	
 	In terms of classification/recognition accuracy, the performance of ANN-trained SNNs is nearly equivalent to ANNs, and the performance loss can be partially solved by fine tuning.
 	The best classification accuracy of 99.07\% using LIF neurons in a PyNN simulation outperforms state-of-the-art SNN models of LIF neurons and is equivalent to the best result achieved using IF neurons~\citep{diehl2015fast}.
-	An important feature of accurately modelling LIF neurons in ANNs is the acquisition of spiking neuron firing rates. These will aid deployment of SNNs in neuromorphic hardware by providing power and communication estimates, which would allow better usage or customisation of the platforms.
+%	An important feature of accurately modelling LIF neurons in ANNs is the acquisition of spiking neuron firing rates. These will aid deployment of SNNs in neuromorphic hardware by providing power and communication estimates, which would allow better usage or customisation of the platforms.

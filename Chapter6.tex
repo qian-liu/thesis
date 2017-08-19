@@ -12,7 +12,17 @@ To provide meaningful comparisons between theses proposed SNN models and other e
 
 %A new set of vision benchmarks for spike-based neural processing are now needed to measure progress quantitatively within this rapidly advancing field.
 %
+\section{Introduction}
+\label{sec:chapt6_intro}
+Today, increasing attention is being paid to research into spike-based neural computation both to gain a better understanding of the brain and to explore biologically-inspired computation.
+Within this field, the primate visual pathway and its hierarchical organisation have been extensively studied.
+SNNs have been successfully applied to visual recognition and classification tasks.
+In addition, Neuromorphic hardware have enabled large-scale SNNs to run in (or even faster than) real time, and also made spike-based neural vision processing accessible on mobile robots.
+Besides, neuromorphic sensors such as silicon retinas are able to feed such mobile systems with real-time visual stimuli.
 
+A new set of vision benchmarks for spike-based neural processing are now needed to measure progress quantitatively within this rapidly advancing field.
+%We propose that a large dataset of spike-based visual stimuli is needed to provide meaningful comparisons between different systems, and a corresponding evaluation methodology is also required to measure the performance of SNN models and their hardware implementations.
+%
 In this chapter we first propose an initial NE dataset based on standard computer vision benchmarks and that uses digits from the MNIST database.
 This dataset is compatible with the state of current research on spike-based image recognition.
 The corresponding spike trains are produced using a range of techniques: rate-based Poisson spike generation, rank order encoding, and recorded output from a silicon retina with both flashing and oscillating input stimuli.
@@ -28,8 +38,9 @@ The rest of this chapter is structured as follows: Section~\ref{sec:method} elab
 Section~\ref{sec:test} presents an SNN case study as demonstrations of using the dataset to assess model performance and benchmark hardware platforms.
 Finally, Section~\ref{sec:summ} summarises the chapter.
 
-\section{Introduction}
-\label{sec:chapt6_intro}
+
+\section{Related Work}
+\label{sec:chapt6_relate}
 Researchers are using the capabilities created by rapid developments in neuromorphic engineering to address the dual aims of understanding brain functions and building brain-like machines~\citep{furber2007neural}.
 Neuromorphic engineering has delivered biologically-inspired sensors such as DVS~(Dynamic Vision Sensor) silicon retinas~\citep{serrano2013128, delbruck2008frame, yang2015dynamic, posch2014retinomorphic}, which offer the prospect of low-cost visual processing thanks to their event-driven and redundancy-reducing style of information representation.
 Moreover, SNN simulation tools~\citep{davison2008pynn, gewaltig2007nest, goodman2008brian} and neuromorphic hardware platforms~\citep{furber2014spinnaker,  schemmel2010wafer,benjamin2014neurogrid,merolla2014million} have been developed to allow exploration of the brain by mimicking its functions and developing large-scale practical applications~\citep{eliasmith2012large}.
@@ -899,7 +910,7 @@ Figure~\ref{fig:model}(a) shows how the connections to a single decision neuron 
 	%		\label{Fig:test}
 	%		\includegraphics[width=0.48\textwidth]{testing}
 	%	}
-	\includegraphics[width=0.8\textwidth]{pics_bench/fig6.jpg}
+	\includegraphics[width=0.7\textwidth]{pics_bench/fig6.jpg}
 	\caption{The (a) training and (b) testing model of the two-layered spiking neural network.}
 	\label{fig:model}
 \end{figure} 
@@ -925,6 +936,7 @@ However, during training the synaptic plasticity holds a hard limit of 0 on the 
 To investigate how inhibitory connections influence the classification performance, the weak weights were set to negative with identical strengths.
 Results show that inhibitory synapses significantly reduced the output firing rates while keeping a good classification ability.
 Thus the strategy of replacing weak weights to the same negative values was used throughout the case study.
+
 The feed-forward testing network is shown in Figure~\ref{fig:model}(b) where Poisson spike trains are generated the same way as in the training with a total firing rate of 2K~Hz per image.
 The input neurons convey the same spike trains to every decision neuron through its corresponding trained synaptic weights. 
 One test trial contains 10K images in total and each image is presented once and lasts 1~s with a 0.2~s blank period between consecutive images.
@@ -1270,16 +1282,20 @@ This result provides a baseline for comparison with other SNN models and neuromo
 
 \section{Summary}
 \label{sec:summ}
-%This chapter puts forward the NE dataset as a baseline for comparisons of vision based SNN models and neuromorphic platforms.
-The NE dataset proposed in this chapter makes the comparison of SNNs with conventional recognition methods possible by using converted spike representations of the same vision databases.
-As far as we know, this is the first attempt at benchmarking neuromorphic vision recognition by providing public a spike-based dataset and evaluation metrics.
-In accordance with the suggestions from~\cite{tan2015bench}, the evaluation metrics highlight the strengths of spike-based vision tasks and the dataset design also promotes the research into rapid and low energy recognition (e.g. flashing digits).
+This chapter put forward the NE dataset as a unified resource to measure progress quantitatively within the field of neuromorphic vision.
+The NE dataset and the complementary evaluation methodology make it possible to (1) provide objective comparisons of vision based SNN models and their implementation on neuromorphic platforms;
+(2) compare of SNNs with conventional recognition methods by using converted spike representations of the same vision databases;
+(3) measure the state-of-the-art performance in spike-based visual recognition;
+and (4) promote future research into rapid and low energy recognition.
+%As far as we know, this is the first attempt at benchmarking neuromorphic vision recognition by providing public a spike-based dataset and evaluation metrics.
+In accordance with the suggestions from~\cite{tan2015bench}, the evaluation metrics highlight the strengths of spike-based vision tasks: low latency and energy efficiency.
+% and the dataset design also promotes the research into rapid and low energy recognition (e.g. flashing digits).
 
 A benchmark system is evaluated using the Poissonian subset of the NE15-MNIST dataset.
 %The models were described and their performance on accuracy, network latency, simulation time and energy usage were presented.
 This example benchmarking system demonstrates a recommended way of using the dataset, describing the SNN models and evaluating the system performance.
 %They provide a baseline for comparisons and encourage improved algorithms and models to make use of the dataset.
-The case study provides a baseline for robust comparisons between SNN models and their hardware implementations.
+The case study provides a baseline for robust comparisons of other SNN models and their hardware implementations.
 
 
 %It contains spike-based versions of existing widely-used databases in the vision recognition field.

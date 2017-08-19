@@ -2,8 +2,11 @@
 \label{cha:sdlm}
 %Paragraph One: LINK
 %Make a connection to what has immediately gone before. Recap the last chapter. In the last chapter I showed that… Having argued in the previous chapter that… As a result of x, which I established in the last chapter….. It is also possible to make a link between this chapter and the whole argument… The first step in answering my research question (repeat question) .. was to.. . In the last chapter I …
-In the previous chapter we have argued that deep Spiking Neural Networks~(SNNs) are equally capable of classifying digits as are deep Artificial Neural Networks~(ANNs), and can be trained simply off-line on an equivalent ANN.
-This chapter continues the discussion of training deep SNNs and takes an extra step towards Neuromorphic Cognition by using biologically-plausible synaptic plasticity rules.
+In the previous chapter we argued that deep Spiking Neural Networks~(SNNs) can be trained simply off-line on equivalent Artificial Neural Networks~(ANNs) and are equally capable of classifying hand written digits as are deep ANNs.
+This chapter continues the discussion of the main research problem to narrow the gap of cognitive capabilities between spiking and conventional neural networks.
+Instead of transforming off-line trained ANN models into SNNs, we explore on-line approaches which directly modulate the plastic synapses between spiking neurons in biologically-plausible manner.
+%The work of this chapter takes an extra step towards Neuromorphic Cognition, since the learning directly takes place on-line in SNNs.
+
 
 %Paragraph Two: FOCUS
 %Now focus the reader’s attention on what this chapter is specifically going to do and why it is important. In this chapter I will examine.. I will present… I will report … This is crucial in (aim of thesis/research question) in order to….
@@ -12,26 +15,41 @@ This chapter continues the discussion of training deep SNNs and takes an extra s
 %The SRM then transforms the rate multiplication to the number of coincident spikes emitted from a pair of rate-coded spike trains, and the simultaneous events can be obtained by the biologically-plausible learning rule: Spike-Time-Dependant-Plasticity~(STDP).
 %This on-line training method achieves better performance than existing algorithms and approaches the same, sometimes better performance of the equivalent non-spiking methods.
 %It is crucial to provide deep SNNs with effective on-line training algorithms not only for building successful spike-based object recognition applications, but also for better power efficiency and scalability provided by the biologically-plausible SNN training on neuromorphic hardware.
+\section{Introduction}
+\label{sec:SRM_intro}
+Before we investigate into the proposed method, it is helpful to clarify what on-line learning addresses in the thesis context and what special features exist in the SNN training.
+Firstly, on-line systems `learn through play' that there is no separation between a training and a testing phase.
+Typically, the systems learn and improve their capability as more data feeding to them continuously.
+Secondly, they `live and learn' which means on-line learning never stops.
+Thus, it is easy for an on-line system to transfer a learning task, by simply providing different data.
+However, once a model is trained off-line, it remains fixed and stops learning.
+The brain is a natural on-line system, thus brining its learning techniques to SNNs will equip neuromorphic computers with genuine learning capability towards Neuromorphic Cognition.
+Hence, thirdly, the on-line approach exploits biologically-plausible learning rules, e.g. Spike-Timing-Dependent Plasticity~(STDP).
+Therefore, the modulation of the synaptic efficacy is event-driven by the spikes and operates in biologically real time.
 
-On-line training aims to bring biologically-plausible learning rules to SNNs to equip neuromorphic computers with genuine learning capabilities.
-Instead of transforming off-line trained ANN models to SNNs, on-line methods face the problem of translating numerical computations for training Deep Learning modules into spike-based synaptic plasticity rules.
-Multiplication is the core operation in the unsupervised Deep Learning algorithms, Autoencoders~(AEs) and Restricted Boltzmann Machines~(RBMs): $\Delta w \propto ab-cd$.
-In Chapter~\ref{cha:sdlm} we found that the product of two numerical values could be represented with rate multiplication of a pair of rate-coded spike trains;
-and the proposed formalised Spike-based Rate Multiplication~(SRM) method precisely transformed the product of rates to the number of simultaneous spikes generated from a pair of connected spiking neurons.
-Most importantly, the simultaneous events were captured by the weight change of the synaptic connection using the Spike-Timing-Dependent Plasticity~(STDP) learning rule.
-Therefore, the SRM tackles the problem of translating the weight tuning from numerical computations to event-based, biologically-plausible learning rules in SNNs.
+%Towards Neuromorphic Cognition, it is significant to endow these brain-like machines with on-line learning ability.
 
-Spiking AEs and RBMs can be trained with SRM by sharing the synaptic weights between $ab$ and $cd$, and applying symmetric learning rate $\pm \eta_s$ on the weight change respectively.
-The performance approaches the same, sometimes even superior, classification and reconstruction capabilities compared to their equivalent non-spiking models.
-In addition, the numerical analysis of the proposed algorithm accurately estimates the learning rate $\pm \eta_s$, thus closely mimicking the learning behaviour of the AE and RBM modules, and improves the learning performance compared to existing methods.
+The main difficulty of proposing effective on-line methods is the lack of knowledge about learning in the brain.
+The STDP learning rule, presented by~\citet{bi1998synaptic} (see Section~\ref{subsec:STDP} for detail), and its variations make up the majority of the biologically plausible on-line learning methods.
+However, the most common training algorithm of ANN, Backpropagation~(BP), is hardly transformed into STDP, since it only works locally with a teaching signal; but, BP does not provide the teaching targets for all the hidden units of a network.
+Therefore, existing on-line approaches, including our proposed method, favour greedy layer-wise unsupervised training in Deep Learning~\citep{hinton2006fast}.
+Another problem is to accurately transform numerical calculations of weights modulation to spike-based synaptic learning rules.
+Existing methods suffer from the performance loss due to the imprecise translation.
+Moreover, the correlation across spike trains brings down the learning performance drastically after it peaks, thus making `live and learn' far from practice.
+
+To address the problem of imprecise translation, we propose the Spike-based Rate Multiplication~(SRM) method.
+This algorithm is the first to accurately transform numerical calculations of weight tuning to precise parameter configurations of equivalent STDP rules.
+We select multiplication to be translated into SNN since it is the core operation in the greedy layer-wise training of Autoencoders~(AEs, Equation~\ref{equ:ae_widrow_hoff}) and Restricted Boltzmann Machines~(RBMs, Equation~\ref{equ:rbm_train}).
+Regarding the performance loss caused by correlated spike trains, we put forward four methods to reduce the correlated spikes while learning, which is the only attempt to tackle this problem as far as we know.
+Therefore, the on-line learning can keep going without worrying a manual stop.
+The experimental result proves the precise translation of the SRM since the learning curves of the SNN examples are well fitted to the non-spiking models;
+in addition, the learning performance achieves the same, sometimes even superior, than the conventional ANNs and stabilises around the peak performance without decay thanks to the decorrelation methods.
 
 
 
-%This algorithm successfully transforms the product of firing rates to the number of coincidence spikes of a pair of rate-coded spike trains.
-%Moreover, these coincidence spikes can be captured by the Spike-Time-Dependent Plasticity~(STDP) rule to update the weights in an on-line, event-based, and biologically-plausible manner.
-%Such weight updates suit conventional unsupervised Deep Learning modules, such as Autoencoders (AE) and Restricted Boltzmann Machine~(RBMs), where multiplication of the neural outputs is the main operation.
-%%todo maybe sell online event-based STDP? At least in Chapter 2, when introducing learning algorithms.
-%It is crucial to provide deep SNNs with effective on-line training algorithms not only for building successful spike-based object recognition applications, but also for better power efficiency and scalability when training on neuromorphic hardware.
+
+
+
 
 
 %Paragraph Three: OVERVIEW
@@ -47,15 +65,16 @@ Finally, experiments in Section~\ref{sec:SRM_result} show that this on-line trai
 
 
 
-\section{Related Works}
+\section{Related Work}
 \label{sec:SRM_related}
 %To start with evidence of energy efficiency: maybe should refer to Chapter 2 or 1.
-The current trend towards training deep SNNs on-line using biologically-plausible learning methods is promising due to its potential benefit on low-energy hardware implementations.
+%The current trend towards training deep SNNs on-line using biologically-plausible learning methods is promising due to its potential benefit on low-energy hardware implementations.
 %0. Dan Neil: Online Learning in Event-based Restricted Boltzmann Machines
 The first on-line training algorithm for unsupervised learning is event-based Contrastive Divergence (evtCD)~\citep{neil2013online} for SRBMs, which established the feasibility of applying the STDP rule to an approximate CD algorithm.
 A review of training methods for RBM algorithms is given in Section~\ref{sec:rbm}.
 The evtCD method divided the learning process into potentiation and depression parts, which forms the basic design of related research.
-In an initial attempts mathematical analysis was mainly ignored, thus the best classification performance achieved was only about 81.5\% using purely spiking neurons.
+Although it was also the first to intuitively transform numerical calculations to STDP rules, as an initial attempt mathematical estimation of the parameters was mainly ignored.
+Therefore the best classification performance achieved was only about 81.5\% on MNIST task, using purely spiking neurons.
 %1. Neftci
 Neftci et al.~\citep{neftci2013event} derived the division of potentiation and depression to their event-based CD algorithm, but conducted both parts on the same neural populations which was more biologically plausible.
 Therefore, a global signal was needed to differentiate the potentiation and depression process.
@@ -92,7 +111,7 @@ finally, the weight stays unchanged because the post-synaptic neuron fires coinc
 	\label{fig:resume}
 \end{figure}
 
-The basic idea of the proposed method is to provide an equivalent learning rule as ReSuMe on rate-encoded SNNs.
+The inspiration of the proposed method is to provide an equivalent learning rule as ReSuMe on rate-encoded SNNs.
 The objective is to supervise the post-synaptic neuron to fire at the frequency of the teaching spike train. 
 Accordingly, the weight decreases if the output neuron fires stronger than the teaching neuron, and vice versa.
 The synaptic strength stops changing as the output neuron fires at the same frequency as the teaching signal.
