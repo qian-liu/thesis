@@ -38,12 +38,14 @@ The following Equations~\ref{app_equ:part} and \ref{app_equ:RBM} give the detail
 \label{app_equ:RBM}
 \end{equation}
 
-\chapter{More Experimental Results}
+\chapter[More Experimental Results]{More Experimental Results for Chapter \ref{cha:sdlm}}
 \label{sec:app2}
 In Chapter~\ref{cha:sdlm}, Figures~\ref{fig:sols_ae} and \ref{fig:sols_rbm} show the comparisons of different solutions for reducing correlations in training spiking Autoencoders~(SAEs) and spiking Restricted Boltzmann Machines~(SRBMs).
 In this section, Figures~\ref{fig:sol1_ae} to \ref{fig:sol4_rbm} present the detailed experimental results for this comparison.
 
 To validate the learning capability of the proposed off-line training method on Leaky Integrate-and-Fire(LIF) neurons, Figures~\ref{fig:LIF_sae} and \ref{fig:LIF_srbm} demonstrate the results conducting the same experiments shown in Figures~\ref{fig:sols_ae} and \ref{fig:sols_rbm}.
+
+In addition, to provide a closer observation of the trained weights in Figures~\ref{fig:weights_ae} and \ref{fig:weights_rbm}, the enlarged images are shown in Figures~\ref{fig:weights_ae1} to \ref{fig:weights_rbm6}.
 \begin{figure}
 	\centering
 	\begin{subfigure}[t]{0.48\textwidth}
@@ -434,19 +436,91 @@ To validate the learning capability of the proposed off-line training method on 
 \end{figure}
 
 
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{pics_sdlm/22_MNIST_AE/2_60000_0.pdf}
+	\caption{Trained weights after 3 epochs of MNIST training using AE, same as Figure~\ref{fig:weights_ae}(a)}
+	\label{fig:weights_ae1}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{pics_sdlm/23_MNIST_AE_noise/2_60000_0.pdf}
+	\caption{Trained weights after 3 epochs of MNIST training using AE-NI, same as Figure~\ref{fig:weights_ae}(b).}
+	\label{fig:weights_ae2}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{pics_sdlm/40_MNIST_SAE_original/2_60000_0.pdf}
+	\caption{Trained weights after 3 epochs of MNIST training using Original SAE, same as Figure~\ref{fig:weights_ae}(c).}
+	\label{fig:weights_ae3}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{pics_sdlm/42_MNIST_SAE_noise/2_60000_0.pdf}
+	\caption{Trained weights after 3 epochs of MNIST training using SAE-S2, same as Figure~\ref{fig:weights_ae}(d)}
+	\label{fig:weights_ae4}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{pics_sdlm/41_MNIST_SAE_teach/2_60000_0.pdf}
+	\caption{Trained weights after 3 epochs of MNIST training using SAE-S3, same as Figure~\ref{fig:weights_ae}(e).}
+	\label{fig:weights_ae5}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{pics_sdlm/43_MNIST_SAE_all/2_60000_0.pdf}
+	\caption{Trained weights after 3 epochs of MNIST training using SAE-S4, same as Figure~\ref{fig:weights_ae}(f).}
+	\label{fig:weights_ae6}
+\end{figure}
 
 
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{pics_sdlm/32_MNIST_RBM/2_60000_0.pdf}
+	\caption{Trained weights after 3 epochs of MNIST training using nRBM, same as Figure~\ref{fig:weights_rbm}(a)}
+	\label{fig:weights_rbm1}
+\end{figure}
 
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{pics_sdlm/33_MNIST_RBM_noise/2_60000_0.pdf}
+	\caption{Trained weights after 3 epochs of MNIST training using nRBM-NI, same as Figure~\ref{fig:weights_rbm}(b).}
+	\label{fig:weights_rbm2}
+\end{figure}
 
+\clearpage
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{pics_sdlm/50_MNIST_SRBM_original/2_60000_0.pdf}
+	\caption{Trained weights after 3 epochs of MNIST training using Original SRBM, same as Figure~\ref{fig:weights_rbm}(c).}
+	\label{fig:weights_rbm3}
+\end{figure}
 
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{pics_sdlm/52_MNIST_SRBM_noise/2_60000_0.pdf}
+	\caption{Trained weights after 3 epochs of MNIST training using SRBM-S2, same as Figure~\ref{fig:weights_rbm}(d)}
+	\label{fig:weights_rbm4}
+\end{figure}
 
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{pics_sdlm/51_MNIST_SRBM_teach/2_60000_0.pdf}
+	\caption{Trained weights after 3 epochs of MNIST training using SRBM-S3, same as Figure~\ref{fig:weights_rbm}(e).}
+	\label{fig:weights_rbm5}
+\end{figure}
 
-
-
-
-
-
-
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{pics_sdlm/53_MNIST_SRBM_all/2_60000_0.pdf}
+	\caption{Trained weights after 3 epochs of MNIST training using SRBM-S4, same as Figure~\ref{fig:weights_rbm}(f).}
+	\label{fig:weights_rbm6}
+\end{figure}
 
 
 
