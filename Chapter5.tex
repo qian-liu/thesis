@@ -125,11 +125,13 @@ In the following section, we will firstly describe this idea mathematically usin
 \label{sec:SRM}
 \begin{figure}
 	\centering
+%	\includegraphics[width=0.3\textwidth]{pics_sdlm/resume.pdf}
 	\includegraphics[width=0.6\textwidth]{pics_sdlm/adaline.pdf}
-	\caption{The architecture of a single-layered network, ADALINE.}
+	\caption{The architecture of an ADALINE network.}
 	\label{fig:adaline}
 \end{figure}
-If we see \textit{pre}, \textit{post} and \textit{teach} as vectors individually, and \textit{w} as a weight matrix of the all-to-all connections between \textit{pre} and \textit{post} in Figure~\ref{fig:resume}, the network will form the ADALINE (Adaptive Linear Element) which is a single-layered ANN, see Figure~\ref{fig:adaline}.
+Following the idea of reconstructing teaching signals in rate-based networks, we firstly look into existing models in ANNs.
+If we see \textit{pre}, \textit{post} and \textit{teach} as vectors individually, and \textit{w} as a weight matrix of the all-to-all connections between \textit{pre} and \textit{post} in Figure~\ref{fig:resume}, it will form the ADALINE (Adaptive Linear Element)~\citep{widrow1960adaptive} network, see Figure~\ref{fig:adaline}.
 The `Post' neurons perform a weighted sum on the input data, and the error between their output and the teaching data is propagated to update the weights, thus to train the network to generate the same output as the teacher's. 
 The learning algorithm was named after the researcher Widrow-Hoff:
 \begin{equation}
@@ -138,8 +140,21 @@ The learning algorithm was named after the researcher Widrow-Hoff:
 \end{equation}
 %which is equivalent to Stochastic Gradient Descent~(SGD) in Multi-Layered Perceptrons~(MLPs).
 The right hand side of the equation can be seen as a subtraction of two multiplication operations, $teach \times pre$ and $post \times pre$, times a learning rate, $\eta$.
+Similarly, the unsupervised learning of AEs and RBMs has the same form of weight modulation, see Equations~\ref{equ:ae_widrow_hoff}) and \ref{equ:rbm_train}:
+\begin{equation}
+\Delta w = \eta (ab-cd)~~.
+\label{equ:two_sep}
+\end{equation}
+Especially for the training of AEs, the weight updates are the same as Equation~\ref{equ:widrow-hoff} if using Rectified Linear Unit~(ReLU) as the activation function.
 
-SRM provides the solution to present numeric multiplication $c=ab$ with rate-based spike trains.
+Therefore, the multiplications are the core operations in the training of these rate-based ANN models.
+Thus we propose the SRM to accurately transform the product of rates to weight tuning of event-based, biologically-plausible learning in SNNs.
+There are a few steps to be followed: (1) present rate multiplication with simultaneous spikes generated from a pair of connected spiking neurons;
+(2) capture the simultaneous events by the weight change of the synaptic connection using the STDP learning rule.
+(3) precisely transform the learning rate $\eta$ to parameters used in SRM.
+
+\paragraph{1. Presenting rates with spikes\\}
+%SRM provides the solution to present numeric multiplication $c=ab$ with rate-based spike trains.
 Firstly, the multiplier $a$ and the multiplicand $b$ are encoded into Poisson spike trains $s_a(t)=\{s_a(1),s_a(2),...,s_a(T)\}$ and $s_b(t)=\{s_b(1),s_b(2),...,s_b(T)\}$ with 1~ms resolution, where $s(t)=1$ indicates a spike in the $t$th~ms and $s(t)=0$ means no spike.
 Secondly, a Poisson generator fires a sequence of spikes according to its firing rate, $\lambda$~Hz, which is assigned linearly to the original multiplier/multiplicand by a factor of $K$.
 Hence, the firing rate ($\lambda_x$) of the Poisson generator is $K$ times the numerical value x, and can be approximated by the average spike count, $N_T(s_x)$, of the generated spike train $s_x(t)$ over time $T$~ms:
@@ -154,33 +169,74 @@ Thirdly, assuming $s_a(t)$ and $s_b(t)$ are independent Poisson spike trains the
 \label{equ:mul}
 \end{equation} 
 
-Finally, if we combine the concept of the STDP learning window with equation~\ref{equ:mul}, the length of the observing time on $s_b$ shrinks to a fixed-length windowing period, $\tau_{\textit{\textrm{win}}}$.
-Consequently, the rate multiplication can be conducted within only the local events in terms of time, although the accuracy may drop.
-The rate multiplication is then approximated by:
+%Finally, if we combine the concept of the STDP learning window with equation~\ref{equ:mul}, the length of the observing time on $s_b$ shrinks to a fixed-length windowing period, $\tau_{\textit{\textrm{win}}}$.
+Finally, if we constrain the length of the observing time $T_2$ to a short time window $\tau_\textit{\textrm{win}}$ after each time step in $T_1$, the rate multiplication can be approximated with coincident spikes:
+%The rate multiplication is then approximated by:
 \begin{equation}
 \lambda_a \lambda_b \approx \frac{10^6}{\tau_{\textit{\textrm{dur}}} \tau_{\textit{\textrm{win}}}} \sum_{t=1}^{\tau_{\textit{\textrm{dur}}}} [s_a(t) \sum_{t_b=t}^{t+\tau_{\textit{\textrm{win}}}} s_b(t_b)]~,
 \end{equation} 
 where $\tau_{\textit{\textrm{dur}}}$ replaces $T$ to represent the length of generated spike trains during SNN simulation.
-The weight rise/drop according to a rectangular STDP curve can detect the spike events of a pair of neurons when a post-synaptic spike occurs coincidently (no later than $\tau_{\textit{\textrm{win}}}$), see Figure~\ref{fig:rtg_stdp}.
-Therefore, the overall weight change during time $\tau_{\textit{\textrm{dur}}}$ is determined by the number of coincident spikes of the pair of neurons, indicating the rate multiplication, and is described by SRM:
+Consequently, the rate multiplication can be conducted within only the local events in terms of time, although the accuracy may drop.
+Here, we define the SRM function:
 \begin{equation}
-\begin{aligned}
-\Delta w = SRM(s_a, s_b) &= \eta_s \sum_{t=1}^{\tau_{\textit{\textrm{dur}}}} [s_a(t) \sum_{t_b=t}^{t+\tau_{\textit{\textrm{win}}}} s_b(t_b)] \text{~,~and}\\
-c=ab=\frac{\lambda_a \lambda_b}{K^2} &\approx \frac{10^6}{K^2 \tau_{\textit{\textrm{dur}}} \tau_{\textit{\textrm{win}}}} \sum_{t=1}^{\tau_{\textit{\textrm{dur}}}} [s_a(t) \sum_{t_b=t}^{t+\tau_{\textit{\textrm{win}}}} s_b(t_b)] \\
-&\approx  \frac{10^6 SRM(s_a, s_b)}{K^2 \tau_{\textit{\textrm{dur}}} \tau_{\textit{\textrm{win}}}  \eta_s}~.
+\lambda_a \lambda_b \approx \textit{\textrm{SRM}}(s_a, s_b, \tau_\textit{\textrm{dur}}, \tau_\textit{\textrm{win}}) = \frac{10^6}{\tau_{\textit{\textrm{dur}}} \tau_{\textit{\textrm{win}}}} \sum_{t=1}^{\tau_{\textit{\textrm{dur}}}} [s_a(t) \sum_{t_b=t}^{t+\tau_{\textit{\textrm{win}}}} s_b(t_b)]~.
+\end{equation} 
+
+\paragraph{2. Capturing coincident spikes with STDP.\\}
+The weight rise/drop according to a rectangular STDP curve can detect the spike events of a pair of neurons when a post-synaptic spike occurs coincidently (no later than $\tau_{\textit{\textrm{win}}}$), see Figure~\ref{fig:rtg_stdp}:
+\begin{equation}
+\Delta w = \textit{\textrm{STDP}}(s_a, s_b, \tau_\textit{\textrm{dur}}, \tau_\textit{\textrm{win}}, \eta_s) = \eta_s \sum_{t=1}^{\tau_{\textit{\textrm{dur}}}} [s_a(t) \sum_{t_b=t}^{t+\tau_{\textit{\textrm{win}}}} s_b(t_b)]~,
+\end{equation}
+where $ \eta_s$ presents the learning rate of the STDP rule.
+%Therefore, the overall weight change during time $\tau_{\textit{\textrm{dur}}}$ is determined by the number of coincident spikes of the pair of neurons, indicating the rate multiplication, and is described by SRM:
+Thus, SRM can be described with weight updates caused by STDP:
+\begin{equation}
+\textit{\textrm{SRM}}(s_a, s_b, \tau_\textit{\textrm{dur}}, \tau_\textit{\textrm{win}}) =
+\frac{10^6}{\tau_{\textit{\textrm{dur}}}
+\tau_{\textit{\textrm{win}}}
+\eta_s}
+\textit{\textrm{STDP}}(s_a, s_b, \tau_\textit{\textrm{dur}}, \tau_\textit{\textrm{win}}, \eta_s) =
+\frac{10^6}{\tau_{\textit{\textrm{dur}}}
+\tau_{\textit{\textrm{win}}}
+\eta_s}
+\Delta w.
+\end{equation}
+%\begin{equation}
+%\Delta w = \textit{\textrm{STDP}}(s_a, s_b, \tau_\textit{\textrm{dur}}, \tau_\textit{\textrm{win}}, \eta_s) = \eta_s \sum_{t=1}^{\tau_{\textit{\textrm{dur}}}} [s_a(t) \sum_{t_b=t}^{t+\tau_{\textit{\textrm{win}}}} s_b(t_b)]~,
+%\end{equation}
+
+
+\paragraph{3. translating abstract numerical multiplication to SRM\\}
+If we separate the weight update of Equation~\ref{equ:two_sep} to a positive $\Delta w_+$ and negative part $\Delta w_-$:
+\begin{equation}
+\left\{
+\begin{aligned} 
+\Delta w_+ &= \eta ab\\
+\Delta w_- &= -\eta cd
 \end{aligned}
+\right~,
+\end{equation}
+it is straight forward to estimate the parameter $\eta_s$ to precisely transform the weight update from numerical calculations to spike-based learning rules:
+\begin{equation}
+\Delta w_+ = ab=\frac{\lambda_a \lambda_b}{K^2} \approx 
+\frac{\textit{\textrm{SRM}}(s_a, s_b, \tau_\textit{\textrm{dur}}, \tau_\textit{\textrm{win}})}{K^2} =
+\frac{10^6}{\tau_{\textit{\textrm{dur}}}
+\tau_{\textit{\textrm{win}}}
+\eta_s K^2}
+\Delta w_+~.
+%&\approx  \frac{10^6 SRM(s_a, s_b)}{K^2 \tau_{\textit{\textrm{dur}}} \tau_{\textit{\textrm{win}}}  \eta_s}~.
 \label{equ:srm}
 \end{equation} 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.4\textwidth]{pics_sdlm/stdp.pdf}
 	\caption{Rectangular STDP curve.
-		If the time difference between the post-synaptic spike and the pre-synaptic spike lies in the window $\tau_{\textit{\textrm{win}}}$, then the synaptic weight will increase or decrease by $\eta_s$ according to the sign of the SRM.}
+		If the time difference between the post-synaptic spike and the pre-synaptic spike lies in the window $\tau_{\textit{\textrm{win}}}$, then the synaptic weight will increase or decrease by $\eta_s$.}
 	\label{fig:rtg_stdp}
 \end{figure}
 
-We can adjust $\eta_s$ to $ K^2 \tau_{\textit{\textrm{dur}}} \tau_{\textit{\textrm{win}}}10^{-6}$ to make $ab = \Delta w$.
-In terms of the Widrow-Hoff learning algorithm, $\eta_s$ is set to be:
+We can adjust $\eta_s$ to $ K^2 \tau_{\textit{\textrm{dur}}} \tau_{\textit{\textrm{win}}}10^{-6}$ to make the numerical calculations to the spike-based presentations.
+In terms of the Widrow-Hoff learning algorithm:
 \begin{equation}
 	\eta_s=
     \left\{
@@ -188,7 +244,7 @@ In terms of the Widrow-Hoff learning algorithm, $\eta_s$ is set to be:
     \eta K^2 \tau_{\textit{\textrm{dur}}} \tau_{\textit{\textrm{win}}}10^{-6}, &\text{ when calculating } \eta teach \times pre\\
     - \eta K^2 \tau_{\textit{\textrm{dur}}} \tau_{\textit{\textrm{win}}}10^{-6}, &\text{ when calculating } \eta post \times pre
     \end{aligned}
-    \right.
+    \right. ~.
     \label{equ:eta_s}
 \end{equation}
 %In Section~\ref{sec:AE}, we demonstrate how Widrow-Hoff algorithm successfully is applied to training AEs (see Equation~\ref{equ:ae_widrow_hoff}) and in Section~\ref{subsec:SAE} we describe the implementation of SRM algorithm to Deep Learning models of spiking AEs and RBMs.
@@ -934,7 +990,7 @@ In the training of SNNs, as described above in Section~\ref{sec:ae}, pixel value
 The overall count of spikes for each pixel was used as a noisy input of conventional training, AE-NI and nRBM-NI, to provide an equal comparison to SNNs.
 Moreover, all the training images were presented in sequence one by one in an on-line fashion, in other words we used the minimum batch size of~1.
 %Since training a batch of $n$ images in parallel require $n$ times of physical spiking neurons sharing the same weights, it is easier to track the weight change caused by single pair of neurons than by $n$ pairs.
-In addition, the default parameters of SNNs were the same as listed in Table~\ref{tbl:srm} except that in the improved solutions of SNN training the STDP window $tau_{win}$ was doubled to 20~ms and the learning rate $\eta_s$ was set to $5 \times 10^{-5}$ accordingly;
+In addition, the default parameters of SNNs were the same as listed in Table~\ref{tbl:srm} except that in the improved solutions of SNN training the STDP window $tau_\textit{\textrm{win}}$ was doubled to 20~ms and the learning rate $\eta_s$ was set to $5 \times 10^{-5}$ accordingly;
 the initial weights were identical for all the experiments following as well as the input spike trains.
 
 
