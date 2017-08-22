@@ -34,7 +34,7 @@ SNNs can be trained by first training an equivalent ANN and then transferring th
 This method is called `off-line' training, since it does not take place on an SNN directly, but rather on an ANN instead.
 However, previous work on such off-line training methods has struggled in terms of poor modelling accuracy of the spiking neurons and high computational complexity.
 In this thesis we propose a simple and novel activation function, Noisy Softplus~(NSP), to closely model the response firing activity of biologically-plausible spiking neurons,
-and introduce a generalised off-line training method using the parametric activation function~(PAF) to map the abstract numerical values of the ANN to concrete physical units, such as current and firing rate in the SNN.
+and introduce a generalised off-line training method using the Parametric Activation Function~(PAF) to map the abstract numerical values of the ANN to concrete physical units, such as current and firing rate in the SNN.
 Based on this generalised training method and its fine tuning, we achieve the state-of-the-art accuracy on the MNIST classification task using spiking neurons, 99.07\%, on a deep spiking convolutional neural network~(ConvNet).
 
 
@@ -43,6 +43,7 @@ Existing work has failed to provide SNNs with recognition accuracy equivalent to
 Thus we propose a formalised Spike-based Rate Multiplication~(SRM) method which transforms the product of firing rates to the number of coincident spikes of a pair of rate-coded spike trains.
 %possibility of some specific firing events of a pair of rate-coded spike trains.
 Moreover, these coincident spikes can be captured by the Spike-Time-Dependent Plasticity~(STDP) rule to update the weights between the neurons in an on-line, event-based, and biologically-plausible manner.
+Furthermore, we put forward solutions to reduce correlations between spike trains; thereby to address the result of performance drop in on-line training. 
 The promising results of training spiking Autoencoders~(AEs) and Restricted Boltzmann Machines~(RBMs) exhibit equivalent, sometimes even superior, classification and reconstruction capabilities compared to their equivalent non-spiking methods.
 
 To provide meaningful comparisons between these proposed SNN models and other existing methods within this rapidly advancing field of NE, we propose a large dataset of spike-based visual stimuli and a corresponding evaluation methodology to estimate the overall performance of SNN models and their hardware implementations.

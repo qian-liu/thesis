@@ -1,8 +1,8 @@
 \chapter{Deep Learning}
 \label{cha:dnn}
-Deep Learning research in the field of Artificial Neural Networks~(ANNs) has dominated state-of-the-art solutions on cognitive tasks, e.g. the performance exceeding human-level  on image classification tasks~\citep{he2015delving} and playing GO~\citep{silver2016mastering}.
-Merging Deep Learning techniques into Spiking Neural Networks~(SNNs), introduced in the previous chapter, may provide an answer to the problem of how to operate SNNs to perform equivalently as ANNs in cognitive tasks. 
-In this chapter, we will give an overview of popular architectures and models of Deep Learning in Section~\ref{sec:dl_history}, and the rest of this chapter will illustrate the mechanisms of Convolutional Networks (ConvNets), Autoencoders (AEs), and Restricted Boltzmann Machines~(RBMs) in detail which will be used in following chapters.
+Deep Learning research in the field of artificial neural networks~(ANNs) has dominated state-of-the-art solutions on cognitive tasks, e.g. the performance exceeding human-level  on image classification tasks~\citep{he2015delving} and playing GO~\citep{silver2016mastering}).
+Merging Deep Learning techniques into Spiking Neural Networks~(SNNs), introduced in the previous chapter, may provide an answer to the problem of how to operate SNNs to perform as well as ANNs in cognitive tasks. 
+In this chapter, we will give an overview of popular architectures and models of Deep Learning in Section~\ref{sec:dl_history}, and the rest of this chapter will illustrate the mechanisms of convolutional networks (ConvNets), autoencoders (AEs), and restricted Boltzmann machines~(RBMs) in detail which will be used in following chapters.
 
 \section{Brief Overview}
 \label{sec:dl_history}
@@ -31,13 +31,13 @@ The mechanism of shared weights forms the essence of convolution in a ConvNet, w
 The most significant milestones produced by deep ConvNet dominated the best performances in the annual ImageNet Challenge~\citep{russakovsky2015imagenet}: AlexNet~\citep{krizhevsky2012imagenet}, VGG Net~\citep{simonyan2014very}, GoogLeNet~\citep{szegedy2015going} and ResNet~\citep{he2016deep}.
 
 Despite the powerful capabilities of these feed-forward deep networks, sequence processing is a challenge for them since the size of the input and output vectors are constrained to the number of neurons.
-Thus Recurrent Neural Networks~(RNNs), containing feed-back connections, are ideal solutions for dealing with sequential information since their current output is always dependent on the previous `memory'.
-As training mechanisms have become more mature, for example using the Long Short-Term Memory~(LSTM)~\citep{hochreiter1997long}, RNNs have shown great success in many natural language processing tasks: language modelling~\citep{mikolov2010recurrent}, machine translation~\citep{sutskever2014sequence}, speech recognition~\citep{graves2014towards} and image caption generation~\citep{karpathy2015deep}.
+Thus recurrent neural networks~(RNNs), containing feed-back connections, are ideal solutions for dealing with sequential information since their current output is always dependent on the previous `memory'.
+As training mechanisms have become more mature, for example using the long short-term memory~(LSTM)~\citep{hochreiter1997long}, RNNs have shown great success in many natural language processing tasks: language modelling~\citep{mikolov2010recurrent}, machine translation~\citep{sutskever2014sequence}, speech recognition~\citep{graves2014towards} and image caption generation~\citep{karpathy2015deep}.
 
 \subsection{Combined Approaches}
 The current trend in Deep Learning is to combine machine learning algorithms towards more complex objectives such as decision making and data generation.
 
-Reinforcement Learning (RL) is inspired from animal behaviour when agents learn to make sequential optimised decisions to control an environment.
+Reinforcement learning (RL) is inspired from animal behaviour when agents learn to make sequential optimised decisions to control an environment.
 To address complex decision making problems in practical life, RL requires a sufficiently abstract representation of the high-dimensional environment.
 Fortunately, Deep Learning just complements the requirement which performs effectively at dimensionality reduction and feature extraction.
 The milestone achieved by the integration of RL and deep networks, deep RL, drew everyone's attention to artificial intelligence when AlphaGo beat a professional human player at Go~\citep{silver2016mastering}.
@@ -54,7 +54,7 @@ Exciting achievements have been reported in generating complex data such as real
 \section{Convolutional Networks}
 \label{sec:convnet}
 In Chapter~\ref{cha:Conv}, we will use a convolutional network to demonstrate a training method for spiking deep architectures.
-This section aims to give a detailed introduction to ConvNet architectures and their training with Backpropagation.
+This section aims to give a detailed introduction to ConvNet architectures and their training with back propagation.
 \subsection{Network Architecture}
 
 	\begin{figure}[bt]
@@ -64,7 +64,7 @@ This section aims to give a detailed introduction to ConvNet architectures and t
 		\label{Fig:ConvNet}
 	\end{figure}
 
-A typical ConvNet, LeNet shown in Figure~\ref{Fig:ConvNet},  consists of four types of neural layers: an input layer, convolutional~(Conv) layers of simple cells, pooling~(Pool) layers of complex cells and fully-connected~(FC) layers.
+A typical ConvNet (LeNet) consists of four types of neural layers: an input layer, convolutional~(Conv) layers of simple cells, pooling~(Pool) layers of complex cells and fully-connected~(FC) layers, as shown in Figure~\ref{Fig:ConvNet}.
 From the left to right of Figure~\ref{Fig:ConvNet}, we illustrate the mechanism of the ConvNet in detail.
 
 The pixels of the input image are normalised and fed into the first Conv layer.
@@ -73,7 +73,7 @@ The neurons work as demonstrated in Figure~\ref{Fig:compare_as}(a) performing a 
 Convolving a whole input image with a kernel composes a feature map in the Conv layer, thus in this LeNet example there are 6 feature maps in the first Conv layer.
 Stride controls the output volume of a convolution such that setting the stride to $step$ causes the kernel to move $step$ pixels at a time.
 Thus a small stride produces more output volume and highly overlapping receptive fields.
-Suppose an input image and a kernel are both squares, with side lengths of $l_{in}$ and $l_k$, then the side length of the convolved feature map is $(l_{in} - l_k + 1)/stride$.
+Suppose an input image and a kernel are both squares with side lengths of $l_{in}$ and $l_k$, then the side length of the convolved feature map is $(l_{in} - l_k + 1)/stride$.
 
 The special characteristics of Conv layers lie in the local connectivity and the parameter sharing, such that a neuron connects only to a spatially local input volume, its receptive field; and the weights (the convolutional kernel) are shared among all the receptive fields.
 Consequently, the number of parameters (trainable weights) hugely decreases compared to all-to-all connections of the same network size. 
@@ -90,7 +90,7 @@ Repeating these alternating presentations of a Conv layer and a Pool layer build
 
 The trainable shared weights used in the Conv layer hugely reduce the number of weight parameters in a ConvNet, while Pool layers use static convolutional kernels to shrink the size of the network.
 These convolutional connections can be described as 6c5-2s-12c5-2s, where $\alpha c \beta$ indicates $\alpha$ kernels of side length $\beta$ used in the Conv layer, and $2s$ specifies the side length and the stride of a pooling kernel.
-However, a Multilayer Perceptron (MLP) network possesses only FC layers, where each neural layer fully connects to the next one.
+However, a multilayer perceptron (MLP) network possesses only FC layers, where each neural layer fully connects to the next one.
 In a ConvNet an FC layer is usually located at the last layer (right in Figure~\ref{Fig:ConvNet}), and connects the last Pool layer to the output neurons with all-to-all connections.
 % to predict the classification of the input image.
 The strongest response among the output neurons indicates to which class the input image belongs, as illustrated in Figure~\ref{Fig:ConvNet} where the red neuron represents the first digit out of ten, `0'.
@@ -110,15 +110,14 @@ L={MSE}(\mathbf{T}, \mathbf{Y}) =\frac{1}{2K}\sum_{k=1}^K \sum_{m=1}^M (y^{k}_{m
 \label{equ:loss_all}
 \end{equation}
 
-BP propagates the gradient of the loss with respect to the weights backwards to each connection in the network.
+Backpropagation~(BP) propagates the gradient of the loss with respect to the weights backwards to each connection in the network.
 The computation requires a closer look into the structure of a neuron, see Figure~\ref{Fig:neuron_net} where $N$ neurons connect to the $j^{th}$ neuron of the next layer, and the neuron converts the weighted summation of the input, $net_j$, to the output $y_j$ according to its activation function.
 \begin{figure}[bt]
 	\centering
 	\includegraphics[width=0.7\textwidth]{pics_iconip/neuron.pdf}
-	\caption[An artificial neuron.]{$N$ neurons connect to the $j_{th}$ neuron of the next layer. As illustrated in Figure~\ref{Fig:compare_as}(a), we use a simplified artificial neuron without bias.}
+	\caption{ $N$ neurons connect to the $j_{th}$ neuron of the next layer. As illustrated in Figure~\ref{Fig:compare_as}(a), we use a simplified artificial neuron without bias.}
 	\label{Fig:neuron_net}
 \end{figure}
-
 Thus the gradient of the loss $L$ with respect to a weight $w_{ij}$ is as follows:
 \begin{equation}
 \begin{aligned}
@@ -156,7 +155,7 @@ where $\eta$ defines the length of these updating steps which is also called the
 Again, the weight update is also dependent on the types of layer, where a convolution of the input vector $\mathbf{x}$ with the error gradient  $\mathbf{\delta}$ is needed in Conv layers.
 A detailed description of BP training on ConvNets can be found elsewhere~\citep{bouvrie2006notes}.
 
-Moreover, applying Stochastic Gradient Descent (SGD), the gradient over the full training set can be approximated using only a few, even a single, training data.
+Moreover, applying stochastic gradient descent (SGD), the gradient over the full training set can be approximated using only a few, even a single, training data.
 Therefore $k$ in Equation~\ref{equ:derivative} can be seen as a randomly selected data index, and $K$ represents the number of elements in such a data subset, which is also known as a batch.
 If we take only one data sample in each batch, the loss function~(Equation~\ref{equ:loss_all}) will be estimated by the error between an output vector $\mathbf{y}^k$ and the single label sample $\mathbf{t}^k$:
 \begin{equation}
@@ -190,7 +189,7 @@ E = \frac{1}{2}\sum_{m=1}^M (y_{m}-t_{m})^{2}~~.
 		\includegraphics[width=\textwidth]{pics_snn/af_der.pdf}
 		\caption{Derivatives of the activation functions}
 	\end{subfigure}
-	\caption[Activation functions]{Activation functions: (a) sigmoid and ReLU, and (b) their derivatives.}
+	\caption{Activation functions: (a) sigmoid and ReLU, and (b) their derivatives.}
 	\label{fig:af}
 \end{figure}
 Each error gradient propagated through layers of the network consists of a chain of multiplied factors as illustrated in Equation~\ref{equ:derivative}.
@@ -198,7 +197,7 @@ The deeper a network is and the closer a layer is to the input, the more element
 %The derivative of the activation function is a recursive factor in the BP chain, 
 %one of the factors when the error gradient back propagated in each layer.
 Thus, the gradient may vanish if the derivative of the activation function is always less than 1.
-For the sigmoid function example, shown in Figure~\ref{fig:af}(a), the derivative only peaks to around~0.25 when the input is close to 0, and decays to its minimum as the input either increases or decreases, see Figure~\ref{fig:af}(b).
+For the sigmoid function example, shown in Figure~\ref{fig:af}(a), the derivative is the maximum (around~0.25) only when the input is close to 0, and decays to its minimum 0 as the input either increases or decreases, see Figure~\ref{fig:af}(b).
 
 The Rectified Linear Unit (ReLU) is proposed to tackle the problem of vanishing gradients in deep networks.
 ReLU, simply defined as $y = max(0,x)$ and shown in Figure~\ref{fig:af}, has a gradient of 1 when the input is greater than 0.
@@ -609,7 +608,7 @@ The energy function~\citep{hopfield1982neural} of an RBM is defined as follows:
 E(\mathbf{v}, \mathbf{h} \mid \Theta)= -\sum_{i=1}^N a_i v_i - \sum_{j=1}^M b_j h_j - \sum_{i=1}^N \sum_{j=1}^M v_i w_{ij} h_j~~,
 \label{equ:energy_complete}
 \end{equation}
-where the visible layer has $ N $ units, the hidden layer has $ M $, and $ \Theta$ are the model parameters used in RBMs $ \Theta =\{\mathbf{a}, \mathbf{b}, \mathbf{w}\} $ including biases $\mathbf{a}$ and $\mathbf{b}$ on the visible and the hidden layer respectively, and the weights $\mathbf{w}$ between the layers.
+where the visible layer has $ N $ units, the hidden layer has $ M $, and $ \Theta$ are the model parameters used in RBMs $ \Theta =\{\mathbf{a}, \mathbf{b}, \mathbf{w}\} $ including biases on the visible layer, $\mathbf{a}$, the hidden layer $\mathbf{b}$ and weights between the layers $\mathbf{w}$.
 As mentioned in Section~\ref{sec:spike}, for simplicity we use neurons without biases in this thesis.
 Therefore only the third term of the complete energy function~(Equation~\ref{equ:energy_complete}) is kept:
 \begin{equation}
@@ -674,13 +673,13 @@ The derivative of the log-likelihood with respect to a parameter $\theta$ is as 
 & = \left \langle \dfrac{\partial \log f(\mathbf{v} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{D}} -\left \langle \dfrac{\partial \log f(\mathbf{v} \mid \Theta)}{\partial \theta}\right \rangle_{\mathbf{C} \sim p(\mathbf{v} \mid \Theta)} ~~,
 \end{aligned}
 \end{equation}
-where $ <\cdot>_{\mathbf{X}} $ denotes the mean expectation of $ \cdot $ given data set $\mathbf{X}$.
+where  $ <\cdot>_{\mathbf{X}} $ denotes the mean expectation of $ \cdot $ given data set $\mathbf{X}$.
 The first term of the right-hand side is easy to get with the given data, $\mathbf{d} \in \mathbf{D} $, and the second term can be approximated by generating data samples $\mathbf{C} $ according to $ p(\mathbf{x} \mid \Theta) $.
 %These generative samples is called ``fantasy data'' and can be generated using Monte Carlo Markov Chain (MCMC) sampling, see section~\ref{sec:mcmc}.
 The detailed derivation process can be found in the Appendix (Equation~\ref{app_equ:part}).
 %Although in this example the integration of product of normal distribution is still tractable, it is also helpful to use numerical integration.
 %Although $ p(\mathbf{v} \mid \Theta) $ is not a PoE problem, the partial derivation of the average log-likelihood function still applies to Equation~(\ref{equ:part}) and the intractable integration is the same problem here:
-Applying the RBM model function (Equation~\ref{equ:rbm_prob}) to the Equation~\ref{equ:part}, we derive the simplified representation of the derivative of the log likelihood:
+
 \begin{equation}
 \label{equ:RBM}
 \begin{aligned}
@@ -689,14 +688,12 @@ Applying the RBM model function (Equation~\ref{equ:rbm_prob}) to the Equation~\r
 - \left \langle \dfrac{\partial {-E}(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\{\mathbf{C_v}, \mathbf{C_h}\} \sim p( \mathbf{v}, \mathbf{h} \mid  \Theta)},
 \end{aligned}
 \end{equation}
-where the first term of the right-hand side can be gathered from the given data, $ \{\mathbf{D}, \mathbf{D}_h\}$, and the second term will be approximated by sampling $ \{\mathbf{C_v}, \mathbf{C_h}\} $.
-Equation~\ref{app_equ:RBM} in the Appendix derives the loss function of RBMs in detail.
-Then we plug the RBM energy function (Equation~\ref{equ:rbm_energy}) into the equation above, the loss derivative with respect to the weight is:
+
 \begin{equation}
 \label{equ:RBM_2}
 %\begin{aligned}
 \dfrac{\partial \hat{l} (\Theta \mid \mathbf{D})}{\partial w_{ij}} 
-= \left \langle v_i h_j \right \rangle_{\{\mathbf{D}, \mathbf{D}_h \sim p( \mathbf{h} \mid \mathbf{v}, \Theta) \}}
+= \left \langle v_i h_j \right \rangle_{\{\mathbf{D}, \mathbf{D}_h\} \sim p( \mathbf{h} \mid \mathbf{v}, \Theta)}
 - \left \langle  v_i h_j \right \rangle_{\{\mathbf{C_v}, \mathbf{C_h}\} \sim p( \mathbf{v}, \mathbf{h} \mid  \Theta)}~~. %  \\
 %\dfrac{\partial \hat{l} (\Theta \mid \mathbf{D})}{\partial a_{i}} 
 %& = \left \langle v_i \right \rangle_{\mathbf{h} \sim p( \mathbf{h} \mid \mathbf{v}, \Theta), \mathbf{V}} 
@@ -730,14 +727,14 @@ Figure~\ref{fig:gibbs} illustrates Gibbs sampling on an RBM by $k$ steps where e
 
 If $ k \to \infty $, the Markov chain will converge to an equilibrium which represents the distribution of the model-generated data $\{\mathbf{C_v}, \mathbf{C_h}\}$ described by the RBM, and Equation~\ref{equ:RBM} will represent the derivative of the Kullback-Leibler~(KL) divergence with respect to parameter $\theta$.
 The KL divergence measures the distance between two probability distributions: the training dataset $\{\mathbf{D}, \mathbf{D_h}\}$ and the generated Gibbs samples, $\{\mathbf{C_v}, \mathbf{C_h}\}$.
-However, if we take just a few steps, the KL divergence can be seen as a k-step contrastive convergence ($ \textit{\textrm{CD}}_{k}) $.
-Even $ \textit{\textrm{CD}}_1 $ performs surprisingly well in RBM training~\citep{hinton2002training}, which means for every weight update there is only one sample pair $(v^1, h^1)$ generated from Gibbs sampling.
-Hence, replacing the mean expectation with 1-step Gibbs sampled data in Equation~\ref{equ:RBM_2}, the RBM training using SGD can be written as follows:
+However, if we take just a few steps, the KL divergence can be seen as a k-step contrastive convergence ($ {CD}_{k}) $.
+Even $ {CD}_1 $ performs surprisingly well in RBM training~\citep{hinton2002training}.
+Hence the RBM training using SGD is as follows :
 \begin{equation}
-\Delta w_{ij} = \eta (v^0_i h^0_j-v^1_i h^1_j)~~,
+\Delta w_{ij} = \eta (v^0_i h^0_j-v^1_i h^1_j)~~.
 \label{equ:rbm_train}
 \end{equation}
-and $v^0_i$ is a given training data, $h^0_j$ is produced with the probability $p( \mathbf{h} \mid \mathbf{v^0_i}, \mathbf{w})$, and the model data pair $(v^1_i, h^1_j)$ is generated by 1-step Gibbs sampling.
+
 
 
 %The second term is perfect fit for Gibbs sampling, since we can $ p(\mathbf{v}, \mathbf{h} \mid \Theta) $ as a 2D vector and generating the samples by jumping in a Markov Chain with the transformation probability matrix $ p(\mathbf{v} \mid \mathbf{h}, \Theta) $ and $ p(\mathbf{h} \mid \mathbf{v}, \Theta) $, see Figure~\ref{fig:gibbs} and Section~\ref{sec:Gibbs}.
@@ -776,4 +773,4 @@ and $v^0_i$ is a given training data, $h^0_j$ is produced with the probability $
 
 \section{Summary}
 This chapter briefly introduced the most popular Deep Learning techniques and models for potential use in spiking neural networks.
-We illustrated the structure and training procedure for three Deep Learning models: Convolutional Networks, Autoencoders and Restricted Boltzmann Machines, which will be applied in spiking deep networks in the following chapters.
+We illustrated the structure and training procedure for three Deep Learning models: Convolutional networks, Autoencoders and Restricted Boltzmann Machines, which will be applied in spiking deep networks in the following chapters.
