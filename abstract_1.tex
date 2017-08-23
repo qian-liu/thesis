@@ -1,0 +1,62 @@
+%Introduction. In one sentence, what’s the topic? 
+%Phrase it in a way that your reader will understand. If you’re writing a PhD thesis, your readers are the examiners – assume they are familiar with the general field of research, so you need to tell them specifically what topic your thesis addresses. Same advice works for scientific papers – the readers are the peer reviewers, and eventually others in your field interested in your research, so again they know the background work, but want to know specifically what topic your paper covers.
+
+%2.State the problem you tackle. What’s the key research question? Again, in one sentence. (Note: For a more general essay, I’d adjust this slightly to state the central question that you want to address) Remember, your first sentence introduced the overall topic, so now you can build on that, and focus on one key question within that topic. If you can’t summarize your thesis/paper/essay in one key question, then you don’t yet understand what you’re trying to write about. Keep working at this step until you have a single, concise (and understandable) question.
+
+
+
+
+%6.As a single sentence, what’s the key impact of your research? Here we’re not looking for the outcome of an experiment. We’re looking for a summary of the implications. What’s it all mean? Why should other people care? What can they do with your research. (Essay folks: all the same questions apply: what conclusions did you draw, and why would anyone care about them?)
+
+
+%Abstract the work in one paragraph.
+%The Spiking Neural Network (SNN) has not achieved the cognitive capability and learning ability of its non-spiking counterpart, the Artificial Neural Network (ANN).
+%Nevertheless, the intrinsic energy efficiency of the SNN system continues to draw attention towards the field of neuromorphic engineering.
+%The research described in this thesis aims to equip SNNs with equivalent cognitive ability to ANNs by analysing network dynamics and exploring new learning algorithms, thus putting SNN models into practical applications, such as object recognition.
+
+%Motivation of the problem
+Neuromorphic Engineering~(NE) has led to the development of biologically-inspired computer architectures which may approach the performance of the human brain in terms of energy efficiency and cognitive capabilities.
+% provide an alternative to the conventional Von Neumann architecture and 
+Although there are a number of neuromorphic platforms available for large-scale Spiking Neural Network~(SNN) simulations, the problem of programming these brain-like machines to be competent in cognitive applications still remains unsolved.
+On the other hand, Deep Learning has emerged in Artificial Neural Network (ANN) research to dominate state-of-the-art solutions for cognitive tasks.
+Thus the main research problem emerges of understanding how to operate and train biologically-plausible SNNs to close the gap in cognitive capabilities between SNNs and ANNs.
+%make them as competent as ANNs.
+%To catch up with ANNs' better-than-human performance, this work takes object recognition as the cut-in point to explore the capability and learning ability of SNNs.
+
+%3.Summarize (in one sentence) why nobody else has adequately answered the research question yet. For a PhD thesis, you’ll have an entire chapter, covering what’s been done previously in the literature. Here you have to boil that down to one sentence. But remember, the trick is not to try and cover all the various ways in which people have tried and failed; the trick is to explain that there’s this one particular approach that nobody else tried yet (hint: it’s the thing that your research does). But here you’re phrasing it in such a way that it’s clear it’s a gap in the literature. So use a phrase such as “previous work has failed to address…”. (if you’re writing a more general essay, you still need to summarize the source material you’re drawing on, so you can pull the same trick – explain in a few words what the general message in the source material is, but expressed in terms of what’s missing)
+
+%4. Explain, in one sentence, how you tackled the research question. What’s your big new idea? (Again for a more general essay, you might want to adapt this slightly: what’s the new perspective you have adopted? or: What’s your overall view on the question you introduced in step 2?)
+
+
+%5. In one sentence, how did you go about doing the research that follows from your big idea. Did you run experiments? Build a piece of software? Carry out case studies? This is likely to be the longest sentence, especially if it’s a PhD thesis – after all you’re probably covering several years worth of research. But don’t overdo it – we’re still looking for a sentence that you could read aloud without having to stop for breath. Remember, the word ‘abstract’ means a summary of the main ideas with most of the detail left out. So feel free to omit detail! (For those of you who got this far and are still insisting on writing an essay rather than signing up for a PhD, this sentence is really an elaboration of sentence 4 – explore the consequences of your new perspective).
+
+SNNs can be trained by first training an equivalent ANN and then transferring the tuned weights to the SNN.
+This method is called `off-line' training, since it does not take place on an SNN directly, but rather on an ANN instead.
+However, previous work on such off-line training methods has struggled in terms of poor modelling accuracy of the spiking neurons and high computational complexity.
+In this thesis we propose a simple and novel activation function, Noisy Softplus~(NSP), to closely model the response firing activity of biologically-plausible spiking neurons,
+and introduce a generalised off-line training method using the parametric activation function~(PAF) to map the abstract numerical values of the ANN to concrete physical units, such as current and firing rate in the SNN.
+Based on this generalised training method and its fine tuning, we achieve the state-of-the-art accuracy on the MNIST classification task using spiking neurons, 99.07\%, on a deep spiking convolutional neural network~(ConvNet).
+
+
+We then take a step forward to `on-line' training methods, where Deep Learning modules are trained purely on SNNs in an event-driven manner.
+Existing work has failed to provide SNNs with recognition accuracy equivalent to ANNs due to the lack of mathematical analysis. 
+Thus we propose a formalised Spike-based Rate Multiplication~(SRM) method which transforms the product of firing rates to the number of coincident spikes of a pair of rate-coded spike trains.
+%possibility of some specific firing events of a pair of rate-coded spike trains.
+Moreover, these coincident spikes can be captured by the Spike-Time-Dependent Plasticity~(STDP) rule to update the weights between the neurons in an on-line, event-based, and biologically-plausible manner.
+The promising results of training spiking Autoencoders~(AEs) and Restricted Boltzmann Machines~(RBMs) exhibit equivalent, sometimes even superior, classification and reconstruction capabilities compared to their equivalent non-spiking methods.
+
+To provide meaningful comparisons between these proposed SNN models and other existing methods within this rapidly advancing field of NE, we propose a large dataset of spike-based visual stimuli and a corresponding evaluation methodology to estimate the overall performance of SNN models and their hardware implementations.
+%With this dataset we hope to (1) promote meaningful comparison between algorithms in the field of neural computation, (2) allow comparison with conventional image recognition methods, (3) provide an assessment of the state of the art in spike-based visual recognition, and (4) help researchers identify future directions and advance the field.
+
+%Methods
+%The research started from a real-time hand posture recognition system built on a complete neuromorphic platform; it transformed the off-line training of connection weights to fit in SNNs.
+%The weights transformation was then generalised to commonly used object recognition tasks in Computer Vision using a biologically plausible activation function, Noisy Softplus.
+%The research starts from modelling the neural dynamics of spiking neurons to create simple but accurate activation functions for use in ANNs, which enables the SNN to be trained off-line just like Deep Learning architectures.
+%We then take an extra step to formalise an on-line, biologically-plausible, unsupervised learning algorithm for training deep SNNs.
+%In addition, a spike-based dataset was created and published to support fair competition between researchers and quantitatively measure progress in Neuromorphic Vision.
+%
+%%TAchievements and Limitations (Strong and Weak points)
+%An off-line trained SNN achieves state-of-the-art classification accuracy (99.07\%) on the MNIST dataset, using standard leaky integrate-and-fire neurons.
+%An on-line learning algorithm performs similar, and sometimes better, classification and reconstruction than an ANN. 
+%The results demonstrate the equivalent performance and learning capability of spiking neurons compared to conventional ANNs.
+%In reality, the recognition and learning were time consuming due to the limitations on the rate-based encoding.

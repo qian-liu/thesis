@@ -229,7 +229,13 @@ Moreover, some initial studies have successfully applied the proposed method to 
 	\item parameter calibration of $p$ for PAF given LIF neuron configurations, which involves automatic SNN simulations with different levels of current and noise, followed by curve fit with the activation function NSP. 
 %	Furthermore, numerical analysis is considered to present coloured noise introduced by 1~ms time resolution and the synaptic time constant $\tau_{syn}$, refer to Section~\ref{sec:response_func}, thus to model $p$ with biological parameters of a LIF neuron instead of parameter calibration.
 
-	\item supporting libraries for SNN training in popular Deep Learning platforms, e.g. Tensorflow~\citep{tensorflow2015-whitepaper}, which will include the proposed activation functions NSP and PAF in the ANN models.
+	\item supporting libraries for SNN training in popular Deep Learning platforms, e.g. Tensorflow~\DIFdelbegin \DIFdel{\mbox{%DIFAUXCMD
+\citep{tensorflow2015-whitepaper}
+}%DIFAUXCMD
+}\DIFdelend \DIFaddbegin \DIFadd{\mbox{%DIFAUXCMD
+\citep{abadi2016tensorflow}
+}%DIFAUXCMD
+}\DIFaddend , which will include the proposed activation functions NSP and PAF in the ANN models.
 
 	\item a unified template to describe any ANN model and an automation tool that reads platform-dependent trained models into the designed template.
 	The tool will not only help to translate ANN models to SNNs, but also contribute to the cross-platform transfer learning and use of pre-trained models in Deep Learning.

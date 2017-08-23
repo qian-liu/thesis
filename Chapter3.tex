@@ -578,7 +578,7 @@ If we use ReLU as the activation function, then the above equation is as follow:
 %%		CD_n = KL(p^0 \mid \mid p^{\infty}) - KL(p^n \mid \mid p^{\infty})
 %%	\end{equation}
 %%\subsection{RBM\citep{zhang2013rbm}}
-\section{Restricted Boltzmann Machine}
+\section{Restricted Boltzmann Machines}
 \label{sec:rbm}
 RBMs share similar ideas of unsupervised learning with AEs, but aim to present a data distribution of some training dataset, rather than reconstructing each sample of the dataset.
 Thus, the RBM is an energy-based model and uses a stochastic approach.
@@ -707,7 +707,7 @@ Then we plug the RBM energy function (Equation~\ref{equ:rbm_energy}) into the eq
 %\end{aligned}
 \end{equation}
 %\paragraph{CD with 1-step Reconstruction} 
-\subsection{Weight update with Contrastive Divergence}
+\subsection{Contrastive Divergence}
 \label{sec:cd}
 Generating data samples for the negative term of Equation~\ref{equ:RBM_2} requires Gibbs sampling on a Markov chain with an infinite number of steps to convergence.
 Gibbs sampling approximates the joint probability $p( \mathbf{v}, \mathbf{h} \mid  \Theta)$ with the conditionally probability defined in RBMs:
