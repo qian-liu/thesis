@@ -581,7 +581,7 @@ If we use ReLU as the activation function, then the above equation is as follow:
 %%		CD_n = KL(p^0 \mid \mid p^{\infty}) - KL(p^n \mid \mid p^{\infty})
 %%	\end{equation}
 %%\subsection{RBM\citep{zhang2013rbm}}
-\section{Restricted Boltzmann Machine}
+\section{Restricted Boltzmann \DIFdelbegin \DIFdel{Machine}\DIFdelend \DIFaddbegin \DIFadd{Machines}\DIFaddend }
 \label{sec:rbm}
 RBMs share similar ideas of unsupervised learning with AEs, but aim to present a data distribution of some training dataset, rather than reconstructing each sample of the dataset.
 Thus, the RBM is an energy-based model and uses a stochastic approach.
@@ -717,7 +717,7 @@ Then we plug the RBM energy function (Equation~\ref{equ:rbm_energy}) into the eq
 %\end{aligned}
 \end{equation}
 %\paragraph{CD with 1-step Reconstruction} 
-\subsection{Weight update with Contrastive Divergence}
+\subsection{\DIFdelbegin \DIFdel{Weight update with }\DIFdelend Contrastive Divergence}
 \label{sec:cd}
 Generating data samples for the negative term of Equation~\ref{equ:RBM_2} requires Gibbs sampling on a Markov chain with an infinite number of steps to convergence.
 Gibbs sampling approximates the joint probability $p( \mathbf{v}, \mathbf{h} \mid  \Theta)$ with the conditionally probability defined in RBMs:
@@ -734,7 +734,8 @@ Figure~\ref{fig:gibbs} illustrates Gibbs sampling on an RBM by $k$ steps where e
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=0.98\textwidth]{pics_sdlm/gibbs_sampling.pdf}
-	\caption{Gibbs sampling on an RBM.}
+	\DIFdelbeginFL %DIFDELCMD < \caption{%%%
+\DIFdelendFL \DIFaddbeginFL \caption[Gibbs sampling on a RBM.]{\DIFaddendFL Gibbs sampling on \DIFdelbeginFL \DIFdelFL{an }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{a }\DIFaddendFL RBM. \DIFaddbeginFL \DIFaddFL{The method approximates the joint probability $p( \mathbf{v}, \mathbf{h} \mid  \Theta)$ by sampling from conditional probabilities $p( \mathbf{h} \mid  \mathbf{v}, \Theta)$ and $p( \mathbf{v} \mid  \mathbf{h}, \Theta)$. Each sampled data is a pair of $ \mathbf{v}^k$ and $\mathbf{h}^k$.}\DIFaddendFL }
 	\label{fig:gibbs}
 \end{figure}
 

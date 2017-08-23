@@ -434,7 +434,7 @@ The reconstructions, shown in Figure~\ref{fig:ae_orig}(d), of smaller values sta
 		\includegraphics[width=\textwidth]{pics_sdlm/21_exp_AE_noise/exp2_loss_s.pdf}
 		\caption{Output of hidden units in Exp2}
 	\end{subfigure}
-	\caption[AE training of the reconstruction tests given noisy data.]{Changes of weights, output of visible and hidden units, and mean squared error (loss) during the AE training of the noisy reconstruction tests. 
+	\caption[AE-NI training of the reconstruction tests.]{Changes of weights, output of visible and hidden units, and mean squared error (loss) during the AE training of the noisy reconstruction tests. 
 		Experiments 1) 10 visible units fully connected to 10 hidden units with the count of Poisson spikes firing at 100~Hz which lasted 100~ms; 2) the same network fed with spike count of Poisson spikes at firing rates ranging from 10~Hz to 100~Hz.}
 	\label{fig:ae_noise}
 \end{figure}
@@ -521,7 +521,7 @@ So is the reconstruction, which leads to the lower level of loss.
 		\includegraphics[width=\textwidth]{pics_sdlm/31_exp_RBM_noise/exp2_loss_s.pdf}
 		\caption{Output of hidden units in Exp2}
 	\end{subfigure}
-	\caption[nRBM training of the reconstruction tests given noisy data.]{Changes of weights, output of visible and hidden units, and mean squared error (loss) during the nRBM training of the noisy reconstruction tests. 
+	\caption[nRBM-NI training of the reconstruction tests.]{Changes of weights, output of visible and hidden units, and mean squared error (loss) during the nRBM training of the noisy reconstruction tests. 
 		Experiments 1) 10 visible units fully connected to 10 hidden units with the count of Poisson spikes firing at 100~Hz which lasted 100~ms; 2) the same network fed with spike count of Poisson spikes at firing rate ranging from 10~Hz to 100~Hz.}
 	\label{fig:rbm_noise}
 \end{figure}
@@ -618,7 +618,7 @@ The shared weights, with the three individual populations of neurons, compose th
 	\begin{subfigure}[t]{0.6\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/rSTDP.png}
 	\end{subfigure}
-	\caption{Network architecture and the learning algorithm of a spiking AEs.}
+	\caption{Network architecture and the learning algorithm of a spiking AE.}
 	\label{fig:rSTDP}
 \end{figure}
 
@@ -1173,7 +1173,7 @@ As the default configuration, the testing time is set to 1~s and $K$=100~Hz.
 		\caption{nRBMs and SRBMs.}
 		%		\caption{Classification accuracy compared on RBM and SRBMs.}
 	\end{subfigure}
-	\caption[Classification accuracy comparisons of conventional models with spike-based models.]{Classification accuracy comparing conventional models with spike-based models. All the training starts with the same initial weights. Every 3K steps of training, the trained weights are recorded and tested on the MNIST testing dataset for classification accuracy. The Poisson spikes trains used for SNN simulations are identical for all the tests.}
+	\caption[Comparisons of classification accuracy between conventional and spiking models.]{Classification accuracy comparing conventional models with spike-based models. All the training starts with the same initial weights. Every 3K steps of training, the trained weights are recorded and tested on the MNIST testing dataset for classification accuracy. The Poisson spikes trains used for SNN simulations are identical for all the tests.}
 	\label{fig:sdlm_ca}
 \end{figure}
 
@@ -1341,7 +1341,7 @@ Finally, regarding the energy cost in testing only, the SRBM model loses in the 
 		\includegraphics[width=\textwidth]{pics_sdlm/53_MNIST_SRBM_all/compare_recon_rbm.pdf}
 		\caption{nRBMs and SRBMs.}
 	\end{subfigure}
-	\caption[Loss comparisons of conventional models with spike-based models.]{Loss (mean squared error) pixel-wise of the traditional training method and spike-based models. All the trainings started with same initial weights. Every 3K training steps, the trained weights were recorded and tested on the MNIST testing dataset for reconstruction loss. The Poisson spikes trains used for SNN simulations are identical for all the tests.}
+	\caption[Comparisons of loss between conventional and spiking models.]{Loss (mean squared error) pixel-wise of the traditional training method and spike-based models. All the trainings started with same initial weights. Every 3K training steps, the trained weights were recorded and tested on the MNIST testing dataset for reconstruction loss. The Poisson spikes trains used for SNN simulations are identical for all the tests.}
 	\label{fig:sdlm_loss}
 \end{figure}
 

@@ -193,7 +193,9 @@ The keys to modelling a spiking neuron are:
 \begin{figure}[tb!]
 	\centering
 	\includegraphics[width=0.3\textwidth]{pics_snn/RC.png}
-	\caption{Membrane potential evolves as a Resistor-Capacitor (RC) circuit~\citep{gerstner2014neuronal}.}
+	\caption[The cell membrane acts like a RC circuit~\citep{gerstner2014neuronal}.]
+	{The cell membrane acts like a Resistor-Capacitor (RC) circuit~\citep{gerstner2014neuronal}.
+	Input current $I(t)$ flows into a neuron which charges the capacitor $C$ and leaks through the resistance $R$ in line with a battery $V_{rest}$.}
 	\label{Fig:rc}
 \end{figure}
 
@@ -435,7 +437,7 @@ However, these hardware SNN simulators either run on FPGAs~\citep{neil2014minita
 		\includegraphics[width=\textwidth]{pics_snn/omnibot.jpg}
 		\caption{Picture of the omni-directional platform with embedded low-level motor control and elementary sensors: stereo silicon retinas, wheel encoders, and a bump-sensor ring.}
 	\end{subfigure}
-	\caption[Neuromorphic hardware system using SpiNNaker.]{Three set-ups of neuromorphic sensory and processing hardware platform using SpiNNaker.}
+	\caption[Neuromorphic hardware systems using SpiNNaker.]{Three set-ups of neuromorphic sensory and processing hardware platform using SpiNNaker.}
 	\label{Fig:close-loop}
 \end{figure}
 

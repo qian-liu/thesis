@@ -14,7 +14,7 @@ these tasks were once dominated by human intelligence and solved by biological n
 However, humans and many other animals still outperform computers in practical tasks, such as vision, and in terms of size and energy cost by several orders of magnitude.
 For instance, AlphaGO~\citep{silver2016mastering} has a power consumption of 1~MW on its $1,920$ CPUs and 280 GPUs when playing the game with one of the best human players whose brain is rated at 20~W.
 Although we are still far from understanding the brain thoroughly, it is believed that the performance gap between computation in the biological nervous system and in a computer lies in the nature of the fundamental computing units and how they compute.
-Computers employ Boolean logic and deterministic digital operations usually based on synchronous clocks while nervous systems employ parallel, distributed, event-driven, stochastically unreliable components~\citep{indiveri2009artificial}: neurons.
+\DIFdelbegin \DIFdel{Computers }\DIFdelend \DIFaddbegin \DIFadd{Typical computers }\DIFaddend employ Boolean logic and deterministic digital operations usually based on synchronous clocks while nervous systems employ parallel, distributed, event-driven, stochastically unreliable components~\citep{indiveri2009artificial}: neurons.
 These impressive disparities in cognitive capabilities and energy consumption drive research into biologically-plausible spiking neurons and brain inspired computers, known as Neuromorphic Engineering~(NE).
 %Today	we	stand	poised	on	the	brink	of	a	new	era	of	compu:ng	in	which	technology	is	more	
 %consumable,	insight-driven	and	cogni:ve.	IBM	Research	is	exploring	and	developing	the	
@@ -147,7 +147,7 @@ To embed the biologically-plausible learning rules into deep SNN training, resea
 Previous work~\citep{neil2013online,neftci2013event,burbank2015mirrored} has failed to provide SNNs with recognition accuracy equivalent to ANNs due to the lack of mathematical analysis.
 We continue the inspiring work on these biologically-plausible `on-line' training methods and propose a formalised method to train multi-layered Deep Learning modules on SNNs.
 
-To provide meaningful comparisons between these proposed SNN models and other existing methods within the rapidly advancing field of NE, we propose a large dataset of spike-based visual stimuli \DIFaddbegin \DIFadd{to unify the data resources for objective comparisons;
+To provide meaningful comparisons between these proposed SNN models and other existing methods within the rapidly advancing field of NE, we propose a large dataset of spike-based visual stimuli \DIFaddbegin \DIFadd{to unify data resources for objective comparisons;
 }\DIFaddend and a corresponding evaluation methodology to estimate the overall performance of SNN models and their hardware implementations in Chapter~\ref{cha:bench}.
 
 \section{Motivation and Aims}
@@ -186,7 +186,7 @@ According to the thesis statement, the hypotheses are defined as follows:
 %	Aim: to generalise a training method on conventional ANNs whose trained connections can be transferred to corresponding SNNs to deliver similar recognition performance.
 
 	\item 
-	Unsupervised Deep Learning modules can be trained on-line on SNNs with biologically-plausible synaptic plasticity to demonstrate a learning capability as competent as ANNs.
+	Unsupervised Deep Learning modules can be trained on-line on SNNs with biologically-plausible synaptic plasticity to demonstrate a learning capability \DIFdelbegin \DIFdel{as competent as }\DIFdelend \DIFaddbegin \DIFadd{equivalent to }\DIFaddend ANNs.
 
 %	Aim: to formalise a local learning rule based on synaptic plasticity for unsupervised, event-based, biologically-plausible training of deep SNNs in order to catch up with the recognition performances of ANNs.
 
@@ -240,10 +240,12 @@ The contributions are:
 	The proposed formalised Spike-based Rate Multiplication~(SRM) method transforms the product of rates to the number of coincident spikes emitted from a pair of connected spiking neurons, and the simultaneous events can be captured by the change of the synaptic efficacy using the biologically-plausible learning rule: STDP.
 
 	The SRM successfully tackles the problem of translating the weight tuning from numerical computations to event-based, biologically-plausible learning rules in SNNs.
-	\DIFaddbegin \DIFadd{Moreover, we propose decorrelation methods to solve the problem of continuous performance drop caused by correlated spike trains.
-	}\DIFaddend Thus, spiking AEs and RBMs can be trained with SRM and approach the same, sometimes even superior, classification and reconstruction capabilities compared to their equivalent non-spiking models.
-	In addition, the numerical analysis of the proposed algorithm accurately estimates the parameters, thus closely mimicking the learning behaviour of the AE and RBM modules, and improves the learning performance compared to existing methods.
-%	The learning ability matched the non-spiking ANNs and verified the feasibility of unsupervised training on deep SNNs. 
+	\DIFdelbegin \DIFdel{Thus, spiking AEs and RBMs can be trained with SRM and approach the same, sometimes even superior, classification and reconstruction capabilities compared to their equivalent non-spiking models.
+	}\DIFdelend In addition, the numerical analysis of the proposed algorithm accurately estimates the parameters, thus closely mimicking the learning behaviour of the AE and RBM modules, and improves the learning performance compared to existing methods.
+	%DIF < 	The learning ability matched the non-spiking ANNs and verified the feasibility of unsupervised training on deep SNNs. 
+	\DIFaddbegin \DIFadd{Moreover, we propose solutions to the problem of continuous performance drop caused by correlated spike trains.
+	Thus, spiking AEs and RBMs can be trained with SRM and approach the same, sometimes even superior, classification and reconstruction capabilities compared to their equivalent non-spiking models.
+		}\DIFaddend 
 
 	This work comprises Chapter~\ref{cha:sdlm}.
 	A paper on these findings is in preparation for submission to the Journal of Neural Computation.
@@ -317,7 +319,7 @@ The contributions are:
 
 
 \subsection{Workshops}
-The author participated in workshops organised by the NE community, 1) to establish and contribute to collaborations on mutual interests; 2) to catch up with cutting-edge research and collect inspiration; 3) to discuss the author's own findings with key researchers in the field.
+The author participated in workshops organised by the NE community, 1) to establish and contribute to collaborations on mutual interests; 2) to catch up with cutting-edge research and collect inspiration; \DIFaddbegin \DIFadd{and }\DIFaddend 3) to discuss the author's own findings with key researchers in the field.
 \begin{itemize}
 	\item 
 	\textit{Capo Caccia Cognitive Neuromorphic Engineering Workshop 2012}.
@@ -357,7 +359,7 @@ illustrates how biological neurons function, transmit signals between them, and 
 %DIF > by using a novel biologically-inspired activation function, NSP, which is well-matched to the response function of Leaky Integrate-and-Fire neurons; and validates the performance by testing on a convolutional network.
 }\DIFaddend 
 
-\textbf{Chapter~\ref{cha:sdlm}} proposes the STDP-based learning algorithm for training spiking AEs and RBMs \DIFdelbegin \DIFdel{; and shows equivalent recognition }\DIFdelend \DIFaddbegin \DIFadd{on-line; and test the second hypothesis that on-line training is able to improve the cognitive }\DIFaddend capability of SNNs \DIFdelbegin \DIFdel{compared to }\DIFdelend \DIFaddbegin \DIFadd{to catch up with the }\DIFaddend ANNs.
+\textbf{Chapter~\ref{cha:sdlm}} proposes \DIFdelbegin \DIFdel{the }\DIFdelend \DIFaddbegin \DIFadd{an }\DIFaddend STDP-based learning algorithm for training spiking AEs and RBMs \DIFdelbegin \DIFdel{; and shows equivalent recognition capability of SNNs compared to }\DIFdelend \DIFaddbegin \DIFadd{on-line; and test the second hypothesis that on-line training is able to improve the cognitive capabilities of SNNs and catch up with }\DIFaddend ANNs.
 
 \textbf{Chapter~\ref{cha:bench}} puts forward the spike-based vision dataset and the evaluation methodology and presents a case study as a tentative benchmark running on SpiNNaker to assess the hardware-level performance against software simulators.
 
@@ -377,6 +379,6 @@ illustrates how biological neurons function, transmit signals between them, and 
 
 	Chapter~\ref{cha:intro} introduces the aims of NE: modelling the brain, and building brain-like machines.
 	Although progress has been made in both directions, it is still far from achieving the long term goal of Neuromorphic Cognition.
-	With the support of accumulated knowledge of SNNs and the massive neuromorphic SNN simulators (both refer to Chapter~\ref{cha:bkg}), plus the huge success of Deep Learning in ANNs (see Chapter~\ref{cha:dnn}), the research aims at understanding how to operate and train biologically-plausible SNNs to close the gap in cognitive capabilities between SNNs and ANNs on AI tasks, thus approaching Neuromorphic Cognition.
+	With the support of accumulated knowledge of SNNs and the massive neuromorphic SNN simulators (both refer to Chapter~\ref{cha:bkg}), plus the huge success of Deep Learning in ANNs (see Chapter~\ref{cha:dnn}), the research aims at understanding how to operate and train biologically-plausible SNNs to close the gap in cognitive capabilities between SNNs and ANNs on AI tasks, \DIFdelbegin \DIFdel{thus }\DIFdelend \DIFaddbegin \DIFadd{thereby }\DIFaddend approaching Neuromorphic Cognition.
 
-	To achieve the thesis aim, we propose an \DIFdelbegin \DIFdel{on-line }\DIFdelend \DIFaddbegin \DIFadd{off-line }\DIFaddend (Chapter~\ref{cha:Conv}) and an \DIFdelbegin \DIFdel{off-line }\DIFdelend \DIFaddbegin \DIFadd{on-line }\DIFaddend (Chapter~\ref{cha:sdlm}) SNN training method to bring Deep Learning advantages to SNNs, and provide a spike-based dataset and its corresponding evaluation methodology to measure the performance of SNN models and their hardware implementations in Chapter~\ref{cha:bench}.
+	To achieve the thesis aim, we propose an \DIFdelbegin \DIFdel{on-line }\DIFdelend \DIFaddbegin \DIFadd{off-line }\DIFaddend (Chapter~\ref{cha:Conv}) and an \DIFdelbegin \DIFdel{off-line }\DIFdelend \DIFaddbegin \DIFadd{on-line }\DIFaddend (Chapter~\ref{cha:sdlm}) SNN training method to bring Deep Learning advantages to SNNs, and provide a spike-based dataset and its corresponding evaluation methodology to measure the performance of SNN models and \DIFdelbegin \DIFdel{their hardware implementations }\DIFdelend \DIFaddbegin \DIFadd{the neuromorphic hardware platforms }\DIFaddend in Chapter~\ref{cha:bench}.

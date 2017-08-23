@@ -215,10 +215,15 @@ The keys to modelling a spiking neuron are:
 \begin{figure}[tb!]
 	\centering
 	\includegraphics[width=0.3\textwidth]{pics_snn/RC.png}
-	\caption{\DIFaddFL{Current flowing into a neuron functions like a Resistor-Capacitor (RC) circuit~\mbox{%DIFAUXCMD
+	\caption[The cell membrane acts like a RC circuit~\mbox{%DIFAUXCMD
 \citep{gerstner2014neuronal}
 }%DIFAUXCMD
-.}}
+.]
+	{\DIFaddFL{The cell membrane acts like a Resistor-Capacitor (RC) circuit~\mbox{%DIFAUXCMD
+\citep{gerstner2014neuronal}
+}%DIFAUXCMD
+.
+	Input current $I(t)$ flows into a neuron which charges the capacitor $C$ and leaks through the resistance $R$ in line with a battery $V_{rest}$.}}
 	\label{Fig:rc}
 \end{figure}
 
@@ -488,7 +493,7 @@ However, these hardware SNN simulators either run on FPGAs~\citep{neil2014minita
 		\caption{Picture of the omni-directional platform with embedded low-level motor control and elementary sensors: stereo silicon retinas, wheel encoders, and a bump-sensor ring.}
 	\end{subfigure}
 	\DIFdelbeginFL %DIFDELCMD < \caption{%%%
-\DIFdelendFL \DIFaddbeginFL \caption[Neuromorphic hardware system using SpiNNaker.]{\DIFaddendFL Three set-ups of neuromorphic sensory and processing hardware platform using SpiNNaker\DIFdelbeginFL \DIFdelFL{~\mbox{%DIFAUXCMD
+\DIFdelendFL \DIFaddbeginFL \caption[Neuromorphic hardware systems using SpiNNaker.]{\DIFaddendFL Three set-ups of neuromorphic sensory and processing hardware platform using SpiNNaker\DIFdelbeginFL \DIFdelFL{~\mbox{%DIFAUXCMD
 \citep{furber2014spinnaker}
 }%DIFAUXCMD
 }\DIFdelendFL .}

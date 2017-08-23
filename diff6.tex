@@ -497,7 +497,7 @@ This model-specific assessment provides more robust comparisons between hardware
 A complementary evaluation methodology is essential to provide common metrics and assess both the model-level and hardware-level performance.
 
 
-\subsection{Model-Level Evaluation}
+\subsection{\DIFdelbegin \DIFdel{Model-Level }\DIFdelend \DIFaddbegin \DIFadd{Model-level }\DIFaddend Evaluation}
 \label{subsec:model}
 
 A suggested description of an SNN model is shown in Table~\ref{tb:model_eval} where the performance evaluation metrics are in bold and the SNN specific description is in italics.
@@ -694,7 +694,7 @@ Following the formatted evaluation as in Table~\ref{tb:model_eval}, Table~\ref{t
 	\label{tb:software_comparison}
 \end{table}
 
-\subsection{Hardware-Level Evaluation}
+\subsection{\DIFdelbegin \DIFdel{Hardware-Level }\DIFdelend \DIFaddbegin \DIFadd{Hardware-level }\DIFaddend Evaluation}
 \label{subsec:hw}
 
 \begin{sidewaystable*}[htbp] \small
@@ -868,7 +868,8 @@ For simplicity of describing the system, a set of standard configuration is used
 
 \begin{table}[hbbp]
 	\centering
-	\caption{\label{tbl:pynnSetting}Parameter setting for the current-based LIF neurons using PyNN.}
+	\DIFdelbeginFL %DIFDELCMD < \caption{\label{tbl:pynnSetting}%%%
+\DIFdelendFL \DIFaddbeginFL \caption[LIF parameter setting using PyNN.]{\DIFaddendFL Parameter setting for the current-based LIF neurons using PyNN.}
 	\bgroup
 	\def\arraystretch{1.4}
 	\begin{tabular}{c c c}
@@ -893,7 +894,8 @@ For simplicity of describing the system, a set of standard configuration is used
 		%\hline
 	\end{tabular}
 	\egroup
-\end{table}
+	\DIFaddbeginFL \label{tbl:pynnSetting}
+\DIFaddendFL \end{table}
 
 \subsection{Training}
 There are two layers in the model: 28$\times$28 input neurons fully connect to 100 decision neurons.
@@ -918,7 +920,7 @@ Figure~\ref{fig:model}(a) shows how the connections to a single decision neuron 
 	\DIFdelbeginFL %DIFDELCMD < \includegraphics[width=0.8\textwidth]{pics_bench/fig6.jpg}
 %DIFDELCMD < 	\caption{%%%
 \DIFdelendFL \DIFaddbeginFL \includegraphics[width=0.7\textwidth]{pics_bench/fig6.jpg}
-	\caption[SNN model of the case study.]{\DIFaddendFL The (a) training and (b) testing model of the \DIFdelbeginFL \DIFdelFL{two-layered spiking neural network}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{proposed case study SNN: STDP learning with supervised teaching signal}\DIFaddendFL .}
+	\caption[The proposed SNN model.]{\DIFaddendFL The (a) training and (b) testing model of the \DIFdelbeginFL \DIFdelFL{two-layered spiking neural network}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{proposed case study SNN: STDP learning with supervised teaching signal}\DIFaddendFL .}
 	\label{fig:model}
 \end{figure} 
 

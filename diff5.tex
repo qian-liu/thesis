@@ -1,4 +1,5 @@
-\chapter[On-line SNN training with SRM]{On-line SNN training with Spike-Based Rate Multiplication}
+\DIFdelbegin %DIFDELCMD < \chapter[On-line SNN training with SRM]{%%%
+\DIFdelend \DIFaddbegin \chapter[On-line SNN Training with SRM]{\DIFaddend On-line SNN \DIFdelbegin \DIFdel{training }\DIFdelend \DIFaddbegin \DIFadd{Training }\DIFaddend with Spike-Based Rate Multiplication}
 \label{cha:sdlm}
 %Paragraph One: LINK
 %Make a connection to what has immediately gone before. Recap the last chapter. In the last chapter I showed that… Having argued in the previous chapter that… As a result of x, which I established in the last chapter….. It is also possible to make a link between this chapter and the whole argument… The first step in answering my research question (repeat question) .. was to.. . In the last chapter I …
@@ -353,7 +354,8 @@ among such a set of figures, (a) and (b) depict the weight changes of the two ex
 Following the experiments on conventional models, we propose the training methods for SAEs and SRBMs in detail.
 The same experiments were then applied to the on-line and spike-based SNN training.
 
-\subsection{Autoencoders (AEs)}
+\DIFdelbegin %DIFDELCMD < \subsection{%%%
+\DIFdel{Autoencoders (}\DIFdelend \DIFaddbegin \subsection[AEs]{\DIFadd{Training }\DIFaddend AEs\DIFdelbegin \DIFdel{)}\DIFdelend }
 \label{subsec:exp_AE}
 \begin{figure}
 	\centering
@@ -434,7 +436,8 @@ The reconstructions, shown in Figure~\ref{fig:ae_orig}(d), of smaller values sta
 		\includegraphics[width=\textwidth]{pics_sdlm/21_exp_AE_noise/exp2_loss_s.pdf}
 		\caption{Output of hidden units in Exp2}
 	\end{subfigure}
-	\caption[AE training of the reconstruction tests given noisy data.]{Changes of weights, output of visible and hidden units, and mean squared error (loss) during the AE training of the noisy reconstruction tests. 
+	\DIFdelbeginFL %DIFDELCMD < \caption[AE training of the reconstruction tests given noisy data.]{%%%
+\DIFdelendFL \DIFaddbeginFL \caption[AE-NI training of the reconstruction tests.]{\DIFaddendFL Changes of weights, output of visible and hidden units, and mean squared error (loss) during the AE training of the noisy reconstruction tests. 
 		Experiments 1) 10 visible units fully connected to 10 hidden units with the count of Poisson spikes firing at 100~Hz which lasted 100~ms; 2) the same network fed with spike count of Poisson spikes at firing rates ranging from 10~Hz to 100~Hz.}
 	\label{fig:ae_noise}
 \end{figure}
@@ -521,15 +524,17 @@ So is the reconstruction, which leads to the lower level of loss.
 		\includegraphics[width=\textwidth]{pics_sdlm/31_exp_RBM_noise/exp2_loss_s.pdf}
 		\caption{Output of hidden units in Exp2}
 	\end{subfigure}
-	\caption[nRBM training of the reconstruction tests given noisy data.]{Changes of weights, output of visible and hidden units, and mean squared error (loss) during the nRBM training of the noisy reconstruction tests. 
+	\DIFdelbeginFL %DIFDELCMD < \caption[nRBM training of the reconstruction tests given noisy data.]{%%%
+\DIFdelendFL \DIFaddbeginFL \caption[nRBM-NI training of the reconstruction tests.]{\DIFaddendFL Changes of weights, output of visible and hidden units, and mean squared error (loss) during the nRBM training of the noisy reconstruction tests. 
 		Experiments 1) 10 visible units fully connected to 10 hidden units with the count of Poisson spikes firing at 100~Hz which lasted 100~ms; 2) the same network fed with spike count of Poisson spikes at firing rate ranging from 10~Hz to 100~Hz.}
 	\label{fig:rbm_noise}
 \end{figure}
 
-\subsection{Noisy Restricted Boltzmann Machines (nRBMs)}
+\DIFdelbegin %DIFDELCMD < \subsection{%%%
+\DIFdelend \DIFaddbegin \subsection[Noisy RBMs]{\DIFadd{Training }\DIFaddend Noisy \DIFdelbegin \DIFdel{Restricted Boltzmann Machines (nRBMs)}\DIFdelend \DIFaddbegin \DIFadd{RBMs}\DIFaddend }
 \label{subsec:exp_RBM}
-Instead of using binary units and sigmoid activations for the RBM, we employed noisy ReLU (NReLU) units to construct an nRBM which was closer to biology and performed better in classification tasks~\citep{nair2010rectified}.
-Leaving the learning algorithm unchanged, see Equation~\ref{equ:rbm_train} in Section~\ref{sec:rbm}:
+Instead of using binary units and sigmoid activations for the RBM, we employed noisy ReLU (NReLU) units to construct an \DIFdelbegin \DIFdel{nRBM }\DIFdelend \DIFaddbegin \DIFadd{noisy Restricted Boltzmann Machine (nRBM) }\DIFaddend which was closer to biology and performed better in classification tasks~\citep{nair2010rectified}.
+Leaving the learning algorithm unchanged, see Equation~\ref{equ:rbm_train} in Section~\ref{sec:rbm}\DIFaddbegin \DIFadd{, the weight update is as follows}\DIFaddend :
 \begin{equation}
 \Delta w_{ij} = \eta (h_iv_j - h'_iv'_j),
 \label{equ:rbm}
@@ -552,7 +557,8 @@ The weight change is slightly noisier than the experiments on clean data, but th
 The same effect of the noisy input data can be found in Figure~\ref{fig:ae_noise} where the noise in the reconstruction is much reduced compared to the input data and the loss remains about $10^{-2}$ and $10^{-2.5}$ after the stabilisation, although it takes less time for the nRBM to converge than AE.
 
 
-\subsection{Training Spiking Autoencoders (SAEs)}
+\DIFdelbegin %DIFDELCMD < \subsection{%%%
+\DIFdelend \DIFaddbegin \subsection[Spiking AEs]{\DIFaddend Training Spiking \DIFdelbegin \DIFdel{Autoencoders (SAEs)}\DIFdelend \DIFaddbegin \DIFadd{AEs}\DIFaddend }
 \label{subsec:exp_SAE}
 Equation~\ref{equ:ae_widrow_hoff} states the learning rule for AEs, which can be approximated by adding a positive STDP and a negative STDP in SNN training:
 \begin{equation}
@@ -618,7 +624,7 @@ The shared weights, with the three individual populations of neurons, compose th
 	\begin{subfigure}[t]{0.6\textwidth}
 		\includegraphics[width=\textwidth]{pics_sdlm/rSTDP.png}
 	\end{subfigure}
-	\caption{Network architecture and the learning algorithm of a spiking AEs.}
+	\caption{Network architecture and the learning algorithm of a spiking \DIFdelbeginFL \DIFdelFL{AEs}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{AE}\DIFaddendFL .}
 	\label{fig:rSTDP}
 \end{figure}
 
@@ -683,7 +689,8 @@ With the simple input of Exp1, the training performance reaches the same level o
 however, the SAE does not reconstruct the various input values of Exp2 as accurately as does the AE, since the parameters $\tau_{\textit{\textrm{win}}}$ and $\tau_{\textit{\textrm{dur}}}$ are relatively short.
 We will present more results conducted with various parameter settings in Section~\ref{sec:problem}.
 
-\subsection{Training Spiking RBM}
+\DIFdelbegin %DIFDELCMD < \subsection{%%%
+\DIFdelend \DIFaddbegin \subsection[Spiking RBMs]{\DIFaddend Training Spiking \DIFdelbegin \DIFdel{RBM}\DIFdelend \DIFaddbegin \DIFadd{RBMs}\DIFaddend }
 \label{subsec:exp_SRBM}
 \begin{figure}[h]
 	\centering
@@ -903,7 +910,7 @@ The reconstruction bias can be observed in the firing rates of the reconstructio
 Regarding the SRBM training (Figure~\ref{fig:sols_rbm}), the weight divergence also improves compared to S1 but is not as good as S2, since the noisy threshold applies to the entire network whereas the teaching signal works only on the input layer.
 The average reconstruction loss is also worse than S1 and S2 because of the bias. 
 
-\subsection{Test on Combined Solutions~(S4)}
+\subsection{\DIFdelbegin \DIFdel{Test on }\DIFdelend Combined Solutions~(S4)}
 This test combines the solutions of long STDP window, noisy threshold and teaching signals.
 The results shown in both Figures~\ref{fig:sols_ae} and~\ref{fig:sols_rbm} demonstrate the combined effect of the solutions, in that the dynamic trained weights are between the diverging degree of S2 and S3, and the loss level is also kept in between.
 More detailed experimental results can be found in Figures~\ref{fig:sol4_ae} and~\ref{fig:sol4_rbm} of Appendices.
@@ -1024,7 +1031,8 @@ V_i(t+1)=V_i(t) + \sum_j w_{ij} s_j(t) - l~.
 %\end{figure}
 
 
-\section{Results: MNIST Test}
+\DIFdelbegin %DIFDELCMD < \section{%%%
+\DIFdelend \DIFaddbegin \section[Results]{\DIFaddend Results: MNIST Test}
 \label{sec:SRM_result}
 Having discussed the problem of training SAEs and SRBMs, we finally apply the proposed methods to the MNIST task.
 Section~\ref{subsec:MNIST_setup} describes the network architecture and the training process, and the rest of the section focuses on the performance analysis on the trained weights (Section~\ref{subsec:MNIST_weight}), classification accuracy (Section~\ref{subsec:MNIST_ca}), and the reconstruction performance (Section~\ref{subsec:MNIST_recon}).
@@ -1053,7 +1061,7 @@ In addition, the default parameters of SNNs were the same as listed in Table~\re
 the initial weights were identical for all the experiments, as were the input spike trains.
 
 
-\subsection{Trained weights}
+\subsection{Trained \DIFdelbegin \DIFdel{weights}\DIFdelend \DIFaddbegin \DIFadd{Weights}\DIFaddend }
 \label{subsec:MNIST_weight}
 \begin{figure}
 	\centering
@@ -1145,7 +1153,7 @@ However, in RBMs, SRBM-S3 generates the most qualitative features of all the SRB
 \DIFdelbegin %DIFDELCMD < 
 
 %DIFDELCMD < %%%
-\DIFdelend \subsection{Classification Accuracy (CA)}
+\DIFdelend \subsection{Classification Accuracy\DIFdelbegin \DIFdel{(CA)}\DIFdelend }
 \DIFaddbegin \label{subsec:MNIST_ca}
 \DIFaddend As the most important metric to evaluate the training performance, we \DIFdelbegin \DIFdel{tested }\DIFdelend \DIFaddbegin \DIFadd{test }\DIFaddend the classification accuracy on SNNs to compare with conventional models.
 %Every image is presented as a vector of Poisson spike trains which last 1~ms long.
@@ -1182,7 +1190,7 @@ As the default configuration, the testing time is set to 1~s and $K$=100~Hz.
 		%		\caption{Classification accuracy compared on RBM and SRBMs.}
 	\end{subfigure}
 	\DIFdelbeginFL %DIFDELCMD < \caption{%%%
-\DIFdelendFL \DIFaddbeginFL \caption[Classification accuracy comparisons of conventional models with spike-based models.]{\DIFaddendFL Classification accuracy comparing conventional models with spike-based models. All the training \DIFdelbeginFL \DIFdelFL{started }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{starts }\DIFaddendFL with \DIFaddbeginFL \DIFaddFL{the }\DIFaddendFL same initial weights. Every 3K steps of training, the trained weights \DIFdelbeginFL \DIFdelFL{were }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{are }\DIFaddendFL recorded and tested on the MNIST testing dataset for classification accuracy. The Poisson spikes trains used for SNN simulations are identical for all the tests.}
+\DIFdelendFL \DIFaddbeginFL \caption[Comparisons of classification accuracy between conventional and spiking models.]{\DIFaddendFL Classification accuracy comparing conventional models with spike-based models. All the training \DIFdelbeginFL \DIFdelFL{started }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{starts }\DIFaddendFL with \DIFaddbeginFL \DIFaddFL{the }\DIFaddendFL same initial weights. Every 3K steps of training, the trained weights \DIFdelbeginFL \DIFdelFL{were }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{are }\DIFaddendFL recorded and tested on the MNIST testing dataset for classification accuracy. The Poisson spikes trains used for SNN simulations are identical for all the tests.}
 	\label{fig:sdlm_ca}
 \end{figure}
 \DIFdelbegin \DIFdel{Shown in Figure~\ref{fig:sdlm_ca}(a) , the CA of AE and AE-NI steadily increased until it reaches about 92}%DIFDELCMD < \% %%%
@@ -1191,7 +1199,7 @@ The noise in the training images of }\DIFdelend \DIFaddbegin
 
 \DIFadd{The test with noisy input (NI) on conventional Deep Learning modules is the important baseline for comparisons of conventional ANN training to the equivalent on-line biologically-plausible learning in SNNs.
 Because, the NI test exploits the same training and test data used in SNNs: the spike count of the Poisson spike trains feed into SNNs.
-Thus, the evaluations on CA quantitatively measures how well the spike-based training fits to the conventional Deep Learning.
+Thus, the evaluations on Classification Accuracy (CA) quantitatively measures how well the spike-based training fits to the conventional Deep Learning.
 }
 
 
@@ -1379,7 +1387,7 @@ Finally, regarding the energy cost in testing only, the SRBM model loses in the 
 		\caption{nRBMs and SRBMs.}
 	\end{subfigure}
 	\DIFdelbeginFL %DIFDELCMD < \caption{%%%
-\DIFdelendFL \DIFaddbeginFL \caption[Loss comparisons of conventional models with spike-based models.]{\DIFaddendFL Loss (mean squared error) pixel-wise of the traditional training method and spike-based models. All the trainings started with same initial weights. Every 3K training steps, the trained weights were recorded and tested on the MNIST testing dataset for reconstruction loss. The Poisson spikes trains used for SNN simulations are identical for all the tests.}
+\DIFdelendFL \DIFaddbeginFL \caption[Comparisons of loss between conventional and spiking models.]{\DIFaddendFL Loss (mean squared error) pixel-wise of the traditional training method and spike-based models. All the trainings started with same initial weights. Every 3K training steps, the trained weights were recorded and tested on the MNIST testing dataset for reconstruction loss. The Poisson spikes trains used for SNN simulations are identical for all the tests.}
 	\label{fig:sdlm_loss}
 \end{figure}
 
