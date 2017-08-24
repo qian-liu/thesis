@@ -121,13 +121,31 @@ In addition, the numerical analysis of the proposed algorithm accurately estimat
 
 %This on-line training method achieves better performance than existing algorithms and approaches the same, sometimes superior performance of the equivalent non-spiking methods.
 
-Thanks to the \DIFdelbegin \DIFdel{formalisation }\DIFdelend \DIFaddbegin \DIFadd{accurate parameter estimation }\DIFaddend of these proposed learning algorithms\DIFdelbegin \DIFdel{with numerical analysis}\DIFdelend , the classification results (94.72\% for SAE and 94.35\% for SRBM) have outperformed other existing SAE and SRBM models.
-The first on-line training algorithm proposed by~\citet{neil2013online} ignored the mathematical analysis thus achieved its best classification performance only at 81.5\%.
-\citet{neftci2013event} conducted training on a recurrent network which was more biologically plausible but required a global signal to control the direction of the synapses and resulted in a worse classification of 91.9\% even with a bigger network.
+Thanks to the \DIFdelbegin \DIFdel{formalisation of these proposed learning algorithms with numerical analysis}\DIFdelend \DIFaddbegin \DIFadd{accurate parameter estimation}\DIFaddend , the classification results (94.72\% for SAE and 94.35\% for SRBM) have outperformed \DIFdelbegin \DIFdel{other existing SAE and SRBM models.
+The first on-line training algorithm proposed by~}\DIFdelend \DIFaddbegin \DIFadd{most existing on-line models.
+}\DIFaddend \citet{neil2013online} ignored the mathematical analysis thus achieved its best \DIFdelbegin \DIFdel{classification }\DIFdelend performance only at 81.5\%.
+\citet{neftci2013event} conducted training on a recurrent network which was more biologically plausible\DIFdelbegin \DIFdel{but required a global signal to control the direction of the synapses and resulted in }\DIFdelend \DIFaddbegin \DIFadd{, but with a different goal of neural sampling this method achieved }\DIFaddend a worse classification \DIFdelbegin \DIFdel{of }\DIFdelend \DIFaddbegin \DIFadd{at }\DIFaddend 91.9\%\DIFdelbegin \DIFdel{even with a bigger network.
 Moreover, the proposed method is the first to exploit novel techniques to decorrelate the spike trains since the correlation brings down the learning performance rapidly after it peaks.
-\DIFdelbegin \DIFdel{Meanwhile, other }\DIFdelend \DIFaddbegin \DIFadd{Therefore, this method enables the genuine `live and learn' in }\DIFaddend on-line \DIFdelbegin \DIFdel{training }\DIFdelend \DIFaddbegin \DIFadd{SNN training;
-meanwhile, other }\DIFaddend methods~\citep{neftci2016stochastic,neftci2017event} suffer from the manual termination of \DIFdelbegin \DIFdel{the learning }\DIFdelend \DIFaddbegin \DIFadd{learning when the performance reaches the best}\DIFaddend .
-Furthermore, in theory our method works on any spiking neuron and requires a simple rectangular STDP, thus can be easily implemented on general neuromorphic hardware.
+Meanwhile, other }\DIFdelend \DIFaddbegin \DIFadd{.
+Their extended work~\mbox{%DIFAUXCMD
+\citep{neftci2016stochastic}
+}%DIFAUXCMD
+improved the performance to the state-of-the-art, 95.6}\%\DIFadd{, but requires extra Deep Learning technique, dropout~\mbox{%DIFAUXCMD
+\citep{srivastava2014dropout}
+}%DIFAUXCMD
+, and more training epochs.
+Nevertheless, \mbox{%DIFAUXCMD
+\citet{neftci2016stochastic}
+}%DIFAUXCMD
+did not compare the trained SNN to the non-spiking counterpart, RBM-dropout; while our method closely reproduced the learning curves of the equivalent ANNs.
+Moreover, our proposed method successfully decorrelates spike trains, thereby solving the problem of performance drop caused by the spike correlation.
+Therefore, this method enables the genuine `live and learn' in }\DIFaddend on-line \DIFdelbegin \DIFdel{training methods~\mbox{%DIFAUXCMD
+\citep{neftci2016stochastic,neftci2017event}
+}%DIFAUXCMD
+suffer from the manual termination of the learning.
+}\DIFdelend \DIFaddbegin \DIFadd{SNN training.
+%DIF > meanwhile, other methods~\citep{neftci2016stochastic,neftci2017event} suffer from the manual termination of learning when the performance reaches the best.
+}\DIFaddend Furthermore, in theory our method works on any spiking neuron \DIFaddbegin \DIFadd{model }\DIFaddend and requires a simple rectangular STDP, thus can be easily implemented on general neuromorphic hardware.
 However, it is more difficult for other existing approaches~\citep{neftci2013event,neftci2016stochastic,neftci2017event} to work on hardware platforms since they ask for either specific neural/synaptic models or extra external signals to control the learning.
 
 Our second contribution is the formalisation of an STDP-based unsupervised learning algorithm for spiking AE~(SAE) and spiking RBM~(SRBM).

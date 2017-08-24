@@ -41,7 +41,7 @@ Furthermore, the success of the proposed off-line training method paves the way 
 In this chapter, we begin by introducing existing solutions to off-line SNN training in Section~\ref{sec:intro_NSP}.
 We then propose the novel activation function, NSP, and demonstrate how it fits the network dynamics composed of spiking neurons in Section~\ref{sec:response_func}.
 Section~\ref{sec:genrial_SNN} illustrates the generalised SNN training method using PAFs.
-In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking ConvNet, and compare the proposed method to existing training algorithms.
+In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking \DIFdelbegin \DIFdel{ConvNet}\DIFdelend \DIFaddbegin \DIFadd{Convolutional Network~(ConvNet)}\DIFaddend , and compare the proposed method to existing training algorithms.
 
 \section{\DIFdelbegin \DIFdel{Introduction}\DIFdelend \DIFaddbegin \DIFadd{Related Work}\DIFaddend }
 \DIFdelbegin %DIFDELCMD < \label{sec:intro_NSP}
@@ -249,8 +249,8 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking ConvN
 	The parameters of the LIF neuron are all biologically valid (see the listed values in Table~\ref{tbl:pynnConfig}), and the same parameters are used throughout this chapter.
 	The solid (zero noise) line in Figure~\ref{Fig:physics} illustrates the response function of such an LIF neuron injected with constant current, which inspired the proposal of ReLUs.
 	As noise increases, the level of firing rates also rises\DIFdelbegin \DIFdel{, and the Softplus activation }\DIFdelend \DIFaddbegin \DIFadd{.
-	Thus Softplus }\DIFaddend function approximates the response \DIFdelbegin \DIFdel{firing activity driven by currentwith Gaussian white noise added}\DIFdelend \DIFaddbegin \DIFadd{activity to noisy current}\DIFaddend .
-	Softplus units only represent a single level of noise; for example, the dotted line in Figure~\ref{Fig:physics} shows the curve when $s_I=1$.
+	Thus the Softplus }\DIFaddend function approximates the response \DIFdelbegin \DIFdel{firing activity driven by currentwith Gaussian white noise added.
+	Softplus units only represent }\DIFdelend \DIFaddbegin \DIFadd{activity to noisy current, but only represents }\DIFaddend a single level of noise; for example, the dotted line in Figure~\ref{Fig:physics} shows the curve when $s_I=1$.
 
 		\begin{table}[bt]
 			\centering
@@ -1080,7 +1080,13 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking ConvN
 	The loss stabilised to the same level as Softplus, because of the same problem of gradual gradients.
 
 	However, the learning stabilised the fastest using NSP which may be caused by the accurate modelling of the noise.
-	Similar findings have shown that networks with added noise, e.g. dropout~\cite{srivastava2014dropout}, are much faster to train. 
+	Similar findings have shown that networks with added noise, e.g. dropout~\DIFdelbegin \DIFdel{\mbox{%DIFAUXCMD
+\cite{srivastava2014dropout}
+}%DIFAUXCMD
+}\DIFdelend \DIFaddbegin \DIFadd{\mbox{%DIFAUXCMD
+\citep{srivastava2014dropout}
+}%DIFAUXCMD
+}\DIFaddend , are much faster to train. 
 	The result is promising that NSP may shorten the training time.
 \DIFdelbegin %DIFDELCMD < \begin{figure}[tbp!]
 %DIFDELCMD < 		\centering
@@ -1113,13 +1119,13 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking ConvN
 	At first, all trained models were tested on the same artificial neurons as used for training in ANNs, and these experiments were called the `DNN' test since the network had a deep structure (6 layers).
 	Subsequently, the trained weights were directly applied to the SNN without any transformation, and these `SNN' experiments tested their recognition performance on the NEST simulator.
 	From DNN to SNN, the classification accuracy declines by 0.80\%, 0.79\% and 3.12\% on average for NSP, ReLU and Softplus.
-	The accuracy loss was caused by the mismatch between the activations and the practical response firing rates, see examples in Figure~\ref{fig:af_compare}, and the strict binary labels for NSP and Softplus activations.
-	Fortunately, the problem \DIFdelbegin \DIFdel{is }\DIFdelend \DIFaddbegin \DIFadd{was }\DIFaddend alleviated by fine tuning which increased the classification accuracy by 0.38\%, 0.19\% and 2.06\%, and resulted in the total loss of 0.43\%, 0.61\%, and 1.06\% respectively.
+	The accuracy loss \DIFdelbegin \DIFdel{was }\DIFdelend \DIFaddbegin \DIFadd{is }\DIFaddend caused by the mismatch between the activations and the practical response firing rates, see examples in Figure~\ref{fig:af_compare}, and the strict binary labels for NSP and Softplus activations.
+	Fortunately, the problem is alleviated by fine tuning which \DIFdelbegin \DIFdel{increased }\DIFdelend \DIFaddbegin \DIFadd{increases }\DIFaddend the classification accuracy by 0.38\%, 0.19\% and 2.06\%, and \DIFdelbegin \DIFdel{resulted }\DIFdelend \DIFaddbegin \DIFadd{results }\DIFaddend in the total loss of 0.43\%, 0.61\%, and 1.06\% respectively.
 	%	The order of total losses of these activation functions followed the Euclidean distance measured in Section~\ref{subsec:activity}.
-	Softplus \DIFdelbegin \DIFdel{benefits }\DIFdelend \DIFaddbegin \DIFadd{benefited }\DIFaddend the most from fine tuning, since the huge mismatch~(Figure~\ref{fig:af_compare}(c)) of response firing rate \DIFdelbegin \DIFdel{is }\DIFdelend \DIFaddbegin \DIFadd{was }\DIFaddend greatly corrected.
-	The improvement of NSP was obtained from the offset on the labels which \DIFdelbegin \DIFdel{helps }\DIFdelend \DIFaddbegin \DIFadd{helped }\DIFaddend the network to fit practical SNNs.
-	As the recognition performance of ReLU \DIFdelbegin \DIFdel{is }\DIFdelend \DIFaddbegin \DIFadd{was }\DIFaddend already high, there's little room for improvement.
-	Even though the fine-tuning procedure \DIFdelbegin \DIFdel{does }\DIFdelend \DIFaddbegin \DIFadd{did }\DIFaddend its job, the gain in accuracy \DIFdelbegin \DIFdel{is }\DIFdelend \DIFaddbegin \DIFadd{was }\DIFaddend the smallest for this activation function.
+	Softplus \DIFdelbegin \DIFdel{benefits }\DIFdelend \DIFaddbegin \DIFadd{benefited }\DIFaddend the most from fine tuning, since the huge mismatch~(Figure~\ref{fig:af_compare}(c)) of response firing rate is greatly corrected.
+	The improvement of NSP \DIFdelbegin \DIFdel{was }\DIFdelend \DIFaddbegin \DIFadd{is }\DIFaddend obtained from the offset on the labels which helps the network to fit practical SNNs.
+	As the recognition performance of ReLU is already high, there \DIFdelbegin \DIFdel{'s }\DIFdelend \DIFaddbegin \DIFadd{is }\DIFaddend little room for improvement.
+	Even though the fine-tuning procedure does its job, the gain in accuracy is the smallest for this activation function.
 
 	%	Thus fine tuning mainly corrects the mismatch between ReLU and the firing rates in SNNs, and constraints the output firing rates of the network.
 
@@ -1186,7 +1192,7 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking ConvN
 	
 	
 	%	The best classification accuracy achieved by SNNs was trained with ReLU and fine-tuned by NSP.
-	The most efficient training in terms of both classification accuracy and algorithm complexity, \DIFdelbegin \DIFdel{takes }\DIFdelend \DIFaddbegin \DIFadd{took }\DIFaddend PAF-ReLU for ANN training and PAF-NSP for fine tuning.
+	The most efficient training in terms of both classification accuracy and algorithm complexity, takes PAF-ReLU for ANN training and PAF-NSP for fine tuning.
 	%	Softplus does not exhibit better classification capability and, more importantly, the manually selected static noise level hugely influences the mismatch between the predicted firing rates and the real data.
 	%	Although NSP shows the least classification drop from ANNs to SNNs, the training performance is still worse than ReLU.
 	%	Improved back propagation or other learning algorithms using noise level will be listed in the future work. 
@@ -1330,15 +1336,17 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking ConvN
 	
 	\DIFaddend Regarding the generalisation, the training not only uses popular activation functions in ANNs, \DIFaddbegin \DIFadd{e.g. ReLU, }\DIFaddend but also targets standard LIF neurons which are widely used on neuromorphic hardware.
 	\DIFaddbegin \DIFadd{Therefore, the proposed method remarkably simplifies the training of AI applications for neuromorphic hardware;
-	thereby paves the way to energy-efficient AI on the brain-like computers: from neuromorphic robots to clusters.
-	Moreover, it lowers the barrier for AI engineers to easily access the neuromorphic hardware without the understanding SNNs or the hardware.
-	}
-
-	\DIFaddend Furthermore, this method requires the least computation complexity while performing most effectively among existing algorithms.
+	thereby paving the way to energy-efficient AI on the brain-like computers: from neuromorphic robots to clusters.
+	Moreover, it lowers the barrier for AI engineers to easily access neuromorphic hardware without the need to understand SNNs or the hardware.
+	}\DIFaddend Furthermore, this method requires the least computation complexity while performing most effectively among existing algorithms.
 	% and even more straight-forward than the other ANN offline training methods which requires an extra step of converting ANN-trained weights to SNN's.
 	\DIFdelbegin %DIFDELCMD < 
 
 %DIFDELCMD < 	%%%
 \DIFdelend In terms of classification/recognition accuracy, the performance of ANN-trained SNNs is nearly equivalent to ANNs, and the performance loss can be partially solved by fine tuning.
-	The best classification accuracy of 99.07\% using LIF neurons in a PyNN simulation outperforms state-of-the-art SNN models of LIF neurons and is equivalent to the best result achieved using IF neurons~\citep{diehl2015fast}.
-An important feature of accurately modelling LIF neurons in ANNs is the acquisition of spiking neuron firing rates. These will aid deployment of SNNs in neuromorphic hardware by providing power and communication estimates, which would allow better usage or customisation of the platforms.
+	The best classification accuracy of 99.07\% using LIF neurons in a PyNN simulation outperforms state-of-the-art SNN models of LIF neurons and is equivalent to the best result achieved using IF neurons\DIFdelbegin \DIFdel{~\mbox{%DIFAUXCMD
+\citep{diehl2015fast}
+}%DIFAUXCMD
+.
+}\DIFdelend \DIFaddbegin \DIFadd{.
+}\DIFaddend An important feature of accurately modelling LIF neurons in ANNs is the acquisition of spiking neuron firing rates. These will aid deployment of SNNs in neuromorphic hardware by providing power and communication estimates, which would allow better usage or customisation of the platforms.

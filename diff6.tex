@@ -32,7 +32,7 @@ Finally, we demonstrate the use of the dataset and the evaluation methodology us
 
 With this dataset we hope to (1) promote meaningful comparisons between algorithms and neuromorphic platforms in the field of NE, (2) allow comparison with conventional non-spiking methods on image recognition, (3) provide an assessment of the state of the art in spike-based visual recognition, and (4) help researchers identify future directions and advance the field.
 
-In Section~\ref{sec:chapt6_intro}, diverse neuromorphic vision tasks are introduced to illustrate the requirements for a unified spike-based dataset.
+In Section~\DIFdelbegin \DIFdel{\ref{sec:chapt6_intro}}\DIFdelend \DIFaddbegin \DIFadd{\ref{sec:chapt6_relate}}\DIFaddend , diverse neuromorphic vision tasks are introduced to illustrate the requirements for a unified spike-based dataset.
 The rest of this chapter is structured as follows: Section~\ref{sec:method} elaborates the purpose and protocols of the proposed dataset and describes the sub-datasets and the methods employed to generate them; Section~\ref{sec:eval} demonstrates the suggested evaluation methodology for use with the dataset.
 %The sub-datasets and their generation methods are described in detail in Section~\ref{sec:data}.
 %In accordance with the dataset, its evaluation methodology is demonstrated in Section~\ref{sec:eval}.
@@ -61,7 +61,7 @@ Such rapid and highly accurate recognition is the target of modelling spike-base
 %Bioligical inspiration
 Inspired by biological studies of the visual ventral pathway, SNN models have successfully been adapted to visual recognition. \citet{riesenhuber1999hierarchical} proposed a quantitative modelling framework for object recognition with position-, scale- and view-invariance.
 Their cortex-like model has been analysed on several datasets~\citep{serre2007robust}.
-Recently~\citet{fu2012spiking} reported that their SNN implementation was capable of recognising facial expressions with a classification accuracy (CA) of 97.35\% on the JAFFE dataset~\citep{lyons1998coding} which contains 213 images of 7 facial expressions posed by 10 individuals.
+Recently~\citet{fu2012spiking} reported that their SNN implementation was capable of recognising facial expressions with a \DIFdelbegin \DIFdel{classification accuracy }\DIFdelend \DIFaddbegin \DIFadd{Classification Accuracy }\DIFaddend (CA) of 97.35\% on the JAFFE dataset~\citep{lyons1998coding} which contains 213 images of 7 facial expressions posed by 10 individuals.
 %They employed simple integrate-and-fire~(IF) neurons with rank order coding (ROC) where the earliest pre-synaptic spikes have the strongest impact on the post-synaptic potentials.
 According to~\citet{vanrullen2002surfing}, the first wave of spikes carry explicit information through the ventral stream and in each stage meaningful information is extracted and spikes are regenerated. 
 Therefore, using one spike per neuron, similar to the first spiking wave in biology,~\citet{delorme2001face} reported 100\% and 97.5\% accuracies on the face identification task over
@@ -92,15 +92,17 @@ A similar model trained with STDP using a winner-take-all~(WTA) circuit was test
 Another STDP trained model tested on computer simulation reached a 93.3\% CA on MNIST and had the potential to be implemented using memristors~\citep{bill2014compound}. 
 Adding synaptic internal state enabled STDP to work on bistable synapses, and this method achieved the best performance of 96.5\% among similar network architectures. 
 
-Deep Neural Networks (DNNs) have exceeded human-level performance on image classification tasks~\citep{he2015delving}, but mainstream DNN research is focussed on continuous rather than spiking neural networks.
+Deep \DIFdelbegin \DIFdel{Neural Networks (DNNs) }\DIFdelend \DIFaddbegin \DIFadd{Learning }\DIFaddend have exceeded human-level performance on image classification tasks~\citep{he2015delving}, but mainstream \DIFdelbegin \DIFdel{DNN }\DIFdelend \DIFaddbegin \DIFadd{Deep Learning }\DIFaddend research is focussed on continuous rather than spiking neural networks.
 The spiking deep network has great potential to combine remarkable performance with energy-efficient training and operation.
 Early research into spiking deep networks focussed on converting off-line trained deep network into SNNs~\citep{o2013real}.
 The network was initially implemented on an FPGA and achieved a CA of 92.0\%~\citep{neil2014minitaur}, while a later implementation on SpiNNaker scored 95.0\%~\citep{Stromatias2015scalable}.
 Recent advances have contributed to better translation by using modified units in a ConvNet~\citep{cao2015spiking} and tuning the weights and thresholds~\citep{diehl2015fast}.
 The latter paper claims a state-of-the-art performance (99.1\% on the MNIST dataset) compared to the original ConvNet.
-The current trend towards training Spiking DNNs on line using biologically-plausible learning methods is also promising.
+The current trend towards training \DIFdelbegin \DIFdel{Spiking DNNs on line }\DIFdelend \DIFaddbegin \DIFadd{deep SNNs on-line }\DIFaddend using biologically-plausible learning methods is also promising.
 An event-driven Contrastive Divergence (CD) training algorithm for Restricted Boltzmann Machines (RBMs) was proposed for Deep Belief Networks (DBNs) using LIF neurons with STDP synapses and verified on MNIST with a CA of 91.9\%~\citep{neftci2013event}.
 The work extended to use stochastic synapses, and the recognition performance increased to 95.8\%~\citep{neftci2016stochastic}.
+\DIFaddbegin \DIFadd{More related work and detailed description of current research on deep SNNs can be found in Chapter~\ref{cha:Conv} and Chapter~\ref{cha:sdlm}.
+}\DIFaddend 
 
 
 Despite the promising research on SNN-based vision recognition, there is no commonly used database in the format of spike stimuli.
@@ -118,12 +120,12 @@ However, in the field of conventional non-spiking computer vision, there are a n
 %These videos were produced with scripted behaviours in a controlled environment (`in the lab').
 %The YouTube Action Dataset~\citep{liu2009recognizing} targets recognising realistic actions from videos `in the wild';
 %here the main challenge is in the massive variations due to the moving camera, background clutter, viewing angles, variable illumination and so on.
-In consequence, a new set of spike-based vision datasets is now needed to quantitatively measure progress within the rapidly advancing field of spike-based visual recognition and to provide resources to support fair competition between researchers.
+In consequence, a new set of spike-based vision datasets is now needed to quantitatively measure progress within the rapidly advancing field of spike-based visual recognition and to provide resources to support \DIFdelbegin \DIFdel{fair }\DIFdelend \DIFaddbegin \DIFadd{objective }\DIFaddend competition between researchers.
 
 Apart from using spikes instead of the frame-based data used in conventional computer vision, new concerns arise when evaluating neuromorphic vision, such as latency and energy consumption, in addition to recognition accuracy.
 These concerns naturally derive from the goal of spike-based visual recognition: mimicking the fast recognition with low-energy processing in the brain. 
 %TODO better word to describe: what are the metrics and why needed
-Therefore a set of common metrics for performance evaluation in spike-based vision is required to assess SNN models and their hardware implementations.
+Therefore a set of common metrics for performance evaluation in spike-based vision is \DIFaddbegin \DIFadd{also }\DIFaddend required to assess SNN models and their hardware implementations.
 %, including evaluating trade-offs between simulation time, accuracy and power consumption.
 %Benchmarking neuromorphic hardware with various network models will reveal the advantages and disadvantages of different platforms.
 %Running various SNN benchmarks demonstrates the capability of a hardware platform to support model-specific configurations such as network size, topology, neural and synaptic models, learning algorithms and so on.
@@ -341,7 +343,7 @@ Rank-ordered spike trains have been used in vision tasks under a biological plau
 Rank order coding (ROC) can be performed using an algorithm known as the
 {FoCal algorithm~\citep{sen2009evaluating}}.
 This algorithm models the foveola, the highest resolution area of the retina, with four ganglion cell layers each with a different scale of centre-surround receptive field~\citep{kolb2003retina}.
-The detailed description of the algorithm was demonstrated by Garibaldi~Pineda-Garc\'ia\,~\citep{liu2016bench} and the source Python scripts to transform images to ROC spike trains, and to convert the results into AER and PyNN spike source arrays, can be found in the dataset website.
+The detailed description of the algorithm was demonstrated by Garibaldi~Pineda-Garc\'ia\, \DIFaddbegin \DIFadd{in the published paper}\DIFaddend ~\citep{liu2016bench} and the source Python scripts to transform images to ROC spike trains, and to convert the results into AER and PyNN spike source arrays, can be found in the dataset website.
 %To simulate these layers two steps are required: the first consists of four discrete 2D convolutions; the second removes redundant information produced in the first step.
 %During the first step, the centre-surround behaviour of the ganglion cells is modelled using Difference of Gaussians~(DoG) kernel for convolution. 
 %\begin{equation}
@@ -490,11 +492,14 @@ A total of 30K recordings were made: 10 digits, at 3 different scales, 1K differ
 
 \section{Performance Evaluation}
 \label{sec:eval}
-As a result of the spike-based processing used in SNN models, new concerns about the latency and energy cost arise over performance assessment.
+\DIFdelbegin \DIFdel{As a result of the spike-based processing used in SNN models, new }\DIFdelend \DIFaddbegin \DIFadd{New }\DIFaddend concerns about the latency and energy cost arise over performance assessment \DIFaddbegin \DIFadd{on SNNs, thereby highlighting the advantages of spike-based processing~\mbox{%DIFAUXCMD
+\citep{tan2015bench}
+}%DIFAUXCMD
+}\DIFaddend .
 Therefore we propose corresponding evaluation metrics and suggest a sufficient description of SNN models in this section.
-Once a model is implemented on a neuromorphic platform, the hardware performance can be evaluated by running the particular model.
+Once a model is implemented on a neuromorphic platform, the hardware performance can \DIFaddbegin \DIFadd{also }\DIFaddend be evaluated by running the particular model.
 This model-specific assessment provides more robust comparisons between hardware platforms by using the same network topology, neuron and synaptic models, and learning rules. 
-A complementary evaluation methodology is essential to provide common metrics and assess both the model-level and hardware-level performance.
+\DIFdelbegin \DIFdel{A }\DIFdelend \DIFaddbegin \DIFadd{Consequently, a }\DIFaddend complementary evaluation methodology is essential to provide common metrics and assess both the model-level and hardware-level performance.
 
 
 \subsection{\DIFdelbegin \DIFdel{Model-Level }\DIFdelend \DIFaddbegin \DIFadd{Model-level }\DIFaddend Evaluation}
@@ -1019,7 +1024,7 @@ When the spiking rate is less than 2K~Hz, the network with stronger weights has 
 As long as there are enough spikes to trigger the decision neurons to spike, increasing the test time will not make the network respond sooner~(Figure~\ref{fig:assess}(c)).
 
 At the default configuration of the SNN model, each input neuron connects to all of the 100 decision (output) neurons with both excitatory and inhibitory projections.
-Thus the synaptic events happening in the inter-layer connections are 200 times the total input firing rate.
+Thus the synaptic events happening in the inter-layer connections are 200\DIFaddbegin \DIFadd{~(100$\times$2) }\DIFaddend times the total input firing rate.
 Figure~\ref{fig:assess}(e) shows the stable Sopbs of the entire network when the input firing rate is held at 2K~Hz and the test time increases.
 The firing rates of the output layer are relatively small, and are 0.1\% and 1.5\% of the total Sopbs using original and scaled-up weights respectively.
 The variations in the total Sopbs lie in the firing rate of the output layers only, and the stronger connections lead to the higher firing rates.
@@ -1296,24 +1301,34 @@ This result provides a baseline for comparison with other SNN models and neuromo
 \section{Summary}
 \label{sec:summ}
 %DIF < This chapter puts forward the NE dataset as a baseline for comparisons of vision based SNN models and neuromorphic platforms.
-\DIFaddbegin \DIFadd{This chapter put forward the NE dataset as a unified resource to measure progress quantitatively within the field of neuromorphic vision.
-}\DIFaddend The NE dataset \DIFdelbegin \DIFdel{proposed in this chapter makes the comparison }\DIFdelend \DIFaddbegin \DIFadd{and the complementary evaluation methodology make it possible to (1) provide objective comparisons of vision based SNN models and their implementation on neuromorphic platforms;
-(2) compare }\DIFaddend of SNNs with conventional recognition methods \DIFdelbegin \DIFdel{possible }\DIFdelend by using converted spike representations of the same vision databases\DIFdelbegin \DIFdel{.
-As far as we know, this is the first attempt at benchmarking neuromorphic vision recognition by providing public a }\DIFdelend \DIFaddbegin \DIFadd{;
-(3) measure the state-of-the-art performance in }\DIFaddend spike-based \DIFdelbegin \DIFdel{dataset and evaluation metrics.
-}\DIFdelend \DIFaddbegin \DIFadd{visual recognition;
-and (4) promote future research into rapid and low energy recognition.
-%DIF > As far as we know, this is the first attempt at benchmarking neuromorphic vision recognition by providing public a spike-based dataset and evaluation metrics.
-}\DIFaddend In accordance with the suggestions from~\cite{tan2015bench}, the evaluation metrics highlight the strengths of spike-based vision tasks\DIFdelbegin \DIFdel{and the dataset design also promotes the research into rapid and low energy recognition (e.g. flashing digits).
-}\DIFdelend \DIFaddbegin \DIFadd{: low latency and energy efficiency.
-%DIF >  and the dataset design also promotes the research into rapid and low energy recognition (e.g. flashing digits).
+\DIFdelbegin \DIFdel{The NE dataset proposed in this chapter makes the comparison of SNNs with conventional recognition methods possible by using converted spike representations of the same vision databases.
+As far as we know, this is the first attempt at benchmarking neuromorphic vision recognitionby providing public a }\DIFdelend \DIFaddbegin \DIFadd{This chapter put forward the NE dataset as a unified resource to quantitatively measure progress within the field of neuromorphic vision.
+It enables not only objective comparisons among SNNs, but also between conventional ANNs and these }\DIFaddend spike-based \DIFdelbegin \DIFdel{dataset and evaluation metrics.
+In accordance with the suggestions from~\mbox{%DIFAUXCMD
+\cite{tan2015bench}
+}%DIFAUXCMD
+, the }\DIFdelend \DIFaddbegin \DIFadd{models.
+In addition, as an evolving dataset, it catches up with the cutting-edge technologies thereby promoting future research in NE.
+}
+
+\DIFadd{The current dataset NE-15 contains four spike-based subsets aiming at different purposes: (1) the Poissonian subset is intended for testing rate-based recognition methods;
+(2) the rank-order coded subset aims at spatio-temporal algorithms;
+(3) the DVS recorded flashing input subset encourages fast recognition;
+and (4) the other DVS recorded moving input is designed for mobile neuromorphic robots and is a suitable test for invariant object recognition.
+}
+
+\DIFadd{The proposed complementary evaluation methodology is the first to analytically assess SNN models and the neuromorphic hardware simulators.
+We carefully selected response latency and the number of synaptic events for model-level evaluation; plus, simulation time and energy usage for evaluating hardware performance.
+These special }\DIFaddend evaluation metrics highlight the strengths of spike-based \DIFdelbegin \DIFdel{vision tasksand the dataset design also promotes the research into rapid and low energy recognition (e.g. flashing digits).
+}\DIFdelend \DIFaddbegin \DIFadd{AI tasks.
+%DIF >  suggested by~\citet{tan2015bench}
 }\DIFaddend 
 
-A benchmark system is evaluated using the Poissonian subset of the NE15-MNIST dataset.
+A \DIFaddbegin \DIFadd{potential }\DIFaddend benchmark system is evaluated using the Poissonian subset of the NE15-MNIST dataset.
 %The models were described and their performance on accuracy, network latency, simulation time and energy usage were presented.
-This example benchmarking system demonstrates a recommended way of using the dataset, describing the SNN models and evaluating the system performance.
+This example \DIFdelbegin \DIFdel{benchmarking system }\DIFdelend demonstrates a recommended way of using the dataset, describing the SNN models and evaluating the system performance.
 %They provide a baseline for comparisons and encourage improved algorithms and models to make use of the dataset.
-The case study provides a baseline for robust comparisons \DIFdelbegin \DIFdel{between }\DIFdelend \DIFaddbegin \DIFadd{of other }\DIFaddend SNN models and their hardware implementations.
+The case study provides a baseline for robust comparisons \DIFdelbegin \DIFdel{between }\DIFdelend \DIFaddbegin \DIFadd{for }\DIFaddend SNN models and their hardware implementations\DIFaddbegin \DIFadd{, and also  validates the feasibility of the database and its evaluation methodology}\DIFaddend .
 
 
 %It contains spike-based versions of existing widely-used databases in the vision recognition field.

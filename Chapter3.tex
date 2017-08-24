@@ -1,15 +1,15 @@
 \chapter{Deep Learning}
 \label{cha:dnn}
 Deep Learning research in the field of Artificial Neural Networks~(ANNs) has dominated state-of-the-art solutions on cognitive tasks, e.g. the performance exceeding human-level  on image classification tasks~\citep{he2015delving} and playing GO~\citep{silver2016mastering}.
-Merging Deep Learning techniques into Spiking Neural Networks~(SNNs), introduced in the previous chapter, may provide an answer to the problem of how to operate SNNs to perform equivalently as ANNs in cognitive tasks. 
+Merging Deep Learning techniques into Spiking Neural Networks~(SNNs), introduced in the previous chapter, may provide an answer to the problem of how to operate SNNs to perform equivalently to ANNs in cognitive tasks. 
 In this chapter, we will give an overview of popular architectures and models of Deep Learning in Section~\ref{sec:dl_history}, and the rest of this chapter will illustrate the mechanisms of Convolutional Networks (ConvNets), Autoencoders (AEs), and Restricted Boltzmann Machines~(RBMs) in detail which will be used in following chapters.
 
 \section{Brief Overview}
 \label{sec:dl_history}
 Deep Learning seems to have become the answer to all artificial intelligence problems overnight since Geoffrey Hinton proposed the training method of a type of ANN, the Deep Belief Network, in 2006~\citep{hinton2006fast}.
-However, Deep Learning is not a new `magic', but rather has a history over a few decades and its sudden success is the result of the availability of an increasing amount of training data, the growing size of network models and greater computational power.
-Therefore, all the classical Deep Learning architectures date back to the last century before the `Deep Learning' name was coined.
-However, at that time, deep networks could hardly be trained, mainly because of the limits on computational power.
+However, Deep Learning is not new `magic', but rather has a history over a few decades and its sudden success is the result of the availability of an increasing amount of training data, the growing size of network models and greater computational power.
+Therefore, all the classical Deep Learning architectures date back to the last century, even before the `Deep Learning' name was coined.
+%However, at that time, deep networks could hardly be trained, mainly because of the limits on computational power.
 
 
 \subsection{Classical Models}
@@ -64,7 +64,7 @@ This section aims to give a detailed introduction to ConvNet architectures and t
 		\label{Fig:ConvNet}
 	\end{figure}
 
-A typical ConvNet, LeNet shown in Figure~\ref{Fig:ConvNet},  consists of four types of neural layers: an input layer, convolutional~(Conv) layers of simple cells, pooling~(Pool) layers of complex cells and fully-connected~(FC) layers.
+A typical ConvNet, LeNet~\ref{Fig:ConvNet}, shown in Figure, consists of four types of neural layers: an input layer, convolutional~(Conv) layers of simple cells, pooling~(Pool) layers of complex cells and fully-connected~(FC) layers.
 From the left to right of Figure~\ref{Fig:ConvNet}, we illustrate the mechanism of the ConvNet in detail.
 
 The pixels of the input image are normalised and fed into the first Conv layer.
@@ -90,12 +90,11 @@ Repeating these alternating presentations of a Conv layer and a Pool layer build
 
 The trainable shared weights used in the Conv layer hugely reduce the number of weight parameters in a ConvNet, while Pool layers use static convolutional kernels to shrink the size of the network.
 These convolutional connections can be described as 6c5-2s-12c5-2s, where $\alpha c \beta$ indicates $\alpha$ kernels of side length $\beta$ used in the Conv layer, and $2s$ specifies the side length and the stride of a pooling kernel.
-However, a Multilayer Perceptron (MLP) network possesses only FC layers, where each neural layer fully connects to the next one.
 In a ConvNet an FC layer is usually located at the last layer (right in Figure~\ref{Fig:ConvNet}), and connects the last Pool layer to the output neurons with all-to-all connections.
-% to predict the classification of the input image.
+%However, a Multilayer Perceptron (MLP) network possesses only FC layers, where each neural layer fully connects to the next one.
 The strongest response among the output neurons indicates to which class the input image belongs, as illustrated in Figure~\ref{Fig:ConvNet} where the red neuron represents the first digit out of ten, `0'.
-There can be more than one FC layer at the end of a ConvNet.
-In this thesis, we will use only a single FC layer.
+There can be more than one FC layer at the end of a ConvNet, thereby building a Multilayer Perceptron (MLP) network.
+However, in this thesis, we will use only a single FC layer.
 
 
 %Chain rule, reduced parameter amounts. 
@@ -103,15 +102,15 @@ In this thesis, we will use only a single FC layer.
 \subsection{Backpropagation}
 We have described the feed-forward path of a ConvNet to classify an input image.
 In this section we will demonstrate the training of a network by back-propagating errors to tune the connection weights.
-The objective function (or loss function) estimates an error by comparing the output vector of a network, $\mathbf{y}=(y_1,y_2,...,y_M)$, to the desired label vector, $\mathbf{t}=(t_1,t_2,...,t_M)$, and the error is to be minimised during training.
-Given a set of training data with desired labels $\mathbf{T}=\{\mathbf{t}^1, \mathbf{t}^2, ..., \mathbf{t}^K\}$ and the network output $\mathbf{Y}=\{\mathbf{y}^1, \mathbf{y}^2, ..., \mathbf{y}^K\}$ the Mean Squared Error~(MSE) can be seen as the objective function:  
+The objective function (or loss function) estimates an error by comparing the output vector of $M$ dimension, $\mathbf{y}=(y_1,y_2,...,y_M)$, to the desired label vector, $\mathbf{t}=(t_1,t_2,...,t_M)$, and the error is to be minimised during training.
+Given a set of training data of $K$ elements $\mathbf{X}=\{\mathbf{x}^1, \mathbf{x}^2, ..., \mathbf{x}^K\}$ with desired labels $\mathbf{T}=\{\mathbf{t}^1, \mathbf{t}^2, ..., \mathbf{t}^K\}$ and the network output $\mathbf{Y}=\{\mathbf{y}^1, \mathbf{y}^2, ..., \mathbf{y}^K\}$ the Mean Squared Error~(MSE) can be seen as the objective function:  
 \begin{equation}
 L={MSE}(\mathbf{T}, \mathbf{Y}) =\frac{1}{2K}\sum_{k=1}^K \sum_{m=1}^M (y^{k}_{m}-t^{k}_{m})^{2}~~.
 \label{equ:loss_all}
 \end{equation}
 
 BP propagates the gradient of the loss with respect to the weights backwards to each connection in the network.
-The computation requires a closer look into the structure of a neuron, see Figure~\ref{Fig:neuron_net} where $N$ neurons connect to the $j^{th}$ neuron of the next layer, and the neuron converts the weighted summation of the input, $net_j$, to the output $y_j$ according to its activation function.
+The computation requires a closer look into the structure of a neuron, see Figure~\ref{Fig:neuron_net}, where $N$ neurons connect to the $j^{th}$ neuron of the next layer, and the neuron converts the weighted summation of the input, $net_j$, to the output $y_j$ according to its activation function.
 \begin{figure}[bt]
 	\centering
 	\includegraphics[width=0.7\textwidth]{pics_iconip/neuron.pdf}
@@ -156,7 +155,7 @@ where $\eta$ defines the length of these updating steps which is also called the
 Again, the weight update is also dependent on the types of layer, where a convolution of the input vector $\mathbf{x}$ with the error gradient  $\mathbf{\delta}$ is needed in Conv layers.
 A detailed description of BP training on ConvNets can be found elsewhere~\citep{bouvrie2006notes}.
 
-Moreover, applying Stochastic Gradient Descent (SGD), the gradient over the full training set can be approximated using only a few, even a single, training data.
+Moreover, applying Stochastic Gradient Descent (SGD), the gradient over the full training set can be approximated using only a few, even a single, training data per weight update.
 Therefore $k$ in Equation~\ref{equ:derivative} can be seen as a randomly selected data index, and $K$ represents the number of elements in such a data subset, which is also known as a batch.
 If we take only one data sample in each batch, the loss function~(Equation~\ref{equ:loss_all}) will be estimated by the error between an output vector $\mathbf{y}^k$ and the single label sample $\mathbf{t}^k$:
 \begin{equation}
@@ -775,5 +774,5 @@ and $v^0_i$ is a given training data, $h^0_j$ is produced with the probability $
 %\end{algorithm}
 
 \section{Summary}
-This chapter briefly introduced the most popular Deep Learning techniques and models for potential use in spiking neural networks.
-We illustrated the structure and training procedure for three Deep Learning models: Convolutional Networks, Autoencoders and Restricted Boltzmann Machines, which will be applied in spiking deep networks in the following chapters.
+This chapter briefly introduced the most popular Deep Learning techniques and models for potential use in SNNs.
+We illustrated the structure and training procedure for three Deep Learning models: ConvNets, AEs and RBMs, which will be applied in spiking deep networks in the following chapters.

@@ -121,14 +121,16 @@ In addition, the numerical analysis of the proposed algorithm accurately estimat
 
 %This on-line training method achieves better performance than existing algorithms and approaches the same, sometimes superior performance of the equivalent non-spiking methods.
 
-Thanks to the accurate parameter estimation of these proposed learning algorithms, the classification results (94.72\% for SAE and 94.35\% for SRBM) have outperformed other existing SAE and SRBM models.
-The first on-line training algorithm proposed by~\citet{neil2013online} ignored the mathematical analysis thus achieved its best classification performance only at 81.5\%.
-\citet{neftci2013event} conducted training on a recurrent network which was more biologically plausible but required a global signal to control the direction of the synapses and resulted in a worse classification of 91.9\% even with a bigger network.
-Moreover, the proposed method is the first to exploit novel techniques to decorrelate the spike trains since the correlation brings down the learning performance rapidly after it peaks.
-Therefore, this method enables the genuine `live and learn' in on-line SNN training;
-meanwhile, other methods~\citep{neftci2016stochastic,neftci2017event} suffer from the manual termination of learning when the performance reaches the best.
-Furthermore, in theory our method works on any spiking neuron and requires a simple rectangular STDP, thus can be easily implemented on general neuromorphic hardware.
-However, it is more difficult for other existing approaches~\citep{neftci2013event,neftci2016stochastic,neftci2017event} to work on hardware platforms since they ask for either specific neural/synaptic models or extra external signals to control the learning.
+Thanks to the accurate parameter estimation, the classification results (94.72\% for SAE and 94.35\% for SRBM) have outperformed most existing on-line models.
+\citet{neil2013online} ignored the mathematical analysis thus achieved its best performance only at 81.5\%.
+\citet{neftci2013event} conducted training on a recurrent network which was more biologically plausible, but with a different goal of neural sampling this method achieved a worse classification at 91.9\%.
+Their extended work~\citep{neftci2016stochastic} improved the performance to the state-of-the-art, 95.6\%, but requires extra Deep Learning technique, dropout~\citep{srivastava2014dropout}, and more training epochs.
+Nevertheless, \citet{neftci2016stochastic} did not compare the trained SNN to the non-spiking counterpart, RBM-dropout; while our method closely reproduced the learning curves of the equivalent ANNs.
+Moreover, our proposed method successfully decorrelates spike trains, thereby solving the problem of performance drop caused by the spike correlation.
+Therefore, this method enables the genuine `live and learn' in on-line SNN training.
+%meanwhile, other methods~\citep{neftci2016stochastic,neftci2017event} suffer from the manual termination of learning when the performance reaches the best.
+Furthermore, in theory our method works on any spiking neuron model and requires a simple rectangular STDP, thus can be easily implemented on general neuromorphic hardware.
+However, it is more difficult for other existing approaches~\citep{neftci2013event,neftci2016stochastic} to work on hardware platforms since they ask for either specific neural/synaptic models or extra external signals to control the learning.
 
 Our second contribution is the formalisation of an STDP-based unsupervised learning algorithm for spiking AE~(SAE) and spiking RBM~(SRBM).
 %These training methods realise on-line, event-based, biologically-plausible learning on spiking deep architectures in an unsupervised fashion.

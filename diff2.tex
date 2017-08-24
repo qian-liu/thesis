@@ -2,7 +2,7 @@
 \label{cha:bkg}
 The so-called third generation of artificial neural network, the \DIFdelbegin \DIFdel{spiking neural network }\DIFdelend \DIFaddbegin \DIFadd{Spiking Neural Network }\DIFaddend (SNN), is comprised of spiking neurons which mimic the dynamics of biological neural behaviour.
 In this chapter we will demonstrate the special features of spiking neurons that differ from neurons of conventional \DIFdelbegin \DIFdel{artificial neural networks }\DIFdelend \DIFaddbegin \DIFadd{Artificial Neural Networks }\DIFaddend (ANNs);
-these biologically-plausible neuronal operations are the root of the research problem raised in the thesis: how to operate SNNs to be capable in cognitive tasks and as competent as ANNs.
+these biologically-plausible neuronal operations are the root of the research problem raised in the thesis: how to operate SNNs to \DIFdelbegin \DIFdel{be capable in cognitive tasks and }\DIFdelend \DIFaddbegin \DIFadd{equip them with cognitive capabilities }\DIFaddend as competent as ANNs.
 Section~\ref{sec:bio_neuron} will illustrate how biological neurons function and transmit signals between them.
 The way neural dynamics are modelled by mathematical abstractions of spiking neurons is described in Section~\ref{sec:spike} , and finally existing SNN simulators are introduced in Section~\ref{sec:snn_sim}.
 
@@ -51,7 +51,7 @@ The configuration can be seen as a pre-synaptic cell which sends the signal, and
 Neuronal signals propagated among neurons are short electrical pulses, and Figure~\ref{Fig:neuron_basic}(c) shows the original recording of such a so-called \textbf{action potential} observed on a squid giant axon.
 A typical action potential, also known as a `\textbf{spike}', is of about 100~mV amplitude and lasts 1-2~ms.
 Usually, there is a time period immediately after a spike that the neuron is unresponsive to any further stimulus.
-This minimal time difference between two spikes of a single neuron is the absolute refractory period during which no spike can be generated.
+This minimal time difference between two spikes of a single neuron is the absolute \DIFdelbegin \DIFdel{refractory period }\DIFdelend \DIFaddbegin \textbf{\DIFadd{refractory period}} \DIFaddend during which no spike can be generated.
 After the absolute refractory period, it is still difficult but possible to 
 fire a spike during the relative refractory period.
 
@@ -172,7 +172,7 @@ Spikes arriving at different synapses at the same post-synaptic neuron have PSPs
 	\label{Fig:psp_sum}
 \end{figure}
 
-Multiples PSPs have an accumulative effect on the membrane potential both in temporal and spatial terms.
+\DIFdelbegin \DIFdel{Multiples }\DIFdelend \DIFaddbegin \DIFadd{Multiple }\DIFaddend PSPs have an accumulative effect on the membrane \DIFdelbegin \DIFdel{potential }\DIFdelend \DIFaddbegin \DIFadd{potentials }\DIFaddend both in temporal and spatial terms.
 The accumulation performs a simple summation of PSPs until the membrane potential reaches a \textbf{threshold}, when an action potential is generated at the post-synaptic neuron.
 Figure~\ref{Fig:psp_sum} illustrates temporal and spatial summations of PSPs under different circumstances.
 The temporal summation refers to the accumulated effect of a single synapse where the spatial one integrates the PSPs triggered by multiple synapses.
@@ -227,7 +227,7 @@ The keys to modelling a spiking neuron are:
 	\label{Fig:rc}
 \end{figure}
 
-\DIFaddend The evolution of membrane potential $v$ can be simplified to a \DIFdelbegin \DIFdel{resistor-capacitor }\DIFdelend \DIFaddbegin \DIFadd{Resistor-Capacitor }\DIFaddend (RC) circuit which consists of a membrane capacitor $C_m$ and a membrane resistance $R_m$, both driven by an input current flow $I$, see Figure~\ref{Fig:rc}.
+\DIFaddend The evolution of membrane potential \DIFdelbegin \DIFdel{$v$ }\DIFdelend \DIFaddbegin \DIFadd{$V$ }\DIFaddend can be simplified to a \DIFdelbegin \DIFdel{resistor-capacitor }\DIFdelend \DIFaddbegin \DIFadd{Resistor-Capacitor }\DIFaddend (RC) circuit which consists of a membrane capacitor $C_m$ and a membrane resistance $R_m$, both driven by an input current flow $I$, see Figure~\ref{Fig:rc}.
 In the resting state without any input, the membrane potential $V$ stays at the same potential as the battery $V_{rest}$.
 When current flows into the neuron, it will charge the capacitor with current $I_C(t)$ and discharge through the resistance with current $I_R(t)$.
 When the input current stops the capacitive charge will decay back to $V_{rest}$ by leaking through the resistance:
@@ -325,7 +325,7 @@ u &= u + d
 \right.
 \textrm{~~~~when~} v \geq 30.
 \end{equation}  
-$a$, $b$, $c$, and $d$ are constant parameters that can be configured to reproduce various neural dynamics of real biological neurons~\citep{izhikevich2004model}.
+\DIFaddbegin \DIFadd{Parameters }\DIFaddend $a$, $b$, $c$, and $d$ are constant\DIFdelbegin \DIFdel{parameters that }\DIFdelend \DIFaddbegin \DIFadd{, which }\DIFaddend can be configured to reproduce various neural dynamics of real biological neurons~\citep{izhikevich2004model}.
 
 \subsection{Synapse Model}
 Applying spiking neuron models to synaptic spike transmission, we can use two types of synapse: current-based and conductance-based models.
@@ -400,23 +400,38 @@ A_- (w) &= w\eta_-~~,
 \end{aligned}
 \right.
 \end{equation}
-where $A_+$ and $A_-$ in Equation~\ref{equ:stdp} become functions of variables $w$, $\eta_+$ and $\eta_-$, and define the learning rate of the weight potentiation and depression, and $w_{max}$ is the maximum synaptic efficacy while 0 is the minimum.
+where $A_+$ and $A_-$ in Equation~\ref{equ:stdp} become functions of variables $w$, $\eta_+$ and $\eta_-$ \DIFdelbegin \DIFdel{, and }\DIFdelend define the learning rate of the weight potentiation and depression, and $w_{max}$ is the maximum synaptic efficacy while 0 is the minimum.
+\DIFdelbegin %DIFDELCMD < 
 
-We use the multiplicative STDP model for SNN training in Section~\ref{sec:test}, and a much simplified version of asymmetric rectangular STDP in Chapter~\ref{cha:sdlm} where the STDP window is just a constant:
-\begin{equation}
+%DIFDELCMD < %%%
+\DIFdelend %DIF > The weights are usually restricted within hard bounds.
+%DIF > http://www.scholarpedia.org/article/Spike-timing_dependent_plasticity
+We use the multiplicative STDP \DIFdelbegin \DIFdel{model }\DIFdelend for SNN training in Section~\ref{sec:test}\DIFdelbegin \DIFdel{, and }\DIFdelend \DIFaddbegin \DIFadd{.
+It performs better than the addictive STDP when used in such a classification task, since the weight are much more distributed in the working range.
+}
+
+\DIFadd{In Chapter~\ref{cha:sdlm} we exploit }\DIFaddend a much simplified version of asymmetric rectangular STDP \DIFdelbegin \DIFdel{in Chapter~\ref{cha:sdlm} where the STDP window }\DIFdelend \DIFaddbegin \DIFadd{where the weight change }\DIFaddend is just a constant \DIFdelbegin \DIFdel{:
+}\DIFdelend \DIFaddbegin \DIFadd{within an STDP window, $\tau_{win}$:
+}\DIFaddend \begin{equation}
 \Delta w = \left\{
 \begin{aligned}
 &\eta \textrm{~,~~when~~~} 0 \leq \Delta  t \leq \tau_{win}\\
-& 0 \textrm{~,~~otherwise}.
-\end{aligned}
+& 0 \textrm{~,~~otherwise}
+\DIFdelbegin \DIFdel{.
+}\DIFdelend \end{aligned}
 \right.
 \end{equation}
+\DIFaddbegin \DIFadd{We choose this simple algorithm for the straightforward linear conversion of the number of coincident spikes to the weight update.
+ }
+
+%DIF > The parameter $\tau_{win}$ is the effective range of the STDP window.
+\DIFaddend 
 
 \section{Simulating Networks of Spiking Neurons}
 \label{sec:snn_sim}
-In the previous section, we described neural dynamics as abstracted by mathematical models at the neuronal level.
+In the previous section, we described neural dynamics as \DIFdelbegin \DIFdel{abstracted by }\DIFdelend mathematical models at the neuronal level.
 However, it is challenging to simulate a large SNN with a high volume of synaptic connections, even using simple models such as LIF, because of the high event rate ($10^4$ synaptic events per second per single neuron on average).
-Addressing this problem, existing solutions vary from software simulators to hardware neuromorphic systems.
+Addressing this problem, existing solutions vary from software simulators to \DIFdelbegin \DIFdel{hardware neuromorphic systems}\DIFdelend \DIFaddbegin \DIFadd{neuromorphic hardware}\DIFaddend .
 %discuss the closed-loop, standing alone neuromorphic systems built on SpiNNaker for real-time cognitive applications.
 
 \subsection{Software Simulators}
@@ -464,7 +479,7 @@ Each pixel generates spikes when its change in brightness reaches a defined thre
 thus, instead of buffering video into frames, the activity of pixels is sent out and processed continuously with time.
 %The communication bandwidth is therefore optimised by sending activity only, which is encoded as pixel events using the AER~\citep{lazzaro1995multi} protocol.
 The level of activity depends on the contrast change; pixels generate spikes faster and more frequently when they are subject to more active change.
-The sensor is capable of capturing very fast moving objects (e.g., up to 10 K rotations per second), which is equivalent to 100 K conventional frames per second~\citep{lenero20113}.
+The sensor is capable of capturing very fast moving objects (e.g., up to \DIFdelbegin \DIFdel{10 K }\DIFdelend \DIFaddbegin \DIFadd{10K }\DIFaddend rotations per second), which is equivalent to \DIFdelbegin \DIFdel{100 K }\DIFdelend \DIFaddbegin \DIFadd{100K }\DIFaddend conventional frames per second~\citep{lenero20113}.
 However, DVSs on the market are still expensive to purchase, thus we present an extensible behavioural emulator of a DVS using a conventional digital camera, pyDVS~\citep{7850249}.
 
 The binaural silicon cochlea~\citep{5537164} models the elementary functions of the cochlea including the basilar membrane, the \DIFdelbegin \DIFdel{inner hair cells}\DIFdelend \DIFaddbegin \DIFadd{Inner Hair Cells}\DIFaddend ~(IHCs), and the Spiral Ganglion Cells (SGCs).
@@ -475,7 +490,7 @@ The transformation from mechanical waves to electrical action potentials complet
 
 The output spikes from the sensory devices are then communicated to back-end SNN processing using the asynchronous AER protocol.
 Visual/auditory recognition on such complete neuromorphic hardware systems has emerged in pursuit of efficient energy cost and low sensory latency.
-However, these hardware SNN simulators either run on FPGAs~\citep{neil2014minitaur, kiselev2016event} or analogue circuits~\citep{qiao2015reconfigurable} and are limited in scale.
+However, these hardware SNN simulators either run on FPGAs~\citep{neil2014minitaur, kiselev2016event} or analogue circuits~\citep{qiao2015reconfigurable} \DIFdelbegin \DIFdel{and }\DIFdelend \DIFaddbegin \DIFadd{thus }\DIFaddend are limited in scale.
 
 	\begin{figure}[tbp!]
 	\centering
@@ -502,7 +517,7 @@ However, these hardware SNN simulators either run on FPGAs~\citep{neil2014minita
 
 SpiNNaker provides an ideal platform for real-time visual/auditory processing with large SNN models.
 Figure~\ref{Fig:close-loop} shows three set-ups of such `stand-alone' neuromorphic sensory and processing hardware platforms, which can be operated on their own as closed-loop systems (Figure~\ref{Fig:close-loop}(c)).
-The visual system, shown in Figure~\ref{Fig:close-loop}(a), ran a 5-layered SNN model~\citep{liu2014real} we designed for live gesture recognition, which contained a network of 74,210 neurons and 15,216,512 synapses, and used 290 SpiNNaker cores in parallel and reached 93.0\% accuracy. 
+The visual system, shown in Figure~\ref{Fig:close-loop}(a), ran a 5-layered SNN model~\citep{liu2014real} we designed for live gesture recognition, which contained a network of 74,210 neurons and 15,216,512 synapses, and used 290 SpiNNaker cores in parallel and reached 93.0\% accuracy.
 We also successfully implemented a sound localisation model of spiking neurons on an auditory system, see Figure~\ref{Fig:close-loop}(b), which could operate with input spikes with sub-millisecond resolution~\citep{lagorce2015breaking}.
 These works prove that real-time, large-scale, sensory neuromorphic systems are ready for further study in effective cognition and the genuine intelligence capabilities of such biological-plausible machines.
 
