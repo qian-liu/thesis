@@ -31,13 +31,13 @@ Applying the RBM model function in Equation~\ref{equ:rbm_prob} to Equation~\ref{
 & = \left \langle \dfrac{\partial \log \sum_{ \mathbf{h}} e^{{-E}(\mathbf{v}, \mathbf{h} \mid \Theta)}}{\partial \theta}\right \rangle_{\mathbf{D}} 
 -\left \langle \dfrac{\partial \log \sum_{ \mathbf{h}} e^{{-E}(\mathbf{v}, \mathbf{h} \mid \Theta)} }{\partial \theta}\right \rangle_{\mathbf{C} \sim p(\mathbf{v} \mid \Theta)}  \\
 & = \left \langle \sum_{ \mathbf{h}} \frac{e^{{-E}(\mathbf{v}, \mathbf{h} \mid \Theta)}}{\sum_{ \mathbf{h}} e^{{-E}(\mathbf{v}, \mathbf{h} \mid \Theta)}} \cdot \dfrac{\partial {-E}(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{D}} 
-- \left \langle \sum_{ \mathbf{h}} \frac{e^{{-E}(\mathbf{v}, \mathbf{h} \mid \Theta)}}{\sum_{ \mathbf{h}} e^{{-E}(\mathbf{v}, \mathbf{h} \mid \Theta)}} \cdot \dfrac{\partial {-E}(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{C} \sim p(\mathbf{v} \mid \Theta)}  \\
+\\&~~~~~- \left \langle \sum_{ \mathbf{h}} \frac{e^{{-E}(\mathbf{v}, \mathbf{h} \mid \Theta)}}{\sum_{ \mathbf{h}} e^{{-E}(\mathbf{v}, \mathbf{h} \mid \Theta)}} \cdot \dfrac{\partial {-E}(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{C} \sim p(\mathbf{v} \mid \Theta)}  \\
 & = \left \langle \sum_{ \mathbf{h}} \frac{p(\mathbf{v}, \mathbf{h} \mid \Theta)}{p(\mathbf{v} \mid \Theta)} \cdot \dfrac{\partial {-E}(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{D}} 
-- \left \langle \sum_{ \mathbf{h}}  \frac{p(\mathbf{v}, \mathbf{h} \mid \Theta)}{p(\mathbf{v} \mid \Theta)} \cdot \dfrac{\partial {-E}(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{C} \sim p(\mathbf{v} \mid \Theta)}  \\
+\\&~~~~~- \left \langle \sum_{ \mathbf{h}}  \frac{p(\mathbf{v}, \mathbf{h} \mid \Theta)}{p(\mathbf{v} \mid \Theta)} \cdot \dfrac{\partial {-E}(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{C} \sim p(\mathbf{v} \mid \Theta)}  \\
 & = \left \langle \sum_{ \mathbf{h}} p( \mathbf{h} \mid \mathbf{v}, \Theta) \cdot \dfrac{\partial {-E}(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{D}} 
-- \left \langle \sum_{ \mathbf{h}} p( \mathbf{h} \mid \mathbf{v}, \Theta) \cdot \dfrac{\partial {-E}(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{C} \sim p(\mathbf{v} \mid \Theta)}  \\
+\\&~~~~~- \left \langle \sum_{ \mathbf{h}} p( \mathbf{h} \mid \mathbf{v}, \Theta) \cdot \dfrac{\partial {-E}(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{C} \sim p(\mathbf{v} \mid \Theta)}  \\
 & = \left \langle \left \langle \dfrac{\partial {-E}(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{D_h} \sim p( \mathbf{h} \mid \mathbf{v}, \Theta)} \right \rangle_{\mathbf{D}}
-- \left \langle \left \langle \dfrac{\partial {-E}(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{C_h} \sim p( \mathbf{h} \mid \mathbf{c_v}, \Theta)} \right \rangle_{\mathbf{C_v} \sim p(\mathbf{v} \mid \Theta)}  \\
+\\&~~~~~- \left \langle \left \langle \dfrac{\partial {-E}(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\mathbf{C_h} \sim p( \mathbf{h} \mid \mathbf{c_v}, \Theta)} \right \rangle_{\mathbf{C_v} \sim p(\mathbf{v} \mid \Theta)}  \\
 & = \left \langle \dfrac{\partial {-E}(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\{\mathbf{D}, \mathbf{D}_h \sim p( \mathbf{h} \mid \mathbf{v}, \Theta) \}}
 - \left \langle \dfrac{\partial {-E}(\mathbf{v}, \mathbf{h} \mid \Theta)}{\partial \theta} \right \rangle_{\{\mathbf{C_v}, \mathbf{C_h}\} \sim p( \mathbf{v}, \mathbf{h} \mid  \Theta)}. \\
 \end{aligned}
@@ -45,7 +45,7 @@ Applying the RBM model function in Equation~\ref{equ:rbm_prob} to Equation~\ref{
 \end{equation}
 The first term of the right-hand side can be gathered from the given data, $ \{\mathbf{D}, \mathbf{D}_h\}$, and the second term can be approximated by generating model data samples $ \{\mathbf{C_v}, \mathbf{C_h}\} $.
 
-\chapter{Detailed Experimental Results for Chapter \ref{cha:sdlm}}
+\chapter[Detailed Experimental Results]{Detailed Experimental Results for Chapter \ref{cha:sdlm}}
 \label{sec:app2}
 In Chapter~\ref{cha:sdlm}, Figures~\ref{fig:sols_ae} and \ref{fig:sols_rbm} show the comparisons of different solutions for reducing correlations in training spiking Autoencoders~(SAEs) and spiking Restricted Boltzmann Machines~(SRBMs).
 In this section, Figures~\ref{fig:sol1_ae} to \ref{fig:sol4_rbm} present the detailed experimental results for this comparison.
