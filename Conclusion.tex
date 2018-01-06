@@ -65,7 +65,7 @@ Hence, AI engineers are capable of implementing their ANN models on NE platforms
 %% and even more straight-forward than the other ANN offline training methods which requires an extra step of converting ANN-trained weights to SNN's.
 
 Among the existing approaches, this method is the first and only one that unifies the representation of neurons in ANNs and the spiking ones in SNNs using abstract activation functions, while some other approaches~\citep{Jug_etal_2012,hunsberger2015spiking} directly handle physical units.
-In terms of modelling accuracy, NSP not only takes the noise of the current influx into account, which is missing in soft LIF~\citep{hunsberger2015spiking}, but also includes coloured noise where the Siegert formula~\citep{Jug_etal_2012} only works on white noise.
+In terms of modelling accuracy, NSP not only takes the noise of the current influx brought by the random arrival of spikes into account, which is missing in soft LIF~\citep{hunsberger2015spiking}, but also includes coloured noise where the Siegert formula~\citep{Jug_etal_2012} only works on white noise.
 Regarding simplicity, this training method performs effectively using Rectified Linear Units~(ReLUs), however, other studies~\citep{Jug_etal_2012,hunsberger2015spiking} suffer from high computational complexity.
 In addition, thanks to the accurate modelling of PAF, the trained weights are ready to use on SNNs, while previous approaches ~\citep{cao2015spiking,diehl2015fast} require an extra step to adapt the trained weights to the SNN.
 Moreover, comparing to the requirements of specific neural models~\citep{cao2015spiking,diehl2015fast} and the hardware-specific training methods~\citep{diehl2016conversion,diehl2016truehappiness,esser2015backpropagation}, our approach is generalised to target standard LIF neurons and neuromorphic hardware platforms.
@@ -172,7 +172,7 @@ The rank-order coded subset, FoCal, encourages research into spatio-temporal alg
 Fast recognition can be verified on the DVS recorded flashing input subset, since just 30~ms of useful spike trains are recorded for each image.
 Another DVS recorded moving input can be used to test mobile neuromorphic robots.
 \citet{orchard2015convert} presented a neuromorphic dataset using a similar approach to capture moving input, but the spike trains were obtained with micro-saccades.
-This dataset aims to convert static images into neuromorphic vision input, while the recordings of moving input in our paper are intended to promote position-invariant recognition.
+This dataset aims to convert static images into neuromorphic vision input, while the recordings of moving input in this thesis are intended to promote position-invariant recognition.
 Therefore, the datasets complement each other.
 
 The proposed complementary evaluation methodology is essential to assess both the model-level and hardware-level performance of SNNs.

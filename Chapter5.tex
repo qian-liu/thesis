@@ -136,7 +136,7 @@ In the following section, we will firstly describe this idea mathematically usin
 \end{figure}
 Following the idea of reconstructing teaching signals in rate-based networks, we firstly look into existing models in ANNs.
 If we see \textit{pre}, \textit{post} and \textit{teach} individually as vectors, and \textit{w} as a weight matrix of the all-to-all connections between \textit{pre} and \textit{post} in Figure~\ref{fig:resume}, it will form the ADALINE (Adaptive Linear Element)~\citep{widrow1960adaptive} network, see Figure~\ref{fig:adaline}.
-The `Post' neurons perform a weighted sum on the input data, and the error between their output and the teaching data is propagated to update the weights, thus to train the network to generate the same output as the teacher. 
+The \textit{`post'} neurons perform a weighted sum on the input data, and the error between their output and the teaching data is propagated to update the weights, thus to train the network to generate the same output as the teacher. 
 The learning algorithm was named Widrow-Hoff after the researchers:
 \begin{equation}
 \Delta w = \eta (teach - post)pre~.
@@ -1029,7 +1029,7 @@ V_i(t+1)=V_i(t) + \sum_j w_{ij} s_j(t) - l~.
 %\end{figure}
 
 
-\section[Results]{Results: MNIST Test}
+\section[Case Study]{Case Study: MNIST Test}
 \label{sec:SRM_result}
 Having discussed the problem of training SAEs and SRBMs, we finally apply the proposed methods to the MNIST task.
 Section~\ref{subsec:MNIST_setup} describes the network architecture and the training process, and the rest of the section focuses on the performance analysis on the trained weights (Section~\ref{subsec:MNIST_weight}), classification accuracy (Section~\ref{subsec:MNIST_ca}), and the reconstruction performance (Section~\ref{subsec:MNIST_recon}).
@@ -1037,7 +1037,7 @@ Section~\ref{subsec:MNIST_setup} describes the network architecture and the trai
 \subsection{Experimental Setup}
 \label{subsec:MNIST_setup}
 The training was conducted using a one-layer AE or RBM, see Figure~\ref{fig:MNSIT}, which consisted of 794 visible units including 784 neurons representing the images, 10 label units marking the classification, and 500 neurons in the hidden layer.
-During testing, only the 784 neurons representing image pixels remained as visible units and the other 10 label units worked as the top layer of an MLP network for recognising digits.
+During testing, only the 784 neurons representing image pixels remained as visible units and the other 10 label units worked as the top layer of an Multi-Layer Perceptron~(MLP) network for recognising digits.
 The trained weights of the one-layer AE/RBM were split into the bidirectional weights between visible and hidden units, and the forward connections from the hidden layer to the top layer.
 The forward path of the network assigned an image to a digit class, and the bidirectional connections reconstructed the input image.
 
@@ -1209,7 +1209,7 @@ while existing methods~\citep{neil2013online,neftci2013event} pick biological se
 however most of the published papers~\citep{neftci2013event,neftci2016stochastic} only reported the peak learning performance and manually terminated training. 
 (3) SAEs and SRBMs achieve the cognitive capabilities equivalent as the corresponding Deep Learning modules;
 but most of the methods mentioned above~\citep{neil2013online,neftci2013event} experience a performance drop.
-Although, \citet{neftci2016stochastic} keep the state-of-the art accuracy of 95.6\%, they exploited the edge tool, dropout and more training epochs, but did not report the comparison to the corresponding non-spiking RBM-dropout.
+Although, \citet{neftci2016stochastic} keep the state-of-the art accuracy of 95.6\%, they exploited the cutting-edge tool, dropout and more training epochs, but did not report the comparison to the corresponding non-spiking RBM-dropout.
 (4) Our proposed method is supposed to work on any spiking neuron model and requires a simple rectangular STDP, thus easy to be implemented on general neuromorphic hardware;
 meanwhile others~\citep{neftci2013event,neftci2016stochastic} use specific neuron/synaptic models, extra control signals and certain network architecture, which are difficult to be transferred to hardware platforms.
   
