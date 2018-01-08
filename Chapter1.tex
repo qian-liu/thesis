@@ -62,6 +62,7 @@ These neuromorphic computers develop into energy-efficient systems by implementi
 Thus, the neuromorphic hardware systems have successfully demonstrated decreased energy cost of SNN simulations on supercomputers~\citep{de2010world,sharp2012power}.
 
 However, the SNN simulations only reconstruct the network behaviours and neural dynamics of some subsystem of the brain, `but without precisely functionally simulating that subsystem'~\citep{de2010world}.
+In other words, the SNNs are able to repeat the firing activities of groups of neurons, however, not capable of simulating or understanding the functions of these activities.
 Therefore, this type of SNN simulation can be used to guide neuroscience and the development of neuromorphic hardware systems, but is not directly useful for solving cognitive tasks.
 Recent SNN applications~\citep{bill2014compound,diehl2015unsupervised} in Artificial Intelligence~(AI) tasks, summarised in Chapter~\ref{cha:bench}, typically comprise only two neural layers and exploit biologically-plausible learning rules, e.g. Spike-Timing-Dependent Plasticity (STDP), and/or Winner-Take-All~(WTA) circuits on the synaptic connections.
 These two-layered SNN models are considered to be `reactive' since the output neurons simply react to the sensory input.
@@ -106,11 +107,11 @@ thus programming these neuromorphic machines to be competent in cognitive applic
 %arranged in a way to implement soft WTA performance can
 
 %Meanwhile, Deep Learning research in the field of Artificial Neural Network~(ANN) has dominated state-of-the-art solutions for AI engineering tasks, e.g. exceeding human-level performance on image classification~\citep{he2015delving}, see Chapter~\ref{cha:dnn} for more examples.
-STDP as a learning mechanism based on biological observations has been theoretically proved to be equivalent to a stochastic version of powerful machine learning algorithms, such as Expectation Maximisation~\citep{nessler2013bayesian}, Contrastive Divergence~\citep{neftci2013event}, Markov Chain Monte Carlo \citep{buesing2011neural} and Gradient Descent~\citep{o2016deep}.
+STDP as a learning mechanism based on biological observations has been implemented to be equivalent to a stochastic version of powerful machine learning algorithms, such as Expectation Maximisation~\citep{nessler2013bayesian}, Contrastive Divergence~\citep{neftci2013event}, Markov Chain Monte Carlo \citep{buesing2011neural} and Gradient Descent~\citep{o2016deep}.
 However, in practice, there have been two significant problems prohibiting the SNN from becoming as `intelligent' as its non-spiking counterpart, the Artificial Neural Network~(ANN).
 Firstly, Deep Learning research has made great achievements in the field of ANNs and dominated state-of-the-art solutions for AI engineering tasks, e.g. exceeding human-level performance on image classification~\citep{he2015delving}, see Chapter~\ref{cha:dnn} for more examples.
 However, the fundamental differences in data representation and neural computation between spiking and artificial neurons make it difficult to transform ANN models into SNN algorithms, see Chapter~\ref{cha:bkg} for more detail.
-Secondly, the computation cost for simulating large SNNs of size comparable to commonly-used deep ANNs was considered to be infeasible, though this has gradually been solved by NE.
+Secondly, the computational cost for simulating large SNNs of size comparable to commonly-used deep ANNs was considered to be infeasible, though this has gradually been solved by NE.
 %Thus, recent SNN applications~\citep{bill2014compound,diehl2015unsupervised} in AI tasks (summarised in Chapter~\ref{cha:bench}) typically comprise only two neural layers and exploit STDP learning rules and/or Winner-Take-All~(WTA) circuits on the synaptic connections.
 %These models are `reactive' systems since the output neurons simply react to the sensory input.
 %Therefore, such SNNs cannot perform sophisticated effective cognition as can deep ANNs.
@@ -144,11 +145,12 @@ Initial studies have shown that SNNs can be trained by first training an equival
 this method is called `off-line' training, since it does not take place on SNNs directly, but rather on ANNs instead.
 Chapter~\ref{cha:Conv} discusses these `off-line' training models in detail, and proposes a simple, generalised, off-line SNN training method to overcome the problems of poor modelling accuracy and high computational complexity of the existing methods~\citep{Jug_etal_2012,hunsberger2015spiking,diehl2015fast}.
 To embed the biologically-plausible learning rules into deep SNN training, researchers take an extra step to `on-line' methods where Deep Learning modules can be trained purely on SNNs in an event-driven manner, see Chapter~\ref{cha:sdlm}.
-Previous work~\citep{neil2013online,neftci2013event,burbank2015mirrored} has failed to provide SNNs with recognition accuracy equivalent to ANNs due to the lack of mathematical analysis.
+Previous work~\citep{neil2013online,neftci2013event,burbank2015mirrored} has failed to provide SNNs with recognition accuracy equivalent to ANNs due to the lack of accurate parameter settings.
 We continue the inspiring work on these biologically-plausible `on-line' training methods and propose a formalised method to train multi-layered Deep Learning modules on SNNs.
 
-To provide meaningful comparisons between these proposed SNN models and other existing methods within the rapidly advancing field of NE, we propose a large dataset of spike-based visual stimuli to unify data resources for objective comparisons;
+To provide meaningful comparisons between these proposed SNN models and other existing methods within the rapidly advancing field of NE, we propose a large dataset of spike-based visual stimuli, in the form of spike trains, to unify data resources for objective comparisons;
 and a corresponding evaluation methodology to estimate the overall performance of SNN models and their hardware implementations in Chapter~\ref{cha:bench}.
+Moreover, we transform one of the common datasets widely used in Computer Vision into spike-based dataset to enable meaningful comparisons between SNNs and conventional machine learning methods.
 
 \section{Motivation and Aims}
 %\section{Statement of the Problem}
@@ -169,7 +171,7 @@ It will contribute to the ultimate goal of equipping brain-inspired computers wi
 \section{Thesis Statement and Hypotheses}
 \label{sec:aim}
 Although fundamental differences in input/output representation and neural computation exist between spiking and conventional artificial neurons, the cognitive capability of SNNs can be improved to catch up with that of ANNs by embedding Deep Learning techniques in training SNNs.
-Deep Learning has not only successfully equipped ANNs with better-than-human performance on AI tasks, but also theoretical studies have proved the equivalent learning capability of SNNs, and neuromorphic hardware is ready for operating large-scale deep SNNs.
+Deep Learning has not only successfully equipped ANNs with better-than-human performance on AI tasks, but also studies have proved the equivalent learning capability of SNNs, and neuromorphic hardware is ready for operating large-scale deep SNNs.
 
 According to the thesis statement, the hypotheses are defined as follows: 
 \begin{itemize}
@@ -250,7 +252,7 @@ The contributions are:
 	\item 
 	\textbf{A dataset and the corresponding evaluation methodology for comparisons of SNN models and their hardware implementations.}
 	
-	To objectively compare these proposed SNN models with other existing methods, we propose a Neuromorphic Vision dataset NE15-MNIST which is comprised of spike-based visual stimuli based on a standard computer vision benchmark, the MNIST~\citep{lecun1998gradient} dataset.
+	To objectively compare these proposed SNN models with other existing methods, we propose a Neuromorphic Vision dataset NE15-MNIST which is comprised of spike-based visual stimuli (spike trains) based on a standard computer vision benchmark, the MNIST~\citep{lecun1998gradient} dataset.
 	The unified dataset satisfies the requirement for quantitatively measuring progress within the rapidly advancing field of NE and provides resources to support objective comparisons between researchers.
 	In addition, a complementary evaluation methodology is presented to estimate the overall performance of SNN models and their hardware implementations, since new concerns relating to energy efficiency and recognition latency emerge in SNNs run on NE platforms.
 

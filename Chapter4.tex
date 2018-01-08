@@ -212,11 +212,11 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking Convo
 	\begin{equation}
 	\begin{aligned}
 	\D V&= \frac{V_{rest} - V}{\tau_m }\D t + \frac{m_I}{C_m} \D t + \frac{s_I}{C_m}  \D W_t \\
-	&=\frac{V_{rest} - V}{\tau_m }\D t + \frac{m_I}{C_m} \D t + \frac{s_I \sqrt{\D t}}{C_m} \xi(y)  \\
-	&=\frac{V_{rest} - V}{\tau_m }\D t + \mu \D t + \sigma \xi(y) ~~. 
+	&=\frac{V_{rest} - V}{\tau_m }\D t + \frac{m_I}{C_m} \D t + \frac{s_I \sqrt{\D t}}{C_m} y  \\
+	&=\frac{V_{rest} - V}{\tau_m }\D t + \mu \D t + \sigma y ~~. 
 	\end{aligned}
 	\end{equation}	
-	The last term $\D W_t$ is a Wiener process; $W_{t +\D t} - W_{t}$ obeys a Gaussian distribution with mean 0 and variance $\D t$.
+	The last term $\D W_t$ is a Wiener process; $W_{t +\D t} - W_{t}$ obeys a Gaussian distribution with mean 0 and variance $\D t$; thus $y$ is a random number sampled in accordance with a Gaussian distribution of zero mean and unit variance.
 	The instantaneous mean $\mu$ and variance $\sigma^2$ of the change in membrane potential characterise the statistics of $V$ in a short time range, and they can be derived from the statistics of the noisy current:
 	\begin{equation}
 	\mu =\dfrac{m_I}{C_m}, ~~~~~ \sigma = \dfrac{s_I \sqrt{\D t}}{C_m}~.
@@ -227,7 +227,7 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking Convo
 	The response function~\citep{rauch2003neocortical,la2008response} of the LIF neuron to a noisy current, also known as the Siegert formula, is a function of $\mu$ and $\sigma$:
 	\begin{equation}
 	\lambda_\mathit{out}=
-	\left [ t_\mathit{ref}+\tau_m \int_{\frac{V_\mathit{rest}-\mu \tau_m }{\sigma \sqrt{\tau_m}}}^{\frac{V_{th}-\mu \tau_m }{\sigma \sqrt{\tau_m}}} \sqrt{\pi} \exp(u^{2}) (1+erf(u)) \D u \right ]^{-1} ~.
+	\left [ t_\mathit{ref}+\tau_m \int_{\frac{V_\mathit{rest}-\mu \tau_m }{\sigma \sqrt{\tau_m}}}^{\frac{V_{th}-\mu \tau_m }{\sigma \sqrt{\tau_m}}} \sqrt{\pi} \exp(u^{2}) (1+\mathit{erf}(u)) \D u \right ]^{-1} ~.
 	\label{equ:siegert}
 	\end{equation}
 	
@@ -937,17 +937,17 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking Convo
 		\end{subfigure}\\
 		\begin{subfigure}[t]{0.3\textwidth}
 			\includegraphics[width=\textwidth]{pics_iconip/6-2.pdf}
-			\caption{Pixel firing rates.}
+			\caption{Pixel firing rates in Hz.}
 			\label{Fig:62}
 		\end{subfigure}
 		\begin{subfigure}[t]{0.3\textwidth}
 			\includegraphics[width=\textwidth]{pics_iconip/6-3.pdf}
-			\caption{5x5 kernel.}
+			\caption{5$\times$5 weights kernel (synaptic efficacy in nA).}
 			\label{Fig:63}
 		\end{subfigure}
 		\begin{subfigure}[t]{0.3\textwidth}
 			\includegraphics[width=\textwidth]{pics_iconip/6-4.pdf}
-			\caption{Convolved output.}
+			\caption{Convolved output in Hz.}
 			\label{Fig:64}
 		\end{subfigure}\\
 		\begin{subfigure}[t]{\textwidth}

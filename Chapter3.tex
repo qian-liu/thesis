@@ -6,9 +6,11 @@ In this chapter, we will give an overview of popular architectures and models of
 
 \section{Brief Overview}
 \label{sec:dl_history}
-Deep Learning seems to have become the answer to all artificial intelligence problems overnight since Geoffrey Hinton proposed the training method of a type of ANN, the Deep Belief Network, in 2006~\citep{hinton2006fast}.
-However, Deep Learning is not new `magic', but rather has a history over a few decades and its sudden success is the result of the availability of an increasing amount of training data, the growing size of network models and greater computational power.
+Deep Learning has become the answer to increasing number of artificial intelligence problems since Geoffrey Hinton firstly proposed the training method of the Deep Belief Network, in 2006~\citep{hinton2006fast}.
+However, Deep Learning is not new `magic', but rather has a history over a few decades.
+Its sudden success is the result of the availability of an increasing amount of training data, the growing size of network models and greater computational power.
 Therefore, all the classical Deep Learning architectures date back to the last century, even before the `Deep Learning' name was coined.
+In this section, we briefly introduce some of the influencing techniques.
 %However, at that time, deep networks could hardly be trained, mainly because of the limits on computational power.
 
 
@@ -35,7 +37,7 @@ Thus Recurrent Neural Networks~(RNNs), containing feed-back connections, are ide
 As training mechanisms have become more mature, for example using the Long Short-Term Memory~(LSTM)~\citep{hochreiter1997long}, RNNs have shown great success in many natural language processing tasks: language modelling~\citep{mikolov2010recurrent}, machine translation~\citep{sutskever2014sequence}, speech recognition~\citep{graves2014towards} and image caption generation~\citep{karpathy2015deep}.
 
 \subsection{Combined Approaches}
-The current trend in Deep Learning is to combine machine learning algorithms towards more complex objectives such as decision making and data generation.
+The current trend in Deep Learning is to combine machine learning algorithms towards more complex objectives such as sequential decision making and data generation.
 
 Reinforcement Learning (RL) is inspired from animal behaviour when agents learn to make sequential optimised decisions to control an environment.
 To address complex decision making problems in practical life, RL requires a sufficiently abstract representation of the high-dimensional environment.
@@ -143,7 +145,7 @@ The term $ \delta_j $ represents the error gradient with respect to $net_j$, and
 It is easy to obtain the first term, $ \frac{\partial L}{\partial y_j}  $, of $ \delta_j $ when $j$ is an output neuron, since it only involves a single dimension of the output vector.
 However, when $j$ is in an inner layer of the network, which connects to $L$ neurons on the next layer, we have to take the total derivative with respect to $y_j$: $\sum_l^L \delta_l w_{jl}$.
 The error propagation applies to any form of connection in a network, such as FC and Conv layers, and the difference only appears in the summation where the matrix product is used for the FC layer and convolution for the Conv layer.
-In addition, the weights used in BP are either transposed in the FC layer or rotated in the Conv layer compared to the forward path.
+In addition, when BP is implemented, the weights are either transposed in the FC layer or rotated in the Conv layer compared to the forward path.
 
 After error propagation, the BP algorithm updates weights using the optimisation method, gradient descent, to minimize the objective function.
 It modifies the weights by small steps proportional to the negative of the gradients:
@@ -591,7 +593,7 @@ Besides that, the structure of an RBM, see Figure~\ref{fig:RBM}, is also similar
 	\label{fig:RBM}
 \end{figure}
 
-Despite the various statistical models involved in RBMs and their training method, the actual training algorithm is rather simple thanks to the use of Contrastive Divergence~(CD)~\citep{hinton2002training}.
+Despite there are several statistical models and algorithms needed to explain how RBMs work, the actual training method is rather simple thanks to the use of Contrastive Divergence~(CD), proposed by~\cite{hinton2002training}.
 We can only illustrate some of the statistical models and sampling methods involved in RBM training, a detailed description can be found elsewhere~\citep{fischer2012introduction}. 
 Stacked RBMs are also trained by layer-wise greedy algorithms, thus this section will focus on training a single RBM block.
 
