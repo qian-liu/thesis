@@ -7,8 +7,8 @@
 %In addition, implementations on neuromorphic hardware have enabled large-scale networks to run in (or even faster than) real time, making spike-based neural vision processing accessible on mobile robots.
 %Neuromorphic sensors such as silicon retinas are able to feed such mobile systems with real-time visual stimuli.
 
-The last two chapters have answered the main research question of this thesis showing that Spiking Neural Networks (SNNs) can be trained both on-line and off-line to achieve the equivalent cognitive capabilities of Artificial Neural Networks~(ANNs).
-To provide meaningful comparisons between theses proposed SNN models and other existing methods within this rapidly advancing field of Neuromorphic Engineering~(NE), we propose that a large dataset of spike-based visual stimuli is needed and a corresponding evaluation methodology is also required to estimate the overall performance of SNN models and their hardware implementations.
+The last two chapters have answered the main research question of this thesis showing that Spiking Neural Networks (SNNs) can be trained both on-line and off-line to achieve equivalent recognition performance of the Artificial Neural Networks~(ANNs).
+To provide meaningful comparisons between these proposed SNN models and other existing methods within this rapidly advancing field of Neuromorphic Engineering~(NE), we propose that a large dataset of spike-encoded images/videos is needed and a corresponding evaluation methodology is also required to estimate the overall performance of SNN models and their hardware implementations.
 
 %A new set of vision benchmarks for spike-based neural processing are now needed to measure progress quantitatively within this rapidly advancing field.
 %
@@ -180,7 +180,8 @@ Just as research in this field is an expanding and evolving activity, the datase
 \section{NE Dataset}
 \label{sec:method}
 \subsection{Guiding Principles}
-The NE database we propose here is a developing and evolving dataset consisting of various spike-based representations of images and videos.
+The NE database we propose here is a developing and evolving dataset.
+It contains various spike-based representations of images/videos and will also expand to include increasing numbers of encoding methods and commonly used datasets of Computer Vision.
 The spikes are either generated from spike encoding methods which convert images or frames of videos into spike trains, or recorded from DVS silicon retinas.
 The spike trains are in the format of Address-Event Representation~(AER)~\citep{mahowald1992vlsi} data, which are suitable for both event-driven computer simulations and neuromorphic systems.
 AER was originally proposed as a time-multiplexed spike communication protocol where each time a neuron produces a spike an event is generated that codes the spiking neuron's address on a fast time-multiplexed digital bus.
@@ -201,7 +202,7 @@ With the NE dataset we hope:
 	To reveal the accuracy, speed, and energy-efficient recognition of neuromorphic approaches, we need not only a spike-based dataset but also an appropriate evaluation methodology.
 	The evaluation methodology will be constantly improving along with the evolution of the dataset.
 	\item \textit{to help researchers identify future directions and advance the field.}
-	The development of the dataset and its evaluation methodology will introduce new challenges for the neuromorphic engineering community.
+	The development of the dataset and its evaluation methodology will introduce new challenges for the NE community.
 	However, these must represent an appropriate degree of difficulty: a too-easily-solved problem turns into a tuning competition, while a problem that is too difficult will not yield meaningful assessment.
 	So suitable problems should continuously be added to promote future research.  
 \end{itemize}
@@ -220,10 +221,12 @@ The converted MNIST dataset consists of four subsets which were generated for di
 	which encodes each pixel as a Poisson spike train and is intended for benchmarking existing rate-based SNN models.
 	\item \textit{FoCal~(Filter Overlap Correction ALgorithm)},
 	to promote the study of spatio-temporal algorithms applied to recognition tasks using small numbers of input spikes.
+	This subset is built by my colleague Garibaldi~Pineda-Garc\'ia.
 	\item \textit{DVS recorded flashing input},
 	to encourage research into fast recognition methods to mimic the rapid and accurate `core recognition' in the primate ventral visual pathway~\citep{dicarlo2012does}.
 	\item \textit{DVS recorded moving input},
 	to trigger the study of algorithms targeting continuous input from real-world sensors for implementation, for example, on mobile neuromorphic robots.
+	This subset is contributed by our cooperator Teresa Serrano-Gotarredona.
 \end{itemize}
 The dataset is published in the GitHub: \url{https://github.com/NEvision/NE15}.
 \subsection{Data Description}
@@ -257,7 +260,8 @@ The duration of the artificially-generated data can be configured using the Pyth
 	\includegraphics[width=0.8\textwidth]{pics_bench/fig1.jpg}
 	\caption[Snapshots of the jAER software.]{
 		Snapshots of the jAER software displaying spike-encoded videos.
-		The same image of digit `0' is transformed into spikes by (a) DVS recording and (b) Poisson generation.
+		The same image of digit `0' is transformed into spikes by DVS recording and Poisson generation, where (a) and (b) show the snapshots of the jAER software.
+		They visualise the spike counts for each pixel of an image.
 		(c) A raster plot of the Poisson spike trains.}
 	\label{fig:zero}
 \end{figure}
@@ -580,7 +584,7 @@ First of all, the input of an SNN model is specified.
 The description includes the transformation method for converting raw images to spike trains, and the preprocessing either to images or spikes.
 Filtering the raw image may ease the classification/recognition task while adding noise may require more robustness in the model.
 Secondly, as with the evaluation of conventional artificial neural networks, a description of the network characteristics provides the basis for the overall performance evaluation.
-Sharing the designs not only makes the model reproducible but also inspires fellow scientists to bring new points of view to the problem, generating a positive feedback loop where everybody wins.
+Sharing the network details not only makes the model reproducible but also inspires fellow scientists to build up new solutions based on existing work, thereby generating a positive feedback loop where everybody wins.
 The main characteristics include the network topology and the neural and synaptic models.
 The network topology defines the number of neurons used for each layer and the connections between layers and neurons.
 It is essential to state the types of neural and synaptic model (e.g. current-based LIF neuron) utilised in the network and the parameters configuring them, because neural activities differ significantly between configurations.
@@ -861,36 +865,62 @@ In terms of this case study, the performance of the model was evaluated with bot
 
 In order to fully assess the performance, different settings were configured on the network, such as network size, input rate and test image duration.
 For simplicity of describing the system, a set of standard configuration is used as the example in the following sections.
-
-\begin{table}[hbbp]
+\begin{table}[th]
 	\centering
 	\caption[LIF parameter setting using PyNN.]{Parameter setting for the current-based LIF neurons using PyNN.}
-	\bgroup
-	\def\arraystretch{1.4}
-	\begin{tabular}{c c c}
+	%\bgroup
+	\def\arraystretch{1.3}
+	\begin{tabular}{c c l}
 		%\hline
-		Parameters & Values & Units \\
+		Parameters & Values & Description \\
 		\hline
-		cm & 0.25 & nF	\\
+		$C_m$ & 0.25 nF & membrane capacitance\\
 		%\hline
-		tau\_m & 20.0 & ms\\
+		$\tau_m$ & 20.0 ms &  membrane time constant\\
 		%\hline
-		tau\_refrac & 2.0 & ms\\
+		$\tau_{\textit{\textrm{refrac}}}$ & 2.0 ms & refractory period\\
 		%\hline
-		%  tau\_syn\_E & 1.0 & ms\\
-		%  %\hline
-		%  tau\_syn\_I & 1.0 & ms\\
-		%  %\hline
-		v\_reset & -70.0 & mV\\
+		$V_{reset}$ & -70.0~mV & resting membrane potential\\
 		%\hline
-		v\_rest & -65.0 & mV\\
+		$V_{rest}$ & -65.0~mV & resetting membrane potential\\
 		%\hline
-		v\_thresh & -50.0 & mV\\
+		$V_{thresh}$ & -50.0~mV & membrane threshold  \\
 		%\hline
+		$I_{\textit{\textrm{offset}}}$ & 0.0~nA & offset of current influx  \\
 	\end{tabular}
-	\egroup
+	%\egroup
 	\label{tbl:pynnSetting}
 \end{table}
+%\begin{table}[hbbp]
+%	\centering
+%	\caption[LIF parameter setting using PyNN.]{Parameter setting for the current-based LIF neurons using PyNN.}
+%	\bgroup
+%	\def\arraystretch{1.4}
+%	\begin{tabular}{c c c}
+%		%\hline
+%		Parameters & Values & Units \\
+%		\hline
+%		cm & 0.25 & nF	\\
+%		%\hline
+%		tau\_m & 20.0 & ms\\
+%		%\hline
+%		tau\_refrac & 2.0 & ms\\
+%		%\hline
+%		%  tau\_syn\_E & 1.0 & ms\\
+%		%  %\hline
+%		%  tau\_syn\_I & 1.0 & ms\\
+%		%  %\hline
+%		v\_reset & -70.0 & mV\\
+%		%\hline
+%		v\_rest & -65.0 & mV\\
+%		%\hline
+%		v\_thresh & -50.0 & mV\\
+%		%\hline
+%		i\_offset & 0.0 & mV\\
+%	\end{tabular}
+%	\egroup
+%	\label{tbl:pynnSetting}
+%\end{table}
 
 \subsection{Training}
 There are two layers in the model: 28$\times$28 input neurons fully connect to 100 decision neurons.
@@ -921,6 +951,7 @@ The training set of 60K hand written digits are firstly classified into 100 clas
 K-means clustering separates a set of data points into K subsets (clusters) according to the Euclidean distance between them.
 Therefore each cluster tends to form a boundary within which the data points are near to each other.
 In this case, all the images of the same digit (a class) are divided into 10 subclasses by assigning K=10.
+%We will set K to various numbers later to estimate the performance difference.
 Then the images in a certain subclass are used to train a template embedded in the synaptic weights to the corresponding decision neuron.
 The firing rates of the input neurons are assigned linearly according to their intensities and the total firing rate of all the 28$\times$28 input neurons is normalised to 2K~Hz, that is, the sum of the firing rates of all of the input neurons is 2K~Hz.
 All the images together are presented for 18K~s (about 300~ms per image) during training and at the same time a teaching signal of 50~Hz is conveyed to the decision neuron to trigger STDP learning.
@@ -937,7 +968,7 @@ After training the weights of the plastic synapses are set to static, keeping th
 However, during training the synaptic plasticity holds a hard limit of 0 on the weight strength, thus excitatory synapses cannot change into inhibitory.
 To investigate how inhibitory connections influence the classification performance, the weak weights were set to negative with identical strengths.
 Results show that inhibitory synapses significantly reduced the output firing rates while keeping a good classification ability.
-Thus the strategy of replacing weak weights to the same negative values was used throughout the case study.
+Thus the strategy of replacing weak weights with the same negative values was used throughout the case study.
 
 The feed-forward testing network is shown in Figure~\ref{fig:model}(b) where Poisson spike trains are generated the same way as in the training with a total firing rate of 2K~Hz per image.
 The input neurons convey the same spike trains to every decision neuron through its corresponding trained synaptic weights. 
@@ -954,7 +985,7 @@ The main bottleneck is currently in the ring buffer where the total precision fo
 \subsection{Evaluation}
 Evaluation starts from the model-level, focusing on the spike-based recognition analysis.
 As mentioned in Section~\ref{subsec:model}, CA, response time (latency) and the total number of synaptic events are the main concerns when assessing the recognition performance.
-In our experiment, two sets of weights were applied: the original STDP trained weights, and the scaled-up weights which are 10 times stronger.
+In our experiment, two sets of weights were applied: the original STDP trained weights, and the same weights strengthened 10 times (which we call scaled-up weights).
 The spike rates of the test samples were also modified, ranging from 10 to 5K~Hz.
 \begin{figure}[htb!]
 	\centering

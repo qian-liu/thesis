@@ -104,7 +104,7 @@ Therefore, we confirm the hypothesis with the first contribution of this thesis:
 
 On-line training aims to bring biologically-plausible learning rules to SNNs to equip neuromorphic computers with genuine learning capabilities.
 Instead of transforming off-line trained ANN models to SNNs, on-line methods face the problem of translating numerical computations for training Deep Learning modules into spike-based synaptic plasticity rules.
-Multiplication is the core operation in the unsupervised Deep Learning algorithms, Autoencoders~(AEs) and Restricted Boltzmann Machines~(RBMs): $\Delta w \propto ab-cd$.
+Multiplication is the core operation in the unsupervised Deep Learning algorithms, Autoencoders~(AEs) and Restricted Boltzmann Machines~(RBMs). %: $\Delta w \propto ab-cd$.
 In Chapter~\ref{cha:sdlm} we found that the product of two numerical values could be represented with rate multiplication of a pair of rate-coded spike trains;
 and the proposed formalised Spike-based Rate Multiplication~(SRM) method precisely transformed the product of rates to the number of simultaneous spikes generated from a pair of connected spiking neurons.
 Most importantly, the simultaneous events were captured by the weight change of the synaptic connection using the Spike-Timing-Dependent Plasticity~(STDP) learning rule.
@@ -122,7 +122,7 @@ In addition, the numerical analysis of the proposed algorithm accurately estimat
 %This on-line training method achieves better performance than existing algorithms and approaches the same, sometimes superior performance of the equivalent non-spiking methods.
 
 Thanks to the accurate parameter estimation, the classification results (94.72\% for SAE and 94.35\% for SRBM) have outperformed most existing on-line models.
-\citet{neil2013online} ignored the mathematical analysis thus achieved its best performance only at 81.5\%.
+\citet{neil2013online} ignored the model formalisation and accurate parameter settings thus achieved its best performance only at 81.5\%.
 \citet{neftci2013event} conducted training on a recurrent network which was more biologically plausible, but with a different goal of neural sampling this method achieved a worse classification at 91.9\%.
 Their extended work~\citep{neftci2016stochastic} improved the performance to the state-of-the-art, 95.6\%, but requires extra Deep Learning technique, dropout~\citep{srivastava2014dropout}, and more training epochs.
 Nevertheless, \citet{neftci2016stochastic} did not compare the trained SNN to the non-spiking counterpart, RBM-dropout; while our method closely reproduced the learning curves of the equivalent ANNs.
@@ -214,7 +214,7 @@ In addition, this work has inspired new directions for future work to continue a
 The current limitation prohibiting the off-line SNN training method from wide use lies in the lack of supporting tools.
 This requires the development of a set of software and libraries.
 Besides, we will look into networks with feedback connections, Recurrent Neural Networks~(RNNs), thus to adapt the off-line training method to most network architectures.
-Moreover, some initial studies have successfully applied the proposed method to various applications. 
+Moreover, some initial studies following our research have successfully applied the proposed method to various applications. 
 
 
 \paragraph{Supporting software tools.}
@@ -243,8 +243,12 @@ One of the major future goals is to propose a general method to run recurrent SN
 The simple off-line SNN training method has enabled and encouraged interesting applications to run in SNNs.
 
 \begin{itemize}
-	\item Ensemble models~\citep{krogh1995neural} have been trained with NSP neurons and will be transferred onto the SpiNNaker system~\citep{furber2014spinnaker} to take the advantages of energy-efficiency and massively-parallel processing.
+	\item Ensemble models~\citep{krogh1995neural} have been trained with NSP neurons and will be transferred onto the SpiNNaker system~\citep{furber2014spinnaker}.
+	Usually an ensemble model runs several identical neural networks with statistical features in parallel, thus occupies huge computing resources.
+	Operating ensemble models on SNNs can take the advantages of energy-efficiency and massively-parallel processing on Neuromorphic Hardware.
 	\item Speech recognition of simulated spikes from a cochlea model has achieved a promising accuracy at the initial test-idea stage.
+	We used spike count per frame per frequency channel as a pixel in a spectrum image, and trained CNNs based on these spectrum images.
+	The trained weights were transferred directly to an equivalent convolutional SNN.
 	The next step is to implement the model entirely on neuromorphic hardware including the cochlea and the SNN, thus to run it in real time.
 	\item An 18-layer residual network~\citep{he2016deep} has been trained for the task of recognising human facial expressions using the KDEF dataset~\citep{lundqvist1998karolinska}.
 	Notably, this is, so far, the deepest network trained with NSP and the recognition performance~(94.95\%) has outperformed ReLU~(92.45\%).
@@ -261,7 +265,7 @@ Thus, we will explore alternative coding schemes and training algorithms to incr
 In addition, we will merge novel Deep Learning techniques into the biologically-plausible SNN training to improve the cognitive performance and also decrease the energy consumption when running on neuromorphic hardware.
 \paragraph{Beyond rate coding.}
 Although rate coding has shown good performance on training spiking Deep Learning modules on-line, time-based coding and rank-order coding which carry more information per spike, are expected to have better or faster learning capabilities~\citep{gautrais1998rate}.
-We have proposed a similar on-line learning algorithm for training precise-timing based spiking AEs and RBMs, which although still in the test-idea stage, the prototype has shown much faster learning speed than the rate-coding mechanism.
+We have proposed a similar on-line learning algorithm for training precise-timing based spiking AEs and RBMs, which although still in the test-idea stage, result of the prototype has shown much faster learning speed than the rate-coding mechanism.
 
 \paragraph{Backpropagation alternatives.}
 The STDP rule usually works locally with a teaching signal in supervised learning, however, error backpropagation~(BP) does not provide the teaching targets for all the hidden units of a network.
@@ -346,7 +350,7 @@ and is the first to address the continuous performance drop caused by the spike 
 In doing so, it directs the future work to formalise event-based learning to closely mimic the numerical computations in conventional ANNs.
 The development of on-line training will equip the neuromorphic computers with genuine learning capabilities.
 
-Last but not least, this work contributes to the NE community with a uniform dataset to evaluate SNNs' performance at both model and hardware level.
+Last but not least, this work contributes to the NE community with a unified dataset to evaluate SNNs' performance at both model and hardware level.
 The corresponding evaluation methodology will promote meaningful comparisons between these proposed SNN models and other existing methods within this rapidly advancing field.
 Moreover, we hope to provide objective comparisons between conventional ANNs and SNNs, in order to give prominence to low latency and energy consumption on neuromorphic hardware.
 

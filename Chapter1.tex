@@ -145,10 +145,10 @@ Initial studies have shown that SNNs can be trained by first training an equival
 this method is called `off-line' training, since it does not take place on SNNs directly, but rather on ANNs instead.
 Chapter~\ref{cha:Conv} discusses these `off-line' training models in detail, and proposes a simple, generalised, off-line SNN training method to overcome the problems of poor modelling accuracy and high computational complexity of the existing methods~\citep{Jug_etal_2012,hunsberger2015spiking,diehl2015fast}.
 To embed the biologically-plausible learning rules into deep SNN training, researchers take an extra step to `on-line' methods where Deep Learning modules can be trained purely on SNNs in an event-driven manner, see Chapter~\ref{cha:sdlm}.
-Previous work~\citep{neil2013online,neftci2013event,burbank2015mirrored} has failed to provide SNNs with recognition accuracy equivalent to ANNs due to the lack of accurate parameter settings.
+Previous work~\citep{neil2013online,neftci2013event,burbank2015mirrored} has failed to provide SNNs with recognition accuracy equivalent to ANNs due to the lack of model formalisation and accurate parameter settings.
 We continue the inspiring work on these biologically-plausible `on-line' training methods and propose a formalised method to train multi-layered Deep Learning modules on SNNs.
 
-To provide meaningful comparisons between these proposed SNN models and other existing methods within the rapidly advancing field of NE, we propose a large dataset of spike-based visual stimuli, in the form of spike trains, to unify data resources for objective comparisons;
+To provide meaningful comparisons between these proposed SNN models and other existing methods within the rapidly advancing field of NE, we propose a large dataset of spike-based images/videos to unify data resources for objective comparisons;
 and a corresponding evaluation methodology to estimate the overall performance of SNN models and their hardware implementations in Chapter~\ref{cha:bench}.
 Moreover, we transform one of the common datasets widely used in Computer Vision into spike-based dataset to enable meaningful comparisons between SNNs and conventional machine learning methods.
 
@@ -252,7 +252,7 @@ The contributions are:
 	\item 
 	\textbf{A dataset and the corresponding evaluation methodology for comparisons of SNN models and their hardware implementations.}
 	
-	To objectively compare these proposed SNN models with other existing methods, we propose a Neuromorphic Vision dataset NE15-MNIST which is comprised of spike-based visual stimuli (spike trains) based on a standard computer vision benchmark, the MNIST~\citep{lecun1998gradient} dataset.
+	To objectively compare these proposed SNN models with other existing methods, we propose a Neuromorphic Vision dataset NE15-MNIST which is comprised of spike-encoded images/videos based on a standard computer vision benchmark, the MNIST~\citep{lecun1998gradient} dataset.
 	The unified dataset satisfies the requirement for quantitatively measuring progress within the rapidly advancing field of NE and provides resources to support objective comparisons between researchers.
 	In addition, a complementary evaluation methodology is presented to estimate the overall performance of SNN models and their hardware implementations, since new concerns relating to energy efficiency and recognition latency emerge in SNNs run on NE platforms.
 
