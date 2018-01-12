@@ -1,4 +1,5 @@
-\chapter[Off-line SNN training]{Generalised Off-line SNN Training}
+\DIFdelbegin %DIFDELCMD < \chapter[Off-line SNN training]{%%%
+\DIFdelend \DIFaddbegin \chapter[Off-line SNN Training]{\DIFaddend Generalised Off-line SNN Training}
 \label{cha:Conv}
 %Paragraph One: LINK
 In the last chapter, we described the promising Deep Learning research in the field of Artificial Neural Networks~(ANNs). 
@@ -12,9 +13,9 @@ Both chapters address the thesis question: how to operate and train SNNs to make
 %Paragraph Two: FOCUS
 %Now focus the reader’s attention on what this chapter is specifically going to do and why it is important. In this chapter I will examine.. I will present… I will report … This is crucial in (aim of thesis/research question) in order to….
 
-\DIFaddbegin \section{\DIFadd{Introduction}}
+\section{Introduction}
 \label{sec:intro_NSP}
-\DIFaddend There are two significant problems to be solved when training SNNs off-line.
+There are two significant problems to be solved when training SNNs off-line.
 First, an accurate activation function is needed to model the neural dynamics of spiking neurons.
 In this chapter, we propose a novel activation function used in ANNs, Noisy Softplus~(NSP), to closely simulate the firing activity of Leaky Integrate-and-Fire~(LIF) neurons driven by noisy current influx.
 The second problem is to map the abstract numerical values of the ANNs to physical variables, current (nA) and firing rate (Hz), in the SNNs.
@@ -38,16 +39,13 @@ Furthermore, the success of the proposed off-line training method paves the way 
 
 %to inform the ANN community that massively-parallel, energy-efficient, Neuromorphic hardware Platforms (NPs) not only contribute to understanding the brain in Neuroscience, but are also ready to run large AI models in real-time.
 
-In this chapter, we begin by introducing existing solutions to off-line SNN training in Section~\ref{sec:intro_NSP}.
+In this chapter, we begin by introducing existing solutions to off-line SNN training in Section~\DIFdelbegin \DIFdel{\ref{sec:intro_NSP}}\DIFdelend \DIFaddbegin \DIFadd{\ref{sec:NSP_relate}}\DIFaddend .
 We then propose the novel activation function, NSP, and demonstrate how it fits the network dynamics composed of spiking neurons in Section~\ref{sec:response_func}.
 Section~\ref{sec:genrial_SNN} illustrates the generalised SNN training method using PAFs.
-In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking \DIFdelbegin \DIFdel{ConvNet}\DIFdelend \DIFaddbegin \DIFadd{Convolutional Network~(ConvNet)}\DIFaddend , and compare the proposed method to existing training algorithms.
+In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking Convolutional Network~(ConvNet), and compare the proposed method to existing training algorithms.
 
-\section{\DIFdelbegin \DIFdel{Introduction}\DIFdelend \DIFaddbegin \DIFadd{Related Work}\DIFaddend }
-\DIFdelbegin %DIFDELCMD < \label{sec:intro_NSP}
-%DIFDELCMD < %%%
-\DIFdelend \DIFaddbegin \label{sec:NSP_relate}
-\DIFaddend 
+\section{Related Work}
+\label{sec:NSP_relate}
 
 %%How to map a well trained ANN to SNN is a hot topic in this field, especially using spiking neurons of biological scale.
 %
@@ -112,8 +110,7 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking \DIFd
 			\includegraphics[width=\textwidth]{pics_iconip/neuron_snn.pdf}
 			%			\caption{Current sampled at $dt$=10~ms.}
 		\end{subfigure}
-		\DIFdelbeginFL %DIFDELCMD < \caption{%%%
-\DIFdelendFL \DIFaddbeginFL \caption[A spiking neuron.]{\DIFaddendFL A spiking neuron. Spike trains flow into a spiking neuron as current influx, trigger linearly summed PSPs through synapses with different synaptic efficacy \textbf{w}, and the post-synaptic neuron generates output spikes when the membrane potential reaches some threshold.}
+		\caption[A spiking neuron.]{A spiking neuron. Spike trains flow into a spiking neuron as current influx, trigger linearly summed PSPs through synapses with different synaptic efficacy \textbf{w}, and the post-synaptic neuron generates output spikes when the membrane potential reaches some threshold.}
 		\label{Fig:compare_as4}
 	\end{figure}
 
@@ -162,11 +159,11 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking \DIFd
 	Nevertheless, these simple IF neurons are usually difficult to implement in analogue circuits, thus they are feasible only on digital neuromorphic hardware, e.g. TrueNorth~\citep{merolla2014million}.
 	Tuning these trained ANN models to adapt to simplified IF neurons is relatively straightforward, so this method sets the state-of-the-art performance.
 	However, this chapter (in Section~\ref{sec:genrial_SNN}) aims to address the second problem of mapping abstract activation functions to the response firing activity of biologically-plausible LIF neurons.
-	Thus, the training can be not only simplified by using conventional simple activation functions, such as Rectified Linear Units~(ReLUs), but also the method can be generalised to target standard LIF neurons which are supported by most neuromorphic hardware\DIFdelbegin \DIFdel{platforms}\DIFdelend .
+	Thus, the training can be not only simplified by using conventional simple activation functions, such as Rectified Linear Units~(ReLUs), but also the method can be generalised to target standard LIF neurons which are supported by most neuromorphic hardware.
 
 	
 	
-\section{Modelling the \DIFdelbegin \DIFdel{LIF }\DIFdelend Response Function}
+\section{Modelling the Response Function}
 	\label{sec:response_func}
 	The response function, in the context of this thesis, indicates the firing rate of a spiking neuron in the presence of input current.
 	In Section~\ref{sec:siergert}, we introduce the first use of the Siegert formula to model the response function of an LIF neuron.
@@ -179,7 +176,7 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking \DIFd
 	\label{sec:siergert}
 	%As discussed above, most of the top scored networks map the ReLUs in ANN to the equivalent spiking version of IF neurons.
 	%This research proposes a new activation function, Noisy Softplus, which is inspired by neuroscience observations of LIF neurons.
-	\DIFdelbegin \DIFdel{The }\DIFdelend \DIFaddbegin \DIFadd{In Section~\ref{subsec:neuron_model}, we have demonstrated the  }\DIFaddend LIF neuron model \DIFdelbegin \DIFdel{follows the following membrane potential dynamics}\DIFdelend \DIFaddbegin \DIFadd{as follows}\DIFaddend :
+	In Section~\ref{subsec:neuron_model}, we have demonstrated the  LIF neuron model as follows:
 	\begin{equation}
 	\tau_m \frac{\D V}{\D t}=V_{rest} - V + R_{m} I(t) ~.
 	\label{equ:LIF_V}
@@ -214,24 +211,31 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking \DIFd
 
 	We then multiply both sides of Equation~\ref{equ:LIF_V2} by a short time step $\D t$, the stochastic differential equation of the membrane potential is: % satisfies an Ornstein-Uhlenbeck process:
 	\begin{equation}
-	\begin{aligned}
+	\DIFdelbegin %DIFDELCMD < \begin{aligned}
+%DIFDELCMD < 	\D V&= \frac{V_{rest} - V}{\tau_m }\D t + \frac{m_I}{C_m} \D t + \frac{s_I}{C_m}  \D W_t \\
+%DIFDELCMD < 	&=\frac{V_{rest} - V}{\tau_m }\D t + \frac{m_I}{C_m} \D t + \frac{s_I \sqrt{\D t}}{C_m} \xi(t)  \\
+%DIFDELCMD < 	&=\frac{V_{rest} - V}{\tau_m }\D t + \mu \D t + \sigma \xi(t) ~~. 
+%DIFDELCMD < 	\end{aligned}
+%DIFDELCMD < 	%%%
+\DIFdelend \DIFaddbegin \begin{aligned}
 	\D V&= \frac{V_{rest} - V}{\tau_m }\D t + \frac{m_I}{C_m} \D t + \frac{s_I}{C_m}  \D W_t \\
-	&=\frac{V_{rest} - V}{\tau_m }\D t + \frac{m_I}{C_m} \D t + \frac{s_I \sqrt{\D t}}{C_m} \xi(t)  \\
-	&=\frac{V_{rest} - V}{\tau_m }\D t + \mu \D t + \sigma \xi(t) ~~. 
+	&=\frac{V_{rest} - V}{\tau_m }\D t + \frac{m_I}{C_m} \D t + \frac{s_I \sqrt{\D t}}{C_m} y  \\
+	&=\frac{V_{rest} - V}{\tau_m }\D t + \mu_v \D t + \sigma_v y ~~. 
 	\end{aligned}
-	\end{equation}	
-	The last term $\D W_t$ is a Wiener process; $W_{t +\D t} - W_{t}$ obeys a Gaussian distribution with mean 0 and variance $\D t$.
-	The instantaneous mean $\mu$ and variance $\sigma^2$ of the change in membrane potential characterise the statistics of $V$ in a short time range, and they can be derived from the statistics of the noisy current:
+	\DIFaddend \end{equation}	
+	The last term $\D W_t$ is a Wiener process; $W_{t +\D t} - W_{t}$ obeys a Gaussian distribution with mean 0 and variance $\D t$\DIFaddbegin \DIFadd{; thus $y$ is a random number sampled in accordance with a Gaussian distribution of zero mean and unit variance}\DIFaddend .
+	The instantaneous mean \DIFdelbegin \DIFdel{$\mu$ and variance $\sigma^2$ }\DIFdelend \DIFaddbegin \DIFadd{$\mu_v$ and variance ${\sigma_v}^2$ }\DIFaddend of the change in membrane potential characterise the statistics of $V$ in a short time range, and they can be derived from the statistics of the noisy current:
 	\begin{equation}
-	\mu =\dfrac{m_I}{C_m}, ~~~~~ \sigma = \dfrac{s_I \sqrt{\D t}}{C_m}~.
+	\mu\DIFaddbegin \DIFadd{_v }\DIFaddend =\dfrac{m_I}{C_m}, ~~~~~ \sigma\DIFaddbegin \DIFadd{_v }\DIFaddend = \dfrac{s_I \sqrt{\D t}}{C_m}~.
 	\end{equation}
 %	A continuous-time stochastic process W(t) for t>=0 with W(0)=0 and such that the increment W(t)-W(s) is Gaussian with mean 0 and variance t-s for any 0<=s<t, and increments for nonoverlapping time intervals are independent. Brownian motion (i.e., random walk with random step sizes) is the most common example of a Wiener process.
 %http://mathworld.wolfram.com/WienerProcess.html
 %http://neuronaldynamics.epfl.ch/online/Ch1.S3.html about V tradractory need to write in Chapter 2.	
-	The response function~\citep{rauch2003neocortical,la2008response} of the LIF neuron to a noisy current, also known as the Siegert formula, is a function of $\mu$ and $\sigma$:
-	\begin{equation}
+	The response function~\citep{rauch2003neocortical,la2008response} of the LIF neuron to a noisy current, also known as the Siegert formula, is a function of \DIFdelbegin \DIFdel{$\mu$ and $\sigma$:
+	}\DIFdelend \DIFaddbegin \DIFadd{$\mu_v$ and $\sigma_v$:
+	}\DIFaddend \begin{equation}
 	\lambda_\mathit{out}=
-	\left [ t_\mathit{ref}+\tau_m \int_{\frac{V_\mathit{rest}-\mu \tau_m }{\sigma \sqrt{\tau_m}}}^{\frac{V_{th}-\mu \tau_m }{\sigma \sqrt{\tau_m}}} \sqrt{\pi} \exp(u^{2}) (1+erf(u)) \D u \right ]^{-1} ~.
+	\left [ t_\mathit{ref}+\tau_m \int\DIFdelbegin \DIFdel{_{\frac{V_\mathit{rest}-\mu \tau_m }{\sigma \sqrt{\tau_m}}}^{\frac{V_{th}-\mu \tau_m }{\sigma \sqrt{\tau_m}}} }\DIFdelend \DIFaddbegin \DIFadd{_{\frac{V_\mathit{rest}-\mu_v \tau_m }{\sigma_v \sqrt{\tau_m}}}^{\frac{V_{th}-\mu_v \tau_m }{\sigma_v \sqrt{\tau_m}}} }\DIFaddend \sqrt{\pi} \exp(u^{2}) (1+\DIFdelbegin \DIFdel{erf}\DIFdelend \DIFaddbegin \DIFadd{\mathit{erf}}\DIFaddend (u)) \D u \right ]^{-1} ~.
 	\label{equ:siegert}
 	\end{equation}
 
@@ -239,61 +243,114 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking \DIFd
 	
 	\begin{figure}[bt]
 		\centering
-		\includegraphics[width=0.7\textwidth]{pics_iconip/1.pdf}
-		\DIFdelbeginFL %DIFDELCMD < \caption{%%%
-\DIFdelendFL \DIFaddbeginFL \caption[Response function of the LIF neuron.]{\DIFaddendFL Response function of the LIF neuron with noisy input currents with different standard deviations.}
+		\DIFdelbeginFL %DIFDELCMD < \includegraphics[width=0.7\textwidth]{pics_iconip/1.pdf}
+%DIFDELCMD < 		%%%
+\DIFdelendFL \DIFaddbeginFL \includegraphics[width=0.7\textwidth]{pics_iconip/revise_1.pdf}
+		\DIFaddendFL \caption[Response function of the LIF neuron.]{Response function of the LIF neuron with noisy input currents with different standard deviations.}
 		\label{Fig:physics}
 	\end{figure}
 
-	Figure~\ref{Fig:physics} shows the response curves (Equation~\ref{equ:siegert}) of an LIF neuron driven by noisy currents \DIFdelbegin \DIFdel{with Gaussian noise with }\DIFdelend \DIFaddbegin \DIFadd{where the Gaussian noise is of }\DIFaddend mean $m_I$ and standard deviation $s_I$.
-	The parameters of the LIF neuron are all biologically valid (see the listed values in Table~\ref{tbl:pynnConfig}), and the same parameters are used throughout this chapter.
+	Figure~\ref{Fig:physics} shows the response curves (Equation~\ref{equ:siegert}) of an LIF neuron driven by noisy currents where the Gaussian noise is of mean $m_I$ and standard deviation $s_I$.
+	The parameters of the LIF neuron are all biologically \DIFdelbegin \DIFdel{valid }\DIFdelend \DIFaddbegin \DIFadd{plausible }\DIFaddend (see the listed values in Table~\ref{tbl:pynnConfig}), and the same parameters are used throughout this chapter.
 	The solid (zero noise) line in Figure~\ref{Fig:physics} illustrates the response function of such an LIF neuron injected with constant current, which inspired the proposal of ReLUs.
-	As noise increases, the level of firing rates also rises\DIFdelbegin \DIFdel{, and the Softplus activation }\DIFdelend \DIFaddbegin \DIFadd{.
-	Thus the Softplus }\DIFaddend function approximates the response \DIFdelbegin \DIFdel{firing activity driven by currentwith Gaussian white noise added.
-	Softplus units only represent }\DIFdelend \DIFaddbegin \DIFadd{activity to noisy current, but only represents }\DIFaddend a single level of noise; for example, the dotted line in Figure~\ref{Fig:physics} shows the curve when $s_I=1$.
+	As noise increases, the level of firing rates also rises.
+	Thus the Softplus function approximates the response activity to noisy current, but only represents a single level of noise; for example, the dotted line in Figure~\ref{Fig:physics} shows the curve when $s_I=1$.
+		\DIFdelbegin %DIFDELCMD < 
 
-		\begin{table}[bt]
-			\centering
-			\DIFdelbeginFL %DIFDELCMD < \caption{\label{tbl:pynnConfig}%%%
-\DIFdelendFL \DIFaddbeginFL \caption[LIF parameter settings.]{\DIFaddendFL Parameter setting for the current-based LIF neurons using PyNN.}
-			\bgroup
+%DIFDELCMD < 		\begin{table}[bt]
+%DIFDELCMD < 			%%%
+\DIFdelendFL \DIFaddbeginFL \begin{table}[th]
+			\DIFaddendFL \centering
+			\caption[LIF parameter settings.]{Parameter setting for the current-based LIF neurons using PyNN.}
+			\DIFdelbeginFL %DIFDELCMD < \bgroup
+%DIFDELCMD < 			%%%
+\DIFdelendFL %DIF > \bgroup
 			\def\arraystretch{1.4}
-			\begin{tabular}{c c c}
-				%\hline
-				Parameters & Values & Units \\
+			\DIFdelbeginFL %DIFDELCMD < \begin{tabular}{c c c}
+%DIFDELCMD < 				%%%
+\DIFdelendFL \DIFaddbeginFL \begin{tabular}{c c l}
+				\DIFaddendFL %\hline
+				Parameters & Values & \DIFdelbeginFL \DIFdelFL{Units }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{Description }\DIFaddendFL \\
 				\hline
-				cm & 0.25 & nF	\\
+				\DIFdelbeginFL \DIFdelFL{cm }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{$C_m$ }\DIFaddendFL & 0.25 \DIFdelbeginFL %DIFDELCMD < & %%%
+\DIFdelFL{nF }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{nF }& \DIFaddFL{membrane capacitance}\DIFaddendFL \\
 				%\hline
-				tau\_m & 20.0 & ms\\
+				\DIFdelbeginFL \DIFdelFL{tau\_m }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{$\tau_m$ }\DIFaddendFL & 20.0 \DIFdelbeginFL %DIFDELCMD < & %%%
+\DIFdelFL{ms }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{ms }&  \DIFaddFL{membrane time constant}\DIFaddendFL \\
 				%\hline
-				tau\_refrac & 1.0 & ms\\
-				%					%\hline
-				%					tau\_syn\_E & 5.0 & ms\\
-				%					%  %\hline
-				%					tau\_syn\_I & 5.0 & ms\\
-				%  %\hline
-				v\_reset & -65.0 & mV\\
+				\DIFdelbeginFL \DIFdelFL{tau\_refrac }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{$\tau_{\textit{\textrm{refrac}}}$ }\DIFaddendFL & 1.0 \DIFdelbeginFL %DIFDELCMD < & %%%
+\DIFdelFL{ms }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{ms }& \DIFaddFL{refractory period}\DIFaddendFL \\
+				%DIF < 					%\hline
+				%DIF < 					tau\_syn\_E & 5.0 & ms\\
+				%DIF < 					%  %\hline
+				%DIF < 					tau\_syn\_I & 5.0 & ms\\
+				%DIF <   %\hline
+				\DIFdelbeginFL \DIFdelFL{v\_reset }\DIFdelendFL %DIF > \hline
+				\DIFaddbeginFL \DIFaddFL{$V_{reset}$ }\DIFaddendFL & -65.0\DIFdelbeginFL %DIFDELCMD < & %%%
+\DIFdelFL{mV }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{~mV }& \DIFaddFL{resting membrane potential}\DIFaddendFL \\
 				%\hline
-				v\_rest & -65.0 & mV\\
+				\DIFdelbeginFL \DIFdelFL{v\_rest }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{$V_{rest}$ }\DIFaddendFL & -65.0\DIFdelbeginFL %DIFDELCMD < & %%%
+\DIFdelFL{mV }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{~mV }& \DIFaddFL{resetting membrane potential}\DIFaddendFL \\
 				%\hline
-				v\_thresh & -50.0 & mV\\
+				\DIFdelbeginFL \DIFdelFL{v\_thresh }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{$V_{thresh}$ }\DIFaddendFL & -50.0\DIFdelbeginFL %DIFDELCMD < & %%%
+\DIFdelFL{mV }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{~mV }& \DIFaddFL{membrane threshold  }\DIFaddendFL \\
 				%\hline
-				i\_offset & 0.1 & nA\\
-				\hline
-				%			Parameters & cm & tau\_m & tau\_refrac & tau\_syn\_E & tau\_syn\_I & v\_rest & v\_thresh & i\_offset \\
-				%			Values & 0.25 &  20.0 & 1.0 & 5.0 & 5.0 & -65.0 & -50.0  & 0.1 \\
-				%			Units & nF & ms & ms & ms & ms & mV & mV& nA\\
-				%			\hline
-			\end{tabular}
-			\egroup
-			\DIFaddbeginFL \label{tbl:pynnConfig}
-		\DIFaddendFL \end{table}
+				\DIFdelbeginFL \DIFdelFL{i\_offset }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{$I_{\textit{\textrm{offset}}}$ }\DIFaddendFL & \DIFdelbeginFL \DIFdelFL{0.1 }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{0.0~nA }\DIFaddendFL & \DIFdelbeginFL \DIFdelFL{nA}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{offset of current influx  }\DIFaddendFL \\
+			\DIFdelbeginFL %DIFDELCMD < \hline
+%DIFDELCMD < 				%%%
+%DIF < 			Parameters & cm & tau\_m & tau\_refrac & tau\_syn\_E & tau\_syn\_I & v\_rest & v\_thresh & i\_offset \\
+				%DIF < 			Values & 0.25 &  20.0 & 1.0 & 5.0 & 5.0 & -65.0 & -50.0  & 0.1 \\
+				%DIF < 			Units & nF & ms & ms & ms & ms & mV & mV& nA\\
+				%DIF < 			\hline
+			\DIFdelendFL \end{tabular}
+			\DIFdelbeginFL %DIFDELCMD < \egroup
+%DIFDELCMD < 			%%%
+\DIFdelendFL %DIF > \egroup
+			\label{tbl:pynnConfig}
+		\end{table}
+
+%DIF > 		\begin{table}[bt]
+%DIF > 			\centering
+%DIF > 			\caption[LIF parameter settings.]{Parameter setting for the current-based LIF neurons using PyNN.}
+%DIF > 			\bgroup
+%DIF > 			\def\arraystretch{1.4}
+%DIF > 			\begin{tabular}{c c c}
+%DIF > 				%\hline
+%DIF > 				Parameters & Values & Units \\
+%DIF > 				\hline
+%DIF > 				cm & 0.25 & nF	\\
+%DIF > 				%\hline
+%DIF > 				tau\_m & 20.0 & ms\\
+%DIF > 				%\hline
+%DIF > 				tau\_refrac & 1.0 & ms\\
+%DIF > 				%					%\hline
+%DIF > 				%					tau\_syn\_E & 5.0 & ms\\
+%DIF > 				%					%  %\hline
+%DIF > 				%					tau\_syn\_I & 5.0 & ms\\
+%DIF > 				%  %\hline
+%DIF > 				v\_reset & -65.0 & mV\\
+%DIF > 				%\hline
+%DIF > 				v\_rest & -65.0 & mV\\
+%DIF > 				%\hline
+%DIF > 				v\_thresh & -50.0 & mV\\
+%DIF > 				%\hline
+%DIF > 				i\_offset & 0.1 & nA\\
+%DIF > 				\hline
+%DIF > 				%			Parameters & cm & tau\_m & tau\_refrac & tau\_syn\_E & tau\_syn\_I & v\_rest & v\_thresh & i\_offset \\
+%DIF > 				%			Values & 0.25 &  20.0 & 1.0 & 5.0 & 5.0 & -65.0 & -50.0  & 0.1 \\
+%DIF > 				%			Units & nF & ms & ms & ms & ms & mV & mV& nA\\
+%DIF > 				%			\hline
+%DIF > 			\end{tabular}
+%DIF > 			\egroup
+%DIF > 			\label{tbl:pynnConfig}
+%DIF > 		\end{table}
+	\DIFaddbegin 
 
 
 	
 
 
-%	\subsection{Activation Function in ANN}
+\DIFaddend %	\subsection{Activation Function in ANN}
 %	\label{sec:activation}
 %	Nair and Hinton~\citep{nair2010rectified} stated that ReLU preserve information about relative intensities(intensity equivarance) provided they have zero biases and are noise-free, but binary units do not.
 %	This technique has dominated the best recognition performances~\textcolor{red}{ref?} in deep learning.
@@ -374,15 +431,18 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking \DIFd
 	\begin{figure}[tbp!]
 		\centering
 		\begin{subfigure}[t]{0.49\textwidth}
-			\includegraphics[width=\textwidth]{pics_iconip/2-1.png}
-			\caption{Current sampled at $dt$=1~ms.}
+			\DIFdelbeginFL %DIFDELCMD < \includegraphics[width=\textwidth]{pics_iconip/2-1.png}
+%DIFDELCMD < 			%%%
+\DIFdelendFL \DIFaddbeginFL \includegraphics[width=\textwidth]{pics_iconip/revise_2-1.png}
+			\DIFaddendFL \caption{Current sampled at $dt$=1~ms.}
 		\end{subfigure}
 		\begin{subfigure}[t]{0.49\textwidth}
-			\includegraphics[width=\textwidth]{pics_iconip/2-10.png}
-			\caption{Current sampled at $dt$=10~ms.}
+			\DIFdelbeginFL %DIFDELCMD < \includegraphics[width=\textwidth]{pics_iconip/2-10.png}
+%DIFDELCMD < 			%%%
+\DIFdelendFL \DIFaddbeginFL \includegraphics[width=\textwidth]{pics_iconip/revise_2-2.png}
+			\DIFaddendFL \caption{Current sampled at $dt$=10~ms.}
 		\end{subfigure}
-		\DIFdelbeginFL %DIFDELCMD < \caption{%%%
-\DIFdelendFL \DIFaddbeginFL \caption[Recorded response firing rate driven by \textit{NoisyCurrentSource}.]{\DIFaddendFL Recorded response firing rate of an LIF neuron driven by \textit{NoisyCurrentSource} \DIFaddbeginFL \DIFaddFL{in PyNN, }\DIFaddendFL sampled at every (a) 1~ms and (b) 10~ms. Averaged firing rates of 10 simulation trails are shown in bold lines, and the grey colour fills the range between the minimum to maximum of the firing rates. The analytical LIF response function, the Siegert formula (Equation~\ref{equ:siegert}), is drawn in thin lines (shown in Figure~\ref{Fig:physics}) to compare with the practical simulation.}
+		\caption[Recorded response firing rate driven by \textit{NoisyCurrentSource}.]{Recorded response firing rate of an LIF neuron driven by \textit{NoisyCurrentSource} in PyNN, sampled at every (a) 1~ms and (b) 10~ms. Averaged firing rates of 10 simulation trails are shown in \DIFdelbeginFL \DIFdelFL{bold }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{dashed }\DIFaddendFL lines, and the grey colour fills the range between the minimum to maximum of the firing rates. The analytical LIF response function, the Siegert formula (Equation~\ref{equ:siegert}), is drawn in \DIFdelbeginFL \DIFdelFL{thin }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{bold }\DIFaddendFL lines (shown in Figure~\ref{Fig:physics}) to compare with the practical simulation.}
 		\label{Fig:current}
 	\end{figure}
 
@@ -422,16 +482,15 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking \DIFd
 			\includegraphics[width=\textwidth]{pics_iconip/distr_dt10.pdf}
 			\caption{Distribution of samples of (b).}
 		\end{subfigure}
-		\DIFdelbeginFL %DIFDELCMD < \caption{%%%
-\DIFdelendFL \DIFaddbeginFL \caption[\textit{NoisyCurrentSource} samples from a Gaussian distribution.]{\DIFaddendFL \textit{NoisyCurrentSource} samples noisy currents from a Gaussian distribution every 1~ms (left) and 10~ms (right). The signals are shown in the time domain in (a) and (b), and in the spectrum domain in (c) and (d). The autocorrelation of both current signals are shown in (e) and (f). The distribution of the discrete samples are plotted in bar charts to compare with the PDF of the original Gaussian distribution, shown in (g) and (h).}
+		\caption[\textit{NoisyCurrentSource} samples from a Gaussian distribution.]{\textit{NoisyCurrentSource} samples noisy currents from a Gaussian distribution every 1~ms (left) and 10~ms (right). The signals are shown in the time domain in (a) and (b), and in the spectrum domain in (c) and (d). The autocorrelation of both current signals are shown in (e) and (f). The distribution of the discrete samples are plotted in bar charts to compare with the PDF of the original Gaussian distribution, shown in (g) and (h).}
 		\label{Fig:lif_curr}
 	\end{figure}
 
 	The curves in Figures~\ref{Fig:current} illustrate the output firing rate driven by different levels of noise.
-	The differences relative to the analytical results (thin lines) is due to the time resolution, $dt$, of the \textit{NoisyCurrentSource}.
+	The differences relative to the analytical results (\DIFdelbegin \DIFdel{thin }\DIFdelend \DIFaddbegin \DIFadd{bold }\DIFaddend lines) is due to the time resolution, $dt$, of the \textit{NoisyCurrentSource}.
 	The sampled signals are shown in Figures~\ref{Fig:lif_curr}~(a) and (b).
 	The discrete sampling of the noisy current introduces time step correlation to the white noise, shown in Figures~\ref{Fig:lif_curr}~(e) and (f), where the value remains the same within a time step $dt$.
-	Although both current signals follow the same Gaussian distribution, see Figures~\ref{Fig:lif_curr}~(g) and (h), the current is a white noise when $dt=1$~ms, but a coloured noise, e.g. increased Power Spectral Density~(PSD) at lower frequency, when $dt=10$~ms, see Figures~\ref{Fig:lif_curr}~(c) and (d).
+	Although both current signals follow the same Gaussian distribution, see Figures~\ref{Fig:lif_curr}~(g) and (h), the current is \DIFaddbegin \DIFadd{approximately }\DIFaddend a white noise when $dt=1$~ms, but a coloured noise, e.g. increased Power Spectral Density~(PSD) at lower frequency, when $dt=10$~ms, see Figures~\ref{Fig:lif_curr}~(c) and (d).
 	Thus the Siegert formula, Equation~\ref{equ:siegert}, can only approximate the LIF response of noisy current with white noise.
 %\begin{figure}
 %	\centering
@@ -451,8 +510,7 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking \DIFd
 %		\myrowlabel{Distribution}
 %		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
 %			{pics_iconip/distr_tau1.pdf}}
-%DIF < 		\caption{$\tau_{syn}$=1~ms}
-%DIF > 		\caption{$\tau_{\textit{\textrm{syn}}}$=1~ms}
+%		\caption{$\tau_{\textit{\textrm{syn}}}$=1~ms}
 %	\end{subfigure}%
 %	\hspace{1em}
 %	\begin{subfigure}[c]{0.45\textwidth}\raggedleft
@@ -466,39 +524,40 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking \DIFd
 %			{pics_iconip/autocorr_tau10.pdf}}
 %		\raisebox{-.5\height}{\includegraphics[width=.9\textwidth]
 %			{pics_iconip/distr_tau10.pdf}}
-%DIF < 		\caption{$\tau_{syn}$=10~ms}
-%DIF > 		\caption{$\tau_{\textit{\textrm{syn}}}$=10~ms}
+%		\caption{$\tau_{\textit{\textrm{syn}}}$=10~ms}
 %	\end{subfigure}%
-%DIF < 	\caption{Recorded response firing rate of a LIF neuron driven by synaptic current (bold lines) comparing to the noisy current source (thin lines). The synaptic current is shown in time domain and spectrum domain, so as its autocorrelation, and the distribution. (a) is tested when $\tau_{syn}$=1~ms, and (b) for $\tau_{syn}$=10~ms.}
-%DIF > 	\caption{Recorded response firing rate of a LIF neuron driven by synaptic current (bold lines) comparing to the noisy current source (thin lines). The synaptic current is shown in time domain and spectrum domain, so as its autocorrelation, and the distribution. (a) is tested when $\tau_{\textit{\textrm{syn}}}$=1~ms, and (b) for $\tau_{\textit{\textrm{syn}}}$=10~ms.}
+%	\caption{Recorded response firing rate of a LIF neuron driven by synaptic current (bold lines) comparing to the noisy current source (thin lines). The synaptic current is shown in time domain and spectrum domain, so as its autocorrelation, and the distribution. (a) is tested when $\tau_{\textit{\textrm{syn}}}$=1~ms, and (b) for $\tau_{\textit{\textrm{syn}}}$=10~ms.}
 %	\label{Fig:lif_pois}
 %\end{figure}
 
 	\begin{figure}[tbp!]
 		\centering
 		\begin{subfigure}[t]{0.49\textwidth}
-			\includegraphics[width=\textwidth]{pics_iconip/spiked_curve_1.png}
-			\caption{\DIFdelbeginFL \DIFdelFL{$\tau_{syn}$}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{$\tau_{\textit{\textrm{syn}}}$}\DIFaddendFL =1~ms.}
+			\DIFdelbeginFL %DIFDELCMD < \includegraphics[width=\textwidth]{pics_iconip/spiked_curve_1.png}
+%DIFDELCMD < 			%%%
+\DIFdelendFL \DIFaddbeginFL \includegraphics[width=\textwidth]{pics_iconip/revise_spike_curve-1.png}
+			\DIFaddendFL \caption{$\tau_{\textit{\textrm{syn}}}$=1~ms.}
 		\end{subfigure}
 		\begin{subfigure}[t]{0.49\textwidth}
-			\includegraphics[width=\textwidth]{pics_iconip/spiked_curve_10.png}
-			\caption{\DIFdelbeginFL \DIFdelFL{$\tau_{syn}$}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{$\tau_{\textit{\textrm{syn}}}$}\DIFaddendFL =10~ms.}
+			\DIFdelbeginFL %DIFDELCMD < \includegraphics[width=\textwidth]{pics_iconip/spiked_curve_10.png}
+%DIFDELCMD < 			%%%
+\DIFdelendFL \DIFaddbeginFL \includegraphics[width=\textwidth]{pics_iconip/revise_spike_curve-2.png}
+			\DIFaddendFL \caption{$\tau_{\textit{\textrm{syn}}}$=10~ms.}
 		\end{subfigure}
-		\DIFdelbeginFL %DIFDELCMD < \caption{%%%
-\DIFdelendFL \DIFaddbeginFL \caption[Recorded response firing rate driven by a synaptic current.]{\DIFaddendFL Recorded response firing rate of an LIF neuron driven by a synaptic current with two synaptic time constants: (a) \DIFdelbeginFL \DIFdelFL{$\tau_{syn}$}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{$\tau_{\textit{\textrm{syn}}}$}\DIFaddendFL =10~ms and (b) \DIFdelbeginFL \DIFdelFL{$\tau_{syn}$}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{$\tau_{\textit{\textrm{syn}}}$}\DIFaddendFL =10~ms. Average firing rates of 10 simulation trails are shown in bold lines, and the grey colour fills the range between the minimum to maximum of the firing rates. The firing rates recorded driven by \textit{NoisyCurrentSource} are drawn in thin lines (shown in Figure~\ref{Fig:lif_curr}) for comparison.}
+		\caption[Recorded response firing rate driven by a synaptic current.]{Recorded response firing rate of an LIF neuron driven by a synaptic current with two synaptic time constants: (a) $\tau_{\textit{\textrm{syn}}}$=\DIFdelbeginFL \DIFdelFL{10}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{1}\DIFaddendFL ~ms and (b) $\tau_{\textit{\textrm{syn}}}$=10~ms. Average firing rates of 10 simulation trails are shown in \DIFdelbeginFL \DIFdelFL{bold }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{dashed }\DIFaddendFL lines, and the grey colour fills the range between the minimum to maximum of the firing rates. The firing rates recorded driven by \textit{NoisyCurrentSource} are drawn in \DIFdelbeginFL \DIFdelFL{thin }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{bold }\DIFaddendFL lines (shown in Figure~\ref{Fig:lif_curr}) for comparison.}
 		\label{Fig:spike_curr}
 	\end{figure}
 
 	\begin{figure}[tbp!]
 		\centering
-		\makebox[0.43\textwidth]{\DIFdelbeginFL \DIFdelFL{$\tau_{syn}$}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{$\tau_{\textit{\textrm{syn}}}$}\DIFaddendFL =1~ms} \makebox[0.43\textwidth]{\DIFdelbeginFL \DIFdelFL{$\tau_{syn}$}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{$\tau_{\textit{\textrm{syn}}}$}\DIFaddendFL =10~ms} \par
+		\makebox[0.43\textwidth]{$\tau_{\textit{\textrm{syn}}}$=1~ms} \makebox[0.43\textwidth]{$\tau_{\textit{\textrm{syn}}}$=10~ms} \par
 		\begin{subfigure}[t]{0.43\textwidth}
 			\includegraphics[width=\textwidth]{pics_iconip/curr_tau1.pdf}
-			\caption{Current sampled at $dt$=1~ms.}
+			\caption{Current \DIFdelbeginFL \DIFdelFL{sampled at $dt$=1~ms}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{generated by spikes}\DIFaddendFL .}
 		\end{subfigure}
 		\begin{subfigure}[t]{0.43\textwidth}
 			\includegraphics[width=\textwidth]{pics_iconip/curr_tau10.pdf}
-			\caption{Current sampled at $dt$=10~ms.}
+			\caption{Current \DIFdelbeginFL \DIFdelFL{sampled at $dt$=10~ms}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{generated by spikes}\DIFaddendFL .}
 		\end{subfigure}\\
 		\begin{subfigure}[t]{0.43\textwidth}
 			\includegraphics[width=\textwidth]{pics_iconip/psd_tau1.pdf}
@@ -524,8 +583,7 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking \DIFd
 			\includegraphics[width=\textwidth]{pics_iconip/distr_tau10.pdf}
 			\caption{Distribution of samples of (b).}
 		\end{subfigure}
-		\DIFdelbeginFL %DIFDELCMD < \caption{%%%
-\DIFdelendFL \DIFaddbeginFL \caption[Noisy currents generated by Poisson spike trains.]{\DIFaddendFL Noisy currents generated by 100 Poisson spike trains to an LIF neuron with synaptic time constant \DIFdelbeginFL \DIFdelFL{$\tau_{syn}$}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{$\tau_{\textit{\textrm{syn}}}$}\DIFaddendFL =1~ms (left) and \DIFdelbeginFL \DIFdelFL{$\tau_{syn}$}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{$\tau_{\textit{\textrm{syn}}}$}\DIFaddendFL =10~ms (right). The currents are shown in the time domain in (a) and (b), and in the spectrum domain in (c) and (d). The autocorrelation of both current signals are shown in (e) and (f). The distribution of the generated samples are plotted in bar chart form to compare to the expected Gaussian distribution, shown in (g) and (h).}
+		\caption[Noisy currents generated by Poisson spike trains.]{Noisy currents generated by 100 Poisson spike trains to an LIF neuron with synaptic time constant $\tau_{\textit{\textrm{syn}}}$=1~ms (left) and $\tau_{\textit{\textrm{syn}}}$=10~ms (right). The currents are shown in the time domain in (a) and (b), and in the spectrum domain in (c) and (d). The autocorrelation of both current signals are shown in (e) and (f). The distribution of the generated samples are plotted in bar chart form to compare to the expected Gaussian distribution, shown in (g) and (h).}
 		\label{Fig:lif_pois}
 	\end{figure}
 
@@ -533,31 +591,29 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking \DIFd
 	%assuming that large amount of small amplitude PSPs are required to reach the threshold and $\tau_syn$ limits to 0.
 	where the mean and variance of the current are given by~\citep{la2008response}:
 	\begin{equation}
-	m_I = \tau\DIFdelbegin \DIFdel{_{syn}}\DIFdelend \DIFaddbegin \DIFadd{_{\textit{\textrm{syn}}}}\DIFaddend \sum_i w_i\lambda_{i}~, ~s_I^2=\frac{1}{2}\tau\DIFdelbegin \DIFdel{_{syn}}\DIFdelend \DIFaddbegin \DIFadd{_{\textit{\textrm{syn}}}}\DIFaddend \sum_i w_i^2\lambda_{i}~,
+	m_I = \tau_{\textit{\textrm{syn}}}\sum_i w_i\lambda_{i}~, ~s_I^2=\frac{1}{2}\tau_{\textit{\textrm{syn}}}\sum_i w_i^2\lambda_{i}~,
 	\label{equ:distr0}
 	\end{equation}
-	where \DIFdelbegin \DIFdel{$\tau_{syn}$ }\DIFdelend \DIFaddbegin \DIFadd{$\tau_{\textit{\textrm{syn}}}$ }\DIFaddend is the synaptic time constant, and each Poisson spike train connects to the neuron with a strength of $w_i$ and a firing rate of $\lambda_i$.
+	where $\tau_{\textit{\textrm{syn}}}$ is the synaptic time constant, and each Poisson spike train connects to the neuron with a strength of $w_i$ and a firing rate of $\lambda_i$.
 	Two populations of Poisson spike sources, for excitatory and inhibitory synapses respectively, were connected to a single LIF neuron to mimic the noisy currents.
 	The firing rates of the Poisson spike generators were determined by the given $m_I$ and $s_I$.
 	Figure~\ref{Fig:spike_curr} illustrates the recorded firing rates responding to the Poissoin spike trains compared to the mean firing rate driven by \textit{NoisyCurrentSource} in Figure~\ref{Fig:current}.
 	Note that the estimation of LIF response activity using the Siegert function requires noisy current with white noise, however
-%DIF < 	The use of noisy currents assumes that the post-synaptic potential (PSP) is a delta function, e.g. $\tau_{syn}$ tends to the limits of 0.
-	%DIF > 	The use of noisy currents assumes that the post-synaptic potential (PSP) is a delta function, e.g. $\tau_{\textit{\textrm{syn}}}$ tends to the limits of 0.
-	in practice the release of neurotransmitter takes time (\DIFdelbegin \DIFdel{$\tau_{syn} >> 0$}\DIFdelend \DIFaddbegin \DIFadd{$\tau_{\textit{\textrm{syn}}} >> 0$}\DIFaddend ) and the synaptic current decays exponentially \DIFdelbegin \DIFdel{$I_{syn} = I_0 e^{\frac{-t}{\tau_{syn}}}$}\DIFdelend \DIFaddbegin \DIFadd{$I_{syn} = I_0 e^{-\frac{t}{\tau_{\textit{\textrm{syn}}}}}$}\DIFaddend .
+%	The use of noisy currents assumes that the post-synaptic potential (PSP) is a delta function, e.g. $\tau_{\textit{\textrm{syn}}}$ tends to the limits of 0.
+	in practice the release of neurotransmitter takes time ($\tau_{\textit{\textrm{syn}}} >> 0$) and the synaptic current decays exponentially $I_{syn} = I_0 e^{-\frac{t}{\tau_{\textit{\textrm{syn}}}}}$.
 	Figures~\ref{Fig:lif_pois}~(a) and (b) show two examples of synaptic current of 0~nA mean and 0.2 standard deviation driven by 100 neurons firing at the same rate and with the same synaptic strength (half excitatory, half inhibitory), but of different synaptic time constant.
 	Therefore, the current at any time $t$ during the decay period is dependent on the value at the previous time step, which makes the synaptic current a coloured noise, see Figures~\ref{Fig:lif_pois}~(c) and (d).
 %	and the noise added to the mean current is not white noise, but pink noise.
 
-	We observe in Figure~\ref{Fig:spike_curr}~(a) that the response firing rate to synaptic current is higher than the \textit{NoisyCurrentSource} for all the 10 trials.
+	We observe in Figure~\ref{Fig:spike_curr}~(a) that the response firing rate to synaptic current is higher than the \textit{NoisyCurrentSource} for \DIFdelbegin \DIFdel{all the 10 trials}\DIFdelend \DIFaddbegin \DIFadd{most of the current range}\DIFaddend .
 	This is caused by the coarse resolution (1~ms) of the spikes, thus the standard deviation of the current is larger than 0.2, shown in Figure~\ref{Fig:lif_pois}~(g);
-	and the \DIFdelbegin \DIFdel{$\tau_{syn}$}\DIFdelend \DIFaddbegin \DIFadd{$\tau_{\textit{\textrm{syn}}}$}\DIFaddend , even when as short as 1~ms, adds coloured noise instead of white noise to the current.
+	and the $\tau_{\textit{\textrm{syn}}}$, even when as short as 1~ms, adds coloured noise instead of white noise to the current.
 	However, Figure~\ref{Fig:spike_curr}~(b) shows a similar firing rate of both the synaptic driven current and the \textit{NoisyCurrentSource}, since both of the current signals have similar distribution (Figure~\ref{Fig:lif_pois}~(h)) and time correlation (Figure~\ref{Fig:lif_pois}~(f)).
-	Nevertheless, the analytical response function, the Siegert formula, cannot approximate either of the practical simulations.
+	Nevertheless, the analytical response function, the Siegert formula, cannot approximate either of the practical simulations \DIFaddbegin \DIFadd{(see Figure~\ref{Fig:current} also)}\DIFaddend .
 
-%DIF < 	Thus the experiments show that a longer $\tau_{syn}$ increases the level of noise and widens the variance of the output firing rate.
-		%DIF > 	Thus the experiments show that a longer $\tau_{\textit{\textrm{syn}}}$ increases the level of noise and widens the variance of the output firing rate.
+%	Thus the experiments show that a longer $\tau_{\textit{\textrm{syn}}}$ increases the level of noise and widens the variance of the output firing rate.
 		Although the use of the Siegert function opened the door for modelling the LIF response function to work similarly to the activation functions used in ANNs~\citep{Jug_etal_2012}, there are several drawbacks of this method:
-	\begin{itemize}
+	 \begin{itemize} 
 		\item most importantly, the numerical analysis of an LIF response function is far from accurate in practice. `Practice' in the chapter means SNN simulations using LIF neurons.
 		Thus the inaccurate model generates errors between the estimation and the practical response firing rate.
 %		This issue will be addressed in Section~\ref{subsec:practice}.
@@ -566,104 +622,145 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking \DIFd
 		\item the high complexity of the Siegert function causes much longer training times and more energy, let alone the high-cost computation on its derivative.
 		%		\item the training uses Siegert function to estimate the output firing rate in the forward path, but uses the derivative of sigmoid function during back propagation for lower complexity.
 		%		However, due to the difference between Siegert and sigmoid functions, error is introduced. 
-		\item The Siegert function is used to replace sigmoid functions for training spiking Restricted Boltzmann Machines~\citep{Jug_etal_2012}.
+		\item The Siegert function is used to replace sigmoid functions for training spiking Restricted Boltzmann Machines~\DIFaddbegin \DIFadd{(RBM)~}\DIFaddend \citep{Jug_etal_2012}.
 		Therefore neurons have to fire at high frequency (higher than half of the maximum firing rate) to represent the activation of a sigmoid unit; thus the network activity results in high power dissipation.
-		\item better learning performance has been reported using ReLU than Sigmoid units, so modelling a ReLU-like activation function for spiking neurons is needed.  
-	\end{itemize}
+		\item better learning performance has been reported using ReLU than Sigmoid units, so modelling \DIFaddbegin \DIFadd{spiking neurons with }\DIFaddend a ReLU-like activation function \DIFdelbegin \DIFdel{for spiking neurons }\DIFdelend is needed.  
+	 \end{itemize} 
 
 	Therefore, we propose the NSP function which provides solutions to the drawbacks of the Siegert unit.
 
 		
 	\subsection{Noisy Softplus~(NSP)}
 	\label{sec:NSP}
-%DIF < 	Due to the limited time resolution of common SNN simulators and the time taken for neurotransmitter release, $\tau_{syn}$, mismatches exist between the analytical response function, the Siegert formula, and practical neural activities.
-%DIF > 	Due to the limited time resolution of common SNN simulators and the time taken for neurotransmitter release, $\tau_{\textit{\textrm{syn}}}$, mismatches exist between the analytical response function, the Siegert formula, and practical neural activities.
-%	Consequently, a unified activation function is required to model the practical responses of a LIF neuron.
-%	Inspired by the set of response functions triggered by different levels of noise, we propose the NSP activation function:
-%	\begin{equation}
-%	y = f_{ns}(x, \sigma) = k \sigma \log [1 + \exp(\frac{x}{k \sigma})],
-%	\label{equ:nsp}
-%	\end{equation}
-%	where $x$ refers to the mean current, $y$ indicates the strength of the output firing rate, $\sigma$ plays an important role to define the noise level, and $k$, which is determined by the neuron parameters, controls the shape of the curves.
-%	Note that the novel activation function we propose contains two parameters, the current and its noise, which can be estimated by Equation~\ref{equ:distr0}:
-%	\begin{equation}
-%	x = \tau_{\textit{\textrm{syn}}}\sum_i w_i\lambda_{i}~, ~\sigma^2=\frac{1}{2}\tau_{\textit{\textrm{syn}}}\sum_i w_i^2\lambda_{i}~,
-%	\label{equ:distr}
-%	\end{equation}
-%	where $\lambda_i$ indicates the firing rate of an input spike train.
-%	Figure~\ref{fig:nsp} shows the activation function in curve sets corresponding to different discrete noise levels, and in a 3D plot.
-%	\begin{figure}[thb!]
-%		\centering
-%		\begin{subfigure}[t]{0.4\textwidth}
-%			\includegraphics[width=\textwidth]{pics_iconip/4.pdf}
-%			\caption{Noisy Softplus}
-%		\end{subfigure}
-%		\begin{subfigure}[t]{0.4\textwidth}
-%			\includegraphics[width=\textwidth]{pics_iconip/5.pdf}
-%			\caption{Noisy Softplus in 3D}
-%		\end{subfigure}
-%		\caption{
-%			Noisy Softplus fits to the response function of the LIF neuron.
-%			Noisy Softplus in (a) curve sets and (b) 3D.}
-%		\label{fig:nsp}
-%	\end{figure}	
-%	
-%	The derivative is the logistic function scaled by $k\sigma$:
-%	\begin{equation}
-%	\frac{\partial f_{ns}(x,\sigma)}{\partial x} = \frac{1}{1+exp(-\frac{x}{k\sigma})}~~,
-%	\label{equ:logist}
-%	\end{equation}	
-%	which could be easily applied to back propagation in any network training.
-%	However, such a derivative function of low complexity does not present in Siegert function.
-	Due to the limited time resolution of common SNN simulators and the time taken for neurotransmitter release, \DIFdelbegin \DIFdel{$\tau_{syn}$}\DIFdelend \DIFaddbegin \DIFadd{$\tau_{\textit{\textrm{syn}}}$}\DIFaddend , mismatches exist between the analytical response function, the Siegert formula, and practical neural activities.
-	Consequently to model the practical LIF response function (see Figure~\ref{fig:nsp}(a)) whose output firing rates are determined by both the mean and variance of the noisy input currents, the NSP was proposed as follows:
-	\begin{equation}
-	y = f_{ns}(x, \sigma) = k \sigma \log [1 + \exp(\frac{x}{k \sigma})]~,
-	\label{equ:nsp}
-	\end{equation}
-	where $x$ and $\sigma$ refer to the mean and standard deviation of the input current, $y$ indicates the intensity of the output firing rate, and $k$, determined by the biological configurations on the LIF neurons~\citep{liu2016noisy}~(listed in Table~\ref{tbl:pynnConfig}), controls the shape of the curves.
-	Note that the novel activation function we proposed contains two parameters, the mean current and its noise, which can be estimated by Equation~\ref{equ:distr0}:
-	\begin{equation}
-	x = \tau_{\textit{\textrm{syn}}}\sum_i w_i\lambda_{i}~, ~\sigma^2=\frac{1}{2}\tau_{\textit{\textrm{syn}}}\sum_i w_i^2\lambda_{i}~,
-	\label{equ:distr}
-	\end{equation}
-	where $\lambda_i$ indicates the firing rate of an input spike train.
-	%; both are naturally obtained in spiking neurons.
-	% With doubled information, more powerful training methods and network models are expected. 
-	\begin{figure}[tbh!]
-		\centering
+	\DIFdelbegin %DIFDELCMD < 
+
+%DIFDELCMD < 	\begin{figure}[tbh!]
+%DIFDELCMD < 		%%%
+\DIFdelendFL \DIFaddbeginFL \begin{figure}[bht!]
+		\DIFaddendFL \centering
 		\begin{subfigure}[t]{0.48\textwidth}
-			\includegraphics[width=\textwidth]{pics_iconip/siegert.png}
-			\caption{Response firing rate of an LIF neuron}
+			\DIFdelbeginFL %DIFDELCMD < \includegraphics[width=\textwidth]{pics_iconip/siegert.png}
+%DIFDELCMD < 			%%%
+\DIFdelendFL \DIFaddbeginFL \includegraphics[width=\textwidth]{pics_iconip/revise_siegert.png}
+			\DIFaddendFL \caption{Response firing rate of an LIF neuron}
 		\end{subfigure}
+		%DIF > 		\begin{subfigure}[t]{0.48\textwidth}
+		%DIF > 			\includegraphics[width=\textwidth]{pics_iconip/revise_siegert1.png}
+		%DIF > 			\caption{Response firing rate of an LIF neuron with a current offset, $I_{\textit{\textrm{offset}}}$ = 0.11 nA.}
+		%DIF > 		\end{subfigure}\\
 		\begin{subfigure}[t]{0.48\textwidth}
-			\includegraphics[width=\textwidth]{pics_iconip/4.pdf}
-			\caption{NSP}
-		\end{subfigure}
-		\DIFdelbeginFL %DIFDELCMD < \caption{%%%
-\DIFdelendFL \DIFaddbeginFL \caption[NSP models the LIF response function.]{\DIFaddendFL 
+			\DIFdelbeginFL %DIFDELCMD < \includegraphics[width=\textwidth]{pics_iconip/4.pdf}
+%DIFDELCMD < 			%%%
+\DIFdelendFL \DIFaddbeginFL \includegraphics[width=\textwidth]{pics_iconip/revise_4.pdf}
+			\DIFaddendFL \caption{NSP}
+		\end{subfigure}\DIFaddbeginFL \\
+		%DIF > 		\begin{subfigure}[t]{0.48\textwidth}
+		%DIF > 			\includegraphics[width=\textwidth]{pics_iconip/revise_5.pdf}
+		%DIF > 			\caption{NSP in 3D.}
+		%DIF > 		\end{subfigure}
+		\DIFaddendFL \caption[NSP models the LIF response function.]{
 			%		NSP fits to the response function of the LIF neuron.
 			NSP models the LIF response function.
 			(a) Firing rates measured by simulations of an LIF neuron driven by different input currents and discrete noise levels.
 			Bold lines show the average and the grey colour fills the range between the minimum and the maximum.
-			(b) NSP activates the input $x$ according to different noise levels where $k=0.16$.}
+			%DIF > 			(b) The same response activities shifted by a constant current offset, $I_{\textit{\textrm{offset}}} = 0.11$ nA.
+			(b) NSP activates the input $x$ according to different noise levels where \DIFaddbeginFL \DIFaddFL{the noise scaling factor }\DIFaddendFL $k=0.16$.}
+		%DIF > 			(d) NSP plotted in 3D.}
 		\label{fig:nsp}
 	\end{figure}
 
-	Figure~\ref{fig:nsp}(b) shows the activation function in curve sets corresponding to different discrete noise levels which mimics the responding activities of practical simulations of LIF neurons, shown in Figure~\ref{fig:nsp}(a).
-	Since the NSP takes two variables as inputs, the activation function can be plotted in 3D, see Figure~\ref{Fig:NSP3D}.
+	
+	
+	%DIF < 	Due to the limited time resolution of common SNN simulators and the time taken for neurotransmitter release, $\tau_{\textit{\textrm{syn}}}$, mismatches exist between the analytical response function, the Siegert formula, and practical neural activities.
+%DIF < 	Consequently, a unified activation function is required to model the practical responses of a LIF neuron.
+%DIF < 	Inspired by the set of response functions triggered by different levels of noise, we propose the NSP activation function:
+%DIF < 	\begin{equation}
+%DIF < 	y = f_{ns}(x, \sigma) = k \sigma \log [1 + \exp(\frac{x}{k \sigma})],
+%DIF < 	\label{equ:nsp}
+%DIF < 	\end{equation}
+%DIF < 	where $x$ refers to the mean current, $y$ indicates the strength of the output firing rate, $\sigma$ plays an important role to define the noise level, and $k$, which is determined by the neuron parameters, controls the shape of the curves.
+%DIF < 	Note that the novel activation function we propose contains two parameters, the current and its noise, which can be estimated by Equation~\ref{equ:distr0}:
+%DIF < 	\begin{equation}
+%DIF < 	x = \tau_{\textit{\textrm{syn}}}\sum_i w_i\lambda_{i}~, ~\sigma^2=\frac{1}{2}\tau_{\textit{\textrm{syn}}}\sum_i w_i^2\lambda_{i}~,
+%DIF < 	\label{equ:distr}
+%DIF < 	\end{equation}
+%DIF < 	where $\lambda_i$ indicates the firing rate of an input spike train.
+%DIF < 	Figure~\ref{fig:nsp} shows the activation function in curve sets corresponding to different discrete noise levels, and in a 3D plot.
+%DIF < 	\begin{figure}[thb!]
+%DIF < 		\centering
+%DIF < 		\begin{subfigure}[t]{0.4\textwidth}
+%DIF < 			\includegraphics[width=\textwidth]{pics_iconip/4.pdf}
+%DIF < 			\caption{Noisy Softplus}
+%DIF < 		\end{subfigure}
+%DIF < 		\begin{subfigure}[t]{0.4\textwidth}
+%DIF < 			\includegraphics[width=\textwidth]{pics_iconip/5.pdf}
+%DIF < 			\caption{Noisy Softplus in 3D}
+%DIF < 		\end{subfigure}
+%DIF < 		\caption{
+%DIF < 			Noisy Softplus fits to the response function of the LIF neuron.
+%DIF < 			Noisy Softplus in (a) curve sets and (b) 3D.}
+%DIF < 		\label{fig:nsp}
+%DIF < 	\end{figure}	
+%DIF < 	
+%DIF < 	The derivative is the logistic function scaled by $k\sigma$:
+%DIF < 	\begin{equation}
+%DIF < 	\frac{\partial f_{ns}(x,\sigma)}{\partial x} = \frac{1}{1+exp(-\frac{x}{k\sigma})}~~,
+%DIF < 	\label{equ:logist}
+%DIF < 	\end{equation}	
+%DIF < 	which could be easily applied to back propagation in any network training.
+%DIF < 	However, such a derivative function of low complexity does not present in Siegert function.
+	Due to the limited time resolution of common SNN simulators and the time taken for neurotransmitter release, $\tau_{\textit{\textrm{syn}}}$, mismatches exist between the analytical response function, the Siegert formula, and practical neural activities.
+	Consequently to model the practical LIF response function (see Figure~\ref{fig:nsp}(a)) whose output firing rates are determined by both the mean and variance of the noisy input currents, the NSP \DIFdelbegin \DIFdel{was }\DIFdelend \DIFaddbegin \DIFadd{is }\DIFaddend proposed as follows:
+	\begin{equation}
+	y = f\DIFdelbegin \DIFdel{_{ns}}\DIFdelend \DIFaddbegin \DIFadd{_{\textit{\textrm{NSP}}}}\DIFaddend (x, \sigma) = k \sigma \log [1 + \exp(\frac{x}{k \sigma})]~,
+	\label{equ:nsp}
+	\end{equation}
+	where $x$ and $\sigma$ refer to the mean and standard deviation of the input current, $y$ indicates the intensity of the output firing rate, and $k$, determined by the biological configurations on the LIF neurons~\citep{liu2016noisy}~(listed in Table~\ref{tbl:pynnConfig}), \DIFdelbegin \DIFdel{controls }\DIFdelend \DIFaddbegin \DIFadd{scales the impact of the noise thereby controlling }\DIFaddend the shape of the curves.
+	Note that the novel activation function we proposed contains two parameters, the mean current and its noise, which \DIFdelbegin \DIFdel{can be }\DIFdelend \DIFaddbegin \DIFadd{takes the values }\DIFaddend estimated by Equation~\ref{equ:distr0}: \DIFdelbegin \begin{displaymath}
+	\DIFdel{x = \tau_{\textit{\textrm{syn}}}\sum_i w_i\lambda_{i}~, ~\sigma^2=\frac{1}{2}\tau_{\textit{\textrm{syn}}}\sum_i w_i^2\lambda_{i}~,
+	%DIFDELCMD < \label{equ:distr}%%%
+	}\end{displaymath}
+	%DIFAUXCMD
+\DIFdel{where $\lambda_i$ indicates the firing rate of an input spike train}\DIFdelend \DIFaddbegin \DIFadd{$m_I$ and $s_I^2$.
+%DIF > 	%+I_{\textit{\textrm{offset}}}
+%DIF > 	\begin{equation}
+%DIF > 	x = \tau_{\textit{\textrm{syn}}}\sum_i w_i\lambda_{i}~, ~\sigma^2=\frac{1}{2}\tau_{\textit{\textrm{syn}}}\sum_i w_i^2\lambda_{i}~,
+%DIF > 	\label{equ:distr}
+%DIF > 	\end{equation}
+%DIF > 	where $\lambda_i$ indicates the firing rate of an input spike train.
+	Since the NSP takes two variables as inputs, the activation function can be plotted in 3D, see Figure~\ref{Fig:NSP3D}}\DIFaddend .
 
+	
+
+
+	
+	
+	Figure~\ref{fig:nsp}(b) shows the activation function in curve sets corresponding to different discrete noise levels which mimics the responding activities of practical simulations of LIF neurons, shown in Figure~\ref{fig:nsp}(a).
+	\DIFdelbegin \DIFdel{Since the NSP takes two variables as inputs, the activation function can be plotted in 3D, see Figure~\ref{Fig:NSP3D}.
+}\DIFdelend \DIFaddbegin \DIFadd{It is note worthy that, the non-smooth curve (blue line in Figure~\ref{fig:nsp}(a) generated by $\sigma$ = 0) of the LIF response activities does not fit into the NSP function.
+	It is a limitation of using NSPs to model spiking rates when the noise level approaches to 0.
+	However, we ignore the minor mismatch to unify and simplify the model, since the results show an acceptable performance drop in Section~\ref{sec:iconipResult}.
+	In addition, scaling, shifting and parameter calibrations are essential to accurately fit the NSP to actual LIF response activities.
+	We will illustrate the procedure in Section~\ref{sec:af_model}.
+%DIF > 	The noisy-current driven firing rates shown in Figure~\ref{fig:nsp}(b) are not different from the curves in Figure~\ref{fig:nsp}(a) except that a constant current $I_{\textit{\textrm{offset}}}$ is added to the current influx thereby shifting the curves left on the x-axis by $I_{\textit{\textrm{offset}}}$.  
+%DIF > 	However, the shift is essential to enable accurate fitting of the response firing rates of the LIF neuron by using NSP.
+%DIF > 	Note that, the current offset $I_{\textit{\textrm{offset}}}$ can be seen as a bias of the input $x$ in the NSP function, $f_{\textit{\textrm{NSP}}}(x-I_{\textit{\textrm{offset}}}, \sigma)$, thus the specific parameter of LIF neuron is not arbitrarily chosen, but, configured by precise estimation.
+%DIF > 	The parameter estimation methods will be illustrated in Section~\ref{sec:af_model}.
+	}\DIFaddend 
+
+	
 	\begin{figure}[bt]
 		\centering
-		\includegraphics[width=0.7\textwidth]{pics_iconip/5.pdf}
-		\DIFdelbeginFL %DIFDELCMD < \caption{%%%
-\DIFdelendFL \DIFaddbeginFL \caption[NSP in 3D.]{\DIFaddendFL Noisy Softplus in 3D.}
+		\DIFdelbeginFL %DIFDELCMD < \includegraphics[width=0.7\textwidth]{pics_iconip/5.pdf}
+%DIFDELCMD < 		%%%
+\DIFdelendFL \DIFaddbeginFL \includegraphics[width=0.7\textwidth]{pics_iconip/revise_5.pdf}
+		\DIFaddendFL \caption[NSP in 3D.]{Noisy Softplus in 3D.}
 		\label{Fig:NSP3D}
 	\end{figure}
 
 	The derivative of the NSP is the logistic function scaled by $k\sigma$:
 	\begin{equation}
-	\frac{\partial f_{ns}(x,\sigma)}{\partial x} = \frac{1}{1+exp(-\frac{x}{k\sigma})}~~,
+	\DIFdelbegin \DIFdel{\frac{\partial f_{ns}(x,\sigma)}{\partial x} }\DIFdelend \DIFaddbegin \DIFadd{\frac{\partial f_{\textit{\textrm{NSP}}}(x,\sigma)}{\partial x} }\DIFaddend = \frac{1}{1+exp(-\frac{x}{k\sigma})}~~,
 	\label{equ:logist}
 	\end{equation}	
 	which could be applied easily to back propagation in any ANN training.	
@@ -671,191 +768,239 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking \DIFd
 	
 \section{Generalised Off-line SNN Training}
 \label{sec:genrial_SNN}
-	We have discussed modelling the response firing activity of a LIF neuron with an abstract activation function, NSP.
-	However, before we can replace an LIF neuron with an abstract activation function, it is necessary to map the numerical values of NSP to physical variables in SNNs.
+	We have \DIFaddbegin \DIFadd{briefly }\DIFaddend discussed modelling the \DIFdelbegin \DIFdel{response firing activity }\DIFdelend \DIFaddbegin \DIFadd{LIF response activities }\DIFaddend of a LIF neuron with an abstract activation function, NSP.
+\DIFdelbegin \DIFdel{However, before we can replace an LIF neuron with an abstract activation function, it is necessary to }\DIFdelend %DIF > 	However, before we can replace an LIF neuron with an abstract activation function, it is necessary to map the numerical values of NSP to physical variables in SNNs.
+	\DIFaddbegin \DIFadd{Function transformations are essential to precisely }\DIFaddend map the numerical values of NSP to physical variables in SNNs. 
 	Therefore, to optimise the modelling of the LIF response function, we curve fit parameters of the NSP (e.g. Figure~\ref{fig:nsp}(b)) to approximate the actual firing activities (e.g. Figure~\ref{fig:nsp}(a)) in Section~\ref{sec:af_model}.
 	Section~\ref{subsec:PAF} includes the parameters in the proposed activation function, PAF, to unify the presentation of activation functions for both ANNs and SNNs.
 	Thus, a generalised off-line SNN training method (Section~\ref{subsec:ns_train}) is completed using PAF.
 	Moreover, a corresponding fine tuning method is put forward to increase the training capability in Section~\ref{subsec:finetune}.
-%	
-%	\subsection{Equivalent Input and Output}
-%	
-%	\begin{figure}[bt]
-%		\centering
-%		\includegraphics[width=0.7\textwidth]{pics_iconip/neuron.pdf}
-%		\caption{Artificial neuron model in ANNs. }
-%		\label{Fig:neuron}
-%	\end{figure}
-%	Neurons in ANNs take inputs from their previous layer, and feed the weighted sum of their input, $net_j = \sum_i w_{ij}x_i$, to the activation function.
-%	The transformed signal then forms the output of an artificial neuron, $y_j=f(net_j)$, see Figure~\ref{Fig:neuron}.	
-%	However, Noisy Softplus takes physical quantities of current, and firing rate as input/output, thus an extra step is still needed to map the firing rate to numerical values in ANNs.
-%	According to Equation~\ref{equ:distr}, the mean of the current feeding into a spiking neuron is equivalent to $net$ of artificial neurons, where
-%	\begin{equation}
-%	\begin{aligned}
-%DIF < 		& {m_I}_j = \sum_i w_{ij}(\lambda_{i}\tau_{syn})~, \textrm{  then}\\
-%DIF > 		& {m_I}_j = \sum_i w_{ij}(\lambda_{i}\tau_{\textit{\textrm{syn}}})~, \textrm{  then}\\
-%		& net_j= \sum_i w_{ij} x_i~~, \textrm{~~and~~}
-%DIF < 		x_i = \lambda_{i}\tau_{syn}~.
-%DIF > 		x_i = \lambda_{i}\tau_{\textit{\textrm{syn}}}~.
-%	\end{aligned}
-%	\label{equ:mi_input}
-%	\end{equation}
-%	The noise level of Noisy Softplus, $\sigma^2$, is the variance of the current, which also can be seen as a weighted sum of the same input $x$ but with different weights:
-%	\begin{equation}
-%	\begin{aligned}
-%DIF < 		& {s_I^2}_j=\sum_i(\frac{1}{2} w_{ij}^2) (\lambda_{i}\tau_{syn})~, \textrm{  then}\\
-%DIF > 		& {s_I^2}_j=\sum_i(\frac{1}{2} w_{ij}^2) (\lambda_{i}\tau_{\textit{\textrm{syn}}})~, \textrm{  then}\\
-%		& \sigma^2_j= \sum_i (\frac{1}{2} w_{ij}^2) x_i~~.
-%	\end{aligned}
-%	\label{equ:si_input}
-%	\end{equation}
-%	
-%	\begin{figure}[bt!]
-%		\centering
-%		\includegraphics[width=0.98\textwidth]{pics_iconip/neuron_o.pdf}
-%		\caption{Artificial spiking neuron takes scaled firing rates as input, then transforms weighted sum in some activation unit to its output which can be scaled-up to the firing rate of an output spike train.}
-%		\label{Fig:sneuron}
-%	\end{figure}
-%	
-%	Noisy Softplus transforms the noisy current with parameters of $(net_j, \sigma_j)$ to the equivalent ANN output $y_j$ , where it can be scaled up by the factor $S$ to the firing rate of SNNs.
-%	Note that the calculation of noise level is not necessary for activation functions other than Noisy Softplus, for example, it can be set to a constant for Softplus or 0 for ReLU.
-%	We name the neuron model `artificial spiking neurons' which takes firing rates of spike trains as input and output. 
-%	The entire artificial spiking neuron model is then generalised to any ReLU/Softplus-like activation functions, See Figure~\ref{Fig:sneuron}.
-%	
-%
-%	
-%	
-%	\subsection{Layered-up Network}
-%	\label{subsec:ns_train}
-%%	Figure~\ref{Fig:sneuron} shows an complete transformation process of a spiking neuron, which mimics the biological neurons taking and generating spike trains.
-%DIF < 	Referred to Figure~\ref{Fig:sneuron}, if we move the left end process of $\times \tau_{syn}$ to the right end after $\lambda_j$, Figure~\ref{Fig:sneuron} forms the same model structure as artificial neurons shown in Figure~\ref{Fig:neuron}: neurons take $x$ as input and outputs $y$, and this conversion is illustrated in Figure~\ref{Fig:tneuron}.
-%DIF < 	The process within such an artificial neuron is divided into weighted summation and activation, which also applies to SNN modelling by combining the scaling factor $S$ and the synaptic time constant $\tau_{syn}$ to activation functions.
-%DIF > 	Referred to Figure~\ref{Fig:sneuron}, if we move the left end process of $\times \tau_{\textit{\textrm{syn}}}$ to the right end after $\lambda_j$, Figure~\ref{Fig:sneuron} forms the same model structure as artificial neurons shown in Figure~\ref{Fig:neuron}: neurons take $x$ as input and outputs $y$, and this conversion is illustrated in Figure~\ref{Fig:tneuron}.
-%DIF > 	The process within such an artificial neuron is divided into weighted summation and activation, which also applies to SNN modelling by combining the scaling factor $S$ and the synaptic time constant $\tau_{\textit{\textrm{syn}}}$ to activation functions.
-%	Thus the combined activation function for modelling SNNs should be:
-%	\begin{equation}
-%DIF < 	y = f(x) \times S \times \tau_{syn}~~,
-%DIF > 	y = f(x) \times S \times \tau_{\textit{\textrm{syn}}}~~,
-%	\label{equ:full_act}
-%	\end{equation}
-%	and its derivative function which is used when back propagates is:
-%	\begin{equation}
-%DIF < 	\frac{\partial y}{\partial x} = f'(x) \times S \times \tau_{syn}~~.
-%DIF > 	\frac{\partial y}{\partial x} = f'(x) \times S \times \tau_{\textit{\textrm{syn}}}~~.
-%	\end{equation}
-%	
-%	\begin{figure}[tbh!]
-%		\centering
-%		\includegraphics[width=0.8\textwidth]{pics_iconip/neuron_t.pdf}
-%		\caption{Transforming artificial spiking neurons to artificial neurons for SNN modelling. The combined activation links the firing activity of a spiking neuron to the numerical value of ANNs.}
-%		\label{Fig:tneuron}
-%	\end{figure}
-%	
-%	
-%	
-%
-%	
-%
-%	
-%	Thus, using this method of ANN-trained SNNs, the activation functions are of lower complexity than the Siegert formula, and their corresponding derivative functions can be directly used for back propagation.
-%	Furthermore, the method enables ReLU-like activation functions for SNN training, thus improving the recognition accuracy while keeping a relative lower firing rate compared to sigmoid neurons. 
-%	Most significantly, the ANN-trained weights are ready for use in SNNs without any transformation, and the output firing rate of a spiking neuron can be estimated in the ANN simulation.
-%	
-%	
-%	\subsection{Fine Tuning}
-%	There are two aspects to the fine tuning which makes the ANN closer to SNNs:
-%	Firstly, using Noisy Softplus activation functions in a whole trained network operates every single neuron running in a similar noise level as in SNNs, thus the weights trained by other activation functions will be tuned to fit closer to SNNs.
-%	Secondly, the output firing rate of any LIF neuron is greater than zero as long as noise exists in their synaptic input.
-%	Thus adding up a small offset on the labels directs the model to approximate to practical SNNs. 
-%	
-%	The labels of data are always converted to binary values for ANN training.
-%	This enlarges the disparities between the correct recognition label and the rest to train the network for better classification capability.
-%	Consequently, we train the network as stated in Section~\ref{subsec:ns_train} with any activation function and then fine-tune it with Noisy Softplus to take account of both accuracy and practical network activities of SNNs.
-%	However, we add a small number, for example 0.01, to all the binary values of the data labels.
-%	Doing so helps the training to loosen the strict objective function to predict exact labels with binary values.
-%	Instead, it allows a small offset to the objective.
-%	An alternative method is to use Softmax function at the top layer, which aims to map real vectors to the range of $(0,1)$ that add up to 1. 
-%	However, without a limit on the input of Softmax, it will be easy to reach or even exceed the highest firing rate of a spiking neuron.
-%	The result of fine tuning on a ConvNet will be demonstrated in Section~\ref{subsec:result_compare}.
+%DIF < 	
+%DIF < 	\subsection{Equivalent Input and Output}
+%DIF < 	
+%DIF < 	\begin{figure}[bt]
+%DIF < 		\centering
+%DIF < 		\includegraphics[width=0.7\textwidth]{pics_iconip/neuron.pdf}
+%DIF < 		\caption{Artificial neuron model in ANNs. }
+%DIF < 		\label{Fig:neuron}
+%DIF < 	\end{figure}
+%DIF < 	Neurons in ANNs take inputs from their previous layer, and feed the weighted sum of their input, $net_j = \sum_i w_{ij}x_i$, to the activation function.
+%DIF < 	The transformed signal then forms the output of an artificial neuron, $y_j=f(net_j)$, see Figure~\ref{Fig:neuron}.	
+%DIF < 	However, Noisy Softplus takes physical quantities of current, and firing rate as input/output, thus an extra step is still needed to map the firing rate to numerical values in ANNs.
+%DIF < 	According to Equation~\ref{equ:distr}, the mean of the current feeding into a spiking neuron is equivalent to $net$ of artificial neurons, where
+%DIF < 	\begin{equation}
+%DIF < 	\begin{aligned}
+%DIF < 		& {m_I}_j = \sum_i w_{ij}(\lambda_{i}\tau_{\textit{\textrm{syn}}})~, \textrm{  then}\\
+%DIF < 		& net_j= \sum_i w_{ij} x_i~~, \textrm{~~and~~}
+%DIF < 		x_i = \lambda_{i}\tau_{\textit{\textrm{syn}}}~.
+%DIF < 	\end{aligned}
+%DIF < 	\label{equ:mi_input}
+%DIF < 	\end{equation}
+%DIF < 	The noise level of Noisy Softplus, $\sigma^2$, is the variance of the current, which also can be seen as a weighted sum of the same input $x$ but with different weights:
+%DIF < 	\begin{equation}
+%DIF < 	\begin{aligned}
+%DIF < 		& {s_I^2}_j=\sum_i(\frac{1}{2} w_{ij}^2) (\lambda_{i}\tau_{\textit{\textrm{syn}}})~, \textrm{  then}\\
+%DIF < 		& \sigma^2_j= \sum_i (\frac{1}{2} w_{ij}^2) x_i~~.
+%DIF < 	\end{aligned}
+%DIF < 	\label{equ:si_input}
+%DIF < 	\end{equation}
+%DIF < 	
+%DIF < 	\begin{figure}[bt!]
+%DIF < 		\centering
+%DIF < 		\includegraphics[width=0.98\textwidth]{pics_iconip/neuron_o.pdf}
+%DIF < 		\caption{Artificial spiking neuron takes scaled firing rates as input, then transforms weighted sum in some activation unit to its output which can be scaled-up to the firing rate of an output spike train.}
+%DIF < 		\label{Fig:sneuron}
+%DIF < 	\end{figure}
+%DIF < 	
+%DIF < 	Noisy Softplus transforms the noisy current with parameters of $(net_j, \sigma_j)$ to the equivalent ANN output $y_j$ , where it can be scaled up by the factor $S$ to the firing rate of SNNs.
+%DIF < 	Note that the calculation of noise level is not necessary for activation functions other than Noisy Softplus, for example, it can be set to a constant for Softplus or 0 for ReLU.
+%DIF < 	We name the neuron model `artificial spiking neurons' which takes firing rates of spike trains as input and output. 
+%DIF < 	The entire artificial spiking neuron model is then generalised to any ReLU/Softplus-like activation functions, See Figure~\ref{Fig:sneuron}.
+%DIF < 	
+%DIF < 
+%DIF < 	
+%DIF < 	
+%DIF < 	\subsection{Layered-up Network}
+%DIF < 	\label{subsec:ns_train}
+%DIF < %	Figure~\ref{Fig:sneuron} shows an complete transformation process of a spiking neuron, which mimics the biological neurons taking and generating spike trains.
+%DIF < 	Referred to Figure~\ref{Fig:sneuron}, if we move the left end process of $\times \tau_{\textit{\textrm{syn}}}$ to the right end after $\lambda_j$, Figure~\ref{Fig:sneuron} forms the same model structure as artificial neurons shown in Figure~\ref{Fig:neuron}: neurons take $x$ as input and outputs $y$, and this conversion is illustrated in Figure~\ref{Fig:tneuron}.
+%DIF < 	The process within such an artificial neuron is divided into weighted summation and activation, which also applies to SNN modelling by combining the scaling factor $S$ and the synaptic time constant $\tau_{\textit{\textrm{syn}}}$ to activation functions.
+%DIF < 	Thus the combined activation function for modelling SNNs should be:
+%DIF < 	\begin{equation}
+%DIF < 	y = f(x) \times S \times \tau_{\textit{\textrm{syn}}}~~,
+%DIF < 	\label{equ:full_act}
+%DIF < 	\end{equation}
+%DIF < 	and its derivative function which is used when back propagates is:
+%DIF < 	\begin{equation}
+%DIF < 	\frac{\partial y}{\partial x} = f'(x) \times S \times \tau_{\textit{\textrm{syn}}}~~.
+%DIF < 	\end{equation}
+%DIF < 	
+%DIF < 	\begin{figure}[tbh!]
+%DIF < 		\centering
+%DIF < 		\includegraphics[width=0.8\textwidth]{pics_iconip/neuron_t.pdf}
+%DIF < 		\caption{Transforming artificial spiking neurons to artificial neurons for SNN modelling. The combined activation links the firing activity of a spiking neuron to the numerical value of ANNs.}
+%DIF < 		\label{Fig:tneuron}
+%DIF < 	\end{figure}
+%DIF < 	
+%DIF < 	
+%DIF < 	
+%DIF < 
+%DIF < 	
+%DIF < 
+%DIF < 	
+%DIF < 	Thus, using this method of ANN-trained SNNs, the activation functions are of lower complexity than the Siegert formula, and their corresponding derivative functions can be directly used for back propagation.
+%DIF < 	Furthermore, the method enables ReLU-like activation functions for SNN training, thus improving the recognition accuracy while keeping a relative lower firing rate compared to sigmoid neurons. 
+%DIF < 	Most significantly, the ANN-trained weights are ready for use in SNNs without any transformation, and the output firing rate of a spiking neuron can be estimated in the ANN simulation.
+%DIF < 	
+%DIF < 	
+%DIF < 	\subsection{Fine Tuning}
+%DIF < 	There are two aspects to the fine tuning which makes the ANN closer to SNNs:
+%DIF < 	Firstly, using Noisy Softplus activation functions in a whole trained network operates every single neuron running in a similar noise level as in SNNs, thus the weights trained by other activation functions will be tuned to fit closer to SNNs.
+%DIF < 	Secondly, the output firing rate of any LIF neuron is greater than zero as long as noise exists in their synaptic input.
+%DIF < 	Thus adding up a small offset on the labels directs the model to approximate to practical SNNs. 
+%DIF < 	
+%DIF < 	The labels of data are always converted to binary values for ANN training.
+%DIF < 	This enlarges the disparities between the correct recognition label and the rest to train the network for better classification capability.
+%DIF < 	Consequently, we train the network as stated in Section~\ref{subsec:ns_train} with any activation function and then fine-tune it with Noisy Softplus to take account of both accuracy and practical network activities of SNNs.
+%DIF < 	However, we add a small number, for example 0.01, to all the binary values of the data labels.
+%DIF < 	Doing so helps the training to loosen the strict objective function to predict exact labels with binary values.
+%DIF < 	Instead, it allows a small offset to the objective.
+%DIF < 	An alternative method is to use Softmax function at the top layer, which aims to map real vectors to the range of $(0,1)$ that add up to 1. 
+%DIF < 	However, without a limit on the input of Softmax, it will be easy to reach or even exceed the highest firing rate of a spiking neuron.
+%DIF < 	The result of fine tuning on a ConvNet will be demonstrated in Section~\ref{subsec:result_compare}.
 
+	
 	\subsection{Mapping NSP to Concrete Physical Units}
 	\label{sec:af_model}
-	The inputs of the NSP, $x$ and $\sigma$, are obtained from physical variables as stated in Equation~\ref{equ:distr}, thus they are already in physical units (nA).
-	Therefore, linearly scaling up the activation function by a factor~$S$~(Hz~/~nA) can approximate the output firing rate $\lambda_{\textit{\textrm{out}}}$ of an LIF neuron in Hz:
-	\begin{equation}
-	\lambda_{\textit{\textrm{out}}} \simeq f_{ns}(x, \sigma) \times S = k \sigma \log [1 + \exp(\frac{x}{k \sigma})] \times S~.
+	The inputs of the NSP \DIFaddbegin \DIFadd{function}\DIFaddend , $x$ and $\sigma$, are obtained from physical variables as stated in Equation~\DIFdelbegin \DIFdel{\ref{equ:distr}}\DIFdelend \DIFaddbegin \DIFadd{\ref{equ:distr0}: $m_I$ and $s_I$}\DIFaddend , thus they are already in physical units (nA).
+	Therefore, linearly scaling up the activation function by a factor~$S$~(Hz~/~nA) can approximate the output firing rate $\lambda_{\textit{\textrm{out}}}$ of an LIF neuron in Hz\DIFdelbegin \DIFdel{:
+	}\DIFdelend \DIFaddbegin \DIFadd{.
+	Moreover, including a bias $b$ on the input $x$ allows the curves set move freely on the x-axis to better fit into the actual firing activities:
+	}\DIFaddend \begin{equation}
+	\lambda_{\textit{\textrm{out}}} \simeq f\DIFdelbegin \DIFdel{_{ns}}\DIFdelend \DIFaddbegin \DIFadd{_{\textit{\textrm{NSP}}}}\DIFaddend (\DIFdelbegin \DIFdel{x}\DIFdelend \DIFaddbegin \DIFadd{x-b}\DIFaddend , \sigma) \times S = k \sigma \log [1 + \exp(\DIFdelbegin \DIFdel{\frac{x}{k \sigma}}\DIFdelend \DIFaddbegin \DIFadd{\frac{x-b}{k \sigma}}\DIFaddend )] \times S~.
 	\label{equ:fit}
 	\end{equation}	
 
-	
-	Suitable calibrations of $k$ and $S$ in Equation~\ref{equ:fit} enable NSP to closely match the practical response firing rates of LIF neurons given various biological parameters.
-	The parameter pair of $(k, S)$ is curve-fitted with the triple data points of $(\lambda_{\textit{\textrm{out}}}, x, \sigma)$ and the calibration currently is conducted by linear least squares regression.
-	The output firing rate $\lambda_{\textit{\textrm{out}}}$ is measured from SNN simulations where an LIF neuron is driven by synaptic input currents of Poisson spike trains.
-	Figure~\ref{Fig:nsptau1} shows two calibration results in which the parameters were fitted to $(k, S)=(0.19,208.76)$ when the synaptic constant is set to $\tau_{\textit{\textrm{syn}}}=1$~ms and was fitted to $(k, S)=(0.35,201.06)$ when $\tau_{\textit{\textrm{syn}}}=10$~ms.
-	%numerical analysis is considered however for future work to express the factors with biological parameters of an LIF neuron.
-
-	\begin{figure}
+	\DIFaddbegin \begin{figure}
 		\centering
 		\begin{subfigure}[t]{0.48\textwidth}
-			\includegraphics[width=\textwidth]{pics_iconip/4-1.png}
-			\caption{$\tau_{\textit{\textrm{syn}}}$=1~ms}
+			\includegraphics[width=\textwidth]{pics_iconip/revise_4-1.png}
+			\caption{\DIFaddFL{$\tau_{\textit{\textrm{syn}}}$=1~ms}}
 		\end{subfigure}
 		\begin{subfigure}[t]{0.48\textwidth}
-			\includegraphics[width=\textwidth]{pics_iconip/4-10.png}
-			\caption{$\tau_{\textit{\textrm{syn}}}$=10~ms}
+			\includegraphics[width=\textwidth]{pics_iconip/revise_4-2.png}
+			\caption{\DIFaddFL{$\tau_{\textit{\textrm{syn}}}$=10~ms}}
 		\end{subfigure}
-		\DIFdelbeginFL %DIFDELCMD < \caption{%%%
-\DIFdelendFL \DIFaddbeginFL \caption[NSP fits to the response firing rates.]{\DIFaddendFL NSP fits to the response firing rates of LIF neurons in concrete physical units.
-			Recorded response firing rate of an LIF neuron driven by synaptic current with two synaptic time constants: (a) $\tau_{\textit{\textrm{syn}}}$=1~ms and (b) $\tau_{\textit{\textrm{syn}}}$=10~ms. Averaged firing rates of simulation trails are shown in bold lines, and the grey colour fills the range between the minimum to maximum of the firing rates. The thin lines are the scaled NSP.}
+		\caption[NSP fits to the response firing rates.]{\DIFaddFL{NSP fits to the response firing rates of LIF neurons in concrete physical units.
+			Recorded response firing rate of an LIF neuron driven by synaptic current with two synaptic time constants: (a) $\tau_{\textit{\textrm{syn}}}$=1~ms and (b) $\tau_{\textit{\textrm{syn}}}$=10~ms. Averaged firing rates of simulation trails are shown in bold lines, and the grey colour fills the range between the minimum to maximum of the firing rates. The thin lines are the scaled NSP.}}
 		\label{Fig:nsptau1}
 	\end{figure}
 
+	\DIFaddend Suitable calibrations of \DIFaddbegin \DIFadd{the noise scaling factor }\DIFaddend $k$\DIFdelbegin \DIFdel{and }\DIFdelend \DIFaddbegin \DIFadd{, input bias $b$ and mapping scaling factor }\DIFaddend $S$ in Equation~\ref{equ:fit} enable NSP to closely match the practical response firing rates of LIF neurons given various biological parameters.
+	The \DIFdelbegin \DIFdel{parameter pair of $(k, S)$ is }\DIFdelend \DIFaddbegin \DIFadd{parameters of $(k, b, S)$ are }\DIFaddend curve-fitted with the triple data points of $(\lambda_{\textit{\textrm{out}}}, x, \sigma)$ and the calibration currently is conducted by linear least squares regression.
+	The output firing rate $\lambda_{\textit{\textrm{out}}}$ is measured from SNN simulations where an LIF neuron is driven by synaptic input currents of Poisson spike trains\DIFaddbegin \DIFadd{;
+	and $x$ and $\sigma$ take the mean and variance of the noisy current by using Equation~\ref{equ:distr0}}\DIFaddend . 
+	Figure~\ref{Fig:nsptau1} shows two calibration results in which the parameters were fitted to \DIFdelbegin \DIFdel{$(k, S)=(0.19,208.76)$ }\DIFdelend \DIFaddbegin \DIFadd{$(k, b, S)=(0.18, 0.07, 201.66)$ }\DIFaddend when the synaptic constant is set to $\tau_{\textit{\textrm{syn}}}=1$~ms and was fitted to \DIFdelbegin \DIFdel{$(k, S)=(0.35,201.06)$ }\DIFdelend \DIFaddbegin \DIFadd{$(k, b, S)=(0.35, 0.03, 178.91)$ }\DIFaddend when $\tau_{\textit{\textrm{syn}}}=10$~ms.
+	%numerical analysis is considered however for future work to express the factors with biological parameters of an LIF neuron.
+
+	\DIFdelbegin %DIFDELCMD < \begin{figure}
+%DIFDELCMD < 		\centering
+%DIFDELCMD < 		\begin{subfigure}[t]{0.48\textwidth}
+%DIFDELCMD < 			\includegraphics[width=\textwidth]{pics_iconip/4-1.png}
+%DIFDELCMD < 			%%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{$\tau_{\textit{\textrm{syn}}}$=1~ms}}
+		%DIFAUXCMD
+%DIFDELCMD < \end{subfigure}
+%DIFDELCMD < 		\begin{subfigure}[t]{0.48\textwidth}
+%DIFDELCMD < 			\includegraphics[width=\textwidth]{pics_iconip/4-10.png}
+%DIFDELCMD < 			%%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{$\tau_{\textit{\textrm{syn}}}$=10~ms}}
+		%DIFAUXCMD
+%DIFDELCMD < \end{subfigure}
+%DIFDELCMD < 		%%%
+%DIFDELCMD < \caption[NSP fits to the response firing rates.]{%
+{%DIFAUXCMD
+\DIFdelFL{NSP fits to the response firing rates of LIF neurons in concrete physical units.
+			Recorded response firing rate of an LIF neuron driven by synaptic current with two synaptic time constants: (a) $\tau_{\textit{\textrm{syn}}}$=1~ms and (b) $\tau_{\textit{\textrm{syn}}}$=10~ms. Averaged firing rates of simulation trails are shown in bold lines, and the grey colour fills the range between the minimum to maximum of the firing rates. The thin lines are the scaled NSP.}}
+		%DIFAUXCMD
+%DIFDELCMD < %DIFDELCMD < \label{Fig:nsptau1}%%%
+%DIFDELCMD < 	\end{figure}
+%DIFDELCMD < 	%%%
+\DIFdelend \DIFaddbegin \DIFadd{To keep the simple format of traditional activation functions, $y=f(x)$, which has no bias on the input, it is easy to pass the bias $b$ to the LIF parameter, the constant current offset, $I_{\textit{\textrm{offset}}}=b$.
+	Therefore the specific parameter $I_{\textit{\textrm{offset}}}$ of the LIF neuron is not arbitrarily chosen, but configured by precise estimation.
+	More importantly, setting $I_{\textit{\textrm{offset}}}$ properly on LIF neuron instead of having a constant bias on the input of an activation function keeps the hyper-parameters unchanged in ANN training.
+	For example, the initial weights of a network have to be carefully set to adapt to the bias on the activation functions.
+	}\DIFaddend 
+
+	
 	\subsection{Parametric Activation Functions~(PAFs)}
 	\label{subsec:PAF}
 	\begin{figure}[tbh!]
 		\centering
 		\begin{subfigure}[t]{\textwidth}
 			\centering
-			\includegraphics[width=0.8\textwidth]{pics_iconip/neuron_o.pdf}
-			\caption{An artificial spiking neuron modelled by NSP, where firing rates are the input and output of the neuron. NSP transforms the noisy current influx including both the mean ($net_j$, solid lines) and the variance $\sigma^2_j$ (dashed lines) to the abstract firing rate $y_j$.}
-		\end{subfigure}\\\bigskip
-		\begin{subfigure}[t]{\textwidth}
+			\DIFdelbeginFL %DIFDELCMD < \includegraphics[width=0.8\textwidth]{pics_iconip/neuron_o.pdf}
+%DIFDELCMD < 			%%%
+\DIFdelendFL \DIFaddbeginFL \includegraphics[width=0.9\textwidth]{pics_iconip/neuron_o.pdf}
+			\bigskip
+			\DIFaddendFL \caption{An artificial spiking neuron modelled by NSP, where firing rates are the input and output of the neuron. NSP transforms the noisy current influx including both the mean (\DIFdelbeginFL \DIFdelFL{$net_j$}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{$net\_x_{j}$}\DIFaddendFL , solid lines) and the variance \DIFdelbeginFL \DIFdelFL{$\sigma^2_j$ }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{$net_\_\sigma^2_j$ }\DIFaddendFL (dashed lines) to the abstract firing rate $y_j$.}
+		\end{subfigure}\\\bigskip\DIFaddbeginFL \bigskip
+		\DIFaddendFL \begin{subfigure}[t]{\textwidth}
 			\centering
-			\includegraphics[width=0.7\textwidth]{pics_iconip/neuron_PAF.pdf}
-			\caption{An artificial spiking neuron modelled by PAF-NSP, whose input and output are numerical values, equivalent to those of ANNs. PAF includes the scaling factors $S$ and the synaptic time constant \DIFdelbeginFL \DIFdelFL{$\tau_{syn}$ }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{$\tau_{\textit{\textrm{syn}}}$ }\DIFaddendFL in the combined activation function.}
-		\end{subfigure}\\\bigskip
-		\begin{subfigure}[t]{\textwidth}
+			\DIFdelbeginFL %DIFDELCMD < \includegraphics[width=0.7\textwidth]{pics_iconip/neuron_PAF.pdf}
+%DIFDELCMD < 			%%%
+\DIFdelendFL \DIFaddbeginFL \includegraphics[width=0.85\textwidth]{pics_iconip/neuron_PAF.pdf}
+			\bigskip
+			\DIFaddendFL \caption{An artificial spiking neuron modelled by PAF-NSP, whose input and output are numerical values, equivalent to those of ANNs. PAF includes the scaling factors $S$ and the synaptic time constant $\tau_{\textit{\textrm{syn}}}$ in the combined activation function.}
+		\end{subfigure}\\\bigskip\DIFaddbeginFL \bigskip
+		\DIFaddendFL \begin{subfigure}[t]{\textwidth}
 			\centering
-			\includegraphics[width=0.55\textwidth]{pics_iconip/neuron.pdf}
-			\caption{A copy of Figure~\ref{Fig:neuron_net} showing a general artificial neuron where an activation function transforms the weighted sum $net_j$  to its outcome $y_j$.}
+			\DIFdelbeginFL %DIFDELCMD < \includegraphics[width=0.55\textwidth]{pics_iconip/neuron.pdf}
+%DIFDELCMD < 			%%%
+\DIFdelendFL \DIFaddbeginFL \includegraphics[width=0.6\textwidth]{pics_iconip/neuron.pdf}
+			\bigskip
+			\DIFaddendFL \caption{A copy of Figure~\ref{Fig:neuron_net} showing a general artificial neuron where an activation function transforms the weighted sum $net_j$  to its outcome $y_j$.}
 		\end{subfigure}
-		\DIFdelbeginFL %DIFDELCMD < \caption{%%%
-\DIFdelendFL \DIFaddbeginFL \caption[Comparisons of three activation functions]{\DIFaddendFL Comparisons of three activation functions used in ANNs: (a) the NSP, (b) the PAF-NSP, and (c) a conventional ANN activation function. The PAF links the firing activity of a spiking neuron to the numerical value of ANNs.}
+		\DIFdelbeginFL %DIFDELCMD < \caption[Comparisons of three activation functions]{%%%
+\DIFdelFL{Comparisons of three }\DIFdelendFL \DIFaddbeginFL \caption[PAF models spiking neuron as an conventional activation function.]{\DIFaddFL{PAF models spiking neuron as an conventional }\DIFaddendFL activation \DIFdelbeginFL \DIFdelFL{functions used in ANNs: }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{function.
+		}\DIFaddendFL (a) \DIFdelbeginFL \DIFdelFL{the }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{An artificial spiking neuron modelled by }\DIFaddendFL NSP, \DIFaddbeginFL \DIFaddFL{where the inputs and outputs are spiking rates instead of abstract numerical values of conventional activation functions.
+		}\DIFaddendFL (b) the PAF-NSP, \DIFdelbeginFL \DIFdelFL{and (c) a conventional ANN activation function. The PAF }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{which }\DIFaddendFL links the firing activity of a spiking neuron to the numerical value of ANNs.
+		\DIFaddbeginFL \DIFaddFL{(c) a conventional ANN activation function.}\DIFaddendFL }
 		\label{Fig:tneuron}
 	\end{figure}
 
+	
+	
 	Neurons in ANNs take inputs from their previous layer, and feed the weighted sum of their input, $net_j = \sum_i w_{ij}x_i$, to the activation function.
 	The transformed signal then forms the output of an artificial neuron, which can be denoted as $y_j=f(net_j)$, see Figure~\ref{Fig:tneuron}(c).
-	However, a spiking neuron modelled by NSP takes the firing rate as its input/output, thus Equation~\ref{equ:distr} can be written as:
+	However, a spiking neuron modelled by NSP takes the firing rate as its input/output, thus \DIFdelbegin \DIFdel{Equation~\ref{equ:distr} }\DIFdelend \DIFaddbegin \DIFadd{in a neural network Equation~\ref{equ:distr0} }\DIFaddend can be written as:
 	\begin{equation}
-	net_j = \sum_i w_{ij}(\lambda_{i}\tau_{\textit{\textrm{syn}}})~,
-	~\sigma^2_j= \sum_i (\frac{1}{2} w_{ij}^2)(\lambda_{i}\tau_{\textit{\textrm{syn}}})~, 
-	% \textrm{~~and~~} x_i = \lambda_{i}\tau_{\textit{\textrm{syn}}}~.
+	net\DIFdelbegin \DIFdel{_j }\DIFdelend \DIFaddbegin \DIFadd{\_x_{j} }\DIFaddend = \sum_i w_{ij}(\lambda_{i}\tau_{\textit{\textrm{syn}}})~,
+	~\DIFaddbegin \DIFadd{net_\_}\DIFaddend \sigma^2_j= \sum_i (\frac{1}{2} w_{ij}^2)(\lambda_{i}\tau_{\textit{\textrm{syn}}})~\DIFdelbegin \DIFdel{, 
+	}\DIFdelend \DIFaddbegin \DIFadd{.
+	}\DIFaddend % \textrm{~~and~~} x_i = \lambda_{i}\tau_{\textit{\textrm{syn}}}~.
 	\label{equ:mi_input}
 	\end{equation}
-	and input $ x_i $ of an artificial neuron can be seen as $x_i=\lambda_{i}\tau_{\textit{\textrm{syn}}}$, see Figure~\ref{Fig:tneuron}(a).
+	\DIFdelbegin \DIFdel{and }\DIFdelend \DIFaddbegin \DIFadd{In accordance with $net_j = \sum_i w_{ij}x_i$, the }\DIFaddend input $ x_i $ of an artificial \DIFaddbegin \DIFadd{spiking }\DIFaddend neuron can be seen as $x_i=\lambda_{i}\tau_{\textit{\textrm{syn}}}$\DIFdelbegin \DIFdel{, see }\DIFdelend \DIFaddbegin \DIFadd{.
+	}\DIFaddend Figure~\ref{Fig:tneuron}(a) \DIFaddbegin \DIFadd{illustrates the process that a NSP-modelled artificial spiking neuron takes the input vector $\mathbf{x}$ which is converted from the input firing rate $\bm{\lambda}$; transforms the weighted sum $net\_x_{j}$ and $net_\_\sigma^2_j$ to the abstract output $y_j$; and scales up $y_i$ with the factor $S$ to the output firing rate $\lambda_j$}\DIFaddend . 
 
 	
-	If instead of multiplying every input by $\tau_{\textit{\textrm{syn}}}$ (left of Fig.~\ref{Fig:tneuron}(a)) we do it in every output after $\lambda_j$, (right of Fig.~\ref{Fig:tneuron}(b)) we obtain the same neuron model and structure as a typical neuron in ANNs, see Figure~\ref{Fig:tneuron}(c), that neurons take $x$ as input and output $y$.
-	%DIF < 	The PAF version of the activation function (Eq.~\ref{equ:PAF}) will be linearly-scaled by the conversion parameter $S$ and the synaptic time constant $\tau_{syn}$:
-	%DIF > 	The PAF version of the activation function (Eq.~\ref{equ:PAF}) will be linearly-scaled by the conversion parameter $S$ and the synaptic time constant $\tau_{\textit{\textrm{syn}}}$:
+	If instead of multiplying every input by $\tau_{\textit{\textrm{syn}}}$ (left of Fig.~\ref{Fig:tneuron}(a)) we do it in every output after $\lambda_j$, (right of Fig.~\ref{Fig:tneuron}(b)) we obtain the same neuron model and structure as a typical neuron in ANNs, see Figure~\ref{Fig:tneuron}(c), that neurons take \DIFdelbegin \DIFdel{$x$ }\DIFdelend \DIFaddbegin \DIFadd{$\mathbf{x}$ }\DIFaddend as input and output \DIFaddbegin \DIFadd{abstract value }\DIFaddend $y$.
+	%	The PAF version of the activation function (Eq.~\ref{equ:PAF}) will be linearly-scaled by the conversion parameter $S$ and the synaptic time constant $\tau_{\textit{\textrm{syn}}}$:
 	The only difference lies in the activation function where the artificial spiking neuron takes PAF, which is a simple linearly-scaled activation function with a parameter $p$, which is determined by the product of the scaling parameter $S$ and the synaptic time constant $\tau_{\textit{\textrm{syn}}}$:
+	\DIFdelbegin %DIFDELCMD < 
 
-	\begin{equation}
+%DIFDELCMD < 	%%%
+\DIFdelend \begin{equation}
 	y = p \times f(x) = S \times \tau_{\textit{\textrm{syn}}} \times f(x)~,
 	\label{equ:PAF}
 	\end{equation}
-	and its derivative function, which is used for back propagation, is:
+	\DIFdelbegin \DIFdel{and its derivative function }\DIFdelend \DIFaddbegin \DIFadd{where $f(x)$ represents a typical conventional activation function, e.g. ReLU.
+	The derivative function of PAF}\DIFaddend , which is used for back propagation, is:
 	\begin{equation}
 	\frac{\partial y}{\partial x} = p \times f'(x) = S \times \tau_{\textit{\textrm{syn}}} \times f'(x)~.
 	\end{equation}
@@ -863,7 +1008,7 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking \DIFd
 	Excitingly, PAF not only allows NSP to model spiking LIF neurons on ANNs.
 	Once the parameter $p$ is acquired the PAF can be generalised to other Relu-like activation functions.
 	Because Softplus and NSP will both converge to ReLU, when the input increases, so they can share the scaling factor $p$.
-	We will compare these ReLU-like functions in modelling LIF neurons in Section~\ref{subsec:compareAF}.
+%	We will compare these ReLU-like functions in modelling LIF neurons in Section~\ref{subsec:compareAF}.
 	Note that the calculation of noise level is not necessary for other activation functions, thus they only take the mean of the current influx as the input (the solid lines in Figure~\ref{Fig:tneuron}).
 	So the noise level can be set to a constant for Softplus or considered as 0 for ReLU.
 
@@ -872,13 +1017,13 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking \DIFd
 
 	The simple idea of PAF presented in the previous section allows the use of common ANN training methods to obtain SNN-compatible weights.
 	Consequently, training SNNs can be done in three simple steps: 
-	\begin{enumerate}
-		\item Calibrate the parameters $(k, S)$ for Noisy Softplus which models the response firing rates of LIF neurons, thus to estimate the parameter $p=S \times \tau_{\textit{\textrm{syn}}}$ for PAFs. Since $(k, S)$ are solely dependent on the biological configurations of an LIF neuron, the same $p$ can be shared with different activation functions and repeatedly used for various network architectures and applications.
+	 \begin{enumerate} 
+		\item Calibrate the parameters \DIFdelbegin \DIFdel{$(k, S)$ }\DIFdelend \DIFaddbegin \DIFadd{$(k,b, S)$ }\DIFaddend for Noisy Softplus which models the response firing rates of LIF neurons, thus to estimate the parameter $p=S \times \tau_{\textit{\textrm{syn}}}$ for PAFs \DIFdelbegin \DIFdel{. Since $(k, S)$ }\DIFdelend \DIFaddbegin \DIFadd{and to set the LIF parameter $I_{\textit{\textrm{offset}}}=b$. Since $(k,b, S)$ }\DIFaddend are solely dependent on the biological configurations of an LIF neuron, the same $p$ can be shared with different activation functions and repeatedly used for various network architectures and applications.
 		\item Train any feed-forward ANN with a PAF version of a ReLU-like activation function.
 		Training compatibility allows us to choose computationally simple activation functions to increase training speed.
 		%		Surprisingly, the use of PAF-ReLU provides the best accuracy scores for an SNN on the MNIST dataset. 
 		\item Transfer the weights directly to the SNN, which should use the same LIF characteristics used in Step 1.
-	\end{enumerate}
+	 \end{enumerate} 
 
 	\subsection{Fine Tuning}
 	\label{subsec:finetune}
@@ -915,7 +1060,7 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking \DIFd
 	The architecture (784-6c-6p-12c-12p-10fc illustrated in Section~\ref{sec:convnet}) contains $28\times28$ input units, followed by two convolution-pooling layers with 6 and 12 convolutional kernels each, and 10 output neurons fully connected to the last pooling layer to represent the classified digit.
 
 	% Training
-	To train the ConvNet, firstly, we estimated parameter $p$ for PAFs given LIF configurations listed in Talbe~\ref{tbl:pynnConfig} and $\tau_{\textit{\textrm{syn}}}=5$~ms, $p = S \times \tau_{\textit{\textrm{syn}}} = 1.005$, where $(k=0.30, S=201)$ were calibrated using NSP. 
+	To train the ConvNet, firstly, we estimated parameter $p$ for PAFs given LIF configurations listed in \DIFdelbegin \DIFdel{Talbe}\DIFdelend \DIFaddbegin \DIFadd{Table}\DIFaddend ~\ref{tbl:pynnConfig} and \DIFdelbegin \DIFdel{$\tau_{\textit{\textrm{syn}}}=5$~ms, $p = S \times \tau_{\textit{\textrm{syn}}} = 1.005$, where $(k=0.30, S=201)$ }\DIFdelend \DIFaddbegin \DIFadd{$\tau_{\textit{\textrm{syn}}}=0.005$~s, $p = S \times \tau_{\textit{\textrm{syn}}} = 1.085$, where $(k=0.31, b=0.1 S=217)$ }\DIFaddend were calibrated using NSP. 
 	Secondly, the training employed PAFs with three core activation functions: ReLU, Softplus and NSP to compare their learning and recognition performance.
 	%	The parameter $p$ was estimated as $p = S \times \tau_{\textit{\textrm{syn}}} = 1.005$ by calibrating the NSP with LIF response firing rate: $(k=0.30, S=201)$ given $\tau_{\textit{\textrm{syn}}}=5 ms$.
 	%	The pixel intensities of the input images were normalised to 100~Hz to represent the firing rates of the input spikes.
@@ -935,8 +1080,7 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking \DIFd
 %	The detailed network structure and training procedure can be found in Section~\ref{sec:convnet}.
 %	
 %	The training only employed Noisy Softplus units that all the convolution, average sampling, and the fully-connected neurons use Noisy Softplus function with no bias.
-%DIF < 	The parameters of the activation function were calibrated as, $(k=0.30, S=201)$,  for LIF neurons~(see~Tablel~\ref{tbl:pynnConfig}) of $\tau_{syn}=5$~ms.
-%DIF > 	The parameters of the activation function were calibrated as, $(k=0.30, S=201)$,  for LIF neurons~(see~Tablel~\ref{tbl:pynnConfig}) of $\tau_{\textit{\textrm{syn}}}=5$~ms.
+%	The parameters of the activation function were calibrated as, $(k=0.30, S=201)$,  for LIF neurons~(see~Tablel~\ref{tbl:pynnConfig}) of $\tau_{\textit{\textrm{syn}}}=5$~ms.
 %	The input images were scaled by 100~Hz to present the firing rates of input spikes.
 %	The weights were updated using a decaying learning rate, 50 images per batch and 20 epochs.
 %	The ANN-trained weights were then directly applied in the corresponding convolutional SNN without any conversion for recognition tasks.
@@ -954,7 +1098,7 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking \DIFd
 %	To validate how well the Noisy Softplus activation fits to the response firing rate of LIF neurons in a real application, we simulated the model on NEST~\citep{gewaltig2007nest} using the Poisson MNIST dataset~\citep{liu2016bench} and the neurons of a convolutional map were observed.
 	To validate how well the NSP activation fits the response firing rate of LIF neurons in SNNs, we simulated one of the PAF-NSP trained ConvNets on NEST.
 	%	A small test consisted of ten MNIST digits presented as Poisson spike trains for 1~s each.
-	Ten testing images were convolved with a trained $5\times5$ kernel, and the output firing rates of the spiking neurons were recorded, see Figure~\ref{fig:cnn}, and compared to the predictions of these PAFs: $\lambda' = S \times f(x) = y/\tau_{\textit{\textrm{syn}}}$, see Figure~\ref{fig:af_compare}.
+	Ten testing images were convolved with a trained $5\times5$ kernel, and the output firing rates of the spiking neurons were recorded, see Figure~\ref{fig:cnn}.
 
 		\begin{figure}[htbp!]
 		\centering
@@ -965,17 +1109,17 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking \DIFd
 		\end{subfigure}\\
 		\begin{subfigure}[t]{0.3\textwidth}
 			\includegraphics[width=\textwidth]{pics_iconip/6-2.pdf}
-			\caption{Pixel firing rates.}
+			\caption{Pixel firing rates \DIFaddbeginFL \DIFaddFL{in Hz}\DIFaddendFL .}
 			\label{Fig:62}
 		\end{subfigure}
 		\begin{subfigure}[t]{0.3\textwidth}
 			\includegraphics[width=\textwidth]{pics_iconip/6-3.pdf}
-			\caption{5x5 kernel.}
+			\caption{\DIFdelbeginFL \DIFdelFL{5x5 }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{5$\times$5 weights }\DIFaddendFL kernel \DIFaddbeginFL \DIFaddFL{(synaptic efficacy in nA)}\DIFaddendFL .}
 			\label{Fig:63}
 		\end{subfigure}
 		\begin{subfigure}[t]{0.3\textwidth}
 			\includegraphics[width=\textwidth]{pics_iconip/6-4.pdf}
-			\caption{Convolved output.}
+			\caption{Convolved output \DIFaddbeginFL \DIFaddFL{in Hz}\DIFaddendFL .}
 			\label{Fig:64}
 		\end{subfigure}\\
 		\begin{subfigure}[t]{\textwidth}
@@ -983,8 +1127,7 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking \DIFd
 			\includegraphics[width=0.5\textwidth]{pics_iconip/7.pdf}
 			\caption{Output firing rates of classification neurons.}
 		\end{subfigure}
-		\DIFdelbeginFL %DIFDELCMD < \caption{%%%
-\DIFdelendFL \DIFaddbeginFL \caption[Images presented in spike trains convolve with a weight kernel.]{\DIFaddendFL Images presented in spike trains convolve with a weight kernel. (a) The $28\times28$ Poisson spike trains in raster plot, representing 10 digits in MNIST. (b) The firing rate of all the 784 neurons of the fourth image, digit `0', is plotted as a 2D image.
+		\caption[Images presented in spike trains convolve with a weight kernel.]{Images presented in spike trains convolve with a weight kernel. (a) The $28\times28$ Poisson spike trains in raster plot, representing 10 digits in MNIST. (b) The firing rate of all the 784 neurons of the fourth image, digit `0', is plotted as a 2D image.
 		(c) One out of six of the trained kernels ($5\times5$ size) in the first convolutional layer.
 		(d) The spike trains plotted as firing rate of the neurons in the convolved 2D map.
 		(e) Output firing rates for recognising these digits.}
@@ -995,49 +1138,55 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking \DIFd
 %	A trained $5\times5$ kernel (Figure~\ref{fig:cnn}(c)) was convolved with these input digits, and the fourth digit `0' (Figure~\ref{fig:cnn}(b)) and its convolved output of the feature map was shown in Figure~\ref{fig:cnn}(d) as firing rate.
 %	The output firing rate was recorded during a real-time SNN simulation on NEST, and compared to the modelled activations of Equation~\ref{equ:full_act} in ANNs.
 %	
-%DIF < 	The input $x$ of the network was calculated as Equation~\ref{equ:mi_input}: $x_i=\lambda_i\tau_{syn}$, and so as the weighted sum of the synaptic current (see Equation~\ref{equ:mi_input}), $net_j$ and its variance (see Equation~\ref{equ:si_input}), $\sigma^2_j$.
-%DIF > 	The input $x$ of the network was calculated as Equation~\ref{equ:mi_input}: $x_i=\lambda_i\tau_{\textit{\textrm{syn}}}$, and so as the weighted sum of the synaptic current (see Equation~\ref{equ:mi_input}), $net_j$ and its variance (see Equation~\ref{equ:si_input}), $\sigma^2_j$.
+%	The input $x$ of the network was calculated as Equation~\ref{equ:mi_input}: $x_i=\lambda_i\tau_{\textit{\textrm{syn}}}$, and so as the weighted sum of the synaptic current (see Equation~\ref{equ:mi_input}), $net_j$ and its variance (see Equation~\ref{equ:si_input}), $\sigma^2_j$.
 %	With three combined activation functions as Equation~\ref{equ:full_act}:
 %	\begin{equation}
 %	\begin{aligned}
-%DIF < 	&\textrm{(1) Noisy Softplus:~~}  y_j=k \sigma_j \log [1 + \exp(\frac{net_j}{k \sigma_j})] \times S \times \tau_{syn}~~,  \\
-%DIF < 	&\textrm{(2) ReLU:~~ } y_j=max(0, net_j) \times S \times \tau_{syn}~~, \\
-%DIF < 	&\textrm{(3) Softplus:~~ } y_j=k \sigma \log [1 + \exp(\frac{net_j}{k \sigma})] \times S \times \tau_{syn}~~, ~~~\sigma=0.45,  
-%DIF > 	&\textrm{(1) Noisy Softplus:~~}  y_j=k \sigma_j \log [1 + \exp(\frac{net_j}{k \sigma_j})] \times S \times \tau_{\textit{\textrm{syn}}}~~,  \\
-%DIF > 	&\textrm{(2) ReLU:~~ } y_j=max(0, net_j) \times S \times \tau_{\textit{\textrm{syn}}}~~, \\
-%DIF > 	&\textrm{(3) Softplus:~~ } y_j=k \sigma \log [1 + \exp(\frac{net_j}{k \sigma})] \times S \times \tau_{\textit{\textrm{syn}}}~~, ~~~\sigma=0.45,  
+%	&\textrm{(1) Noisy Softplus:~~}  y_j=k \sigma_j \log [1 + \exp(\frac{net_j}{k \sigma_j})] \times S \times \tau_{\textit{\textrm{syn}}}~~,  \\
+%	&\textrm{(2) ReLU:~~ } y_j=max(0, net_j) \times S \times \tau_{\textit{\textrm{syn}}}~~, \\
+%	&\textrm{(3) Softplus:~~ } y_j=k \sigma \log [1 + \exp(\frac{net_j}{k \sigma})] \times S \times \tau_{\textit{\textrm{syn}}}~~, ~~~\sigma=0.45,  
 % 	\end{aligned}
 %	\end{equation}	
 %	we compare the output to the recorded SNN simulations.
 %	ReLU assumes a non-noise current, and Softplus takes a static noise level thus $\sigma_j$ is not used for either of them, meanwhile Noisy Softplus adapts to noise automatically with $\sigma_j$.
 %	The experiment took the sequence of 10 digits shown in Figure~\ref{fig:cnn}(a) to the same kernel and the estimated spike counts using Noisy Softplus fit to the real recorded firing rate much more accurately than ReLU and Softplus,  see~\ref{fig:af_compare}.
 %%	Figure~\ref{fig:af_stast} illustrated the statistics of error between the estimation and the recorded firing rate, $err = y_j - \lambda_j$ which formed normal distributions where Noisy Softplus hold the weakest mean (low in abstract) and lowest standard deviation.
-%DIF < 	The Euclidean distance, $\sqrt{\sum_{j}(y_j/\tau_{syn} - \lambda_j)}$, between the spike counts and the predicted firing rates by Noisy Softplus, ReLU and Softplus was 184.57, 361.64 and 1102.76 respectively.
-%DIF > 	The Euclidean distance, $\sqrt{\sum_{j}(y_j/\tau_{\textit{\textrm{syn}}} - \lambda_j)}$, between the spike counts and the predicted firing rates by Noisy Softplus, ReLU and Softplus was 184.57, 361.64 and 1102.76 respectively.
+%	The Euclidean distance, $\sqrt{\sum_{j}(y_j/\tau_{\textit{\textrm{syn}}} - \lambda_j)}$, between the spike counts and the predicted firing rates by Noisy Softplus, ReLU and Softplus was 184.57, 361.64 and 1102.76 respectively.
 %	We manually selected a static noise level of 0.45 for Softplus, whose estimated firing rates located roughly on the top slope of the real response activity.
 %	This resulted in longer Euclidean distance than using ReLU, since most of the input noisy currents were of relatively low noise level in this experiment.
 %	Hence, the firing rate driven by lower noise level is closer to ReLU curve than Softplus.
 
+	The recorded firing rates are compared to the predictions of these PAFs: $\lambda' = S \times f(x) = y/\tau_{\textit{\textrm{syn}}}$, see Figure~\ref{fig:af_compare}.
 	The estimated spike counts using NSP fitted the real recorded firing rate much more accurately than ReLU and Softplus.
 	%	Figure~\ref{fig:af_stast} illustrated the statistics of error between the estimation and the recorded firing rate, $err = y_j - \lambda_j$ which formed normal distributions where NSP hold the weakest mean (low in abstract) and lowest standard deviation.
-	The Euclidean distances, $\sqrt{\sum_{j}(\lambda_j' - \lambda_j)^2}$, between the spike counts and the firing rates predicted by NSP, ReLU and Softplus were 184.57, 361.64 and 1102.76 respectively.
+	The Euclidean distances, $\sqrt{\sum_{j}(\lambda_j' - \lambda_j)^2}$, between the spike counts and the firing rates predicted by NSP, ReLU and Softplus were \DIFdelbegin \DIFdel{184.57, 361.64 and 1102.76 }\DIFdelend \DIFaddbegin \DIFadd{180.59, 349.64 and 1293.99 }\DIFaddend respectively.
 	We manually selected a static noise level of 0.45 for Softplus, whose estimated firing rates located roughly on the top slope of the real response activity.
 	This resulted in a longer Euclidean distance than using ReLU, since most of the input noisy currents were of relatively low noise level in this experiment.
 	Hence, the firing rate driven by the lower noise level is closer to the ReLU curve than to Softplus.
 
-	\begin{figure}[tbh!]
+	\DIFaddbegin \DIFadd{Note that there is a visible mismatch between the actual firing rates and the model estimation on the lower right region in Figures~\ref{fig:af_compare}(a, c), where the blue dots (actual spike counts) fall lower the bound of ReLU.
+	It is consistent with the statement in Section~\ref{sec:NSP} that the LIF response activities does not fit into the NSP function when the noise level is low (approaching to 0).
+	However, the minor mismatch does not result in poor performance on classification accuracy.
+	}
+
+	\DIFaddend \begin{figure}[tbh!]
 		\centering
 		\begin{subfigure}[t]{0.48\textwidth}
-			\includegraphics[width=\textwidth]{pics_iconip/6-5-1.png}
-		\end{subfigure}
+			\DIFdelbeginFL %DIFDELCMD < \includegraphics[width=\textwidth]{pics_iconip/6-5-1.png}
+%DIFDELCMD < 		%%%
+\DIFdelendFL \DIFaddbeginFL \includegraphics[width=\textwidth]{pics_iconip/revise_6-5-1.pdf}
+		\DIFaddendFL \end{subfigure}
 		\begin{subfigure}[t]{0.48\textwidth}
-			\includegraphics[width=\textwidth]{pics_iconip/6-5-2.png}
-		\end{subfigure}\\
+			\DIFdelbeginFL %DIFDELCMD < \includegraphics[width=\textwidth]{pics_iconip/6-5-2.png}
+%DIFDELCMD < 		%%%
+\DIFdelendFL \DIFaddbeginFL \includegraphics[width=\textwidth]{pics_iconip/revise_6-5-2.pdf}
+		\DIFaddendFL \end{subfigure}\\
 		\begin{subfigure}[t]{0.6\textwidth}
-			\includegraphics[width=\textwidth]{pics_iconip/6-5-3.pdf}
-		\end{subfigure}
-		\DIFdelbeginFL %DIFDELCMD < \caption{%%%
-\DIFdelendFL \DIFaddbeginFL \caption[The recorded firing rate of the convolution outcomes.]{\DIFaddendFL 
+			\DIFdelbeginFL %DIFDELCMD < \includegraphics[width=\textwidth]{pics_iconip/6-5-3.pdf}
+%DIFDELCMD < 		%%%
+\DIFdelendFL \DIFaddbeginFL \includegraphics[width=\textwidth]{pics_iconip/revise_6-5-3.pdf}
+		\DIFaddendFL \end{subfigure}
+		\caption[The recorded firing rate of the convolution outcomes.]{
 			The recorded firing rate of the convolution of the same kernel with 10 images in SNN simulation, compared to the firing rate prediction by $S \times f(x)$.
 			NSP (a) fits to the neural response firing rate of LIF neurons more closely than ReLU (b) and Softplus (c).}
 		\label{fig:af_compare}
@@ -1045,7 +1194,7 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking \DIFd
 
 	Figure~\ref{fig:cnn}(e) demonstrates the output firing rates of the 10 recognition neurons when tested with the digit sequence.
 	The SNN successfully classified the digits where the correct label neuron fired the most.
-	We trained the network with binary labels on the output layer, thus the expected firing rate of correct classification was \DIFdelbegin \DIFdel{$1/\tau_{syn}=200$}\DIFdelend \DIFaddbegin \DIFadd{$1/\tau_{\textit{\textrm{syn}}}=200$}\DIFaddend ~Hz according to Equation~\ref{Fig:tneuron}.
+	We trained the network with binary labels on the output layer, thus the expected firing rate of correct classification was $1/\tau_{\textit{\textrm{syn}}}=200$~Hz according to Equation~\ref{Fig:tneuron}.
 	The firing rates of the recognition test fell to the valid range around 0 to 200~Hz.
 %	This shows another advantage of the proposed ANN-trained method that we can constrain the expected firing rate of the top layer, thus preventing SNN from exceeding its maximum firing rate, for example 1000~Hz when time resolution of SNN simulation set to 1~ms.
 %		\begin{figure}[tbp!]
@@ -1066,50 +1215,33 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking \DIFd
 %	In comparison, Softplus accumulated spontaneous firing rates layer by layer and its derivative may experience vanishing gradients during back propagation, which result in a more difficult training.
 %	Noisy Softplus performance lay between these two in terms of loss and learning speed.
 %	However, the loss stabilised fastest, which means a possible shorter training time.
-	\DIFaddbegin \begin{figure}[tbp!]
+	\begin{figure}[tbp!]
 		\centering
-		\includegraphics[width=0.7\textwidth]{pics_iconip/8.png}
-		\caption[Comparisons of loss during training.]{\DIFaddFL{Comparisons of loss during training using Noisy Softplus, ReLU and Softplus activation functions. Bold lines show the average of three training trials, and the grey colour illustrates the range between the minimum and the maximum values of the trials.  }}
+		\DIFdelbeginFL %DIFDELCMD < \includegraphics[width=0.7\textwidth]{pics_iconip/8.png}
+%DIFDELCMD < 		%%%
+\DIFdelendFL \DIFaddbeginFL \includegraphics[width=0.7\textwidth]{pics_iconip/revise_8.png}
+		\DIFaddendFL \caption[Comparisons of loss during training.]{Comparisons of loss during training using Noisy Softplus, ReLU and Softplus activation functions. Bold lines show the average of three training trials, and the grey colour illustrates the range between the minimum and the maximum values of the trials.  }
 		\label{Fig:loss_ns}
 	\end{figure}
-	\DIFaddend Before looking into the recognition results, it is significant to see the learning capability of the novel activation function, NSP.
+	Before looking into the recognition results, it is significant to see the learning capability of the novel activation function, NSP.
 	We compared the training using ReLU, Softplus, and NSP by their loss during training averaged over three trials, see Figure~\ref{Fig:loss_ns}.
 	ReLU learned fastest with the lowest loss, thanks to its steepest derivative.
 	In comparison, Softplus accumulated spontaneous `firing rates' layer-by-layer and its derivative may experience gradual or even vanishing gradients during back propagation, which result in more difficult training.
-	The performance of NSP lay between these two in terms of loss and learning speed.
+	The \DIFaddbegin \DIFadd{recognition }\DIFaddend performance of NSP lay between these two\DIFdelbegin \DIFdel{in terms of loss and learning speed}\DIFdelend .
 	The loss stabilised to the same level as Softplus, because of the same problem of gradual gradients.
 
 	However, the learning stabilised the fastest using NSP which may be caused by the accurate modelling of the noise.
-	Similar findings have shown that networks with added noise, e.g. dropout~\DIFdelbegin \DIFdel{\mbox{%DIFAUXCMD
-\cite{srivastava2014dropout}
-}%DIFAUXCMD
-}\DIFdelend \DIFaddbegin \DIFadd{\mbox{%DIFAUXCMD
-\citep{srivastava2014dropout}
-}%DIFAUXCMD
-}\DIFaddend , are much faster to train. 
+	Similar findings have shown that networks with added noise, e.g. dropout~\citep{srivastava2014dropout}, are much faster to train. 
 	The result is promising that NSP may shorten the training time.
-\DIFdelbegin %DIFDELCMD < \begin{figure}[tbp!]
-%DIFDELCMD < 		\centering
-%DIFDELCMD < 		\includegraphics[width=0.7\textwidth]{pics_iconip/8.png}
-%DIFDELCMD < 		%%%
-%DIFDELCMD < \caption{%
-{%DIFAUXCMD
-\DIFdel{Comparisons of Loss during training using Noisy Softplus, ReLU and Softplus activation functions. Bold lines show the average of three training trials, and the grey colour illustrates the range between the minimum and the maximum values of the trials.  }}
-		%DIFAUXCMD
-%DIFDELCMD < \label{Fig:loss_ns}
-%DIFDELCMD < 	\end{figure}
-%DIFDELCMD < %%%
-\DIFdelend \DIFaddbegin 
 
-\DIFaddend %	The trained networks were scaled to SNNs and compared on recognition rates, 93.34\%, 96.43\% and 97.03\% with a conversion loss of 4.76\%, 0.91\% and 0.74\%.
+%	The trained networks were scaled to SNNs and compared on recognition rates, 93.34\%, 96.43\% and 97.03\% with a conversion loss of 4.76\%, 0.91\% and 0.74\%.
 
 \subsection{Recognition Performance}
 \label{subsec:result_compare_rec}
 	\begin{figure}[tbp!]
 		\centering
 		\includegraphics[width=0.7\textwidth]{pics_iconip/9-2.pdf}
-		\DIFdelbeginFL %DIFDELCMD < \caption{%%%
-\DIFdelendFL \DIFaddbeginFL \caption[Classification accuracy.]{\DIFaddendFL Classification accuracy.
+		\caption[Classification accuracy.]{Classification accuracy.
 			The trained weights were tested using the same activation function as training (DNN\_Orig), then transferred to an SNN and tested on NEST simulation (SNN\_Orig), and finally fine-tuned to be tested on SNN (SNN\_FT) as well.  }
 		\label{Fig:result_bar}
 	\end{figure}
@@ -1119,12 +1251,12 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking \DIFd
 	At first, all trained models were tested on the same artificial neurons as used for training in ANNs, and these experiments were called the `DNN' test since the network had a deep structure (6 layers).
 	Subsequently, the trained weights were directly applied to the SNN without any transformation, and these `SNN' experiments tested their recognition performance on the NEST simulator.
 	From DNN to SNN, the classification accuracy declines by 0.80\%, 0.79\% and 3.12\% on average for NSP, ReLU and Softplus.
-	The accuracy loss \DIFdelbegin \DIFdel{was }\DIFdelend \DIFaddbegin \DIFadd{is }\DIFaddend caused by the mismatch between the activations and the practical response firing rates, see examples in Figure~\ref{fig:af_compare}, and the strict binary labels for NSP and Softplus activations.
-	Fortunately, the problem is alleviated by fine tuning which \DIFdelbegin \DIFdel{increased }\DIFdelend \DIFaddbegin \DIFadd{increases }\DIFaddend the classification accuracy by 0.38\%, 0.19\% and 2.06\%, and \DIFdelbegin \DIFdel{resulted }\DIFdelend \DIFaddbegin \DIFadd{results }\DIFaddend in the total loss of 0.43\%, 0.61\%, and 1.06\% respectively.
+	The accuracy loss is caused by the mismatch between the activations and the practical response firing rates, see examples in Figure~\ref{fig:af_compare}, and the strict binary labels for NSP and Softplus activations.
+	Fortunately, the problem is alleviated by fine tuning which increases the classification accuracy by 0.38\%, 0.19\% and 2.06\%, and results in the total loss of 0.43\%, 0.61\%, and 1.06\% respectively.
 	%	The order of total losses of these activation functions followed the Euclidean distance measured in Section~\ref{subsec:activity}.
-	Softplus \DIFdelbegin \DIFdel{benefits }\DIFdelend \DIFaddbegin \DIFadd{benefited }\DIFaddend the most from fine tuning, since the huge mismatch~(Figure~\ref{fig:af_compare}(c)) of response firing rate is greatly corrected.
-	The improvement of NSP \DIFdelbegin \DIFdel{was }\DIFdelend \DIFaddbegin \DIFadd{is }\DIFaddend obtained from the offset on the labels which helps the network to fit practical SNNs.
-	As the recognition performance of ReLU is already high, there \DIFdelbegin \DIFdel{'s }\DIFdelend \DIFaddbegin \DIFadd{is }\DIFaddend little room for improvement.
+	Softplus benefited the most from fine tuning, since the huge mismatch~(Figure~\ref{fig:af_compare}(c)) of response firing rate is greatly corrected.
+	The improvement of NSP is obtained from the offset on the labels which helps the network to fit practical SNNs.
+	As the recognition performance of ReLU is already high, there is little room for improvement.
 	Even though the fine-tuning procedure does its job, the gain in accuracy is the smallest for this activation function.
 
 	%	Thus fine tuning mainly corrects the mismatch between ReLU and the firing rates in SNNs, and constraints the output firing rates of the network.
@@ -1220,53 +1352,44 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking \DIFd
 				\begin{mycell}{3cm} Method \end{mycell} & 
 				%  					\begin{mycell}{1.8cm} Computation\\Complexity \end{mycell} & 
 				\begin{mycell}{1.8cm}Activation\\Function\end{mycell} &
+				\begin{mycell}{2.5cm} Biologically-\\plausibility \end{mycell} &  
+				\begin{mycell}{2.2cm} Additional\\Processing \end{mycell} &
 				\DIFdelbegin %DIFDELCMD < \begin{mycell}{1.8cm} %%%
-\DIFdelend \DIFaddbegin \begin{mycell}{2.5cm} \DIFaddend Biologically-\\plausibility \end{mycell} &  
-				\DIFdelbegin %DIFDELCMD < \begin{mycell}{1.8cm} %%%
-\DIFdelend \DIFaddbegin \begin{mycell}{2.2cm} \DIFaddend Additional\\Processing \end{mycell} &
-				\begin{mycell}{1.8cm} Conversion \end{mycell} & 
+\DIFdelend \DIFaddbegin \begin{mycell}{2.2cm} \DIFadd{Weights}\\\DIFaddend Conversion \end{mycell} & 
 				\begin{mycell}{3cm} Classification\\Accuracy(\%) \end{mycell} 
 				\\
 				\hline
 				\begin{mycell}{3cm} \citep{Jug_etal_2012} \end{mycell} & 
 				%  					\begin{mycell}{1.8cm} 1st \end{mycell} & 
 				\begin{mycell}{1.8cm}Siegert \end{mycell} &
-				\DIFdelbegin %DIFDELCMD < \begin{mycell}{1.8cm} %%%
-\DIFdelend \DIFaddbegin \begin{mycell}{2.5cm} \DIFaddend \textbf{Yes} \end{mycell} &  
-				\DIFdelbegin %DIFDELCMD < \begin{mycell}{1.8cm} %%%
-\DIFdelend \DIFaddbegin \begin{mycell}{2.2cm} \DIFaddend \textbf{No} \end{mycell} & 
-				\DIFdelbegin %DIFDELCMD < \begin{mycell}{1.8cm} %%%
-\DIFdelend \DIFaddbegin \begin{mycell}{2.2cm} \DIFaddend \textbf{No} \end{mycell} & 
+				\begin{mycell}{2.5cm} \textbf{Yes} \end{mycell} &  
+				\begin{mycell}{2.2cm} \textbf{No} \end{mycell} & 
+				\begin{mycell}{2.2cm} \textbf{No} \end{mycell} & 
 				\begin{mycell}{3cm} 94.94\\~\citep{Stromatias2015scalable} \end{mycell} 
 				\\
 				\begin{mycell}{3cm} \citep{hunsberger2015spiking} \end{mycell} & 
 				%  					\begin{mycell}{1.8cm} 2nd \end{mycell} & 
 				\begin{mycell}{1.8cm} Soft LIF \end{mycell} &
-				\DIFdelbegin %DIFDELCMD < \begin{mycell}{1.8cm} %%%
-\DIFdelend \DIFaddbegin \begin{mycell}{2.5cm} \DIFaddend \textbf{Yes} \end{mycell} &  
-				\begin{mycell}{2.2cm} Noisy inputs\\ \DIFdelbegin %DIFDELCMD < \&%%%
-\DIFdel{Activations }\DIFdelend \DIFaddbegin \DIFadd{and activations }\DIFaddend \end{mycell} & 
+				\begin{mycell}{2.5cm} \textbf{Yes} \end{mycell} &  
+				\begin{mycell}{2.2cm} Noisy inputs\\ and activations \end{mycell} & 
 				\begin{mycell}{1.8cm} \textbf{No} \end{mycell} & 
 				\begin{mycell}{3cm} 98.37 \end{mycell}
 				\\
 				\begin{mycell}{3cm} \citep{diehl2015fast} \end{mycell} & 
 				%  					\begin{mycell}{1.8cm} 3rd \end{mycell} & 
 				\begin{mycell}{1.8cm} \textbf{ReLU} \end{mycell} &
-				\DIFdelbegin %DIFDELCMD < \begin{mycell}{1.8cm} %%%
-\DIFdelend \DIFaddbegin \begin{mycell}{2.5cm} \DIFaddend No \end{mycell} &  
-				\DIFdelbegin %DIFDELCMD < \begin{mycell}{1.8cm} %%%
-\DIFdelend \DIFaddbegin \begin{mycell}{2.2cm} \DIFaddend Dropout  \end{mycell} & %\&\\Conversion
+				\begin{mycell}{2.5cm} No \end{mycell} &  
+				\begin{mycell}{2.2cm} Dropout  \end{mycell} & %\&\\Conversion
 				\begin{mycell}{1.8cm} Yes \end{mycell} &  
 				\begin{mycell}{3cm} \textbf{99.1} \end{mycell} 
 				\\
 				\begin{mycell}{3cm} This\\Chapter \end{mycell} & 
 				%  					\begin{mycell}{1.8cm} 3rd \end{mycell} & 
 				\begin{mycell}{1.8cm} \textbf{PAF}\\($p\times$ReLU)\end{mycell} &
-				\DIFdelbegin %DIFDELCMD < \begin{mycell}{1.8cm} %%%
-\DIFdelend \DIFaddbegin \begin{mycell}{2.5cm} \DIFaddend \textbf{Yes} \end{mycell} &  
+				\begin{mycell}{2.5cm} \textbf{Yes} \end{mycell} &  
 				\begin{mycell}{2.2cm} \textbf{No} \\or fine tune  \end{mycell} & 
 				\begin{mycell}{1.8cm} \textbf{No} \end{mycell} & 
-				\begin{mycell}{3cm} 98.72\\ \textbf{99.07\DIFaddbegin \\\DIFaddend (fine tune)} \end{mycell}  
+				\begin{mycell}{3cm} 98.72\\ \textbf{99.07\\(fine tune)} \end{mycell}  
 				\\
 				\cline{1-6}
 				% contents!
@@ -1282,16 +1405,19 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking \DIFd
 	\begin{figure}[htb!]
 		\centering
 		\begin{subfigure}[t]{0.49\textwidth}
-			\includegraphics[width=\textwidth]{pics_iconip/8-2.png}
-			\caption{Before fine tuning}
+			\DIFdelbeginFL %DIFDELCMD < \includegraphics[width=\textwidth]{pics_iconip/8-2.png}
+%DIFDELCMD < 			%%%
+\DIFdelendFL \DIFaddbeginFL \includegraphics[width=\textwidth]{pics_iconip/revise_8-2.png}
+			\DIFaddendFL \caption{Before fine tuning}
 		\end{subfigure}
 		\begin{subfigure}[t]{0.49\textwidth}
-			\includegraphics[width=\textwidth]{pics_iconip/8-3.png}
-			\caption{After fine tuning.}
+			\DIFdelbeginFL %DIFDELCMD < \includegraphics[width=\textwidth]{pics_iconip/8-3.png}
+%DIFDELCMD < 			%%%
+\DIFdelendFL \DIFaddbeginFL \includegraphics[width=\textwidth]{pics_iconip/revise_8-3.png}
+			\DIFaddendFL \caption{After fine tuning.}
 		\end{subfigure}
 
-		\DIFdelbeginFL %DIFDELCMD < \caption{%%%
-\DIFdelendFL \DIFaddbeginFL \caption[The classification accuracy after fine tuning.]{\DIFaddendFL The classification accuracy of 3 trials (averaged in bold lines, grey shading shows the range between minimum to maximum) over short response times, with (a) trained weights before fine tuning, and (b) after fine tuning.}
+		\caption[The classification accuracy after fine tuning.]{The classification accuracy of 3 trials (averaged in bold lines, grey shading shows the range between minimum to maximum) over short response times, with (a) trained weights before fine tuning, and (b) after fine tuning.}
 		\label{fig:ca_time}	
 	\end{figure}
 
@@ -1309,16 +1435,14 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking \DIFd
 	\begin{equation}
 	\begin{aligned}
 	E_{j} &= \lambda_j N_j T E_{syn}\\
-	&= \DIFdelbegin %DIFDELCMD < \dfrac{y_j N_j T E_{syn}}{\tau_{syn}}%%%
-\DIFdelend \DIFaddbegin \dfrac{y_j N_j T E_{syn}}{\tau_{\textit{\textrm{syn}}}}\DIFaddend ~~,
+	&= \dfrac{y_j N_j T E_{syn}}{\tau_{\textit{\textrm{syn}}}}~~,
 	\end{aligned}
 	\label{equ:energy}
 	\end{equation}
 	where $\lambda_j$ is the output firing rate, $N_j$ is the number of post-synaptic neurons it connects to, $T$ is the testing time, and $E_{syn}$ is the energy cost for a synaptic event of some specific neuromorphic hardware, for example, about 8~nJ on SpiNNaker~\citep{stromatias2013power}.
 	Thus to estimate the whole network, we can sum up all the synaptic events of all the neurons:
 	\begin{equation}
-	\sum_j E_{j} =  \DIFdelbegin %DIFDELCMD < \dfrac{T E_{syn}}{\tau_{syn}} %%%
-\DIFdelend \DIFaddbegin \dfrac{T E_{syn}}{\tau_{\textit{\textrm{syn}}}} \DIFaddend \sum_{j}y_j N_j.
+	\sum_j E_{j} =  \dfrac{T E_{syn}}{\tau_{\textit{\textrm{syn}}}} \sum_{j}y_j N_j.
 	\end{equation}
 	Thus, it may cost SpiNNaker 0.064~W, 192~J running for $3,000$~s with synaptic events of $8\times10^6/s$ to classify $10,000$ images (300~ms each) with an accuracy of 98.02\%.
 	The best performance reported using the larger network may cost SpiNNaker 0.43~W operating synaptic event rate at $5.34\times10^7/s$, consume 4271.6~J to classify all the images for 1~s each.
@@ -1330,23 +1454,18 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking \DIFd
 	This training procedure consists of three simple stages: first, estimate parameter $p$ for PAF using NSP; second, use a PAF version of conventional activation functions for ANN training; % can be generalised to activation units other than NSP.
 	%The training of a SNN model is exactly the same as ANN training, and 
 	third, the trained weights can be directly transferred to the SNN without any further transformation.
-	\DIFaddbegin \DIFadd{Another important feature of accurately modelling LIF neurons in ANNs is the acquisition of spiking neuron firing rates. These will aid deployment of SNNs in neuromorphic hardware by providing power and communication estimates, which would allow better usage or customisation of the hardware platforms.
-	}
+	\DIFdelbegin \DIFdel{Another important feature of accurately modelling LIF neurons in ANNs is the acquisition of spiking neuron firing rates. These will aid deployment of SNNs in neuromorphic hardware by providing power and communication estimates, which would allow better usage or customisation of the hardware platforms.
+	}\DIFdelend 
 
 	
-	\DIFaddend Regarding the generalisation, the training not only uses popular activation functions in ANNs, \DIFaddbegin \DIFadd{e.g. ReLU, }\DIFaddend but also targets standard LIF neurons which are widely used on neuromorphic hardware.
-	\DIFaddbegin \DIFadd{Therefore, the proposed method remarkably simplifies the training of AI applications for neuromorphic hardware;
+	
+	Regarding the generalisation, the training not only uses popular activation functions in ANNs, e.g. ReLU, but also targets standard LIF neurons which are widely used on neuromorphic hardware.
+	Therefore, the proposed method remarkably simplifies the training of AI applications for neuromorphic hardware;
 	thereby paving the way to energy-efficient AI on the brain-like computers: from neuromorphic robots to clusters.
 	Moreover, it lowers the barrier for AI engineers to easily access neuromorphic hardware without the need to understand SNNs or the hardware.
-	}\DIFaddend Furthermore, this method requires the least computation complexity while performing most effectively among existing algorithms.
+	Furthermore, this method requires the least computation complexity while performing most effectively among existing algorithms.
 	% and even more straight-forward than the other ANN offline training methods which requires an extra step of converting ANN-trained weights to SNN's.
-	\DIFdelbegin %DIFDELCMD < 
-
-%DIFDELCMD < 	%%%
-\DIFdelend In terms of classification/recognition accuracy, the performance of ANN-trained SNNs is nearly equivalent to ANNs, and the performance loss can be partially solved by fine tuning.
-	The best classification accuracy of 99.07\% using LIF neurons in a PyNN simulation outperforms state-of-the-art SNN models of LIF neurons and is equivalent to the best result achieved using IF neurons\DIFdelbegin \DIFdel{~\mbox{%DIFAUXCMD
-\citep{diehl2015fast}
-}%DIFAUXCMD
-.
-}\DIFdelend \DIFaddbegin \DIFadd{.
-}\DIFaddend An important feature of accurately modelling LIF neurons in ANNs is the acquisition of spiking neuron firing rates. These will aid deployment of SNNs in neuromorphic hardware by providing power and communication estimates, which would allow better usage or customisation of the platforms.
+	In terms of classification/recognition accuracy, the performance of ANN-trained SNNs is nearly equivalent to ANNs, and the performance loss can be partially solved by fine tuning.
+	The best classification accuracy of 99.07\% using LIF neurons in a PyNN simulation outperforms state-of-the-art SNN models of LIF neurons and is equivalent to the best result achieved using IF neurons\DIFaddbegin \DIFadd{.
+	Another important feature of accurately modelling LIF neurons in ANNs is the acquisition of spiking neuron firing rates. These will aid deployment of SNNs in neuromorphic hardware by providing power and communication estimates, which would allow better usage or customisation of the hardware platforms}\DIFaddend .
+%	An important feature of accurately modelling LIF neurons in ANNs is the acquisition of spiking neuron firing rates. These will aid deployment of SNNs in neuromorphic hardware by providing power and communication estimates, which would allow better usage or customisation of the platforms.

@@ -52,7 +52,7 @@ Moreover, the training of PAF-NSP neurons can be generalised to a PAF version of
 On one hand, this research contributes to the NE community a simple off-line SNN training method.
 It enables any feed-forward SNN to be modelled and trained on an equivalent ANN, and thus resolves the difficulties of transforming ANN models to SNNs.
 On the other hand, the method is generalised in terms of spiking neural models and hardware platforms, since it works on standard LIF neurons which are supported by most neuromorphic hardware.
-Hence, AI engineers are capable of implementing their ANN models on NE platforms without knowledge of SNN or hardware-specific programming, and furthermore get benefit from neuromorphic hardware in many ways: such as energy-efficiency, biological realism, low latency and real-time processing.
+Hence, AI engineers are capable of implementing their ANN models on NE platforms without knowledge of SNN or hardware-specific programming, thereby benefiting from neuromorphic hardware in many ways: such as energy-efficiency, biological realism, low latency and real-time processing.
 
 
 %This method involves the least computational complexity while performing most effectively among existing algorithms.
@@ -94,7 +94,7 @@ To validate the cognitive capability of the SNN models, we compared the classifi
 The performance was nearly equivalent, and the best classification accuracy achieved 99.07\% on the MNIST task which outperformed state-of-the-art SNN model of LIF neurons~\citep{hunsberger2015spiking} and equalled the best result using simplified IF neurons~\citep{diehl2015fast}.
 Therefore, we confirm the hypothesis with the first contribution of this thesis: providing the NE community a simple, but effective, generalised, off-line deep SNN training method.
 
-\paragraph{2. Unsupervised Deep Learning modules can be trained on-line on SNNs with biologically-plausible synaptic plasticity to demonstrate a learning capability as competent as ANNs.\\}
+\paragraph{2. Unsupervised Deep Learning modules can be trained on-line on SNNs with biologically-plausible synaptic plasticity to demonstrate a learning capability equivalent to ANNs.\\}
 %This hypothesis targets the formalising of a local learning rule based on synaptic plasticity for unsupervised, event-based, biologically-plausible training of deep SNNs. %in order to catch up with the recognition performance of ANNs.
 
 %In Chapter~\ref{cha:sdlm} we proposed unsupervised Deep Learning algorithms to train SNNs purely with event-based local STDP, using a Spike-based Rate Multiplication method (SRM).
@@ -121,13 +121,16 @@ In addition, the numerical analysis of the proposed algorithm accurately estimat
 
 %This on-line training method achieves better performance than existing algorithms and approaches the same, sometimes superior performance of the equivalent non-spiking methods.
 
-Thanks to the formalisation of these proposed learning algorithms with numerical analysis, the classification results (94.72\% for SAE and 94.35\% for SRBM) have outperformed other existing SAE and SRBM models.
-The first on-line training algorithm proposed by~\citet{neil2013online} ignored the mathematical analysis thus achieved its best classification performance only at 81.5\%.
-\citet{neftci2013event} conducted training on a recurrent network which was more biologically plausible but required a global signal to control the direction of the synapses and resulted in a worse classification of 91.9\% even with a bigger network.
-Moreover, the proposed method is the first to exploit novel techniques to decorrelate the spike trains since the correlation brings down the learning performance rapidly after it peaks.
-Meanwhile, other on-line training methods~\citep{neftci2016stochastic,neftci2017event} suffer from the manual termination of the learning.
-Furthermore, in theory our method works on any spiking neuron and requires a simple rectangular STDP, thus can be easily implemented on general neuromorphic hardware.
-However, it is more difficult for other existing approaches~\citep{neftci2013event,neftci2016stochastic,neftci2017event} to work on hardware platforms since they ask for either specific neural/synaptic models or extra external signals to control the learning.
+Thanks to the accurate parameter estimation, the classification results (94.72\% for SAE and 94.35\% for SRBM) have outperformed most existing on-line models.
+\citet{neil2013online} ignored the mathematical analysis thus achieved its best performance only at 81.5\%.
+\citet{neftci2013event} conducted training on a recurrent network which was more biologically plausible, but with a different goal of neural sampling this method achieved a worse classification at 91.9\%.
+Their extended work~\citep{neftci2016stochastic} improved the performance to the state-of-the-art, 95.6\%, but requires extra Deep Learning technique, dropout~\citep{srivastava2014dropout}, and more training epochs.
+Nevertheless, \citet{neftci2016stochastic} did not compare the trained SNN to the non-spiking counterpart, RBM-dropout; while our method closely reproduced the learning curves of the equivalent ANNs.
+Moreover, our proposed method successfully decorrelates spike trains, thereby solving the problem of performance drop caused by the spike correlation.
+Therefore, this method enables the genuine `live and learn' in on-line SNN training.
+%meanwhile, other methods~\citep{neftci2016stochastic,neftci2017event} suffer from the manual termination of learning when the performance reaches the best.
+Furthermore, in theory our method works on any spiking neuron model and requires a simple rectangular STDP, thus can be easily implemented on general neuromorphic hardware.
+However, it is more difficult for other existing approaches~\citep{neftci2013event,neftci2016stochastic} to work on hardware platforms since they ask for either specific neural/synaptic models or extra external signals to control the learning.
 
 Our second contribution is the formalisation of an STDP-based unsupervised learning algorithm for spiking AE~(SAE) and spiking RBM~(SRBM).
 %These training methods realise on-line, event-based, biologically-plausible learning on spiking deep architectures in an unsupervised fashion.
@@ -163,12 +166,12 @@ The promising results of equivalent or even superior classification and reconstr
 %Classification accuracy (CA) is also a useful metric for hardware evaluation because of the limited precision of the membrane potential and synaptic weights.
 %
 %%Although spike-based algorithms have not surpassed their non-spiking counterparts in terms of recognition accuracy, they have shown great performance in response time and energy efficiency.
-In Chapter~\ref{cha:bench} we presented a dataset which contains four different spike representations of the MNIST stationary hand-written digit database. % rate-based code, rank-order code, DVS recorded flashing and moving inputs. 
+In Chapter~\ref{cha:bench} we presented a dataset containing four different spike representations of the MNIST stationary hand-written digit database. % rate-based code, rank-order code, DVS recorded flashing and moving inputs. 
 The Poissonian subset is intended for benchmarking existing rate-based recognition methods.
 The rank-order coded subset, FoCal, encourages research into spatio-temporal algorithms for recognition applications using only small numbers of input spikes.
 Fast recognition can be verified on the DVS recorded flashing input subset, since just 30~ms of useful spike trains are recorded for each image.
-Looking forward, the continuous spike trains captured from the DVS recorded moving input can be used to test mobile neuromorphic robots.
-\citet{orchard2015convert} presented a neuromorphic dataset using a similar approach, but the spike trains were obtained with micro-saccades.
+Another DVS recorded moving input can be used to test mobile neuromorphic robots.
+\citet{orchard2015convert} presented a neuromorphic dataset using a similar approach to capture moving input, but the spike trains were obtained with micro-saccades.
 This dataset aims to convert static images into neuromorphic vision input, while the recordings of moving input in our paper are intended to promote position-invariant recognition.
 Therefore, the datasets complement each other.
 
@@ -208,16 +211,21 @@ Though the research aim has been mostly achieved by the work presented in this t
 In addition, this work has inspired new directions for future work to continue and expand the current research.
 
 \subsection{Off-line SNN Training}
+The current limitation prohibiting the off-line SNN training method from wide use lies in the lack of supporting tools.
+This requires the development of a set of software and libraries.
+Besides, we will look into networks with feedback connections, Recurrent Neural Networks~(RNNs), thus to adapt the off-line training method to most network architectures.
+Moreover, some initial studies have successfully applied the proposed method to various applications. 
+
 
 \paragraph{Supporting software tools.}
-The current limitation prohibiting the off-line SNN training method from wide use lies in the lack of supporting tools.
-This requires the development of a set of software and libraries:
+%The current limitation prohibiting the off-line SNN training method from wide use lies in the lack of supporting tools.
+The plan of developing software and libraries in the near future includes:
 
 \begin{itemize}
 	\item parameter calibration of $p$ for PAF given LIF neuron configurations, which involves automatic SNN simulations with different levels of current and noise, followed by curve fit with the activation function NSP. 
 %	Furthermore, numerical analysis is considered to present coloured noise introduced by 1~ms time resolution and the synaptic time constant $\tau_{syn}$, refer to Section~\ref{sec:response_func}, thus to model $p$ with biological parameters of a LIF neuron instead of parameter calibration.
 	
-	\item supporting libraries for SNN training in popular Deep Learning platforms, e.g. Tensorflow~\citep{tensorflow2015-whitepaper}, which will include the proposed activation functions NSP and PAF in the ANN models.
+	\item supporting libraries for SNN training in popular Deep Learning platforms, e.g. Tensorflow~\citep{abadi2016tensorflow}, which will include the proposed activation functions NSP and PAF in the ANN models.
 	
 	\item a unified template to describe any ANN model and an automation tool that reads platform-dependent trained models into the designed template.
 	The tool will not only help to translate ANN models to SNNs, but also contribute to the cross-platform transfer learning and use of pre-trained models in Deep Learning.
@@ -225,7 +233,7 @@ This requires the development of a set of software and libraries:
 	\item a translation tool that converts the tuned ANN models into SNNs described in the PyNN~\citep{davison2008pynn} language, thus the SNN model can run on any software simulator or neuromorphic hardware as long as PyNN is supported.
 \end{itemize}
 
-\paragraph{Recurrent Neural Networks~(RNNs).}
+\paragraph{Recurrent Neural Networks.}
 It is difficult to make SNNs work with recurrent architectures, since a spiking neuron simultaneously takes input from both the lower level on the feed-forward path and the upper level on the feedback path.
 However, in ANNs the feed-forward and feedback paths work alternately on separate steps.
 Therefore, the proposed SNN training method only applies to feed-forward networks.
@@ -236,7 +244,7 @@ The simple off-line SNN training method has enabled and encouraged interesting a
 
 \begin{itemize}
 	\item Ensemble models~\citep{krogh1995neural} have been trained with NSP neurons and will be transferred onto the SpiNNaker system~\citep{furber2014spinnaker} to take the advantages of energy-efficiency and massively-parallel processing.
-	\item Speech recognition of simulated cochlea generated spikes has achieved a promising accuracy at the initial test-idea stage.
+	\item Speech recognition of simulated spikes from a cochlea model has achieved a promising accuracy at the initial test-idea stage.
 	The next step is to implement the model entirely on neuromorphic hardware including the cochlea and the SNN, thus to run it in real time.
 	\item An 18-layer residual network~\citep{he2016deep} has been trained for the task of recognising human facial expressions using the KDEF dataset~\citep{lundqvist1998karolinska}.
 	Notably, this is, so far, the deepest network trained with NSP and the recognition performance~(94.95\%) has outperformed ReLU~(92.45\%).
@@ -247,18 +255,21 @@ The simple off-line SNN training method has enabled and encouraged interesting a
 \end{itemize}
 
 
-\subsection{On-line Biologically-Plausible Learning}
+\subsection{On-line Biologically-plausible Learning}
+The proposed on-line learning method is limited to rate coding and greedy layer-wise training.
+Thus, we will explore alternative coding schemes and training algorithms to increase the effectiveness of the on-line learning methods.
+In addition, we will merge novel Deep Learning techniques into the biologically-plausible SNN training to improve the cognitive performance and also decrease the energy consumption when running on neuromorphic hardware.
 \paragraph{Beyond rate coding.}
 Although rate coding has shown good performance on training spiking Deep Learning modules on-line, time-based coding and rank-order coding which carry more information per spike, are expected to have better or faster learning capabilities~\citep{gautrais1998rate}.
 We have proposed a similar on-line learning algorithm for training precise-timing based spiking AEs and RBMs, which although still in the test-idea stage, the prototype has shown much faster learning speed than the rate-coding mechanism.
 
 \paragraph{Backpropagation alternatives.}
-The STDP rule usually works locally with a teaching signal in cognitive tasks, however, error backpropagation~(BP) does not provide the teaching targets for all the hidden units of a network.
+The STDP rule usually works locally with a teaching signal in supervised learning, however, error backpropagation~(BP) does not provide the teaching targets for all the hidden units of a network.
 Thus, BP with gradient descent is believed to be difficult to transfer to SNNs and alternative methods with local training algorithms are preferred.
 Despite the success of greedy layer-wise training of AEs and RBMs, Random Back-Propagation~(RBP) is also an alternative to backward targets with fixed random weights for hidden layers.
 Therefore, RBP fits to the local learning rules of synaptic plasticity in SNNs.
-Initial work~\citep{samadi2017deep,neftci2017event} has shown that these random feedback weights work effectively to replace precise BP.  
-In the future, we will continue the investigation of the area of on-line training on deep SNNs.
+Initial work~\citep{samadi2017deep,neftci2017event} has shown that these random feedback weights work effectively to replace precise BP, but endures complex neuron/synaptic models and network architectures.
+In the future, we will continue the investigation in BP alternatives within on-line SNN training.
 
 \paragraph{Biologically-plausible Reinforcement Learning.}
 The modulation of STDP by a third factor such as dopamine has potentially interesting functional consequences that turn STDP from unsupervised learning into a reward-based learning paradigm~\citep{izhikevich2007solving} which addresses Reinforcement Learning.
@@ -269,7 +280,7 @@ Merging advanced neuroscience findings and Deep Learning mechanisms onto on-line
 Synaptic Sampling Machines (S2Ms)~\citep{neftci2016stochastic} employing a dropout~\citep{srivastava2014dropout} mechanism which hugely improved the performance on MNIST tasks from 91.9\% to 95.6\%.
 Thus applying novel Deep Learning techniques for SNN training is also in the future work to improve the state-of-the-art performance..
 
-\paragraph{Neuromorphic Hardware.}
+\paragraph{Genuine Learning on Neuromorphic Hardware.}
 On-line training is a necessary means towards Neuromorphic Cognition where the hardware computers learn while they operate.
 The main concerns are the learning speed and the power consumption, which will be compared to off-line training methods and conventional ANN training.
 It is still an open question how to perform the human-level cognition and at the same time achieve the low power cost by on-line learning.
@@ -277,6 +288,9 @@ It is still an open question how to perform the human-level cognition and at the
 
 
 \subsection{Evaluation on Neuromorphic Vision}
+Since new problems will continue to arise before vision becomes a solved problem, the NE dataset will evolve as research progresses. 
+The number of vision datasets will increase and the corresponding evaluation methodologies will evolve.
+The conversion methods for transforming images and videos into spike trains will advance.
 
 \paragraph{Face recognition dataset.}
 %The database proposed in Chapter~\ref{cha:bench} will be expanded by converting more popular vision datasets to spike representations.
@@ -300,8 +314,8 @@ To explore invariant object recognition, the dataset will include the NORB (NYU 
 
 \paragraph{Video processing}
 Action recognition will be the first problem of video processing to be introduced in the dataset.
-The initial plan is to use the DVS retina to convert the KTH and Weizmann benchmarks to spiking versions.
-Meanwhile, providing a software DVS retina simulator to transform frames into spike trains is also on the schedule.
+The initial plan is to use the DVS retina to convert the KTH~\citep{schuldt2004recognizing} and Weizmann~\citep{blank2005actions} benchmarks to spiking versions.
+Meanwhile, using the proposed software DVS retina~\citep{7850249} to transform frames into spike trains is also on the schedule.
 By doing this, a huge number of videos, such as those in YouTube, can be converted automatically into spikes, therefore providing researchers with more time to work on their own applications.
 
 \paragraph{Sharing and collaboration}
@@ -323,12 +337,13 @@ Thus, to equip these powerful brain-inspired neuromorphic computers with cogniti
 
 One of the major contributions is a simple off-line SNN training method which models and trains any feed-forward SNN on an equivalent ANN, and enables the trained weights work equivalently on the SNN without any conversion.
 It significantly simplifies the development of AI applications on neuromorphic hardware thanks to the simple training process and the use of standard LIF neurons which are supported by most neuromorphic hardware platforms.
-The success of the generalised off-line method paves the way to energy-efficient AI on mobile devices and huge computer clusters.
+The success of the generalised off-line method paves the way to energy-efficient AI from mobile devices to huge computer clusters.
 
 
 Taking one step towards Neuromorphic Cognition, the on-line learning method has also been investigated to train Deep Learning modules on SNNs.
-The proposed method tackles the problem of accurately translating the weight tuning of AEs and RBMs from numerical computations to event-based, biologically-plausible STDP rules in SNNs.
-It directs the future work to formalise event-based learning to closely mimic the numerical computations in conventional ANNs.
+The proposed method tackles the problem of accurately translating the weight tuning from numerical computations to event-based, biologically-plausible STDP rules in SNNs;
+and is the first to address the continuous performance drop caused by the spike correlations.
+In doing so, it directs the future work to formalise event-based learning to closely mimic the numerical computations in conventional ANNs.
 The development of on-line training will equip the neuromorphic computers with genuine learning capabilities.
 
 Last but not least, this work contributes to the NE community with a uniform dataset to evaluate SNNs' performance at both model and hardware level.

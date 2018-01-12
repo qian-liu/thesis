@@ -12,12 +12,9 @@
 Advances in computing power and machine learning have endowed computers with rapidly growing performance in cognitive tasks such as recognising objects~\citep{deng2009imagenet} and playing GO~\citep{silver2016mastering};
 these tasks were once dominated by human intelligence and solved by biological neurons in the brain.
 However, humans and many other animals still outperform computers in practical tasks, such as vision, and in terms of size and energy cost by several orders of magnitude.
-For instance, AlphaGO~\citep{silver2016mastering} has a power consumption of 1~MW on its $1,920$ CPUs and 280 GPUs when playing the game with one of the best human players whose brain is rated at 20~W\DIFaddbegin \DIFadd{~\mbox{%DIFAUXCMD
-\citep{drubach2000brain}
-}%DIFAUXCMD
-}\DIFaddend .
+For instance, AlphaGO~\citep{silver2016mastering} has a power consumption of 1~MW on its $1,920$ CPUs and 280 GPUs when playing the game with one of the best human players whose brain is rated at 20~W~\citep{drubach2000brain}.
 Although we are still far from understanding the brain thoroughly, it is believed that the performance gap between computation in the biological nervous system and in a computer lies in the nature of the fundamental computing units and how they compute.
-\DIFdelbegin \DIFdel{Computers }\DIFdelend \DIFaddbegin \DIFadd{Typical computers }\DIFaddend employ Boolean logic and deterministic digital operations usually based on synchronous clocks while nervous systems employ parallel, distributed, event-driven, stochastically unreliable components~\citep{indiveri2009artificial}: neurons.
+Typical computers employ Boolean logic and deterministic digital operations usually based on synchronous clocks while nervous systems employ parallel, distributed, event-driven, stochastically unreliable components~\citep{indiveri2009artificial}: neurons.
 These impressive disparities in cognitive capabilities and energy consumption drive research into biologically-plausible spiking neurons and brain inspired computers, known as Neuromorphic Engineering~(NE).
 %Today	we	stand	poised	on	the	brink	of	a	new	era	of	compu:ng	in	which	technology	is	more	
 %consumable,	insight-driven	and	cogni:ve.	IBM	Research	is	exploring	and	developing	the	
@@ -33,10 +30,10 @@ NE was proposed by Carver Mead in the late 1980s \citep{Mead:1989:AVN:64998} to 
 With the ultimate goal of equipping neuromorphic machines with genuine intelligence, 
 %~\citep{konar1999artificial}, also known as `Neuromorphic Cognition'~\citep{indiveri2009artificial},
 the objectives of NE can be summarised as follows~\citep{furber2007neural}:
-\begin{itemize}
+ \begin{itemize} 
 	\item brain modelling: for neuroscientists to understand the brain by modelling and simulating the activities of biological neurons; 
 	\item neuromorphic computing: for engineers to build brain-like machines by applying biological principles to computers.
-\end{itemize}
+ \end{itemize} 
 The aims complement each other; building a biologically inspired computer requires a better understanding of the brain, and simulating brain activities at large scale and in real time is feasible only on massively-parallel neuromorphic hardware.
 
 
@@ -57,15 +54,20 @@ while computer engineers can focus on the hardware implementations of the spikin
 
 Over the last decade, considerable development has taken place in NE where simulations of massive SNNs~\citep{markram2006blue,ananthanarayanan2009cat} have proved to be significantly useful in understanding the brain, and large-scale neuromorphic platforms have been launched to simulate SNNs in hardware.
 %, such as the High Input Count Analog Neural Network (HI-CANN)~\citep{schemmel2010wafer}, Neurogrid~\citep{benjamin2014neurogrid}, SpiNNaker~\citep{furber2014spinnaker}, TrueNorth~\citep{merolla2014million}, and HiAER-IFAT~\citep{yu201265k}.
-These neuromorphic computers develop into energy-efficient systems by implementing neurons, synapses and neuronal communications on analogue circuits~\citep{schemmel2010wafer,benjamin2014neurogrid,yu201265k} or exploiting parallel low-power microprocessors on digital hardware~\citep{furber2014spinnaker,merolla2014million}. 
+These neuromorphic computers develop into energy-efficient systems by implementing neurons, synapses and neuronal communications on analogue circuits~\DIFdelbegin \DIFdel{\mbox{%DIFAUXCMD
+\citep{schemmel2010wafer,benjamin2014neurogrid,yu201265k} }%DIFAUXCMD
+}\DIFdelend \DIFaddbegin \DIFadd{\mbox{%DIFAUXCMD
+\citep{schemmel2010wafer,benjamin2014neurogrid,yu201265k,8094868} }%DIFAUXCMD
+}\DIFaddend or exploiting parallel low-power microprocessors on digital hardware~\citep{furber2014spinnaker,merolla2014million}. 
 %Some of these neuromorphic computers~\citep{schemmel2010wafer,benjamin2014neurogrid,merolla2014million} use non-Von Neumann architectures to mimic the characteristics of parallelism, scalability, and fault-tolerance of the neural system.
 %Instead of executing sequential instructions and building systems of separated computing and memory units, they rather copy the nature of the brain; implementing neurons, synapses and neuronal communications on analogue/digital microelectronics.
 %Therefore this novel architecture may solve the problem of the microprocessor/memory performance gap~\citep{wulf1995hitting}, also known as the Von Neumann bottleneck, where the system speed is determined and limited by the memory performance;
 %and at the same time, these neuromorphic computers develop into energy-efficient systems by reducing the energy used for data movement between processors and memories, and by employing event-based computing. 
-Thus, the neuromorphic hardware systems composed with those have successfully demonstrated decreased energy cost of SNN simulations on supercomputers~\citep{de2010world,sharp2012power}.
+Thus, the neuromorphic hardware systems \DIFdelbegin \DIFdel{composed with those }\DIFdelend have successfully demonstrated decreased energy cost of SNN simulations on supercomputers~\citep{de2010world,sharp2012power}.
 
 However, the SNN simulations only reconstruct the network behaviours and neural dynamics of some subsystem of the brain, `but without precisely functionally simulating that subsystem'~\citep{de2010world}.
-Therefore, this type of SNN simulation can be used to guide neuroscience and the development of neuromorphic hardware systems, but is not directly useful for solving cognitive tasks.
+\DIFaddbegin \DIFadd{In other words, the SNNs are able to repeat the firing activities of groups of neurons, however, not capable of simulating or understanding the functions of these activities.
+}\DIFaddend Therefore, this type of SNN simulation can be used to guide neuroscience and the development of neuromorphic hardware systems, but is not directly useful for solving cognitive tasks.
 Recent SNN applications~\citep{bill2014compound,diehl2015unsupervised} in Artificial Intelligence~(AI) tasks, summarised in Chapter~\ref{cha:bench}, typically comprise only two neural layers and exploit biologically-plausible learning rules, e.g. Spike-Timing-Dependent Plasticity (STDP), and/or Winner-Take-All~(WTA) circuits on the synaptic connections.
 These two-layered SNN models are considered to be `reactive' since the output neurons simply react to the sensory input.
 Consequently, such SNNs cannot perform sophisticated effective cognition as can the brain;
@@ -109,11 +111,11 @@ thus programming these neuromorphic machines to be competent in cognitive applic
 %arranged in a way to implement soft WTA performance can
 
 %Meanwhile, Deep Learning research in the field of Artificial Neural Network~(ANN) has dominated state-of-the-art solutions for AI engineering tasks, e.g. exceeding human-level performance on image classification~\citep{he2015delving}, see Chapter~\ref{cha:dnn} for more examples.
-STDP as a learning mechanism based on biological observations has been theoretically proved to be equivalent to a stochastic version of powerful machine learning algorithms, such as Expectation Maximisation~\citep{nessler2013bayesian}, Contrastive Divergence~\citep{neftci2013event}, Markov Chain Monte Carlo \citep{buesing2011neural} and Gradient Descent~\citep{o2016deep}.
+STDP as a learning mechanism based on biological observations has been \DIFdelbegin \DIFdel{theoretically proved }\DIFdelend \DIFaddbegin \DIFadd{implemented }\DIFaddend to be equivalent to a stochastic version of powerful machine learning algorithms, such as Expectation Maximisation~\citep{nessler2013bayesian}, Contrastive Divergence~\citep{neftci2013event}, Markov Chain Monte Carlo \citep{buesing2011neural} and Gradient Descent~\citep{o2016deep}.
 However, in practice, there have been two significant problems prohibiting the SNN from becoming as `intelligent' as its non-spiking counterpart, the Artificial Neural Network~(ANN).
 Firstly, Deep Learning research has made great achievements in the field of ANNs and dominated state-of-the-art solutions for AI engineering tasks, e.g. exceeding human-level performance on image classification~\citep{he2015delving}, see Chapter~\ref{cha:dnn} for more examples.
 However, the fundamental differences in data representation and neural computation between spiking and artificial neurons make it difficult to transform ANN models into SNN algorithms, see Chapter~\ref{cha:bkg} for more detail.
-Secondly, the computation cost for simulating large SNNs of size comparable to commonly-used deep ANNs was considered to be infeasible, though this has gradually been solved by NE.
+Secondly, the \DIFdelbegin \DIFdel{computation }\DIFdelend \DIFaddbegin \DIFadd{computational }\DIFaddend cost for simulating large SNNs of size comparable to commonly-used deep ANNs was considered to be infeasible, though this has gradually been solved by NE.
 %Thus, recent SNN applications~\citep{bill2014compound,diehl2015unsupervised} in AI tasks (summarised in Chapter~\ref{cha:bench}) typically comprise only two neural layers and exploit STDP learning rules and/or Winner-Take-All~(WTA) circuits on the synaptic connections.
 %These models are `reactive' systems since the output neurons simply react to the sensory input.
 %Therefore, such SNNs cannot perform sophisticated effective cognition as can deep ANNs.
@@ -147,19 +149,21 @@ Initial studies have shown that SNNs can be trained by first training an equival
 this method is called `off-line' training, since it does not take place on SNNs directly, but rather on ANNs instead.
 Chapter~\ref{cha:Conv} discusses these `off-line' training models in detail, and proposes a simple, generalised, off-line SNN training method to overcome the problems of poor modelling accuracy and high computational complexity of the existing methods~\citep{Jug_etal_2012,hunsberger2015spiking,diehl2015fast}.
 To embed the biologically-plausible learning rules into deep SNN training, researchers take an extra step to `on-line' methods where Deep Learning modules can be trained purely on SNNs in an event-driven manner, see Chapter~\ref{cha:sdlm}.
-Previous work~\citep{neil2013online,neftci2013event,burbank2015mirrored} has failed to provide SNNs with recognition accuracy equivalent to ANNs due to the lack of mathematical analysis.
+Previous work~\citep{neil2013online,neftci2013event,burbank2015mirrored} has failed to provide SNNs with recognition accuracy equivalent to ANNs due to the lack of \DIFdelbegin \DIFdel{mathematical analysis}\DIFdelend \DIFaddbegin \DIFadd{model formalisation and accurate parameter settings}\DIFaddend .
 We continue the inspiring work on these biologically-plausible `on-line' training methods and propose a formalised method to train multi-layered Deep Learning modules on SNNs.
 
-To provide meaningful comparisons between these proposed SNN models and other existing methods within the rapidly advancing field of NE, we propose a large dataset of spike-based visual stimuli \DIFaddbegin \DIFadd{to unify data resources for objective comparisons;
-}\DIFaddend and a corresponding evaluation methodology to estimate the overall performance of SNN models and their hardware implementations in Chapter~\ref{cha:bench}.
+To provide meaningful comparisons between these proposed SNN models and other existing methods within the rapidly advancing field of NE, we propose a large dataset of spike-based \DIFdelbegin \DIFdel{visual stimuli }\DIFdelend \DIFaddbegin \DIFadd{images/videos }\DIFaddend to unify data resources for objective comparisons;
+and a corresponding evaluation methodology to estimate the overall performance of SNN models and their hardware implementations in Chapter~\ref{cha:bench}.
+\DIFaddbegin \DIFadd{Moreover, we transform one of the common datasets widely used in Computer Vision into spike-based dataset to enable meaningful comparisons between SNNs and conventional machine learning methods.
+}\DIFaddend 
 
 \section{Motivation and Aims}
 %\section{Statement of the Problem}
 \label{sec:state_problem}
 NE has led to the development of biologically-inspired computer architectures which may approach the performance of the human brain in terms of energy efficiency and cognitive capabilities.
 % provide an alternative to the conventional Von Neumann architecture and 
-Although there are a number of neuromorphic platforms available for large-scale \DIFdelbegin \DIFdel{Spiking Neural Network~(SNN ) }\DIFdelend \DIFaddbegin \DIFadd{SNN }\DIFaddend simulations, the problem of programming these brain-like machines to be competent in cognitive applications still remains unsolved.
-On the other hand, Deep Learning has emerged in \DIFdelbegin \DIFdel{Artificial Neural Network (ANN ) }\DIFdelend \DIFaddbegin \DIFadd{ANN }\DIFaddend research to dominate state-of-the-art solutions for cognitive tasks.
+Although there are a number of neuromorphic platforms available for large-scale SNN simulations, the problem of programming these brain-like machines to be competent in cognitive applications still remains unsolved.
+On the other hand, Deep Learning has emerged in ANN research to dominate state-of-the-art solutions for cognitive tasks.
 Thus the main research problem emerges of understanding how to operate and train biologically-plausible SNNs to close the gap in cognitive capabilities between SNNs and ANNs on AI tasks.
 
 %TODO Why it motivates me (why it would be useful and important to have a solution)
@@ -172,10 +176,10 @@ It will contribute to the ultimate goal of equipping brain-inspired computers wi
 \section{Thesis Statement and Hypotheses}
 \label{sec:aim}
 Although fundamental differences in input/output representation and neural computation exist between spiking and conventional artificial neurons, the cognitive capability of SNNs can be improved to catch up with that of ANNs by embedding Deep Learning techniques in training SNNs.
-Deep Learning has not only successfully equipped ANNs with better-than-human performance on AI tasks, but also theoretical studies have proved the equivalent learning capability of SNNs, and neuromorphic hardware is ready for operating large-scale deep SNNs.
+Deep Learning has not only successfully equipped ANNs with better-than-human performance on AI tasks, but also \DIFdelbegin \DIFdel{theoretical }\DIFdelend studies have proved the equivalent learning capability of SNNs, and neuromorphic hardware is ready for operating large-scale deep SNNs.
 
 According to the thesis statement, the hypotheses are defined as follows: 
-\begin{itemize}
+ \begin{itemize} 
 %	\item 
 %	An object recognition system can operate in real-time on a complete neuromorphic platform in an absolute spike-based fashion.
 %	The hypothesis paves the way for further study with solid proof of the capability of real-time cognitive application built on neuromorphic platform.
@@ -189,7 +193,7 @@ According to the thesis statement, the hypotheses are defined as follows:
 %	Aim: to generalise a training method on conventional ANNs whose trained connections can be transferred to corresponding SNNs to deliver similar recognition performance.
 
 	\item 
-	Unsupervised Deep Learning modules can be trained on-line on SNNs with biologically-plausible synaptic plasticity to demonstrate a learning capability \DIFdelbegin \DIFdel{as competent as }\DIFdelend \DIFaddbegin \DIFadd{equivalent to }\DIFaddend ANNs.
+	Unsupervised Deep Learning modules can be trained on-line on SNNs with biologically-plausible synaptic plasticity to demonstrate a learning capability equivalent to ANNs.
 
 %	Aim: to formalise a local learning rule based on synaptic plasticity for unsupervised, event-based, biologically-plausible training of deep SNNs in order to catch up with the recognition performances of ANNs.
 
@@ -197,14 +201,14 @@ According to the thesis statement, the hypotheses are defined as follows:
 	A new set of spike-based vision datasets can provide resources and corresponding evaluation methodology to support objective comparisons and measure progress within the rapidly advancing field of NE.
 
 %	Aim: to provide a unified spiking version of a commonly-used dataset and a complementary evaluation methodology to assess the performance of SNN algorithms.
-\end{itemize}
+ \end{itemize} 
 
 
 \section{Contributions}
 The primary achievement of the work described in this thesis is the training of deep SNNs, both off-line and on-line, which closes the gap in cognitive capability between SNNs and ANNs.
 Other achievements contribute to the performance evaluation of SNN models and their hardware implementations.
 The contributions are:
-\begin{itemize}
+ \begin{itemize} 
 %	\item 
 %	An implementation of a real-time hand postures recognition system on a neuromorphic hardware platform.
 %	It demonstrated the prototype of a complete neuromorphic system which may form the default configuration of a real-time, energy-efficient and low-latency recognition system.
@@ -234,7 +238,7 @@ The contributions are:
 %	It was tested on a convolutional network and showed a recognition capability a close to the conventional ANN. 
 
 	NSP is described in Chapter~\ref{cha:Conv} and was published and presented at the International Conference on Neural Information Processing (ICONIP 2016);
-	the work of generalised SNN training using PAF has been submitted to the Annual Conference on Neural Information Processing Systems (NIPS 2017).
+	the work of generalised SNN training using PAF \DIFdelbegin \DIFdel{has been }\DIFdelend \DIFaddbegin \DIFadd{will be }\DIFaddend submitted to the \DIFdelbegin \DIFdel{Annual Conference on Neural Information Processing Systems (NIPS 2017}\DIFdelend \DIFaddbegin \DIFadd{IEEE Transactions on Neural Networks and Learning Systems (INNLS}\DIFaddend ).
 
 	\item 
 	\textbf{An on-line unsupervised learning algorithm working purely on event-based STDP for training spiking Autoencoders~(AEs) and Restricted Boltzmann Machines~(RBMs).}
@@ -243,12 +247,9 @@ The contributions are:
 	The proposed formalised Spike-based Rate Multiplication~(SRM) method transforms the product of rates to the number of coincident spikes emitted from a pair of connected spiking neurons, and the simultaneous events can be captured by the change of the synaptic efficacy using the biologically-plausible learning rule: STDP.
 
 	The SRM successfully tackles the problem of translating the weight tuning from numerical computations to event-based, biologically-plausible learning rules in SNNs.
-	\DIFdelbegin \DIFdel{Thus, spiking AEs and RBMs can be trained with SRM and approach the same, sometimes even superior, classification and reconstruction capabilities compared to their equivalent non-spiking models.
-	}\DIFdelend In addition, the numerical analysis of the proposed algorithm accurately estimates the parameters, thus closely mimicking the learning behaviour of the AE and RBM modules, and improves the learning performance compared to existing methods.
-	%DIF < 	The learning ability matched the non-spiking ANNs and verified the feasibility of unsupervised training on deep SNNs. 
-	\DIFaddbegin \DIFadd{Moreover, we propose solutions to the problem of continuous performance drop caused by correlated spike trains.
+	In addition, the numerical analysis of the proposed algorithm accurately estimates the parameters, thus closely mimicking the learning behaviour of the AE and RBM modules, and improves the learning performance compared to existing methods.
+	Moreover, we propose solutions to the problem of continuous performance drop caused by correlated spike trains.
 	Thus, spiking AEs and RBMs can be trained with SRM and approach the same, sometimes even superior, classification and reconstruction capabilities compared to their equivalent non-spiking models.
-		}\DIFaddend 
 
 	This work comprises Chapter~\ref{cha:sdlm}.
 	A paper on these findings is in preparation for submission to the Journal of Neural Computation.
@@ -256,26 +257,26 @@ The contributions are:
 	\item 
 	\textbf{A dataset and the corresponding evaluation methodology for comparisons of SNN models and their hardware implementations.}
 
-	To objectively compare these proposed SNN models with other existing methods, we propose a Neuromorphic Vision dataset NE15-MNIST which is comprised of spike-based visual stimuli based on a standard computer vision benchmark, the MNIST~\citep{lecun1998gradient} dataset.
+	To objectively compare these proposed SNN models with other existing methods, we propose a Neuromorphic Vision dataset NE15-MNIST which is comprised of \DIFdelbegin \DIFdel{spike-based visual stimuli }\DIFdelend \DIFaddbegin \DIFadd{spike-encoded images/videos }\DIFaddend based on a standard computer vision benchmark, the MNIST~\citep{lecun1998gradient} dataset.
 	The unified dataset satisfies the requirement for quantitatively measuring progress within the rapidly advancing field of NE and provides resources to support objective comparisons between researchers.
 	In addition, a complementary evaluation methodology is presented to estimate the overall performance of SNN models and their hardware implementations, since new concerns relating to energy efficiency and recognition latency emerge in SNNs run on NE platforms.
 
-	\DIFdelbegin \DIFdel{This work contributes to (1) promoting meaningful comparisons between algorithms and neuromorphic platforms in the field of NE, (2) allowing comparison with conventional image recognition methods, (3) providing an assessment of the state of the art in spike-based visual recognition, and (4) helping researchers identify future directions and advance the field}\DIFdelend \DIFaddbegin \DIFadd{We also present a potential benchmark system which is evaluated using the Poissonian subset of the NE15-MNIST dataset.
-	It provides a baseline for further comparisons with upcoming SNN models}\DIFaddend .
+	We also present a potential benchmark system which is evaluated using the Poissonian subset of the NE15-MNIST dataset.
+	It provides a baseline for further comparisons with upcoming SNN models.
 %	This dataset also made the comparison of SNNs with conventional recognition methods possible by using converted spike representations of the same vision databases.
 %	As far as we know, this was the first attempt at benchmarking neuromorphic vision recognition by providing a public spike-based dataset and evaluation metrics.
 
 	The dataset was generated with the help of Garibaldi Pineda-Garc\'ia and Teresa Serrano-Gotarredona.
 %	and the second case study was analysed by Evangelos~Stromatias.
 	This work comprises Chapter~\ref{cha:bench} and was published as a journal paper in Frontiers in Neuromorphic Engineering.
-\end{itemize}
+ \end{itemize} 
 
    
 \section{Papers and Workshops}
 
 \subsection{Papers}
 	Much of the work contributed to solving the main research problem of this thesis has either been published or is in the process of submission for publication.
-\begin{itemize}
+ \begin{itemize} 
 
 	\item 
 	\textbf{Q. Liu}, and S. Furber, \textbf{Noisy Softplus: A Biology Inspired Activation Function}, International Conference on Neural Information Processing (ICONIP 2016). 
@@ -284,7 +285,7 @@ The contributions are:
 	This paper comprises the first half of Chapter~\ref{cha:Conv}.
 
 	\item 
-	\textbf{Q. Liu}, Y. Chen, G. Garc\'ia, and S. Furber, \textbf{Generalised Training of Spiking Neural Networks}, (submitted to NIPS 2017).
+	\textbf{Q. Liu}, Y. Chen, G. Garc\'ia, and S. Furber, \textbf{Generalised Training of Spiking Neural Networks}, (\DIFdelbegin \DIFdel{submitted to NIPS 2017}\DIFdelend \DIFaddbegin \DIFadd{to be submitted to INNLS}\DIFaddend ).
 	This paper extends the work of the NSP to solve the problem of mapping abstract numerical values of activation functions to concrete physical units in spiking neurons using PAF, and successfully formalises a simple off-line SNN training method which is also generalised to ReLU-like activation functions.
 %	This paper extends the work of the NSP to generalise a simple off-line SNN training method using PAF.
 	The paper presents the work described in the rest of Chapter~\ref{cha:Conv}.
@@ -299,10 +300,10 @@ The contributions are:
 	The work presented in this paper~\citep{liu2016bench} mainly comprises the spike-based dataset \textbf{NE15-MNIST} and its corresponding evaluation method for Neuromorphic Vision proposed in Chapter~\ref{cha:bench}.
 	In addition, the paper also includes the contributions of the co-authors: the detailed description of a subset of this database and a case study as an example to validate the dataset and its evaluation. 
 
-\end{itemize}
+ \end{itemize} 
 
 	Other publications build up the neuromorphic hardware system for complete event-based visual and auditory processing, providing deep spiking neural networks a valid hardware platform for running applications in biological real time.
-\begin{itemize}
+ \begin{itemize} 
 	\item 
 	\textbf{Q. Liu}, and S. Furber, \textbf{Real-Time Recognition of Dynamic Hand Postures on a Neuromorphic System}, International Conference on Artificial Neural Networks (ICANN 2015).
 	We develop an object recognition system operating in real-time on a complete neuromorphic platform in an absolute spike-based fashion.
@@ -318,12 +319,12 @@ The contributions are:
 	G. Garc\'ia, P. Camilleri, \textbf{Q. Liu}, and S. Furber, \textbf{pyDVS: An Extensible, Real-time Dynamic Vision Sensor Emulator using Off-the-Shelf Hardware}, The 2016 IEEE Symposium Series on Computational Intelligence (IEEE SSCI 2016).
 	This paper~\citep{7850249} proposes a visual input system inspired by the behaviour of a DVS but using a conventional digital camera as a sensor and a PC to encode the images (see Chapter~\ref{cha:bkg}).
 %	We mention the neuromorphic input sensors in Chapter~\ref{cha:bkg}).
-\end{itemize}
+ \end{itemize} 
 
 
 \subsection{Workshops}
-The author participated in workshops organised by the NE community, 1) to establish and contribute to collaborations on mutual interests; 2) to catch up with cutting-edge research and collect inspiration; \DIFaddbegin \DIFadd{and }\DIFaddend 3) to discuss the author's own findings with key researchers in the field.
-\begin{itemize}
+The author participated in workshops organised by the NE community, 1) to establish and contribute to collaborations on mutual interests; 2) to catch up with cutting-edge research and collect inspiration; and 3) to discuss the author's own findings with key researchers in the field.
+ \begin{itemize} 
 	\item 
 	\textit{Capo Caccia Cognitive Neuromorphic Engineering Workshop 2012}.
 
@@ -346,7 +347,7 @@ The author participated in workshops organised by the NE community, 1) to establ
 	\textit{Capo Caccia Cognitive Neuromorphic Engineering Workshop 2015}.
 
 	Inspired by the projects on Deep Learning in the workshop\footnote{\url{https://capocaccia.ethz.ch/capo//wiki/2015/spikednn15}}, the author later proposed the off-line SNN training method and the unsupervised on-line learning algorithm of deep SNNs, and led the discussion of benchmarking neuromorphic vision in the workshop \footnote{\url{https://capocaccia.ethz.ch/capo//wiki/2015/visionbenchmark15}}. 	
-\end{itemize}
+ \end{itemize} 
 \section{Thesis Structure}
 The thesis comprises the following seven chapters:
 
@@ -355,14 +356,12 @@ The thesis comprises the following seven chapters:
 \textbf{Chapter~\ref{cha:bkg}} %briefs the short history	 of Neuromorphic Engineering which leads to the author's research, lists the common spiking neural models and learning approaches, introduces the neuromorphic hardware devices.
 illustrates how biological neurons function, transmit signals between them, and are modelled by mathematical abstractions, thus to unveil the special features of spiking neurons that differ from the neurons of ANNs; and introduces SNN simulators both in software and in hardware including neuromorphic systems.
 
-\textbf{Chapter~\ref{cha:dnn}} gives an overview of popular architectures and models of Deep Learning and illustrates the mechanism of the \DIFdelbegin \DIFdel{convolutional network~(ConvNet}\DIFdelend \DIFaddbegin \DIFadd{Convolutional Networks~(ConvNets}\DIFaddend ), the \DIFdelbegin \DIFdel{Autoencoders~(AEs)}\DIFdelend \DIFaddbegin \DIFadd{AEs}\DIFaddend , and the \DIFdelbegin \DIFdel{Restricted Boltzmann Machine~(RBM) }\DIFdelend \DIFaddbegin \DIFadd{RBMs }\DIFaddend in detail.
+\textbf{Chapter~\ref{cha:dnn}} gives an overview of popular architectures and models of Deep Learning and illustrates the mechanism of the Convolutional Networks~(ConvNets), the AEs, and the RBMs in detail.
 
-\textbf{Chapter~\ref{cha:Conv}} demonstrates the generalised off-line SNN training method \DIFdelbegin \DIFdel{by using a novel biologically-inspired activation function, Noisy Softplus, which is well-matched to the response function of Leaky Integrate-and-Fire neurons; and validates the performance by testing on a convolutional network.
-}\DIFdelend \DIFaddbegin \DIFadd{to confirm the first hypothesis that SNNs can be trained off-line and perform equivalently as ANNs in cognitive tasks.
-%DIF > by using a novel biologically-inspired activation function, NSP, which is well-matched to the response function of Leaky Integrate-and-Fire neurons; and validates the performance by testing on a convolutional network.
-}\DIFaddend 
+\textbf{Chapter~\ref{cha:Conv}} demonstrates the generalised off-line SNN training method to confirm the first hypothesis that SNNs can be trained off-line and perform equivalently as ANNs in cognitive tasks.
+%by using a novel biologically-inspired activation function, NSP, which is well-matched to the response function of Leaky Integrate-and-Fire neurons; and validates the performance by testing on a convolutional network.
 
-\textbf{Chapter~\ref{cha:sdlm}} proposes \DIFdelbegin \DIFdel{the }\DIFdelend \DIFaddbegin \DIFadd{an }\DIFaddend STDP-based learning algorithm for training spiking AEs and RBMs \DIFdelbegin \DIFdel{; and shows equivalent recognition capability of SNNs compared to }\DIFdelend \DIFaddbegin \DIFadd{on-line; and test the second hypothesis that on-line training is able to improve the cognitive capabilities of SNNs and catch up with }\DIFaddend ANNs.
+\textbf{Chapter~\ref{cha:sdlm}} proposes an STDP-based learning algorithm for training spiking AEs and RBMs on-line; and test the second hypothesis that on-line training is able to improve the cognitive capabilities of SNNs and catch up with ANNs.
 
 \textbf{Chapter~\ref{cha:bench}} puts forward the spike-based vision dataset and the evaluation methodology and presents a case study as a tentative benchmark running on SpiNNaker to assess the hardware-level performance against software simulators.
 
@@ -382,6 +381,6 @@ illustrates how biological neurons function, transmit signals between them, and 
 
 	Chapter~\ref{cha:intro} introduces the aims of NE: modelling the brain, and building brain-like machines.
 	Although progress has been made in both directions, it is still far from achieving the long term goal of Neuromorphic Cognition.
-	With the support of accumulated knowledge of SNNs and the massive neuromorphic SNN simulators (both refer to Chapter~\ref{cha:bkg}), plus the huge success of Deep Learning in ANNs (see Chapter~\ref{cha:dnn}), the research aims at understanding how to operate and train biologically-plausible SNNs to close the gap in cognitive capabilities between SNNs and ANNs on AI tasks, \DIFdelbegin \DIFdel{thus }\DIFdelend \DIFaddbegin \DIFadd{thereby }\DIFaddend approaching Neuromorphic Cognition.
+	With the support of accumulated knowledge of SNNs and the massive neuromorphic SNN simulators (both refer to Chapter~\ref{cha:bkg}), plus the huge success of Deep Learning in ANNs (see Chapter~\ref{cha:dnn}), the research aims at understanding how to operate and train biologically-plausible SNNs to close the gap in cognitive capabilities between SNNs and ANNs on AI tasks, thereby approaching Neuromorphic Cognition.
 
-	To achieve the thesis aim, we propose an \DIFdelbegin \DIFdel{on-line }\DIFdelend \DIFaddbegin \DIFadd{off-line }\DIFaddend (Chapter~\ref{cha:Conv}) and an \DIFdelbegin \DIFdel{off-line }\DIFdelend \DIFaddbegin \DIFadd{on-line }\DIFaddend (Chapter~\ref{cha:sdlm}) SNN training method to bring Deep Learning advantages to SNNs, and provide a spike-based dataset and its corresponding evaluation methodology to measure the performance of SNN models and \DIFdelbegin \DIFdel{their hardware implementations }\DIFdelend \DIFaddbegin \DIFadd{the neuromorphic hardware platforms }\DIFaddend in Chapter~\ref{cha:bench}.
+	To achieve the thesis aim, we propose an off-line (Chapter~\ref{cha:Conv}) and an on-line (Chapter~\ref{cha:sdlm}) SNN training method to bring Deep Learning advantages to SNNs, and provide a spike-based dataset and its corresponding evaluation methodology to measure the performance of SNN models and the neuromorphic hardware platforms in Chapter~\ref{cha:bench}.
