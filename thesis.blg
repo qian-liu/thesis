@@ -1,0 +1,64 @@
+This is BibTeX, Version 0.99d (TeX Live 2015/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: thesis.aux
+A level-1 auxiliary file: Chapter1.aux
+A level-1 auxiliary file: Chapter2.aux
+A level-1 auxiliary file: Chapter3.aux
+A level-1 auxiliary file: Chapter4.aux
+A level-1 auxiliary file: Chapter5.aux
+A level-1 auxiliary file: Chapter6.aux
+A level-1 auxiliary file: Conclusion.aux
+A level-1 auxiliary file: Appendices.aux
+The style file: apalike.bst
+Database file #1: refs_intro.bib
+Database file #2: refs_bench.bib
+Database file #3: refs_iconip.bib
+Database file #4: refs_sdbn.bib
+Database file #5: refs_icann.bib
+Database file #6: refs_snn.bib
+Warning--empty journal in bouvrie2006notes
+Warning--can't use both volume and number fields in liu2014real
+Warning--there's a number but no volume in lundqvist1998karolinska
+Warning--empty publisher in widrow1960adaptive
+You've used 148 entries,
+            1935 wiz_defined-function locations,
+            1246 strings with 32439 characters,
+and the built_in function-call counts, 68229 in all, are:
+= -- 6705
+> -- 3110
+< -- 109
++ -- 1109
+- -- 1074
+* -- 5823
+:= -- 11464
+add.period$ -- 457
+call.type$ -- 148
+change.case$ -- 1257
+chr.to.int$ -- 145
+cite$ -- 152
+duplicate$ -- 2596
+empty$ -- 4612
+format.name$ -- 1300
+if$ -- 13599
+int.to.chr$ -- 4
+int.to.str$ -- 0
+missing$ -- 156
+newline$ -- 741
+num.names$ -- 444
+pop$ -- 1237
+preamble$ -- 1
+purify$ -- 1268
+quote$ -- 0
+skip$ -- 2001
+stack$ -- 0
+substring$ -- 4795
+swap$ -- 530
+text.length$ -- 51
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 868
+warning$ -- 4
+while$ -- 546
+width$ -- 0
+write$ -- 1923
+(There were 4 warnings)

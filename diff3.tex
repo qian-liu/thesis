@@ -147,7 +147,7 @@ However, when $j$ is in an inner layer of the network, which connects to $L$ neu
 The error propagation applies to any form of connection in a network, such as FC and Conv layers, and the difference only appears in the summation where the matrix product is used for the FC layer and convolution for the Conv layer.
 In addition, \DIFdelbegin \DIFdel{the weights used in BP }\DIFdelend \DIFaddbegin \DIFadd{when BP is implemented, the weights }\DIFaddend are either transposed in the FC layer or rotated in the Conv layer compared to the forward path.
 
-After error propagation, the BP algorithm updates weights using the optimisation method, gradient descent, to minimize the objective function.
+After error propagation, the BP algorithm updates weights using the optimisation method, gradient descent, to \DIFdelbegin \DIFdel{minimize }\DIFdelend \DIFaddbegin \DIFadd{minimise }\DIFaddend the objective function.
 It modifies the weights by small steps proportional to the negative of the gradients:
 \begin{equation}
 \Delta w_{ij} \propto -\frac{\partial L}{\partial w_{ij}} = -\eta \delta_j x_i~~,

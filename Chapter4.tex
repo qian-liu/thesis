@@ -758,20 +758,23 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking Convo
 	Figure~\ref{Fig:tneuron}(a) illustrates the process that a NSP-modelled artificial spiking neuron takes the input vector $\mathbf{x}$ which is converted from the input firing rate $\bm{\lambda}$; transforms the weighted sum $net\_x_{j}$ and $net_\_\sigma^2_j$ to the abstract output $y_j$; and scales up $y_i$ with the factor $S$ to the output firing rate $\lambda_j$. 
 	
 	
-	If instead of multiplying every input by $\tau_{\textit{\textrm{syn}}}$ (left of Fig.~\ref{Fig:tneuron}(a)) we do it in every output after $\lambda_j$, (right of Fig.~\ref{Fig:tneuron}(b)) we obtain the same neuron model and structure as a typical neuron in ANNs, see Figure~\ref{Fig:tneuron}(c), that neurons take $\mathbf{x}$ as input and output abstract value $y$.
+	If instead of multiplying every input firing rate $\lambda_i$ by $\tau_{\textit{\textrm{syn}}}$ (left of Fig.~\ref{Fig:tneuron}(a)) we do it in every output firing rate after $\lambda_j$, (right of Fig.~\ref{Fig:tneuron}(b)) we obtain the same neuron model and structure as a typical neuron in ANNs, see Figure~\ref{Fig:tneuron}(c), that neurons take $\mathbf{x}$ as input and output abstract value $y$.
 	%	The PAF version of the activation function (Eq.~\ref{equ:PAF}) will be linearly-scaled by the conversion parameter $S$ and the synaptic time constant $\tau_{\textit{\textrm{syn}}}$:
-	The only difference lies in the activation function where the artificial spiking neuron takes PAF, which is a simple linearly-scaled activation function with a parameter $p$, which is determined by the product of the scaling parameter $S$ and the synaptic time constant $\tau_{\textit{\textrm{syn}}}$:
+	The only difference lies in the activation function where the artificial spiking neuron takes PAF, which is a simple linearly-scaled activation function with a parameter $p$.
+	The parameter is determined by the product of the scaling factor $S$ and the synaptic time constant $\tau_{\textit{\textrm{syn}}}$:
 	\begin{equation}
 	y = p \times f(x) = S \times \tau_{\textit{\textrm{syn}}} \times f(x)~,
 	\label{equ:PAF}
 	\end{equation}
 	where $f(x)$ represents a typical conventional activation function, e.g. ReLU.
+	
+	
 	The derivative function of PAF, which is used for back propagation, is:
 	\begin{equation}
 	\frac{\partial y}{\partial x} = p \times f'(x) = S \times \tau_{\textit{\textrm{syn}}} \times f'(x)~.
 	\end{equation}
 	
-	Excitingly, PAF not only allows NSP to model spiking LIF neurons on ANNs.
+	PAF not only allows NSP to model spiking LIF neurons on ANNs.
 	Once the parameter $p$ is acquired the PAF can be generalised to other Relu-like activation functions.
 	Because Softplus and NSP will both converge to ReLU, when the input increases, so they can share the scaling factor $p$.
 %	We will compare these ReLU-like functions in modelling LIF neurons in Section~\ref{subsec:compareAF}.
@@ -787,8 +790,10 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking Convo
 		\item Calibrate the parameters $(k,b, S)$ for Noisy Softplus which models the response firing rates of LIF neurons, thus to estimate the parameter $p=S \times \tau_{\textit{\textrm{syn}}}$ for PAFs and to set the LIF parameter $I_{\textit{\textrm{offset}}}=b$. Since $(k,b, S)$ are solely dependent on the biological configurations of an LIF neuron, the same $p$ can be shared with different activation functions and repeatedly used for various network architectures and applications.
 		\item Train any feed-forward ANN with a PAF version of a ReLU-like activation function.
 		Training compatibility allows us to choose computationally simple activation functions to increase training speed.
+		
+		As stated in Section~\ref{sec:convnet}, the Backpropagation algorithm updates weights using the optimisation method, stochastic gradient descent, to minimise error between the labels and the predictions from the network.
 		%		Surprisingly, the use of PAF-ReLU provides the best accuracy scores for an SNN on the MNIST dataset. 
-		\item Transfer the weights directly to the SNN, which should use the same LIF characteristics used in Step 1.
+		\item Transfer the trained weights directly to the SNN, which should use the same LIF characteristics used in Step 1.
 	\end{enumerate}
 	
 	\subsection{Fine Tuning}

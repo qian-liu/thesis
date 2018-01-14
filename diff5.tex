@@ -19,21 +19,30 @@ Instead of transforming off-line trained ANN models into SNNs, we explore on-lin
 \label{sec:SRM_intro}
 Before we investigate the proposed method, it is helpful to clarify what on-line learning addresses in the context of this thesis and what special features exist in SNN training.
 \DIFaddbegin \DIFadd{Researchers in neuromorphic engineering seem to take the term `on-line training' for granted~\mbox{%DIFAUXCMD
-\cite{neil2013online,neftci2013event} }%DIFAUXCMD
+\citep{neil2013online,neftci2013event} }%DIFAUXCMD
 without describing it clearly.
-It typically refers to an event-based SNN system, where the learning occurs when a spike arrives under some certain condition.
+The on-line approach exploits biologically-plausible learning rules, e.g. Spike-Timing-Dependent Plasticity~(STDP).
+Therefore, the modulation of the synaptic weights is event-driven by the spikes and operates in biological real time.
 On the contrary, `off-line' training usually takes place on an equivalent ANN and the network parameters are tuned using traditional algorithm, e.g. gradient descent.
-Therefore, some special features appear in the on-line systems.
+}
+
+\DIFadd{Therefore, some special features appear in the on-line systems.
 }\DIFaddend Firstly, on-line systems `learn through play' in that there is no separation between a training and a testing phase.
 Typically, the systems learn and improve their capability continuously as more data is fed into them.
 Secondly, they `live and learn' which means on-line learning never stops.
 Thus, it is easy for an on-line system to learn a new task, by simply providing different data.
 However, once a model is trained off-line, it remains fixed and stops learning.
 The brain is a natural on-line system, thus bringing its learning techniques to SNNs will equip neuromorphic computers with genuine learning capability, moving towards Neuromorphic Cognition.
-Hence, thirdly, the on-line approach exploits biologically-plausible learning rules, e.g. Spike-Timing-Dependent Plasticity~(STDP).
-Therefore, the modulation of the synaptic efficacy is event-driven by the spikes and operates in biological real time.
+\DIFdelbegin \DIFdel{Hence, thirdly, }\DIFdelend \DIFaddbegin 
 
-%Towards Neuromorphic Cognition, it is significant to endow these brain-like machines with on-line learning ability.
+\DIFadd{There are interesting problems to be solved to mimic }\DIFaddend the on-line \DIFdelbegin \DIFdel{approach exploits biologically-plausible learning rules, e.g. Spike-Timing-Dependent Plasticity~(STDP).
+Therefore, the modulation of the synaptic efficacy is event-driven by the spikes and operates in biological real time}\DIFdelend \DIFaddbegin \DIFadd{learning technique from the brain}\DIFaddend .
+
+%DIF > Hence, thirdly, the on-line approach exploits biologically-plausible learning rules, e.g. Spike-Timing-Dependent Plasticity~(STDP).
+%DIF > Therefore, the modulation of the synaptic weights is event-driven by the spikes and operates in biological real time.
+\DIFaddbegin 
+
+\DIFaddend %Towards Neuromorphic Cognition, it is significant to endow these brain-like machines with on-line learning ability.
 
 The main difficulty in proposing effective on-line methods is the lack of knowledge about learning in the brain.
 The STDP learning rule, presented by~\citet{bi1998synaptic} (see Section~\ref{subsec:STDP} for detail), and its variations make up the majority of the biologically plausible on-line learning methods.

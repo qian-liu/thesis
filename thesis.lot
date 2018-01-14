@@ -1,0 +1,18 @@
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {4.1}{\ignorespaces LIF parameter settings.}}{64}{table.caption.28}
+\contentsline {table}{\numberline {4.2}{\ignorespaces SNN training methods comparison.\relax }}{83}{table.caption.43}
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {5.1}{\ignorespaces Parameter setting of SRM.}}{103}{table.caption.59}
+\contentsline {table}{\numberline {5.2}{\ignorespaces Mean synaptic event rate.}}{122}{table.caption.75}
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {6.1}{\ignorespaces SNN descriptions at the model level\relax }}{138}{table.caption.85}
+\contentsline {table}{\numberline {6.2}{\ignorespaces Model-level comparison\relax }}{140}{table.caption.86}
+\contentsline {table}{\numberline {6.3}{\ignorespaces Hardware-level comparison\relax }}{141}{table.caption.87}
+\contentsline {table}{\numberline {6.4}{\ignorespaces LIF parameter setting using PyNN.}}{144}{table.caption.88}
+\contentsline {table}{\numberline {6.5}{\ignorespaces Comparisons of NEST and SpiNNaker performance.}}{150}{table.caption.91}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }

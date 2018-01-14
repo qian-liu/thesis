@@ -1,0 +1,898 @@
+\begin{thebibliography}{}
+
+\bibitem[Abadi et~al., 2016]{abadi2016tensorflow}
+Abadi, M., Agarwal, A., Barham, P., Brevdo, E., Chen, Z., Citro, C., Corrado,
+  G.~S., Davis, A., Dean, J., Devin, M., et~al. (2016).
+\newblock {Tensorflow: large-scale machine learning on heterogeneous
+  distributed systems}.
+\newblock {\em arXiv preprint arXiv:1603.04467}.
+
+\bibitem[Ananthanarayanan et~al., 2009]{ananthanarayanan2009cat}
+Ananthanarayanan, R., Esser, S.~K., Simon, H.~D., and Modha, D.~S. (2009).
+\newblock {The cat is out of the bag: cortical simulations with $10^9$ neurons,
+  $10^{13}$ synapses}.
+\newblock In {\em High Performance Computing Networking, Storage and Analysis,
+  Proceedings of the Conference on}, pages 1--12. IEEE.
+
+\bibitem[Azevedo et~al., 2009]{azevedo2009equal}
+Azevedo, F.~A., Carvalho, L.~R., Grinberg, L.~T., Farfel, J.~M., Ferretti,
+  R.~E., Leite, R.~E., Lent, R., Herculano-Houzel, S., et~al. (2009).
+\newblock Equal numbers of neuronal and nonneuronal cells make the human brain
+  an isometrically scaled-up primate brain.
+\newblock {\em Journal of Comparative Neurology}, 513(5):532--541.
+
+\bibitem[Bengio et~al., 2007]{bengio2007greedy}
+Bengio, Y., Lamblin, P., Popovici, D., and Larochelle, H. (2007).
+\newblock Greedy layer-wise training of deep networks.
+\newblock In {\em Advances in neural information processing systems}, pages
+  153--160.
+
+\bibitem[Benjamin et~al., 2014]{benjamin2014neurogrid}
+Benjamin, B.~V., Gao, P., McQuinn, E., Choudhary, S., Chandrasekaran, A.~R.,
+  Bussat, J.-M., Alvarez-Icaza, R., Arthur, J.~V., Merolla, P., Boahen, K.,
+  et~al. (2014).
+\newblock {Neurogrid: a mixed-analog-digital multichip system for large-scale
+  neural simulations}.
+\newblock {\em Proceedings of the IEEE}, 102(5):699--716.
+
+\bibitem[Bi and Poo, 1998]{bi1998synaptic}
+Bi, G.-q. and Poo, M.-m. (1998).
+\newblock Synaptic modifications in cultured hippocampal neurons: dependence on
+  spike timing, synaptic strength, and postsynaptic cell type.
+\newblock {\em Journal of neuroscience}, 18(24):10464--10472.
+
+\bibitem[Bi and Poo, 2001]{bi2001synaptic}
+Bi, G.-q. and Poo, M.-m. (2001).
+\newblock {Synaptic modification by correlated activity: Hebb's postulate
+  revisited}.
+\newblock {\em Annual review of neuroscience}, 24(1):139--166.
+
+\bibitem[Bichler et~al., 2012]{bichler2012extraction}
+Bichler, O., Querlioz, D., Thorpe, S.~J., Bourgoin, J.-P., and Gamrat, C.
+  (2012).
+\newblock Extraction of temporally correlated features from dynamic vision
+  sensors with spike-timing-dependent plasticity.
+\newblock {\em Neural Networks}, 32:339--348.
+
+\bibitem[Bill and Legenstein, 2014]{bill2014compound}
+Bill, J. and Legenstein, R. (2014).
+\newblock {A compound memristive synapse model for statistical learning through
+  STDP in spiking neural networks}.
+\newblock {\em Frontiers in neuroscience}, 8.
+
+\bibitem[Blank et~al., 2005]{blank2005actions}
+Blank, M., Gorelick, L., Shechtman, E., Irani, M., and Basri, R. (2005).
+\newblock Actions as space-time shapes.
+\newblock In {\em Computer Vision, 2005. ICCV 2005. Tenth IEEE International
+  Conference on}, volume~2, pages 1395--1402.
+
+\bibitem[Bouvrie, 2006]{bouvrie2006notes}
+Bouvrie, J. (2006).
+\newblock Notes on convolutional neural networks.
+
+\bibitem[Brader et~al., 2007]{brader2007learning}
+Brader, J.~M., Senn, W., and Fusi, S. (2007).
+\newblock Learning real-world stimuli in a neural network with spike-driven
+  synaptic dynamics.
+\newblock {\em Neural computation}, 19(11):2881--2912.
+
+\bibitem[Buesing et~al., 2011]{buesing2011neural}
+Buesing, L., Bill, J., Nessler, B., and Maass, W. (2011).
+\newblock Neural dynamics as sampling: a model for stochastic computation in
+  recurrent networks of spiking neurons.
+\newblock {\em PLoS Comput Biol}, 7(11):e1002211.
+
+\bibitem[Burbank, 2015]{burbank2015mirrored}
+Burbank, K.~S. (2015).
+\newblock Mirrored stdp implements autoencoder learning in a network of spiking
+  neurons.
+\newblock {\em PLoS Comput Biol}, 11(12):e1004566.
+
+\bibitem[Byrne et~al., 2014]{byrne2014molecules}
+Byrne, J.~H., Heidelberger, R., and Waxham, M.~N. (2014).
+\newblock {\em From molecules to networks: an introduction to cellular and
+  molecular neuroscience}.
+\newblock Academic Press.
+
+\bibitem[Camunas-Mesa et~al., 2012]{camunas2012event}
+Camunas-Mesa, L., Zamarre{\~n}o-Ramos, C., Linares-Barranco, A.,
+  Acosta-Jim{\'e}nez, A.~J., Serrano-Gotarredona, T., and Linares-Barranco, B.
+  (2012).
+\newblock An event-driven multi-kernel convolution processor module for
+  event-driven vision sensors.
+\newblock {\em Solid-State Circuits, IEEE Journal of}, 47(2):504--517.
+
+\bibitem[Cao et~al., 2015]{cao2015spiking}
+Cao, Y., Chen, Y., and Khosla, D. (2015).
+\newblock Spiking deep convolutional neural networks for energy-efficient
+  object recognition.
+\newblock {\em International Journal of Computer Vision}, 113(1):54--66.
+
+\bibitem[Davison et~al., 2008]{davison2008pynn}
+Davison, A.~P., Br{\"u}derle, D., Eppler, J., Kremkow, J., Muller, E.,
+  Pecevski, D., Perrinet, L., and Yger, P. (2008).
+\newblock {PyNN: a common interface for neuronal network simulators}.
+\newblock {\em Frontiers in neuroinformatics}, 2.
+
+\bibitem[De~Garis et~al., 2010]{de2010world}
+De~Garis, H., Shuo, C., Goertzel, B., and Ruiting, L. (2010).
+\newblock {A world survey of artificial brain projects, Part I: Large-scale
+  brain simulations}.
+\newblock {\em Neurocomputing}, 74(1):3--29.
+
+\bibitem[Deger et~al., 2012]{deger2012statistical}
+Deger, M., Helias, M., Boucsein, C., and Rotter, S. (2012).
+\newblock Statistical properties of superimposed stationary spike trains.
+\newblock {\em Journal of computational neuroscience}, 32(3):443--463.
+
+\bibitem[Delbruck, 2008]{delbruck2008frame}
+Delbruck, T. (2008).
+\newblock Frame-free dynamic digital vision.
+\newblock In {\em Proceedings of Intl. Symp. on Secure-Life Electronics,
+  Advanced Electronics for Quality Life and Society}, pages 21--26.
+
+\bibitem[Delorme and Thorpe, 2001]{delorme2001face}
+Delorme, A. and Thorpe, S.~J. (2001).
+\newblock {Face identification using one spike per neuron: resistance to image
+  degradations}.
+\newblock {\em Neural Networks}, 14(6):795--803.
+
+\bibitem[Deng et~al., 2009]{deng2009imagenet}
+Deng, J., Dong, W., Socher, R., Li, L.-J., Li, K., and Fei-Fei, L. (2009).
+\newblock {Imagenet: a large-scale hierarchical image database}.
+\newblock In {\em Computer Vision and Pattern Recognition, 2009. CVPR 2009.
+  IEEE Conference on}, pages 248--255.
+
+\bibitem[DiCarlo et~al., 2012]{dicarlo2012does}
+DiCarlo, J.~J., Zoccolan, D., and Rust, N.~C. (2012).
+\newblock How does the brain solve visual object recognition?
+\newblock {\em Neuron}, 73(3):415--434.
+
+\bibitem[Diehl et~al., 2015a]{diehl2015unsupervised}
+Diehl, P.~U., Cook, M., Tatsuno, M., and Song, S. (2015a).
+\newblock Unsupervised learning of digit recognition using
+  spike-timing-dependent plasticity.
+\newblock {\em Frontiers in Computational Neuroscience}.
+
+\bibitem[Diehl et~al., 2015b]{diehl2015fast}
+Diehl, P.~U., Neil, D., Binas, J., Cook, M., Liu, S.-C., and Pfeiffer, M.
+  (2015b).
+\newblock Fast-classifying, high-accuracy spiking deep networks through weight
+  and threshold balancing.
+\newblock In {\em Neural Networks (IJCNN), 2015 International Joint Conference
+  on}, pages 1--8. IEEE.
+
+\bibitem[Diehl et~al., 2016a]{diehl2016truehappiness}
+Diehl, P.~U., Pedroni, B.~U., Cassidy, A., Merolla, P., Neftci, E., and
+  Zarrella, G. (2016a).
+\newblock {Truehappiness: Neuromorphic emotion recognition on Truenorth}.
+\newblock In {\em Neural Networks (IJCNN), 2016 International Joint Conference
+  on}, pages 4278--4285. IEEE.
+
+\bibitem[Diehl et~al., 2016b]{diehl2016conversion}
+Diehl, P.~U., Zarrella, G., Cassidy, A., Pedroni, B.~U., and Neftci, E.
+  (2016b).
+\newblock Conversion of artificial recurrent neural networks to spiking neural
+  networks for low-power neuromorphic hardware.
+\newblock {\em arXiv preprint}.
+
+\bibitem[Drubach, 2000]{drubach2000brain}
+Drubach, D. (2000).
+\newblock {\em The brain explained}.
+\newblock Prentice Hall.
+
+\bibitem[Eliasmith et~al., 2012]{eliasmith2012large}
+Eliasmith, C., Stewart, T.~C., Choo, X., Bekolay, T., DeWolf, T., Tang, Y., and
+  Rasmussen, D. (2012).
+\newblock A large-scale model of the functioning brain.
+\newblock {\em Science}, 338(6111):1202--1205.
+
+\bibitem[Esser et~al., 2015]{esser2015backpropagation}
+Esser, S.~K., Appuswamy, R., Merolla, P., Arthur, J.~V., and Modha, D.~S.
+  (2015).
+\newblock Backpropagation for energy-efficient neuromorphic computing.
+\newblock In {\em Advances in Neural Information Processing Systems}, pages
+  1117--1125.
+
+\bibitem[Fabre-Thorpe et~al., 1998]{fabre1998rapid}
+Fabre-Thorpe, M., Richard, G., and Thorpe, S.~J. (1998).
+\newblock Rapid categorization of natural images by rhesus monkeys.
+\newblock {\em Neuroreport}, 9(2):303--308.
+
+\bibitem[Fischer and Igel, 2012]{fischer2012introduction}
+Fischer, A. and Igel, C. (2012).
+\newblock {An introduction to restricted Boltzmann machines}.
+\newblock {\em Progress in Pattern Recognition, Image Analysis, Computer
+  Vision, and Applications}, pages 14--36.
+
+\bibitem[Fu et~al., 2012]{fu2012spiking}
+Fu, S.-Y., Yang, G.-S., and Kuai, X.-K. (2012).
+\newblock A spiking neural network based cortex-like mechanism and application
+  to facial expression recognition.
+\newblock {\em Computational intelligence and neuroscience}, 2012:19.
+
+\bibitem[Fukushima and Miyake, 1982]{fukushima1982neocognitron}
+Fukushima, K. and Miyake, S. (1982).
+\newblock Neocognitron: A self-organizing neural network model for a mechanism
+  of visual pattern recognition.
+\newblock In {\em Competition and cooperation in neural nets}, pages 267--285.
+  Springer.
+
+\bibitem[Furber and Temple, 2007]{furber2007neural}
+Furber, S. and Temple, S. (2007).
+\newblock Neural systems engineering.
+\newblock {\em Journal of the Royal Society interface}, 4(13):193--206.
+
+\bibitem[Furber et~al., 2014]{furber2014spinnaker}
+Furber, S.~B., Galluppi, F., Temple, S., Plana, L., et~al. (2014).
+\newblock {The SpiNNaker Project}.
+\newblock {\em Proceedings of the IEEE}, 102(5):652--665.
+
+\bibitem[Garibaldi et~al., 2016]{7850249}
+Garibaldi, P.-G., Camilleri, P., Liu, Q., and Furber, S. (2016).
+\newblock {pyDVS: An extensible, real-time Dynamic Vision Sensor emulator using
+  off-the-shelf hardware}.
+\newblock In {\em 2016 IEEE Symposium Series on Computational Intelligence
+  (SSCI)}, pages 1--7.
+
+\bibitem[Gautrais and Thorpe, 1998]{gautrais1998rate}
+Gautrais, J. and Thorpe, S. (1998).
+\newblock Rate coding versus temporal order coding: a theoretical approach.
+\newblock {\em Biosystems}, 48(1):57--65.
+
+\bibitem[Gerstner and Kistler, 2002]{gerstner2002spiking}
+Gerstner, W. and Kistler, W.~M. (2002).
+\newblock {\em Spiking neuron models: Single neurons, populations, plasticity}.
+\newblock Cambridge university press.
+
+\bibitem[Gerstner et~al., 2014]{gerstner2014neuronal}
+Gerstner, W., Kistler, W.~M., Naud, R., and Paninski, L. (2014).
+\newblock {\em {Neuronal dynamics: from single neurons to networks and models
+  of cognition}}.
+\newblock Cambridge University Press.
+
+\bibitem[Gewaltig and Diesmann, 2007]{gewaltig2007nest}
+Gewaltig, M.-O. and Diesmann, M. (2007).
+\newblock {NEST (NEural Simulation Tool)}.
+\newblock {\em Scholarpedia}, 2(4):1430.
+
+\bibitem[Goodfellow et~al., 2014]{goodfellow2014generative}
+Goodfellow, I., Pouget-Abadie, J., Mirza, M., Xu, B., Warde-Farley, D., Ozair,
+  S., Courville, A., and Bengio, Y. (2014).
+\newblock Generative adversarial nets.
+\newblock In {\em Advances in neural information processing systems}, pages
+  2672--2680.
+
+\bibitem[Goodman and Brette, 2008]{goodman2008brian}
+Goodman, D. and Brette, R. (2008).
+\newblock {Brian: a simulator for spiking neural networks in Python}.
+\newblock {\em Frontiers in neuroinformatics}, 2.
+
+\bibitem[Graves and Jaitly, 2014]{graves2014towards}
+Graves, A. and Jaitly, N. (2014).
+\newblock Towards end-to-end speech recognition with recurrent neural networks.
+\newblock In {\em ICML}, volume~14, pages 1764--1772.
+
+\bibitem[Gray and Singer, 1989]{gray1989stimulus}
+Gray, C.~M. and Singer, W. (1989).
+\newblock Stimulus-specific neuronal oscillations in orientation columns of cat
+  visual cortex.
+\newblock {\em Proceedings of the National Academy of Sciences},
+  86(5):1698--1702.
+
+\bibitem[He et~al., 2015]{he2015delving}
+He, K., Zhang, X., Ren, S., and Sun, J. (2015).
+\newblock {Delving deep into rectifiers: Surpassing human-level performance on
+  ImageNet classification}.
+\newblock In {\em Proceedings of the IEEE International Conference on Computer
+  Vision}, pages 1026--1034.
+
+\bibitem[He et~al., 2016]{he2016deep}
+He, K., Zhang, X., Ren, S., and Sun, J. (2016).
+\newblock Deep residual learning for image recognition.
+\newblock In {\em Proceedings of the IEEE Conference on Computer Vision and
+  Pattern Recognition}, pages 770--778.
+
+\bibitem[Hinton, 2002]{hinton2002training}
+Hinton, G.~E. (2002).
+\newblock Training products of experts by minimizing contrastive divergence.
+\newblock {\em Neural computation}, 14(8):1771--1800.
+
+\bibitem[Hinton et~al., 2006]{hinton2006fast}
+Hinton, G.~E., Osindero, S., and Teh, Y.-W. (2006).
+\newblock {A fast learning algorithm for deep belief nets}.
+\newblock {\em Neural computation}, 18(7):1527--1554.
+
+\bibitem[Hochreiter and Schmidhuber, 1997]{hochreiter1997long}
+Hochreiter, S. and Schmidhuber, J. (1997).
+\newblock Long short-term memory.
+\newblock {\em Neural computation}, 9(8):1735--1780.
+
+\bibitem[Hodgkin and Huxley, 1939]{hodgkin1939action}
+Hodgkin, A.~L. and Huxley, A.~F. (1939).
+\newblock Action potentials recorded from inside a nerve fibre.
+\newblock {\em Nature}, 144(3651):710--711.
+
+\bibitem[Hodgkin and Huxley, 1952]{hodgkin1952quantitative}
+Hodgkin, A.~L. and Huxley, A.~F. (1952).
+\newblock A quantitative description of membrane current and its application to
+  conduction and excitation in nerve.
+\newblock {\em The Journal of physiology}, 117(4):500.
+
+\bibitem[Hopfield, 1982]{hopfield1982neural}
+Hopfield, J.~J. (1982).
+\newblock Neural networks and physical systems with emergent collective
+  computational abilities.
+\newblock {\em Proceedings of the national academy of sciences},
+  79(8):2554--2558.
+
+\bibitem[Hopkins and Furber, 2015]{Hopkins2015Accuracy}
+Hopkins, M. and Furber, S. (2015).
+\newblock {Accuracy and efficiency in fixed-point neural ODE solvers}.
+\newblock {\em Neural computation}, 27(10):2148--2182.
+
+\bibitem[Hubel and Wiesel, 1962]{hubel1962receptive}
+Hubel, D.~H. and Wiesel, T.~N. (1962).
+\newblock Receptive fields, binocular interaction and functional architecture
+  in the cat's visual cortex.
+\newblock {\em The Journal of physiology}, 160(1):106--154.
+
+\bibitem[Hunsberger and Eliasmith, 2015]{hunsberger2015spiking}
+Hunsberger, E. and Eliasmith, C. (2015).
+\newblock {Spiking deep networks with LIF neurons}.
+\newblock {\em arXiv preprint}.
+
+\bibitem[Indiveri et~al., 2009]{indiveri2009artificial}
+Indiveri, G., Chicca, E., and Douglas, R.~J. (2009).
+\newblock {Artificial cognitive systems: from VLSI networks of spiking neurons
+  to neuromorphic cognition}.
+\newblock {\em Cognitive Computation}, 1(2):119--127.
+
+\bibitem[Indiveri et~al., 2011]{indiveri2011neuromorphic}
+Indiveri, G., Linares-Barranco, B., Hamilton, T.~J., Van~Schaik, A.,
+  Etienne-Cummings, R., Delbruck, T., Liu, S.-C., Dudek, P., H{\"a}fliger, P.,
+  Renaud, S., et~al. (2011).
+\newblock Neuromorphic silicon neuron circuits.
+\newblock {\em Frontiers in neuroscience}, 5.
+
+\bibitem[Izhikevich, 2003]{izhikevich2003simple}
+Izhikevich, E.~M. (2003).
+\newblock Simple model of spiking neurons.
+\newblock {\em IEEE Transactions on neural networks}, 14(6):1569--1572.
+
+\bibitem[Izhikevich, 2004]{izhikevich2004model}
+Izhikevich, E.~M. (2004).
+\newblock Which model to use for cortical spiking neurons?
+\newblock {\em IEEE transactions on neural networks}, 15(5):1063--1070.
+
+\bibitem[Izhikevich, 2007]{izhikevich2007solving}
+Izhikevich, E.~M. (2007).
+\newblock {Solving the distal reward problem through linkage of STDP and
+  dopamine signaling}.
+\newblock {\em Cerebral cortex}, 17(10):2443--2452.
+
+\bibitem[Johansson and Birznieks, 2004]{johansson2004first}
+Johansson, R.~S. and Birznieks, I. (2004).
+\newblock First spikes in ensembles of human tactile afferents code complex
+  spatial fingertip events.
+\newblock {\em Nature neuroscience}, 7(2):170--177.
+
+\bibitem[Joubert et~al., 2012]{joubert2012hardware}
+Joubert, A., Belhadj, B., Temam, O., and H{\'e}liot, R. (2012).
+\newblock {Hardware spiking neurons design: analog or digital?}
+\newblock In {\em Neural Networks (IJCNN), The 2012 International Joint
+  Conference on}, pages 1--5. IEEE.
+
+\bibitem[Jug et~al., 2012]{Jug_etal_2012}
+Jug, F., Lengler, J., Krautz, C., and Steger, A. (2012).
+\newblock {Spiking networks and their rate-based equivalents: does it make
+  sense to use {S}iegert neurons?}
+\newblock In {\em Swiss Soc. for Neuroscience}.
+
+\bibitem[Karpathy and Fei-Fei, 2015]{karpathy2015deep}
+Karpathy, A. and Fei-Fei, L. (2015).
+\newblock Deep visual-semantic alignments for generating image descriptions.
+\newblock In {\em Proceedings of the IEEE Conference on Computer Vision and
+  Pattern Recognition}, pages 3128--3137.
+
+\bibitem[Keysers et~al., 2001]{keysers2001speed}
+Keysers, C., Xiao, D.-K., F{\"o}ldi{\'a}k, P., and Perrett, D. (2001).
+\newblock The speed of sight.
+\newblock {\em Journal of cognitive neuroscience}, 13(1):90--101.
+
+\bibitem[Kiselev et~al., 2016]{kiselev2016event}
+Kiselev, I., Neil, D., and Liu, S.-C. (2016).
+\newblock Event-driven deep neural network hardware system for sensor fusion.
+\newblock In {\em Circuits and Systems (ISCAS), 2016 IEEE International
+  Symposium on}, pages 2495--2498. IEEE.
+
+\bibitem[Kolb, 2003]{kolb2003retina}
+Kolb, H. (2003).
+\newblock How the retina works.
+\newblock {\em American scientist}, 91(1):28--35.
+
+\bibitem[Krizhevsky et~al., 2012]{krizhevsky2012imagenet}
+Krizhevsky, A., Sutskever, I., and Hinton, G.~E. (2012).
+\newblock {ImageNet classification with deep convolutional neural networks}.
+\newblock In {\em Advances in neural information processing systems}, pages
+  1097--1105.
+
+\bibitem[Krogh and Vedelsby, 1995]{krogh1995neural}
+Krogh, A. and Vedelsby, J. (1995).
+\newblock Neural network ensembles, cross validation, and active learning.
+\newblock In {\em Advances in neural information processing systems}, pages
+  231--238.
+
+\bibitem[La~Camera et~al., 2008]{la2008response}
+La~Camera, G., Giugliano, M., Senn, W., and Fusi, S. (2008).
+\newblock The response of cortical neurons to in vivo-like input current:
+  theory and experiment.
+\newblock {\em Biological cybernetics}, 99(4-5):279--301.
+
+\bibitem[Lagorce et~al., 2015]{lagorce2015breaking}
+Lagorce, X., Stromatias, E., Galluppi, F., Plana, L.~A., Liu, S.-C., Furber,
+  S.~B., and Benosman, R.~B. (2015).
+\newblock {Breaking the millisecond barrier on SpiNNaker: implementing
+  asynchronous event-based plastic models with ececond resolution}.
+\newblock {\em Frontiers in Neuroscience}, 9:206.
+
+\bibitem[Lazzaro and Wawrzynek, 1995]{lazzaro1995multi}
+Lazzaro, J. and Wawrzynek, J. (1995).
+\newblock {A multi-sender asynchronous extension to the AER protocol}.
+\newblock In {\em Advanced Research in VLSI, Conference on}, pages 158--158.
+  IEEE Computer Society.
+
+\bibitem[Le, 2013]{le2013building}
+Le, Q.~V. (2013).
+\newblock Building high-level features using large scale unsupervised learning.
+\newblock In {\em Acoustics, Speech and Signal Processing (ICASSP), 2013 IEEE
+  International Conference on}, pages 8595--8598. IEEE.
+
+\bibitem[LeCun et~al., 1998]{lecun1998gradient}
+LeCun, Y., Bottou, L., Bengio, Y., and Haffner, P. (1998).
+\newblock Gradient-based learning applied to document recognition.
+\newblock {\em Proceedings of the IEEE}, 86(11):2278--2324.
+
+\bibitem[LeCun et~al., 2004]{lecun2004learning}
+LeCun, Y., Huang, F.~J., and Bottou, L. (2004).
+\newblock Learning methods for generic object recognition with invariance to
+  pose and lighting.
+\newblock In {\em Computer Vision and Pattern Recognition, 2004. CVPR 2004.
+  Proceedings of the 2004 IEEE Computer Society Conference on}, volume~2, pages
+  II--97.
+
+\bibitem[Le{\~n}ero-Bardallo et~al., 2011]{lenero20113}
+Le{\~n}ero-Bardallo, J.~A., Serrano-Gotarredona, T., and Linares-Barranco, B.
+  (2011).
+\newblock A 3.6 $\mu$s latency asynchronous frame-free event-driven
+  dynamic-vision-sensor.
+\newblock {\em Solid-State Circuits, IEEE Journal of}, 46(6):1443--1455.
+
+\bibitem[Linares-Barranco et~al., 2003]{linares2003compact}
+Linares-Barranco, B., Serrano-Gotarredona, T., and Serrano-Gotarredona, R.
+  (2003).
+\newblock {Compact low-power calibration mini-DACs for neural arrays with
+  programmable weights}.
+\newblock {\em Neural Networks, IEEE Transactions on}, 14(5):1207--1216.
+
+\bibitem[Liu et~al., 2009]{liu2009recognizing}
+Liu, J., Luo, J., and Shah, M. (2009).
+\newblock Recognizing realistic actions from videos ``in the wild''.
+\newblock In {\em Computer Vision and Pattern Recognition, 2009. CVPR. IEEE
+  Conference on}, pages 1996--2003.
+
+\bibitem[Liu and Furber, 2015]{liu2014real}
+Liu, Q. and Furber, S. (2015).
+\newblock Real-time recognition of dynamic hand postures on a neuromorphic
+  system.
+\newblock In {\em Artificial Neural Networks, 2015. ICANN. International
+  Conference on}, volume~1, page 979.
+
+\bibitem[Liu and Furber, 2016]{liu2016noisy}
+Liu, Q. and Furber, S. (2016).
+\newblock {Noisy Softplus: a biology inspired activation function}.
+\newblock In {\em International Conference on Neural Information Processing},
+  pages 405--412. Springer.
+
+\bibitem[Liu et~al., 2013]{liu2013modeling}
+Liu, Q., Patterson, C., Furber, S., Huang, Z., Hou, Y., and Zhang, H. (2013).
+\newblock Modeling populations of spiking neurons for fine timing sound
+  localization.
+\newblock In {\em Neural Networks (IJCNN), The 2013 International Joint
+  Conference on}, pages 1--8. IEEE.
+
+\bibitem[Liu et~al., 2016]{liu2016bench}
+Liu, Q., Pineda-Garc{\'\i}a, G., Stromatias, E., Serrano-Gotarredona, T., and
+  Furber, S.~B. (2016).
+\newblock Benchmarking spike-based visual recognition: a dataset and
+  evaluation.
+\newblock {\em Frontiers in Neuroscience}, 10.
+
+\bibitem[Liu et~al., 2010]{5537164}
+Liu, S.-C., van Schaik, A., Minch, B., and Delbruck, T. (2010).
+\newblock {Event-based 64-channel binaural silicon cochlea with Q enhancement
+  mechanisms}.
+\newblock In {\em Circuits and Systems (ISCAS), Proceedings of 2010 IEEE
+  International Symposium on}, pages 2027--2030.
+
+\bibitem[Lundqvist et~al., 1998]{lundqvist1998karolinska}
+Lundqvist, D., Flykt, A., and {\"O}hman, A. (1998).
+\newblock {The Karolinska directed emotional faces (KDEF)}.
+\newblock {\em CD ROM from Department of Clinical Neuroscience, Psychology
+  section, Karolinska Institutet}, (1998).
+
+\bibitem[Lyons et~al., 1998]{lyons1998coding}
+Lyons, M., Akamatsu, S., Kamachi, M., and Gyoba, J. (1998).
+\newblock {Coding facial expressions with Gabor wavelets}.
+\newblock In {\em Automatic Face and Gesture Recognition, 1998. Proceedings.
+  Third IEEE International Conference on}, pages 200--205.
+
+\bibitem[Mahowald, 1992]{mahowald1992vlsi}
+Mahowald, M. (1992).
+\newblock {\em {VLSI analogs of neuronal visual processing: a synthesis of form
+  and function}}.
+\newblock PhD thesis, California Institute of Technology.
+
+\bibitem[Marieb and Hoehn, 2007]{marieb2007human}
+Marieb, E.~N. and Hoehn, K. (2007).
+\newblock {\em Human anatomy \& physiology}.
+\newblock Pearson Education.
+
+\bibitem[Markram, 2006]{markram2006blue}
+Markram, H. (2006).
+\newblock The blue brain project.
+\newblock {\em Nature Reviews Neuroscience}, 7(2):153--160.
+
+\bibitem[Masmoudi et~al., 2010]{masmoudi2010novel}
+Masmoudi, K., Antonini, M., Kornprobst, P., and Perrinet, L. (2010).
+\newblock A novel bio-inspired static image compression scheme for noisy data
+  transmission over low-bandwidth channels.
+\newblock In {\em Acoustics Speech and Signal Processing (ICASSP), 2010 IEEE
+  International Conference on}, pages 3506--3509.
+
+\bibitem[Matsugu et~al., 2002]{matsugu2002convolutional}
+Matsugu, M., Mori, K., Ishii, M., and Mitarai, Y. (2002).
+\newblock Convolutional spiking neural network model for robust face detection.
+\newblock In {\em Neural Information Processing, 2002. ICONIP'02. Proceedings
+  of the 9th International Conference on}, volume~2, pages 660--664.
+
+\bibitem[Mead, 1989]{Mead:1989:AVN:64998}
+Mead, C. (1989).
+\newblock {\em {Analog VLSI and neural systems}}.
+\newblock Addison-Wesley Longman Publishing Co., Inc., Boston, MA, USA.
+
+\bibitem[Merolla et~al., 2014]{merolla2014million}
+Merolla, P.~A., Arthur, J.~V., Alvarez-Icaza, R., Cassidy, A.~S., Sawada, J.,
+  Akopyan, F., Jackson, B.~L., Imam, N., Guo, C., Nakamura, Y., et~al. (2014).
+\newblock A million spiking-neuron integrated circuit with a scalable
+  communication network and interface.
+\newblock {\em Science}, 345(6197):668--673.
+
+\bibitem[Mikolov et~al., 2010]{mikolov2010recurrent}
+Mikolov, T., Karafi{\'a}t, M., Burget, L., Cernock{\`y}, J., and Khudanpur, S.
+  (2010).
+\newblock Recurrent neural network based language model.
+\newblock In {\em Interspeech}, volume~2, page~3.
+
+\bibitem[Moradi et~al., 2017]{8094868}
+Moradi, S., Qiao, N., Stefanini, F., and Indiveri, G. (2017).
+\newblock A scalable multicore architecture with heterogeneous memory
+  structures for dynamic neuromorphic asynchronous processors (dynaps).
+\newblock {\em IEEE Transactions on Biomedical Circuits and Systems},
+  PP(99):1--17.
+
+\bibitem[Morrison et~al., 2008]{morrison2008phenomenological}
+Morrison, A., Diesmann, M., and Gerstner, W. (2008).
+\newblock Phenomenological models of synaptic plasticity based on spike timing.
+\newblock {\em Biological cybernetics}, 98(6):459--478.
+
+\bibitem[Nair and Hinton, 2010]{nair2010rectified}
+Nair, V. and Hinton, G.~E. (2010).
+\newblock {Rectified linear units improve restricted Boltzmann machines}.
+\newblock In {\em Proceedings of the 27th International Conference on Machine
+  Learning (ICML-10)}, pages 807--814.
+
+\bibitem[Neftci et~al., 2013]{neftci2013event}
+Neftci, E., Das, S., Pedroni, B., Kreutz-Delgado, K., and Cauwenberghs, G.
+  (2013).
+\newblock Event-driven contrastive divergence for spiking neuromorphic systems.
+\newblock {\em Frontiers in neuroscience}, 7.
+
+\bibitem[Neftci et~al., 2017]{neftci2017event}
+Neftci, E.~O., Augustine, C., Paul, S., and Detorakis, G. (2017).
+\newblock {Event-driven random back-propagation: enabling neuromorphic deep
+  learning machines}.
+\newblock {\em Frontiers in Neuroscience}, 11.
+
+\bibitem[Neftci et~al., 2016]{neftci2016stochastic}
+Neftci, E.~O., Pedroni, B.~U., Joshi, S., Al-Shedivat, M., and Cauwenberghs, G.
+  (2016).
+\newblock Stochastic synapses enable efficient brain-inspired learning
+  machines.
+\newblock {\em Frontiers in Neuroscience}, 10:241.
+
+\bibitem[Neil, 2013]{neil2013online}
+Neil, D. (2013).
+\newblock {Online learning in event-based restricted Boltzmann machines}.
+\newblock Master's thesis, Institute of Neuroinformatics, ETH Zurich.
+
+\bibitem[Neil and Liu, 2014]{neil2014minitaur}
+Neil, D. and Liu, S.-C. (2014).
+\newblock {Minitaur, an event-driven FPGA-based spiking network accelerator}.
+\newblock {\em Very Large Scale Integration (VLSI) Systems, IEEE Transactions
+  on}, 22(12):2621--2628.
+
+\bibitem[Nessler et~al., 2013]{nessler2013bayesian}
+Nessler, B., Pfeiffer, M., Buesing, L., and Maass, W. (2013).
+\newblock Bayesian computation emerges in generic cortical microcircuits
+  through spike-timing-dependent plasticity.
+\newblock {\em PLoS Comput Biol}.
+
+\bibitem[O'Connor et~al., 2013]{o2013real}
+O'Connor, P., Neil, D., Liu, S.-C., Delbruck, T., and Pfeiffer, M. (2013).
+\newblock Real-time classification and sensor fusion with a spiking deep belief
+  network.
+\newblock {\em Frontiers in neuroscience}, 7.
+
+\bibitem[O'Connor and Welling, 2016]{o2016deep}
+O'Connor, P. and Welling, M. (2016).
+\newblock Deep spiking networks.
+\newblock {\em arXiv preprint arXiv:1602.08323}.
+
+\bibitem[Orchard et~al., 2015]{orchard2015convert}
+Orchard, G., Jayawant, A., Cohen, G.~K., and Thakor, N. (2015).
+\newblock Converting static image datasets to spiking neuromorphic datasets
+  using saccades.
+\newblock {\em Frontiers in Neuroscience}, 9(437).
+
+\bibitem[Park et~al., 2014]{park201465k}
+Park, J., Ha, S., Yu, T., Neftci, E., and Cauwenberghs, G. (2014).
+\newblock {A 65K-neuron 73-Mevents/s 22-pJ/event asynchronous micro-pipelined
+  integrate-and-fire array transceiver}.
+\newblock In {\em Biomedical Circuits and Systems Conference (BioCAS), 2014
+  IEEE}, pages 675--678. IEEE.
+
+\bibitem[Pedram and Nazarian, 2006]{pedram2006thermal}
+Pedram, M. and Nazarian, S. (2006).
+\newblock {Thermal modeling, analysis, and management in VLSI circuits:
+  principles and methods}.
+\newblock {\em Proceedings of the IEEE}, 94(8):1487--1501.
+
+\bibitem[Petrovici et~al., 2013]{petrovici2013stochastic}
+Petrovici, M.~A., Bill, J., Bytschok, I., Schemmel, J., and Meier, K. (2013).
+\newblock Stochastic inference with deterministic spiking neurons.
+\newblock {\em arXiv preprint arXiv:1311.3211}.
+
+\bibitem[Ponulak and Kasinski, 2010]{ponulak2010supervised}
+Ponulak, F. and Kasinski, A. (2010).
+\newblock {Supervised learning in spiking neural networks with ReSuMe: sequence
+  learning, classification, and spike shifting}.
+\newblock {\em Neural Computation}, 22(2):467--510.
+
+\bibitem[Posch et~al., 2014]{posch2014retinomorphic}
+Posch, C., Serrano-Gotarredona, T., Linares-Barranco, B., and Delbruck, T.
+  (2014).
+\newblock Retinomorphic event-based vision sensors: bioinspired cameras with
+  spiking output.
+\newblock {\em Proceedings of the IEEE}, 102(10):1470--1484.
+
+\bibitem[Qiao et~al., 2015]{qiao2015reconfigurable}
+Qiao, N., Mostafa, H., Corradi, F., Osswald, M., Stefanini, F., Sumislawska,
+  D., and Indiveri, G. (2015).
+\newblock A reconfigurable on-line learning spiking neuromorphic processor
+  comprising 256 neurons and 128k synapses.
+\newblock {\em Frontiers in neuroscience}, 9:141.
+
+\bibitem[Radford et~al., 2015]{radford2015unsupervised}
+Radford, A., Metz, L., and Chintala, S. (2015).
+\newblock Unsupervised representation learning with deep convolutional
+  generative adversarial networks.
+\newblock {\em arXiv preprint arXiv:1511.06434}.
+
+\bibitem[Rauch et~al., 2003]{rauch2003neocortical}
+Rauch, A., La~Camera, G., L{\"u}scher, H.-R., Senn, W., and Fusi, S. (2003).
+\newblock {Neocortical pyramidal cells respond as integrate-and-fire neurons to
+  in vivo-like input currents}.
+\newblock {\em Journal of neurophysiology}, 90(3):1598--1612.
+
+\bibitem[Reece et~al., 2011]{reece2011campbell}
+Reece, J.~B., Urry, L.~A., Cain, M.~L., Wasserman, S.~A., Minorsky, P.~V.,
+  Jackson, R.~B., et~al. (2011).
+\newblock {\em Campbell biology}.
+\newblock Pearson Boston.
+
+\bibitem[Riesenhuber and Poggio, 1999]{riesenhuber1999hierarchical}
+Riesenhuber, M. and Poggio, T. (1999).
+\newblock Hierarchical models of object recognition in cortex.
+\newblock {\em Nature neuroscience}, 2(11):1019--1025.
+
+\bibitem[Russakovsky et~al., 2015]{russakovsky2015imagenet}
+Russakovsky, O., Deng, J., Su, H., Krause, J., Satheesh, S., Ma, S., Huang, Z.,
+  Karpathy, A., Khosla, A., Bernstein, M., et~al. (2015).
+\newblock {ImageNet large scale visual recognition challenge}.
+\newblock {\em International Journal of Computer Vision}, 115(3):211--252.
+
+\bibitem[Samadi et~al., 2017]{samadi2017deep}
+Samadi, A., Lillicrap, T.~P., and Tweed, D.~B. (2017).
+\newblock {Deep learning with dynamic spiking neurons and fixed feedback
+  weights}.
+\newblock {\em Neural computation}.
+
+\bibitem[Schemmel et~al., 2010]{schemmel2010wafer}
+Schemmel, J., Bruderle, D., Grubl, A., Hock, M., Meier, K., and Millner, S.
+  (2010).
+\newblock A wafer-scale neuromorphic hardware system for large-scale neural
+  modeling.
+\newblock In {\em Circuits and Systems (ISCAS), Proceedings of 2010 IEEE
+  International Symposium on}, pages 1947--1950.
+
+\bibitem[Sch{\"u}ldt et~al., 2004]{schuldt2004recognizing}
+Sch{\"u}ldt, C., Laptev, I., and Caputo, B. (2004).
+\newblock {Recognizing human actions: a local SVM approach}.
+\newblock In {\em Pattern Recognition, 2004. ICPR 2004. Proceedings of the 17th
+  International Conference on}, volume~3, pages 32--36. IEEE.
+
+\bibitem[Sen and Furber, 2009]{sen2009evaluating}
+Sen, B. and Furber, S. (2009).
+\newblock Evaluating rank-order code performance using a biologically-derived
+  retinal model.
+\newblock In {\em Neural Networks, 2009. IJCNN. International Joint Conference
+  on}, pages 2867--2874. IEEE.
+
+\bibitem[Serrano-Gotarredona and Linares-Barranco, 2013]{serrano2013128}
+Serrano-Gotarredona, T. and Linares-Barranco, B. (2013).
+\newblock {A 128$\times$128 1.5\% contrast sensitivity 0.9\% {FPN} 3{$\mu$s}
+  latency 4~mW asynchronous frame-free dynamic vision sensor using
+  transimpedance preamplifiers}.
+\newblock {\em Solid-State Circuits, IEEE Journal of}, 48(3):827--838.
+
+\bibitem[Serre et~al., 2007]{serre2007robust}
+Serre, T., Wolf, L., Bileschi, S., Riesenhuber, M., and Poggio, T. (2007).
+\newblock Robust object recognition with cortex-like mechanisms.
+\newblock {\em Pattern Analysis and Machine Intelligence, IEEE Transactions
+  on}, 29(3):411--426.
+
+\bibitem[Sharp et~al., 2012]{sharp2012power}
+Sharp, T., Galluppi, F., Rast, A., and Furber, S. (2012).
+\newblock {Power-efficient simulation of detailed cortical microcircuits on
+  SpiNNaker}.
+\newblock {\em Journal of neuroscience methods}, 210(1):110--118.
+
+\bibitem[Siegert, 1951]{siegert1951first}
+Siegert, A.~J. (1951).
+\newblock On the first passage time probability problem.
+\newblock {\em Physical Review}, 81(4):617.
+
+\bibitem[Silver et~al., 2016]{silver2016mastering}
+Silver, D., Huang, A., Maddison, C.~J., Guez, A., Sifre, L., Van Den~Driessche,
+  G., Schrittwieser, J., Antonoglou, I., Panneershelvam, V., Lanctot, M.,
+  et~al. (2016).
+\newblock {Mastering the game of Go with deep neural networks and tree search}.
+\newblock {\em Nature}, 529(7587):484--489.
+
+\bibitem[Simonyan and Zisserman, 2014]{simonyan2014very}
+Simonyan, K. and Zisserman, A. (2014).
+\newblock Very deep convolutional networks for large-scale image recognition.
+\newblock {\em arXiv preprint arXiv:1409.1556}.
+
+\bibitem[Song et~al., 2000]{song2000competitive}
+Song, S., Miller, K.~D., and Abbott, L.~F. (2000).
+\newblock {Competitive Hebbian learning through spike-timing-dependent synaptic
+  plasticity}.
+\newblock {\em Nature neuroscience}, 3(9):919--926.
+
+\bibitem[Squire and Kosslyn, 1998]{squire1998findings}
+Squire, L.~R. and Kosslyn, S.~M. (1998).
+\newblock {\em Findings and current opinion in cognitive neuroscience}.
+\newblock MIT Press.
+
+\bibitem[Srivastava et~al., 2014]{srivastava2014dropout}
+Srivastava, N., Hinton, G.~E., Krizhevsky, A., Sutskever, I., and
+  Salakhutdinov, R. (2014).
+\newblock Dropout: a simple way to prevent neural networks from overfitting.
+\newblock {\em Journal of Machine Learning Research}, 15(1):1929--1958.
+
+\bibitem[Stromatias et~al., 2013]{stromatias2013power}
+Stromatias, E., Galluppi, F., Patterson, C., and Furber, S. (2013).
+\newblock {Power analysis of large-scale, real-time neural networks on
+  SpiNNaker}.
+\newblock In {\em Neural Networks (IJCNN), The 2013 International Joint
+  Conference on}, pages 1--8.
+
+\bibitem[Stromatias et~al., 2015a]{Stromatias2015scalable}
+Stromatias, E., Neil, D., Galluppi, F., Pfeiffer, M., Liu, S.-C., and Furber,
+  S. (2015a).
+\newblock {Scalable energy-efficient, low-latency implementations of trained
+  spiking deep belief networks on SpiNNaker}.
+\newblock In {\em Neural Networks (IJCNN), 2015 International Joint Conference
+  on}, pages 1--8. IEEE.
+
+\bibitem[Stromatias et~al., 2015b]{stromatias2015robustness}
+Stromatias, E., Neil, D., Pfeiffer, M., Galluppi, F., Furber, S.~B., and Liu,
+  S.-C. (2015b).
+\newblock {Robustness of spiking deep belief networks to noise and reduced bit
+  precision of neuro-inspired hardware platforms}.
+\newblock {\em Frontiers in neuroscience}, 9.
+
+\bibitem[Sutskever et~al., 2014]{sutskever2014sequence}
+Sutskever, I., Vinyals, O., and Le, Q.~V. (2014).
+\newblock Sequence to sequence learning with neural networks.
+\newblock In {\em Advances in neural information processing systems}, pages
+  3104--3112.
+
+\bibitem[Szegedy et~al., 2015]{szegedy2015going}
+Szegedy, C., Liu, W., Jia, Y., Sermanet, P., Reed, S., Anguelov, D., Erhan, D.,
+  Vanhoucke, V., and Rabinovich, A. (2015).
+\newblock Going deeper with convolutions.
+\newblock In {\em Proceedings of the IEEE Conference on Computer Vision and
+  Pattern Recognition}, pages 1--9.
+
+\bibitem[Tan et~al., 2015]{tan2015bench}
+Tan, C., Lallee, S., and Orchard, G. (2015).
+\newblock {Benchmarking neuromorphic vision: lessons learnt from computer
+  vision}.
+\newblock {\em Frontiers in Neuroscience}, 9(374).
+
+\bibitem[Van~Rullen and Thorpe, 2001]{van2001rate}
+Van~Rullen, R. and Thorpe, S.~J. (2001).
+\newblock Rate coding versus temporal order coding: what the retinal ganglion
+  cells tell the visual cortex.
+\newblock {\em Neural computation}, 13(6):1255--1283.
+
+\bibitem[Van~Rullen and Thorpe, 2002]{vanrullen2002surfing}
+Van~Rullen, R. and Thorpe, S.~J. (2002).
+\newblock Surfing a spike wave down the ventral stream.
+\newblock {\em Vision research}, 42(23):2593--2615.
+
+\bibitem[Von Der~Malsburg, 1994]{von1994correlation}
+Von Der~Malsburg, C. (1994).
+\newblock The correlation theory of brain function.
+\newblock In {\em Models of neural networks}, pages 95--119. Springer.
+
+\bibitem[Walt et~al., 2011]{numpyPython}
+Walt, S. v.~d., Colbert, S.~C., and Varoquaux, G. (2011).
+\newblock {The NumPy array: a structure for efficient numerical computation}.
+\newblock {\em Computing in Science \& Engineering}, 13(2):22--30.
+
+\bibitem[Widrow and Hoff, 1960]{widrow1960adaptive}
+Widrow, B. and Hoff, M.~E. (1960).
+\newblock {\em Adaptive switching circuits}.
+
+\bibitem[Xie et~al., 2012]{xie2012image}
+Xie, J., Xu, L., and Chen, E. (2012).
+\newblock Image denoising and inpainting with deep neural networks.
+\newblock In {\em Advances in Neural Information Processing Systems}, pages
+  341--349.
+
+\bibitem[Xu, 1993]{xu1993least}
+Xu, L. (1993).
+\newblock Least mean square error reconstruction principle for self-organizing
+  neural-nets.
+\newblock {\em Neural networks}, 6(5):627--648.
+
+\bibitem[Yang et~al., 2015]{yang2015dynamic}
+Yang, M., Liu, S.-C., and Delbruck, T. (2015).
+\newblock A dynamic vision sensor with 1\% temporal contrast sensitivity and
+  in-pixel asynchronous delta modulator for event encoding.
+\newblock {\em Solid-State Circuits, IEEE Journal of}, 50(9):2149--2160.
+
+\bibitem[Yarbus, 1967]{yarbus1967eye}
+Yarbus, A.~L. (1967).
+\newblock {\em Eye movements during perception of complex objects}.
+\newblock Springer.
+
+\bibitem[Yu et~al., 2012]{yu201265k}
+Yu, T., Park, J., Joshi, S., Maier, C., and Cauwenberghs, G. (2012).
+\newblock {65K-neuron integrate-and-fire array transceiver with address-event
+  reconfigurable synaptic routing}.
+\newblock In {\em Biomedical Circuits and Systems Conference (BioCAS), 2012
+  IEEE}, pages 21--24.
+
+\bibitem[Zhao et~al., 2015]{zhao2014feedforward}
+Zhao, B., Ding, R., Chen, S., Linares-Barranco, B., and Tang, H. (2015).
+\newblock {Feedforward categorization on AER motion events using cortex-like
+  features in a spiking neural network}.
+\newblock {\em Neural Networks and Learning Systems, IEEE Transactions on},
+  26(9):1963--1978.
+
+\end{thebibliography}
