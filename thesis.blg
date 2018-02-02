@@ -1,13 +1,13 @@
-This is BibTeX, Version 0.99d (TeX Live 2015/Debian)
-Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+This is BibTeX, Version 0.99d (TeX Live 2017)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: thesis.aux
-A level-1 auxiliary file: Chapter1.aux
-A level-1 auxiliary file: Chapter2.aux
-A level-1 auxiliary file: Chapter3.aux
-A level-1 auxiliary file: Chapter4.aux
+A level-1 auxiliary file: diff1.aux
+A level-1 auxiliary file: diff2.aux
+A level-1 auxiliary file: diff3.aux
+A level-1 auxiliary file: diff4.aux
 A level-1 auxiliary file: Chapter5.aux
-A level-1 auxiliary file: Chapter6.aux
-A level-1 auxiliary file: Conclusion.aux
+A level-1 auxiliary file: diff6.aux
+A level-1 auxiliary file: diff7.aux
 A level-1 auxiliary file: Appendices.aux
 The style file: apalike.bst
 Database file #1: refs_intro.bib
@@ -20,45 +20,45 @@ Warning--empty journal in bouvrie2006notes
 Warning--can't use both volume and number fields in liu2014real
 Warning--there's a number but no volume in lundqvist1998karolinska
 Warning--empty publisher in widrow1960adaptive
-You've used 148 entries,
+You've used 149 entries,
             1935 wiz_defined-function locations,
-            1246 strings with 32439 characters,
-and the built_in function-call counts, 68229 in all, are:
-= -- 6705
-> -- 3110
-< -- 109
-+ -- 1109
-- -- 1074
-* -- 5823
-:= -- 11464
-add.period$ -- 457
-call.type$ -- 148
-change.case$ -- 1257
-chr.to.int$ -- 145
-cite$ -- 152
-duplicate$ -- 2596
-empty$ -- 4612
-format.name$ -- 1300
-if$ -- 13599
+            1252 strings with 32561 characters,
+and the built_in function-call counts, 68574 in all, are:
+= -- 6741
+> -- 3117
+< -- 110
++ -- 1111
+- -- 1076
+* -- 5852
+:= -- 11524
+add.period$ -- 460
+call.type$ -- 149
+change.case$ -- 1263
+chr.to.int$ -- 146
+cite$ -- 153
+duplicate$ -- 2610
+empty$ -- 4640
+format.name$ -- 1303
+if$ -- 13666
 int.to.chr$ -- 4
 int.to.str$ -- 0
-missing$ -- 156
-newline$ -- 741
-num.names$ -- 444
-pop$ -- 1237
+missing$ -- 157
+newline$ -- 746
+num.names$ -- 447
+pop$ -- 1240
 preamble$ -- 1
-purify$ -- 1268
+purify$ -- 1274
 quote$ -- 0
-skip$ -- 2001
+skip$ -- 2012
 stack$ -- 0
-substring$ -- 4795
-swap$ -- 530
+substring$ -- 4826
+swap$ -- 531
 text.length$ -- 51
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 868
+type$ -- 874
 warning$ -- 4
-while$ -- 546
+while$ -- 550
 width$ -- 0
-write$ -- 1923
+write$ -- 1936
 (There were 4 warnings)

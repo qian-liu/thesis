@@ -31,7 +31,10 @@ Thus, it is easy for an on-line system to learn a new task, by simply providing 
 However, once a model is trained off-line, it remains fixed and stops learning.
 The brain is a natural on-line system, thus bringing its learning techniques to SNNs will equip neuromorphic computers with genuine learning capability, moving towards Neuromorphic Cognition.
 
-There are interesting problems to be solved to mimic the on-line learning technique from the brain.
+One of the practical problems, the stability-plasticity dilemma~\citep{grossberg1987competitive}, is a typical example which only exists in artificial systems but not in the brain.
+Off-line trained systems cannot learn anything new, whereas on-line learning systems easily lose their previous knowledge.
+However, the brain intuitively achieves both stability and plasticity simultaneously; it maintains gained knowledge while being plastic in respond to new input.
+Hence,  there will be important lessons, such as controlling learning, protecting memories/memory segmentation, and etc., to learn from the brain before an on-line SNN system delivers genuine learning capability.
 
 %Hence, thirdly, the on-line approach exploits biologically-plausible learning rules, e.g. Spike-Timing-Dependent Plasticity~(STDP).
 %Therefore, the modulation of the synaptic weights is event-driven by the spikes and operates in biological real time.

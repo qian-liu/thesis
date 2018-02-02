@@ -280,6 +280,12 @@ Gray, C.~M. and Singer, W. (1989).
 \newblock {\em Proceedings of the National Academy of Sciences},
   86(5):1698--1702.
 
+\bibitem[Grossberg, 1987]{grossberg1987competitive}
+Grossberg, S. (1987).
+\newblock {Competitive learning: From interactive activation to adaptive
+  resonance}.
+\newblock {\em Cognitive science}, 11(1):23--63.
+
 \bibitem[He et~al., 2015]{he2015delving}
 He, K., Zhang, X., Ren, S., and Sun, J. (2015).
 \newblock {Delving deep into rectifiers: Surpassing human-level performance on

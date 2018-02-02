@@ -35,8 +35,16 @@ However, once a model is trained off-line, it remains fixed and stops learning.
 The brain is a natural on-line system, thus bringing its learning techniques to SNNs will equip neuromorphic computers with genuine learning capability, moving towards Neuromorphic Cognition.
 \DIFdelbegin \DIFdel{Hence, thirdly, }\DIFdelend \DIFaddbegin 
 
-\DIFadd{There are interesting problems to be solved to mimic }\DIFaddend the on-line \DIFdelbegin \DIFdel{approach exploits biologically-plausible learning rules, e.g. Spike-Timing-Dependent Plasticity~(STDP).
-Therefore, the modulation of the synaptic efficacy is event-driven by the spikes and operates in biological real time}\DIFdelend \DIFaddbegin \DIFadd{learning technique from the brain}\DIFaddend .
+\DIFadd{One of the practical problems, }\DIFaddend the \DIFaddbegin \DIFadd{stability-plasticity dilemma~\mbox{%DIFAUXCMD
+\citep{grossberg1987competitive}}%DIFAUXCMD
+, is a typical example which only exists in artificial systems but not in the brain.
+Off-line trained systems cannot learn anything new, whereas }\DIFaddend on-line \DIFdelbegin \DIFdel{approach exploits biologically-plausible learning rules, e.
+g. Spike-Timing-Dependent Plasticity~(STDP).
+Therefore, the modulation of the synaptic efficacy is event-driven by the spikes and operates in biological real time.
+}\DIFdelend \DIFaddbegin \DIFadd{learning systems easily lose their previous knowledge.
+However, the brain intuitively achieves both stability and plasticity simultaneously; it maintains gained knowledge while being plastic in respond to new input.
+Hence,  there will be important lessons, such as controlling learning, protecting memories/memory segmentation, and etc., to learn from the brain before an on-line SNN system delivers genuine learning capability.
+}\DIFaddend 
 
 %DIF > Hence, thirdly, the on-line approach exploits biologically-plausible learning rules, e.g. Spike-Timing-Dependent Plasticity~(STDP).
 %DIF > Therefore, the modulation of the synaptic weights is event-driven by the spikes and operates in biological real time.
@@ -289,13 +297,13 @@ So far we have accurately transformed numerical calculations of weight tuning to
 %In Section~\ref{subsec:exp_AE}, we demonstrate how Widrow-Hoff algorithm successfully is applied to training AEs (see Equation~\ref{equ:ae_widrow_hoff}) and in Section~\ref{subsec:exp_SAE} we describe the implementation of SRM algorithm to Deep Learning models of spiking AEs and RBMs.
 
 \paragraph{Last but not least, we state the property of the SRM algorithm:}
- \begin{itemize} 
+\begin{itemize}
 	\item the accuracy of SRM is mainly controlled by $\tau_{\textit{\textrm{dur}}}$ and $\tau_{\textit{\textrm{win}}}$, where longer spike trains and a longer STDP window express the rate more reliably.
 	\item in our spiking neural network both the multiplier and the multiplicand are presented only as rates, which are positive quantities.
 	Thus a negative product is applied with weight decrease, $\eta_{s-}$. 
 	\item the multiplier and the multiplicand are interchangeable due to the independence of the spike trains. 
 	\item the accuracy is independent of the neural and synaptic models of the spiking neuron because the calculation relies only on the firing rate.
- \end{itemize} 
+\end{itemize}
 
 
 \section{Training Deep SNNs}

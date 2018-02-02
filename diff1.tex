@@ -30,10 +30,10 @@ NE was proposed by Carver Mead in the late 1980s \citep{Mead:1989:AVN:64998} to 
 With the ultimate goal of equipping neuromorphic machines with genuine intelligence, 
 %~\citep{konar1999artificial}, also known as `Neuromorphic Cognition'~\citep{indiveri2009artificial},
 the objectives of NE can be summarised as follows~\citep{furber2007neural}:
- \begin{itemize} 
+\begin{itemize}
 	\item brain modelling: for neuroscientists to understand the brain by modelling and simulating the activities of biological neurons; 
 	\item neuromorphic computing: for engineers to build brain-like machines by applying biological principles to computers.
- \end{itemize} 
+\end{itemize}
 The aims complement each other; building a biologically inspired computer requires a better understanding of the brain, and simulating brain activities at large scale and in real time is feasible only on massively-parallel neuromorphic hardware.
 
 
@@ -160,7 +160,7 @@ and a corresponding evaluation methodology to estimate the overall performance o
 \section{Motivation and Aims}
 %\section{Statement of the Problem}
 \label{sec:state_problem}
-NE has led to the development of biologically-inspired computer architectures which may approach the performance of the human brain in terms of energy efficiency and cognitive capabilities.
+NE has led to the development of biologically-inspired computer architectures \DIFdelbegin \DIFdel{which may }\DIFdelend \DIFaddbegin \DIFadd{whose long-term goal is to }\DIFaddend approach the performance of the human brain in terms of energy efficiency and cognitive capabilities.
 % provide an alternative to the conventional Von Neumann architecture and 
 Although there are a number of neuromorphic platforms available for large-scale SNN simulations, the problem of programming these brain-like machines to be competent in cognitive applications still remains unsolved.
 On the other hand, Deep Learning has emerged in ANN research to dominate state-of-the-art solutions for cognitive tasks.
@@ -179,7 +179,7 @@ Although fundamental differences in input/output representation and neural compu
 Deep Learning has not only successfully equipped ANNs with better-than-human performance on AI tasks, but also \DIFdelbegin \DIFdel{theoretical }\DIFdelend studies have proved the equivalent learning capability of SNNs, and neuromorphic hardware is ready for operating large-scale deep SNNs.
 
 According to the thesis statement, the hypotheses are defined as follows: 
- \begin{itemize} 
+\begin{itemize}
 %	\item 
 %	An object recognition system can operate in real-time on a complete neuromorphic platform in an absolute spike-based fashion.
 %	The hypothesis paves the way for further study with solid proof of the capability of real-time cognitive application built on neuromorphic platform.
@@ -201,14 +201,14 @@ According to the thesis statement, the hypotheses are defined as follows:
 	A new set of spike-based vision datasets can provide resources and corresponding evaluation methodology to support objective comparisons and measure progress within the rapidly advancing field of NE.
 
 %	Aim: to provide a unified spiking version of a commonly-used dataset and a complementary evaluation methodology to assess the performance of SNN algorithms.
- \end{itemize} 
+\end{itemize}
 
 
 \section{Contributions}
 The primary achievement of the work described in this thesis is the training of deep SNNs, both off-line and on-line, which closes the gap in cognitive capability between SNNs and ANNs.
 Other achievements contribute to the performance evaluation of SNN models and their hardware implementations.
 The contributions are:
- \begin{itemize} 
+\begin{itemize}
 %	\item 
 %	An implementation of a real-time hand postures recognition system on a neuromorphic hardware platform.
 %	It demonstrated the prototype of a complete neuromorphic system which may form the default configuration of a real-time, energy-efficient and low-latency recognition system.
@@ -269,14 +269,14 @@ The contributions are:
 	The dataset was generated with the help of Garibaldi Pineda-Garc\'ia and Teresa Serrano-Gotarredona.
 %	and the second case study was analysed by Evangelos~Stromatias.
 	This work comprises Chapter~\ref{cha:bench} and was published as a journal paper in Frontiers in Neuromorphic Engineering.
- \end{itemize} 
+\end{itemize}
 
    
 \section{Papers and Workshops}
 
 \subsection{Papers}
 	Much of the work contributed to solving the main research problem of this thesis has either been published or is in the process of submission for publication.
- \begin{itemize} 
+\begin{itemize}
 
 	\item 
 	\textbf{Q. Liu}, and S. Furber, \textbf{Noisy Softplus: A Biology Inspired Activation Function}, International Conference on Neural Information Processing (ICONIP 2016). 
@@ -300,10 +300,10 @@ The contributions are:
 	The work presented in this paper~\citep{liu2016bench} mainly comprises the spike-based dataset \textbf{NE15-MNIST} and its corresponding evaluation method for Neuromorphic Vision proposed in Chapter~\ref{cha:bench}.
 	In addition, the paper also includes the contributions of the co-authors: the detailed description of a subset of this database and a case study as an example to validate the dataset and its evaluation. 
 
- \end{itemize} 
+\end{itemize}
 
 	Other publications build up the neuromorphic hardware system for complete event-based visual and auditory processing, providing deep spiking neural networks a valid hardware platform for running applications in biological real time.
- \begin{itemize} 
+\begin{itemize}
 	\item 
 	\textbf{Q. Liu}, and S. Furber, \textbf{Real-Time Recognition of Dynamic Hand Postures on a Neuromorphic System}, International Conference on Artificial Neural Networks (ICANN 2015).
 	We develop an object recognition system operating in real-time on a complete neuromorphic platform in an absolute spike-based fashion.
@@ -319,12 +319,12 @@ The contributions are:
 	G. Garc\'ia, P. Camilleri, \textbf{Q. Liu}, and S. Furber, \textbf{pyDVS: An Extensible, Real-time Dynamic Vision Sensor Emulator using Off-the-Shelf Hardware}, The 2016 IEEE Symposium Series on Computational Intelligence (IEEE SSCI 2016).
 	This paper~\citep{7850249} proposes a visual input system inspired by the behaviour of a DVS but using a conventional digital camera as a sensor and a PC to encode the images (see Chapter~\ref{cha:bkg}).
 %	We mention the neuromorphic input sensors in Chapter~\ref{cha:bkg}).
- \end{itemize} 
+\end{itemize}
 
 
 \subsection{Workshops}
 The author participated in workshops organised by the NE community, 1) to establish and contribute to collaborations on mutual interests; 2) to catch up with cutting-edge research and collect inspiration; and 3) to discuss the author's own findings with key researchers in the field.
- \begin{itemize} 
+\begin{itemize}
 	\item 
 	\textit{Capo Caccia Cognitive Neuromorphic Engineering Workshop 2012}.
 
@@ -347,7 +347,7 @@ The author participated in workshops organised by the NE community, 1) to establ
 	\textit{Capo Caccia Cognitive Neuromorphic Engineering Workshop 2015}.
 
 	Inspired by the projects on Deep Learning in the workshop\footnote{\url{https://capocaccia.ethz.ch/capo//wiki/2015/spikednn15}}, the author later proposed the off-line SNN training method and the unsupervised on-line learning algorithm of deep SNNs, and led the discussion of benchmarking neuromorphic vision in the workshop \footnote{\url{https://capocaccia.ethz.ch/capo//wiki/2015/visionbenchmark15}}. 	
- \end{itemize} 
+\end{itemize}
 \section{Thesis Structure}
 The thesis comprises the following seven chapters:
 

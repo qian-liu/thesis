@@ -45,7 +45,7 @@
 \BOOKMARK [0][-]{chapter.4}{Off-line SNN Training}{}% 45
 \BOOKMARK [1][-]{section.4.1}{Introduction}{chapter.4}% 46
 \BOOKMARK [1][-]{section.4.2}{Related Work}{chapter.4}% 47
-\BOOKMARK [1][-]{section.4.3}{Modelling the Response Function}{chapter.4}% 48
+\BOOKMARK [1][-]{section.4.3}{Siegert: Modelling the Response Function}{chapter.4}% 48
 \BOOKMARK [2][-]{subsection.4.3.1}{Biological Background}{section.4.3}% 49
 \BOOKMARK [2][-]{subsection.4.3.2}{Mismatch of The Siegert Function to Practice}{section.4.3}% 50
 \BOOKMARK [2][-]{subsection.4.3.3}{Noisy Softplus \(NSP\)}{section.4.3}% 51

@@ -162,7 +162,7 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking Convo
 	
 	
 	
-\section{Modelling the Response Function}
+\section{Siegert: Modelling the Response Function}
 	\label{sec:response_func}
 	The response function, in the context of this thesis, indicates the firing rate of a spiking neuron in the presence of input current.
 	In Section~\ref{sec:siergert}, we introduce the first use of the Siegert formula to model the response function of an LIF neuron.
@@ -389,18 +389,19 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking Convo
 	The noise was drawn from the Gaussian distribution in a time resolution of $dt$.
 	We chose $dt=1$~ms which is the finest resolution for common SNN simulators, and $dt=10$~ms for comparison.
 	For a given pair of $m_I$ and $s_I^2$, a noisy current was injected into a current-based LIF neuron for 10~s, and the output firing rate was the average over 10 trials.
+	There were four noise levels tested in the experiments: 0, 0.2, 0.5, 1; and the mean current increased from -0.5 to 0.6~nA.
 	
 	\begin{figure}[tbp!]
 		\centering
-		\begin{subfigure}[t]{0.49\textwidth}
+		\begin{subfigure}[t]{0.7\textwidth}
 			\includegraphics[width=\textwidth]{pics_iconip/revise_2-1.png}
 			\caption{Current sampled at $dt$=1~ms.}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.49\textwidth}
+		\end{subfigure}\\
+		\begin{subfigure}[t]{0.7\textwidth}
 			\includegraphics[width=\textwidth]{pics_iconip/revise_2-2.png}
 			\caption{Current sampled at $dt$=10~ms.}
 		\end{subfigure}
-		\caption[Recorded response firing rate driven by \textit{NoisyCurrentSource}.]{Recorded response firing rate of an LIF neuron driven by \textit{NoisyCurrentSource} in PyNN, sampled at every (a) 1~ms and (b) 10~ms. Averaged firing rates of 10 simulation trails are shown in dashed lines, and the grey colour fills the range between the minimum to maximum of the firing rates. The analytical LIF response function, the Siegert formula (Equation~\ref{equ:siegert}), is drawn in bold lines (shown in Figure~\ref{Fig:physics}) to compare with the practical simulation.}
+		\caption[Recorded response firing rate driven by \textit{NoisyCurrentSource}.]{Recorded response firing rate of an LIF neuron driven by \textit{NoisyCurrentSource} in PyNN, compared to the Siegert function. The \textit{NoisyCurrentSource} is sampled at every (a) 1~ms and (b) 10~ms. Averaged firing rates of 10 simulation trails tested on four noisy levels are shown in different colours of dashed lines, and the grey colour fills the range between the minimum to maximum of the firing rates. The analytical LIF response function, the Siegert formula (Equation~\ref{equ:siegert}), is drawn in bold lines (shown in Figure~\ref{Fig:physics}) to compare with the practical simulations. The selected noise levels are the same with the LIF simulations, and the curves are plotted with the same colours of the dashed lines.}
 		\label{Fig:current}
 	\end{figure}
 	
@@ -444,13 +445,15 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking Convo
 		\label{Fig:lif_curr}
 	\end{figure}
 	
-	The curves in Figures~\ref{Fig:current} illustrate the output firing rate driven by different levels of noise.
-	The differences relative to the analytical results (bold lines) is due to the time resolution, $dt$, of the \textit{NoisyCurrentSource}.
-	The sampled signals are shown in Figures~\ref{Fig:lif_curr}~(a) and (b).
+	The dashed curves in Figures~\ref{Fig:current} illustrate the output firing rate of the LIF simulations; while the bold lines are the analytical reference, the Siegert function (same as Figure~\ref{Fig:physics}).
+	The differences between the practical simulations and the Siegert function enlarge when the time resolution, $dt$, of the \textit{NoisyCurrentSource} increases from 1~ms (Figure~\ref{Fig:current}(a)) to 10~ms (Figure~\ref{Fig:current}(b)).
+	The sampled current signals (\textit{NoisyCurrentSource}) are shown in Figures~\ref{Fig:lif_curr}~(a) and (b).
 	The discrete sampling of the noisy current introduces time step correlation to the white noise, shown in Figures~\ref{Fig:lif_curr}~(e) and (f), where the value remains the same within a time step $dt$.
-	Although both current signals follow the same Gaussian distribution, see Figures~\ref{Fig:lif_curr}~(g) and (h), the current is approximately a white noise when $dt=1$~ms, but a coloured noise, e.g. increased Power Spectral Density~(PSD) at lower frequency, when $dt=10$~ms, see Figures~\ref{Fig:lif_curr}~(c) and (d).
-	Thus the Siegert formula, Equation~\ref{equ:siegert}, can only approximate the LIF response of noisy current with white noise.
-%\begin{figure}
+	Although both current signals follow the same Gaussian distribution, see Figures~\ref{Fig:lif_curr}~(g) and (h), the current is approximately a white noise when $dt=1$~ms, but a coloured noise, e.g. increases Power Spectral Density~(PSD) at lower frequency, when $dt=10$~ms, see Figures~\ref{Fig:lif_curr}~(c) and (d).
+	Therefore, the coloured noise of the current influx drives the LIF neuron fire observably more intensely.
+	Hence, the Siegert formula, Equation~\ref{equ:siegert}, can only approximate the LIF response of noisy current with white noise; but is not adapted to coloured noise.
+	In practice, the current is generated by random arrivals of input spikes with various synaptic efficiency, which also brings in coloured noise.
+	%\begin{figure}
 %	\centering
 %	\begin{subfigure}[c]{0.45\textwidth}\raggedleft
 %		\myrowlabel{Response Firing Rate}
@@ -488,17 +491,42 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking Convo
 %	\label{Fig:lif_pois}
 %\end{figure}
 	
+
+	A more realistic simulation of a noisy current can be generated by 100 Poisson spike trains, 
+	%assuming that large amount of small amplitude PSPs are required to reach the threshold and $\tau_syn$ limits to 0.
+	where the mean and variance of the current are given by~\citep{la2008response}:
+	\begin{equation}
+	m_I = \tau_{\textit{\textrm{syn}}}\sum_i w_i\lambda_{i}~, ~s_I^2=\frac{1}{2}\tau_{\textit{\textrm{syn}}}\sum_i w_i^2\lambda_{i}~,
+	\label{equ:distr0}
+	\end{equation}
+	where $\tau_{\textit{\textrm{syn}}}$ is the synaptic time constant, and each Poisson spike train connects to the neuron with a strength of $w_i$ and a firing rate of $\lambda_i$.
+	Two populations of Poisson spike sources, for excitatory and inhibitory synapses respectively, were connected to a single LIF neuron to mimic the noisy currents.
+	The firing rates of the Poisson spike generators were determined by the given $m_I$ and $s_I$.
+	Figure~\ref{Fig:spike_curr} illustrates the recorded firing rates responding to the Poissoin spike trains compared to the mean firing rate driven by \textit{NoisyCurrentSource} in Figure~\ref{Fig:current}.
+	Note that the estimation of LIF response activity using the Siegert function requires noisy current with white noise, however
+%	The use of noisy currents assumes that the post-synaptic potential (PSP) is a delta function, e.g. $\tau_{\textit{\textrm{syn}}}$ tends to the limits of 0.
+	in practice the release of neurotransmitter takes time ($\tau_{\textit{\textrm{syn}}} >> 0$) and the synaptic current decays exponentially $I_{syn} = I_0 e^{-\frac{t}{\tau_{\textit{\textrm{syn}}}}}$.
+	Figures~\ref{Fig:lif_pois}~(a) and (b) show two examples of synaptic current of 0~nA mean and 0.2 standard deviation driven by 100 neurons firing at the same rate and with the same synaptic strength (half excitatory, half inhibitory), but of different synaptic time constant.
+	Therefore, the current at any time $t$ during the decay period is dependent on the value at the previous time step, which makes the synaptic current a coloured noise, see Figures~\ref{Fig:lif_pois}~(c) and (d).
+%	and the noise added to the mean current is not white noise, but pink noise.
+	
+	We observe in Figure~\ref{Fig:spike_curr}~(a) that the response firing rate to synaptic current is higher than the \textit{NoisyCurrentSource} for most of the current range.
+	This is caused by the coarse resolution (1~ms) of the spikes, thus the standard deviation of the current is larger than 0.2, shown in Figure~\ref{Fig:lif_pois}~(g);
+	and the $\tau_{\textit{\textrm{syn}}}$, even when as short as 1~ms, adds coloured noise instead of white noise to the current.
+	However, Figure~\ref{Fig:spike_curr}~(b) shows a similar firing rate of both the synaptic driven current and the \textit{NoisyCurrentSource}, since both of the current signals have similar distribution (Figure~\ref{Fig:lif_pois}~(h)) and time correlation (Figure~\ref{Fig:lif_pois}~(f)).
+	Nevertheless, the analytical response function, the Siegert formula, cannot approximate either of the practical simulations (see Figure~\ref{Fig:current} also).
+
 	\begin{figure}[tbp!]
 		\centering
-		\begin{subfigure}[t]{0.49\textwidth}
+		\begin{subfigure}[t]{0.7\textwidth}
 			\includegraphics[width=\textwidth]{pics_iconip/revise_spike_curve-1.png}
 			\caption{$\tau_{\textit{\textrm{syn}}}$=1~ms.}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.49\textwidth}
+		\end{subfigure}\\
+		\begin{subfigure}[t]{0.7\textwidth}
 			\includegraphics[width=\textwidth]{pics_iconip/revise_spike_curve-2.png}
 			\caption{$\tau_{\textit{\textrm{syn}}}$=10~ms.}
 		\end{subfigure}
-		\caption[Recorded response firing rate driven by a synaptic current.]{Recorded response firing rate of an LIF neuron driven by a synaptic current with two synaptic time constants: (a) $\tau_{\textit{\textrm{syn}}}$=1~ms and (b) $\tau_{\textit{\textrm{syn}}}$=10~ms. Average firing rates of 10 simulation trails are shown in dashed lines, and the grey colour fills the range between the minimum to maximum of the firing rates. The firing rates recorded driven by \textit{NoisyCurrentSource} are drawn in bold lines (shown in Figure~\ref{Fig:lif_curr}) for comparison.}
+		\caption[Recorded response firing rate driven by a noisy synaptic current.]{Recorded response firing rate of an LIF neuron driven by a noisy synaptic current, which is generated by random arrivals of Poisson spike trains, compared to previous experiments using \textit{NoisyCurrentSource}. Averaged firing rates of 10 simulation trails tested on three noisy levels are shown in different colours of dashed lines, and the grey colour fills the range between the minimum to maximum of the firing rates. The other LIF simulation using \textit{NoisyCurrentSource} is drawn in bold lines (same as the dashed lines in Figure~\ref{Fig:current}) to compare with the noisy synaptic current. The same noise level is plotted with the same colour for both experiments. Two synaptic time constants are tested: (a) $\tau_{\textit{\textrm{syn}}}$=1~ms, to compare with \textit{NoisyCurrentSource} sampled at every 1~ms, and (b) $\tau_{\textit{\textrm{syn}}}$=10~ms, to compare with \textit{NoisyCurrentSource} sampled at every 10~ms.}
 		\label{Fig:spike_curr}
 	\end{figure}
 	
@@ -541,29 +569,8 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking Convo
 		\label{Fig:lif_pois}
 	\end{figure}
 
-	A more realistic simulation of a noisy current can be generated by 100 Poisson spike trains, 
-	%assuming that large amount of small amplitude PSPs are required to reach the threshold and $\tau_syn$ limits to 0.
-	where the mean and variance of the current are given by~\citep{la2008response}:
-	\begin{equation}
-	m_I = \tau_{\textit{\textrm{syn}}}\sum_i w_i\lambda_{i}~, ~s_I^2=\frac{1}{2}\tau_{\textit{\textrm{syn}}}\sum_i w_i^2\lambda_{i}~,
-	\label{equ:distr0}
-	\end{equation}
-	where $\tau_{\textit{\textrm{syn}}}$ is the synaptic time constant, and each Poisson spike train connects to the neuron with a strength of $w_i$ and a firing rate of $\lambda_i$.
-	Two populations of Poisson spike sources, for excitatory and inhibitory synapses respectively, were connected to a single LIF neuron to mimic the noisy currents.
-	The firing rates of the Poisson spike generators were determined by the given $m_I$ and $s_I$.
-	Figure~\ref{Fig:spike_curr} illustrates the recorded firing rates responding to the Poissoin spike trains compared to the mean firing rate driven by \textit{NoisyCurrentSource} in Figure~\ref{Fig:current}.
-	Note that the estimation of LIF response activity using the Siegert function requires noisy current with white noise, however
-%	The use of noisy currents assumes that the post-synaptic potential (PSP) is a delta function, e.g. $\tau_{\textit{\textrm{syn}}}$ tends to the limits of 0.
-	in practice the release of neurotransmitter takes time ($\tau_{\textit{\textrm{syn}}} >> 0$) and the synaptic current decays exponentially $I_{syn} = I_0 e^{-\frac{t}{\tau_{\textit{\textrm{syn}}}}}$.
-	Figures~\ref{Fig:lif_pois}~(a) and (b) show two examples of synaptic current of 0~nA mean and 0.2 standard deviation driven by 100 neurons firing at the same rate and with the same synaptic strength (half excitatory, half inhibitory), but of different synaptic time constant.
-	Therefore, the current at any time $t$ during the decay period is dependent on the value at the previous time step, which makes the synaptic current a coloured noise, see Figures~\ref{Fig:lif_pois}~(c) and (d).
-%	and the noise added to the mean current is not white noise, but pink noise.
 	
-	We observe in Figure~\ref{Fig:spike_curr}~(a) that the response firing rate to synaptic current is higher than the \textit{NoisyCurrentSource} for most of the current range.
-	This is caused by the coarse resolution (1~ms) of the spikes, thus the standard deviation of the current is larger than 0.2, shown in Figure~\ref{Fig:lif_pois}~(g);
-	and the $\tau_{\textit{\textrm{syn}}}$, even when as short as 1~ms, adds coloured noise instead of white noise to the current.
-	However, Figure~\ref{Fig:spike_curr}~(b) shows a similar firing rate of both the synaptic driven current and the \textit{NoisyCurrentSource}, since both of the current signals have similar distribution (Figure~\ref{Fig:lif_pois}~(h)) and time correlation (Figure~\ref{Fig:lif_pois}~(f)).
-	Nevertheless, the analytical response function, the Siegert formula, cannot approximate either of the practical simulations (see Figure~\ref{Fig:current} also).
+	
 	
 %	Thus the experiments show that a longer $\tau_{\textit{\textrm{syn}}}$ increases the level of noise and widens the variance of the output firing rate.
 		Although the use of the Siegert function opened the door for modelling the LIF response function to work similarly to the activation functions used in ANNs~\citep{Jug_etal_2012}, there are several drawbacks of this method:
@@ -588,18 +595,18 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking Convo
 	\label{sec:NSP}
 	\begin{figure}[bht!]
 		\centering
-		\begin{subfigure}[t]{0.48\textwidth}
+		\begin{subfigure}[t]{0.7\textwidth}
 			\includegraphics[width=\textwidth]{pics_iconip/revise_siegert.png}
 			\caption{Response firing rate of an LIF neuron}
-		\end{subfigure}
+		\end{subfigure}\\
 		%		\begin{subfigure}[t]{0.48\textwidth}
 		%			\includegraphics[width=\textwidth]{pics_iconip/revise_siegert1.png}
 		%			\caption{Response firing rate of an LIF neuron with a current offset, $I_{\textit{\textrm{offset}}}$ = 0.11 nA.}
 		%		\end{subfigure}\\
-		\begin{subfigure}[t]{0.48\textwidth}
+		\begin{subfigure}[t]{0.7\textwidth}
 			\includegraphics[width=\textwidth]{pics_iconip/revise_4.pdf}
 			\caption{NSP}
-		\end{subfigure}\\
+		\end{subfigure}
 		%		\begin{subfigure}[t]{0.48\textwidth}
 		%			\includegraphics[width=\textwidth]{pics_iconip/revise_5.pdf}
 		%			\caption{NSP in 3D.}
@@ -652,7 +659,7 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking Convo
 	
 	\begin{figure}[bt]
 		\centering
-		\includegraphics[width=0.7\textwidth]{pics_iconip/revise_5.pdf}
+		\includegraphics[width=0.6\textwidth]{pics_iconip/revise_5.pdf}
 		\caption[NSP in 3D.]{Noisy Softplus in 3D.}
 		\label{Fig:NSP3D}
 	\end{figure}
@@ -688,17 +695,15 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking Convo
 	
 	\begin{figure}
 		\centering
-		\begin{subfigure}[t]{0.48\textwidth}
+		\begin{subfigure}[t]{0.7\textwidth}
 			\includegraphics[width=\textwidth]{pics_iconip/revise_4-1.png}
 			\caption{$\tau_{\textit{\textrm{syn}}}$=1~ms}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.48\textwidth}
+		\end{subfigure}\\
+		\begin{subfigure}[t]{0.7\textwidth}
 			\includegraphics[width=\textwidth]{pics_iconip/revise_4-2.png}
 			\caption{$\tau_{\textit{\textrm{syn}}}$=10~ms}
 		\end{subfigure}
-		\caption[NSP fits to the response firing rates.]{NSP fits to the response firing rates of LIF neurons in concrete physical units.
-			Recorded response firing rate of an LIF neuron driven by synaptic current with two synaptic time constants: (a) $\tau_{\textit{\textrm{syn}}}$=1~ms and (b) $\tau_{\textit{\textrm{syn}}}$=10~ms. Averaged firing rates of simulation trails are shown in bold lines, and the grey colour fills the range between the minimum to maximum of the firing rates. The thin lines are the scaled NSP.}
-		\label{Fig:nsptau1}
+		\caption[NSP fits to the response firing rates.]{NSP fits to the response firing rates of LIF neurons in concrete physical units. Averaged firing rates of 10 simulation trails tested on three noisy levels are shown in different colours of dashed lines, and the grey colour fills the range between the minimum to maximum of the firing rates (same as the dashed lines in Figure~\ref{Fig:spike_curr}). The bold lines are the scaled NSP, where the same noise level is plotted with the same colour as the LIF simulations. The parameters used in the experiments are as follows: (a) $\tau_{\textit{\textrm{syn}}}$=1~ms for LIF simulation, and k=0.18, S=201.66, b=0.07 for NSP; (b) $\tau_{\textit{\textrm{syn}}}$=10~ms for LIF simulation, and k=0.35, S=178.91, b=0.03 for NSP.}			\label{Fig:nsptau1}
 	\end{figure}
 
 	Suitable calibrations of the noise scaling factor $k$, input bias $b$ and mapping scaling factor $S$ in Equation~\ref{equ:fit} enable NSP to closely match the practical response firing rates of LIF neurons given various biological parameters.
@@ -831,7 +836,7 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking Convo
 	The architecture (784-6c-6p-12c-12p-10fc illustrated in Section~\ref{sec:convnet}) contains $28\times28$ input units, followed by two convolution-pooling layers with 6 and 12 convolutional kernels each, and 10 output neurons fully connected to the last pooling layer to represent the classified digit.
 	
 	% Training
-	To train the ConvNet, firstly, we estimated parameter $p$ for PAFs given LIF configurations listed in Table~\ref{tbl:pynnConfig} and $\tau_{\textit{\textrm{syn}}}=0.005$~s, $p = S \times \tau_{\textit{\textrm{syn}}} = 1.085$, where $(k=0.31, b=0.1 S=217)$ were calibrated using NSP. 
+	To train the ConvNet, firstly, we estimated parameter $p$ for PAFs given LIF configurations listed in Table~\ref{tbl:pynnConfig} and $\tau_{\textit{\textrm{syn}}}=0.005$~s, $p = S \times \tau_{\textit{\textrm{syn}}} = 1.085$, where $(k=0.31, b=0.1, S=217)$ were calibrated using NSP. 
 	Secondly, the training employed PAFs with three core activation functions: ReLU, Softplus and NSP to compare their learning and recognition performance.
 	%	The parameter $p$ was estimated as $p = S \times \tau_{\textit{\textrm{syn}}} = 1.005$ by calibrating the NSP with LIF response firing rate: $(k=0.30, S=201)$ given $\tau_{\textit{\textrm{syn}}}=5 ms$.
 	%	The pixel intensities of the input images were normalised to 100~Hz to represent the firing rates of the input spikes.
@@ -981,7 +986,7 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking Convo
 %	However, the loss stabilised fastest, which means a possible shorter training time.
 	\begin{figure}[tbp!]
 		\centering
-		\includegraphics[width=0.7\textwidth]{pics_iconip/revise_8.png}
+		\includegraphics[width=0.8\textwidth]{pics_iconip/revise_8.png}
 		\caption[Comparisons of loss during training.]{Comparisons of loss during training using Noisy Softplus, ReLU and Softplus activation functions. Bold lines show the average of three training trials, and the grey colour illustrates the range between the minimum and the maximum values of the trials.  }
 		\label{Fig:loss_ns}
 	\end{figure}
@@ -1165,11 +1170,11 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking Convo
 	
 	\begin{figure}[htb!]
 		\centering
-		\begin{subfigure}[t]{0.49\textwidth}
+		\begin{subfigure}[t]{0.7\textwidth}
 			\includegraphics[width=\textwidth]{pics_iconip/revise_8-2.png}
 			\caption{Before fine tuning}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.49\textwidth}
+		\end{subfigure}\\
+		\begin{subfigure}[t]{0.7\textwidth}
 			\includegraphics[width=\textwidth]{pics_iconip/revise_8-3.png}
 			\caption{After fine tuning.}
 		\end{subfigure}

@@ -163,7 +163,7 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking Convo
 
 	
 	
-\section{Modelling the Response Function}
+\section{\DIFaddbegin \DIFadd{Siegert: }\DIFaddend Modelling the Response Function}
 	\label{sec:response_func}
 	The response function, in the context of this thesis, indicates the firing rate of a spiking neuron in the presence of input current.
 	In Section~\ref{sec:siergert}, we introduce the first use of the Siegert formula to model the response function of an LIF neuron.
@@ -295,7 +295,8 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking Convo
 				\DIFdelbeginFL \DIFdelFL{v\_thresh }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{$V_{thresh}$ }\DIFaddendFL & -50.0\DIFdelbeginFL %DIFDELCMD < & %%%
 \DIFdelFL{mV }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{~mV }& \DIFaddFL{membrane threshold  }\DIFaddendFL \\
 				%\hline
-				\DIFdelbeginFL \DIFdelFL{i\_offset }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{$I_{\textit{\textrm{offset}}}$ }\DIFaddendFL & \DIFdelbeginFL \DIFdelFL{0.1 }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{0.0~nA }\DIFaddendFL & \DIFdelbeginFL \DIFdelFL{nA}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{offset of current influx  }\DIFaddendFL \\
+				\DIFdelbeginFL \DIFdelFL{i\_offset }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{$I_{\textit{\textrm{offset}}}$ }\DIFaddendFL & \DIFdelbeginFL \DIFdelFL{0.1 }%DIFDELCMD < & %%%
+\DIFdelFL{nA }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{0.0~nA }& \DIFaddFL{offset of current influx  }\DIFaddendFL \\
 			\DIFdelbeginFL %DIFDELCMD < \hline
 %DIFDELCMD < 				%%%
 %DIF < 			Parameters & cm & tau\_m & tau\_refrac & tau\_syn\_E & tau\_syn\_I & v\_rest & v\_thresh & i\_offset \\
@@ -427,22 +428,26 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking Convo
 	The noise was drawn from the Gaussian distribution in a time resolution of $dt$.
 	We chose $dt=1$~ms which is the finest resolution for common SNN simulators, and $dt=10$~ms for comparison.
 	For a given pair of $m_I$ and $s_I^2$, a noisy current was injected into a current-based LIF neuron for 10~s, and the output firing rate was the average over 10 trials.
+	\DIFaddbegin \DIFadd{There were four noise levels tested in the experiments: 0, 0.2, 0.5, 1; and the mean current increased from -0.5 to 0.6~nA.
+	}\DIFaddend 
 
 	\begin{figure}[tbp!]
 		\centering
-		\begin{subfigure}[t]{0.49\textwidth}
-			\DIFdelbeginFL %DIFDELCMD < \includegraphics[width=\textwidth]{pics_iconip/2-1.png}
+		\DIFdelbeginFL %DIFDELCMD < \begin{subfigure}[t]{0.49\textwidth}
+%DIFDELCMD < 			\includegraphics[width=\textwidth]{pics_iconip/2-1.png}
 %DIFDELCMD < 			%%%
-\DIFdelendFL \DIFaddbeginFL \includegraphics[width=\textwidth]{pics_iconip/revise_2-1.png}
+\DIFdelendFL \DIFaddbeginFL \begin{subfigure}[t]{0.7\textwidth}
+			\includegraphics[width=\textwidth]{pics_iconip/revise_2-1.png}
 			\DIFaddendFL \caption{Current sampled at $dt$=1~ms.}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.49\textwidth}
-			\DIFdelbeginFL %DIFDELCMD < \includegraphics[width=\textwidth]{pics_iconip/2-10.png}
+		\end{subfigure}\DIFdelbeginFL %DIFDELCMD < \begin{subfigure}[t]{0.49\textwidth}
+%DIFDELCMD < 			\includegraphics[width=\textwidth]{pics_iconip/2-10.png}
 %DIFDELCMD < 			%%%
-\DIFdelendFL \DIFaddbeginFL \includegraphics[width=\textwidth]{pics_iconip/revise_2-2.png}
+\DIFdelendFL \DIFaddbeginFL \\
+		\begin{subfigure}[t]{0.7\textwidth}
+			\includegraphics[width=\textwidth]{pics_iconip/revise_2-2.png}
 			\DIFaddendFL \caption{Current sampled at $dt$=10~ms.}
 		\end{subfigure}
-		\caption[Recorded response firing rate driven by \textit{NoisyCurrentSource}.]{Recorded response firing rate of an LIF neuron driven by \textit{NoisyCurrentSource} in PyNN, sampled at every (a) 1~ms and (b) 10~ms. Averaged firing rates of 10 simulation trails are shown in \DIFdelbeginFL \DIFdelFL{bold }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{dashed }\DIFaddendFL lines, and the grey colour fills the range between the minimum to maximum of the firing rates. The analytical LIF response function, the Siegert formula (Equation~\ref{equ:siegert}), is drawn in \DIFdelbeginFL \DIFdelFL{thin }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{bold }\DIFaddendFL lines (shown in Figure~\ref{Fig:physics}) to compare with the practical simulation.}
+		\caption[Recorded response firing rate driven by \textit{NoisyCurrentSource}.]{Recorded response firing rate of an LIF neuron driven by \textit{NoisyCurrentSource} in PyNN, \DIFaddbeginFL \DIFaddFL{compared to the Siegert function. The }\textit{\DIFaddFL{NoisyCurrentSource}} \DIFaddFL{is }\DIFaddendFL sampled at every (a) 1~ms and (b) 10~ms. Averaged firing rates of 10 simulation trails \DIFaddbeginFL \DIFaddFL{tested on four noisy levels }\DIFaddendFL are shown in \DIFdelbeginFL \DIFdelFL{bold }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{different colours of dashed }\DIFaddendFL lines, and the grey colour fills the range between the minimum to maximum of the firing rates. The analytical LIF response function, the Siegert formula (Equation~\ref{equ:siegert}), is drawn in \DIFdelbeginFL \DIFdelFL{thin }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{bold }\DIFaddendFL lines (shown in Figure~\ref{Fig:physics}) to compare with the practical \DIFdelbeginFL \DIFdelFL{simulation}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{simulations}\DIFaddendFL . \DIFaddbeginFL \DIFaddFL{The selected noise levels are the same with the LIF simulations, and the curves are plotted with the same colours of the dashed lines.}\DIFaddendFL }
 		\label{Fig:current}
 	\end{figure}
 
@@ -486,13 +491,17 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking Convo
 		\label{Fig:lif_curr}
 	\end{figure}
 
-	The curves in Figures~\ref{Fig:current} illustrate the output firing rate driven by different levels of noise.
-	The differences relative to the analytical results (\DIFdelbegin \DIFdel{thin }\DIFdelend \DIFaddbegin \DIFadd{bold }\DIFaddend lines) is due to the time resolution, $dt$, of the \textit{NoisyCurrentSource}.
-	The sampled signals are shown in Figures~\ref{Fig:lif_curr}~(a) and (b).
+	The \DIFaddbegin \DIFadd{dashed }\DIFaddend curves in Figures~\ref{Fig:current} illustrate the output firing rate \DIFdelbegin \DIFdel{driven by different levels of noise.
+	The differences relative to the analytical results (thin lines)is due to the }\DIFdelend \DIFaddbegin \DIFadd{of the LIF simulations; while the bold lines are the analytical reference, the Siegert function (same as Figure~\ref{Fig:physics}).
+	The differences between the practical simulations and the Siegert function enlarge when the }\DIFaddend time resolution, $dt$, of the \textit{NoisyCurrentSource} \DIFaddbegin \DIFadd{increases from 1~ms (Figure~\ref{Fig:current}(a)) to 10~ms (Figure~\ref{Fig:current}(b))}\DIFaddend .
+	The sampled \DIFdelbegin \DIFdel{signals }\DIFdelend \DIFaddbegin \DIFadd{current signals (}\textit{\DIFadd{NoisyCurrentSource}}\DIFadd{) }\DIFaddend are shown in Figures~\ref{Fig:lif_curr}~(a) and (b).
 	The discrete sampling of the noisy current introduces time step correlation to the white noise, shown in Figures~\ref{Fig:lif_curr}~(e) and (f), where the value remains the same within a time step $dt$.
-	Although both current signals follow the same Gaussian distribution, see Figures~\ref{Fig:lif_curr}~(g) and (h), the current is \DIFaddbegin \DIFadd{approximately }\DIFaddend a white noise when $dt=1$~ms, but a coloured noise, e.g. increased Power Spectral Density~(PSD) at lower frequency, when $dt=10$~ms, see Figures~\ref{Fig:lif_curr}~(c) and (d).
-	Thus the Siegert formula, Equation~\ref{equ:siegert}, can only approximate the LIF response of noisy current with white noise.
-%\begin{figure}
+	Although both current signals follow the same Gaussian distribution, see Figures~\ref{Fig:lif_curr}~(g) and (h), the current is \DIFaddbegin \DIFadd{approximately }\DIFaddend a white noise when $dt=1$~ms, but a coloured noise, e.g. \DIFdelbegin \DIFdel{increased }\DIFdelend \DIFaddbegin \DIFadd{increases }\DIFaddend Power Spectral Density~(PSD) at lower frequency, when $dt=10$~ms, see Figures~\ref{Fig:lif_curr}~(c) and (d).
+	\DIFdelbegin \DIFdel{Thus the }\DIFdelend \DIFaddbegin \DIFadd{Therefore, the coloured noise of the current influx drives the LIF neuron fire observably more intensely.
+	Hence, the }\DIFaddend Siegert formula, Equation~\ref{equ:siegert}, can only approximate the LIF response of noisy current with white noise\DIFdelbegin \DIFdel{.
+}\DIFdelend \DIFaddbegin \DIFadd{; but is not adapted to coloured noise.
+	In practice, the current is generated by random arrivals of input spikes with various synaptic efficiency, which also brings in coloured noise.
+	}\DIFaddend %\begin{figure}
 %	\centering
 %	\begin{subfigure}[c]{0.45\textwidth}\raggedleft
 %		\myrowlabel{Response Firing Rate}
@@ -530,64 +539,114 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking Convo
 %	\label{Fig:lif_pois}
 %\end{figure}
 
-	\begin{figure}[tbp!]
-		\centering
-		\begin{subfigure}[t]{0.49\textwidth}
-			\DIFdelbeginFL %DIFDELCMD < \includegraphics[width=\textwidth]{pics_iconip/spiked_curve_1.png}
-%DIFDELCMD < 			%%%
-\DIFdelendFL \DIFaddbeginFL \includegraphics[width=\textwidth]{pics_iconip/revise_spike_curve-1.png}
-			\DIFaddendFL \caption{$\tau_{\textit{\textrm{syn}}}$=1~ms.}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.49\textwidth}
-			\DIFdelbeginFL %DIFDELCMD < \includegraphics[width=\textwidth]{pics_iconip/spiked_curve_10.png}
-%DIFDELCMD < 			%%%
-\DIFdelendFL \DIFaddbeginFL \includegraphics[width=\textwidth]{pics_iconip/revise_spike_curve-2.png}
-			\DIFaddendFL \caption{$\tau_{\textit{\textrm{syn}}}$=10~ms.}
-		\end{subfigure}
-		\caption[Recorded response firing rate driven by a synaptic current.]{Recorded response firing rate of an LIF neuron driven by a synaptic current with two synaptic time constants: (a) $\tau_{\textit{\textrm{syn}}}$=\DIFdelbeginFL \DIFdelFL{10}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{1}\DIFaddendFL ~ms and (b) $\tau_{\textit{\textrm{syn}}}$=10~ms. Average firing rates of 10 simulation trails are shown in \DIFdelbeginFL \DIFdelFL{bold }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{dashed }\DIFaddendFL lines, and the grey colour fills the range between the minimum to maximum of the firing rates. The firing rates recorded driven by \textit{NoisyCurrentSource} are drawn in \DIFdelbeginFL \DIFdelFL{thin }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{bold }\DIFaddendFL lines (shown in Figure~\ref{Fig:lif_curr}) for comparison.}
-		\label{Fig:spike_curr}
-	\end{figure}
 
-	\begin{figure}[tbp!]
-		\centering
-		\makebox[0.43\textwidth]{$\tau_{\textit{\textrm{syn}}}$=1~ms} \makebox[0.43\textwidth]{$\tau_{\textit{\textrm{syn}}}$=10~ms} \par
-		\begin{subfigure}[t]{0.43\textwidth}
-			\includegraphics[width=\textwidth]{pics_iconip/curr_tau1.pdf}
-			\caption{Current \DIFdelbeginFL \DIFdelFL{sampled at $dt$=1~ms}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{generated by spikes}\DIFaddendFL .}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.43\textwidth}
-			\includegraphics[width=\textwidth]{pics_iconip/curr_tau10.pdf}
-			\caption{Current \DIFdelbeginFL \DIFdelFL{sampled at $dt$=10~ms}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{generated by spikes}\DIFaddendFL .}
-		\end{subfigure}\\
-		\begin{subfigure}[t]{0.43\textwidth}
-			\includegraphics[width=\textwidth]{pics_iconip/psd_tau1.pdf}
-			\caption{Spectrum analysis of (a).}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.43\textwidth}
-			\includegraphics[width=\textwidth]{pics_iconip/psd_tau10.pdf}
-			\caption{Spectrum analysis of (b).}
-		\end{subfigure}\\
-		\begin{subfigure}[t]{0.43\textwidth}
-			\includegraphics[width=\textwidth]{pics_iconip/autocorr_tau1.pdf}
-			\caption{Autocorrelation of (a).}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.43\textwidth}
-			\includegraphics[width=\textwidth]{pics_iconip/autocorr_tau10.pdf}
-			\caption{Autocorrelation of (b).}
-		\end{subfigure}\\
-		\begin{subfigure}[t]{0.43\textwidth}
-			\includegraphics[width=\textwidth]{pics_iconip/distr_tau1.pdf}
-			\caption{Distribution of samples of (a).}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.43\textwidth}
-			\includegraphics[width=\textwidth]{pics_iconip/distr_tau10.pdf}
-			\caption{Distribution of samples of (b).}
-		\end{subfigure}
-		\caption[Noisy currents generated by Poisson spike trains.]{Noisy currents generated by 100 Poisson spike trains to an LIF neuron with synaptic time constant $\tau_{\textit{\textrm{syn}}}$=1~ms (left) and $\tau_{\textit{\textrm{syn}}}$=10~ms (right). The currents are shown in the time domain in (a) and (b), and in the spectrum domain in (c) and (d). The autocorrelation of both current signals are shown in (e) and (f). The distribution of the generated samples are plotted in bar chart form to compare to the expected Gaussian distribution, shown in (g) and (h).}
-		\label{Fig:lif_pois}
-	\end{figure}
+	\DIFdelbegin %DIFDELCMD < \begin{figure}[tbp!]
+%DIFDELCMD < 		\centering
+%DIFDELCMD < 		\begin{subfigure}[t]{0.49\textwidth}
+%DIFDELCMD < 			\includegraphics[width=\textwidth]{pics_iconip/spiked_curve_1.png}
+%DIFDELCMD < 			%%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{$\tau_{\textit{\textrm{syn}}}$=1~ms.}}
+		%DIFAUXCMD
+%DIFDELCMD < \end{subfigure}
+%DIFDELCMD < 		\begin{subfigure}[t]{0.49\textwidth}
+%DIFDELCMD < 			\includegraphics[width=\textwidth]{pics_iconip/spiked_curve_10.png}
+%DIFDELCMD < 			%%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{$\tau_{\textit{\textrm{syn}}}$=10~ms.}}
+		%DIFAUXCMD
+%DIFDELCMD < \end{subfigure}
+%DIFDELCMD < 		%%%
+%DIFDELCMD < \caption[Recorded response firing rate driven by a synaptic current.]{%
+{%DIFAUXCMD
+\DIFdelFL{Recorded response firing rate of an LIF neuron driven by a synaptic current with two synaptic time constants: (a) $\tau_{\textit{\textrm{syn}}}$=10~ms and (b) $\tau_{\textit{\textrm{syn}}}$=10~ms. Average firing rates of 10 simulation trails are shown in bold lines, and the grey colour fills the range between the minimum to maximum of the firing rates. The firing rates recorded driven by }\textit{\DIFdelFL{NoisyCurrentSource}} %DIFAUXCMD
+\DIFdelFL{are drawn in thin lines (shown in Figure~\ref{Fig:lif_curr}) for comparison.}}
+		%DIFAUXCMD
+%DIFDELCMD < \label{Fig:spike_curr}
+%DIFDELCMD < 	\end{figure}
+%DIFDELCMD < 	
 
-	A more realistic simulation of a noisy current can be generated by 100 Poisson spike trains, 
+%DIFDELCMD < 	\begin{figure}[tbp!]
+%DIFDELCMD < 		\centering
+%DIFDELCMD < 		%%%
+\DIFdelFL{\makebox[0.43\textwidth]{$\tau_{\textit{\textrm{syn}}}$=1~ms} \makebox[0.43\textwidth]{$\tau_{\textit{\textrm{syn}}}$=10~ms} }%DIFDELCMD < \par
+%DIFDELCMD < 		\begin{subfigure}[t]{0.43\textwidth}
+%DIFDELCMD < 			\includegraphics[width=\textwidth]{pics_iconip/curr_tau1.pdf}
+%DIFDELCMD < 			%%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Current sampled at $dt$=1~ms.}}
+		%DIFAUXCMD
+%DIFDELCMD < \end{subfigure}
+%DIFDELCMD < 		\begin{subfigure}[t]{0.43\textwidth}
+%DIFDELCMD < 			\includegraphics[width=\textwidth]{pics_iconip/curr_tau10.pdf}
+%DIFDELCMD < 			%%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Current sampled at $dt$=10~ms.}}
+		%DIFAUXCMD
+%DIFDELCMD < \end{subfigure}\\
+%DIFDELCMD < 		\begin{subfigure}[t]{0.43\textwidth}
+%DIFDELCMD < 			\includegraphics[width=\textwidth]{pics_iconip/psd_tau1.pdf}
+%DIFDELCMD < 			%%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Spectrum analysis of (a).}}
+		%DIFAUXCMD
+%DIFDELCMD < \end{subfigure}
+%DIFDELCMD < 		\begin{subfigure}[t]{0.43\textwidth}
+%DIFDELCMD < 			\includegraphics[width=\textwidth]{pics_iconip/psd_tau10.pdf}
+%DIFDELCMD < 			%%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Spectrum analysis of (b).}}
+		%DIFAUXCMD
+%DIFDELCMD < \end{subfigure}\\
+%DIFDELCMD < 		\begin{subfigure}[t]{0.43\textwidth}
+%DIFDELCMD < 			\includegraphics[width=\textwidth]{pics_iconip/autocorr_tau1.pdf}
+%DIFDELCMD < 			%%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Autocorrelation of (a).}}
+		%DIFAUXCMD
+%DIFDELCMD < \end{subfigure}
+%DIFDELCMD < 		\begin{subfigure}[t]{0.43\textwidth}
+%DIFDELCMD < 			\includegraphics[width=\textwidth]{pics_iconip/autocorr_tau10.pdf}
+%DIFDELCMD < 			%%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Autocorrelation of (b).}}
+		%DIFAUXCMD
+%DIFDELCMD < \end{subfigure}\\
+%DIFDELCMD < 		\begin{subfigure}[t]{0.43\textwidth}
+%DIFDELCMD < 			\includegraphics[width=\textwidth]{pics_iconip/distr_tau1.pdf}
+%DIFDELCMD < 			%%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Distribution of samples of (a).}}
+		%DIFAUXCMD
+%DIFDELCMD < \end{subfigure}
+%DIFDELCMD < 		\begin{subfigure}[t]{0.43\textwidth}
+%DIFDELCMD < 			\includegraphics[width=\textwidth]{pics_iconip/distr_tau10.pdf}
+%DIFDELCMD < 			%%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Distribution of samples of (b).}}
+		%DIFAUXCMD
+%DIFDELCMD < \end{subfigure}
+%DIFDELCMD < 		%%%
+%DIFDELCMD < \caption[Noisy currents generated by Poisson spike trains.]{%
+{%DIFAUXCMD
+\DIFdelFL{Noisy currents generated by 100 Poisson spike trains to an LIF neuron with synaptic time constant $\tau_{\textit{\textrm{syn}}}$=1~ms (left) and $\tau_{\textit{\textrm{syn}}}$=10~ms (right). The currents are shown in the time domain in (a) and (b), and in the spectrum domain in (c) and (d). The autocorrelation of both current signals are shown in (e) and (f). The distribution of the generated samples are plotted in bar chart form to compare to the expected Gaussian distribution, shown in (g) and (h).}}
+		%DIFAUXCMD
+%DIFDELCMD < \label{Fig:lif_pois}
+%DIFDELCMD < 	\end{figure}
+%DIFDELCMD < 
+
+%DIFDELCMD < 	%%%
+\DIFdelend A more realistic simulation of a noisy current can be generated by 100 Poisson spike trains, 
 	%assuming that large amount of small amplitude PSPs are required to reach the threshold and $\tau_syn$ limits to 0.
 	where the mean and variance of the current are given by~\citep{la2008response}:
 	\begin{equation}
@@ -611,9 +670,65 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking Convo
 	However, Figure~\ref{Fig:spike_curr}~(b) shows a similar firing rate of both the synaptic driven current and the \textit{NoisyCurrentSource}, since both of the current signals have similar distribution (Figure~\ref{Fig:lif_pois}~(h)) and time correlation (Figure~\ref{Fig:lif_pois}~(f)).
 	Nevertheless, the analytical response function, the Siegert formula, cannot approximate either of the practical simulations \DIFaddbegin \DIFadd{(see Figure~\ref{Fig:current} also)}\DIFaddend .
 
-%	Thus the experiments show that a longer $\tau_{\textit{\textrm{syn}}}$ increases the level of noise and widens the variance of the output firing rate.
+	\DIFaddbegin \begin{figure}[tbp!]
+		\centering
+		\begin{subfigure}[t]{0.7\textwidth}
+			\includegraphics[width=\textwidth]{pics_iconip/revise_spike_curve-1.png}
+			\caption{\DIFaddFL{$\tau_{\textit{\textrm{syn}}}$=1~ms.}}
+		\end{subfigure}\\
+		\begin{subfigure}[t]{0.7\textwidth}
+			\includegraphics[width=\textwidth]{pics_iconip/revise_spike_curve-2.png}
+			\caption{\DIFaddFL{$\tau_{\textit{\textrm{syn}}}$=10~ms.}}
+		\end{subfigure}
+		\caption[Recorded response firing rate driven by a noisy synaptic current.]{\DIFaddFL{Recorded response firing rate of an LIF neuron driven by a noisy synaptic current, which is generated by random arrivals of Poisson spike trains, compared to previous experiments using }\textit{\DIFaddFL{NoisyCurrentSource}}\DIFaddFL{. Averaged firing rates of 10 simulation trails tested on three noisy levels are shown in different colours of dashed lines, and the grey colour fills the range between the minimum to maximum of the firing rates. The other LIF simulation using }\textit{\DIFaddFL{NoisyCurrentSource}} \DIFaddFL{is drawn in bold lines (same as the dashed lines in Figure~\ref{Fig:current}) to compare with the noisy synaptic current. The same noise level is plotted with the same colour for both experiments. Two synaptic time constants are tested: (a) $\tau_{\textit{\textrm{syn}}}$=1~ms, to compare with }\textit{\DIFaddFL{NoisyCurrentSource}} \DIFaddFL{sampled at every 1~ms, and (b) $\tau_{\textit{\textrm{syn}}}$=10~ms, to compare with }\textit{\DIFaddFL{NoisyCurrentSource}} \DIFaddFL{sampled at every 10~ms.}}
+		\label{Fig:spike_curr}
+	\end{figure}
+
+	\begin{figure}[tbp!]
+		\centering
+		\DIFaddFL{\makebox[0.43\textwidth]{$\tau_{\textit{\textrm{syn}}}$=1~ms} \makebox[0.43\textwidth]{$\tau_{\textit{\textrm{syn}}}$=10~ms} }\par
+		\begin{subfigure}[t]{0.43\textwidth}
+			\includegraphics[width=\textwidth]{pics_iconip/curr_tau1.pdf}
+			\caption{\DIFaddFL{Current generated by spikes.}}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.43\textwidth}
+			\includegraphics[width=\textwidth]{pics_iconip/curr_tau10.pdf}
+			\caption{\DIFaddFL{Current generated by spikes.}}
+		\end{subfigure}\\
+		\begin{subfigure}[t]{0.43\textwidth}
+			\includegraphics[width=\textwidth]{pics_iconip/psd_tau1.pdf}
+			\caption{\DIFaddFL{Spectrum analysis of (a).}}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.43\textwidth}
+			\includegraphics[width=\textwidth]{pics_iconip/psd_tau10.pdf}
+			\caption{\DIFaddFL{Spectrum analysis of (b).}}
+		\end{subfigure}\\
+		\begin{subfigure}[t]{0.43\textwidth}
+			\includegraphics[width=\textwidth]{pics_iconip/autocorr_tau1.pdf}
+			\caption{\DIFaddFL{Autocorrelation of (a).}}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.43\textwidth}
+			\includegraphics[width=\textwidth]{pics_iconip/autocorr_tau10.pdf}
+			\caption{\DIFaddFL{Autocorrelation of (b).}}
+		\end{subfigure}\\
+		\begin{subfigure}[t]{0.43\textwidth}
+			\includegraphics[width=\textwidth]{pics_iconip/distr_tau1.pdf}
+			\caption{\DIFaddFL{Distribution of samples of (a).}}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.43\textwidth}
+			\includegraphics[width=\textwidth]{pics_iconip/distr_tau10.pdf}
+			\caption{\DIFaddFL{Distribution of samples of (b).}}
+		\end{subfigure}
+		\caption[Noisy currents generated by Poisson spike trains.]{\DIFaddFL{Noisy currents generated by 100 Poisson spike trains to an LIF neuron with synaptic time constant $\tau_{\textit{\textrm{syn}}}$=1~ms (left) and $\tau_{\textit{\textrm{syn}}}$=10~ms (right). The currents are shown in the time domain in (a) and (b), and in the spectrum domain in (c) and (d). The autocorrelation of both current signals are shown in (e) and (f). The distribution of the generated samples are plotted in bar chart form to compare to the expected Gaussian distribution, shown in (g) and (h).}}
+		\label{Fig:lif_pois}
+	\end{figure}
+
+	
+	
+	
+\DIFaddend %	Thus the experiments show that a longer $\tau_{\textit{\textrm{syn}}}$ increases the level of noise and widens the variance of the output firing rate.
 		Although the use of the Siegert function opened the door for modelling the LIF response function to work similarly to the activation functions used in ANNs~\citep{Jug_etal_2012}, there are several drawbacks of this method:
-	 \begin{itemize} 
+	\begin{itemize}
 		\item most importantly, the numerical analysis of an LIF response function is far from accurate in practice. `Practice' in the chapter means SNN simulations using LIF neurons.
 		Thus the inaccurate model generates errors between the estimation and the practical response firing rate.
 %		This issue will be addressed in Section~\ref{subsec:practice}.
@@ -625,7 +740,7 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking Convo
 		\item The Siegert function is used to replace sigmoid functions for training spiking Restricted Boltzmann Machines~\DIFaddbegin \DIFadd{(RBM)~}\DIFaddend \citep{Jug_etal_2012}.
 		Therefore neurons have to fire at high frequency (higher than half of the maximum firing rate) to represent the activation of a sigmoid unit; thus the network activity results in high power dissipation.
 		\item better learning performance has been reported using ReLU than Sigmoid units, so modelling \DIFaddbegin \DIFadd{spiking neurons with }\DIFaddend a ReLU-like activation function \DIFdelbegin \DIFdel{for spiking neurons }\DIFdelend is needed.  
-	 \end{itemize} 
+	\end{itemize}
 
 	Therefore, we propose the NSP function which provides solutions to the drawbacks of the Siegert unit.
 
@@ -638,27 +753,29 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking Convo
 %DIFDELCMD < 		%%%
 \DIFdelendFL \DIFaddbeginFL \begin{figure}[bht!]
 		\DIFaddendFL \centering
-		\begin{subfigure}[t]{0.48\textwidth}
-			\DIFdelbeginFL %DIFDELCMD < \includegraphics[width=\textwidth]{pics_iconip/siegert.png}
+		\DIFdelbeginFL %DIFDELCMD < \begin{subfigure}[t]{0.48\textwidth}
+%DIFDELCMD < 			\includegraphics[width=\textwidth]{pics_iconip/siegert.png}
 %DIFDELCMD < 			%%%
-\DIFdelendFL \DIFaddbeginFL \includegraphics[width=\textwidth]{pics_iconip/revise_siegert.png}
+\DIFdelendFL \DIFaddbeginFL \begin{subfigure}[t]{0.7\textwidth}
+			\includegraphics[width=\textwidth]{pics_iconip/revise_siegert.png}
 			\DIFaddendFL \caption{Response firing rate of an LIF neuron}
-		\end{subfigure}
+		\end{subfigure}\DIFdelbeginFL %DIFDELCMD < \begin{subfigure}[t]{0.48\textwidth}
+%DIFDELCMD < 			\includegraphics[width=\textwidth]{pics_iconip/4.pdf}
+%DIFDELCMD < 			%%%
+\DIFdelendFL \DIFaddbeginFL \\
 		%DIF > 		\begin{subfigure}[t]{0.48\textwidth}
 		%DIF > 			\includegraphics[width=\textwidth]{pics_iconip/revise_siegert1.png}
 		%DIF > 			\caption{Response firing rate of an LIF neuron with a current offset, $I_{\textit{\textrm{offset}}}$ = 0.11 nA.}
 		%DIF > 		\end{subfigure}\\
-		\begin{subfigure}[t]{0.48\textwidth}
-			\DIFdelbeginFL %DIFDELCMD < \includegraphics[width=\textwidth]{pics_iconip/4.pdf}
-%DIFDELCMD < 			%%%
-\DIFdelendFL \DIFaddbeginFL \includegraphics[width=\textwidth]{pics_iconip/revise_4.pdf}
+		\begin{subfigure}[t]{0.7\textwidth}
+			\includegraphics[width=\textwidth]{pics_iconip/revise_4.pdf}
 			\DIFaddendFL \caption{NSP}
-		\end{subfigure}\DIFaddbeginFL \\
+		\end{subfigure}
 		%DIF > 		\begin{subfigure}[t]{0.48\textwidth}
 		%DIF > 			\includegraphics[width=\textwidth]{pics_iconip/revise_5.pdf}
 		%DIF > 			\caption{NSP in 3D.}
 		%DIF > 		\end{subfigure}
-		\DIFaddendFL \caption[NSP models the LIF response function.]{
+		\caption[NSP models the LIF response function.]{
 			%		NSP fits to the response function of the LIF neuron.
 			NSP models the LIF response function.
 			(a) Firing rates measured by simulations of an LIF neuron driven by different input currents and discrete noise levels.
@@ -715,20 +832,21 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking Convo
 	y = f\DIFdelbegin \DIFdel{_{ns}}\DIFdelend \DIFaddbegin \DIFadd{_{\textit{\textrm{NSP}}}}\DIFaddend (x, \sigma) = k \sigma \log [1 + \exp(\frac{x}{k \sigma})]~,
 	\label{equ:nsp}
 	\end{equation}
-	where $x$ and $\sigma$ refer to the mean and standard deviation of the input current, $y$ indicates the intensity of the output firing rate, and $k$, determined by the biological configurations on the LIF neurons~\citep{liu2016noisy}~(listed in Table~\ref{tbl:pynnConfig}), \DIFdelbegin \DIFdel{controls }\DIFdelend \DIFaddbegin \DIFadd{scales the impact of the noise thereby controlling }\DIFaddend the shape of the curves.
+	where $x$ and $\sigma$ refer to the mean and standard deviation of the input current, $y$ indicates the intensity of the output firing rate, and $k$, determined by the biological configurations on the LIF neurons~\citep{liu2016noisy}~(listed in Table~\ref{tbl:pynnConfig}), \DIFdelbegin \DIFdel{controls the }\DIFdelend \DIFaddbegin \DIFadd{scales the impact of the noise thereby controlling the }\DIFaddend shape of the curves.
 	Note that the novel activation function we proposed contains two parameters, the mean current and its noise, which \DIFdelbegin \DIFdel{can be }\DIFdelend \DIFaddbegin \DIFadd{takes the values }\DIFaddend estimated by Equation~\ref{equ:distr0}: \DIFdelbegin \begin{displaymath}
 	\DIFdel{x = \tau_{\textit{\textrm{syn}}}\sum_i w_i\lambda_{i}~, ~\sigma^2=\frac{1}{2}\tau_{\textit{\textrm{syn}}}\sum_i w_i^2\lambda_{i}~,
 	%DIFDELCMD < \label{equ:distr}%%%
 	}\end{displaymath}
 	%DIFAUXCMD
-\DIFdel{where $\lambda_i$ indicates the firing rate of an input spike train}\DIFdelend \DIFaddbegin \DIFadd{$m_I$ and $s_I^2$.
+\DIFdel{where $\lambda_i$ indicates the firing rate of an input spike train}\DIFdelend \DIFaddbegin \DIFadd{$m_I$ and $s_I^2$}\DIFaddend .
 %DIF > 	%+I_{\textit{\textrm{offset}}}
 %DIF > 	\begin{equation}
 %DIF > 	x = \tau_{\textit{\textrm{syn}}}\sum_i w_i\lambda_{i}~, ~\sigma^2=\frac{1}{2}\tau_{\textit{\textrm{syn}}}\sum_i w_i^2\lambda_{i}~,
 %DIF > 	\label{equ:distr}
 %DIF > 	\end{equation}
 %DIF > 	where $\lambda_i$ indicates the firing rate of an input spike train.
-	Since the NSP takes two variables as inputs, the activation function can be plotted in 3D, see Figure~\ref{Fig:NSP3D}}\DIFaddend .
+	\DIFaddbegin \DIFadd{Since the NSP takes two variables as inputs, the activation function can be plotted in 3D, see Figure~\ref{Fig:NSP3D}.
+}\DIFaddend 
 
 	
 
@@ -753,7 +871,7 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking Convo
 		\centering
 		\DIFdelbeginFL %DIFDELCMD < \includegraphics[width=0.7\textwidth]{pics_iconip/5.pdf}
 %DIFDELCMD < 		%%%
-\DIFdelendFL \DIFaddbeginFL \includegraphics[width=0.7\textwidth]{pics_iconip/revise_5.pdf}
+\DIFdelendFL \DIFaddbeginFL \includegraphics[width=0.6\textwidth]{pics_iconip/revise_5.pdf}
 		\DIFaddendFL \caption[NSP in 3D.]{Noisy Softplus in 3D.}
 		\label{Fig:NSP3D}
 	\end{figure}
@@ -883,17 +1001,15 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking Convo
 
 	\DIFaddbegin \begin{figure}
 		\centering
-		\begin{subfigure}[t]{0.48\textwidth}
+		\begin{subfigure}[t]{0.7\textwidth}
 			\includegraphics[width=\textwidth]{pics_iconip/revise_4-1.png}
 			\caption{\DIFaddFL{$\tau_{\textit{\textrm{syn}}}$=1~ms}}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.48\textwidth}
+		\end{subfigure}\\
+		\begin{subfigure}[t]{0.7\textwidth}
 			\includegraphics[width=\textwidth]{pics_iconip/revise_4-2.png}
 			\caption{\DIFaddFL{$\tau_{\textit{\textrm{syn}}}$=10~ms}}
 		\end{subfigure}
-		\caption[NSP fits to the response firing rates.]{\DIFaddFL{NSP fits to the response firing rates of LIF neurons in concrete physical units.
-			Recorded response firing rate of an LIF neuron driven by synaptic current with two synaptic time constants: (a) $\tau_{\textit{\textrm{syn}}}$=1~ms and (b) $\tau_{\textit{\textrm{syn}}}$=10~ms. Averaged firing rates of simulation trails are shown in bold lines, and the grey colour fills the range between the minimum to maximum of the firing rates. The thin lines are the scaled NSP.}}
-		\label{Fig:nsptau1}
+		\caption[NSP fits to the response firing rates.]{\DIFaddFL{NSP fits to the response firing rates of LIF neurons in concrete physical units. Averaged firing rates of 10 simulation trails tested on three noisy levels are shown in different colours of dashed lines, and the grey colour fills the range between the minimum to maximum of the firing rates (same as the dashed lines in Figure~\ref{Fig:spike_curr}). The bold lines are the scaled NSP, where the same noise level is plotted with the same colour as the LIF simulations. The parameters used in the experiments are as follows: (a) $\tau_{\textit{\textrm{syn}}}$=1~ms for LIF simulation, and k=0.18, S=201.66, b=0.07 for NSP; (b) $\tau_{\textit{\textrm{syn}}}$=10~ms for LIF simulation, and k=0.35, S=178.91, b=0.03 for NSP.}}			\label{Fig:nsptau1}
 	\end{figure}
 
 	\DIFaddend Suitable calibrations of \DIFaddbegin \DIFadd{the noise scaling factor }\DIFaddend $k$\DIFdelbegin \DIFdel{and }\DIFdelend \DIFaddbegin \DIFadd{, input bias $b$ and mapping scaling factor }\DIFaddend $S$ in Equation~\ref{equ:fit} enable NSP to closely match the practical response firing rates of LIF neurons given various biological parameters.
@@ -927,7 +1043,7 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking Convo
 \DIFdelFL{NSP fits to the response firing rates of LIF neurons in concrete physical units.
 			Recorded response firing rate of an LIF neuron driven by synaptic current with two synaptic time constants: (a) $\tau_{\textit{\textrm{syn}}}$=1~ms and (b) $\tau_{\textit{\textrm{syn}}}$=10~ms. Averaged firing rates of simulation trails are shown in bold lines, and the grey colour fills the range between the minimum to maximum of the firing rates. The thin lines are the scaled NSP.}}
 		%DIFAUXCMD
-%DIFDELCMD < %DIFDELCMD < \label{Fig:nsptau1}%%%
+%DIFDELCMD < \label{Fig:nsptau1}
 %DIFDELCMD < 	\end{figure}
 %DIFDELCMD < 	%%%
 \DIFdelend \DIFaddbegin \DIFadd{To keep the simple format of traditional activation functions, $y=f(x)$, which has no bias on the input, it is easy to pass the bias $b$ to the LIF parameter, the constant current offset, $I_{\textit{\textrm{offset}}}=b$.
@@ -943,26 +1059,33 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking Convo
 		\centering
 		\begin{subfigure}[t]{\textwidth}
 			\centering
-			\includegraphics[width=0.9\textwidth]{pics_iconip/neuron_o.pdf}
+			\DIFdelbeginFL %DIFDELCMD < \includegraphics[width=0.8\textwidth]{pics_iconip/neuron_o.pdf}
+%DIFDELCMD < 			%%%
+\DIFdelendFL \DIFaddbeginFL \includegraphics[width=0.9\textwidth]{pics_iconip/neuron_o.pdf}
 			\bigskip
-			\caption{An artificial spiking neuron modelled by NSP, where firing rates are the input and output of the neuron. NSP transforms the noisy current influx including both the mean ($net\_x_{j}$, solid lines) and the variance $net_\_\sigma^2_j$ (dashed lines) to the abstract firing rate $y_j$.}
-		\end{subfigure}\\\bigskip\bigskip
-		\begin{subfigure}[t]{\textwidth}
+			\DIFaddendFL \caption{An artificial spiking neuron modelled by NSP, where firing rates are the input and output of the neuron. NSP transforms the noisy current influx including both the mean (\DIFdelbeginFL \DIFdelFL{$net_j$}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{$net\_x_{j}$}\DIFaddendFL , solid lines) and the variance \DIFdelbeginFL \DIFdelFL{$\sigma^2_j$ }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{$net_\_\sigma^2_j$ }\DIFaddendFL (dashed lines) to the abstract firing rate $y_j$.}
+		\end{subfigure}\\\bigskip\DIFaddbeginFL \bigskip
+		\DIFaddendFL \begin{subfigure}[t]{\textwidth}
 			\centering
-			\includegraphics[width=0.85\textwidth]{pics_iconip/neuron_PAF.pdf}
+			\DIFdelbeginFL %DIFDELCMD < \includegraphics[width=0.7\textwidth]{pics_iconip/neuron_PAF.pdf}
+%DIFDELCMD < 			%%%
+\DIFdelendFL \DIFaddbeginFL \includegraphics[width=0.85\textwidth]{pics_iconip/neuron_PAF.pdf}
 			\bigskip
-			\caption{An artificial spiking neuron modelled by PAF-NSP, whose input and output are numerical values, equivalent to those of ANNs. PAF includes the scaling factors $S$ and the synaptic time constant $\tau_{\textit{\textrm{syn}}}$ in the combined activation function.}
-		\end{subfigure}\\\bigskip\bigskip
-		\begin{subfigure}[t]{\textwidth}
+			\DIFaddendFL \caption{An artificial spiking neuron modelled by PAF-NSP, whose input and output are numerical values, equivalent to those of ANNs. PAF includes the scaling factors $S$ and the synaptic time constant $\tau_{\textit{\textrm{syn}}}$ in the combined activation function.}
+		\end{subfigure}\\\bigskip\DIFaddbeginFL \bigskip
+		\DIFaddendFL \begin{subfigure}[t]{\textwidth}
 			\centering
-			\includegraphics[width=0.6\textwidth]{pics_iconip/neuron.pdf}
+			\DIFdelbeginFL %DIFDELCMD < \includegraphics[width=0.55\textwidth]{pics_iconip/neuron.pdf}
+%DIFDELCMD < 			%%%
+\DIFdelendFL \DIFaddbeginFL \includegraphics[width=0.6\textwidth]{pics_iconip/neuron.pdf}
 			\bigskip
-			\caption{A copy of Figure~\ref{Fig:neuron_net} showing a general artificial neuron where an activation function transforms the weighted sum $net_j$  to its outcome $y_j$.}
+			\DIFaddendFL \caption{A copy of Figure~\ref{Fig:neuron_net} showing a general artificial neuron where an activation function transforms the weighted sum $net_j$  to its outcome $y_j$.}
 		\end{subfigure}
-		\caption[PAF models spiking neuron as an conventional activation function.]{PAF models spiking neuron as an conventional activation function.
-			(a) An artificial spiking neuron modelled by NSP, where the inputs and outputs are spiking rates instead of abstract numerical values of conventional activation functions.
-			(b) the PAF-NSP, which links the firing activity of a spiking neuron to the numerical value of ANNs.
-			(c) a conventional ANN activation function.}
+		\DIFdelbeginFL %DIFDELCMD < \caption[Comparisons of three activation functions]{%%%
+\DIFdelFL{Comparisons of three }\DIFdelendFL \DIFaddbeginFL \caption[PAF models spiking neuron as an conventional activation function.]{\DIFaddFL{PAF models spiking neuron as an conventional }\DIFaddendFL activation \DIFdelbeginFL \DIFdelFL{functions used in ANNs: }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{function.
+		}\DIFaddendFL (a) \DIFdelbeginFL \DIFdelFL{the }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{An artificial spiking neuron modelled by }\DIFaddendFL NSP, \DIFaddbeginFL \DIFaddFL{where the inputs and outputs are spiking rates instead of abstract numerical values of conventional activation functions.
+		}\DIFaddendFL (b) the PAF-NSP, \DIFdelbeginFL \DIFdelFL{and (c) a conventional ANN activation function. The PAF }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{which }\DIFaddendFL links the firing activity of a spiking neuron to the numerical value of ANNs.
+		\DIFaddbeginFL \DIFaddFL{(c) a conventional ANN activation function.}\DIFaddendFL }
 		\label{Fig:tneuron}
 	\end{figure}
 
@@ -1014,7 +1137,7 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking Convo
 
 	The simple idea of PAF presented in the previous section allows the use of common ANN training methods to obtain SNN-compatible weights.
 	Consequently, training SNNs can be done in three simple steps: 
-	 \begin{enumerate} 
+	\begin{enumerate}
 		\item Calibrate the parameters \DIFdelbegin \DIFdel{$(k, S)$ }\DIFdelend \DIFaddbegin \DIFadd{$(k,b, S)$ }\DIFaddend for Noisy Softplus which models the response firing rates of LIF neurons, thus to estimate the parameter $p=S \times \tau_{\textit{\textrm{syn}}}$ for PAFs \DIFdelbegin \DIFdel{. Since $(k, S)$ }\DIFdelend \DIFaddbegin \DIFadd{and to set the LIF parameter $I_{\textit{\textrm{offset}}}=b$. Since $(k,b, S)$ }\DIFaddend are solely dependent on the biological configurations of an LIF neuron, the same $p$ can be shared with different activation functions and repeatedly used for various network architectures and applications.
 		\item Train any feed-forward ANN with a PAF version of a ReLU-like activation function.
 		Training compatibility allows us to choose computationally simple activation functions to increase training speed.
@@ -1023,7 +1146,7 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking Convo
 		\DIFadd{As stated in Section~\ref{sec:convnet}, the Backpropagation algorithm updates weights using the optimisation method, stochastic gradient descent, to minimise error between the labels and the predictions from the network.
 		}\DIFaddend %		Surprisingly, the use of PAF-ReLU provides the best accuracy scores for an SNN on the MNIST dataset. 
 		\item Transfer the \DIFaddbegin \DIFadd{trained }\DIFaddend weights directly to the SNN, which should use the same LIF characteristics used in Step 1.
-	 \end{enumerate} 
+	\end{enumerate}
 
 	\subsection{Fine Tuning}
 	\label{subsec:finetune}
@@ -1060,7 +1183,7 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking Convo
 	The architecture (784-6c-6p-12c-12p-10fc illustrated in Section~\ref{sec:convnet}) contains $28\times28$ input units, followed by two convolution-pooling layers with 6 and 12 convolutional kernels each, and 10 output neurons fully connected to the last pooling layer to represent the classified digit.
 
 	% Training
-	To train the ConvNet, firstly, we estimated parameter $p$ for PAFs given LIF configurations listed in \DIFdelbegin \DIFdel{Talbe}\DIFdelend \DIFaddbegin \DIFadd{Table}\DIFaddend ~\ref{tbl:pynnConfig} and \DIFdelbegin \DIFdel{$\tau_{\textit{\textrm{syn}}}=5$~ms, $p = S \times \tau_{\textit{\textrm{syn}}} = 1.005$, where $(k=0.30, S=201)$ }\DIFdelend \DIFaddbegin \DIFadd{$\tau_{\textit{\textrm{syn}}}=0.005$~s, $p = S \times \tau_{\textit{\textrm{syn}}} = 1.085$, where $(k=0.31, b=0.1 S=217)$ }\DIFaddend were calibrated using NSP. 
+	To train the ConvNet, firstly, we estimated parameter $p$ for PAFs given LIF configurations listed in \DIFdelbegin \DIFdel{Talbe}\DIFdelend \DIFaddbegin \DIFadd{Table}\DIFaddend ~\ref{tbl:pynnConfig} and \DIFdelbegin \DIFdel{$\tau_{\textit{\textrm{syn}}}=5$~ms, $p = S \times \tau_{\textit{\textrm{syn}}} = 1.005$, where $(k=0.30, S=201)$ }\DIFdelend \DIFaddbegin \DIFadd{$\tau_{\textit{\textrm{syn}}}=0.005$~s, $p = S \times \tau_{\textit{\textrm{syn}}} = 1.085$, where $(k=0.31, b=0.1, S=217)$ }\DIFaddend were calibrated using NSP. 
 	Secondly, the training employed PAFs with three core activation functions: ReLU, Softplus and NSP to compare their learning and recognition performance.
 	%	The parameter $p$ was estimated as $p = S \times \tau_{\textit{\textrm{syn}}} = 1.005$ by calibrating the NSP with LIF response firing rate: $(k=0.30, S=201)$ given $\tau_{\textit{\textrm{syn}}}=5 ms$.
 	%	The pixel intensities of the input images were normalised to 100~Hz to represent the firing rates of the input spikes.
@@ -1219,7 +1342,7 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking Convo
 		\centering
 		\DIFdelbeginFL %DIFDELCMD < \includegraphics[width=0.7\textwidth]{pics_iconip/8.png}
 %DIFDELCMD < 		%%%
-\DIFdelendFL \DIFaddbeginFL \includegraphics[width=0.7\textwidth]{pics_iconip/revise_8.png}
+\DIFdelendFL \DIFaddbeginFL \includegraphics[width=0.8\textwidth]{pics_iconip/revise_8.png}
 		\DIFaddendFL \caption[Comparisons of loss during training.]{Comparisons of loss during training using Noisy Softplus, ReLU and Softplus activation functions. Bold lines show the average of three training trials, and the grey colour illustrates the range between the minimum and the maximum values of the trials.  }
 		\label{Fig:loss_ns}
 	\end{figure}
@@ -1404,16 +1527,18 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking Convo
 
 	\begin{figure}[htb!]
 		\centering
-		\begin{subfigure}[t]{0.49\textwidth}
-			\DIFdelbeginFL %DIFDELCMD < \includegraphics[width=\textwidth]{pics_iconip/8-2.png}
+		\DIFdelbeginFL %DIFDELCMD < \begin{subfigure}[t]{0.49\textwidth}
+%DIFDELCMD < 			\includegraphics[width=\textwidth]{pics_iconip/8-2.png}
 %DIFDELCMD < 			%%%
-\DIFdelendFL \DIFaddbeginFL \includegraphics[width=\textwidth]{pics_iconip/revise_8-2.png}
+\DIFdelendFL \DIFaddbeginFL \begin{subfigure}[t]{0.7\textwidth}
+			\includegraphics[width=\textwidth]{pics_iconip/revise_8-2.png}
 			\DIFaddendFL \caption{Before fine tuning}
-		\end{subfigure}
-		\begin{subfigure}[t]{0.49\textwidth}
-			\DIFdelbeginFL %DIFDELCMD < \includegraphics[width=\textwidth]{pics_iconip/8-3.png}
+		\end{subfigure}\DIFdelbeginFL %DIFDELCMD < \begin{subfigure}[t]{0.49\textwidth}
+%DIFDELCMD < 			\includegraphics[width=\textwidth]{pics_iconip/8-3.png}
 %DIFDELCMD < 			%%%
-\DIFdelendFL \DIFaddbeginFL \includegraphics[width=\textwidth]{pics_iconip/revise_8-3.png}
+\DIFdelendFL \DIFaddbeginFL \\
+		\begin{subfigure}[t]{0.7\textwidth}
+			\includegraphics[width=\textwidth]{pics_iconip/revise_8-3.png}
 			\DIFaddendFL \caption{After fine tuning.}
 		\end{subfigure}
 

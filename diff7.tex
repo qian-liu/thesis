@@ -222,7 +222,7 @@ Moreover, some initial studies \DIFaddbegin \DIFadd{following our research }\DIF
 %The current limitation prohibiting the off-line SNN training method from wide use lies in the lack of supporting tools.
 The plan of developing software and libraries in the near future includes:
 
- \begin{itemize} 
+\begin{itemize}
 	\item parameter calibration of $p$ for PAF given LIF neuron configurations, which involves automatic SNN simulations with different levels of current and noise, followed by curve fit with the activation function NSP. 
 %	Furthermore, numerical analysis is considered to present coloured noise introduced by 1~ms time resolution and the synaptic time constant $\tau_{syn}$, refer to Section~\ref{sec:response_func}, thus to model $p$ with biological parameters of a LIF neuron instead of parameter calibration.
 
@@ -232,7 +232,7 @@ The plan of developing software and libraries in the near future includes:
 	The tool will not only help to translate ANN models to SNNs, but also contribute to the cross-platform transfer learning and use of pre-trained models in Deep Learning.
 
 	\item a translation tool that converts the tuned ANN models into SNNs described in the PyNN~\citep{davison2008pynn} language, thus the SNN model can run on any software simulator or neuromorphic hardware as long as PyNN is supported.
- \end{itemize} 
+\end{itemize}
 
 \paragraph{Recurrent Neural Networks.}
 It is difficult to make SNNs work with recurrent architectures, since a spiking neuron simultaneously takes input from both the lower level on the feed-forward path and the upper level on the feedback path.
@@ -243,21 +243,21 @@ One of the major future goals is to propose a general method to run recurrent SN
 \paragraph{Applications.}
 The simple off-line SNN training method has enabled and encouraged interesting applications to run in SNNs.
 
- \begin{itemize} 
+\begin{itemize}
 	\item Ensemble models~\citep{krogh1995neural} have been trained with NSP neurons and will be transferred onto the SpiNNaker system~\citep{furber2014spinnaker}\DIFdelbegin \DIFdel{to }\DIFdelend \DIFaddbegin \DIFadd{.
 	Usually an ensemble model runs several identical neural networks with statistical features in parallel, thus occupies huge computing resources.
 	Operating ensemble models on SNNs can }\DIFaddend take the advantages of energy-efficiency and massively-parallel processing \DIFaddbegin \DIFadd{on Neuromorphic Hardware}\DIFaddend .
 	\item Speech recognition of simulated spikes from a cochlea model has achieved a promising accuracy at the initial test-idea stage.
-	\DIFaddbegin \DIFadd{We used spike count per frame per frequency channel as a pixel in a spectrum image, and trained CNNs based on these spectrum images.
+	\DIFdelbegin \DIFdel{The }\DIFdelend \DIFaddbegin \DIFadd{We used spike count per frame per frequency channel as a pixel in a spectrum image, and trained CNNs based on these spectrum images.
 	The trained weights were transferred directly to an equivalent convolutional SNN.
-	}\DIFaddend The next step is to implement the model entirely on neuromorphic hardware including the cochlea and the SNN, thus to run it in real time.
+	The }\DIFaddend next step is to implement the model entirely on neuromorphic hardware including the cochlea and the SNN, thus to run it in real time.
 	\item An 18-layer residual network~\citep{he2016deep} has been trained for the task of recognising human facial expressions using the KDEF dataset~\citep{lundqvist1998karolinska}.
 	Notably, this is, so far, the deepest network trained with NSP and the recognition performance~(94.95\%) has outperformed ReLU~(92.45\%).
 	It will be interesting to analyse the differences of recognition accuracy and robustness using NSP and other activation functions.
 	Thus it may answer the question how the brain delivers strong cognitive ability with stochastic and noisy signals.
  	\item A further goal is to implement deep SNNs fit for ImageNet~\citep{deng2009imagenet} tasks, which will also require modelling various functions of Deep Learning on spiking neurons, such as max-pooling and batch normalisation. 
 
- \end{itemize} 
+\end{itemize}
 
 
 \subsection{On-line Biologically-plausible Learning}
