@@ -186,7 +186,7 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking Convo
 	Given a constant current injection $I$, the response function, i.e. firing rate, of the LIF neuron is:
 	\begin{equation}
 	\lambda_\mathit{out}=
-	\left [ t_\mathit{ref}-\tau_m\log \left ( 1-\frac{V_{th}-V_\mathit{rest}}{IR_m}  \right )\right ]^{-1}, \textrm{~when~} IR_m>V_{th}-V_{rest},
+	\left [ \DIFdelbegin \DIFdel{t_\mathit{ref}}\DIFdelend \DIFaddbegin \DIFadd{\tau_{\textit{\textrm{refrac}}}}\DIFaddend -\tau_m\log \left ( 1-\frac{V_{th}-V_\mathit{rest}}{IR_m}  \right )\right ]^{-1}, \textrm{~when~} IR_m>V_{th}-V_{rest},
 	\label{equ:consI}
 	\end{equation}
 	otherwise the membrane potential cannot reach the threshold $V_{th}$ and the output firing rate is zero. 
@@ -205,7 +205,7 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking Convo
 	\end{equation}
 	and accordingly, Equation~\ref{equ:LIF_V} becomes:
 	\begin{equation}
-	\frac{\D V}{\D t}=\frac{V_{rest} - V}{\tau_m } + \frac{m_I}{C_m} + \frac{s_I\xi(t)}{C_m}~~.
+	\frac{\D V}{\D t}=\frac{V_{rest} - V}{\tau_m } + \frac{m_I}{C_m} + \DIFdelbegin \DIFdel{\frac{s_I\xi(t)}{C_m}}\DIFdelend \DIFaddbegin \DIFadd{\frac{s_I}{C_m}}\DIFaddend ~~.
 	\label{equ:LIF_V2}
 	\end{equation}
 
@@ -235,7 +235,7 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking Convo
 	}\DIFdelend \DIFaddbegin \DIFadd{$\mu_v$ and $\sigma_v$:
 	}\DIFaddend \begin{equation}
 	\lambda_\mathit{out}=
-	\left [ t_\mathit{ref}+\tau_m \int\DIFdelbegin \DIFdel{_{\frac{V_\mathit{rest}-\mu \tau_m }{\sigma \sqrt{\tau_m}}}^{\frac{V_{th}-\mu \tau_m }{\sigma \sqrt{\tau_m}}} }\DIFdelend \DIFaddbegin \DIFadd{_{\frac{V_\mathit{rest}-\mu_v \tau_m }{\sigma_v \sqrt{\tau_m}}}^{\frac{V_{th}-\mu_v \tau_m }{\sigma_v \sqrt{\tau_m}}} }\DIFaddend \sqrt{\pi} \exp(\DIFdelbegin \DIFdel{u}\DIFdelend \DIFaddbegin \DIFadd{V}\DIFaddend ^{2}) (1+\DIFdelbegin \DIFdel{erf}\DIFdelend \DIFaddbegin \DIFadd{\mathit{erf}}\DIFaddend (\DIFdelbegin \DIFdel{u}\DIFdelend \DIFaddbegin \DIFadd{V}\DIFaddend )) \D \DIFdelbegin \DIFdel{u }\DIFdelend \DIFaddbegin \DIFadd{V }\DIFaddend \right ]^{-1} ~.
+	\left [ \DIFdelbegin \DIFdel{t_\mathit{ref}}\DIFdelend \DIFaddbegin \DIFadd{\tau_{\textit{\textrm{refrac}}}}\DIFaddend +\tau_m \int\DIFdelbegin \DIFdel{_{\frac{V_\mathit{rest}-\mu \tau_m }{\sigma \sqrt{\tau_m}}}^{\frac{V_{th}-\mu \tau_m }{\sigma \sqrt{\tau_m}}} }\DIFdelend \DIFaddbegin \DIFadd{_{\frac{V_\mathit{rest}-\mu_v \tau_m }{\sigma_v \sqrt{\tau_m}}}^{\frac{V_{th}-\mu_v \tau_m }{\sigma_v \sqrt{\tau_m}}} }\DIFaddend \sqrt{\pi} \exp(\DIFdelbegin \DIFdel{u}\DIFdelend \DIFaddbegin \DIFadd{V}\DIFaddend ^{2}) (1+\DIFdelbegin \DIFdel{erf}\DIFdelend \DIFaddbegin \DIFadd{\mathit{erf}}\DIFaddend (\DIFdelbegin \DIFdel{u}\DIFdelend \DIFaddbegin \DIFadd{V}\DIFaddend )) \D \DIFdelbegin \DIFdel{u }\DIFdelend \DIFaddbegin \DIFadd{V }\DIFaddend \right ]^{-1} ~.
 	\label{equ:siegert}
 	\end{equation}
 
@@ -292,7 +292,7 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking Convo
 				\DIFdelbeginFL \DIFdelFL{v\_rest }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{$V_{rest}$ }\DIFaddendFL & -65.0\DIFdelbeginFL %DIFDELCMD < & %%%
 \DIFdelFL{mV }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{~mV }& \DIFaddFL{resetting membrane potential}\DIFaddendFL \\
 				%\hline
-				\DIFdelbeginFL \DIFdelFL{v\_thresh }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{$V_{thresh}$ }\DIFaddendFL & -50.0\DIFdelbeginFL %DIFDELCMD < & %%%
+				\DIFdelbeginFL \DIFdelFL{v\_thresh }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{$V_{th}$ }\DIFaddendFL & -50.0\DIFdelbeginFL %DIFDELCMD < & %%%
 \DIFdelFL{mV }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{~mV }& \DIFaddFL{membrane threshold  }\DIFaddendFL \\
 				%\hline
 				\DIFdelbeginFL \DIFdelFL{i\_offset }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{$I_{\textit{\textrm{offset}}}$ }\DIFaddendFL & \DIFdelbeginFL \DIFdelFL{0.1 }%DIFDELCMD < & %%%
@@ -447,7 +447,7 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking Convo
 			\includegraphics[width=\textwidth]{pics_iconip/revise_2-2.png}
 			\DIFaddendFL \caption{Current sampled at $dt$=10~ms.}
 		\end{subfigure}
-		\caption[Recorded response firing rate driven by \textit{NoisyCurrentSource}.]{Recorded response firing rate of an LIF neuron driven by \textit{NoisyCurrentSource} in PyNN, \DIFaddbeginFL \DIFaddFL{compared to the Siegert function. The }\textit{\DIFaddFL{NoisyCurrentSource}} \DIFaddFL{is }\DIFaddendFL sampled at every (a) 1~ms and (b) 10~ms. Averaged firing rates of 10 simulation trails \DIFaddbeginFL \DIFaddFL{tested on four noisy levels }\DIFaddendFL are shown in \DIFdelbeginFL \DIFdelFL{bold }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{different colours of dashed }\DIFaddendFL lines, and the grey colour fills the range between the minimum to maximum of the firing rates. The analytical LIF response function, the Siegert formula (Equation~\ref{equ:siegert}), is drawn in \DIFdelbeginFL \DIFdelFL{thin }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{bold }\DIFaddendFL lines (shown in Figure~\ref{Fig:physics}) to compare with the practical \DIFdelbeginFL \DIFdelFL{simulation}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{simulations}\DIFaddendFL . \DIFaddbeginFL \DIFaddFL{The selected noise levels are the same with the LIF simulations, and the curves are plotted with the same colours of the dashed lines.}\DIFaddendFL }
+		\caption[Recorded response firing rate driven by \textit{NoisyCurrentSource}.]{Recorded response firing rate of an LIF neuron driven by \textit{NoisyCurrentSource} in PyNN, \DIFaddbeginFL \DIFaddFL{compared to the Siegert function. The }\textit{\DIFaddFL{NoisyCurrentSource}} \DIFaddFL{is }\DIFaddendFL sampled at every (a) 1~ms and (b) 10~ms. Averaged firing rates of 10 simulation trails \DIFaddbeginFL \DIFaddFL{tested on four noisy levels }\DIFaddendFL are shown in \DIFdelbeginFL \DIFdelFL{bold }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{different colours of dashed }\DIFaddendFL lines, and the grey colour fills the range between the minimum to maximum of the firing rates. The analytical LIF response function, the Siegert formula (Equation~\ref{equ:siegert}), is drawn in \DIFdelbeginFL \DIFdelFL{thin }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{bold }\DIFaddendFL lines (shown in Figure~\ref{Fig:physics}) to compare with the practical \DIFdelbeginFL \DIFdelFL{simulation}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{simulations}\DIFaddendFL . \DIFaddbeginFL \DIFaddFL{The selected noise levels are the same with the LIF simulations, and the curves are plotted with the same colours as the dashed lines.}\DIFaddendFL }
 		\label{Fig:current}
 	\end{figure}
 
@@ -1145,7 +1145,7 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking Convo
 		\label{Fig:tneuron_c}
 	\end{figure}
 
-	\DIFadd{Equation~\ref{equ:distr0} illustrates the physical interpretation of the input of an NSP function, the noisy current influx, which has the mean of $m_I$, and the variance of $\sigma_2$.
+	\DIFadd{Equation~\ref{equ:distr0} illustrates the physical interpretation of the input of an NSP function, the noisy current influx, which has the mean of $m_I$, and the variance of $S_I^2$.
 	To express the physical parameters with the same form of the weighted summation,  $net$, in a conventional ANN, the mean and variance of the noisy current influx can be represented with $net\_x$ and $net_\_\sigma^2$:
 %DIF > 	However, a spiking neuron modelled by NSP takes the firing rate as its input/output, thus in a neural network Equation~\ref{equ:distr0} can be written as:
 	}\begin{equation}

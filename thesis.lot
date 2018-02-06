@@ -2,17 +2,17 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {4.1}{\ignorespaces LIF parameter settings.}}{71}{table.caption.30}
-\contentsline {table}{\numberline {4.2}{\ignorespaces SNN training methods comparison.\relax }}{92}{table.caption.47}
+\contentsline {table}{\numberline {4.1}{\ignorespaces LIF parameter settings.}}{72}{table.caption.30}
+\contentsline {table}{\numberline {4.2}{\ignorespaces SNN training methods comparison.\relax }}{93}{table.caption.47}
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {5.1}{\ignorespaces Parameter setting of SRM.}}{113}{table.caption.63}
-\contentsline {table}{\numberline {5.2}{\ignorespaces Mean synaptic event rate.}}{133}{table.caption.79}
+\contentsline {table}{\numberline {5.1}{\ignorespaces Parameter setting of SRM.}}{114}{table.caption.63}
+\contentsline {table}{\numberline {5.2}{\ignorespaces Mean synaptic event rate.}}{134}{table.caption.79}
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {6.1}{\ignorespaces SNN descriptions at the model level\relax }}{149}{table.caption.89}
-\contentsline {table}{\numberline {6.2}{\ignorespaces Model-level comparison\relax }}{151}{table.caption.90}
-\contentsline {table}{\numberline {6.3}{\ignorespaces Hardware-level comparison\relax }}{152}{table.caption.91}
-\contentsline {table}{\numberline {6.4}{\ignorespaces LIF parameter setting using PyNN.}}{155}{table.caption.92}
-\contentsline {table}{\numberline {6.5}{\ignorespaces Comparisons of NEST and SpiNNaker performance.}}{161}{table.caption.95}
+\contentsline {table}{\numberline {6.1}{\ignorespaces SNN descriptions at the model level\relax }}{150}{table.caption.89}
+\contentsline {table}{\numberline {6.2}{\ignorespaces Model-level comparison\relax }}{152}{table.caption.90}
+\contentsline {table}{\numberline {6.3}{\ignorespaces Hardware-level comparison\relax }}{153}{table.caption.91}
+\contentsline {table}{\numberline {6.4}{\ignorespaces LIF parameter setting using PyNN.}}{156}{table.caption.92}
+\contentsline {table}{\numberline {6.5}{\ignorespaces Comparisons of NEST and SpiNNaker performance.}}{162}{table.caption.95}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

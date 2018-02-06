@@ -185,7 +185,7 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking Convo
 	Given a constant current injection $I$, the response function, i.e. firing rate, of the LIF neuron is:
 	\begin{equation}
 	\lambda_\mathit{out}=
-	\left [ t_\mathit{ref}-\tau_m\log \left ( 1-\frac{V_{th}-V_\mathit{rest}}{IR_m}  \right )\right ]^{-1}, \textrm{~when~} IR_m>V_{th}-V_{rest},
+	\left [ \tau_{\textit{\textrm{refrac}}}-\tau_m\log \left ( 1-\frac{V_{th}-V_\mathit{rest}}{IR_m}  \right )\right ]^{-1}, \textrm{~when~} IR_m>V_{th}-V_{rest},
 	\label{equ:consI}
 	\end{equation}
 	otherwise the membrane potential cannot reach the threshold $V_{th}$ and the output firing rate is zero. 
@@ -204,7 +204,7 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking Convo
 	\end{equation}
 	and accordingly, Equation~\ref{equ:LIF_V} becomes:
 	\begin{equation}
-	\frac{\D V}{\D t}=\frac{V_{rest} - V}{\tau_m } + \frac{m_I}{C_m} + \frac{s_I\xi(t)}{C_m}~~.
+	\frac{\D V}{\D t}=\frac{V_{rest} - V}{\tau_m } + \frac{m_I}{C_m} + \frac{s_I}{C_m}~~.
 	\label{equ:LIF_V2}
 	\end{equation}
 	
@@ -227,7 +227,7 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking Convo
 	The response function~\citep{rauch2003neocortical,la2008response} of the LIF neuron to a noisy current, also known as the Siegert formula, is a function of $\mu_v$ and $\sigma_v$:
 	\begin{equation}
 	\lambda_\mathit{out}=
-	\left [ t_\mathit{ref}+\tau_m \int_{\frac{V_\mathit{rest}-\mu_v \tau_m }{\sigma_v \sqrt{\tau_m}}}^{\frac{V_{th}-\mu_v \tau_m }{\sigma_v \sqrt{\tau_m}}} \sqrt{\pi} \exp(V^{2}) (1+\mathit{erf}(V)) \D V \right ]^{-1} ~.
+	\left [ \tau_{\textit{\textrm{refrac}}}+\tau_m \int_{\frac{V_\mathit{rest}-\mu_v \tau_m }{\sigma_v \sqrt{\tau_m}}}^{\frac{V_{th}-\mu_v \tau_m }{\sigma_v \sqrt{\tau_m}}} \sqrt{\pi} \exp(V^{2}) (1+\mathit{erf}(V)) \D V \right ]^{-1} ~.
 	\label{equ:siegert}
 	\end{equation}
 	
@@ -264,7 +264,7 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking Convo
 				%\hline
 				$V_{rest}$ & -65.0~mV & resetting membrane potential\\
 				%\hline
-				$V_{thresh}$ & -50.0~mV & membrane threshold  \\
+				$V_{th}$ & -50.0~mV & membrane threshold  \\
 				%\hline
 				$I_{\textit{\textrm{offset}}}$ & 0.0~nA & offset of current influx  \\
 			\end{tabular}
@@ -401,7 +401,7 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking Convo
 			\includegraphics[width=\textwidth]{pics_iconip/revise_2-2.png}
 			\caption{Current sampled at $dt$=10~ms.}
 		\end{subfigure}
-		\caption[Recorded response firing rate driven by \textit{NoisyCurrentSource}.]{Recorded response firing rate of an LIF neuron driven by \textit{NoisyCurrentSource} in PyNN, compared to the Siegert function. The \textit{NoisyCurrentSource} is sampled at every (a) 1~ms and (b) 10~ms. Averaged firing rates of 10 simulation trails tested on four noisy levels are shown in different colours of dashed lines, and the grey colour fills the range between the minimum to maximum of the firing rates. The analytical LIF response function, the Siegert formula (Equation~\ref{equ:siegert}), is drawn in bold lines (shown in Figure~\ref{Fig:physics}) to compare with the practical simulations. The selected noise levels are the same with the LIF simulations, and the curves are plotted with the same colours of the dashed lines.}
+		\caption[Recorded response firing rate driven by \textit{NoisyCurrentSource}.]{Recorded response firing rate of an LIF neuron driven by \textit{NoisyCurrentSource} in PyNN, compared to the Siegert function. The \textit{NoisyCurrentSource} is sampled at every (a) 1~ms and (b) 10~ms. Averaged firing rates of 10 simulation trails tested on four noisy levels are shown in different colours of dashed lines, and the grey colour fills the range between the minimum to maximum of the firing rates. The analytical LIF response function, the Siegert formula (Equation~\ref{equ:siegert}), is drawn in bold lines (shown in Figure~\ref{Fig:physics}) to compare with the practical simulations. The selected noise levels are the same with the LIF simulations, and the curves are plotted with the same colours as the dashed lines.}
 		\label{Fig:current}
 	\end{figure}
 	
@@ -762,7 +762,7 @@ In Section~\ref{sec:iconipResult} we demonstrate the training of a spiking Convo
 		\label{Fig:tneuron_c}
 	\end{figure}
 	
-	Equation~\ref{equ:distr0} illustrates the physical interpretation of the input of an NSP function, the noisy current influx, which has the mean of $m_I$, and the variance of $\sigma_2$.
+	Equation~\ref{equ:distr0} illustrates the physical interpretation of the input of an NSP function, the noisy current influx, which has the mean of $m_I$, and the variance of $S_I^2$.
 	To express the physical parameters with the same form of the weighted summation,  $net$, in a conventional ANN, the mean and variance of the noisy current influx can be represented with $net\_x$ and $net_\_\sigma^2$:
 %	However, a spiking neuron modelled by NSP takes the firing rate as its input/output, thus in a neural network Equation~\ref{equ:distr0} can be written as:
 	\begin{equation}

@@ -4,141 +4,141 @@
 \contentsline {chapter}{Acknowledgements}{13}{chapter*.6}
 \contentsline {chapter}{List of Acronyms}{14}{chapter*.7}
 \contentsline {chapter}{List of Symbols}{17}{chapter*.8}
-\contentsline {chapter}{\numberline {1}Introduction}{20}{chapter.1}
-\contentsline {section}{\numberline {1.1}Motivation and Aims}{23}{section.1.1}
-\contentsline {section}{\numberline {1.2}Thesis Statement and Hypotheses}{24}{section.1.2}
-\contentsline {section}{\numberline {1.3}Contributions}{25}{section.1.3}
-\contentsline {section}{\numberline {1.4}Papers and Workshops}{27}{section.1.4}
-\contentsline {subsection}{\numberline {1.4.1}Papers}{27}{subsection.1.4.1}
-\contentsline {subsection}{\numberline {1.4.2}Workshops}{29}{subsection.1.4.2}
-\contentsline {section}{\numberline {1.5}Thesis Structure}{30}{section.1.5}
-\contentsline {section}{\numberline {1.6}Summary}{30}{section.1.6}
-\contentsline {chapter}{\numberline {2}Spiking Neural Networks\nobreakspace {}(SNNs)}{32}{chapter.2}
-\contentsline {section}{\numberline {2.1}Biological Neural Components}{32}{section.2.1}
-\contentsline {subsection}{\numberline {2.1.1}Neuron}{33}{subsection.2.1.1}
-\contentsline {subsection}{\numberline {2.1.2}Neuronal Signals}{34}{subsection.2.1.2}
-\contentsline {subsection}{\numberline {2.1.3}Signal Transmission}{35}{subsection.2.1.3}
-\contentsline {section}{\numberline {2.2}Modelling Spiking Neurons}{36}{section.2.2}
-\contentsline {subsection}{\numberline {2.2.1}Neural Dynamics}{36}{subsection.2.2.1}
-\contentsline {subsection}{\numberline {2.2.2}Neuron Models}{38}{subsection.2.2.2}
-\contentsline {subsubsection}{Leaky Integrate-and-Fire\nobreakspace {}(LIF) Model}{39}{section*.16}
-\contentsline {subsubsection}{Hodgkin-Huxley Model}{40}{section*.18}
-\contentsline {subsubsection}{Izhikevich Model}{41}{section*.19}
-\contentsline {subsection}{\numberline {2.2.3}Synapse Model}{42}{subsection.2.2.3}
-\contentsline {subsection}{\numberline {2.2.4}Synaptic Plasticity}{43}{subsection.2.2.4}
-\contentsline {section}{\numberline {2.3}Simulating Networks of Spiking Neurons}{44}{section.2.3}
-\contentsline {subsection}{\numberline {2.3.1}Software Simulators}{45}{subsection.2.3.1}
-\contentsline {subsection}{\numberline {2.3.2}Neuromorphic Hardware}{46}{subsection.2.3.2}
-\contentsline {subsection}{\numberline {2.3.3}Neuromorphic Sensory and Processing Systems}{47}{subsection.2.3.3}
-\contentsline {section}{\numberline {2.4}Summary}{49}{section.2.4}
-\contentsline {chapter}{\numberline {3}Deep Learning}{50}{chapter.3}
-\contentsline {section}{\numberline {3.1}Brief Overview}{50}{section.3.1}
-\contentsline {subsection}{\numberline {3.1.1}Classical Models}{51}{subsection.3.1.1}
-\contentsline {subsection}{\numberline {3.1.2}Combined Approaches}{52}{subsection.3.1.2}
-\contentsline {section}{\numberline {3.2}Convolutional Networks}{53}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}Network Architecture}{53}{subsection.3.2.1}
-\contentsline {subsection}{\numberline {3.2.2}Backpropagation}{55}{subsection.3.2.2}
-\contentsline {subsection}{\numberline {3.2.3}Activation Function and Vanishing Gradient}{57}{subsection.3.2.3}
-\contentsline {section}{\numberline {3.3}Autoencoders (AEs)}{58}{section.3.3}
-\contentsline {subsection}{\numberline {3.3.1}Structure}{58}{subsection.3.3.1}
-\contentsline {subsection}{\numberline {3.3.2}Training}{59}{subsection.3.3.2}
-\contentsline {section}{\numberline {3.4}Restricted Boltzmann Machines (RBMs)}{60}{section.3.4}
-\contentsline {subsection}{\numberline {3.4.1}Energy-based Model}{60}{subsection.3.4.1}
-\contentsline {subsection}{\numberline {3.4.2}Objective Function}{61}{subsection.3.4.2}
-\contentsline {subsection}{\numberline {3.4.3}Contrastive Divergence}{62}{subsection.3.4.3}
-\contentsline {section}{\numberline {3.5}Summary}{63}{section.3.5}
-\contentsline {chapter}{\numberline {4}Off-line SNN Training}{64}{chapter.4}
-\contentsline {section}{\numberline {4.1}Introduction}{64}{section.4.1}
-\contentsline {section}{\numberline {4.2}Related Work}{65}{section.4.2}
-\contentsline {section}{\numberline {4.3}Siegert: Modelling the Response Function}{68}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Biological Background}{68}{subsection.4.3.1}
-\contentsline {subsection}{\numberline {4.3.2}Mismatch of The Siegert Function to Practice}{70}{subsection.4.3.2}
-\contentsline {subsection}{\numberline {4.3.3}Noisy Softplus\nobreakspace {}(NSP)}{77}{subsection.4.3.3}
-\contentsline {section}{\numberline {4.4}Generalised Off-line SNN Training}{79}{section.4.4}
-\contentsline {subsection}{\numberline {4.4.1}Mapping NSP to Concrete Physical Units}{80}{subsection.4.4.1}
-\contentsline {subsection}{\numberline {4.4.2}Parametric Activation Functions\nobreakspace {}(PAFs)}{80}{subsection.4.4.2}
-\contentsline {subsection}{\numberline {4.4.3}Training Method}{84}{subsection.4.4.3}
-\contentsline {subsection}{\numberline {4.4.4}Fine Tuning}{85}{subsection.4.4.4}
-\contentsline {section}{\numberline {4.5}Results}{85}{section.4.5}
-\contentsline {subsection}{\numberline {4.5.1}Experiment Description}{86}{subsection.4.5.1}
-\contentsline {subsection}{\numberline {4.5.2}Single Neuronal Activity}{86}{subsection.4.5.2}
-\contentsline {subsection}{\numberline {4.5.3}Learning Performance}{89}{subsection.4.5.3}
-\contentsline {subsection}{\numberline {4.5.4}Recognition Performance}{90}{subsection.4.5.4}
-\contentsline {subsubsection}{Classification Accuracy}{90}{section*.45}
-\contentsline {subsubsection}{Comparisons in Literature}{91}{section*.46}
-\contentsline {subsubsection}{Recognition Time}{93}{section*.49}
-\contentsline {subsection}{\numberline {4.5.5}Power Consumption}{94}{subsection.4.5.5}
-\contentsline {section}{\numberline {4.6}Summary}{94}{section.4.6}
-\contentsline {chapter}{\numberline {5}On-line SNN Training with SRM}{96}{chapter.5}
-\contentsline {section}{\numberline {5.1}Introduction}{96}{section.5.1}
-\contentsline {section}{\numberline {5.2}Related Work}{98}{section.5.2}
-\contentsline {section}{\numberline {5.3}Spike-based Rate Multiplication (SRM)}{100}{section.5.3}
-\contentsline {paragraph}{1. Presenting rates with spikes\\}{101}{section*.52}
-\contentsline {paragraph}{2. Capturing coincident spikes with STDP.\\}{102}{figure.caption.54}
-\contentsline {paragraph}{3. Translating abstract numerical multiplication to SRM\\}{103}{section*.55}
-\contentsline {paragraph}{Last but not least, we state the property of the SRM algorithm:}{103}{section*.56}
-\contentsline {section}{\numberline {5.4}Training Deep SNNs}{104}{section.5.4}
-\contentsline {subsection}{\numberline {5.4.1}Experimental Setup}{104}{subsection.5.4.1}
-\contentsline {subsection}{\numberline {5.4.2}AEs}{107}{subsection.5.4.2}
-\contentsline {subsection}{\numberline {5.4.3}Noisy RBMs}{110}{subsection.5.4.3}
-\contentsline {subsection}{\numberline {5.4.4}Spiking AEs}{113}{subsection.5.4.4}
-\contentsline {subsection}{\numberline {5.4.5}Spiking RBMs}{116}{subsection.5.4.5}
-\contentsline {section}{\numberline {5.5}Problem of Spike Correlations}{118}{section.5.5}
-\contentsline {subsection}{\numberline {5.5.1}Solution\nobreakspace {}1\nobreakspace {}(S1): Longer STDP Window}{119}{subsection.5.5.1}
-\contentsline {subsection}{\numberline {5.5.2}Solution\nobreakspace {}2\nobreakspace {}(S2): Noisy Threshold}{119}{subsection.5.5.2}
-\contentsline {subsection}{\numberline {5.5.3}Solution\nobreakspace {}3\nobreakspace {}(S3): Teaching Signal}{122}{subsection.5.5.3}
-\contentsline {subsection}{\numberline {5.5.4}Combined Solutions\nobreakspace {}(S4)}{123}{subsection.5.5.4}
-\contentsline {section}{\numberline {5.6}Case Study}{123}{section.5.6}
-\contentsline {subsection}{\numberline {5.6.1}Experimental Setup}{123}{subsection.5.6.1}
-\contentsline {subsection}{\numberline {5.6.2}Trained Weights}{127}{subsection.5.6.2}
-\contentsline {subsection}{\numberline {5.6.3}Classification Accuracy}{128}{subsection.5.6.3}
-\contentsline {paragraph}{Default configuration\\}{128}{figure.caption.74}
-\contentsline {paragraph}{Testing time\\}{131}{section*.76}
-\contentsline {paragraph}{Spiking rate\\}{131}{section*.77}
-\contentsline {paragraph}{Overall comparisons\\}{132}{section*.80}
-\contentsline {subsection}{\numberline {5.6.4}Reconstruction}{133}{subsection.5.6.4}
-\contentsline {section}{\numberline {5.7}Summary}{136}{section.5.7}
-\contentsline {chapter}{\numberline {6}Benchmarking Neuromorphic Vision}{138}{chapter.6}
-\contentsline {section}{\numberline {6.1}Introduction}{138}{section.6.1}
-\contentsline {section}{\numberline {6.2}Related Work}{139}{section.6.2}
-\contentsline {section}{\numberline {6.3}NE Dataset}{143}{section.6.3}
-\contentsline {subsection}{\numberline {6.3.1}Guiding Principles}{143}{subsection.6.3.1}
-\contentsline {subsection}{\numberline {6.3.2}The Dataset: NE15-MNIST}{144}{subsection.6.3.2}
-\contentsline {subsection}{\numberline {6.3.3}Data Description}{145}{subsection.6.3.3}
-\contentsline {subsubsection}{Poissonian}{146}{section*.84}
-\contentsline {subsubsection}{Rank Order Encoding}{146}{section*.85}
-\contentsline {subsubsection}{DVS Sensor Output with Flashing Input}{147}{section*.86}
-\contentsline {subsubsection}{DVS Sensor Output with Moving Input}{147}{section*.88}
-\contentsline {section}{\numberline {6.4}Performance Evaluation}{147}{section.6.4}
-\contentsline {subsection}{\numberline {6.4.1}Model-level Evaluation}{148}{subsection.6.4.1}
-\contentsline {subsection}{\numberline {6.4.2}Hardware-level Evaluation}{153}{subsection.6.4.2}
-\contentsline {section}{\numberline {6.5}Results}{154}{section.6.5}
-\contentsline {subsection}{\numberline {6.5.1}Training}{155}{subsection.6.5.1}
-\contentsline {subsection}{\numberline {6.5.2}Testing}{156}{subsection.6.5.2}
-\contentsline {subsection}{\numberline {6.5.3}Evaluation}{157}{subsection.6.5.3}
-\contentsline {section}{\numberline {6.6}Summary}{162}{section.6.6}
-\contentsline {chapter}{\numberline {7}Conclusion and Future Work}{164}{chapter.7}
-\contentsline {section}{\numberline {7.1}Confirming Research Hypotheses}{164}{section.7.1}
-\contentsline {paragraph}{1. Deep SNNs can be successfully and simply trained off-line where the training takes place on equivalent ANN and the tuned weights then transferred back to the SNNs, thus making them as competent as ANNs in cognitive tasks.\\}{164}{section*.97}
-\contentsline {paragraph}{2. Unsupervised Deep Learning modules can be trained on-line on SNNs with biologically-plausible synaptic plasticity to demonstrate a learning capability equivalent to ANNs.\\}{166}{section*.98}
-\contentsline {paragraph}{3. A new set of spike-based vision datasets can provide resources and corresponding evaluation methodology to support objective comparisons and measure progress within the rapidly advancing field of NE.\\}{167}{section*.99}
-\contentsline {section}{\numberline {7.2}Future Work}{169}{section.7.2}
-\contentsline {subsection}{\numberline {7.2.1}Off-line SNN Training}{169}{subsection.7.2.1}
-\contentsline {paragraph}{Supporting software tools.}{169}{section*.100}
-\contentsline {paragraph}{Recurrent Neural Networks.}{170}{section*.101}
-\contentsline {paragraph}{Applications.}{170}{section*.102}
-\contentsline {subsection}{\numberline {7.2.2}On-line Biologically-plausible Learning}{171}{subsection.7.2.2}
-\contentsline {paragraph}{Beyond rate coding.}{171}{section*.103}
-\contentsline {paragraph}{Backpropagation alternatives.}{171}{section*.104}
-\contentsline {paragraph}{Biologically-plausible Reinforcement Learning.}{172}{section*.105}
-\contentsline {paragraph}{State-of-the-art Performance.}{172}{section*.106}
-\contentsline {paragraph}{Genuine Learning on Neuromorphic Hardware.}{172}{section*.107}
-\contentsline {subsection}{\numberline {7.2.3}Evaluation on Neuromorphic Vision}{172}{subsection.7.2.3}
-\contentsline {paragraph}{Face recognition dataset.}{172}{section*.108}
-\contentsline {paragraph}{Converting images to spikes.}{173}{section*.109}
-\contentsline {paragraph}{Invariant object recognition}{173}{section*.110}
-\contentsline {paragraph}{Video processing}{173}{section*.111}
-\contentsline {paragraph}{Sharing and collaboration}{173}{section*.112}
-\contentsline {section}{\numberline {7.3}Closing Remarks}{174}{section.7.3}
-\contentsline {chapter}{\numberline {A}Detailed Derivation Process of Equations}{176}{appendix.A}
-\contentsline {chapter}{\numberline {B}Detailed Experimental Results}{178}{appendix.B}
+\contentsline {chapter}{\numberline {1}Introduction}{21}{chapter.1}
+\contentsline {section}{\numberline {1.1}Motivation and Aims}{24}{section.1.1}
+\contentsline {section}{\numberline {1.2}Thesis Statement and Hypotheses}{25}{section.1.2}
+\contentsline {section}{\numberline {1.3}Contributions}{26}{section.1.3}
+\contentsline {section}{\numberline {1.4}Papers and Workshops}{28}{section.1.4}
+\contentsline {subsection}{\numberline {1.4.1}Papers}{28}{subsection.1.4.1}
+\contentsline {subsection}{\numberline {1.4.2}Workshops}{30}{subsection.1.4.2}
+\contentsline {section}{\numberline {1.5}Thesis Structure}{31}{section.1.5}
+\contentsline {section}{\numberline {1.6}Summary}{31}{section.1.6}
+\contentsline {chapter}{\numberline {2}Spiking Neural Networks\nobreakspace {}(SNNs)}{33}{chapter.2}
+\contentsline {section}{\numberline {2.1}Biological Neural Components}{33}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}Neuron}{34}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {2.1.2}Neuronal Signals}{35}{subsection.2.1.2}
+\contentsline {subsection}{\numberline {2.1.3}Signal Transmission}{36}{subsection.2.1.3}
+\contentsline {section}{\numberline {2.2}Modelling Spiking Neurons}{37}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Neural Dynamics}{37}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}Neuron Models}{39}{subsection.2.2.2}
+\contentsline {subsubsection}{Leaky Integrate-and-Fire\nobreakspace {}(LIF) Model}{40}{section*.16}
+\contentsline {subsubsection}{Hodgkin-Huxley Model}{41}{section*.18}
+\contentsline {subsubsection}{Izhikevich Model}{42}{section*.19}
+\contentsline {subsection}{\numberline {2.2.3}Synapse Model}{43}{subsection.2.2.3}
+\contentsline {subsection}{\numberline {2.2.4}Synaptic Plasticity}{44}{subsection.2.2.4}
+\contentsline {section}{\numberline {2.3}Simulating Networks of Spiking Neurons}{45}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}Software Simulators}{46}{subsection.2.3.1}
+\contentsline {subsection}{\numberline {2.3.2}Neuromorphic Hardware}{47}{subsection.2.3.2}
+\contentsline {subsection}{\numberline {2.3.3}Neuromorphic Sensory and Processing Systems}{48}{subsection.2.3.3}
+\contentsline {section}{\numberline {2.4}Summary}{50}{section.2.4}
+\contentsline {chapter}{\numberline {3}Deep Learning}{51}{chapter.3}
+\contentsline {section}{\numberline {3.1}Brief Overview}{51}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}Classical Models}{52}{subsection.3.1.1}
+\contentsline {subsection}{\numberline {3.1.2}Combined Approaches}{53}{subsection.3.1.2}
+\contentsline {section}{\numberline {3.2}Convolutional Networks}{54}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Network Architecture}{54}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Backpropagation}{56}{subsection.3.2.2}
+\contentsline {subsection}{\numberline {3.2.3}Activation Function and Vanishing Gradient}{58}{subsection.3.2.3}
+\contentsline {section}{\numberline {3.3}Autoencoders (AEs)}{59}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Structure}{59}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}Training}{60}{subsection.3.3.2}
+\contentsline {section}{\numberline {3.4}Restricted Boltzmann Machines (RBMs)}{61}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}Energy-based Model}{61}{subsection.3.4.1}
+\contentsline {subsection}{\numberline {3.4.2}Objective Function}{62}{subsection.3.4.2}
+\contentsline {subsection}{\numberline {3.4.3}Contrastive Divergence}{63}{subsection.3.4.3}
+\contentsline {section}{\numberline {3.5}Summary}{64}{section.3.5}
+\contentsline {chapter}{\numberline {4}Off-line SNN Training}{65}{chapter.4}
+\contentsline {section}{\numberline {4.1}Introduction}{65}{section.4.1}
+\contentsline {section}{\numberline {4.2}Related Work}{66}{section.4.2}
+\contentsline {section}{\numberline {4.3}Siegert: Modelling the Response Function}{69}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Biological Background}{69}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}Mismatch of The Siegert Function to Practice}{71}{subsection.4.3.2}
+\contentsline {subsection}{\numberline {4.3.3}Noisy Softplus\nobreakspace {}(NSP)}{78}{subsection.4.3.3}
+\contentsline {section}{\numberline {4.4}Generalised Off-line SNN Training}{80}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}Mapping NSP to Concrete Physical Units}{81}{subsection.4.4.1}
+\contentsline {subsection}{\numberline {4.4.2}Parametric Activation Functions\nobreakspace {}(PAFs)}{81}{subsection.4.4.2}
+\contentsline {subsection}{\numberline {4.4.3}Training Method}{85}{subsection.4.4.3}
+\contentsline {subsection}{\numberline {4.4.4}Fine Tuning}{86}{subsection.4.4.4}
+\contentsline {section}{\numberline {4.5}Results}{86}{section.4.5}
+\contentsline {subsection}{\numberline {4.5.1}Experiment Description}{87}{subsection.4.5.1}
+\contentsline {subsection}{\numberline {4.5.2}Single Neuronal Activity}{87}{subsection.4.5.2}
+\contentsline {subsection}{\numberline {4.5.3}Learning Performance}{90}{subsection.4.5.3}
+\contentsline {subsection}{\numberline {4.5.4}Recognition Performance}{91}{subsection.4.5.4}
+\contentsline {subsubsection}{Classification Accuracy}{91}{section*.45}
+\contentsline {subsubsection}{Comparisons in Literature}{92}{section*.46}
+\contentsline {subsubsection}{Recognition Time}{94}{section*.49}
+\contentsline {subsection}{\numberline {4.5.5}Power Consumption}{95}{subsection.4.5.5}
+\contentsline {section}{\numberline {4.6}Summary}{95}{section.4.6}
+\contentsline {chapter}{\numberline {5}On-line SNN Training with SRM}{97}{chapter.5}
+\contentsline {section}{\numberline {5.1}Introduction}{97}{section.5.1}
+\contentsline {section}{\numberline {5.2}Related Work}{99}{section.5.2}
+\contentsline {section}{\numberline {5.3}Spike-based Rate Multiplication (SRM)}{101}{section.5.3}
+\contentsline {paragraph}{1. Presenting rates with spikes\\}{102}{section*.52}
+\contentsline {paragraph}{2. Capturing coincident spikes with STDP.\\}{103}{figure.caption.54}
+\contentsline {paragraph}{3. Translating abstract numerical multiplication to SRM\\}{104}{section*.55}
+\contentsline {paragraph}{Last but not least, we state the property of the SRM algorithm:}{104}{section*.56}
+\contentsline {section}{\numberline {5.4}Training Deep SNNs}{105}{section.5.4}
+\contentsline {subsection}{\numberline {5.4.1}Experimental Setup}{105}{subsection.5.4.1}
+\contentsline {subsection}{\numberline {5.4.2}AEs}{108}{subsection.5.4.2}
+\contentsline {subsection}{\numberline {5.4.3}Noisy RBMs}{111}{subsection.5.4.3}
+\contentsline {subsection}{\numberline {5.4.4}Spiking AEs}{114}{subsection.5.4.4}
+\contentsline {subsection}{\numberline {5.4.5}Spiking RBMs}{117}{subsection.5.4.5}
+\contentsline {section}{\numberline {5.5}Problem of Spike Correlations}{119}{section.5.5}
+\contentsline {subsection}{\numberline {5.5.1}Solution\nobreakspace {}1\nobreakspace {}(S1): Longer STDP Window}{120}{subsection.5.5.1}
+\contentsline {subsection}{\numberline {5.5.2}Solution\nobreakspace {}2\nobreakspace {}(S2): Noisy Threshold}{120}{subsection.5.5.2}
+\contentsline {subsection}{\numberline {5.5.3}Solution\nobreakspace {}3\nobreakspace {}(S3): Teaching Signal}{123}{subsection.5.5.3}
+\contentsline {subsection}{\numberline {5.5.4}Combined Solutions\nobreakspace {}(S4)}{124}{subsection.5.5.4}
+\contentsline {section}{\numberline {5.6}Case Study}{124}{section.5.6}
+\contentsline {subsection}{\numberline {5.6.1}Experimental Setup}{124}{subsection.5.6.1}
+\contentsline {subsection}{\numberline {5.6.2}Trained Weights}{126}{subsection.5.6.2}
+\contentsline {subsection}{\numberline {5.6.3}Classification Accuracy}{129}{subsection.5.6.3}
+\contentsline {paragraph}{Default configuration\\}{129}{figure.caption.74}
+\contentsline {paragraph}{Testing time\\}{132}{section*.76}
+\contentsline {paragraph}{Spiking rate\\}{132}{section*.77}
+\contentsline {paragraph}{Overall comparisons\\}{133}{section*.80}
+\contentsline {subsection}{\numberline {5.6.4}Reconstruction}{134}{subsection.5.6.4}
+\contentsline {section}{\numberline {5.7}Summary}{137}{section.5.7}
+\contentsline {chapter}{\numberline {6}Benchmarking Neuromorphic Vision}{139}{chapter.6}
+\contentsline {section}{\numberline {6.1}Introduction}{139}{section.6.1}
+\contentsline {section}{\numberline {6.2}Related Work}{140}{section.6.2}
+\contentsline {section}{\numberline {6.3}NE Dataset}{144}{section.6.3}
+\contentsline {subsection}{\numberline {6.3.1}Guiding Principles}{144}{subsection.6.3.1}
+\contentsline {subsection}{\numberline {6.3.2}The Dataset: NE15-MNIST}{145}{subsection.6.3.2}
+\contentsline {subsection}{\numberline {6.3.3}Data Description}{146}{subsection.6.3.3}
+\contentsline {subsubsection}{Poissonian}{147}{section*.84}
+\contentsline {subsubsection}{Rank Order Encoding}{147}{section*.85}
+\contentsline {subsubsection}{DVS Sensor Output with Flashing Input}{148}{section*.86}
+\contentsline {subsubsection}{DVS Sensor Output with Moving Input}{148}{section*.88}
+\contentsline {section}{\numberline {6.4}Performance Evaluation}{148}{section.6.4}
+\contentsline {subsection}{\numberline {6.4.1}Model-level Evaluation}{149}{subsection.6.4.1}
+\contentsline {subsection}{\numberline {6.4.2}Hardware-level Evaluation}{154}{subsection.6.4.2}
+\contentsline {section}{\numberline {6.5}Results}{155}{section.6.5}
+\contentsline {subsection}{\numberline {6.5.1}Training}{156}{subsection.6.5.1}
+\contentsline {subsection}{\numberline {6.5.2}Testing}{157}{subsection.6.5.2}
+\contentsline {subsection}{\numberline {6.5.3}Evaluation}{158}{subsection.6.5.3}
+\contentsline {section}{\numberline {6.6}Summary}{163}{section.6.6}
+\contentsline {chapter}{\numberline {7}Conclusion and Future Work}{165}{chapter.7}
+\contentsline {section}{\numberline {7.1}Confirming Research Hypotheses}{165}{section.7.1}
+\contentsline {paragraph}{1. Deep SNNs can be successfully and simply trained off-line where the training takes place on equivalent ANN and the tuned weights then transferred back to the SNNs, thus making them as competent as ANNs in cognitive tasks.\\}{165}{section*.97}
+\contentsline {paragraph}{2. Unsupervised Deep Learning modules can be trained on-line on SNNs with biologically-plausible synaptic plasticity to demonstrate a learning capability equivalent to ANNs.\\}{167}{section*.98}
+\contentsline {paragraph}{3. A new set of spike-based vision datasets can provide resources and corresponding evaluation methodology to support objective comparisons and measure progress within the rapidly advancing field of NE.\\}{168}{section*.99}
+\contentsline {section}{\numberline {7.2}Future Work}{170}{section.7.2}
+\contentsline {subsection}{\numberline {7.2.1}Off-line SNN Training}{170}{subsection.7.2.1}
+\contentsline {paragraph}{Supporting software tools.}{170}{section*.100}
+\contentsline {paragraph}{Recurrent Neural Networks.}{171}{section*.101}
+\contentsline {paragraph}{Applications.}{171}{section*.102}
+\contentsline {subsection}{\numberline {7.2.2}On-line Biologically-plausible Learning}{172}{subsection.7.2.2}
+\contentsline {paragraph}{Beyond rate coding.}{172}{section*.103}
+\contentsline {paragraph}{Backpropagation alternatives.}{172}{section*.104}
+\contentsline {paragraph}{Biologically-plausible Reinforcement Learning.}{173}{section*.105}
+\contentsline {paragraph}{State-of-the-art Performance.}{173}{section*.106}
+\contentsline {paragraph}{Genuine Learning on Neuromorphic Hardware.}{173}{section*.107}
+\contentsline {subsection}{\numberline {7.2.3}Evaluation on Neuromorphic Vision}{173}{subsection.7.2.3}
+\contentsline {paragraph}{Face recognition dataset.}{173}{section*.108}
+\contentsline {paragraph}{Converting images to spikes.}{174}{section*.109}
+\contentsline {paragraph}{Invariant object recognition}{174}{section*.110}
+\contentsline {paragraph}{Video processing}{174}{section*.111}
+\contentsline {paragraph}{Sharing and collaboration}{174}{section*.112}
+\contentsline {section}{\numberline {7.3}Closing Remarks}{175}{section.7.3}
+\contentsline {chapter}{\numberline {A}Detailed Derivation Process of Equations}{177}{appendix.A}
+\contentsline {chapter}{\numberline {B}Detailed Experimental Results}{179}{appendix.B}

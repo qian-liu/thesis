@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.9.15)  5 FEB 2018 23:15
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.9.15)  6 FEB 2018 21:41
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -521,14 +521,520 @@ is.toc [2
 ]
 (./acronyms.tex [14
 
-] [15]) [16] (./symbols.tex [17
+] [15]) [16] (./symbols.tex
+./symbols.tex:10: Use of \@icentercr doesn't match its definition.
+\new@ifnextchar ...served@d = #1\def \reserved@a {
+                                                  #2}\def \reserved@b {#3}\f...
+l.10 ...ard deviation of the noisy current influx}
+                                                  
+? s
+OK, entering \scrollmode...
+./symbols.tex:10: Use of \@icentercr doesn't match its definition.
+<argument> \def \reserved@a *
+                             {\nobreak \@xcentercr }\reserved@a 
+l.10 ...ard deviation of the noisy current influx}
+                                                  
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
 
-] [18]) [19]
+./symbols.tex:10: Use of \@icentercr doesn't match its definition.
+\@ifnextchar ... \reserved@d =#1\def \reserved@a {
+                                                  #2}\def \reserved@b {#3}\f...
+l.10 ...ard deviation of the noisy current influx}
+                                                  
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./symbols.tex:10: Use of \@icentercr doesn't match its definition.
+\@ifnextchar ...eserved@d =#1\def \reserved@a {#2}
+                                                  \def \reserved@b {#3}\futu...
+l.10 ...ard deviation of the noisy current influx}
+                                                  
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./symbols.tex:10: Use of \@icentercr doesn't match its definition.
+\new@ifnextchar ...ved@d = #1\def \reserved@a {#2}
+                                                  \def \reserved@b {#3}\futu...
+l.10 ...ard deviation of the noisy current influx}
+                                                  
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./symbols.tex:10: Use of \@icentercr doesn't match its definition.
+\@ifnextchar ... \reserved@d =#1\def \reserved@a {
+                                                  #2}\def \reserved@b {#3}\f...
+l.10 ...ard deviation of the noisy current influx}
+                                                  
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./symbols.tex:10: Use of \@icentercr doesn't match its definition.
+\@ifnextchar ...eserved@d =#1\def \reserved@a {#2}
+                                                  \def \reserved@b {#3}\futu...
+l.10 ...ard deviation of the noisy current influx}
+                                                  
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+
+Overfull \hbox (3.48851pt too wide) in paragraph at lines 12--13
+ []\OT1/cmr/m/n/12 refractory pe-riod af-ter a neu-ron gen-er-ates a spike, 
+ []
+
+
+Overfull \hbox (5.44267pt too wide) in paragraph at lines 13--14
+ []\OT1/cmr/m/n/12 time win-dow used in Spike-Time-Dependent Plas- 
+ []
+
+[17
+
+]
+./symbols.tex:24: Use of \@icentercr doesn't match its definition.
+\new@ifnextchar ...served@d = #1\def \reserved@a {
+                                                  #2}\def \reserved@b {#3}\f...
+l.24 ...nergy function used in energy-based model}
+                                                  
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./symbols.tex:24: Use of \@icentercr doesn't match its definition.
+<argument> \def \reserved@a *
+                             {\nobreak \@xcentercr }\reserved@a 
+l.24 ...nergy function used in energy-based model}
+                                                  
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./symbols.tex:24: Use of \@icentercr doesn't match its definition.
+\@ifnextchar ... \reserved@d =#1\def \reserved@a {
+                                                  #2}\def \reserved@b {#3}\f...
+l.24 ...nergy function used in energy-based model}
+                                                  
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./symbols.tex:24: Use of \@icentercr doesn't match its definition.
+\@ifnextchar ...eserved@d =#1\def \reserved@a {#2}
+                                                  \def \reserved@b {#3}\futu...
+l.24 ...nergy function used in energy-based model}
+                                                  
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./symbols.tex:24: Use of \@icentercr doesn't match its definition.
+\new@ifnextchar ...ved@d = #1\def \reserved@a {#2}
+                                                  \def \reserved@b {#3}\futu...
+l.24 ...nergy function used in energy-based model}
+                                                  
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./symbols.tex:24: Use of \@icentercr doesn't match its definition.
+\@ifnextchar ... \reserved@d =#1\def \reserved@a {
+                                                  #2}\def \reserved@b {#3}\f...
+l.24 ...nergy function used in energy-based model}
+                                                  
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./symbols.tex:24: Use of \@icentercr doesn't match its definition.
+\@ifnextchar ...eserved@d =#1\def \reserved@a {#2}
+                                                  \def \reserved@b {#3}\futu...
+l.24 ...nergy function used in energy-based model}
+                                                  
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./symbols.tex:32: Use of \@icentercr doesn't match its definition.
+\new@ifnextchar ...served@d = #1\def \reserved@a {
+                                                  #2}\def \reserved@b {#3}\f...
+l.32 ...he noise scaling factor of Noisy Softplus}
+                                                  
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./symbols.tex:32: Use of \@icentercr doesn't match its definition.
+<argument> \def \reserved@a *
+                             {\nobreak \@xcentercr }\reserved@a 
+l.32 ...he noise scaling factor of Noisy Softplus}
+                                                  
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./symbols.tex:32: Use of \@icentercr doesn't match its definition.
+\@ifnextchar ... \reserved@d =#1\def \reserved@a {
+                                                  #2}\def \reserved@b {#3}\f...
+l.32 ...he noise scaling factor of Noisy Softplus}
+                                                  
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./symbols.tex:32: Use of \@icentercr doesn't match its definition.
+\@ifnextchar ...eserved@d =#1\def \reserved@a {#2}
+                                                  \def \reserved@b {#3}\futu...
+l.32 ...he noise scaling factor of Noisy Softplus}
+                                                  
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./symbols.tex:32: Use of \@icentercr doesn't match its definition.
+\new@ifnextchar ...ved@d = #1\def \reserved@a {#2}
+                                                  \def \reserved@b {#3}\futu...
+l.32 ...he noise scaling factor of Noisy Softplus}
+                                                  
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./symbols.tex:32: Use of \@icentercr doesn't match its definition.
+\@ifnextchar ... \reserved@d =#1\def \reserved@a {
+                                                  #2}\def \reserved@b {#3}\f...
+l.32 ...he noise scaling factor of Noisy Softplus}
+                                                  
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./symbols.tex:32: Use of \@icentercr doesn't match its definition.
+\@ifnextchar ...eserved@d =#1\def \reserved@a {#2}
+                                                  \def \reserved@b {#3}\futu...
+l.32 ...he noise scaling factor of Noisy Softplus}
+                                                  
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./symbols.tex:33: Use of \@icentercr doesn't match its definition.
+\new@ifnextchar ...served@d = #1\def \reserved@a {
+                                                  #2}\def \reserved@b {#3}\f...
+l.33 ...s numerical numbers to firing rates in Hz}
+                                                  
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./symbols.tex:33: Use of \@icentercr doesn't match its definition.
+<argument> \def \reserved@a *
+                             {\nobreak \@xcentercr }\reserved@a 
+l.33 ...s numerical numbers to firing rates in Hz}
+                                                  
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./symbols.tex:33: Use of \@icentercr doesn't match its definition.
+\@ifnextchar ... \reserved@d =#1\def \reserved@a {
+                                                  #2}\def \reserved@b {#3}\f...
+l.33 ...s numerical numbers to firing rates in Hz}
+                                                  
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./symbols.tex:33: Use of \@icentercr doesn't match its definition.
+\@ifnextchar ...eserved@d =#1\def \reserved@a {#2}
+                                                  \def \reserved@b {#3}\futu...
+l.33 ...s numerical numbers to firing rates in Hz}
+                                                  
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./symbols.tex:33: Use of \@icentercr doesn't match its definition.
+\new@ifnextchar ...ved@d = #1\def \reserved@a {#2}
+                                                  \def \reserved@b {#3}\futu...
+l.33 ...s numerical numbers to firing rates in Hz}
+                                                  
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./symbols.tex:33: Use of \@icentercr doesn't match its definition.
+\@ifnextchar ... \reserved@d =#1\def \reserved@a {
+                                                  #2}\def \reserved@b {#3}\f...
+l.33 ...s numerical numbers to firing rates in Hz}
+                                                  
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./symbols.tex:33: Use of \@icentercr doesn't match its definition.
+\@ifnextchar ...eserved@d =#1\def \reserved@a {#2}
+                                                  \def \reserved@b {#3}\futu...
+l.33 ...s numerical numbers to firing rates in Hz}
+                                                  
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./symbols.tex:35: Use of \@icentercr doesn't match its definition.
+\new@ifnextchar ...served@d = #1\def \reserved@a {
+                                                  #2}\def \reserved@b {#3}\f...
+l.35 ...e loss function; \\or likelihood function}
+                                                  
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./symbols.tex:35: Use of \@icentercr doesn't match its definition.
+<argument> \def \reserved@a *
+                             {\nobreak \@xcentercr }\reserved@a 
+l.35 ...e loss function; \\or likelihood function}
+                                                  
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./symbols.tex:35: Use of \@icentercr doesn't match its definition.
+\@ifnextchar ... \reserved@d =#1\def \reserved@a {
+                                                  #2}\def \reserved@b {#3}\f...
+l.35 ...e loss function; \\or likelihood function}
+                                                  
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./symbols.tex:35: Use of \@icentercr doesn't match its definition.
+\@ifnextchar ...eserved@d =#1\def \reserved@a {#2}
+                                                  \def \reserved@b {#3}\futu...
+l.35 ...e loss function; \\or likelihood function}
+                                                  
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./symbols.tex:35: Use of \@icentercr doesn't match its definition.
+\new@ifnextchar ...ved@d = #1\def \reserved@a {#2}
+                                                  \def \reserved@b {#3}\futu...
+l.35 ...e loss function; \\or likelihood function}
+                                                  
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./symbols.tex:35: Use of \@icentercr doesn't match its definition.
+\@ifnextchar ... \reserved@d =#1\def \reserved@a {
+                                                  #2}\def \reserved@b {#3}\f...
+l.35 ...e loss function; \\or likelihood function}
+                                                  
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./symbols.tex:35: Use of \@icentercr doesn't match its definition.
+\@ifnextchar ...eserved@d =#1\def \reserved@a {#2}
+                                                  \def \reserved@b {#3}\futu...
+l.35 ...e loss function; \\or likelihood function}
+                                                  
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+[18]
+./symbols.tex:39: Use of \@icentercr doesn't match its definition.
+\new@ifnextchar ...served@d = #1\def \reserved@a {
+                                                  #2}\def \reserved@b {#3}\f...
+l.39 ...$p$ of the Parametric Activation Function}
+                                                  
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./symbols.tex:39: Use of \@icentercr doesn't match its definition.
+<argument> \def \reserved@a *
+                             {\nobreak \@xcentercr }\reserved@a 
+l.39 ...$p$ of the Parametric Activation Function}
+                                                  
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./symbols.tex:39: Use of \@icentercr doesn't match its definition.
+\@ifnextchar ... \reserved@d =#1\def \reserved@a {
+                                                  #2}\def \reserved@b {#3}\f...
+l.39 ...$p$ of the Parametric Activation Function}
+                                                  
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./symbols.tex:39: Use of \@icentercr doesn't match its definition.
+\@ifnextchar ...eserved@d =#1\def \reserved@a {#2}
+                                                  \def \reserved@b {#3}\futu...
+l.39 ...$p$ of the Parametric Activation Function}
+                                                  
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./symbols.tex:39: Use of \@icentercr doesn't match its definition.
+\new@ifnextchar ...ved@d = #1\def \reserved@a {#2}
+                                                  \def \reserved@b {#3}\futu...
+l.39 ...$p$ of the Parametric Activation Function}
+                                                  
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./symbols.tex:39: Use of \@icentercr doesn't match its definition.
+\@ifnextchar ... \reserved@d =#1\def \reserved@a {
+                                                  #2}\def \reserved@b {#3}\f...
+l.39 ...$p$ of the Parametric Activation Function}
+                                                  
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./symbols.tex:39: Use of \@icentercr doesn't match its definition.
+\@ifnextchar ...eserved@d =#1\def \reserved@a {#2}
+                                                  \def \reserved@b {#3}\futu...
+l.39 ...$p$ of the Parametric Activation Function}
+                                                  
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+
+Overfull \hbox (6.63573pt too wide) in paragraph at lines 39--40
+ []\OT1/cmr/m/n/12 or pa-ram-e-ter $\OML/cmm/m/it/12 p$ \OT1/cmr/m/n/12 of the 
+Para-met-ric Ac-ti-va-tion Func- 
+ []
+
+./symbols.tex:45: Use of \@icentercr doesn't match its definition.
+\new@ifnextchar ...served@d = #1\def \reserved@a {
+                                                  #2}\def \reserved@b {#3}\f...
+l.45  \acro{$t$}{time; \\teaching labels}
+                                         
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./symbols.tex:45: Use of \@icentercr doesn't match its definition.
+<argument> \def \reserved@a *
+                             {\nobreak \@xcentercr }\reserved@a 
+l.45  \acro{$t$}{time; \\teaching labels}
+                                         
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./symbols.tex:45: Use of \@icentercr doesn't match its definition.
+\@ifnextchar ... \reserved@d =#1\def \reserved@a {
+                                                  #2}\def \reserved@b {#3}\f...
+l.45  \acro{$t$}{time; \\teaching labels}
+                                         
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./symbols.tex:45: Use of \@icentercr doesn't match its definition.
+\@ifnextchar ...eserved@d =#1\def \reserved@a {#2}
+                                                  \def \reserved@b {#3}\futu...
+l.45  \acro{$t$}{time; \\teaching labels}
+                                         
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./symbols.tex:45: Use of \@icentercr doesn't match its definition.
+\new@ifnextchar ...ved@d = #1\def \reserved@a {#2}
+                                                  \def \reserved@b {#3}\futu...
+l.45  \acro{$t$}{time; \\teaching labels}
+                                         
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./symbols.tex:45: Use of \@icentercr doesn't match its definition.
+\@ifnextchar ... \reserved@d =#1\def \reserved@a {
+                                                  #2}\def \reserved@b {#3}\f...
+l.45  \acro{$t$}{time; \\teaching labels}
+                                         
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./symbols.tex:45: Use of \@icentercr doesn't match its definition.
+\@ifnextchar ...eserved@d =#1\def \reserved@a {#2}
+                                                  \def \reserved@b {#3}\futu...
+l.45  \acro{$t$}{time; \\teaching labels}
+                                         
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+[19]) [20]
 \openout2 = `Chapter1.aux'.
 
  (./Chapter1.tex
 Chapter 1.
-[20
+[21
 
 
 ]
@@ -538,24 +1044,24 @@ File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 34.
- [21]
+ [22]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [22]
-[23] [24] [25] [26] [27] [28] [29]
-<pics_intro/intro_new.pdf, id=1159, 714.67pt x 471.7625pt>
+ [23]
+[24] [25] [26] [27] [28] [29] [30]
+<pics_intro/intro_new.pdf, id=1165, 714.67pt x 471.7625pt>
 File: pics_intro/intro_new.pdf Graphic file (type pdf)
 
 <use pics_intro/intro_new.pdf>
 Package pdftex.def Info: pics_intro/intro_new.pdf used on input line 368.
 (pdftex.def)             Requested size: 416.26247pt x 274.78139pt.
- [30]) [31 <./pics_intro/intro_new.pdf>]
+ [31]) [32 <./pics_intro/intro_new.pdf>]
 \openout2 = `Chapter2.aux'.
 
 
 (./Chapter2.tex
 Chapter 2.
-<pics_snn/neuron2.png, id=1198, 825.83531pt x 553.31718pt>
+<pics_snn/neuron2.png, id=1204, 825.83531pt x 553.31718pt>
 File: pics_snn/neuron2.png Graphic file (type png)
 
 <use pics_snn/neuron2.png>
@@ -564,7 +1070,7 @@ Package pdftex.def Info: pics_snn/neuron2.png used on input line 20.
 
 Underfull \vbox (badness 2042) has occurred while \output is active []
 
- [32
+ [33
 
 
 
@@ -577,7 +1083,7 @@ i-cal pulses, and Fig-ure []2.1[](c)
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [33 <./pics_snn/neuron2.png>] <pics_snn/v1.jpg, id=1224, 450.18187pt x 245.416
+ [34 <./pics_snn/neuron2.png>] <pics_snn/v1.jpg, id=1230, 450.18187pt x 245.416
 87pt>
 File: pics_snn/v1.jpg Graphic file (type jpg)
 
@@ -585,42 +1091,42 @@ File: pics_snn/v1.jpg Graphic file (type jpg)
 Package pdftex.def Info: pics_snn/v1.jpg used on input line 67.
 (pdftex.def)             Requested size: 394.35251pt x 214.99011pt.
 
-<pics_snn/phaselocking.png, id=1230, 377.12895pt x 125.38844pt>
+<pics_snn/phaselocking.png, id=1236, 377.12895pt x 125.38844pt>
 File: pics_snn/phaselocking.png Graphic file (type png)
 
 <use pics_snn/phaselocking.png>
 Package pdftex.def Info: pics_snn/phaselocking.png used on input line 84.
 (pdftex.def)             Requested size: 350.53928pt x 116.54689pt.
- [34] [35 <./pics_snn/v1.jpg>]
-<pics_snn/EI_PSP.JPG, id=1258, 803.0pt x 321.2pt>
+ [35] [36 <./pics_snn/v1.jpg>]
+<pics_snn/EI_PSP.JPG, id=1264, 803.0pt x 321.2pt>
 File: pics_snn/EI_PSP.JPG Graphic file (type jpg)
  <use pics_snn/EI_PSP.JPG>
 Package pdftex.def Info: pics_snn/EI_PSP.JPG used on input line 117.
 (pdftex.def)             Requested size: 429.4071pt x 171.76433pt.
 
-[36 <./pics_snn/phaselocking.png>]
-<pics_snn/psp.png, id=1269, 1505.625pt x 748.7975pt>
+[37 <./pics_snn/phaselocking.png>]
+<pics_snn/psp.png, id=1276, 1505.625pt x 748.7975pt>
 File: pics_snn/psp.png Graphic file (type png)
  <use pics_snn/psp.png>
 Package pdftex.def Info: pics_snn/psp.png used on input line 148.
 (pdftex.def)             Requested size: 394.35251pt x 196.12239pt.
 
-[37 <./pics_snn/EI_PSP.JPG> <./pics_snn/psp.png>]
-<pics_snn/neuron_ann.pdf, id=1285, 139.52126pt x 83.31125pt>
+[38 <./pics_snn/EI_PSP.JPG> <./pics_snn/psp.png>]
+<pics_snn/neuron_ann.pdf, id=1291, 139.52126pt x 83.31125pt>
 File: pics_snn/neuron_ann.pdf Graphic file (type pdf)
 
 <use pics_snn/neuron_ann.pdf>
 Package pdftex.def Info: pics_snn/neuron_ann.pdf used on input line 175.
 (pdftex.def)             Requested size: 122.68774pt x 73.262pt.
 
-<pics_snn/neuron_snn.pdf, id=1286, 301.125pt x 102.3825pt>
+<pics_snn/neuron_snn.pdf, id=1292, 301.125pt x 102.3825pt>
 File: pics_snn/neuron_snn.pdf Graphic file (type pdf)
 
 <use pics_snn/neuron_snn.pdf>
 Package pdftex.def Info: pics_snn/neuron_snn.pdf used on input line 179.
 (pdftex.def)             Requested size: 284.8094pt x 96.84413pt.
 
-<pics_snn/RC.png, id=1287, 148.30406pt x 220.57407pt>
+<pics_snn/RC.png, id=1293, 148.30406pt x 220.57407pt>
 File: pics_snn/RC.png Graphic file (type png)
  <use pics_snn/RC.png>
 Package pdftex.def Info: pics_snn/RC.png used on input line 198.
@@ -628,38 +1134,38 @@ Package pdftex.def Info: pics_snn/RC.png used on input line 198.
 
 Underfull \vbox (badness 4792) has occurred while \output is active []
 
- [38]
+ [39]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [39 <./pics_snn/neuron_ann.pdf> <./pics_snn/neuron_snn.pdf
+ [40 <./pics_snn/neuron_ann.pdf> <./pics_snn/neuron_snn.pdf
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./pics_snn/neuron_snn.pdf): 
 PDF inclusion: multiple pdfs with page group included in a single page
 > <./pics_snn/RC.png>]
 Underfull \vbox (badness 5563) has occurred while \output is active []
 
- [40]
-[41] [42] <pics_snn/stdp.jpeg, id=1394, 1284.8pt x 1152.305pt>
+ [41]
+[42] [43] <pics_snn/stdp.jpeg, id=1401, 1284.8pt x 1152.305pt>
 File: pics_snn/stdp.jpeg Graphic file (type jpg)
 
 <use pics_snn/stdp.jpeg>
 Package pdftex.def Info: pics_snn/stdp.jpeg used on input line 330.
 (pdftex.def)             Requested size: 306.71936pt x 275.0819pt.
- [43 <./pics_snn/stdp.jpeg>] [44]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [45]
+ [44 <./pics_snn/stdp.jpeg>] [45]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [46]
-<pics_snn/outline2.jpg, id=1493, 963.6pt x 578.16pt>
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [47]
+<pics_snn/outline2.jpg, id=1499, 963.6pt x 578.16pt>
 File: pics_snn/outline2.jpg Graphic file (type jpg)
 
 <use pics_snn/outline2.jpg>
 Package pdftex.def Info: pics_snn/outline2.jpg used on input line 438.
 (pdftex.def)             Requested size: 350.53928pt x 210.31647pt.
 
-<pics_snn/photooutline_blurred.jpg, id=1494, 542.025pt x 528.97626pt>
+<pics_snn/photooutline_blurred.jpg, id=1500, 542.025pt x 528.97626pt>
 File: pics_snn/photooutline_blurred.jpg Graphic file (type jpg)
 
 <use pics_snn/photooutline_blurred.jpg>
@@ -667,7 +1173,7 @@ Package pdftex.def Info: pics_snn/photooutline_blurred.jpg used on input line 4
 42.
 (pdftex.def)             Requested size: 231.35498pt x 225.78455pt.
 
-<pics_snn/omnibot.jpg, id=1495, 428.60126pt x 550.055pt>
+<pics_snn/omnibot.jpg, id=1501, 428.60126pt x 550.055pt>
 File: pics_snn/omnibot.jpg Graphic file (type jpg)
 
 <use pics_snn/omnibot.jpg>
@@ -678,8 +1184,8 @@ Underfull \hbox (badness 1275) in paragraph at lines 448--448
 \OT1/cmr/m/n/10.95 plat-form with em-bed-ded low-level
  []
 
-[47] [48 <./pics_snn/outline2.jpg> <./pics_snn/photooutline_blurred.jpg> <./pic
-s_snn/omnibot.jpg>]) [49]
+[48] [49 <./pics_snn/outline2.jpg> <./pics_snn/photooutline_blurred.jpg> <./pic
+s_snn/omnibot.jpg>]) [50]
 \openout2 = `Chapter3.aux'.
 
  (./Chapter3.tex
@@ -687,49 +1193,49 @@ Chapter 3.
 
 Underfull \vbox (badness 2042) has occurred while \output is active []
 
- [50
+ [51
 
 
 
 ]
-[51]
+[52]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [52]
-<pics_snn/convnet.pdf, id=1610, 679.53876pt x 309.155pt>
+ [53]
+<pics_snn/convnet.pdf, id=1616, 679.53876pt x 309.155pt>
 File: pics_snn/convnet.pdf Graphic file (type pdf)
 
 <use pics_snn/convnet.pdf>
 Package pdftex.def Info: pics_snn/convnet.pdf used on input line 64.
 (pdftex.def)             Requested size: 416.26247pt x 189.37677pt.
- [53 <./pics_snn/convnet.pdf>]
+ [54 <./pics_snn/convnet.pdf>]
 Underfull \vbox (badness 1990) has occurred while \output is active []
 
- [54]
-<pics_iconip/neuron.pdf, id=1653, 209.78375pt x 101.37875pt>
+ [55]
+<pics_iconip/neuron.pdf, id=1660, 209.78375pt x 101.37875pt>
 File: pics_iconip/neuron.pdf Graphic file (type pdf)
 
 <use pics_iconip/neuron.pdf>
 Package pdftex.def Info: pics_iconip/neuron.pdf used on input line 118.
 (pdftex.def)             Requested size: 306.71936pt x 148.22365pt.
- [55 <./pics_iconip/neuron.pdf>] [56]
-<pics_snn/af.pdf, id=1701, 374.39874pt x 248.93pt>
+ [56 <./pics_iconip/neuron.pdf>] [57]
+<pics_snn/af.pdf, id=1707, 374.39874pt x 248.93pt>
 File: pics_snn/af.pdf Graphic file (type pdf)
  <use pics_snn/af.pdf>
 Package pdftex.def Info: pics_snn/af.pdf used on input line 186.
 (pdftex.def)             Requested size: 210.32089pt x 139.84045pt.
 
-<pics_snn/af_der.pdf, id=1702, 374.39874pt x 248.93pt>
+<pics_snn/af_der.pdf, id=1708, 374.39874pt x 248.93pt>
 File: pics_snn/af_der.pdf Graphic file (type pdf)
 
 <use pics_snn/af_der.pdf>
 Package pdftex.def Info: pics_snn/af_der.pdf used on input line 191.
 (pdftex.def)             Requested size: 210.32089pt x 139.84045pt.
- [57 <./pics_snn/af.pdf> <./pics_snn/af_der.pdf
+ [58 <./pics_snn/af.pdf> <./pics_snn/af_der.pdf
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./pics_snn/af_der.pdf): PDF 
 inclusion: multiple pdfs with page group included in a single page
->] <pics_sdlm/AE.pdf, id=1770, 406.51875pt x 307.1475pt>
+>] <pics_sdlm/AE.pdf, id=1776, 406.51875pt x 307.1475pt>
 File: pics_sdlm/AE.pdf Graphic file (type pdf)
 
 <use pics_sdlm/AE.pdf>
@@ -738,32 +1244,32 @@ Package pdftex.def Info: pics_sdlm/AE.pdf used on input line 229.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [58]
-[59 <./pics_sdlm/AE.pdf>]
-<pics_sdlm/rbm_o.pdf, id=1802, 406.51875pt x 184.69pt>
+ [59]
+[60 <./pics_sdlm/AE.pdf>]
+<pics_sdlm/rbm_o.pdf, id=1808, 406.51875pt x 184.69pt>
 File: pics_sdlm/rbm_o.pdf Graphic file (type pdf)
 
 <use pics_sdlm/rbm_o.pdf>
 Package pdftex.def Info: pics_sdlm/rbm_o.pdf used on input line 591.
 (pdftex.def)             Requested size: 262.90613pt x 119.4468pt.
- [60 <./pics_sdlm/rbm_o.pdf>] [61]
-<pics_sdlm/gibbs_sampling.pdf, id=1853, 691.58376pt x 160.6pt>
+ [61 <./pics_sdlm/rbm_o.pdf>] [62]
+<pics_sdlm/gibbs_sampling.pdf, id=1859, 691.58376pt x 160.6pt>
 File: pics_sdlm/gibbs_sampling.pdf Graphic file (type pdf)
 
 <use pics_sdlm/gibbs_sampling.pdf>
 Package pdftex.def Info: pics_sdlm/gibbs_sampling.pdf used on input line 727.
 (pdftex.def)             Requested size: 429.4071pt x 99.71799pt.
- [62]) [63 <./pics_sdlm/gibbs_sampling.pdf>]
+ [63]) [64 <./pics_sdlm/gibbs_sampling.pdf>]
 \openout2 = `Chapter4.aux'.
 
 
 (./Chapter4.tex
 Chapter 4.
-[64
+[65
 
 
 
-] [65] <pics_iconip/neuron_snn.pdf, id=1906, 325.215pt x 109.40875pt>
+] [66] <pics_iconip/neuron_snn.pdf, id=1912, 325.215pt x 109.40875pt>
 File: pics_iconip/neuron_snn.pdf Graphic file (type pdf)
 
 <use pics_iconip/neuron_snn.pdf>
@@ -772,7 +1278,7 @@ Package pdftex.def Info: pics_iconip/neuron_snn.pdf used on input line 109.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [66 <./pics_iconip/neuron_snn.pdf>]
+ [67 <./pics_iconip/neuron_snn.pdf>]
 Overfull \hbox (0.99265pt too wide) in paragraph at lines 133--138
 []\OT1/cmr/m/n/12 A soft-ened ver-sion of the re-sponse func-tion of LIF neu-ro
 ns has been pro-posed [[]Huns-
@@ -781,78 +1287,78 @@ ns has been pro-posed [[]Huns-
 
 Underfull \vbox (badness 4713) has occurred while \output is active []
 
- [67]
-[68] [69] <pics_iconip/revise_1.pdf, id=1986, 433.62pt x 289.08pt>
+ [68]
+[69] [70] <pics_iconip/revise_1.pdf, id=1992, 433.62pt x 289.08pt>
 File: pics_iconip/revise_1.pdf Graphic file (type pdf)
 
 <use pics_iconip/revise_1.pdf>
 Package pdftex.def Info: pics_iconip/revise_1.pdf used on input line 238.
 (pdftex.def)             Requested size: 306.71936pt x 204.48953pt.
- [70 <./pics_iconip/revise_1.pdf>]
-<pics_iconip/revise_2-1.png, id=2056, 433.62pt x 289.08pt>
+ [71 <./pics_iconip/revise_1.pdf>]
+<pics_iconip/revise_2-1.png, id=2062, 433.62pt x 289.08pt>
 File: pics_iconip/revise_2-1.png Graphic file (type png)
 
 <use pics_iconip/revise_2-1.png>
 Package pdftex.def Info: pics_iconip/revise_2-1.png used on input line 397.
 (pdftex.def)             Requested size: 306.71936pt x 204.48953pt.
 
-<pics_iconip/revise_2-2.png, id=2057, 433.62pt x 289.08pt>
+<pics_iconip/revise_2-2.png, id=2063, 433.62pt x 289.08pt>
 File: pics_iconip/revise_2-2.png Graphic file (type png)
 
 <use pics_iconip/revise_2-2.png>
 Package pdftex.def Info: pics_iconip/revise_2-2.png used on input line 401.
 (pdftex.def)             Requested size: 306.71936pt x 204.48953pt.
 
-<pics_iconip/curr_dt1.pdf, id=2062, 433.62pt x 289.08pt>
+<pics_iconip/curr_dt1.pdf, id=2068, 433.62pt x 289.08pt>
 File: pics_iconip/curr_dt1.pdf Graphic file (type pdf)
 
 <use pics_iconip/curr_dt1.pdf>
 Package pdftex.def Info: pics_iconip/curr_dt1.pdf used on input line 413.
 (pdftex.def)             Requested size: 188.41093pt x 125.60762pt.
 
-<pics_iconip/curr_dt10.pdf, id=2063, 433.62pt x 289.08pt>
+<pics_iconip/curr_dt10.pdf, id=2069, 433.62pt x 289.08pt>
 File: pics_iconip/curr_dt10.pdf Graphic file (type pdf)
 
 <use pics_iconip/curr_dt10.pdf>
 Package pdftex.def Info: pics_iconip/curr_dt10.pdf used on input line 417.
 (pdftex.def)             Requested size: 188.41093pt x 125.60762pt.
 
-<pics_iconip/psd_dt1.pdf, id=2064, 433.62pt x 289.08pt>
+<pics_iconip/psd_dt1.pdf, id=2070, 433.62pt x 289.08pt>
 File: pics_iconip/psd_dt1.pdf Graphic file (type pdf)
 
 <use pics_iconip/psd_dt1.pdf>
 Package pdftex.def Info: pics_iconip/psd_dt1.pdf used on input line 421.
 (pdftex.def)             Requested size: 188.41093pt x 125.60762pt.
 
-<pics_iconip/psd_dt10.pdf, id=2065, 433.62pt x 289.08pt>
+<pics_iconip/psd_dt10.pdf, id=2071, 433.62pt x 289.08pt>
 File: pics_iconip/psd_dt10.pdf Graphic file (type pdf)
 
 <use pics_iconip/psd_dt10.pdf>
 Package pdftex.def Info: pics_iconip/psd_dt10.pdf used on input line 425.
 (pdftex.def)             Requested size: 188.41093pt x 125.60762pt.
 
-<pics_iconip/autocorr_dt1.pdf, id=2066, 433.62pt x 289.08pt>
+<pics_iconip/autocorr_dt1.pdf, id=2072, 433.62pt x 289.08pt>
 File: pics_iconip/autocorr_dt1.pdf Graphic file (type pdf)
 
 <use pics_iconip/autocorr_dt1.pdf>
 Package pdftex.def Info: pics_iconip/autocorr_dt1.pdf used on input line 429.
 (pdftex.def)             Requested size: 188.41093pt x 125.60762pt.
 
-<pics_iconip/autocorr_dt10.pdf, id=2067, 433.62pt x 289.08pt>
+<pics_iconip/autocorr_dt10.pdf, id=2073, 433.62pt x 289.08pt>
 File: pics_iconip/autocorr_dt10.pdf Graphic file (type pdf)
 
 <use pics_iconip/autocorr_dt10.pdf>
 Package pdftex.def Info: pics_iconip/autocorr_dt10.pdf used on input line 433.
 (pdftex.def)             Requested size: 188.41093pt x 125.60762pt.
 
-<pics_iconip/distr_dt1.pdf, id=2068, 433.62pt x 289.08pt>
+<pics_iconip/distr_dt1.pdf, id=2074, 433.62pt x 289.08pt>
 File: pics_iconip/distr_dt1.pdf Graphic file (type pdf)
 
 <use pics_iconip/distr_dt1.pdf>
 Package pdftex.def Info: pics_iconip/distr_dt1.pdf used on input line 437.
 (pdftex.def)             Requested size: 188.41093pt x 125.60762pt.
 
-<pics_iconip/distr_dt10.pdf, id=2069, 433.62pt x 289.08pt>
+<pics_iconip/distr_dt10.pdf, id=2075, 433.62pt x 289.08pt>
 File: pics_iconip/distr_dt10.pdf Graphic file (type pdf)
 
 <use pics_iconip/distr_dt10.pdf>
@@ -861,8 +1367,8 @@ Package pdftex.def Info: pics_iconip/distr_dt10.pdf used on input line 441.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [71]
-[72 <./pics_iconip/revise_2-1.png> <./pics_iconip/revise_2-2.png>] [73 <./pics_
+ [72]
+[73 <./pics_iconip/revise_2-1.png> <./pics_iconip/revise_2-2.png>] [74 <./pics_
 iconip/curr_dt1.pdf> <./pics_iconip/curr_dt10.pdf
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./pics_iconip/curr_dt10.pdf)
@@ -891,7 +1397,7 @@ pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./pics_iconip/distr_dt1.pdf)
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./pics_iconip/distr_dt10.pdf
 ): PDF inclusion: multiple pdfs with page group included in a single page
->] <pics_iconip/revise_spike_curve-1.png, id=2436, 433.62pt x 289.08pt>
+>] <pics_iconip/revise_spike_curve-1.png, id=2442, 433.62pt x 289.08pt>
 File: pics_iconip/revise_spike_curve-1.png Graphic file (type png)
 
 <use pics_iconip/revise_spike_curve-1.png>
@@ -899,7 +1405,7 @@ Package pdftex.def Info: pics_iconip/revise_spike_curve-1.png used on input lin
 e 522.
 (pdftex.def)             Requested size: 306.71936pt x 204.48953pt.
 
-<pics_iconip/revise_spike_curve-2.png, id=2437, 433.62pt x 289.08pt>
+<pics_iconip/revise_spike_curve-2.png, id=2443, 433.62pt x 289.08pt>
 File: pics_iconip/revise_spike_curve-2.png Graphic file (type png)
 
 <use pics_iconip/revise_spike_curve-2.png>
@@ -907,42 +1413,42 @@ Package pdftex.def Info: pics_iconip/revise_spike_curve-2.png used on input lin
 e 526.
 (pdftex.def)             Requested size: 306.71936pt x 204.48953pt.
 
-<pics_iconip/curr_tau1.pdf, id=2440, 433.62pt x 289.08pt>
+<pics_iconip/curr_tau1.pdf, id=2446, 433.62pt x 289.08pt>
 File: pics_iconip/curr_tau1.pdf Graphic file (type pdf)
 
 <use pics_iconip/curr_tau1.pdf>
 Package pdftex.def Info: pics_iconip/curr_tau1.pdf used on input line 537.
 (pdftex.def)             Requested size: 188.41093pt x 125.60762pt.
 
-<pics_iconip/curr_tau10.pdf, id=2441, 433.62pt x 289.08pt>
+<pics_iconip/curr_tau10.pdf, id=2447, 433.62pt x 289.08pt>
 File: pics_iconip/curr_tau10.pdf Graphic file (type pdf)
 
 <use pics_iconip/curr_tau10.pdf>
 Package pdftex.def Info: pics_iconip/curr_tau10.pdf used on input line 541.
 (pdftex.def)             Requested size: 188.41093pt x 125.60762pt.
 
-<pics_iconip/psd_tau1.pdf, id=2442, 433.62pt x 289.08pt>
+<pics_iconip/psd_tau1.pdf, id=2448, 433.62pt x 289.08pt>
 File: pics_iconip/psd_tau1.pdf Graphic file (type pdf)
 
 <use pics_iconip/psd_tau1.pdf>
 Package pdftex.def Info: pics_iconip/psd_tau1.pdf used on input line 545.
 (pdftex.def)             Requested size: 188.41093pt x 125.60762pt.
 
-<pics_iconip/psd_tau10.pdf, id=2443, 433.62pt x 289.08pt>
+<pics_iconip/psd_tau10.pdf, id=2449, 433.62pt x 289.08pt>
 File: pics_iconip/psd_tau10.pdf Graphic file (type pdf)
 
 <use pics_iconip/psd_tau10.pdf>
 Package pdftex.def Info: pics_iconip/psd_tau10.pdf used on input line 549.
 (pdftex.def)             Requested size: 188.41093pt x 125.60762pt.
 
-<pics_iconip/autocorr_tau1.pdf, id=2444, 433.62pt x 289.08pt>
+<pics_iconip/autocorr_tau1.pdf, id=2450, 433.62pt x 289.08pt>
 File: pics_iconip/autocorr_tau1.pdf Graphic file (type pdf)
 
 <use pics_iconip/autocorr_tau1.pdf>
 Package pdftex.def Info: pics_iconip/autocorr_tau1.pdf used on input line 553.
 (pdftex.def)             Requested size: 188.41093pt x 125.60762pt.
 
-<pics_iconip/autocorr_tau10.pdf, id=2445, 433.62pt x 289.08pt>
+<pics_iconip/autocorr_tau10.pdf, id=2451, 433.62pt x 289.08pt>
 File: pics_iconip/autocorr_tau10.pdf Graphic file (type pdf)
 
 <use pics_iconip/autocorr_tau10.pdf>
@@ -950,21 +1456,21 @@ Package pdftex.def Info: pics_iconip/autocorr_tau10.pdf used on input line 557.
 
 (pdftex.def)             Requested size: 188.41093pt x 125.60762pt.
 
-<pics_iconip/distr_tau1.pdf, id=2446, 433.62pt x 289.08pt>
+<pics_iconip/distr_tau1.pdf, id=2452, 433.62pt x 289.08pt>
 File: pics_iconip/distr_tau1.pdf Graphic file (type pdf)
 
 <use pics_iconip/distr_tau1.pdf>
 Package pdftex.def Info: pics_iconip/distr_tau1.pdf used on input line 561.
 (pdftex.def)             Requested size: 188.41093pt x 125.60762pt.
 
-<pics_iconip/distr_tau10.pdf, id=2447, 433.62pt x 289.08pt>
+<pics_iconip/distr_tau10.pdf, id=2453, 433.62pt x 289.08pt>
 File: pics_iconip/distr_tau10.pdf Graphic file (type pdf)
 
 <use pics_iconip/distr_tau10.pdf>
 Package pdftex.def Info: pics_iconip/distr_tau10.pdf used on input line 565.
 (pdftex.def)             Requested size: 188.41093pt x 125.60762pt.
- [74] [75 <./pics_iconip/revise_spike_curve-1.png> <./pics_iconip/revise_spike_
-curve-2.png>] [76 <./pics_iconip/curr_tau1.pdf> <./pics_iconip/curr_tau10.pdf
+ [75] [76 <./pics_iconip/revise_spike_curve-1.png> <./pics_iconip/revise_spike_
+curve-2.png>] [77 <./pics_iconip/curr_tau1.pdf> <./pics_iconip/curr_tau10.pdf
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./pics_iconip/curr_tau10.pdf
 ): PDF inclusion: multiple pdfs with page group included in a single page
@@ -992,7 +1498,7 @@ pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./pics_iconip/distr_tau1.pdf
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./pics_iconip/distr_tau10.pd
 f): PDF inclusion: multiple pdfs with page group included in a single page
->] <pics_iconip/revise_siegert.png, id=2791, 433.62pt x 289.08pt>
+>] <pics_iconip/revise_siegert.png, id=2797, 433.62pt x 289.08pt>
 File: pics_iconip/revise_siegert.png Graphic file (type png)
 
 <use pics_iconip/revise_siegert.png>
@@ -1000,28 +1506,28 @@ Package pdftex.def Info: pics_iconip/revise_siegert.png used on input line 599.
 
 (pdftex.def)             Requested size: 306.71936pt x 204.48953pt.
 
-<pics_iconip/revise_4.pdf, id=2792, 433.62pt x 289.08pt>
+<pics_iconip/revise_4.pdf, id=2798, 433.62pt x 289.08pt>
 File: pics_iconip/revise_4.pdf Graphic file (type pdf)
 
 <use pics_iconip/revise_4.pdf>
 Package pdftex.def Info: pics_iconip/revise_4.pdf used on input line 607.
 (pdftex.def)             Requested size: 306.71936pt x 204.48953pt.
- [77] [78 <./pics_iconip/revise_siegert.png> <./pics_iconip/revise_4.pdf>]
-<pics_iconip/revise_5.pdf, id=2881, 573.14125pt x 380.42125pt>
+ [78] [79 <./pics_iconip/revise_siegert.png> <./pics_iconip/revise_4.pdf>]
+<pics_iconip/revise_5.pdf, id=2888, 573.14125pt x 380.42125pt>
 File: pics_iconip/revise_5.pdf Graphic file (type pdf)
 
 <use pics_iconip/revise_5.pdf>
 Package pdftex.def Info: pics_iconip/revise_5.pdf used on input line 662.
 (pdftex.def)             Requested size: 262.90613pt x 174.50249pt.
- [79 <./pics_iconip/revise_5.pdf>]
-<pics_iconip/revise_4-1.png, id=2921, 433.62pt x 289.08pt>
+ [80 <./pics_iconip/revise_5.pdf>]
+<pics_iconip/revise_4-1.png, id=2927, 433.62pt x 289.08pt>
 File: pics_iconip/revise_4-1.png Graphic file (type png)
 
 <use pics_iconip/revise_4-1.png>
 Package pdftex.def Info: pics_iconip/revise_4-1.png used on input line 699.
 (pdftex.def)             Requested size: 306.71936pt x 204.48953pt.
 
-<pics_iconip/revise_4-2.png, id=2922, 433.62pt x 289.08pt>
+<pics_iconip/revise_4-2.png, id=2928, 433.62pt x 289.08pt>
 File: pics_iconip/revise_4-2.png Graphic file (type png)
 
 <use pics_iconip/revise_4-2.png>
@@ -1031,37 +1537,37 @@ File: pics_iconip/neuron.pdf Graphic file (type pdf)
  <use pics_iconip/neuron.pdf>
 Package pdftex.def Info: pics_iconip/neuron.pdf used on input line 760.
 (pdftex.def)             Requested size: 262.90613pt x 127.05106pt.
- [80] [81 <./pics_iconip/revise_4-1.png> <./pics_iconip/revise_4-2.png>]
-<pics_iconip/neuron_o.pdf, id=2945, 321.2pt x 102.3825pt>
+ [81] [82 <./pics_iconip/revise_4-1.png> <./pics_iconip/revise_4-2.png>]
+<pics_iconip/neuron_o.pdf, id=2951, 321.2pt x 102.3825pt>
 File: pics_iconip/neuron_o.pdf Graphic file (type pdf)
 
 <use pics_iconip/neuron_o.pdf>
 Package pdftex.def Info: pics_iconip/neuron_o.pdf used on input line 782.
 (pdftex.def)             Requested size: 394.35251pt x 125.7032pt.
 
-<pics_iconip/neuron_PAF.pdf, id=2949, 311.1625pt x 102.3825pt>
+<pics_iconip/neuron_PAF.pdf, id=2955, 311.1625pt x 102.3825pt>
 File: pics_iconip/neuron_PAF.pdf Graphic file (type pdf)
 
 <use pics_iconip/neuron_PAF.pdf>
 Package pdftex.def Info: pics_iconip/neuron_PAF.pdf used on input line 792.
 (pdftex.def)             Requested size: 372.44923pt x 122.54906pt.
- [82] [83 <./pics_iconip/neuron_o.pdf> <./pics_iconip/neuron_PAF.pdf
+ [83] [84 <./pics_iconip/neuron_o.pdf> <./pics_iconip/neuron_PAF.pdf
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./pics_iconip/neuron_PAF.pdf
 ): PDF inclusion: multiple pdfs with page group included in a single page
->] [84] [85] <pics_iconip/6-1.png, id=3043, 578.16pt x 325.215pt>
+>] [85] [86] <pics_iconip/6-1.png, id=3049, 578.16pt x 325.215pt>
 File: pics_iconip/6-1.png Graphic file (type png)
 
 <use pics_iconip/6-1.png>
 Package pdftex.def Info: pics_iconip/6-1.png used on input line 921.
 (pdftex.def)             Requested size: 284.8094pt x 160.2053pt.
- <pics_iconip/6-2.pdf, id=3044, 361.35pt x 361.35pt>
+ <pics_iconip/6-2.pdf, id=3050, 361.35pt x 361.35pt>
 File: pics_iconip/6-2.pdf Graphic file (type pdf)
 
 <use pics_iconip/6-2.pdf>
 Package pdftex.def Info: pics_iconip/6-2.pdf used on input line 926.
 (pdftex.def)             Requested size: 131.45306pt x 131.45331pt.
- <pics_iconip/6-3.pdf, id=3045, 361.35pt x 361.35pt>
+ <pics_iconip/6-3.pdf, id=3051, 361.35pt x 361.35pt>
 File: pics_iconip/6-3.pdf Graphic file (type pdf)
 
 <use pics_iconip/6-3.pdf>
@@ -1073,19 +1579,19 @@ Underfull \hbox (badness 8075) in paragraph at lines 932--932
 s ker-nel
  []
 
-<pics_iconip/6-4.pdf, id=3046, 361.35pt x 361.35pt>
+<pics_iconip/6-4.pdf, id=3052, 361.35pt x 361.35pt>
 File: pics_iconip/6-4.pdf Graphic file (type pdf)
  <use pics_iconip/6-4.pdf>
 Package pdftex.def Info: pics_iconip/6-4.pdf used on input line 936.
 (pdftex.def)             Requested size: 131.45306pt x 131.45331pt.
 
-<pics_iconip/7.pdf, id=3047, 722.7pt x 758.835pt>
+<pics_iconip/7.pdf, id=3053, 722.7pt x 758.835pt>
 File: pics_iconip/7.pdf Graphic file (type pdf)
  <use pics_iconip/7.pdf>
 Package pdftex.def Info: pics_iconip/7.pdf used on input line 942.
 (pdftex.def)             Requested size: 219.08621pt x 230.0375pt.
 
-[86] [87 <./pics_iconip/6-1.png> <./pics_iconip/6-2.pdf> <./pics_iconip/6-3.pdf
+[87] [88 <./pics_iconip/6-1.png> <./pics_iconip/6-2.pdf> <./pics_iconip/6-3.pdf
 
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./pics_iconip/6-3.pdf): PDF 
@@ -1098,27 +1604,27 @@ inclusion: multiple pdfs with page group included in a single page
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./pics_iconip/7.pdf): PDF in
 clusion: multiple pdfs with page group included in a single page
->] <pics_iconip/revise_6-5-1.pdf, id=3152, 433.62pt x 289.08pt>
+>] <pics_iconip/revise_6-5-1.pdf, id=3158, 433.62pt x 289.08pt>
 File: pics_iconip/revise_6-5-1.pdf Graphic file (type pdf)
 
 <use pics_iconip/revise_6-5-1.pdf>
 Package pdftex.def Info: pics_iconip/revise_6-5-1.pdf used on input line 989.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_iconip/revise_6-5-2.pdf, id=3153, 433.62pt x 289.08pt>
+<pics_iconip/revise_6-5-2.pdf, id=3159, 433.62pt x 289.08pt>
 File: pics_iconip/revise_6-5-2.pdf Graphic file (type pdf)
 
 <use pics_iconip/revise_6-5-2.pdf>
 Package pdftex.def Info: pics_iconip/revise_6-5-2.pdf used on input line 993.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_iconip/revise_6-5-3.pdf, id=3154, 433.62pt x 289.08pt>
+<pics_iconip/revise_6-5-3.pdf, id=3160, 433.62pt x 289.08pt>
 File: pics_iconip/revise_6-5-3.pdf Graphic file (type pdf)
 
 <use pics_iconip/revise_6-5-3.pdf>
 Package pdftex.def Info: pics_iconip/revise_6-5-3.pdf used on input line 997.
 (pdftex.def)             Requested size: 262.90613pt x 175.27989pt.
- [88 <./pics_iconip/revise_6-5-1.pdf> <./pics_iconip/revise_6-5-2.pdf
+ [89 <./pics_iconip/revise_6-5-1.pdf> <./pics_iconip/revise_6-5-2.pdf
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./pics_iconip/revise_6-5-2.p
 df): PDF inclusion: multiple pdfs with page group included in a single page
@@ -1126,28 +1632,28 @@ df): PDF inclusion: multiple pdfs with page group included in a single page
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./pics_iconip/revise_6-5-3.p
 df): PDF inclusion: multiple pdfs with page group included in a single page
->] <pics_iconip/revise_8.png, id=3318, 433.62pt x 289.08pt>
+>] <pics_iconip/revise_8.png, id=3324, 433.62pt x 289.08pt>
 File: pics_iconip/revise_8.png Graphic file (type png)
 
 <use pics_iconip/revise_8.png>
 Package pdftex.def Info: pics_iconip/revise_8.png used on input line 1031.
 (pdftex.def)             Requested size: 350.53928pt x 233.70358pt.
- [89 <./pics_iconip/revise_8.png>]
-<pics_iconip/9-2.pdf, id=3327, 408.52625pt x 262.9825pt>
+ [90 <./pics_iconip/revise_8.png>]
+<pics_iconip/9-2.pdf, id=3333, 408.52625pt x 262.9825pt>
 File: pics_iconip/9-2.pdf Graphic file (type pdf)
 
 <use pics_iconip/9-2.pdf>
 Package pdftex.def Info: pics_iconip/9-2.pdf used on input line 1052.
 (pdftex.def)             Requested size: 306.71936pt x 197.45708pt.
- [90 <./pics_iconip/9-2.pdf>]
-<pics_iconip/revise_8-2.png, id=3395, 433.62pt x 289.08pt>
+ [91 <./pics_iconip/9-2.pdf>]
+<pics_iconip/revise_8-2.png, id=3402, 433.62pt x 289.08pt>
 File: pics_iconip/revise_8-2.png Graphic file (type png)
 
 <use pics_iconip/revise_8-2.png>
 Package pdftex.def Info: pics_iconip/revise_8-2.png used on input line 1216.
 (pdftex.def)             Requested size: 306.71936pt x 204.48953pt.
 
-<pics_iconip/revise_8-3.png, id=3396, 433.62pt x 289.08pt>
+<pics_iconip/revise_8-3.png, id=3403, 433.62pt x 289.08pt>
 File: pics_iconip/revise_8-3.png Graphic file (type png)
 
 <use pics_iconip/revise_8-3.png>
@@ -1156,32 +1662,32 @@ Package pdftex.def Info: pics_iconip/revise_8-3.png used on input line 1220.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [91]
-[92] [93 <./pics_iconip/revise_8-2.png> <./pics_iconip/revise_8-3.png>])
-[94] [95]
+ [92]
+[93] [94 <./pics_iconip/revise_8-2.png> <./pics_iconip/revise_8-3.png>])
+[95] [96]
 \openout2 = `Chapter5.aux'.
 
  (./Chapter5.tex
 Chapter 5.
-[96
+[97
 
 
 
 ]
 Underfull \vbox (badness 4713) has occurred while \output is active []
 
- [97]
+ [98]
 Underfull \vbox (badness 3989) has occurred while \output is active []
 
- [98]
-<pics_sdlm/resume.png, id=3482, 82.3878pt x 76.3653pt>
+ [99]
+<pics_sdlm/resume.png, id=3488, 82.3878pt x 76.3653pt>
 File: pics_sdlm/resume.png Graphic file (type png)
 
 <use pics_sdlm/resume.png>
 Package pdftex.def Info: pics_sdlm/resume.png used on input line 121.
 (pdftex.def)             Requested size: 109.5431pt x 101.54124pt.
 
-<pics_sdlm/resume2.png, id=3483, 294.1389pt x 135.6267pt>
+<pics_sdlm/resume2.png, id=3489, 294.1389pt x 135.6267pt>
 File: pics_sdlm/resume2.png Graphic file (type png)
 
 <use pics_sdlm/resume2.png>
@@ -1190,8 +1696,8 @@ Package pdftex.def Info: pics_sdlm/resume2.png used on input line 124.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [99]
-<pics_sdlm/adaline.png, id=3496, 406.6392pt x 272.9397pt>
+ [100]
+<pics_sdlm/adaline.png, id=3502, 406.6392pt x 272.9397pt>
 File: pics_sdlm/adaline.png Graphic file (type png)
 
 <use pics_sdlm/adaline.png>
@@ -1200,22 +1706,22 @@ Package pdftex.def Info: pics_sdlm/adaline.png used on input line 145.
 
 Underfull \vbox (badness 2302) has occurred while \output is active []
 
- [100 <./pics_sdlm/resume.png> <./pics_sdlm/resume2.png> <./pics_sdlm/adaline.p
+ [101 <./pics_sdlm/resume.png> <./pics_sdlm/resume2.png> <./pics_sdlm/adaline.p
 ng>]
-[101] <pics_sdlm/stdp.png, id=3521, 143.5764pt x 95.3964pt>
+[102] <pics_sdlm/stdp.png, id=3528, 143.5764pt x 95.3964pt>
 File: pics_sdlm/stdp.png Graphic file (type png)
 
 <use pics_sdlm/stdp.png>
 Package pdftex.def Info: pics_sdlm/stdp.png used on input line 209.
 (pdftex.def)             Requested size: 175.2663pt x 116.46199pt.
- [102 <./pics_sdlm/stdp.png>] [103]
-<pics_sdlm/AE.png, id=3550, 406.6392pt x 307.1475pt>
+ [103 <./pics_sdlm/stdp.png>] [104]
+<pics_sdlm/AE.png, id=3556, 406.6392pt x 307.1475pt>
 File: pics_sdlm/AE.png Graphic file (type png)
  <use pics_sdlm/AE.png>
 Package pdftex.def Info: pics_sdlm/AE.png used on input line 314.
 (pdftex.def)             Requested size: 219.08621pt x 165.48692pt.
 
-[104] <pics_sdlm/21_exp_AE_noise/exp1_input.png, id=3556, 433.62pt x 289.08pt>
+[105] <pics_sdlm/21_exp_AE_noise/exp1_input.png, id=3562, 433.62pt x 289.08pt>
 File: pics_sdlm/21_exp_AE_noise/exp1_input.png Graphic file (type png)
 
 <use pics_sdlm/21_exp_AE_noise/exp1_input.png>
@@ -1223,7 +1729,7 @@ Package pdftex.def Info: pics_sdlm/21_exp_AE_noise/exp1_input.png used on input
  line 329.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/21_exp_AE_noise/exp2_input.png, id=3557, 433.62pt x 289.08pt>
+<pics_sdlm/21_exp_AE_noise/exp2_input.png, id=3563, 433.62pt x 289.08pt>
 File: pics_sdlm/21_exp_AE_noise/exp2_input.png Graphic file (type png)
 
 <use pics_sdlm/21_exp_AE_noise/exp2_input.png>
@@ -1231,7 +1737,7 @@ Package pdftex.def Info: pics_sdlm/21_exp_AE_noise/exp2_input.png used on input
  line 333.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/21_exp_AE_noise/exp1.png, id=3558, 433.62pt x 289.08pt>
+<pics_sdlm/21_exp_AE_noise/exp1.png, id=3564, 433.62pt x 289.08pt>
 File: pics_sdlm/21_exp_AE_noise/exp1.png Graphic file (type png)
 
 <use pics_sdlm/21_exp_AE_noise/exp1.png>
@@ -1239,221 +1745,221 @@ Package pdftex.def Info: pics_sdlm/21_exp_AE_noise/exp1.png used on input line
 337.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/21_exp_AE_noise/exp2.png, id=3559, 433.62pt x 289.08pt>
+<pics_sdlm/21_exp_AE_noise/exp2.png, id=3565, 433.62pt x 289.08pt>
 File: pics_sdlm/21_exp_AE_noise/exp2.png Graphic file (type png)
 
 <use pics_sdlm/21_exp_AE_noise/exp2.png>
 Package pdftex.def Info: pics_sdlm/21_exp_AE_noise/exp2.png used on input line 
 341.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
- [105 <./pics_sdlm/AE.png>]
+ [106 <./pics_sdlm/AE.png>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [106 <./pics_sdlm/21_exp_AE_noise/exp1_input.png> <./pics_sdlm/21_exp_AE_noise
+ [107 <./pics_sdlm/21_exp_AE_noise/exp1_input.png> <./pics_sdlm/21_exp_AE_noise
 /exp2_input.png> <./pics_sdlm/21_exp_AE_noise/exp1.png> <./pics_sdlm/21_exp_AE_
-noise/exp2.png>] <pics_sdlm/20_exp_AE/exp1_weights_non.png, id=3576, 433.62pt x
+noise/exp2.png>] <pics_sdlm/20_exp_AE/exp1_weights_non.png, id=3582, 433.62pt x
  289.08pt>
 File: pics_sdlm/20_exp_AE/exp1_weights_non.png Graphic file (type png)
 
 <use pics_sdlm/20_exp_AE/exp1_weights_non.png>
 Package pdftex.def Info: pics_sdlm/20_exp_AE/exp1_weights_non.png used on input
- line 387.
+ line 388.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/20_exp_AE/exp2_weights_non.png, id=3577, 433.62pt x 289.08pt>
+<pics_sdlm/20_exp_AE/exp2_weights_non.png, id=3583, 433.62pt x 289.08pt>
 File: pics_sdlm/20_exp_AE/exp2_weights_non.png Graphic file (type png)
 
 <use pics_sdlm/20_exp_AE/exp2_weights_non.png>
 Package pdftex.def Info: pics_sdlm/20_exp_AE/exp2_weights_non.png used on input
- line 391.
+ line 392.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/20_exp_AE/exp1_recon_non.pdf, id=3578, 433.62pt x 289.08pt>
+<pics_sdlm/20_exp_AE/exp1_recon_non.pdf, id=3584, 433.62pt x 289.08pt>
 File: pics_sdlm/20_exp_AE/exp1_recon_non.pdf Graphic file (type pdf)
 
 <use pics_sdlm/20_exp_AE/exp1_recon_non.pdf>
 Package pdftex.def Info: pics_sdlm/20_exp_AE/exp1_recon_non.pdf used on input l
-ine 395.
+ine 396.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/20_exp_AE/exp2_recon_non.pdf, id=3579, 433.62pt x 289.08pt>
+<pics_sdlm/20_exp_AE/exp2_recon_non.pdf, id=3585, 433.62pt x 289.08pt>
 File: pics_sdlm/20_exp_AE/exp2_recon_non.pdf Graphic file (type pdf)
 
 <use pics_sdlm/20_exp_AE/exp2_recon_non.pdf>
 Package pdftex.def Info: pics_sdlm/20_exp_AE/exp2_recon_non.pdf used on input l
-ine 399.
+ine 400.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/20_exp_AE/exp1_hid_non.pdf, id=3580, 433.62pt x 289.08pt>
+<pics_sdlm/20_exp_AE/exp1_hid_non.pdf, id=3586, 433.62pt x 289.08pt>
 File: pics_sdlm/20_exp_AE/exp1_hid_non.pdf Graphic file (type pdf)
 
 <use pics_sdlm/20_exp_AE/exp1_hid_non.pdf>
 Package pdftex.def Info: pics_sdlm/20_exp_AE/exp1_hid_non.pdf used on input lin
-e 403.
+e 404.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/20_exp_AE/exp2_hid_non.pdf, id=3581, 433.62pt x 289.08pt>
+<pics_sdlm/20_exp_AE/exp2_hid_non.pdf, id=3587, 433.62pt x 289.08pt>
 File: pics_sdlm/20_exp_AE/exp2_hid_non.pdf Graphic file (type pdf)
 
 <use pics_sdlm/20_exp_AE/exp2_hid_non.pdf>
 Package pdftex.def Info: pics_sdlm/20_exp_AE/exp2_hid_non.pdf used on input lin
-e 407.
+e 408.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/20_exp_AE/exp1_loss.pdf, id=3582, 433.62pt x 289.08pt>
+<pics_sdlm/20_exp_AE/exp1_loss.pdf, id=3588, 433.62pt x 289.08pt>
 File: pics_sdlm/20_exp_AE/exp1_loss.pdf Graphic file (type pdf)
 
 <use pics_sdlm/20_exp_AE/exp1_loss.pdf>
 Package pdftex.def Info: pics_sdlm/20_exp_AE/exp1_loss.pdf used on input line 4
-11.
+12.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/20_exp_AE/exp2_loss.pdf, id=3583, 433.62pt x 289.08pt>
+<pics_sdlm/20_exp_AE/exp2_loss.pdf, id=3589, 433.62pt x 289.08pt>
 File: pics_sdlm/20_exp_AE/exp2_loss.pdf Graphic file (type pdf)
 
 <use pics_sdlm/20_exp_AE/exp2_loss.pdf>
 Package pdftex.def Info: pics_sdlm/20_exp_AE/exp2_loss.pdf used on input line 4
-15.
+16.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
 
-LaTeX Warning: Float too large for page by 13.17487pt on input line 421.
+LaTeX Warning: Float too large for page by 13.17487pt on input line 422.
 
-<pics_sdlm/21_exp_AE_noise/exp1_weights_s.png, id=3591, 433.62pt x 289.08pt>
+<pics_sdlm/21_exp_AE_noise/exp1_weights_s.png, id=3597, 433.62pt x 289.08pt>
 File: pics_sdlm/21_exp_AE_noise/exp1_weights_s.png Graphic file (type png)
 
 <use pics_sdlm/21_exp_AE_noise/exp1_weights_s.png>
 Package pdftex.def Info: pics_sdlm/21_exp_AE_noise/exp1_weights_s.png used on i
-nput line 432.
+nput line 433.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/21_exp_AE_noise/exp2_weights_s.png, id=3592, 433.62pt x 289.08pt>
+<pics_sdlm/21_exp_AE_noise/exp2_weights_s.png, id=3598, 433.62pt x 289.08pt>
 File: pics_sdlm/21_exp_AE_noise/exp2_weights_s.png Graphic file (type png)
 
 <use pics_sdlm/21_exp_AE_noise/exp2_weights_s.png>
 Package pdftex.def Info: pics_sdlm/21_exp_AE_noise/exp2_weights_s.png used on i
-nput line 436.
+nput line 437.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/21_exp_AE_noise/exp1_recon_s.pdf, id=3593, 433.62pt x 289.08pt>
+<pics_sdlm/21_exp_AE_noise/exp1_recon_s.pdf, id=3599, 433.62pt x 289.08pt>
 File: pics_sdlm/21_exp_AE_noise/exp1_recon_s.pdf Graphic file (type pdf)
 
 <use pics_sdlm/21_exp_AE_noise/exp1_recon_s.pdf>
 Package pdftex.def Info: pics_sdlm/21_exp_AE_noise/exp1_recon_s.pdf used on inp
-ut line 440.
+ut line 441.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/21_exp_AE_noise/exp2_recon_s.pdf, id=3594, 433.62pt x 289.08pt>
+<pics_sdlm/21_exp_AE_noise/exp2_recon_s.pdf, id=3600, 433.62pt x 289.08pt>
 File: pics_sdlm/21_exp_AE_noise/exp2_recon_s.pdf Graphic file (type pdf)
 
 <use pics_sdlm/21_exp_AE_noise/exp2_recon_s.pdf>
 Package pdftex.def Info: pics_sdlm/21_exp_AE_noise/exp2_recon_s.pdf used on inp
-ut line 444.
+ut line 445.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/21_exp_AE_noise/exp1_hid_s.pdf, id=3595, 433.62pt x 289.08pt>
+<pics_sdlm/21_exp_AE_noise/exp1_hid_s.pdf, id=3601, 433.62pt x 289.08pt>
 File: pics_sdlm/21_exp_AE_noise/exp1_hid_s.pdf Graphic file (type pdf)
 
 <use pics_sdlm/21_exp_AE_noise/exp1_hid_s.pdf>
 Package pdftex.def Info: pics_sdlm/21_exp_AE_noise/exp1_hid_s.pdf used on input
- line 448.
+ line 449.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/21_exp_AE_noise/exp2_hid_s.pdf, id=3596, 433.62pt x 289.08pt>
+<pics_sdlm/21_exp_AE_noise/exp2_hid_s.pdf, id=3602, 433.62pt x 289.08pt>
 File: pics_sdlm/21_exp_AE_noise/exp2_hid_s.pdf Graphic file (type pdf)
 
 <use pics_sdlm/21_exp_AE_noise/exp2_hid_s.pdf>
 Package pdftex.def Info: pics_sdlm/21_exp_AE_noise/exp2_hid_s.pdf used on input
- line 452.
+ line 453.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/21_exp_AE_noise/exp1_loss_s.pdf, id=3597, 433.62pt x 289.08pt>
+<pics_sdlm/21_exp_AE_noise/exp1_loss_s.pdf, id=3603, 433.62pt x 289.08pt>
 File: pics_sdlm/21_exp_AE_noise/exp1_loss_s.pdf Graphic file (type pdf)
 
 <use pics_sdlm/21_exp_AE_noise/exp1_loss_s.pdf>
 Package pdftex.def Info: pics_sdlm/21_exp_AE_noise/exp1_loss_s.pdf used on inpu
-t line 456.
+t line 457.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/21_exp_AE_noise/exp2_loss_s.pdf, id=3598, 433.62pt x 289.08pt>
+<pics_sdlm/21_exp_AE_noise/exp2_loss_s.pdf, id=3604, 433.62pt x 289.08pt>
 File: pics_sdlm/21_exp_AE_noise/exp2_loss_s.pdf Graphic file (type pdf)
 
 <use pics_sdlm/21_exp_AE_noise/exp2_loss_s.pdf>
 Package pdftex.def Info: pics_sdlm/21_exp_AE_noise/exp2_loss_s.pdf used on inpu
-t line 460.
+t line 461.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
 
-LaTeX Warning: Float too large for page by 27.67487pt on input line 466.
+LaTeX Warning: Float too large for page by 27.67487pt on input line 467.
 
-<pics_sdlm/30_exp_RBM/exp1_weights_non.png, id=3601, 433.62pt x 289.08pt>
+<pics_sdlm/30_exp_RBM/exp1_weights_non.png, id=3607, 433.62pt x 289.08pt>
 File: pics_sdlm/30_exp_RBM/exp1_weights_non.png Graphic file (type png)
 
 <use pics_sdlm/30_exp_RBM/exp1_weights_non.png>
 Package pdftex.def Info: pics_sdlm/30_exp_RBM/exp1_weights_non.png used on inpu
-t line 480.
+t line 481.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/30_exp_RBM/exp2_weights_non.png, id=3602, 433.62pt x 289.08pt>
+<pics_sdlm/30_exp_RBM/exp2_weights_non.png, id=3608, 433.62pt x 289.08pt>
 File: pics_sdlm/30_exp_RBM/exp2_weights_non.png Graphic file (type png)
 
 <use pics_sdlm/30_exp_RBM/exp2_weights_non.png>
 Package pdftex.def Info: pics_sdlm/30_exp_RBM/exp2_weights_non.png used on inpu
-t line 484.
+t line 485.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/30_exp_RBM/exp1_recon_non.pdf, id=3603, 433.62pt x 289.08pt>
+<pics_sdlm/30_exp_RBM/exp1_recon_non.pdf, id=3609, 433.62pt x 289.08pt>
 File: pics_sdlm/30_exp_RBM/exp1_recon_non.pdf Graphic file (type pdf)
 
 <use pics_sdlm/30_exp_RBM/exp1_recon_non.pdf>
 Package pdftex.def Info: pics_sdlm/30_exp_RBM/exp1_recon_non.pdf used on input 
-line 488.
+line 489.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/30_exp_RBM/exp2_recon_non.pdf, id=3604, 433.62pt x 289.08pt>
+<pics_sdlm/30_exp_RBM/exp2_recon_non.pdf, id=3610, 433.62pt x 289.08pt>
 File: pics_sdlm/30_exp_RBM/exp2_recon_non.pdf Graphic file (type pdf)
 
 <use pics_sdlm/30_exp_RBM/exp2_recon_non.pdf>
 Package pdftex.def Info: pics_sdlm/30_exp_RBM/exp2_recon_non.pdf used on input 
-line 492.
+line 493.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/30_exp_RBM/exp1_hid_non.pdf, id=3605, 433.62pt x 289.08pt>
+<pics_sdlm/30_exp_RBM/exp1_hid_non.pdf, id=3611, 433.62pt x 289.08pt>
 File: pics_sdlm/30_exp_RBM/exp1_hid_non.pdf Graphic file (type pdf)
 
 <use pics_sdlm/30_exp_RBM/exp1_hid_non.pdf>
 Package pdftex.def Info: pics_sdlm/30_exp_RBM/exp1_hid_non.pdf used on input li
-ne 496.
+ne 497.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/30_exp_RBM/exp2_hid_non.pdf, id=3606, 433.62pt x 289.08pt>
+<pics_sdlm/30_exp_RBM/exp2_hid_non.pdf, id=3612, 433.62pt x 289.08pt>
 File: pics_sdlm/30_exp_RBM/exp2_hid_non.pdf Graphic file (type pdf)
 
 <use pics_sdlm/30_exp_RBM/exp2_hid_non.pdf>
 Package pdftex.def Info: pics_sdlm/30_exp_RBM/exp2_hid_non.pdf used on input li
-ne 500.
+ne 501.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/30_exp_RBM/exp1_loss.pdf, id=3607, 433.62pt x 289.08pt>
+<pics_sdlm/30_exp_RBM/exp1_loss.pdf, id=3613, 433.62pt x 289.08pt>
 File: pics_sdlm/30_exp_RBM/exp1_loss.pdf Graphic file (type pdf)
 
 <use pics_sdlm/30_exp_RBM/exp1_loss.pdf>
 Package pdftex.def Info: pics_sdlm/30_exp_RBM/exp1_loss.pdf used on input line 
-504.
+505.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/30_exp_RBM/exp2_loss.pdf, id=3608, 433.62pt x 289.08pt>
+<pics_sdlm/30_exp_RBM/exp2_loss.pdf, id=3614, 433.62pt x 289.08pt>
 File: pics_sdlm/30_exp_RBM/exp2_loss.pdf Graphic file (type pdf)
 
 <use pics_sdlm/30_exp_RBM/exp2_loss.pdf>
 Package pdftex.def Info: pics_sdlm/30_exp_RBM/exp2_loss.pdf used on input line 
-508.
+509.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
 
-LaTeX Warning: Float too large for page by 13.17487pt on input line 514.
+LaTeX Warning: Float too large for page by 13.17487pt on input line 515.
 
-[107] [108 <./pics_sdlm/20_exp_AE/exp1_weights_non.png> <./pics_sdlm/20_exp_AE/
+[108] [109 <./pics_sdlm/20_exp_AE/exp1_weights_non.png> <./pics_sdlm/20_exp_AE/
 exp2_weights_non.png> <./pics_sdlm/20_exp_AE/exp1_recon_non.pdf> <./pics_sdlm/2
 0_exp_AE/exp2_recon_non.pdf
 
@@ -1480,7 +1986,7 @@ e
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./pics_sdlm/20_exp_AE/exp2_l
 oss.pdf): PDF inclusion: multiple pdfs with page group included in a single pag
 e
->] [109 <./pics_sdlm/21_exp_AE_noise/exp1_weights_s.png> <./pics_sdlm/21_exp_AE
+>] [110 <./pics_sdlm/21_exp_AE_noise/exp1_weights_s.png> <./pics_sdlm/21_exp_AE
 _noise/exp2_weights_s.png> <./pics_sdlm/21_exp_AE_noise/exp1_recon_s.pdf> <./pi
 cs_sdlm/21_exp_AE_noise/exp2_recon_s.pdf
 
@@ -1508,74 +2014,74 @@ pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./pics_sdlm/21_exp_AE_noise/
 exp2_loss_s.pdf): PDF inclusion: multiple pdfs with page group included in a si
 ngle page
 >]
-<pics_sdlm/31_exp_RBM_noise/exp1_weights_s.png, id=4099, 433.62pt x 289.08pt>
+<pics_sdlm/31_exp_RBM_noise/exp1_weights_s.png, id=4105, 433.62pt x 289.08pt>
 File: pics_sdlm/31_exp_RBM_noise/exp1_weights_s.png Graphic file (type png)
 
 <use pics_sdlm/31_exp_RBM_noise/exp1_weights_s.png>
 Package pdftex.def Info: pics_sdlm/31_exp_RBM_noise/exp1_weights_s.png used on 
-input line 519.
+input line 520.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/31_exp_RBM_noise/exp2_weights_s.png, id=4100, 433.62pt x 289.08pt>
+<pics_sdlm/31_exp_RBM_noise/exp2_weights_s.png, id=4106, 433.62pt x 289.08pt>
 File: pics_sdlm/31_exp_RBM_noise/exp2_weights_s.png Graphic file (type png)
 
 <use pics_sdlm/31_exp_RBM_noise/exp2_weights_s.png>
 Package pdftex.def Info: pics_sdlm/31_exp_RBM_noise/exp2_weights_s.png used on 
-input line 523.
+input line 524.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/31_exp_RBM_noise/exp1_recon_s.pdf, id=4101, 433.62pt x 289.08pt>
+<pics_sdlm/31_exp_RBM_noise/exp1_recon_s.pdf, id=4107, 433.62pt x 289.08pt>
 File: pics_sdlm/31_exp_RBM_noise/exp1_recon_s.pdf Graphic file (type pdf)
 
 <use pics_sdlm/31_exp_RBM_noise/exp1_recon_s.pdf>
 Package pdftex.def Info: pics_sdlm/31_exp_RBM_noise/exp1_recon_s.pdf used on in
-put line 527.
+put line 528.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/31_exp_RBM_noise/exp2_recon_s.pdf, id=4102, 433.62pt x 289.08pt>
+<pics_sdlm/31_exp_RBM_noise/exp2_recon_s.pdf, id=4108, 433.62pt x 289.08pt>
 File: pics_sdlm/31_exp_RBM_noise/exp2_recon_s.pdf Graphic file (type pdf)
 
 <use pics_sdlm/31_exp_RBM_noise/exp2_recon_s.pdf>
 Package pdftex.def Info: pics_sdlm/31_exp_RBM_noise/exp2_recon_s.pdf used on in
-put line 531.
+put line 532.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/31_exp_RBM_noise/exp1_hid_s.pdf, id=4103, 433.62pt x 289.08pt>
+<pics_sdlm/31_exp_RBM_noise/exp1_hid_s.pdf, id=4109, 433.62pt x 289.08pt>
 File: pics_sdlm/31_exp_RBM_noise/exp1_hid_s.pdf Graphic file (type pdf)
 
 <use pics_sdlm/31_exp_RBM_noise/exp1_hid_s.pdf>
 Package pdftex.def Info: pics_sdlm/31_exp_RBM_noise/exp1_hid_s.pdf used on inpu
-t line 535.
+t line 536.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/31_exp_RBM_noise/exp2_hid_s.pdf, id=4104, 433.62pt x 289.08pt>
+<pics_sdlm/31_exp_RBM_noise/exp2_hid_s.pdf, id=4110, 433.62pt x 289.08pt>
 File: pics_sdlm/31_exp_RBM_noise/exp2_hid_s.pdf Graphic file (type pdf)
 
 <use pics_sdlm/31_exp_RBM_noise/exp2_hid_s.pdf>
 Package pdftex.def Info: pics_sdlm/31_exp_RBM_noise/exp2_hid_s.pdf used on inpu
-t line 539.
+t line 540.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/31_exp_RBM_noise/exp1_loss_s.pdf, id=4105, 433.62pt x 289.08pt>
+<pics_sdlm/31_exp_RBM_noise/exp1_loss_s.pdf, id=4111, 433.62pt x 289.08pt>
 File: pics_sdlm/31_exp_RBM_noise/exp1_loss_s.pdf Graphic file (type pdf)
 
 <use pics_sdlm/31_exp_RBM_noise/exp1_loss_s.pdf>
 Package pdftex.def Info: pics_sdlm/31_exp_RBM_noise/exp1_loss_s.pdf used on inp
-ut line 543.
+ut line 544.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/31_exp_RBM_noise/exp2_loss_s.pdf, id=4106, 433.62pt x 289.08pt>
+<pics_sdlm/31_exp_RBM_noise/exp2_loss_s.pdf, id=4112, 433.62pt x 289.08pt>
 File: pics_sdlm/31_exp_RBM_noise/exp2_loss_s.pdf Graphic file (type pdf)
 
 <use pics_sdlm/31_exp_RBM_noise/exp2_loss_s.pdf>
 Package pdftex.def Info: pics_sdlm/31_exp_RBM_noise/exp2_loss_s.pdf used on inp
-ut line 547.
+ut line 548.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
 
-LaTeX Warning: Float too large for page by 27.67487pt on input line 553.
+LaTeX Warning: Float too large for page by 27.67487pt on input line 554.
 
-[110] [111 <./pics_sdlm/30_exp_RBM/exp1_weights_non.png> <./pics_sdlm/30_exp_RB
+[111] [112 <./pics_sdlm/30_exp_RBM/exp1_weights_non.png> <./pics_sdlm/30_exp_RB
 M/exp2_weights_non.png> <./pics_sdlm/30_exp_RBM/exp1_recon_non.pdf> <./pics_sdl
 m/30_exp_RBM/exp2_recon_non.pdf
 
@@ -1602,7 +2108,7 @@ ge
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./pics_sdlm/30_exp_RBM/exp2_
 loss.pdf): PDF inclusion: multiple pdfs with page group included in a single pa
 ge
->] [112 <./pics_sdlm/31_exp_RBM_noise/exp1_weights_s.png> <./pics_sdlm/31_exp_R
+>] [113 <./pics_sdlm/31_exp_RBM_noise/exp1_weights_s.png> <./pics_sdlm/31_exp_R
 BM_noise/exp2_weights_s.png> <./pics_sdlm/31_exp_RBM_noise/exp1_recon_s.pdf> <.
 /pics_sdlm/31_exp_RBM_noise/exp2_recon_s.pdf
 
@@ -1629,87 +2135,87 @@ ingle page
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./pics_sdlm/31_exp_RBM_noise
 /exp2_loss_s.pdf): PDF inclusion: multiple pdfs with page group included in a s
 ingle page
->] [113]
+>] [114]
 File: pics_sdlm/AE.png Graphic file (type png)
  <use pics_sdlm/AE.png>
-Package pdftex.def Info: pics_sdlm/AE.png used on input line 642.
+Package pdftex.def Info: pics_sdlm/AE.png used on input line 643.
 (pdftex.def)             Requested size: 153.36302pt x 115.84085pt.
 
-<pics_sdlm/rSTDP.png, id=4611, 271.0125pt x 135.6267pt>
+<pics_sdlm/rSTDP.png, id=4617, 271.0125pt x 135.6267pt>
 File: pics_sdlm/rSTDP.png Graphic file (type png)
 
 <use pics_sdlm/rSTDP.png>
-Package pdftex.def Info: pics_sdlm/rSTDP.png used on input line 645.
+Package pdftex.def Info: pics_sdlm/rSTDP.png used on input line 646.
 (pdftex.def)             Requested size: 262.90613pt x 131.57428pt.
 
-<pics_sdlm/00_exp_SAE_Orig/exp1_weights_s.png, id=4612, 433.62pt x 289.08pt>
+<pics_sdlm/00_exp_SAE_Orig/exp1_weights_s.png, id=4618, 433.62pt x 289.08pt>
 File: pics_sdlm/00_exp_SAE_Orig/exp1_weights_s.png Graphic file (type png)
 
 <use pics_sdlm/00_exp_SAE_Orig/exp1_weights_s.png>
 Package pdftex.def Info: pics_sdlm/00_exp_SAE_Orig/exp1_weights_s.png used on i
-nput line 654.
+nput line 655.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/00_exp_SAE_Orig/exp2_weights_s.png, id=4613, 433.62pt x 289.08pt>
+<pics_sdlm/00_exp_SAE_Orig/exp2_weights_s.png, id=4619, 433.62pt x 289.08pt>
 File: pics_sdlm/00_exp_SAE_Orig/exp2_weights_s.png Graphic file (type png)
 
 <use pics_sdlm/00_exp_SAE_Orig/exp2_weights_s.png>
 Package pdftex.def Info: pics_sdlm/00_exp_SAE_Orig/exp2_weights_s.png used on i
-nput line 658.
+nput line 659.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/00_exp_SAE_Orig/exp1_recon_s.pdf, id=4614, 433.62pt x 289.08pt>
+<pics_sdlm/00_exp_SAE_Orig/exp1_recon_s.pdf, id=4620, 433.62pt x 289.08pt>
 File: pics_sdlm/00_exp_SAE_Orig/exp1_recon_s.pdf Graphic file (type pdf)
 
 <use pics_sdlm/00_exp_SAE_Orig/exp1_recon_s.pdf>
 Package pdftex.def Info: pics_sdlm/00_exp_SAE_Orig/exp1_recon_s.pdf used on inp
-ut line 662.
+ut line 663.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/00_exp_SAE_Orig/exp2_recon_s.pdf, id=4615, 433.62pt x 289.08pt>
+<pics_sdlm/00_exp_SAE_Orig/exp2_recon_s.pdf, id=4621, 433.62pt x 289.08pt>
 File: pics_sdlm/00_exp_SAE_Orig/exp2_recon_s.pdf Graphic file (type pdf)
 
 <use pics_sdlm/00_exp_SAE_Orig/exp2_recon_s.pdf>
 Package pdftex.def Info: pics_sdlm/00_exp_SAE_Orig/exp2_recon_s.pdf used on inp
-ut line 666.
+ut line 667.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/00_exp_SAE_Orig/exp1_hid_s.pdf, id=4616, 433.62pt x 289.08pt>
+<pics_sdlm/00_exp_SAE_Orig/exp1_hid_s.pdf, id=4622, 433.62pt x 289.08pt>
 File: pics_sdlm/00_exp_SAE_Orig/exp1_hid_s.pdf Graphic file (type pdf)
 
 <use pics_sdlm/00_exp_SAE_Orig/exp1_hid_s.pdf>
 Package pdftex.def Info: pics_sdlm/00_exp_SAE_Orig/exp1_hid_s.pdf used on input
- line 670.
+ line 671.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/00_exp_SAE_Orig/exp2_hid_s.pdf, id=4617, 433.62pt x 289.08pt>
+<pics_sdlm/00_exp_SAE_Orig/exp2_hid_s.pdf, id=4623, 433.62pt x 289.08pt>
 File: pics_sdlm/00_exp_SAE_Orig/exp2_hid_s.pdf Graphic file (type pdf)
 
 <use pics_sdlm/00_exp_SAE_Orig/exp2_hid_s.pdf>
 Package pdftex.def Info: pics_sdlm/00_exp_SAE_Orig/exp2_hid_s.pdf used on input
- line 674.
+ line 675.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/00_exp_SAE_Orig/exp1_mse_nons.pdf, id=4618, 433.62pt x 289.08pt>
+<pics_sdlm/00_exp_SAE_Orig/exp1_mse_nons.pdf, id=4624, 433.62pt x 289.08pt>
 File: pics_sdlm/00_exp_SAE_Orig/exp1_mse_nons.pdf Graphic file (type pdf)
 
 <use pics_sdlm/00_exp_SAE_Orig/exp1_mse_nons.pdf>
 Package pdftex.def Info: pics_sdlm/00_exp_SAE_Orig/exp1_mse_nons.pdf used on in
-put line 678.
+put line 679.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/00_exp_SAE_Orig/exp2_mse_nons.pdf, id=4619, 433.62pt x 289.08pt>
+<pics_sdlm/00_exp_SAE_Orig/exp2_mse_nons.pdf, id=4625, 433.62pt x 289.08pt>
 File: pics_sdlm/00_exp_SAE_Orig/exp2_mse_nons.pdf Graphic file (type pdf)
 
 <use pics_sdlm/00_exp_SAE_Orig/exp2_mse_nons.pdf>
 Package pdftex.def Info: pics_sdlm/00_exp_SAE_Orig/exp2_mse_nons.pdf used on in
-put line 682.
+put line 683.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
 
-LaTeX Warning: Float too large for page by 27.67487pt on input line 688.
+LaTeX Warning: Float too large for page by 27.67487pt on input line 689.
 
-[114 <./pics_sdlm/rSTDP.png>] [115 <./pics_sdlm/00_exp_SAE_Orig/exp1_weights_s.
+[115 <./pics_sdlm/rSTDP.png>] [116 <./pics_sdlm/00_exp_SAE_Orig/exp1_weights_s.
 png> <./pics_sdlm/00_exp_SAE_Orig/exp2_weights_s.png> <./pics_sdlm/00_exp_SAE_O
 rig/exp1_recon_s.pdf> <./pics_sdlm/00_exp_SAE_Orig/exp2_recon_s.pdf
 
@@ -1736,88 +2242,88 @@ single page
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./pics_sdlm/00_exp_SAE_Orig/
 exp2_mse_nons.pdf): PDF inclusion: multiple pdfs with page group included in a 
 single page
->] <pics_sdlm/rbm.png, id=4843, 406.6392pt x 429.5247pt>
+>] <pics_sdlm/rbm.png, id=4849, 406.6392pt x 429.5247pt>
 File: pics_sdlm/rbm.png Graphic file (type png)
 
 <use pics_sdlm/rbm.png>
-Package pdftex.def Info: pics_sdlm/rbm.png used on input line 717.
+Package pdftex.def Info: pics_sdlm/rbm.png used on input line 718.
 (pdftex.def)             Requested size: 144.5977pt x 152.73466pt.
 
-<pics_sdlm/rSTDP_rbm.png, id=4844, 271.0125pt x 160.6803pt>
+<pics_sdlm/rSTDP_rbm.png, id=4850, 271.0125pt x 160.6803pt>
 File: pics_sdlm/rSTDP_rbm.png Graphic file (type png)
 
 <use pics_sdlm/rSTDP_rbm.png>
-Package pdftex.def Info: pics_sdlm/rSTDP_rbm.png used on input line 720.
+Package pdftex.def Info: pics_sdlm/rSTDP_rbm.png used on input line 721.
 (pdftex.def)             Requested size: 289.1954pt x 171.46773pt.
 
-<pics_sdlm/10_exp_SRBM_Orig/exp1_weights_s.png, id=4847, 433.62pt x 289.08pt>
+<pics_sdlm/10_exp_SRBM_Orig/exp1_weights_s.png, id=4853, 433.62pt x 289.08pt>
 File: pics_sdlm/10_exp_SRBM_Orig/exp1_weights_s.png Graphic file (type png)
 
 <use pics_sdlm/10_exp_SRBM_Orig/exp1_weights_s.png>
 Package pdftex.def Info: pics_sdlm/10_exp_SRBM_Orig/exp1_weights_s.png used on 
-input line 732.
+input line 733.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/10_exp_SRBM_Orig/exp2_weights_s.png, id=4848, 433.62pt x 289.08pt>
+<pics_sdlm/10_exp_SRBM_Orig/exp2_weights_s.png, id=4854, 433.62pt x 289.08pt>
 File: pics_sdlm/10_exp_SRBM_Orig/exp2_weights_s.png Graphic file (type png)
 
 <use pics_sdlm/10_exp_SRBM_Orig/exp2_weights_s.png>
 Package pdftex.def Info: pics_sdlm/10_exp_SRBM_Orig/exp2_weights_s.png used on 
-input line 736.
+input line 737.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/10_exp_SRBM_Orig/exp1_recon_s.pdf, id=4849, 433.62pt x 289.08pt>
+<pics_sdlm/10_exp_SRBM_Orig/exp1_recon_s.pdf, id=4855, 433.62pt x 289.08pt>
 File: pics_sdlm/10_exp_SRBM_Orig/exp1_recon_s.pdf Graphic file (type pdf)
 
 <use pics_sdlm/10_exp_SRBM_Orig/exp1_recon_s.pdf>
 Package pdftex.def Info: pics_sdlm/10_exp_SRBM_Orig/exp1_recon_s.pdf used on in
-put line 740.
+put line 741.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/10_exp_SRBM_Orig/exp2_recon_s.pdf, id=4850, 433.62pt x 289.08pt>
+<pics_sdlm/10_exp_SRBM_Orig/exp2_recon_s.pdf, id=4856, 433.62pt x 289.08pt>
 File: pics_sdlm/10_exp_SRBM_Orig/exp2_recon_s.pdf Graphic file (type pdf)
 
 <use pics_sdlm/10_exp_SRBM_Orig/exp2_recon_s.pdf>
 Package pdftex.def Info: pics_sdlm/10_exp_SRBM_Orig/exp2_recon_s.pdf used on in
-put line 744.
+put line 745.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/10_exp_SRBM_Orig/exp1_hid_s.pdf, id=4851, 433.62pt x 289.08pt>
+<pics_sdlm/10_exp_SRBM_Orig/exp1_hid_s.pdf, id=4857, 433.62pt x 289.08pt>
 File: pics_sdlm/10_exp_SRBM_Orig/exp1_hid_s.pdf Graphic file (type pdf)
 
 <use pics_sdlm/10_exp_SRBM_Orig/exp1_hid_s.pdf>
 Package pdftex.def Info: pics_sdlm/10_exp_SRBM_Orig/exp1_hid_s.pdf used on inpu
-t line 748.
+t line 749.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/10_exp_SRBM_Orig/exp2_hid_s.pdf, id=4852, 433.62pt x 289.08pt>
+<pics_sdlm/10_exp_SRBM_Orig/exp2_hid_s.pdf, id=4858, 433.62pt x 289.08pt>
 File: pics_sdlm/10_exp_SRBM_Orig/exp2_hid_s.pdf Graphic file (type pdf)
 
 <use pics_sdlm/10_exp_SRBM_Orig/exp2_hid_s.pdf>
 Package pdftex.def Info: pics_sdlm/10_exp_SRBM_Orig/exp2_hid_s.pdf used on inpu
-t line 752.
+t line 753.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/10_exp_SRBM_Orig/exp1_mse_nons.pdf, id=4853, 433.62pt x 289.08pt>
+<pics_sdlm/10_exp_SRBM_Orig/exp1_mse_nons.pdf, id=4859, 433.62pt x 289.08pt>
 File: pics_sdlm/10_exp_SRBM_Orig/exp1_mse_nons.pdf Graphic file (type pdf)
 
 <use pics_sdlm/10_exp_SRBM_Orig/exp1_mse_nons.pdf>
 Package pdftex.def Info: pics_sdlm/10_exp_SRBM_Orig/exp1_mse_nons.pdf used on i
-nput line 756.
+nput line 757.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/10_exp_SRBM_Orig/exp2_mse_nons.pdf, id=4854, 433.62pt x 289.08pt>
+<pics_sdlm/10_exp_SRBM_Orig/exp2_mse_nons.pdf, id=4860, 433.62pt x 289.08pt>
 File: pics_sdlm/10_exp_SRBM_Orig/exp2_mse_nons.pdf Graphic file (type pdf)
 
 <use pics_sdlm/10_exp_SRBM_Orig/exp2_mse_nons.pdf>
 Package pdftex.def Info: pics_sdlm/10_exp_SRBM_Orig/exp2_mse_nons.pdf used on i
-nput line 760.
+nput line 761.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
 
-LaTeX Warning: Float too large for page by 27.67487pt on input line 766.
+LaTeX Warning: Float too large for page by 27.67487pt on input line 767.
 
-[116 <./pics_sdlm/rbm.png> <./pics_sdlm/rSTDP_rbm.png>] [117 <./pics_sdlm/10_ex
+[117 <./pics_sdlm/rbm.png> <./pics_sdlm/rSTDP_rbm.png>] [118 <./pics_sdlm/10_ex
 p_SRBM_Orig/exp1_weights_s.png> <./pics_sdlm/10_exp_SRBM_Orig/exp2_weights_s.pn
 g> <./pics_sdlm/10_exp_SRBM_Orig/exp1_recon_s.pdf> <./pics_sdlm/10_exp_SRBM_Ori
 g/exp2_recon_s.pdf
@@ -1849,174 +2355,174 @@ pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./pics_sdlm/10_exp_SRBM_Orig
 File: pics_sdlm/00_exp_SAE_Orig/exp2_weights_s.png Graphic file (type png)
  <use pics_sdlm/00_exp_SAE_Orig/exp2_weights_s.png>
 Package pdftex.def Info: pics_sdlm/00_exp_SAE_Orig/exp2_weights_s.png used on i
-nput line 819.
+nput line 820.
 (pdftex.def)             Requested size: 189.2875pt x 126.19429pt.
 
-<pics_sdlm/01_exp_SAE_Orig_long/exp2_weights_s.png, id=5079, 433.62pt x 289.08p
+<pics_sdlm/01_exp_SAE_Orig_long/exp2_weights_s.png, id=5085, 433.62pt x 289.08p
 t>
 File: pics_sdlm/01_exp_SAE_Orig_long/exp2_weights_s.png Graphic file (type png)
 
  <use pics_sdlm/01_exp_SAE_Orig_long/exp2_weights_s.png>
 Package pdftex.def Info: pics_sdlm/01_exp_SAE_Orig_long/exp2_weights_s.png used
- on input line 822.
+ on input line 823.
 (pdftex.def)             Requested size: 189.2875pt x 126.19429pt.
 
-<pics_sdlm/03_exp_SAE_noise_long/exp2_weights_s.png, id=5080, 433.62pt x 289.08
+<pics_sdlm/03_exp_SAE_noise_long/exp2_weights_s.png, id=5086, 433.62pt x 289.08
 pt>
 File: pics_sdlm/03_exp_SAE_noise_long/exp2_weights_s.png Graphic file (type png
 )
  <use pics_sdlm/03_exp_SAE_noise_long/exp2_weights_s.png>
 Package pdftex.def Info: pics_sdlm/03_exp_SAE_noise_long/exp2_weights_s.png use
-d on input line 825.
+d on input line 826.
 (pdftex.def)             Requested size: 189.2875pt x 126.19429pt.
 
-<pics_sdlm/05_exp_SAE_teach_long/exp2_weights_s.png, id=5081, 433.62pt x 289.08
+<pics_sdlm/05_exp_SAE_teach_long/exp2_weights_s.png, id=5087, 433.62pt x 289.08
 pt>
 File: pics_sdlm/05_exp_SAE_teach_long/exp2_weights_s.png Graphic file (type png
 )
  <use pics_sdlm/05_exp_SAE_teach_long/exp2_weights_s.png>
 Package pdftex.def Info: pics_sdlm/05_exp_SAE_teach_long/exp2_weights_s.png use
-d on input line 828.
+d on input line 829.
 (pdftex.def)             Requested size: 189.2875pt x 126.19429pt.
 
-<pics_sdlm/07_exp_SAE_all_long/exp2_weights_s.png, id=5082, 433.62pt x 289.08pt
+<pics_sdlm/07_exp_SAE_all_long/exp2_weights_s.png, id=5088, 433.62pt x 289.08pt
 >
 File: pics_sdlm/07_exp_SAE_all_long/exp2_weights_s.png Graphic file (type png)
  <use pics_sdlm/07_exp_SAE_all_long/exp2_weights_s.png>
 Package pdftex.def Info: pics_sdlm/07_exp_SAE_all_long/exp2_weights_s.png used 
-on input line 831.
+on input line 832.
 (pdftex.def)             Requested size: 189.2875pt x 126.19429pt.
 File: pics_sdlm/00_exp_SAE_Orig/exp2_mse_nons.pdf Graphic file (type pdf)
 
 <use pics_sdlm/00_exp_SAE_Orig/exp2_mse_nons.pdf>
 Package pdftex.def Info: pics_sdlm/00_exp_SAE_Orig/exp2_mse_nons.pdf used on in
-put line 837.
+put line 838.
 (pdftex.def)             Requested size: 189.2875pt x 126.19429pt.
 
-<pics_sdlm/01_exp_SAE_Orig_long/exp2_mse_nons.pdf, id=5083, 433.62pt x 289.08pt
+<pics_sdlm/01_exp_SAE_Orig_long/exp2_mse_nons.pdf, id=5089, 433.62pt x 289.08pt
 >
 File: pics_sdlm/01_exp_SAE_Orig_long/exp2_mse_nons.pdf Graphic file (type pdf)
  <use pics_sdlm/01_exp_SAE_Orig_long/exp2_mse_nons.pdf>
 Package pdftex.def Info: pics_sdlm/01_exp_SAE_Orig_long/exp2_mse_nons.pdf used 
-on input line 839.
+on input line 840.
 (pdftex.def)             Requested size: 189.2875pt x 126.19429pt.
 
-<pics_sdlm/03_exp_SAE_noise_long/exp2_mse_nons.pdf, id=5084, 433.62pt x 289.08p
+<pics_sdlm/03_exp_SAE_noise_long/exp2_mse_nons.pdf, id=5090, 433.62pt x 289.08p
 t>
 File: pics_sdlm/03_exp_SAE_noise_long/exp2_mse_nons.pdf Graphic file (type pdf)
 
  <use pics_sdlm/03_exp_SAE_noise_long/exp2_mse_nons.pdf>
 Package pdftex.def Info: pics_sdlm/03_exp_SAE_noise_long/exp2_mse_nons.pdf used
- on input line 841.
+ on input line 842.
 (pdftex.def)             Requested size: 189.2875pt x 126.19429pt.
 
-<pics_sdlm/05_exp_SAE_teach_long/exp2_mse_nons.pdf, id=5085, 433.62pt x 289.08p
+<pics_sdlm/05_exp_SAE_teach_long/exp2_mse_nons.pdf, id=5091, 433.62pt x 289.08p
 t>
 File: pics_sdlm/05_exp_SAE_teach_long/exp2_mse_nons.pdf Graphic file (type pdf)
 
  <use pics_sdlm/05_exp_SAE_teach_long/exp2_mse_nons.pdf>
 Package pdftex.def Info: pics_sdlm/05_exp_SAE_teach_long/exp2_mse_nons.pdf used
- on input line 843.
+ on input line 844.
 (pdftex.def)             Requested size: 189.2875pt x 126.19429pt.
 
-<pics_sdlm/07_exp_SAE_all_long/exp2_mse_nons.pdf, id=5086, 433.62pt x 289.08pt>
+<pics_sdlm/07_exp_SAE_all_long/exp2_mse_nons.pdf, id=5092, 433.62pt x 289.08pt>
 File: pics_sdlm/07_exp_SAE_all_long/exp2_mse_nons.pdf Graphic file (type pdf)
 <use pics_sdlm/07_exp_SAE_all_long/exp2_mse_nons.pdf>
 Package pdftex.def Info: pics_sdlm/07_exp_SAE_all_long/exp2_mse_nons.pdf used o
-n input line 845.
+n input line 846.
 (pdftex.def)             Requested size: 189.2875pt x 126.19429pt.
 
 
-LaTeX Warning: Float too large for page by 25.47891pt on input line 850.
+LaTeX Warning: Float too large for page by 25.47891pt on input line 851.
 
-[118]
+[119]
 File: pics_sdlm/10_exp_SRBM_Orig/exp2_weights_s.png Graphic file (type png)
  <use pics_sdlm/10_exp_SRBM_Orig/exp2_weights_s.png>
 Package pdftex.def Info: pics_sdlm/10_exp_SRBM_Orig/exp2_weights_s.png used on 
-input line 857.
+input line 858.
 (pdftex.def)             Requested size: 189.2875pt x 126.19429pt.
 
-<pics_sdlm/11_exp_SRBM_Orig_long/exp2_weights_s.png, id=5091, 433.62pt x 289.08
+<pics_sdlm/11_exp_SRBM_Orig_long/exp2_weights_s.png, id=5097, 433.62pt x 289.08
 pt>
 File: pics_sdlm/11_exp_SRBM_Orig_long/exp2_weights_s.png Graphic file (type png
 )
  <use pics_sdlm/11_exp_SRBM_Orig_long/exp2_weights_s.png>
 Package pdftex.def Info: pics_sdlm/11_exp_SRBM_Orig_long/exp2_weights_s.png use
-d on input line 860.
+d on input line 861.
 (pdftex.def)             Requested size: 189.2875pt x 126.19429pt.
 
-<pics_sdlm/13_exp_SRBM_noise_long/exp2_weights_s.png, id=5092, 433.62pt x 289.0
+<pics_sdlm/13_exp_SRBM_noise_long/exp2_weights_s.png, id=5098, 433.62pt x 289.0
 8pt>
 File: pics_sdlm/13_exp_SRBM_noise_long/exp2_weights_s.png Graphic file (type pn
 g)
  <use pics_sdlm/13_exp_SRBM_noise_long/exp2_weights_s.png>
 Package pdftex.def Info: pics_sdlm/13_exp_SRBM_noise_long/exp2_weights_s.png us
-ed on input line 863.
+ed on input line 864.
 (pdftex.def)             Requested size: 189.2875pt x 126.19429pt.
 
-<pics_sdlm/15_exp_SRBM_teach_long/exp2_weights_s.png, id=5093, 433.62pt x 289.0
+<pics_sdlm/15_exp_SRBM_teach_long/exp2_weights_s.png, id=5099, 433.62pt x 289.0
 8pt>
 File: pics_sdlm/15_exp_SRBM_teach_long/exp2_weights_s.png Graphic file (type pn
 g)
  <use pics_sdlm/15_exp_SRBM_teach_long/exp2_weights_s.png>
 Package pdftex.def Info: pics_sdlm/15_exp_SRBM_teach_long/exp2_weights_s.png us
-ed on input line 866.
+ed on input line 867.
 (pdftex.def)             Requested size: 189.2875pt x 126.19429pt.
 
-<pics_sdlm/17_exp_SRBM_all_long/exp2_weights_s.png, id=5094, 433.62pt x 289.08p
+<pics_sdlm/17_exp_SRBM_all_long/exp2_weights_s.png, id=5100, 433.62pt x 289.08p
 t>
 File: pics_sdlm/17_exp_SRBM_all_long/exp2_weights_s.png Graphic file (type png)
 
  <use pics_sdlm/17_exp_SRBM_all_long/exp2_weights_s.png>
 Package pdftex.def Info: pics_sdlm/17_exp_SRBM_all_long/exp2_weights_s.png used
- on input line 869.
+ on input line 870.
 (pdftex.def)             Requested size: 189.2875pt x 126.19429pt.
 File: pics_sdlm/10_exp_SRBM_Orig/exp2_mse_nons.pdf Graphic file (type pdf)
 
 <use pics_sdlm/10_exp_SRBM_Orig/exp2_mse_nons.pdf>
 Package pdftex.def Info: pics_sdlm/10_exp_SRBM_Orig/exp2_mse_nons.pdf used on i
-nput line 875.
+nput line 876.
 (pdftex.def)             Requested size: 189.2875pt x 126.19429pt.
 
-<pics_sdlm/11_exp_SRBM_Orig_long/exp2_mse_nons.pdf, id=5095, 433.62pt x 289.08p
+<pics_sdlm/11_exp_SRBM_Orig_long/exp2_mse_nons.pdf, id=5101, 433.62pt x 289.08p
 t>
 File: pics_sdlm/11_exp_SRBM_Orig_long/exp2_mse_nons.pdf Graphic file (type pdf)
 
  <use pics_sdlm/11_exp_SRBM_Orig_long/exp2_mse_nons.pdf>
 Package pdftex.def Info: pics_sdlm/11_exp_SRBM_Orig_long/exp2_mse_nons.pdf used
- on input line 877.
+ on input line 878.
 (pdftex.def)             Requested size: 189.2875pt x 126.19429pt.
 
-<pics_sdlm/13_exp_SRBM_noise_long/exp2_mse_nons.pdf, id=5096, 433.62pt x 289.08
+<pics_sdlm/13_exp_SRBM_noise_long/exp2_mse_nons.pdf, id=5102, 433.62pt x 289.08
 pt>
 File: pics_sdlm/13_exp_SRBM_noise_long/exp2_mse_nons.pdf Graphic file (type pdf
 )
  <use pics_sdlm/13_exp_SRBM_noise_long/exp2_mse_nons.pdf>
 Package pdftex.def Info: pics_sdlm/13_exp_SRBM_noise_long/exp2_mse_nons.pdf use
-d on input line 879.
+d on input line 880.
 (pdftex.def)             Requested size: 189.2875pt x 126.19429pt.
 
-<pics_sdlm/15_exp_SRBM_teach_long/exp2_mse_nons.pdf, id=5097, 433.62pt x 289.08
+<pics_sdlm/15_exp_SRBM_teach_long/exp2_mse_nons.pdf, id=5103, 433.62pt x 289.08
 pt>
 File: pics_sdlm/15_exp_SRBM_teach_long/exp2_mse_nons.pdf Graphic file (type pdf
 )
  <use pics_sdlm/15_exp_SRBM_teach_long/exp2_mse_nons.pdf>
 Package pdftex.def Info: pics_sdlm/15_exp_SRBM_teach_long/exp2_mse_nons.pdf use
-d on input line 881.
+d on input line 882.
 (pdftex.def)             Requested size: 189.2875pt x 126.19429pt.
 
-<pics_sdlm/17_exp_SRBM_all_long/exp2_mse_nons.pdf, id=5098, 433.62pt x 289.08pt
+<pics_sdlm/17_exp_SRBM_all_long/exp2_mse_nons.pdf, id=5104, 433.62pt x 289.08pt
 >
 File: pics_sdlm/17_exp_SRBM_all_long/exp2_mse_nons.pdf Graphic file (type pdf)
  <use pics_sdlm/17_exp_SRBM_all_long/exp2_mse_nons.pdf>
 Package pdftex.def Info: pics_sdlm/17_exp_SRBM_all_long/exp2_mse_nons.pdf used 
-on input line 883.
+on input line 884.
 (pdftex.def)             Requested size: 189.2875pt x 126.19429pt.
 
 
-LaTeX Warning: Float too large for page by 25.47891pt on input line 888.
+LaTeX Warning: Float too large for page by 25.47891pt on input line 889.
 
-[119] [120 <./pics_sdlm/01_exp_SAE_Orig_long/exp2_weights_s.png> <./pics_sdlm/0
+[120] [121 <./pics_sdlm/01_exp_SAE_Orig_long/exp2_weights_s.png> <./pics_sdlm/0
 3_exp_SAE_noise_long/exp2_weights_s.png> <./pics_sdlm/05_exp_SAE_teach_long/exp
 2_weights_s.png> <./pics_sdlm/07_exp_SAE_all_long/exp2_weights_s.png> <./pics_s
 dlm/01_exp_SAE_Orig_long/exp2_mse_nons.pdf> <./pics_sdlm/03_exp_SAE_noise_long/
@@ -2035,7 +2541,7 @@ _long/exp2_mse_nons.pdf): PDF inclusion: multiple pdfs with page group included
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./pics_sdlm/07_exp_SAE_all_l
 ong/exp2_mse_nons.pdf): PDF inclusion: multiple pdfs with page group included i
 n a single page
->] [121 <./pics_sdlm/11_exp_SRBM_Orig_long/exp2_weights_s.png> <./pics_sdlm/13_
+>] [122 <./pics_sdlm/11_exp_SRBM_Orig_long/exp2_weights_s.png> <./pics_sdlm/13_
 exp_SRBM_noise_long/exp2_weights_s.png> <./pics_sdlm/15_exp_SRBM_teach_long/exp
 2_weights_s.png> <./pics_sdlm/17_exp_SRBM_all_long/exp2_weights_s.png> <./pics_
 sdlm/11_exp_SRBM_Orig_long/exp2_mse_nons.pdf> <./pics_sdlm/13_exp_SRBM_noise_lo
@@ -2054,117 +2560,113 @@ d in a single page
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./pics_sdlm/17_exp_SRBM_all_
 long/exp2_mse_nons.pdf): PDF inclusion: multiple pdfs with page group included 
 in a single page
->]
-Underfull \vbox (badness 1389) has occurred while \output is active []
-
- [122]
-<pics_sdlm/mnist.png, id=5316, 291.0072pt x 313.17pt>
+>] [123] [124] <pics_sdlm/mnist.png, id=5328, 291.0072pt x 313.17pt>
 File: pics_sdlm/mnist.png Graphic file (type png)
 
 <use pics_sdlm/mnist.png>
-Package pdftex.def Info: pics_sdlm/mnist.png used on input line 1070.
+Package pdftex.def Info: pics_sdlm/mnist.png used on input line 1071.
 (pdftex.def)             Requested size: 262.90613pt x 282.93034pt.
- [123]
-<pics_sdlm/22_MNIST_AE/2_60000_0.pdf, id=5325, 505.89pt x 505.89pt>
+
+Underfull \vbox (badness 3333) has occurred while \output is active []
+
+ [125 <./pics_sdlm/mnist.png>]
+<pics_sdlm/22_MNIST_AE/2_60000_0.pdf, id=5336, 505.89pt x 505.89pt>
 File: pics_sdlm/22_MNIST_AE/2_60000_0.pdf Graphic file (type pdf)
 
 <use pics_sdlm/22_MNIST_AE/2_60000_0.pdf>
 Package pdftex.def Info: pics_sdlm/22_MNIST_AE/2_60000_0.pdf used on input line
- 1090.
+ 1091.
 (pdftex.def)             Requested size: 175.2663pt x 175.26556pt.
 
-<pics_sdlm/23_MNIST_AE_noise/2_60000_0.pdf, id=5326, 505.89pt x 505.89pt>
+<pics_sdlm/23_MNIST_AE_noise/2_60000_0.pdf, id=5337, 505.89pt x 505.89pt>
 File: pics_sdlm/23_MNIST_AE_noise/2_60000_0.pdf Graphic file (type pdf)
 
 <use pics_sdlm/23_MNIST_AE_noise/2_60000_0.pdf>
 Package pdftex.def Info: pics_sdlm/23_MNIST_AE_noise/2_60000_0.pdf used on inpu
-t line 1094.
+t line 1095.
 (pdftex.def)             Requested size: 175.2663pt x 175.26556pt.
 
-<pics_sdlm/40_MNIST_SAE_original/2_60000_0.pdf, id=5327, 505.89pt x 505.89pt>
+<pics_sdlm/40_MNIST_SAE_original/2_60000_0.pdf, id=5338, 505.89pt x 505.89pt>
 File: pics_sdlm/40_MNIST_SAE_original/2_60000_0.pdf Graphic file (type pdf)
 
 <use pics_sdlm/40_MNIST_SAE_original/2_60000_0.pdf>
 Package pdftex.def Info: pics_sdlm/40_MNIST_SAE_original/2_60000_0.pdf used on 
-input line 1098.
+input line 1099.
 (pdftex.def)             Requested size: 175.2663pt x 175.26556pt.
 
-<pics_sdlm/42_MNIST_SAE_noise/2_60000_0.pdf, id=5328, 505.89pt x 505.89pt>
+<pics_sdlm/42_MNIST_SAE_noise/2_60000_0.pdf, id=5339, 505.89pt x 505.89pt>
 File: pics_sdlm/42_MNIST_SAE_noise/2_60000_0.pdf Graphic file (type pdf)
 
 <use pics_sdlm/42_MNIST_SAE_noise/2_60000_0.pdf>
 Package pdftex.def Info: pics_sdlm/42_MNIST_SAE_noise/2_60000_0.pdf used on inp
-ut line 1102.
+ut line 1103.
 (pdftex.def)             Requested size: 175.2663pt x 175.26556pt.
 
-<pics_sdlm/41_MNIST_SAE_teach/2_60000_0.pdf, id=5329, 505.89pt x 505.89pt>
+<pics_sdlm/41_MNIST_SAE_teach/2_60000_0.pdf, id=5340, 505.89pt x 505.89pt>
 File: pics_sdlm/41_MNIST_SAE_teach/2_60000_0.pdf Graphic file (type pdf)
 
 <use pics_sdlm/41_MNIST_SAE_teach/2_60000_0.pdf>
 Package pdftex.def Info: pics_sdlm/41_MNIST_SAE_teach/2_60000_0.pdf used on inp
-ut line 1107.
+ut line 1108.
 (pdftex.def)             Requested size: 175.2663pt x 175.26556pt.
 
-<pics_sdlm/43_MNIST_SAE_all/2_60000_0.pdf, id=5330, 505.89pt x 505.89pt>
+<pics_sdlm/43_MNIST_SAE_all/2_60000_0.pdf, id=5341, 505.89pt x 505.89pt>
 File: pics_sdlm/43_MNIST_SAE_all/2_60000_0.pdf Graphic file (type pdf)
 
 <use pics_sdlm/43_MNIST_SAE_all/2_60000_0.pdf>
 Package pdftex.def Info: pics_sdlm/43_MNIST_SAE_all/2_60000_0.pdf used on input
- line 1111.
+ line 1112.
 (pdftex.def)             Requested size: 175.2663pt x 175.26556pt.
 
-<pics_sdlm/32_MNIST_RBM/2_60000_0.pdf, id=5331, 505.89pt x 505.89pt>
+<pics_sdlm/32_MNIST_RBM/2_60000_0.pdf, id=5342, 505.89pt x 505.89pt>
 File: pics_sdlm/32_MNIST_RBM/2_60000_0.pdf Graphic file (type pdf)
 
 <use pics_sdlm/32_MNIST_RBM/2_60000_0.pdf>
 Package pdftex.def Info: pics_sdlm/32_MNIST_RBM/2_60000_0.pdf used on input lin
-e 1121.
+e 1122.
 (pdftex.def)             Requested size: 175.2663pt x 175.26556pt.
 
-<pics_sdlm/33_MNIST_RBM_noise/2_60000_0.pdf, id=5332, 505.89pt x 505.89pt>
+<pics_sdlm/33_MNIST_RBM_noise/2_60000_0.pdf, id=5343, 505.89pt x 505.89pt>
 File: pics_sdlm/33_MNIST_RBM_noise/2_60000_0.pdf Graphic file (type pdf)
 
 <use pics_sdlm/33_MNIST_RBM_noise/2_60000_0.pdf>
 Package pdftex.def Info: pics_sdlm/33_MNIST_RBM_noise/2_60000_0.pdf used on inp
-ut line 1125.
+ut line 1126.
 (pdftex.def)             Requested size: 175.2663pt x 175.26556pt.
 
-<pics_sdlm/50_MNIST_SRBM_original/2_60000_0.pdf, id=5333, 505.89pt x 505.89pt>
+<pics_sdlm/50_MNIST_SRBM_original/2_60000_0.pdf, id=5344, 505.89pt x 505.89pt>
 File: pics_sdlm/50_MNIST_SRBM_original/2_60000_0.pdf Graphic file (type pdf)
 
 <use pics_sdlm/50_MNIST_SRBM_original/2_60000_0.pdf>
 Package pdftex.def Info: pics_sdlm/50_MNIST_SRBM_original/2_60000_0.pdf used on
- input line 1129.
+ input line 1130.
 (pdftex.def)             Requested size: 175.2663pt x 175.26556pt.
 
-<pics_sdlm/52_MNIST_SRBM_noise/2_60000_0.pdf, id=5334, 505.89pt x 505.89pt>
+<pics_sdlm/52_MNIST_SRBM_noise/2_60000_0.pdf, id=5345, 505.89pt x 505.89pt>
 File: pics_sdlm/52_MNIST_SRBM_noise/2_60000_0.pdf Graphic file (type pdf)
 
 <use pics_sdlm/52_MNIST_SRBM_noise/2_60000_0.pdf>
 Package pdftex.def Info: pics_sdlm/52_MNIST_SRBM_noise/2_60000_0.pdf used on in
-put line 1133.
+put line 1134.
 (pdftex.def)             Requested size: 175.2663pt x 175.26556pt.
 
-<pics_sdlm/51_MNIST_SRBM_teach/2_60000_0.pdf, id=5335, 505.89pt x 505.89pt>
+<pics_sdlm/51_MNIST_SRBM_teach/2_60000_0.pdf, id=5346, 505.89pt x 505.89pt>
 File: pics_sdlm/51_MNIST_SRBM_teach/2_60000_0.pdf Graphic file (type pdf)
 
 <use pics_sdlm/51_MNIST_SRBM_teach/2_60000_0.pdf>
 Package pdftex.def Info: pics_sdlm/51_MNIST_SRBM_teach/2_60000_0.pdf used on in
-put line 1137.
+put line 1138.
 (pdftex.def)             Requested size: 175.2663pt x 175.26556pt.
 
-<pics_sdlm/53_MNIST_SRBM_all/2_60000_0.pdf, id=5336, 505.89pt x 505.89pt>
+<pics_sdlm/53_MNIST_SRBM_all/2_60000_0.pdf, id=5347, 505.89pt x 505.89pt>
 File: pics_sdlm/53_MNIST_SRBM_all/2_60000_0.pdf Graphic file (type pdf)
 
 <use pics_sdlm/53_MNIST_SRBM_all/2_60000_0.pdf>
 Package pdftex.def Info: pics_sdlm/53_MNIST_SRBM_all/2_60000_0.pdf used on inpu
-t line 1141.
+t line 1142.
 (pdftex.def)             Requested size: 175.2663pt x 175.26556pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [124 <./pics_sdlm/mnist.png>] [125 <./pics_sdlm/22_MNIST_AE/2_60000_0.pdf> <./
-pics_sdlm/23_MNIST_AE_noise/2_60000_0.pdf
+ [126] [127 <./pics_sdlm/22_MNIST_AE/2_60000_0.pdf> <./pics_sdlm/23_MNIST_AE_no
+ise/2_60000_0.pdf
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./pics_sdlm/23_MNIST_AE_nois
 e/2_60000_0.pdf): PDF inclusion: multiple pdfs with page group included in a si
@@ -2189,7 +2691,7 @@ ingle page
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./pics_sdlm/43_MNIST_SAE_all
 /2_60000_0.pdf): PDF inclusion: multiple pdfs with page group included in a sin
 gle page
->] [126 <./pics_sdlm/32_MNIST_RBM/2_60000_0.pdf> <./pics_sdlm/33_MNIST_RBM_nois
+>] [128 <./pics_sdlm/32_MNIST_RBM/2_60000_0.pdf> <./pics_sdlm/33_MNIST_RBM_nois
 e/2_60000_0.pdf
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./pics_sdlm/33_MNIST_RBM_noi
@@ -2216,24 +2718,21 @@ pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./pics_sdlm/53_MNIST_SRBM_al
 l/2_60000_0.pdf): PDF inclusion: multiple pdfs with page group included in a si
 ngle page
 >]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [127]
-<pics_sdlm/43_MNIST_SAE_all/compare_result.pdf, id=6557, 484.209pt x 289.08pt>
+<pics_sdlm/43_MNIST_SAE_all/compare_result.pdf, id=6563, 484.209pt x 289.08pt>
 File: pics_sdlm/43_MNIST_SAE_all/compare_result.pdf Graphic file (type pdf)
 
 <use pics_sdlm/43_MNIST_SAE_all/compare_result.pdf>
 Package pdftex.def Info: pics_sdlm/43_MNIST_SAE_all/compare_result.pdf used on 
-input line 1196.
+input line 1197.
 (pdftex.def)             Requested size: 350.53928pt x 209.28429pt.
 
-<pics_sdlm/53_MNIST_SRBM_all/compare_result.pdf, id=6558, 484.209pt x 289.08pt>
+<pics_sdlm/53_MNIST_SRBM_all/compare_result.pdf, id=6564, 484.209pt x 289.08pt>
 File: pics_sdlm/53_MNIST_SRBM_all/compare_result.pdf Graphic file (type pdf)
 <use pics_sdlm/53_MNIST_SRBM_all/compare_result.pdf>
 Package pdftex.def Info: pics_sdlm/53_MNIST_SRBM_all/compare_result.pdf used on
- input line 1201.
+ input line 1202.
 (pdftex.def)             Requested size: 350.53928pt x 209.28429pt.
- [128] [129 <./pics_sdlm/43_MNIST_SAE_all/compare_result.pdf> <./pics_sdlm/53_M
+ [129] [130 <./pics_sdlm/43_MNIST_SAE_all/compare_result.pdf> <./pics_sdlm/53_M
 NIST_SRBM_all/compare_result.pdf
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./pics_sdlm/53_MNIST_SRBM_al
@@ -2242,172 +2741,172 @@ l/compare_result.pdf): PDF inclusion: multiple pdfs with page group included in
 >]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [130]
-<pics_sdlm/43_MNIST_SAE_all/latency.pdf, id=6682, 433.62pt x 289.08pt>
+ [131]
+<pics_sdlm/43_MNIST_SAE_all/latency.pdf, id=6688, 433.62pt x 289.08pt>
 File: pics_sdlm/43_MNIST_SAE_all/latency.pdf Graphic file (type pdf)
 
 <use pics_sdlm/43_MNIST_SAE_all/latency.pdf>
 Package pdftex.def Info: pics_sdlm/43_MNIST_SAE_all/latency.pdf used on input l
-ine 1289.
+ine 1290.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/51_MNIST_SRBM_teach/latency.pdf, id=6683, 433.62pt x 289.08pt>
+<pics_sdlm/51_MNIST_SRBM_teach/latency.pdf, id=6689, 433.62pt x 289.08pt>
 File: pics_sdlm/51_MNIST_SRBM_teach/latency.pdf Graphic file (type pdf)
 
 <use pics_sdlm/51_MNIST_SRBM_teach/latency.pdf>
 Package pdftex.def Info: pics_sdlm/51_MNIST_SRBM_teach/latency.pdf used on inpu
-t line 1293.
+t line 1294.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
- [131 <./pics_sdlm/43_MNIST_SAE_all/latency.pdf> <./pics_sdlm/51_MNIST_SRBM_tea
+ [132 <./pics_sdlm/43_MNIST_SAE_all/latency.pdf> <./pics_sdlm/51_MNIST_SRBM_tea
 ch/latency.pdf
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./pics_sdlm/51_MNIST_SRBM_te
 ach/latency.pdf): PDF inclusion: multiple pdfs with page group included in a si
 ngle page
->] <pics_sdlm/43_MNIST_SAE_all/result_freq.pdf, id=6768, 433.62pt x 289.08pt>
+>] <pics_sdlm/43_MNIST_SAE_all/result_freq.pdf, id=6774, 433.62pt x 289.08pt>
 File: pics_sdlm/43_MNIST_SAE_all/result_freq.pdf Graphic file (type pdf)
 
 <use pics_sdlm/43_MNIST_SAE_all/result_freq.pdf>
 Package pdftex.def Info: pics_sdlm/43_MNIST_SAE_all/result_freq.pdf used on inp
-ut line 1326.
+ut line 1327.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/51_MNIST_SRBM_teach/result_freq.pdf, id=6769, 433.62pt x 289.08pt>
+<pics_sdlm/51_MNIST_SRBM_teach/result_freq.pdf, id=6775, 433.62pt x 289.08pt>
 File: pics_sdlm/51_MNIST_SRBM_teach/result_freq.pdf Graphic file (type pdf)
 
 <use pics_sdlm/51_MNIST_SRBM_teach/result_freq.pdf>
 Package pdftex.def Info: pics_sdlm/51_MNIST_SRBM_teach/result_freq.pdf used on 
-input line 1330.
+input line 1331.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
- [132 <./pics_sdlm/43_MNIST_SAE_all/result_freq.pdf> <./pics_sdlm/51_MNIST_SRBM
+ [133 <./pics_sdlm/43_MNIST_SAE_all/result_freq.pdf> <./pics_sdlm/51_MNIST_SRBM
 _teach/result_freq.pdf
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./pics_sdlm/51_MNIST_SRBM_te
 ach/result_freq.pdf): PDF inclusion: multiple pdfs with page group included in 
 a single page
 >]
-<pics_sdlm/53_MNIST_SRBM_all/compare_recon.pdf, id=6865, 484.209pt x 289.08pt>
+<pics_sdlm/53_MNIST_SRBM_all/compare_recon.pdf, id=6872, 484.209pt x 289.08pt>
 File: pics_sdlm/53_MNIST_SRBM_all/compare_recon.pdf Graphic file (type pdf)
 
 <use pics_sdlm/53_MNIST_SRBM_all/compare_recon.pdf>
 Package pdftex.def Info: pics_sdlm/53_MNIST_SRBM_all/compare_recon.pdf used on 
-input line 1378.
+input line 1379.
 (pdftex.def)             Requested size: 350.53928pt x 209.28429pt.
 
-<pics_sdlm/53_MNIST_SRBM_all/compare_recon_rbm.pdf, id=6866, 484.209pt x 289.08
+<pics_sdlm/53_MNIST_SRBM_all/compare_recon_rbm.pdf, id=6873, 484.209pt x 289.08
 pt>
 File: pics_sdlm/53_MNIST_SRBM_all/compare_recon_rbm.pdf Graphic file (type pdf)
 
  <use pics_sdlm/53_MNIST_SRBM_all/compare_recon_rbm.pdf>
 Package pdftex.def Info: pics_sdlm/53_MNIST_SRBM_all/compare_recon_rbm.pdf used
- on input line 1382.
+ on input line 1383.
 (pdftex.def)             Requested size: 350.53928pt x 209.28429pt.
 
-<pics_sdlm/22_MNIST_AE/recon_digit.pdf, id=6867, 433.62pt x 289.08pt>
+<pics_sdlm/22_MNIST_AE/recon_digit.pdf, id=6874, 433.62pt x 289.08pt>
 File: pics_sdlm/22_MNIST_AE/recon_digit.pdf Graphic file (type pdf)
 
 <use pics_sdlm/22_MNIST_AE/recon_digit.pdf>
 Package pdftex.def Info: pics_sdlm/22_MNIST_AE/recon_digit.pdf used on input li
-ne 1392.
+ne 1393.
 (pdftex.def)             Requested size: 140.21838pt x 93.4779pt.
 
-<pics_sdlm/23_MNIST_AE_noise/recon_digit.pdf, id=6868, 433.62pt x 289.08pt>
+<pics_sdlm/23_MNIST_AE_noise/recon_digit.pdf, id=6875, 433.62pt x 289.08pt>
 File: pics_sdlm/23_MNIST_AE_noise/recon_digit.pdf Graphic file (type pdf)
 
 <use pics_sdlm/23_MNIST_AE_noise/recon_digit.pdf>
 Package pdftex.def Info: pics_sdlm/23_MNIST_AE_noise/recon_digit.pdf used on in
-put line 1396.
+put line 1397.
 (pdftex.def)             Requested size: 140.21838pt x 93.4779pt.
 
-<pics_sdlm/40_MNIST_SAE_original/recon_digit.pdf, id=6869, 433.62pt x 289.08pt>
+<pics_sdlm/40_MNIST_SAE_original/recon_digit.pdf, id=6876, 433.62pt x 289.08pt>
 File: pics_sdlm/40_MNIST_SAE_original/recon_digit.pdf Graphic file (type pdf)
 <use pics_sdlm/40_MNIST_SAE_original/recon_digit.pdf>
 Package pdftex.def Info: pics_sdlm/40_MNIST_SAE_original/recon_digit.pdf used o
-n input line 1400.
+n input line 1401.
 (pdftex.def)             Requested size: 140.21838pt x 93.4779pt.
 
-<pics_sdlm/42_MNIST_SAE_noise/recon_digit.pdf, id=6870, 433.62pt x 289.08pt>
+<pics_sdlm/42_MNIST_SAE_noise/recon_digit.pdf, id=6877, 433.62pt x 289.08pt>
 File: pics_sdlm/42_MNIST_SAE_noise/recon_digit.pdf Graphic file (type pdf)
 
 <use pics_sdlm/42_MNIST_SAE_noise/recon_digit.pdf>
 Package pdftex.def Info: pics_sdlm/42_MNIST_SAE_noise/recon_digit.pdf used on i
-nput line 1404.
+nput line 1405.
 (pdftex.def)             Requested size: 140.21838pt x 93.4779pt.
 
-<pics_sdlm/41_MNIST_SAE_teach/recon_digit.pdf, id=6871, 433.62pt x 289.08pt>
+<pics_sdlm/41_MNIST_SAE_teach/recon_digit.pdf, id=6878, 433.62pt x 289.08pt>
 File: pics_sdlm/41_MNIST_SAE_teach/recon_digit.pdf Graphic file (type pdf)
 
 <use pics_sdlm/41_MNIST_SAE_teach/recon_digit.pdf>
 Package pdftex.def Info: pics_sdlm/41_MNIST_SAE_teach/recon_digit.pdf used on i
-nput line 1408.
+nput line 1409.
 (pdftex.def)             Requested size: 140.21838pt x 93.4779pt.
 
-<pics_sdlm/43_MNIST_SAE_all/recon_digit.pdf, id=6872, 433.62pt x 289.08pt>
+<pics_sdlm/43_MNIST_SAE_all/recon_digit.pdf, id=6879, 433.62pt x 289.08pt>
 File: pics_sdlm/43_MNIST_SAE_all/recon_digit.pdf Graphic file (type pdf)
 
 <use pics_sdlm/43_MNIST_SAE_all/recon_digit.pdf>
 Package pdftex.def Info: pics_sdlm/43_MNIST_SAE_all/recon_digit.pdf used on inp
-ut line 1412.
+ut line 1413.
 (pdftex.def)             Requested size: 140.21838pt x 93.4779pt.
 
-<pics_sdlm/32_MNIST_RBM/recon_digit.pdf, id=6873, 433.62pt x 289.08pt>
+<pics_sdlm/32_MNIST_RBM/recon_digit.pdf, id=6880, 433.62pt x 289.08pt>
 File: pics_sdlm/32_MNIST_RBM/recon_digit.pdf Graphic file (type pdf)
 
 <use pics_sdlm/32_MNIST_RBM/recon_digit.pdf>
 Package pdftex.def Info: pics_sdlm/32_MNIST_RBM/recon_digit.pdf used on input l
-ine 1416.
+ine 1417.
 (pdftex.def)             Requested size: 140.21838pt x 93.4779pt.
 
-<pics_sdlm/33_MNIST_RBM_noise/recon_digit.pdf, id=6874, 433.62pt x 289.08pt>
+<pics_sdlm/33_MNIST_RBM_noise/recon_digit.pdf, id=6881, 433.62pt x 289.08pt>
 File: pics_sdlm/33_MNIST_RBM_noise/recon_digit.pdf Graphic file (type pdf)
 
 <use pics_sdlm/33_MNIST_RBM_noise/recon_digit.pdf>
 Package pdftex.def Info: pics_sdlm/33_MNIST_RBM_noise/recon_digit.pdf used on i
-nput line 1420.
+nput line 1421.
 (pdftex.def)             Requested size: 140.21838pt x 93.4779pt.
 
-<pics_sdlm/50_MNIST_SRBM_original/recon_digit.pdf, id=6875, 433.62pt x 289.08pt
+<pics_sdlm/50_MNIST_SRBM_original/recon_digit.pdf, id=6882, 433.62pt x 289.08pt
 >
 File: pics_sdlm/50_MNIST_SRBM_original/recon_digit.pdf Graphic file (type pdf)
  <use pics_sdlm/50_MNIST_SRBM_original/recon_digit.pdf>
 Package pdftex.def Info: pics_sdlm/50_MNIST_SRBM_original/recon_digit.pdf used 
-on input line 1424.
+on input line 1425.
 (pdftex.def)             Requested size: 140.21838pt x 93.4779pt.
 
-<pics_sdlm/52_MNIST_SRBM_noise/recon_digit.pdf, id=6876, 433.62pt x 289.08pt>
+<pics_sdlm/52_MNIST_SRBM_noise/recon_digit.pdf, id=6883, 433.62pt x 289.08pt>
 File: pics_sdlm/52_MNIST_SRBM_noise/recon_digit.pdf Graphic file (type pdf)
 
 <use pics_sdlm/52_MNIST_SRBM_noise/recon_digit.pdf>
 Package pdftex.def Info: pics_sdlm/52_MNIST_SRBM_noise/recon_digit.pdf used on 
-input line 1428.
+input line 1429.
 (pdftex.def)             Requested size: 140.21838pt x 93.4779pt.
 
-<pics_sdlm/51_MNIST_SRBM_teach/recon_digit.pdf, id=6877, 433.62pt x 289.08pt>
+<pics_sdlm/51_MNIST_SRBM_teach/recon_digit.pdf, id=6884, 433.62pt x 289.08pt>
 File: pics_sdlm/51_MNIST_SRBM_teach/recon_digit.pdf Graphic file (type pdf)
 
 <use pics_sdlm/51_MNIST_SRBM_teach/recon_digit.pdf>
 Package pdftex.def Info: pics_sdlm/51_MNIST_SRBM_teach/recon_digit.pdf used on 
-input line 1432.
+input line 1433.
 (pdftex.def)             Requested size: 140.21838pt x 93.4779pt.
 
-<pics_sdlm/53_MNIST_SRBM_all/recon_digit.pdf, id=6878, 433.62pt x 289.08pt>
+<pics_sdlm/53_MNIST_SRBM_all/recon_digit.pdf, id=6885, 433.62pt x 289.08pt>
 File: pics_sdlm/53_MNIST_SRBM_all/recon_digit.pdf Graphic file (type pdf)
 
 <use pics_sdlm/53_MNIST_SRBM_all/recon_digit.pdf>
 Package pdftex.def Info: pics_sdlm/53_MNIST_SRBM_all/recon_digit.pdf used on in
-put line 1436.
+put line 1437.
 (pdftex.def)             Requested size: 140.21838pt x 93.4779pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [133]
-[134 <./pics_sdlm/53_MNIST_SRBM_all/compare_recon.pdf> <./pics_sdlm/53_MNIST_SR
+ [134]
+[135 <./pics_sdlm/53_MNIST_SRBM_all/compare_recon.pdf> <./pics_sdlm/53_MNIST_SR
 BM_all/compare_recon_rbm.pdf
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./pics_sdlm/53_MNIST_SRBM_al
 l/compare_recon_rbm.pdf): PDF inclusion: multiple pdfs with page group included
  in a single page
->] [135 <./pics_sdlm/22_MNIST_AE/recon_digit.pdf> <./pics_sdlm/23_MNIST_AE_nois
+>] [136 <./pics_sdlm/22_MNIST_AE/recon_digit.pdf> <./pics_sdlm/23_MNIST_AE_nois
 e/recon_digit.pdf
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./pics_sdlm/23_MNIST_AE_nois
@@ -2464,47 +2963,47 @@ pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./pics_sdlm/53_MNIST_SRBM_al
 l/recon_digit.pdf): PDF inclusion: multiple pdfs with page group included in a 
 single page
 >]
-Overfull \hbox (3.48409pt too wide) in paragraph at lines 1494--1501
+Overfull \hbox (3.48409pt too wide) in paragraph at lines 1495--1502
 \OT1/cmr/m/n/12 This chap-ter an-swers the re-search ques-tion: how to train SN
 Ns on-line with biologically-
  []
 
-[136]) [137]
+[137]) [138]
 \openout2 = `Chapter6.aux'.
 
  (./Chapter6.tex
 Chapter 6.
-[138
+[139
 
 
 
-] [139]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [140]
+] [140]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [141]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [142]
-[143] [144] <pics_bench/fig1.jpg, id=7715, 328.71973pt x 298.50652pt>
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [143]
+[144] [145] <pics_bench/fig1.jpg, id=7722, 328.71973pt x 298.50652pt>
 File: pics_bench/fig1.jpg Graphic file (type jpg)
 
 <use pics_bench/fig1.jpg>
 Package pdftex.def Info: pics_bench/fig1.jpg used on input line 260.
 (pdftex.def)             Requested size: 350.53928pt x 318.3193pt.
- [145 <./pics_bench/fig1.jpg>] [146]
-<pics_bench/fig5.jpg, id=7756, 1293.33188pt x 1304.62407pt>
+ [146 <./pics_bench/fig1.jpg>] [147]
+<pics_bench/fig5.jpg, id=7762, 1293.33188pt x 1304.62407pt>
 File: pics_bench/fig5.jpg Graphic file (type jpg)
 
 <use pics_bench/fig5.jpg>
 Package pdftex.def Info: pics_bench/fig5.jpg used on input line 472.
 (pdftex.def)             Requested size: 350.53928pt x 353.58698pt.
- [147]
+ [148]
 Underfull \vbox (badness 1509) has occurred while \output is active []
 
- [148 <./pics_bench/fig5.jpg>] [149]
+ [149 <./pics_bench/fig5.jpg>] [150]
 Overfull \hbox (21.57411pt too wide) in paragraph at lines 620--620
  \OT1/cmr/m/n/10.95 [[]Brader 
  []
@@ -2670,75 +3169,75 @@ Overfull \hbox (13.26584pt too wide) in paragraph at lines 731--731
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [150]
-[151] [152] [153] [154]
-<pics_bench/fig6.jpg, id=7864, 1159.33125pt x 891.33pt>
+ [151]
+[152] [153] [154] [155]
+<pics_bench/fig6.jpg, id=7870, 1159.33125pt x 891.33pt>
 File: pics_bench/fig6.jpg Graphic file (type jpg)
 
 <use pics_bench/fig6.jpg>
 Package pdftex.def Info: pics_bench/fig6.jpg used on input line 945.
 (pdftex.def)             Requested size: 306.71936pt x 235.80692pt.
- [155] [156 <./pics_bench/fig6.jpg>]
-<pics_bench/fig7.jpg, id=7880, 352.31625pt x 437.59485pt>
+ [156] [157 <./pics_bench/fig6.jpg>]
+<pics_bench/fig7.jpg, id=7887, 352.31625pt x 437.59485pt>
 File: pics_bench/fig7.jpg Graphic file (type jpg)
 
 <use pics_bench/fig7.jpg>
 Package pdftex.def Info: pics_bench/fig7.jpg used on input line 1018.
 (pdftex.def)             Requested size: 438.17244pt x 544.23456pt.
- [157]
+ [158]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [158 <./pics_bench/fig7.jpg>]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [159]
+ [159 <./pics_bench/fig7.jpg>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [160]
-[161] <pics_bench/fig8.jpg, id=7913, 589.52017pt x 435.07024pt>
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [161]
+[162] <pics_bench/fig8.jpg, id=7919, 589.52017pt x 435.07024pt>
 File: pics_bench/fig8.jpg Graphic file (type jpg)
 
 <use pics_bench/fig8.jpg>
 Package pdftex.def Info: pics_bench/fig8.jpg used on input line 1195.
 (pdftex.def)             Requested size: 262.90613pt x 194.02719pt.
- [162 <./pics_bench/fig8.jpg>]) [163]
+ [163 <./pics_bench/fig8.jpg>]) [164]
 \openout2 = `Conclusion.aux'.
 
 
 (./Conclusion.tex
 Chapter 7.
-[164
+[165
 
 
 
 ]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [165]
+ [166]
 Underfull \vbox (badness 1067) has occurred while \output is active []
 
- [166]
-[167]
+ [167]
+[168]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [168]
-[169] [170] [171] [172] [173]
+ [169]
+[170] [171] [172] [173] [174]
 Underfull \vbox (badness 3009) has occurred while \output is active []
 
- [174])
-[175]
+ [175])
+[176]
 \openout2 = `Appendices.aux'.
 
  (./Appendices.tex
 Appendix A.
-[176
+[177
 
 
 
-] [177]
+] [178]
 Appendix B.
 
-<pics_sdlm/01_exp_SAE_Orig_long/exp1_weights_s.png, id=8128, 433.62pt x 289.08p
+<pics_sdlm/01_exp_SAE_Orig_long/exp1_weights_s.png, id=8134, 433.62pt x 289.08p
 t>
 File: pics_sdlm/01_exp_SAE_Orig_long/exp1_weights_s.png Graphic file (type png)
 
@@ -2754,21 +3253,21 @@ Package pdftex.def Info: pics_sdlm/01_exp_SAE_Orig_long/exp2_weights_s.png used
  on input line 63.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/01_exp_SAE_Orig_long/exp1_recon_s.pdf, id=8129, 433.62pt x 289.08pt>
+<pics_sdlm/01_exp_SAE_Orig_long/exp1_recon_s.pdf, id=8135, 433.62pt x 289.08pt>
 File: pics_sdlm/01_exp_SAE_Orig_long/exp1_recon_s.pdf Graphic file (type pdf)
 <use pics_sdlm/01_exp_SAE_Orig_long/exp1_recon_s.pdf>
 Package pdftex.def Info: pics_sdlm/01_exp_SAE_Orig_long/exp1_recon_s.pdf used o
 n input line 67.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/01_exp_SAE_Orig_long/exp2_recon_s.pdf, id=8130, 433.62pt x 289.08pt>
+<pics_sdlm/01_exp_SAE_Orig_long/exp2_recon_s.pdf, id=8136, 433.62pt x 289.08pt>
 File: pics_sdlm/01_exp_SAE_Orig_long/exp2_recon_s.pdf Graphic file (type pdf)
 <use pics_sdlm/01_exp_SAE_Orig_long/exp2_recon_s.pdf>
 Package pdftex.def Info: pics_sdlm/01_exp_SAE_Orig_long/exp2_recon_s.pdf used o
 n input line 71.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/01_exp_SAE_Orig_long/exp1_hid_s.pdf, id=8131, 433.62pt x 289.08pt>
+<pics_sdlm/01_exp_SAE_Orig_long/exp1_hid_s.pdf, id=8137, 433.62pt x 289.08pt>
 File: pics_sdlm/01_exp_SAE_Orig_long/exp1_hid_s.pdf Graphic file (type pdf)
 
 <use pics_sdlm/01_exp_SAE_Orig_long/exp1_hid_s.pdf>
@@ -2776,7 +3275,7 @@ Package pdftex.def Info: pics_sdlm/01_exp_SAE_Orig_long/exp1_hid_s.pdf used on
 input line 75.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/01_exp_SAE_Orig_long/exp2_hid_s.pdf, id=8132, 433.62pt x 289.08pt>
+<pics_sdlm/01_exp_SAE_Orig_long/exp2_hid_s.pdf, id=8138, 433.62pt x 289.08pt>
 File: pics_sdlm/01_exp_SAE_Orig_long/exp2_hid_s.pdf Graphic file (type pdf)
 
 <use pics_sdlm/01_exp_SAE_Orig_long/exp2_hid_s.pdf>
@@ -2784,7 +3283,7 @@ Package pdftex.def Info: pics_sdlm/01_exp_SAE_Orig_long/exp2_hid_s.pdf used on
 input line 79.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/01_exp_SAE_Orig_long/exp1_mse_nons.pdf, id=8133, 433.62pt x 289.08pt
+<pics_sdlm/01_exp_SAE_Orig_long/exp1_mse_nons.pdf, id=8139, 433.62pt x 289.08pt
 >
 File: pics_sdlm/01_exp_SAE_Orig_long/exp1_mse_nons.pdf Graphic file (type pdf)
  <use pics_sdlm/01_exp_SAE_Orig_long/exp1_mse_nons.pdf>
@@ -2802,7 +3301,7 @@ on input line 87.
 LaTeX Warning: Float too large for page by 27.67487pt on input line 93.
 
 
-<pics_sdlm/11_exp_SRBM_Orig_long/exp1_weights_s.png, id=8134, 433.62pt x 289.08
+<pics_sdlm/11_exp_SRBM_Orig_long/exp1_weights_s.png, id=8140, 433.62pt x 289.08
 pt>
 File: pics_sdlm/11_exp_SRBM_Orig_long/exp1_weights_s.png Graphic file (type png
 )
@@ -2818,7 +3317,7 @@ Package pdftex.def Info: pics_sdlm/11_exp_SRBM_Orig_long/exp2_weights_s.png use
 d on input line 102.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/11_exp_SRBM_Orig_long/exp1_recon_s.pdf, id=8135, 433.62pt x 289.08pt
+<pics_sdlm/11_exp_SRBM_Orig_long/exp1_recon_s.pdf, id=8141, 433.62pt x 289.08pt
 >
 File: pics_sdlm/11_exp_SRBM_Orig_long/exp1_recon_s.pdf Graphic file (type pdf)
  <use pics_sdlm/11_exp_SRBM_Orig_long/exp1_recon_s.pdf>
@@ -2826,7 +3325,7 @@ Package pdftex.def Info: pics_sdlm/11_exp_SRBM_Orig_long/exp1_recon_s.pdf used
 on input line 106.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/11_exp_SRBM_Orig_long/exp2_recon_s.pdf, id=8136, 433.62pt x 289.08pt
+<pics_sdlm/11_exp_SRBM_Orig_long/exp2_recon_s.pdf, id=8142, 433.62pt x 289.08pt
 >
 File: pics_sdlm/11_exp_SRBM_Orig_long/exp2_recon_s.pdf Graphic file (type pdf)
  <use pics_sdlm/11_exp_SRBM_Orig_long/exp2_recon_s.pdf>
@@ -2834,7 +3333,7 @@ Package pdftex.def Info: pics_sdlm/11_exp_SRBM_Orig_long/exp2_recon_s.pdf used
 on input line 110.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/11_exp_SRBM_Orig_long/exp1_hid_s.pdf, id=8137, 433.62pt x 289.08pt>
+<pics_sdlm/11_exp_SRBM_Orig_long/exp1_hid_s.pdf, id=8143, 433.62pt x 289.08pt>
 File: pics_sdlm/11_exp_SRBM_Orig_long/exp1_hid_s.pdf Graphic file (type pdf)
 
 <use pics_sdlm/11_exp_SRBM_Orig_long/exp1_hid_s.pdf>
@@ -2842,7 +3341,7 @@ Package pdftex.def Info: pics_sdlm/11_exp_SRBM_Orig_long/exp1_hid_s.pdf used on
  input line 114.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/11_exp_SRBM_Orig_long/exp2_hid_s.pdf, id=8138, 433.62pt x 289.08pt>
+<pics_sdlm/11_exp_SRBM_Orig_long/exp2_hid_s.pdf, id=8144, 433.62pt x 289.08pt>
 File: pics_sdlm/11_exp_SRBM_Orig_long/exp2_hid_s.pdf Graphic file (type pdf)
 
 <use pics_sdlm/11_exp_SRBM_Orig_long/exp2_hid_s.pdf>
@@ -2850,7 +3349,7 @@ Package pdftex.def Info: pics_sdlm/11_exp_SRBM_Orig_long/exp2_hid_s.pdf used on
  input line 118.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/11_exp_SRBM_Orig_long/exp1_mse_nons.pdf, id=8139, 433.62pt x 289.08p
+<pics_sdlm/11_exp_SRBM_Orig_long/exp1_mse_nons.pdf, id=8145, 433.62pt x 289.08p
 t>
 File: pics_sdlm/11_exp_SRBM_Orig_long/exp1_mse_nons.pdf Graphic file (type pdf)
 
@@ -2870,7 +3369,7 @@ Package pdftex.def Info: pics_sdlm/11_exp_SRBM_Orig_long/exp2_mse_nons.pdf used
 LaTeX Warning: Float too large for page by 27.67487pt on input line 132.
 
 
-<pics_sdlm/03_exp_SAE_noise_long/exp1_weights_s.png, id=8140, 433.62pt x 289.08
+<pics_sdlm/03_exp_SAE_noise_long/exp1_weights_s.png, id=8146, 433.62pt x 289.08
 pt>
 File: pics_sdlm/03_exp_SAE_noise_long/exp1_weights_s.png Graphic file (type png
 )
@@ -2886,7 +3385,7 @@ Package pdftex.def Info: pics_sdlm/03_exp_SAE_noise_long/exp2_weights_s.png use
 d on input line 141.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/03_exp_SAE_noise_long/exp1_recon_s.pdf, id=8141, 433.62pt x 289.08pt
+<pics_sdlm/03_exp_SAE_noise_long/exp1_recon_s.pdf, id=8147, 433.62pt x 289.08pt
 >
 File: pics_sdlm/03_exp_SAE_noise_long/exp1_recon_s.pdf Graphic file (type pdf)
  <use pics_sdlm/03_exp_SAE_noise_long/exp1_recon_s.pdf>
@@ -2894,7 +3393,7 @@ Package pdftex.def Info: pics_sdlm/03_exp_SAE_noise_long/exp1_recon_s.pdf used
 on input line 145.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/03_exp_SAE_noise_long/exp2_recon_s.pdf, id=8142, 433.62pt x 289.08pt
+<pics_sdlm/03_exp_SAE_noise_long/exp2_recon_s.pdf, id=8148, 433.62pt x 289.08pt
 >
 File: pics_sdlm/03_exp_SAE_noise_long/exp2_recon_s.pdf Graphic file (type pdf)
  <use pics_sdlm/03_exp_SAE_noise_long/exp2_recon_s.pdf>
@@ -2902,7 +3401,7 @@ Package pdftex.def Info: pics_sdlm/03_exp_SAE_noise_long/exp2_recon_s.pdf used
 on input line 149.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/03_exp_SAE_noise_long/exp1_hid_s.pdf, id=8143, 433.62pt x 289.08pt>
+<pics_sdlm/03_exp_SAE_noise_long/exp1_hid_s.pdf, id=8149, 433.62pt x 289.08pt>
 File: pics_sdlm/03_exp_SAE_noise_long/exp1_hid_s.pdf Graphic file (type pdf)
 
 <use pics_sdlm/03_exp_SAE_noise_long/exp1_hid_s.pdf>
@@ -2910,7 +3409,7 @@ Package pdftex.def Info: pics_sdlm/03_exp_SAE_noise_long/exp1_hid_s.pdf used on
  input line 153.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/03_exp_SAE_noise_long/exp2_hid_s.pdf, id=8144, 433.62pt x 289.08pt>
+<pics_sdlm/03_exp_SAE_noise_long/exp2_hid_s.pdf, id=8150, 433.62pt x 289.08pt>
 File: pics_sdlm/03_exp_SAE_noise_long/exp2_hid_s.pdf Graphic file (type pdf)
 
 <use pics_sdlm/03_exp_SAE_noise_long/exp2_hid_s.pdf>
@@ -2918,7 +3417,7 @@ Package pdftex.def Info: pics_sdlm/03_exp_SAE_noise_long/exp2_hid_s.pdf used on
  input line 157.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/03_exp_SAE_noise_long/exp1_mse_nons.pdf, id=8145, 433.62pt x 289.08p
+<pics_sdlm/03_exp_SAE_noise_long/exp1_mse_nons.pdf, id=8151, 433.62pt x 289.08p
 t>
 File: pics_sdlm/03_exp_SAE_noise_long/exp1_mse_nons.pdf Graphic file (type pdf)
 
@@ -2938,7 +3437,7 @@ Package pdftex.def Info: pics_sdlm/03_exp_SAE_noise_long/exp2_mse_nons.pdf used
 LaTeX Warning: Float too large for page by 27.67487pt on input line 171.
 
 
-<pics_sdlm/13_exp_SRBM_noise_long/exp1_weights_s.png, id=8146, 433.62pt x 289.0
+<pics_sdlm/13_exp_SRBM_noise_long/exp1_weights_s.png, id=8152, 433.62pt x 289.0
 8pt>
 File: pics_sdlm/13_exp_SRBM_noise_long/exp1_weights_s.png Graphic file (type pn
 g)
@@ -2954,7 +3453,7 @@ Package pdftex.def Info: pics_sdlm/13_exp_SRBM_noise_long/exp2_weights_s.png us
 ed on input line 180.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/13_exp_SRBM_noise_long/exp1_recon_s.pdf, id=8147, 433.62pt x 289.08p
+<pics_sdlm/13_exp_SRBM_noise_long/exp1_recon_s.pdf, id=8153, 433.62pt x 289.08p
 t>
 File: pics_sdlm/13_exp_SRBM_noise_long/exp1_recon_s.pdf Graphic file (type pdf)
 
@@ -2963,7 +3462,7 @@ Package pdftex.def Info: pics_sdlm/13_exp_SRBM_noise_long/exp1_recon_s.pdf used
  on input line 184.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/13_exp_SRBM_noise_long/exp2_recon_s.pdf, id=8148, 433.62pt x 289.08p
+<pics_sdlm/13_exp_SRBM_noise_long/exp2_recon_s.pdf, id=8154, 433.62pt x 289.08p
 t>
 File: pics_sdlm/13_exp_SRBM_noise_long/exp2_recon_s.pdf Graphic file (type pdf)
 
@@ -2972,21 +3471,21 @@ Package pdftex.def Info: pics_sdlm/13_exp_SRBM_noise_long/exp2_recon_s.pdf used
  on input line 188.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/13_exp_SRBM_noise_long/exp1_hid_s.pdf, id=8149, 433.62pt x 289.08pt>
+<pics_sdlm/13_exp_SRBM_noise_long/exp1_hid_s.pdf, id=8155, 433.62pt x 289.08pt>
 File: pics_sdlm/13_exp_SRBM_noise_long/exp1_hid_s.pdf Graphic file (type pdf)
 <use pics_sdlm/13_exp_SRBM_noise_long/exp1_hid_s.pdf>
 Package pdftex.def Info: pics_sdlm/13_exp_SRBM_noise_long/exp1_hid_s.pdf used o
 n input line 192.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/13_exp_SRBM_noise_long/exp2_hid_s.pdf, id=8150, 433.62pt x 289.08pt>
+<pics_sdlm/13_exp_SRBM_noise_long/exp2_hid_s.pdf, id=8156, 433.62pt x 289.08pt>
 File: pics_sdlm/13_exp_SRBM_noise_long/exp2_hid_s.pdf Graphic file (type pdf)
 <use pics_sdlm/13_exp_SRBM_noise_long/exp2_hid_s.pdf>
 Package pdftex.def Info: pics_sdlm/13_exp_SRBM_noise_long/exp2_hid_s.pdf used o
 n input line 196.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/13_exp_SRBM_noise_long/exp1_mse_nons.pdf, id=8151, 433.62pt x 289.08
+<pics_sdlm/13_exp_SRBM_noise_long/exp1_mse_nons.pdf, id=8157, 433.62pt x 289.08
 pt>
 File: pics_sdlm/13_exp_SRBM_noise_long/exp1_mse_nons.pdf Graphic file (type pdf
 )
@@ -3006,7 +3505,7 @@ d on input line 204.
 LaTeX Warning: Float too large for page by 27.67487pt on input line 210.
 
 
-<pics_sdlm/05_exp_SAE_teach_long/exp1_weights_s.png, id=8152, 433.62pt x 289.08
+<pics_sdlm/05_exp_SAE_teach_long/exp1_weights_s.png, id=8158, 433.62pt x 289.08
 pt>
 File: pics_sdlm/05_exp_SAE_teach_long/exp1_weights_s.png Graphic file (type png
 )
@@ -3022,7 +3521,7 @@ Package pdftex.def Info: pics_sdlm/05_exp_SAE_teach_long/exp2_weights_s.png use
 d on input line 219.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/05_exp_SAE_teach_long/exp1_recon_s.pdf, id=8153, 433.62pt x 289.08pt
+<pics_sdlm/05_exp_SAE_teach_long/exp1_recon_s.pdf, id=8159, 433.62pt x 289.08pt
 >
 File: pics_sdlm/05_exp_SAE_teach_long/exp1_recon_s.pdf Graphic file (type pdf)
  <use pics_sdlm/05_exp_SAE_teach_long/exp1_recon_s.pdf>
@@ -3030,7 +3529,7 @@ Package pdftex.def Info: pics_sdlm/05_exp_SAE_teach_long/exp1_recon_s.pdf used
 on input line 223.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/05_exp_SAE_teach_long/exp2_recon_s.pdf, id=8154, 433.62pt x 289.08pt
+<pics_sdlm/05_exp_SAE_teach_long/exp2_recon_s.pdf, id=8160, 433.62pt x 289.08pt
 >
 File: pics_sdlm/05_exp_SAE_teach_long/exp2_recon_s.pdf Graphic file (type pdf)
  <use pics_sdlm/05_exp_SAE_teach_long/exp2_recon_s.pdf>
@@ -3038,7 +3537,7 @@ Package pdftex.def Info: pics_sdlm/05_exp_SAE_teach_long/exp2_recon_s.pdf used
 on input line 227.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/05_exp_SAE_teach_long/exp1_hid_s.pdf, id=8155, 433.62pt x 289.08pt>
+<pics_sdlm/05_exp_SAE_teach_long/exp1_hid_s.pdf, id=8161, 433.62pt x 289.08pt>
 File: pics_sdlm/05_exp_SAE_teach_long/exp1_hid_s.pdf Graphic file (type pdf)
 
 <use pics_sdlm/05_exp_SAE_teach_long/exp1_hid_s.pdf>
@@ -3046,7 +3545,7 @@ Package pdftex.def Info: pics_sdlm/05_exp_SAE_teach_long/exp1_hid_s.pdf used on
  input line 231.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/05_exp_SAE_teach_long/exp2_hid_s.pdf, id=8156, 433.62pt x 289.08pt>
+<pics_sdlm/05_exp_SAE_teach_long/exp2_hid_s.pdf, id=8162, 433.62pt x 289.08pt>
 File: pics_sdlm/05_exp_SAE_teach_long/exp2_hid_s.pdf Graphic file (type pdf)
 
 <use pics_sdlm/05_exp_SAE_teach_long/exp2_hid_s.pdf>
@@ -3054,7 +3553,7 @@ Package pdftex.def Info: pics_sdlm/05_exp_SAE_teach_long/exp2_hid_s.pdf used on
  input line 235.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/05_exp_SAE_teach_long/exp1_mse_nons.pdf, id=8157, 433.62pt x 289.08p
+<pics_sdlm/05_exp_SAE_teach_long/exp1_mse_nons.pdf, id=8163, 433.62pt x 289.08p
 t>
 File: pics_sdlm/05_exp_SAE_teach_long/exp1_mse_nons.pdf Graphic file (type pdf)
 
@@ -3074,7 +3573,7 @@ Package pdftex.def Info: pics_sdlm/05_exp_SAE_teach_long/exp2_mse_nons.pdf used
 LaTeX Warning: Float too large for page by 27.67487pt on input line 249.
 
 
-<pics_sdlm/15_exp_SRBM_teach_long/exp1_weights_s.png, id=8158, 433.62pt x 289.0
+<pics_sdlm/15_exp_SRBM_teach_long/exp1_weights_s.png, id=8164, 433.62pt x 289.0
 8pt>
 File: pics_sdlm/15_exp_SRBM_teach_long/exp1_weights_s.png Graphic file (type pn
 g)
@@ -3090,7 +3589,7 @@ Package pdftex.def Info: pics_sdlm/15_exp_SRBM_teach_long/exp2_weights_s.png us
 ed on input line 258.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/15_exp_SRBM_teach_long/exp1_recon_s.pdf, id=8159, 433.62pt x 289.08p
+<pics_sdlm/15_exp_SRBM_teach_long/exp1_recon_s.pdf, id=8165, 433.62pt x 289.08p
 t>
 File: pics_sdlm/15_exp_SRBM_teach_long/exp1_recon_s.pdf Graphic file (type pdf)
 
@@ -3099,7 +3598,7 @@ Package pdftex.def Info: pics_sdlm/15_exp_SRBM_teach_long/exp1_recon_s.pdf used
  on input line 262.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/15_exp_SRBM_teach_long/exp2_recon_s.pdf, id=8160, 433.62pt x 289.08p
+<pics_sdlm/15_exp_SRBM_teach_long/exp2_recon_s.pdf, id=8166, 433.62pt x 289.08p
 t>
 File: pics_sdlm/15_exp_SRBM_teach_long/exp2_recon_s.pdf Graphic file (type pdf)
 
@@ -3108,21 +3607,21 @@ Package pdftex.def Info: pics_sdlm/15_exp_SRBM_teach_long/exp2_recon_s.pdf used
  on input line 266.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/15_exp_SRBM_teach_long/exp1_hid_s.pdf, id=8161, 433.62pt x 289.08pt>
+<pics_sdlm/15_exp_SRBM_teach_long/exp1_hid_s.pdf, id=8167, 433.62pt x 289.08pt>
 File: pics_sdlm/15_exp_SRBM_teach_long/exp1_hid_s.pdf Graphic file (type pdf)
 <use pics_sdlm/15_exp_SRBM_teach_long/exp1_hid_s.pdf>
 Package pdftex.def Info: pics_sdlm/15_exp_SRBM_teach_long/exp1_hid_s.pdf used o
 n input line 270.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/15_exp_SRBM_teach_long/exp2_hid_s.pdf, id=8162, 433.62pt x 289.08pt>
+<pics_sdlm/15_exp_SRBM_teach_long/exp2_hid_s.pdf, id=8168, 433.62pt x 289.08pt>
 File: pics_sdlm/15_exp_SRBM_teach_long/exp2_hid_s.pdf Graphic file (type pdf)
 <use pics_sdlm/15_exp_SRBM_teach_long/exp2_hid_s.pdf>
 Package pdftex.def Info: pics_sdlm/15_exp_SRBM_teach_long/exp2_hid_s.pdf used o
 n input line 274.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/15_exp_SRBM_teach_long/exp1_mse_nons.pdf, id=8163, 433.62pt x 289.08
+<pics_sdlm/15_exp_SRBM_teach_long/exp1_mse_nons.pdf, id=8169, 433.62pt x 289.08
 pt>
 File: pics_sdlm/15_exp_SRBM_teach_long/exp1_mse_nons.pdf Graphic file (type pdf
 )
@@ -3142,7 +3641,7 @@ d on input line 282.
 LaTeX Warning: Float too large for page by 27.67487pt on input line 288.
 
 
-<pics_sdlm/07_exp_SAE_all_long/exp1_weights_s.png, id=8164, 433.62pt x 289.08pt
+<pics_sdlm/07_exp_SAE_all_long/exp1_weights_s.png, id=8170, 433.62pt x 289.08pt
 >
 File: pics_sdlm/07_exp_SAE_all_long/exp1_weights_s.png Graphic file (type png)
  <use pics_sdlm/07_exp_SAE_all_long/exp1_weights_s.png>
@@ -3156,7 +3655,7 @@ Package pdftex.def Info: pics_sdlm/07_exp_SAE_all_long/exp2_weights_s.png used
 on input line 297.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/07_exp_SAE_all_long/exp1_recon_s.pdf, id=8165, 433.62pt x 289.08pt>
+<pics_sdlm/07_exp_SAE_all_long/exp1_recon_s.pdf, id=8171, 433.62pt x 289.08pt>
 File: pics_sdlm/07_exp_SAE_all_long/exp1_recon_s.pdf Graphic file (type pdf)
 
 <use pics_sdlm/07_exp_SAE_all_long/exp1_recon_s.pdf>
@@ -3164,7 +3663,7 @@ Package pdftex.def Info: pics_sdlm/07_exp_SAE_all_long/exp1_recon_s.pdf used on
  input line 301.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/07_exp_SAE_all_long/exp2_recon_s.pdf, id=8166, 433.62pt x 289.08pt>
+<pics_sdlm/07_exp_SAE_all_long/exp2_recon_s.pdf, id=8172, 433.62pt x 289.08pt>
 File: pics_sdlm/07_exp_SAE_all_long/exp2_recon_s.pdf Graphic file (type pdf)
 
 <use pics_sdlm/07_exp_SAE_all_long/exp2_recon_s.pdf>
@@ -3172,7 +3671,7 @@ Package pdftex.def Info: pics_sdlm/07_exp_SAE_all_long/exp2_recon_s.pdf used on
  input line 305.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/07_exp_SAE_all_long/exp1_hid_s.pdf, id=8167, 433.62pt x 289.08pt>
+<pics_sdlm/07_exp_SAE_all_long/exp1_hid_s.pdf, id=8173, 433.62pt x 289.08pt>
 File: pics_sdlm/07_exp_SAE_all_long/exp1_hid_s.pdf Graphic file (type pdf)
 
 <use pics_sdlm/07_exp_SAE_all_long/exp1_hid_s.pdf>
@@ -3180,7 +3679,7 @@ Package pdftex.def Info: pics_sdlm/07_exp_SAE_all_long/exp1_hid_s.pdf used on i
 nput line 309.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/07_exp_SAE_all_long/exp2_hid_s.pdf, id=8168, 433.62pt x 289.08pt>
+<pics_sdlm/07_exp_SAE_all_long/exp2_hid_s.pdf, id=8174, 433.62pt x 289.08pt>
 File: pics_sdlm/07_exp_SAE_all_long/exp2_hid_s.pdf Graphic file (type pdf)
 
 <use pics_sdlm/07_exp_SAE_all_long/exp2_hid_s.pdf>
@@ -3188,7 +3687,7 @@ Package pdftex.def Info: pics_sdlm/07_exp_SAE_all_long/exp2_hid_s.pdf used on i
 nput line 313.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/07_exp_SAE_all_long/exp1_mse_nons.pdf, id=8169, 433.62pt x 289.08pt>
+<pics_sdlm/07_exp_SAE_all_long/exp1_mse_nons.pdf, id=8175, 433.62pt x 289.08pt>
 File: pics_sdlm/07_exp_SAE_all_long/exp1_mse_nons.pdf Graphic file (type pdf)
 <use pics_sdlm/07_exp_SAE_all_long/exp1_mse_nons.pdf>
 Package pdftex.def Info: pics_sdlm/07_exp_SAE_all_long/exp1_mse_nons.pdf used o
@@ -3205,7 +3704,7 @@ n input line 321.
 LaTeX Warning: Float too large for page by 27.67487pt on input line 327.
 
 
-<pics_sdlm/17_exp_SRBM_all_long/exp1_weights_s.png, id=8170, 433.62pt x 289.08p
+<pics_sdlm/17_exp_SRBM_all_long/exp1_weights_s.png, id=8176, 433.62pt x 289.08p
 t>
 File: pics_sdlm/17_exp_SRBM_all_long/exp1_weights_s.png Graphic file (type png)
 
@@ -3221,21 +3720,21 @@ Package pdftex.def Info: pics_sdlm/17_exp_SRBM_all_long/exp2_weights_s.png used
  on input line 336.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/17_exp_SRBM_all_long/exp1_recon_s.pdf, id=8171, 433.62pt x 289.08pt>
+<pics_sdlm/17_exp_SRBM_all_long/exp1_recon_s.pdf, id=8177, 433.62pt x 289.08pt>
 File: pics_sdlm/17_exp_SRBM_all_long/exp1_recon_s.pdf Graphic file (type pdf)
 <use pics_sdlm/17_exp_SRBM_all_long/exp1_recon_s.pdf>
 Package pdftex.def Info: pics_sdlm/17_exp_SRBM_all_long/exp1_recon_s.pdf used o
 n input line 340.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/17_exp_SRBM_all_long/exp2_recon_s.pdf, id=8172, 433.62pt x 289.08pt>
+<pics_sdlm/17_exp_SRBM_all_long/exp2_recon_s.pdf, id=8178, 433.62pt x 289.08pt>
 File: pics_sdlm/17_exp_SRBM_all_long/exp2_recon_s.pdf Graphic file (type pdf)
 <use pics_sdlm/17_exp_SRBM_all_long/exp2_recon_s.pdf>
 Package pdftex.def Info: pics_sdlm/17_exp_SRBM_all_long/exp2_recon_s.pdf used o
 n input line 344.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/17_exp_SRBM_all_long/exp1_hid_s.pdf, id=8173, 433.62pt x 289.08pt>
+<pics_sdlm/17_exp_SRBM_all_long/exp1_hid_s.pdf, id=8179, 433.62pt x 289.08pt>
 File: pics_sdlm/17_exp_SRBM_all_long/exp1_hid_s.pdf Graphic file (type pdf)
 
 <use pics_sdlm/17_exp_SRBM_all_long/exp1_hid_s.pdf>
@@ -3243,7 +3742,7 @@ Package pdftex.def Info: pics_sdlm/17_exp_SRBM_all_long/exp1_hid_s.pdf used on
 input line 348.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/17_exp_SRBM_all_long/exp2_hid_s.pdf, id=8174, 433.62pt x 289.08pt>
+<pics_sdlm/17_exp_SRBM_all_long/exp2_hid_s.pdf, id=8180, 433.62pt x 289.08pt>
 File: pics_sdlm/17_exp_SRBM_all_long/exp2_hid_s.pdf Graphic file (type pdf)
 
 <use pics_sdlm/17_exp_SRBM_all_long/exp2_hid_s.pdf>
@@ -3251,7 +3750,7 @@ Package pdftex.def Info: pics_sdlm/17_exp_SRBM_all_long/exp2_hid_s.pdf used on
 input line 352.
 (pdftex.def)             Requested size: 210.32089pt x 140.21686pt.
 
-<pics_sdlm/17_exp_SRBM_all_long/exp1_mse_nons.pdf, id=8175, 433.62pt x 289.08pt
+<pics_sdlm/17_exp_SRBM_all_long/exp1_mse_nons.pdf, id=8181, 433.62pt x 289.08pt
 >
 File: pics_sdlm/17_exp_SRBM_all_long/exp1_mse_nons.pdf Graphic file (type pdf)
  <use pics_sdlm/17_exp_SRBM_all_long/exp1_mse_nons.pdf>
@@ -3268,7 +3767,7 @@ on input line 360.
 
 LaTeX Warning: Float too large for page by 27.67487pt on input line 366.
 
-<pics_sdlm/60_exp_SAE_Orig/exp2_weights_s.png, id=8176, 433.62pt x 289.08pt>
+<pics_sdlm/60_exp_SAE_Orig/exp2_weights_s.png, id=8182, 433.62pt x 289.08pt>
 File: pics_sdlm/60_exp_SAE_Orig/exp2_weights_s.png Graphic file (type png)
 
 <use pics_sdlm/60_exp_SAE_Orig/exp2_weights_s.png>
@@ -3276,7 +3775,7 @@ Package pdftex.def Info: pics_sdlm/60_exp_SAE_Orig/exp2_weights_s.png used on i
 nput line 374.
 (pdftex.def)             Requested size: 189.2875pt x 126.19429pt.
 
-<pics_sdlm/61_exp_SAE_Orig_long/exp2_weights_s.png, id=8177, 433.62pt x 289.08p
+<pics_sdlm/61_exp_SAE_Orig_long/exp2_weights_s.png, id=8183, 433.62pt x 289.08p
 t>
 File: pics_sdlm/61_exp_SAE_Orig_long/exp2_weights_s.png Graphic file (type png)
 
@@ -3285,7 +3784,7 @@ Package pdftex.def Info: pics_sdlm/61_exp_SAE_Orig_long/exp2_weights_s.png used
  on input line 377.
 (pdftex.def)             Requested size: 189.2875pt x 126.19429pt.
 
-<pics_sdlm/63_exp_SAE_noise_long/exp2_weights_s.png, id=8178, 433.62pt x 289.08
+<pics_sdlm/63_exp_SAE_noise_long/exp2_weights_s.png, id=8184, 433.62pt x 289.08
 pt>
 File: pics_sdlm/63_exp_SAE_noise_long/exp2_weights_s.png Graphic file (type png
 )
@@ -3294,7 +3793,7 @@ Package pdftex.def Info: pics_sdlm/63_exp_SAE_noise_long/exp2_weights_s.png use
 d on input line 380.
 (pdftex.def)             Requested size: 189.2875pt x 126.19429pt.
 
-<pics_sdlm/65_exp_SAE_teach_long/exp2_weights_s.png, id=8179, 433.62pt x 289.08
+<pics_sdlm/65_exp_SAE_teach_long/exp2_weights_s.png, id=8185, 433.62pt x 289.08
 pt>
 File: pics_sdlm/65_exp_SAE_teach_long/exp2_weights_s.png Graphic file (type png
 )
@@ -3303,7 +3802,7 @@ Package pdftex.def Info: pics_sdlm/65_exp_SAE_teach_long/exp2_weights_s.png use
 d on input line 383.
 (pdftex.def)             Requested size: 189.2875pt x 126.19429pt.
 
-<pics_sdlm/67_exp_SAE_all_long/exp2_weights_s.png, id=8180, 433.62pt x 289.08pt
+<pics_sdlm/67_exp_SAE_all_long/exp2_weights_s.png, id=8186, 433.62pt x 289.08pt
 >
 File: pics_sdlm/67_exp_SAE_all_long/exp2_weights_s.png Graphic file (type png)
  <use pics_sdlm/67_exp_SAE_all_long/exp2_weights_s.png>
@@ -3311,7 +3810,7 @@ Package pdftex.def Info: pics_sdlm/67_exp_SAE_all_long/exp2_weights_s.png used
 on input line 386.
 (pdftex.def)             Requested size: 189.2875pt x 126.19429pt.
 
-<pics_sdlm/60_exp_SAE_Orig/exp2_mse_nons.pdf, id=8181, 433.62pt x 289.08pt>
+<pics_sdlm/60_exp_SAE_Orig/exp2_mse_nons.pdf, id=8187, 433.62pt x 289.08pt>
 File: pics_sdlm/60_exp_SAE_Orig/exp2_mse_nons.pdf Graphic file (type pdf)
 
 <use pics_sdlm/60_exp_SAE_Orig/exp2_mse_nons.pdf>
@@ -3319,7 +3818,7 @@ Package pdftex.def Info: pics_sdlm/60_exp_SAE_Orig/exp2_mse_nons.pdf used on in
 put line 392.
 (pdftex.def)             Requested size: 189.2875pt x 126.19429pt.
 
-<pics_sdlm/61_exp_SAE_Orig_long/exp2_mse_nons.pdf, id=8182, 433.62pt x 289.08pt
+<pics_sdlm/61_exp_SAE_Orig_long/exp2_mse_nons.pdf, id=8188, 433.62pt x 289.08pt
 >
 File: pics_sdlm/61_exp_SAE_Orig_long/exp2_mse_nons.pdf Graphic file (type pdf)
  <use pics_sdlm/61_exp_SAE_Orig_long/exp2_mse_nons.pdf>
@@ -3327,7 +3826,7 @@ Package pdftex.def Info: pics_sdlm/61_exp_SAE_Orig_long/exp2_mse_nons.pdf used
 on input line 394.
 (pdftex.def)             Requested size: 189.2875pt x 126.19429pt.
 
-<pics_sdlm/63_exp_SAE_noise_long/exp2_mse_nons.pdf, id=8183, 433.62pt x 289.08p
+<pics_sdlm/63_exp_SAE_noise_long/exp2_mse_nons.pdf, id=8189, 433.62pt x 289.08p
 t>
 File: pics_sdlm/63_exp_SAE_noise_long/exp2_mse_nons.pdf Graphic file (type pdf)
 
@@ -3336,7 +3835,7 @@ Package pdftex.def Info: pics_sdlm/63_exp_SAE_noise_long/exp2_mse_nons.pdf used
  on input line 396.
 (pdftex.def)             Requested size: 189.2875pt x 126.19429pt.
 
-<pics_sdlm/65_exp_SAE_teach_long/exp2_mse_nons.pdf, id=8184, 433.62pt x 289.08p
+<pics_sdlm/65_exp_SAE_teach_long/exp2_mse_nons.pdf, id=8190, 433.62pt x 289.08p
 t>
 File: pics_sdlm/65_exp_SAE_teach_long/exp2_mse_nons.pdf Graphic file (type pdf)
 
@@ -3345,7 +3844,7 @@ Package pdftex.def Info: pics_sdlm/65_exp_SAE_teach_long/exp2_mse_nons.pdf used
  on input line 398.
 (pdftex.def)             Requested size: 189.2875pt x 126.19429pt.
 
-<pics_sdlm/67_exp_SAE_all_long/exp2_mse_nons.pdf, id=8185, 433.62pt x 289.08pt>
+<pics_sdlm/67_exp_SAE_all_long/exp2_mse_nons.pdf, id=8191, 433.62pt x 289.08pt>
 File: pics_sdlm/67_exp_SAE_all_long/exp2_mse_nons.pdf Graphic file (type pdf)
 <use pics_sdlm/67_exp_SAE_all_long/exp2_mse_nons.pdf>
 Package pdftex.def Info: pics_sdlm/67_exp_SAE_all_long/exp2_mse_nons.pdf used o
@@ -3355,7 +3854,7 @@ n input line 400.
 
 LaTeX Warning: Float too large for page by 25.47891pt on input line 405.
 
-<pics_sdlm/70_exp_SRBM_Orig/exp2_weights_s.png, id=8186, 433.62pt x 289.08pt>
+<pics_sdlm/70_exp_SRBM_Orig/exp2_weights_s.png, id=8192, 433.62pt x 289.08pt>
 File: pics_sdlm/70_exp_SRBM_Orig/exp2_weights_s.png Graphic file (type png)
 
 <use pics_sdlm/70_exp_SRBM_Orig/exp2_weights_s.png>
@@ -3363,7 +3862,7 @@ Package pdftex.def Info: pics_sdlm/70_exp_SRBM_Orig/exp2_weights_s.png used on
 input line 412.
 (pdftex.def)             Requested size: 189.2875pt x 126.19429pt.
 
-<pics_sdlm/71_exp_SRBM_Orig_long/exp2_weights_s.png, id=8187, 433.62pt x 289.08
+<pics_sdlm/71_exp_SRBM_Orig_long/exp2_weights_s.png, id=8193, 433.62pt x 289.08
 pt>
 File: pics_sdlm/71_exp_SRBM_Orig_long/exp2_weights_s.png Graphic file (type png
 )
@@ -3372,7 +3871,7 @@ Package pdftex.def Info: pics_sdlm/71_exp_SRBM_Orig_long/exp2_weights_s.png use
 d on input line 415.
 (pdftex.def)             Requested size: 189.2875pt x 126.19429pt.
 
-<pics_sdlm/73_exp_SRBM_noise_long/exp2_weights_s.png, id=8188, 433.62pt x 289.0
+<pics_sdlm/73_exp_SRBM_noise_long/exp2_weights_s.png, id=8194, 433.62pt x 289.0
 8pt>
 File: pics_sdlm/73_exp_SRBM_noise_long/exp2_weights_s.png Graphic file (type pn
 g)
@@ -3381,7 +3880,7 @@ Package pdftex.def Info: pics_sdlm/73_exp_SRBM_noise_long/exp2_weights_s.png us
 ed on input line 418.
 (pdftex.def)             Requested size: 189.2875pt x 126.19429pt.
 
-<pics_sdlm/75_exp_SRBM_teach_long/exp2_weights_s.png, id=8189, 433.62pt x 289.0
+<pics_sdlm/75_exp_SRBM_teach_long/exp2_weights_s.png, id=8195, 433.62pt x 289.0
 8pt>
 File: pics_sdlm/75_exp_SRBM_teach_long/exp2_weights_s.png Graphic file (type pn
 g)
@@ -3390,7 +3889,7 @@ Package pdftex.def Info: pics_sdlm/75_exp_SRBM_teach_long/exp2_weights_s.png us
 ed on input line 421.
 (pdftex.def)             Requested size: 189.2875pt x 126.19429pt.
 
-<pics_sdlm/77_exp_SRBM_all_long/exp2_weights_s.png, id=8190, 433.62pt x 289.08p
+<pics_sdlm/77_exp_SRBM_all_long/exp2_weights_s.png, id=8196, 433.62pt x 289.08p
 t>
 File: pics_sdlm/77_exp_SRBM_all_long/exp2_weights_s.png Graphic file (type png)
 
@@ -3399,7 +3898,7 @@ Package pdftex.def Info: pics_sdlm/77_exp_SRBM_all_long/exp2_weights_s.png used
  on input line 424.
 (pdftex.def)             Requested size: 189.2875pt x 126.19429pt.
 
-<pics_sdlm/70_exp_SRBM_Orig/exp2_mse_nons.pdf, id=8191, 433.62pt x 289.08pt>
+<pics_sdlm/70_exp_SRBM_Orig/exp2_mse_nons.pdf, id=8197, 433.62pt x 289.08pt>
 File: pics_sdlm/70_exp_SRBM_Orig/exp2_mse_nons.pdf Graphic file (type pdf)
 
 <use pics_sdlm/70_exp_SRBM_Orig/exp2_mse_nons.pdf>
@@ -3407,7 +3906,7 @@ Package pdftex.def Info: pics_sdlm/70_exp_SRBM_Orig/exp2_mse_nons.pdf used on i
 nput line 430.
 (pdftex.def)             Requested size: 189.2875pt x 126.19429pt.
 
-<pics_sdlm/71_exp_SRBM_Orig_long/exp2_mse_nons.pdf, id=8192, 433.62pt x 289.08p
+<pics_sdlm/71_exp_SRBM_Orig_long/exp2_mse_nons.pdf, id=8198, 433.62pt x 289.08p
 t>
 File: pics_sdlm/71_exp_SRBM_Orig_long/exp2_mse_nons.pdf Graphic file (type pdf)
 
@@ -3416,7 +3915,7 @@ Package pdftex.def Info: pics_sdlm/71_exp_SRBM_Orig_long/exp2_mse_nons.pdf used
  on input line 432.
 (pdftex.def)             Requested size: 189.2875pt x 126.19429pt.
 
-<pics_sdlm/73_exp_SRBM_noise_long/exp2_mse_nons.pdf, id=8193, 433.62pt x 289.08
+<pics_sdlm/73_exp_SRBM_noise_long/exp2_mse_nons.pdf, id=8199, 433.62pt x 289.08
 pt>
 File: pics_sdlm/73_exp_SRBM_noise_long/exp2_mse_nons.pdf Graphic file (type pdf
 )
@@ -3425,7 +3924,7 @@ Package pdftex.def Info: pics_sdlm/73_exp_SRBM_noise_long/exp2_mse_nons.pdf use
 d on input line 434.
 (pdftex.def)             Requested size: 189.2875pt x 126.19429pt.
 
-<pics_sdlm/75_exp_SRBM_teach_long/exp2_mse_nons.pdf, id=8194, 433.62pt x 289.08
+<pics_sdlm/75_exp_SRBM_teach_long/exp2_mse_nons.pdf, id=8200, 433.62pt x 289.08
 pt>
 File: pics_sdlm/75_exp_SRBM_teach_long/exp2_mse_nons.pdf Graphic file (type pdf
 )
@@ -3434,7 +3933,7 @@ Package pdftex.def Info: pics_sdlm/75_exp_SRBM_teach_long/exp2_mse_nons.pdf use
 d on input line 436.
 (pdftex.def)             Requested size: 189.2875pt x 126.19429pt.
 
-<pics_sdlm/77_exp_SRBM_all_long/exp2_mse_nons.pdf, id=8195, 433.62pt x 289.08pt
+<pics_sdlm/77_exp_SRBM_all_long/exp2_mse_nons.pdf, id=8201, 433.62pt x 289.08pt
 >
 File: pics_sdlm/77_exp_SRBM_all_long/exp2_mse_nons.pdf Graphic file (type pdf)
  <use pics_sdlm/77_exp_SRBM_all_long/exp2_mse_nons.pdf>
@@ -3492,9 +3991,9 @@ File: pics_sdlm/33_MNIST_RBM_noise/2_60000_0.pdf Graphic file (type pdf)
 Package pdftex.def Info: pics_sdlm/33_MNIST_RBM_noise/2_60000_0.pdf used on inp
 ut line 498.
 (pdftex.def)             Requested size: 438.17244pt x 438.1832pt.
- [178
+ [179
 
-] [179 <./pics_sdlm/01_exp_SAE_Orig_long/exp1_weights_s.png> <./pics_sdlm/01_ex
+] [180 <./pics_sdlm/01_exp_SAE_Orig_long/exp1_weights_s.png> <./pics_sdlm/01_ex
 p_SAE_Orig_long/exp1_recon_s.pdf> <./pics_sdlm/01_exp_SAE_Orig_long/exp2_recon_
 s.pdf
 
@@ -3516,7 +4015,7 @@ a single page
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./pics_sdlm/01_exp_SAE_Orig_
 long/exp1_mse_nons.pdf): PDF inclusion: multiple pdfs with page group included 
 in a single page
->] [180 <./pics_sdlm/11_exp_SRBM_Orig_long/exp1_weights_s.png> <./pics_sdlm/11_
+>] [181 <./pics_sdlm/11_exp_SRBM_Orig_long/exp1_weights_s.png> <./pics_sdlm/11_
 exp_SRBM_Orig_long/exp1_recon_s.pdf> <./pics_sdlm/11_exp_SRBM_Orig_long/exp2_re
 con_s.pdf
 
@@ -3538,7 +4037,7 @@ _long/exp2_hid_s.pdf): PDF inclusion: multiple pdfs with page group included in
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./pics_sdlm/11_exp_SRBM_Orig
 _long/exp1_mse_nons.pdf): PDF inclusion: multiple pdfs with page group included
  in a single page
->] [181 <./pics_sdlm/03_exp_SAE_noise_long/exp1_weights_s.png> <./pics_sdlm/03_
+>] [182 <./pics_sdlm/03_exp_SAE_noise_long/exp1_weights_s.png> <./pics_sdlm/03_
 exp_SAE_noise_long/exp1_recon_s.pdf> <./pics_sdlm/03_exp_SAE_noise_long/exp2_re
 con_s.pdf
 
@@ -3560,7 +4059,7 @@ _long/exp2_hid_s.pdf): PDF inclusion: multiple pdfs with page group included in
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./pics_sdlm/03_exp_SAE_noise
 _long/exp1_mse_nons.pdf): PDF inclusion: multiple pdfs with page group included
  in a single page
->] [182 <./pics_sdlm/13_exp_SRBM_noise_long/exp1_weights_s.png> <./pics_sdlm/13
+>] [183 <./pics_sdlm/13_exp_SRBM_noise_long/exp1_weights_s.png> <./pics_sdlm/13
 _exp_SRBM_noise_long/exp1_recon_s.pdf> <./pics_sdlm/13_exp_SRBM_noise_long/exp2
 _recon_s.pdf
 
@@ -3582,7 +4081,7 @@ n a single page
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./pics_sdlm/13_exp_SRBM_nois
 e_long/exp1_mse_nons.pdf): PDF inclusion: multiple pdfs with page group include
 d in a single page
->] [183 <./pics_sdlm/05_exp_SAE_teach_long/exp1_weights_s.png> <./pics_sdlm/05_
+>] [184 <./pics_sdlm/05_exp_SAE_teach_long/exp1_weights_s.png> <./pics_sdlm/05_
 exp_SAE_teach_long/exp1_recon_s.pdf> <./pics_sdlm/05_exp_SAE_teach_long/exp2_re
 con_s.pdf
 
@@ -3604,7 +4103,7 @@ _long/exp2_hid_s.pdf): PDF inclusion: multiple pdfs with page group included in
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./pics_sdlm/05_exp_SAE_teach
 _long/exp1_mse_nons.pdf): PDF inclusion: multiple pdfs with page group included
  in a single page
->] [184 <./pics_sdlm/15_exp_SRBM_teach_long/exp1_weights_s.png> <./pics_sdlm/15
+>] [185 <./pics_sdlm/15_exp_SRBM_teach_long/exp1_weights_s.png> <./pics_sdlm/15
 _exp_SRBM_teach_long/exp1_recon_s.pdf> <./pics_sdlm/15_exp_SRBM_teach_long/exp2
 _recon_s.pdf
 
@@ -3626,7 +4125,7 @@ n a single page
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./pics_sdlm/15_exp_SRBM_teac
 h_long/exp1_mse_nons.pdf): PDF inclusion: multiple pdfs with page group include
 d in a single page
->] [185 <./pics_sdlm/07_exp_SAE_all_long/exp1_weights_s.png> <./pics_sdlm/07_ex
+>] [186 <./pics_sdlm/07_exp_SAE_all_long/exp1_weights_s.png> <./pics_sdlm/07_ex
 p_SAE_all_long/exp1_recon_s.pdf> <./pics_sdlm/07_exp_SAE_all_long/exp2_recon_s.
 pdf
 
@@ -3648,7 +4147,7 @@ ong/exp2_hid_s.pdf): PDF inclusion: multiple pdfs with page group included in a
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./pics_sdlm/07_exp_SAE_all_l
 ong/exp1_mse_nons.pdf): PDF inclusion: multiple pdfs with page group included i
 n a single page
->] [186 <./pics_sdlm/17_exp_SRBM_all_long/exp1_weights_s.png> <./pics_sdlm/17_e
+>] [187 <./pics_sdlm/17_exp_SRBM_all_long/exp1_weights_s.png> <./pics_sdlm/17_e
 xp_SRBM_all_long/exp1_recon_s.pdf> <./pics_sdlm/17_exp_SRBM_all_long/exp2_recon
 _s.pdf
 
@@ -3670,7 +4169,7 @@ a single page
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./pics_sdlm/17_exp_SRBM_all_
 long/exp1_mse_nons.pdf): PDF inclusion: multiple pdfs with page group included 
 in a single page
->] [187 <./pics_sdlm/60_exp_SAE_Orig/exp2_weights_s.png> <./pics_sdlm/61_exp_SA
+>] [188 <./pics_sdlm/60_exp_SAE_Orig/exp2_weights_s.png> <./pics_sdlm/61_exp_SA
 E_Orig_long/exp2_weights_s.png> <./pics_sdlm/63_exp_SAE_noise_long/exp2_weights
 _s.png> <./pics_sdlm/65_exp_SAE_teach_long/exp2_weights_s.png> <./pics_sdlm/67_
 exp_SAE_all_long/exp2_weights_s.png> <./pics_sdlm/60_exp_SAE_Orig/exp2_mse_nons
@@ -3694,7 +4193,7 @@ _long/exp2_mse_nons.pdf): PDF inclusion: multiple pdfs with page group included
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./pics_sdlm/67_exp_SAE_all_l
 ong/exp2_mse_nons.pdf): PDF inclusion: multiple pdfs with page group included i
 n a single page
->] [188 <./pics_sdlm/70_exp_SRBM_Orig/exp2_weights_s.png> <./pics_sdlm/71_exp_S
+>] [189 <./pics_sdlm/70_exp_SRBM_Orig/exp2_weights_s.png> <./pics_sdlm/71_exp_S
 RBM_Orig_long/exp2_weights_s.png> <./pics_sdlm/73_exp_SRBM_noise_long/exp2_weig
 hts_s.png> <./pics_sdlm/75_exp_SRBM_teach_long/exp2_weights_s.png> <./pics_sdlm
 /77_exp_SRBM_all_long/exp2_weights_s.png> <./pics_sdlm/70_exp_SRBM_Orig/exp2_ms
@@ -3718,7 +4217,7 @@ d in a single page
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./pics_sdlm/77_exp_SRBM_all_
 long/exp2_mse_nons.pdf): PDF inclusion: multiple pdfs with page group included 
 in a single page
->] [189] [190] [191] [192] [193] [194] [195] [196]
+>] [190] [191] [192] [193] [194] [195] [196] [197]
 File: pics_sdlm/50_MNIST_SRBM_original/2_60000_0.pdf Graphic file (type pdf)
 
 <use pics_sdlm/50_MNIST_SRBM_original/2_60000_0.pdf>
@@ -3743,18 +4242,15 @@ File: pics_sdlm/53_MNIST_SRBM_all/2_60000_0.pdf Graphic file (type pdf)
 Package pdftex.def Info: pics_sdlm/53_MNIST_SRBM_all/2_60000_0.pdf used on inpu
 t line 527.
 (pdftex.def)             Requested size: 438.17244pt x 438.1832pt.
-) [197] [198] [199] [200]
+) [198] [199] [200] [201]
 (./thesis.bbl
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [201
+ [202
 
 
 
 ]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [202]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [203]
@@ -3778,10 +4274,13 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [209]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [210])
+ [210]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [211])
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 91.
 
-[211]
+[212]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 91.
  (./thesis.aux (./Chapter1.aux) (./Chapter2.aux) (./Chapter3.aux)
 (./Chapter4.aux) (./Chapter5.aux) (./Chapter6.aux) (./Conclusion.aux)
@@ -3793,10 +4292,10 @@ Package rerunfilecheck Info: File `thesis.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 91.
  ) 
 Here is how much of TeX's memory you used:
- 13058 strings out of 492995
- 222398 string characters out of 6132704
- 319231 words of memory out of 5000000
- 15464 multiletter control sequences out of 15000+600000
+ 13063 strings out of 492995
+ 222414 string characters out of 6132704
+ 322771 words of memory out of 5000000
+ 15466 multiletter control sequences out of 15000+600000
  21407 words of font info for 74 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  46i,19n,48p,2238b,755s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -3827,10 +4326,10 @@ ist/fonts/type1/public/amsfonts/cm/cmti7.pfb></usr/local/texlive/2017/texmf-dis
 t/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/local/texlive/2017/texmf-dist/
 fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2017/texmf-dist/f
 onts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on thesis.pdf (211 pages, 15868289 bytes).
+Output written on thesis.pdf (212 pages, 15870269 bytes).
 PDF statistics:
- 10325 PDF objects out of 10688 (max. 8388607)
- 4765 compressed objects within 48 object streams
- 771 named destinations out of 1000 (max. 500000)
+ 10331 PDF objects out of 10688 (max. 8388607)
+ 4770 compressed objects within 48 object streams
+ 774 named destinations out of 1000 (max. 500000)
  2096 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -298,7 +298,7 @@ Thus, it is straight forward to estimate the parameter $\eta_s$ to precisely tra
 \DIFaddend \label{equ:srm}
 \end{equation}
 So far we have accurately transformed numerical calculations of weight tuning to precise parameters of the SRM, thereby to the parameters of the STDP rules.
-\DIFaddbegin \DIFadd{In another word, the final on-line learning implementation is to accurately set the learning rates $\eta_{s+}$ and $\eta_{s-}$ and the time window $\tau_{\textit{\textrm{dur}}}$ for the STDP learning rule, and the weights of two connected spiking neuron will be continually modified given synchronous spikes of the pair of neurons. 
+\DIFaddbegin \DIFadd{In another word, the final learning algorithm is implemented by constructing the STDP rule and setting proper parameters: the time window $\tau_{\textit{\textrm{dur}}}$, the learning rates $\eta_{s+}$ and $\eta_{s-}$; and during training, the weights between any two connected neuron will be continually modified when synchronous spikes occur. 
 }\DIFaddend 
 
 %We can adjust $\eta_s$ to $ K^2 \tau_{\textit{\textrm{dur}}} \tau_{\textit{\textrm{win}}}10^{-6}$ to make the numerical calculations to the spike-based presentations.
@@ -384,15 +384,16 @@ The noisy data was gathered from the SNN experiments in Section~\ref{subsec:exp_
 All the SNN experiments used the same training and testing Poisson spike trains for the purpose of the unified experimental environment.
 
 The \DIFdelbegin \DIFdel{firing rates of the }\DIFdelend input values were scaled up by the factor \DIFaddbegin \DIFadd{of }\DIFaddend $K = 100$\DIFdelbegin \DIFdel{, thus }\DIFdelend \DIFaddbegin \DIFadd{~Hz, thus the firing rates of the poisson spike trains are }\DIFaddend $\lambda_1 = [100, 100, 100, ..., 100]$ Hz and $\lambda_2 = [10, 20, 30, ..., 100]$ Hz.
-The spike count $N_{\tau_{\textit{\textrm{dur}}}}$ of the generated Poisson spike train then transformed to the noisy input~(NI) for use of conventional models: \DIFdelbegin \DIFdel{$N_{\tau_{\textit{\textrm{dur}}}}*1000/(\tau_{\textit{\textrm{dur}}} * K)$}\DIFdelend \DIFaddbegin \DIFadd{$N_{\tau_{\textit{\textrm{dur}}}}\ times 1000/(\tau_{\textit{\textrm{dur}}} \times K)$}\DIFaddend .
+The spike count $N_{\tau_{\textit{\textrm{dur}}}}$ of the generated Poisson spike train then transformed to the noisy input~(NI) for use of conventional models: \DIFdelbegin \DIFdel{$N_{\tau_{\textit{\textrm{dur}}}}*1000/(\tau_{\textit{\textrm{dur}}} * K)$}\DIFdelend \DIFaddbegin \DIFadd{$N_{\tau_{\textit{\textrm{dur}}}} \times 1000/(\tau_{\textit{\textrm{dur}}} \times K)$}\DIFaddend .
 The scaling factor $1,000$ converts ms to s, and the length of spike trains $\tau_{\textit{\textrm{dur}}}$ was 100~ms when training, and $1,000$~ms for testing.
 The longer the spike trains, the less noisy the spike counts become.
 The NI can be seen as distorted data by adding Gaussian noise to the original value.
 \DIFaddbegin \DIFadd{Figure~\ref{fig:noise_input} shows the NI of Exp1 and Exp2; Every subfigure demonstrates $5,000$ data vectors, each data vector is shown as a column of coloured points, and each dimension of the input data is drawn with the same colour;
-every single data vector represents a trial of poisson spike trains, whose firing rates can be calculated by the values of the vector times $K = 100$~Hz;
-and the actual firing rates are recorded by randomly generated poisson spike trains given the expected firing rates of $\lambda_1 = [100, 100, 100, ..., 100]$ Hz and $\lambda_2 = [10, 20, 30, ..., 100]$ Hz;
-Since, the training poisson spike trains are 100~ms long, but the testing spike trains are 10 times longer, the actual firing rates are much more noisy in training data then in testing data.
-}\DIFaddend Hence, as shown in Figure~\ref{fig:noise_input}, \DIFdelbegin \DIFdel{the noisy training input }\DIFdelend \DIFaddbegin \DIFadd{NI }\DIFaddend added a Gaussian noise with -0.05 mean and 0.29 variance for Exp1 to the clean data, and -0.02 mean and 0.22 variance for Exp2;
+every single data vector represents the normalised firing rate of a trial of poisson spike trains, whose actual firing rates can be calculated by multiplying the values of the vector and the scaling factor $K$~(100 Hz).
+The actual firing rates are recorded by randomly generated poisson spike trains given the expected firing rates of $\lambda_1 = [100, 100, 100, ..., 100]$ Hz and $\lambda_2 = [10, 20, 30, ..., 100]$ Hz.
+The longer a spike train presents, the more spikes it has, and the actual firing rate is more likely to be close to the expectation.
+The training poisson spike trains are 100~ms long, and the testing spike trains are 10 times longer, thus the actual firing rates are much more noisy in training data than in the testing data.
+}\DIFaddend Hence, as shown in Figure~\ref{fig:noise_input}, \DIFdelbegin \DIFdel{the noisy training input }\DIFdelend \DIFaddbegin \DIFadd{NI }\DIFaddend added a Gaussian noise with -0.05 mean and 0.29 variance for Exp1\DIFdelbegin \DIFdel{to the clean data}\DIFdelend , and -0.02 mean and 0.22 variance for Exp2;
 while in terms of testing data, the means of the noise were the same, but the variances were much smaller: 0.09 for Exp1 and 0.07 for Exp2.
 
 
@@ -626,7 +627,7 @@ We use simple linear Integrate-and-Fire (IF) neurons to validate the training al
 \begin{equation}
 V_i(t+1)=V_i(t) + \sum_j w_{ij} s_j(t)~,
 \end{equation}
-and an IF neuron fires when the membrane potential $V$ surpasses the membrane threshold $V_{thresh}$, and $V$ resets to $V_{rest}$ after firing or when it reduces below $V_{rest}$.
+and an IF neuron fires when the membrane potential $V$ surpasses the membrane threshold \DIFdelbegin \DIFdel{$V_{thresh}$}\DIFdelend \DIFaddbegin \DIFadd{$V_{th}$}\DIFaddend , and $V$ resets to $V_{rest}$ after firing or when it reduces below $V_{rest}$.
 The parameters used are listed in Table~\ref{tbl:srm}.
 
 \begin{table}[th]
@@ -651,7 +652,7 @@ The parameters used are listed in Table~\ref{tbl:srm}.
 		%\hline
 		$V_{rest}$ & 0~mV & resting membrane potential\\
 		%\hline
-		$V_{thresh}$ & 1~mV & membrane threshold  \\
+		\DIFdelbeginFL \DIFdelFL{$V_{thresh}$ }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{$V_{th}$ }\DIFaddendFL & 1~mV & membrane threshold  \\
 	\end{tabular}
 	\egroup
 	\label{tbl:srm}
@@ -934,8 +935,9 @@ In addition, the loss drops to a lower level compared to the original SAE test b
 %There are various ways to introduce noise in formal spiking neuron models~\citep{gerstner2014neuronal}.
 We introduce a method of `noisy threshold' (also called escape or hazard model)~\citep{gerstner2002spiking} to generate noise in the output of spikes.
 The stochastic threshold of the membrane potential drives the post-synaptic spikes firing in advance of or behind the expected time, thus reducing the correlation between the pre- and post synaptic spikes.
-The Gaussian noise added to the membrane potential is randomly generated by $\mathcal{N}(0, \sigma)$~mV, where $\sigma$ is set to 0.2, 20\% of $V_{thresh} - V_{rest}.$
-An appropriate $\sigma$ is chosen for introducing enough noise to decrease the correlation of the spike trains and also maintain a good loss performance.
+The Gaussian noise added to the membrane potential is randomly generated by $\mathcal{N}(0, \sigma)$~mV, where $\sigma$ is set to 0.2, 20\% of \DIFdelbegin \DIFdel{$V_{thresh} - V_{rest}.$
+}\DIFdelend \DIFaddbegin \DIFadd{$V_{th} - V_{rest}.$
+}\DIFaddend An appropriate $\sigma$ is chosen for introducing enough noise to decrease the correlation of the spike trains and also maintain a good loss performance.
 The complete test results can be found in Appendix~\ref{sec:app2}, see Figures~\ref{fig:sol2_ae} and~\ref{fig:sol2_rbm}.
 
 Using the same STDP window $\tau_{\textit{\textrm{win}}}$ of 20~ms, the noisy membrane threshold enhances the decorrelation, thus the weight change remains more subtle than S1, see Figures~\ref{fig:sols_ae}(a) and~\ref{fig:sols_rbm}(a) .

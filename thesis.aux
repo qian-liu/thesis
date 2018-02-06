@@ -64,8 +64,8 @@
 \newacro{SGC}[\AC@hyperlink{SGC}{SGC}]{Spiral Ganglion Cell}
 \newacro{SGD}[\AC@hyperlink{SGD}{SGD}]{Stochastic Gradient Descent}
 \newacro{SNN}[\AC@hyperlink{SNN}{SNN}]{Spiking Neural Network}
-\newacro{Sopbs/W}[\AC@hyperlink{Sopbs/W}{Sopbs/W}]{synaptic operations per biological second per Watt}
-\newacro{Sops/W}[\AC@hyperlink{Sops/W}{Sops/W}]{synaptic operations per second per Watt}
+\newacro{Sopbs}[\AC@hyperlink{Sopbs}{Sopbs}]{synaptic operations per biological second}
+\newacro{Sops}[\AC@hyperlink{Sops}{Sops}]{synaptic operations per second}
 \newacro{SRBM}[\AC@hyperlink{SRBM}{SRBM}]{Spiking Restricted Boltzmann Machine}
 \newacro{SRM}[\AC@hyperlink{SRM}{SRM}]{Spike-based Rate Multiplication}
 \newacro{STDP}[\AC@hyperlink{STDP}{STDP}]{Spike-Time-Dependent Plasticity}
@@ -76,41 +76,43 @@
 \newacro{eta}[\AC@hyperlink{eta}{$\eta $}]{learning rate}
 \newacro{lambda}[\AC@hyperlink{lambda}{$\lambda $}]{firing rate}
 \newacro{mu_v}[\AC@hyperlink{mu_v}{$\mu _v$}]{instantaneous mean of the change in membrane potential }
-\newacro{sigma_v}[\AC@hyperlink{sigma_v}{$\sigma _v$}]{ standard deviation of the change in membrane potential }
-\newacro{sigma}[\AC@hyperlink{sigma}{$\sigma $}]{sigmoid function or the second parameter, noise level, of Noisy Softplus}
-\newacro{t_tau}[\AC@hyperlink{t_tau}{$\tau _{dur}$}]{duration of spike train}
-\newacro{t_refrac}[\AC@hyperlink{t_refrac}{$\tau _{refrac}$}]{refractory period}
-\newacro{t_win}[\AC@hyperlink{t_win}{$\tau _{win}$}]{window length in time}
+\newacro{sigma_v}[\AC@hyperlink{sigma_v}{$\sigma _v$}]{standard deviation of the change in membrane potential }
+\newacro{sigma}[\AC@hyperlink{sigma}{$\sigma $}]{sigmoid function; \unskip {\@@par }\let \reserved@d = *\def \def {\penalty \@M \GenericError  {               }{LaTeX Error: Something's wrong--perhaps a missing \item }{See the LaTeX manual or LaTeX Companion for explanation.}{Try typing  <return>  to proceed.\MessageBreak If that doesn't work, type  X <return>  to quit.}\let \reserved@d =[\def \def \ignorespaces {\ignorespaces }\futurelet \@let@token \let \ignorespaces \ignorespaces \ignorespaces }\def \ignorespaces {\GenericError  {               }{LaTeX Error: Something's wrong--perhaps a missing \item }{See the LaTeX manual or LaTeX Companion for explanation.}{Try typing  <return>  to proceed.\MessageBreak If that doesn't work, type  X <return>  to quit.}\let \reserved@d =[\def \def \ignorespaces {\ignorespaces }\futurelet \@let@token \let \ignorespaces \ignorespaces \ignorespaces }\futurelet \@let@token \ignorespaces or the second parameter of Noisy Softplus, the standard deviation of the noisy current influx}
+\newacro{t_tau}[\AC@hyperlink{t_tau}{$\tau _{dur}$}]{duration of a spike train}
+\newacro{t_refrac}[\AC@hyperlink{t_refrac}{$\tau _{refrac}$}]{refractory period after a neuron generates a spike, during which the neuron cannot fire again}
+\newacro{t_win}[\AC@hyperlink{t_win}{$\tau _{win}$}]{time window used in Spike-Time-Dependent Plasticity}
 \newacro{t_syn}[\AC@hyperlink{t_syn}{$\tau _{syn}$}]{synaptic time constant}
 \newacro{t_m}[\AC@hyperlink{t_m}{$\tau _m$}]{membrane time constant}
-\newacro{Theta}[\AC@hyperlink{Theta}{$\Theta $}]{parameter}
+\newacro{Theta}[\AC@hyperlink{Theta}{$\Theta $}]{a set of parameters}
 \newacro{theta}[\AC@hyperlink{theta}{$\theta $}]{parameter}
+\newacro{xi}[\AC@hyperlink{xi}{$\xi (t)$}]{a Gaussian stochastic process}
 \newacro{$b$}[\AC@hyperlink{$b$}{$b$}]{bias}
 \newacro{$C_m$}[\AC@hyperlink{$C_m$}{$C_m$}]{membrane capacitance}
 \newacro{$D$}[\AC@hyperlink{$D$}{$D$}]{dataset}
 \newacro{$dt$}[\AC@hyperlink{$dt$}{$dt$}]{time step}
 \newacro{$E_{syn}$}[\AC@hyperlink{$E_{syn}$}{$E_{syn}$}]{reversal potential of the ion channel in a synapse}
-\newacro{$E$}[\AC@hyperlink{$E$}{$E$}]{error or energy}
-\newacro{$f$}[\AC@hyperlink{$f$}{$f$}]{function}
+\newacro{$E$}[\AC@hyperlink{$E$}{$E$}]{mean square error used in Backpropagation; \unskip {\@@par }\let \reserved@d = *\def \def {\penalty \@M \GenericError  {               }{LaTeX Error: Something's wrong--perhaps a missing \item }{See the LaTeX manual or LaTeX Companion for explanation.}{Try typing  <return>  to proceed.\MessageBreak If that doesn't work, type  X <return>  to quit.}\let \reserved@d =[\def \def \ignorespaces {\ignorespaces }\futurelet \@let@token \let \ignorespaces \ignorespaces \ignorespaces }\def \ignorespaces {\GenericError  {               }{LaTeX Error: Something's wrong--perhaps a missing \item }{See the LaTeX manual or LaTeX Companion for explanation.}{Try typing  <return>  to proceed.\MessageBreak If that doesn't work, type  X <return>  to quit.}\let \reserved@d =[\def \def \ignorespaces {\ignorespaces }\futurelet \@let@token \let \ignorespaces \ignorespaces \ignorespaces }\futurelet \@let@token \ignorespaces or energy function used in energy-based model}
+\newacro{$f$}[\AC@hyperlink{$f$}{$f$}]{activation function}
 \newacro{$g_{syn}$}[\AC@hyperlink{$g_{syn}$}{$g_{syn}$}]{conductance of the ion channel in a synapse}
 \newacro{$h$}[\AC@hyperlink{$h$}{$h$}]{value of a hidden unit}
-\newacro{$I_{offset}$}[\AC@hyperlink{$I_{offset}$}{$I_{offset}$}]{offset of input current}
+\newacro{$I_{offset}$}[\AC@hyperlink{$I_{offset}$}{$I_{offset}$}]{offset of the input current}
 \newacro{$I_c$}[\AC@hyperlink{$I_c$}{$I_c$}]{current which charges the capacitor}
 \newacro{$I_r$}[\AC@hyperlink{$I_r$}{$I_r$}]{current which discharges through the resistance}
 \newacro{$I$}[\AC@hyperlink{$I$}{$I$}]{current}
-\newacro{$k$}[\AC@hyperlink{$k$}{$k$}]{data index or the noise scaling factor of Noisy Softplus}
-\newacro{$K$}[\AC@hyperlink{$K$}{$K$}]{number of data samples or scaling factor maps numerical numbers to firing rates in Hz}
+\newacro{$k$}[\AC@hyperlink{$k$}{$k$}]{data index; \unskip {\@@par }\let \reserved@d = *\def \def {\penalty \@M \GenericError  {               }{LaTeX Error: Something's wrong--perhaps a missing \item }{See the LaTeX manual or LaTeX Companion for explanation.}{Try typing  <return>  to proceed.\MessageBreak If that doesn't work, type  X <return>  to quit.}\let \reserved@d =[\def \def \ignorespaces {\ignorespaces }\futurelet \@let@token \let \ignorespaces \ignorespaces \ignorespaces }\def \ignorespaces {\GenericError  {               }{LaTeX Error: Something's wrong--perhaps a missing \item }{See the LaTeX manual or LaTeX Companion for explanation.}{Try typing  <return>  to proceed.\MessageBreak If that doesn't work, type  X <return>  to quit.}\let \reserved@d =[\def \def \ignorespaces {\ignorespaces }\futurelet \@let@token \let \ignorespaces \ignorespaces \ignorespaces }\futurelet \@let@token \ignorespaces or the noise scaling factor of Noisy Softplus}
+\newacro{$K$}[\AC@hyperlink{$K$}{$K$}]{number of data samples; \unskip {\@@par }\let \reserved@d = *\def \def {\penalty \@M \GenericError  {               }{LaTeX Error: Something's wrong--perhaps a missing \item }{See the LaTeX manual or LaTeX Companion for explanation.}{Try typing  <return>  to proceed.\MessageBreak If that doesn't work, type  X <return>  to quit.}\let \reserved@d =[\def \def \ignorespaces {\ignorespaces }\futurelet \@let@token \let \ignorespaces \ignorespaces \ignorespaces }\def \ignorespaces {\GenericError  {               }{LaTeX Error: Something's wrong--perhaps a missing \item }{See the LaTeX manual or LaTeX Companion for explanation.}{Try typing  <return>  to proceed.\MessageBreak If that doesn't work, type  X <return>  to quit.}\let \reserved@d =[\def \def \ignorespaces {\ignorespaces }\futurelet \@let@token \let \ignorespaces \ignorespaces \ignorespaces }\futurelet \@let@token \ignorespaces scaling factor which maps numerical numbers to firing rates in Hz}
 \newacro{$l$}[\AC@hyperlink{$l$}{$l$}]{log likelihood}
-\newacro{$L$}[\AC@hyperlink{$L$}{$L$}]{loss or likelihood}
+\newacro{$L$}[\AC@hyperlink{$L$}{$L$}]{loss reprensented by the loss function; \unskip {\@@par }\let \reserved@d = *\def \def {\penalty \@M \GenericError  {               }{LaTeX Error: Something's wrong--perhaps a missing \item }{See the LaTeX manual or LaTeX Companion for explanation.}{Try typing  <return>  to proceed.\MessageBreak If that doesn't work, type  X <return>  to quit.}\let \reserved@d =[\def \def \ignorespaces {\ignorespaces }\futurelet \@let@token \let \ignorespaces \ignorespaces \ignorespaces }\def \ignorespaces {\GenericError  {               }{LaTeX Error: Something's wrong--perhaps a missing \item }{See the LaTeX manual or LaTeX Companion for explanation.}{Try typing  <return>  to proceed.\MessageBreak If that doesn't work, type  X <return>  to quit.}\let \reserved@d =[\def \def \ignorespaces {\ignorespaces }\futurelet \@let@token \let \ignorespaces \ignorespaces \ignorespaces }\futurelet \@let@token \ignorespaces or likelihood function}
 \newacro{$m_I$}[\AC@hyperlink{$m_I$}{$m_I$}]{mean of the input current}
 \newacro{$N$}[\AC@hyperlink{$N$}{$N$}]{total number}
 \newacro{$net$}[\AC@hyperlink{$net$}{$net$}]{weighted sum, the input value of an activation function}
-\newacro{$p$}[\AC@hyperlink{$p$}{$p$}]{possibility or parameter p of Parametric Activation Function}
+\newacro{$p$}[\AC@hyperlink{$p$}{$p$}]{possibility; \unskip {\@@par }\let \reserved@d = *\def \def {\penalty \@M \GenericError  {               }{LaTeX Error: Something's wrong--perhaps a missing \item }{See the LaTeX manual or LaTeX Companion for explanation.}{Try typing  <return>  to proceed.\MessageBreak If that doesn't work, type  X <return>  to quit.}\let \reserved@d =[\def \def \ignorespaces {\ignorespaces }\futurelet \@let@token \let \ignorespaces \ignorespaces \ignorespaces }\def \ignorespaces {\GenericError  {               }{LaTeX Error: Something's wrong--perhaps a missing \item }{See the LaTeX manual or LaTeX Companion for explanation.}{Try typing  <return>  to proceed.\MessageBreak If that doesn't work, type  X <return>  to quit.}\let \reserved@d =[\def \def \ignorespaces {\ignorespaces }\futurelet \@let@token \let \ignorespaces \ignorespaces \ignorespaces }\futurelet \@let@token \ignorespaces or parameter $p$ of the Parametric Activation Function}
 \newacro{$R_m$}[\AC@hyperlink{$R_m$}{$R_m$}]{membrane resistance}
+\newacro{$r$}[\AC@hyperlink{$r$}{$r$}]{a random number sampled from a Gaussian distribution}
 \newacro{$s_I$}[\AC@hyperlink{$s_I$}{$s_I$}]{standard deviation of the input current}
-\newacro{$S$}[\AC@hyperlink{$S$}{$S$}]{mapping scaling factor}
+\newacro{$S$}[\AC@hyperlink{$S$}{$S$}]{mapping scaling factor used in the Parametric Activation Function}
 \newacro{$s$}[\AC@hyperlink{$s$}{$s$}]{spike train}
-\newacro{$t$}[\AC@hyperlink{$t$}{$t$}]{time or teaching labels}
+\newacro{$t$}[\AC@hyperlink{$t$}{$t$}]{time; \unskip {\@@par }\let \reserved@d = *\def \def {\penalty \@M \GenericError  {               }{LaTeX Error: Something's wrong--perhaps a missing \item }{See the LaTeX manual or LaTeX Companion for explanation.}{Try typing  <return>  to proceed.\MessageBreak If that doesn't work, type  X <return>  to quit.}\let \reserved@d =[\def \def \ignorespaces {\ignorespaces }\futurelet \@let@token \let \ignorespaces \ignorespaces \ignorespaces }\def \ignorespaces {\GenericError  {               }{LaTeX Error: Something's wrong--perhaps a missing \item }{See the LaTeX manual or LaTeX Companion for explanation.}{Try typing  <return>  to proceed.\MessageBreak If that doesn't work, type  X <return>  to quit.}\let \reserved@d =[\def \def \ignorespaces {\ignorespaces }\futurelet \@let@token \let \ignorespaces \ignorespaces \ignorespaces }\futurelet \@let@token \ignorespaces teaching labels}
 \newacro{$T$}[\AC@hyperlink{$T$}{$T$}]{total time}
 \newacro{$V_{reset}$}[\AC@hyperlink{$V_{reset}$}{$V_{reset}$}]{resetting potential after a neuron spikes}
 \newacro{$V_{rest}$}[\AC@hyperlink{$V_{rest}$}{$V_{rest}$}]{resting potential}
