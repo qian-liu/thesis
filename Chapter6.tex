@@ -84,7 +84,7 @@ In this study's largest configuration, a network of 74,210 neurons and 15,216,51
 Spike-Timing-Dependent Plasticity (STDP) as a learning mechanism based on biological observations has been applied to vision tasks.
 As mentioned in Chapter~\ref{cha:intro}, these models typically comprise only two neural layers and exploit STDP and/or Winner-Take-All~(WTA) circuits on the synaptic connections.
 \citet{bichler2012extraction} demonstrated an unsupervised STDP learning model to classify car trajectories captured with a DVS retina. 
-A similar model trained with STDP using a winner-take-all~(WTA) circuit was tested on a Poissonian spike presentation of the MNIST dataset achieving a performance of 95.0\%~\citep{diehl2015unsupervised}.
+A similar model trained with STDP using a WTA circuit was tested on a Poissonian spike presentation of the MNIST dataset achieving a performance of 95.0\%~\citep{diehl2015unsupervised}.
 %Theoretical analysis~\citep{nessler2013bayesian} showed that unsupervised STDP was able to approximate a stochastic version of Expectation Maximisation, a powerful learning algorithm in machine learning.
 Another STDP trained model tested on computer simulation reached a 93.3\% CA on MNIST and had the potential to be implemented using memristors~\citep{bill2014compound}. 
 Adding synaptic internal state enabled STDP to work on bistable synapses, and this method achieved the best performance of 96.5\% among similar network architectures~\citep{brader2007learning}. 
@@ -339,7 +339,7 @@ Rank-ordered spike trains have been used in vision tasks under a biological plau
 %	\label{tab-kernel-specs}
 %\end{table}
 %
-Rank order coding (ROC) can be performed using an algorithm known as the
+Rank Order Coding (ROC) can be performed using an algorithm known as the
 {FoCal algorithm~\citep{sen2009evaluating}}.
 This algorithm models the foveola, the highest resolution area of the retina, with four ganglion cell layers each with a different scale of centre-surround receptive field~\citep{kolb2003retina}.
 The detailed description of the algorithm was demonstrated by Garibaldi~Pineda-Garc\'ia\, in the published paper~\citep{liu2016bench} and the source Python scripts to transform images to ROC spike trains, and to convert the results into AER and PyNN spike source arrays, can be found in the dataset website.

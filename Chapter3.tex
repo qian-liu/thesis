@@ -111,7 +111,7 @@ L={MSE}(\mathbf{T}, \mathbf{Y}) =\frac{1}{2K}\sum_{k=1}^K \sum_{m=1}^M (y^{k}_{m
 \label{equ:loss_all}
 \end{equation}
 
-BP propagates the gradient of the loss with respect to the weights backwards to each connection in the network.
+Backpropagation~(BP) propagates the gradient of the loss with respect to the weights backwards to each connection in the network.
 The computation requires a closer look into the structure of a neuron, see Figure~\ref{Fig:neuron_net}, where $N$ neurons connect to the $j^{th}$ neuron of the next layer, and the neuron converts the weighted summation of the input, $net_j$, to the output $y_j$ according to its activation function.
 \begin{figure}[bt]
 	\centering

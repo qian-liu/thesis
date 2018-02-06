@@ -1,90 +1,92 @@
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {1.1}{\ignorespaces The outline of the thesis. \relax }}{25}{figure.caption.7}
+\contentsline {figure}{\numberline {1.1}{\ignorespaces The outline of the thesis. \relax }}{31}{figure.caption.9}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Two neurons connected by synapses\nobreakspace {}\citep {reece2011campbell,hodgkin1939action}.}}{27}{figure.caption.8}
-\contentsline {figure}{\numberline {2.2}{\ignorespaces Example of rate coding\nobreakspace {}\citep {hubel1962receptive}.}}{29}{figure.caption.9}
-\contentsline {figure}{\numberline {2.3}{\ignorespaces Example of temporal coding\nobreakspace {}\citep {liu2013modeling}.}}{30}{figure.caption.10}
-\contentsline {figure}{\numberline {2.4}{\ignorespaces Post-synaptic potential.}}{31}{figure.caption.11}
-\contentsline {figure}{\numberline {2.5}{\ignorespaces Summation of post-synaptic potentials\nobreakspace {}\citep {reece2011campbell}.}}{31}{figure.caption.12}
-\contentsline {figure}{\numberline {2.6}{\ignorespaces Comparisons of an artificial and a spiking neuron.}}{33}{figure.caption.13}
-\contentsline {figure}{\numberline {2.7}{\ignorespaces The cell membrane acts like a RC circuit\nobreakspace {}\citep {gerstner2014neuronal}.}}{33}{figure.caption.15}
-\contentsline {figure}{\numberline {2.8}{\ignorespaces Spike-Timing-Dependent Plasticity (STDP)\nobreakspace {}\citep {bi2001synaptic}.}}{37}{figure.caption.18}
-\contentsline {figure}{\numberline {2.9}{\ignorespaces Neuromorphic hardware systems using SpiNNaker.}}{42}{figure.caption.19}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Two neurons connected by synapses\nobreakspace {}\citep {reece2011campbell,hodgkin1939action}.}}{33}{figure.caption.10}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Example of rate coding\nobreakspace {}\citep {hubel1962receptive}.}}{35}{figure.caption.11}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Example of temporal coding\nobreakspace {}\citep {liu2013modeling}.}}{36}{figure.caption.12}
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Post-synaptic potential.}}{37}{figure.caption.13}
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Summation of post-synaptic potentials\nobreakspace {}\citep {reece2011campbell}.}}{37}{figure.caption.14}
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Comparisons of an artificial and a spiking neuron.}}{39}{figure.caption.15}
+\contentsline {figure}{\numberline {2.7}{\ignorespaces The cell membrane acts like a RC circuit\nobreakspace {}\citep {gerstner2014neuronal}.}}{39}{figure.caption.17}
+\contentsline {figure}{\numberline {2.8}{\ignorespaces Spike-Timing-Dependent Plasticity (STDP)\nobreakspace {}\citep {bi2001synaptic}.}}{43}{figure.caption.20}
+\contentsline {figure}{\numberline {2.9}{\ignorespaces Neuromorphic hardware systems using SpiNNaker.}}{48}{figure.caption.21}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Typical ConvNet architecture.\relax }}{47}{figure.caption.20}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces An artificial neuron.}}{49}{figure.caption.21}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Activation functions}}{51}{figure.caption.22}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces A typical Autoencoder structure.\relax }}{53}{figure.caption.23}
-\contentsline {figure}{\numberline {3.5}{\ignorespaces A typical RBM structure.\relax }}{54}{figure.caption.24}
-\contentsline {figure}{\numberline {3.6}{\ignorespaces Gibbs sampling on a RBM.}}{57}{figure.caption.25}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Typical ConvNet architecture.\relax }}{53}{figure.caption.22}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces An artificial neuron.}}{55}{figure.caption.23}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Activation functions}}{57}{figure.caption.24}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces A typical Autoencoder structure.\relax }}{59}{figure.caption.25}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces A typical RBM structure.\relax }}{60}{figure.caption.26}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Gibbs sampling on a RBM.}}{63}{figure.caption.27}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces A spiking neuron.}}{61}{figure.caption.26}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Response function of the LIF neuron.}}{65}{figure.caption.27}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Recorded response firing rate driven by \textit {NoisyCurrentSource}.}}{67}{figure.caption.29}
-\contentsline {figure}{\numberline {4.4}{\ignorespaces \textit {NoisyCurrentSource} samples from a Gaussian distribution.}}{68}{figure.caption.30}
-\contentsline {figure}{\numberline {4.5}{\ignorespaces Recorded response firing rate driven by a noisy synaptic current.}}{71}{figure.caption.31}
-\contentsline {figure}{\numberline {4.6}{\ignorespaces Noisy currents generated by Poisson spike trains.}}{72}{figure.caption.32}
-\contentsline {figure}{\numberline {4.7}{\ignorespaces NSP models the LIF response function.}}{74}{figure.caption.33}
-\contentsline {figure}{\numberline {4.8}{\ignorespaces NSP in 3D.}}{75}{figure.caption.34}
-\contentsline {figure}{\numberline {4.9}{\ignorespaces NSP fits to the response firing rates.}}{77}{figure.caption.35}
-\contentsline {figure}{\numberline {4.10}{\ignorespaces PAF models spiking neuron as an conventional activation function.}}{87}{figure.caption.36}
-\contentsline {figure}{\numberline {4.11}{\ignorespaces Images presented in spike trains convolve with a weight kernel.}}{88}{figure.caption.37}
-\contentsline {figure}{\numberline {4.12}{\ignorespaces The recorded firing rate of the convolution outcomes.}}{89}{figure.caption.38}
-\contentsline {figure}{\numberline {4.13}{\ignorespaces Comparisons of loss during training.}}{89}{figure.caption.39}
-\contentsline {figure}{\numberline {4.14}{\ignorespaces Classification accuracy.}}{90}{figure.caption.40}
-\contentsline {figure}{\numberline {4.15}{\ignorespaces The classification accuracy after fine tuning.}}{91}{figure.caption.44}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces A spiking neuron.}}{66}{figure.caption.28}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Response function of the LIF neuron.}}{70}{figure.caption.29}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Recorded response firing rate driven by \textit {NoisyCurrentSource}.}}{72}{figure.caption.31}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces \textit {NoisyCurrentSource} samples from a Gaussian distribution.}}{73}{figure.caption.32}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Recorded response firing rate driven by a noisy synaptic current.}}{75}{figure.caption.33}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Noisy currents generated by Poisson spike trains.}}{76}{figure.caption.34}
+\contentsline {figure}{\numberline {4.7}{\ignorespaces NSP models the LIF response function.}}{78}{figure.caption.35}
+\contentsline {figure}{\numberline {4.8}{\ignorespaces NSP in 3D.}}{79}{figure.caption.36}
+\contentsline {figure}{\numberline {4.9}{\ignorespaces NSP fits to the response firing rates.}}{81}{figure.caption.37}
+\contentsline {figure}{\numberline {4.10}{\ignorespaces A conventional artificial neuron.}}{82}{figure.caption.38}
+\contentsline {figure}{\numberline {4.11}{\ignorespaces An artificial spiking neuron modelled by NSP.}}{83}{figure.caption.39}
+\contentsline {figure}{\numberline {4.12}{\ignorespaces An artificial spiking neuron modelled by PAF-NSP.}}{83}{figure.caption.40}
+\contentsline {figure}{\numberline {4.13}{\ignorespaces Images presented in spike trains convolve with a weight kernel.}}{87}{figure.caption.41}
+\contentsline {figure}{\numberline {4.14}{\ignorespaces The recorded firing rate of the convolution outcomes.}}{88}{figure.caption.42}
+\contentsline {figure}{\numberline {4.15}{\ignorespaces Comparisons of loss during training.}}{89}{figure.caption.43}
+\contentsline {figure}{\numberline {4.16}{\ignorespaces Classification accuracy.}}{90}{figure.caption.44}
+\contentsline {figure}{\numberline {4.17}{\ignorespaces The classification accuracy after fine tuning.}}{93}{figure.caption.48}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces ReSuMe algorithm.}}{96}{figure.caption.46}
-\contentsline {figure}{\numberline {5.2}{\ignorespaces The architecture of an ADALINE network.\relax }}{96}{figure.caption.47}
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Rectangular STDP curve.}}{98}{figure.caption.50}
-\contentsline {figure}{\numberline {5.4}{\ignorespaces Reconstruction using AEs and RBMs.}}{100}{figure.caption.53}
-\contentsline {figure}{\numberline {5.5}{\ignorespaces Noisy input gathered from Poisson spike trains.\relax }}{101}{figure.caption.54}
-\contentsline {figure}{\numberline {5.6}{\ignorespaces AE training of the reconstruction tests.}}{103}{figure.caption.55}
-\contentsline {figure}{\numberline {5.7}{\ignorespaces AE-NI training of the reconstruction tests.}}{105}{figure.caption.56}
-\contentsline {figure}{\numberline {5.8}{\ignorespaces nRBM training of the reconstruction tests.}}{106}{figure.caption.57}
-\contentsline {figure}{\numberline {5.9}{\ignorespaces nRBM-NI training of the reconstruction tests.}}{107}{figure.caption.58}
-\contentsline {figure}{\numberline {5.10}{\ignorespaces Network architecture and the learning algorithm of a spiking AE.\relax }}{109}{figure.caption.60}
-\contentsline {figure}{\numberline {5.11}{\ignorespaces SAE training of the reconstruction tests.}}{110}{figure.caption.61}
-\contentsline {figure}{\numberline {5.12}{\ignorespaces Network architecture and the learning algorithm of a spiking RBM.\relax }}{112}{figure.caption.62}
-\contentsline {figure}{\numberline {5.13}{\ignorespaces SRBM training of the reconstruction tests.}}{113}{figure.caption.63}
-\contentsline {figure}{\numberline {5.14}{\ignorespaces Comparisons of solutions in training SAE.}}{115}{figure.caption.64}
-\contentsline {figure}{\numberline {5.15}{\ignorespaces Comparisons of solutions in training SRBM.}}{116}{figure.caption.65}
-\contentsline {figure}{\numberline {5.16}{\ignorespaces AE and RBM structure for MNIST tasks.\relax }}{120}{figure.caption.66}
-\contentsline {figure}{\numberline {5.17}{\ignorespaces Comparisons of trained weights using (spiking) AEs.}}{121}{figure.caption.67}
-\contentsline {figure}{\numberline {5.18}{\ignorespaces Comparisons of trained weights using (spiking) RBMs.}}{122}{figure.caption.68}
-\contentsline {figure}{\numberline {5.19}{\ignorespaces Comparisons of classification accuracy between conventional and spiking models.}}{124}{figure.caption.70}
-\contentsline {figure}{\numberline {5.20}{\ignorespaces Classification accuracy per time step.}}{126}{figure.caption.71}
-\contentsline {figure}{\numberline {5.21}{\ignorespaces Classification accuracy with various input firing rates.}}{128}{figure.caption.74}
-\contentsline {figure}{\numberline {5.22}{\ignorespaces Comparisons of loss between conventional and spiking models.}}{129}{figure.caption.77}
-\contentsline {figure}{\numberline {5.23}{\ignorespaces Reconstructions of the same digit '2'.}}{130}{figure.caption.78}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces ReSuMe algorithm.}}{100}{figure.caption.50}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces The architecture of an ADALINE network.\relax }}{100}{figure.caption.51}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Rectangular STDP curve.}}{102}{figure.caption.54}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Reconstruction using AEs and RBMs.}}{105}{figure.caption.57}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Noisy input gathered from Poisson spike trains.\relax }}{106}{figure.caption.58}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces AE training of the reconstruction tests.}}{108}{figure.caption.59}
+\contentsline {figure}{\numberline {5.7}{\ignorespaces AE-NI training of the reconstruction tests.}}{109}{figure.caption.60}
+\contentsline {figure}{\numberline {5.8}{\ignorespaces nRBM training of the reconstruction tests.}}{111}{figure.caption.61}
+\contentsline {figure}{\numberline {5.9}{\ignorespaces nRBM-NI training of the reconstruction tests.}}{112}{figure.caption.62}
+\contentsline {figure}{\numberline {5.10}{\ignorespaces Network architecture and the learning algorithm of a spiking AE.\relax }}{114}{figure.caption.64}
+\contentsline {figure}{\numberline {5.11}{\ignorespaces SAE training of the reconstruction tests.}}{115}{figure.caption.65}
+\contentsline {figure}{\numberline {5.12}{\ignorespaces Network architecture and the learning algorithm of a spiking RBM.\relax }}{116}{figure.caption.66}
+\contentsline {figure}{\numberline {5.13}{\ignorespaces SRBM training of the reconstruction tests.}}{117}{figure.caption.67}
+\contentsline {figure}{\numberline {5.14}{\ignorespaces Comparisons of solutions in training SAE.}}{120}{figure.caption.68}
+\contentsline {figure}{\numberline {5.15}{\ignorespaces Comparisons of solutions in training SRBM.}}{121}{figure.caption.69}
+\contentsline {figure}{\numberline {5.16}{\ignorespaces AE and RBM structure for MNIST tasks.\relax }}{124}{figure.caption.70}
+\contentsline {figure}{\numberline {5.17}{\ignorespaces Comparisons of trained weights using (spiking) AEs.}}{125}{figure.caption.71}
+\contentsline {figure}{\numberline {5.18}{\ignorespaces Comparisons of trained weights using (spiking) RBMs.}}{126}{figure.caption.72}
+\contentsline {figure}{\numberline {5.19}{\ignorespaces Comparisons of classification accuracy between conventional and spiking models.}}{129}{figure.caption.74}
+\contentsline {figure}{\numberline {5.20}{\ignorespaces Classification accuracy per time step.}}{131}{figure.caption.75}
+\contentsline {figure}{\numberline {5.21}{\ignorespaces Classification accuracy with various input firing rates.}}{132}{figure.caption.78}
+\contentsline {figure}{\numberline {5.22}{\ignorespaces Comparisons of loss between conventional and spiking models.}}{134}{figure.caption.81}
+\contentsline {figure}{\numberline {5.23}{\ignorespaces Reconstructions of the same digit '2'.}}{135}{figure.caption.82}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {6.1}{\ignorespaces Snapshots of the jAER software.}}{141}{figure.caption.79}
-\contentsline {figure}{\numberline {6.2}{\ignorespaces DVS sensor with flashing input.}}{143}{figure.caption.83}
-\contentsline {figure}{\numberline {6.3}{\ignorespaces The proposed SNN model.}}{151}{figure.caption.89}
-\contentsline {figure}{\numberline {6.4}{\ignorespaces Comparisons on different test time and input firing rate.}}{154}{figure.caption.90}
-\contentsline {figure}{\numberline {6.5}{\ignorespaces Energy usages of different network size.}}{157}{figure.caption.92}
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Snapshots of the jAER software.}}{145}{figure.caption.83}
+\contentsline {figure}{\numberline {6.2}{\ignorespaces DVS sensor with flashing input.}}{148}{figure.caption.87}
+\contentsline {figure}{\numberline {6.3}{\ignorespaces The proposed SNN model.}}{156}{figure.caption.93}
+\contentsline {figure}{\numberline {6.4}{\ignorespaces Comparisons on different test time and input firing rate.}}{158}{figure.caption.94}
+\contentsline {figure}{\numberline {6.5}{\ignorespaces Energy usages of different network size.}}{162}{figure.caption.96}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {B.1}{\ignorespaces SAE-S1 training of the reconstruction tests.}}{174}{figure.caption.109}
-\contentsline {figure}{\numberline {B.2}{\ignorespaces SRBM-S1 training of the reconstruction tests.}}{175}{figure.caption.110}
-\contentsline {figure}{\numberline {B.3}{\ignorespaces SAE-S2 training of the reconstruction tests.}}{176}{figure.caption.111}
-\contentsline {figure}{\numberline {B.4}{\ignorespaces SRBM-S2 training of the reconstruction tests.}}{177}{figure.caption.112}
-\contentsline {figure}{\numberline {B.5}{\ignorespaces SAE-S3 training of the reconstruction tests.}}{178}{figure.caption.113}
-\contentsline {figure}{\numberline {B.6}{\ignorespaces SRBM-S3 training of the reconstruction tests.}}{179}{figure.caption.114}
-\contentsline {figure}{\numberline {B.7}{\ignorespaces SAE-S4 training of the reconstruction tests.}}{180}{figure.caption.115}
-\contentsline {figure}{\numberline {B.8}{\ignorespaces SRBM-S4 training of the reconstruction tests.}}{181}{figure.caption.116}
-\contentsline {figure}{\numberline {B.9}{\ignorespaces Comparisons of solutions in training SAE using LIF.}}{182}{figure.caption.117}
-\contentsline {figure}{\numberline {B.10}{\ignorespaces Comparisons of solutions in training SRBM using LIF.}}{183}{figure.caption.118}
-\contentsline {figure}{\numberline {B.11}{\ignorespaces Trained weights of AE, same as Figure\nobreakspace {}\ref {fig:weights_ae}(a).}}{184}{figure.caption.119}
-\contentsline {figure}{\numberline {B.12}{\ignorespaces Trained weights of AE-NI, same as Figure\nobreakspace {}\ref {fig:weights_ae}(b).}}{185}{figure.caption.120}
-\contentsline {figure}{\numberline {B.13}{\ignorespaces Trained weights of SAE, same as Figure\nobreakspace {}\ref {fig:weights_ae}(c).}}{186}{figure.caption.121}
-\contentsline {figure}{\numberline {B.14}{\ignorespaces Trained weights of SAE-S2, same as Figure\nobreakspace {}\ref {fig:weights_ae}(d).}}{187}{figure.caption.122}
-\contentsline {figure}{\numberline {B.15}{\ignorespaces Trained weights of SAE-S3, same as Figure\nobreakspace {}\ref {fig:weights_ae}(e).}}{188}{figure.caption.123}
-\contentsline {figure}{\numberline {B.16}{\ignorespaces Trained weights of SAE-S4, same as Figure\nobreakspace {}\ref {fig:weights_ae}(f).}}{189}{figure.caption.124}
-\contentsline {figure}{\numberline {B.17}{\ignorespaces Trained weights of nRBM, same as Figure\nobreakspace {}\ref {fig:weights_rbm}(a).}}{190}{figure.caption.125}
-\contentsline {figure}{\numberline {B.18}{\ignorespaces Trained weights of nRBM-NI, same as Figure\nobreakspace {}\ref {fig:weights_rbm}(b).}}{191}{figure.caption.126}
-\contentsline {figure}{\numberline {B.19}{\ignorespaces Trained weights of SRBM, same as Figure\nobreakspace {}\ref {fig:weights_rbm}(c).}}{192}{figure.caption.127}
-\contentsline {figure}{\numberline {B.20}{\ignorespaces Trained weights of SRBM-S2, same as Figure\nobreakspace {}\ref {fig:weights_rbm}(d).}}{193}{figure.caption.128}
-\contentsline {figure}{\numberline {B.21}{\ignorespaces Trained weights of SRBM-S3, same as Figure\nobreakspace {}\ref {fig:weights_rbm}(e).}}{194}{figure.caption.129}
-\contentsline {figure}{\numberline {B.22}{\ignorespaces Trained weights of SRBM-S4, same as Figure\nobreakspace {}\ref {fig:weights_rbm}(f).}}{195}{figure.caption.130}
+\contentsline {figure}{\numberline {B.1}{\ignorespaces SAE-S1 training of the reconstruction tests.}}{179}{figure.caption.113}
+\contentsline {figure}{\numberline {B.2}{\ignorespaces SRBM-S1 training of the reconstruction tests.}}{180}{figure.caption.114}
+\contentsline {figure}{\numberline {B.3}{\ignorespaces SAE-S2 training of the reconstruction tests.}}{181}{figure.caption.115}
+\contentsline {figure}{\numberline {B.4}{\ignorespaces SRBM-S2 training of the reconstruction tests.}}{182}{figure.caption.116}
+\contentsline {figure}{\numberline {B.5}{\ignorespaces SAE-S3 training of the reconstruction tests.}}{183}{figure.caption.117}
+\contentsline {figure}{\numberline {B.6}{\ignorespaces SRBM-S3 training of the reconstruction tests.}}{184}{figure.caption.118}
+\contentsline {figure}{\numberline {B.7}{\ignorespaces SAE-S4 training of the reconstruction tests.}}{185}{figure.caption.119}
+\contentsline {figure}{\numberline {B.8}{\ignorespaces SRBM-S4 training of the reconstruction tests.}}{186}{figure.caption.120}
+\contentsline {figure}{\numberline {B.9}{\ignorespaces Comparisons of solutions in training SAE using LIF.}}{187}{figure.caption.121}
+\contentsline {figure}{\numberline {B.10}{\ignorespaces Comparisons of solutions in training SRBM using LIF.}}{188}{figure.caption.122}
+\contentsline {figure}{\numberline {B.11}{\ignorespaces Trained weights of AE, same as Figure\nobreakspace {}\ref {fig:weights_ae}(a).}}{189}{figure.caption.123}
+\contentsline {figure}{\numberline {B.12}{\ignorespaces Trained weights of AE-NI, same as Figure\nobreakspace {}\ref {fig:weights_ae}(b).}}{190}{figure.caption.124}
+\contentsline {figure}{\numberline {B.13}{\ignorespaces Trained weights of SAE, same as Figure\nobreakspace {}\ref {fig:weights_ae}(c).}}{191}{figure.caption.125}
+\contentsline {figure}{\numberline {B.14}{\ignorespaces Trained weights of SAE-S2, same as Figure\nobreakspace {}\ref {fig:weights_ae}(d).}}{192}{figure.caption.126}
+\contentsline {figure}{\numberline {B.15}{\ignorespaces Trained weights of SAE-S3, same as Figure\nobreakspace {}\ref {fig:weights_ae}(e).}}{193}{figure.caption.127}
+\contentsline {figure}{\numberline {B.16}{\ignorespaces Trained weights of SAE-S4, same as Figure\nobreakspace {}\ref {fig:weights_ae}(f).}}{194}{figure.caption.128}
+\contentsline {figure}{\numberline {B.17}{\ignorespaces Trained weights of nRBM, same as Figure\nobreakspace {}\ref {fig:weights_rbm}(a).}}{195}{figure.caption.129}
+\contentsline {figure}{\numberline {B.18}{\ignorespaces Trained weights of nRBM-NI, same as Figure\nobreakspace {}\ref {fig:weights_rbm}(b).}}{196}{figure.caption.130}
+\contentsline {figure}{\numberline {B.19}{\ignorespaces Trained weights of SRBM, same as Figure\nobreakspace {}\ref {fig:weights_rbm}(c).}}{197}{figure.caption.131}
+\contentsline {figure}{\numberline {B.20}{\ignorespaces Trained weights of SRBM-S2, same as Figure\nobreakspace {}\ref {fig:weights_rbm}(d).}}{198}{figure.caption.132}
+\contentsline {figure}{\numberline {B.21}{\ignorespaces Trained weights of SRBM-S3, same as Figure\nobreakspace {}\ref {fig:weights_rbm}(e).}}{199}{figure.caption.133}
+\contentsline {figure}{\numberline {B.22}{\ignorespaces Trained weights of SRBM-S4, same as Figure\nobreakspace {}\ref {fig:weights_rbm}(f).}}{200}{figure.caption.134}

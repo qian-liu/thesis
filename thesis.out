@@ -2,107 +2,109 @@
 \BOOKMARK [0][-]{chapter*.4}{Declaration}{}% 2
 \BOOKMARK [0][-]{chapter*.5}{Copyright Statement}{}% 3
 \BOOKMARK [0][-]{chapter*.6}{Acknowledgements}{}% 4
-\BOOKMARK [0][-]{chapter.1}{Introduction}{}% 5
-\BOOKMARK [1][-]{section.1.1}{Motivation and Aims}{chapter.1}% 6
-\BOOKMARK [1][-]{section.1.2}{Thesis Statement and Hypotheses}{chapter.1}% 7
-\BOOKMARK [1][-]{section.1.3}{Contributions}{chapter.1}% 8
-\BOOKMARK [1][-]{section.1.4}{Papers and Workshops}{chapter.1}% 9
-\BOOKMARK [2][-]{subsection.1.4.1}{Papers}{section.1.4}% 10
-\BOOKMARK [2][-]{subsection.1.4.2}{Workshops}{section.1.4}% 11
-\BOOKMARK [1][-]{section.1.5}{Thesis Structure}{chapter.1}% 12
-\BOOKMARK [1][-]{section.1.6}{Summary}{chapter.1}% 13
-\BOOKMARK [0][-]{chapter.2}{Spiking Neural Networks \(SNNs\)}{}% 14
-\BOOKMARK [1][-]{section.2.1}{Biological Neural Components}{chapter.2}% 15
-\BOOKMARK [2][-]{subsection.2.1.1}{Neuron}{section.2.1}% 16
-\BOOKMARK [2][-]{subsection.2.1.2}{Neuronal Signals}{section.2.1}% 17
-\BOOKMARK [2][-]{subsection.2.1.3}{Signal Transmission}{section.2.1}% 18
-\BOOKMARK [1][-]{section.2.2}{Modelling Spiking Neurons}{chapter.2}% 19
-\BOOKMARK [2][-]{subsection.2.2.1}{Neural Dynamics}{section.2.2}% 20
-\BOOKMARK [2][-]{subsection.2.2.2}{Neuron Models}{section.2.2}% 21
-\BOOKMARK [2][-]{subsection.2.2.3}{Synapse Model}{section.2.2}% 22
-\BOOKMARK [2][-]{subsection.2.2.4}{Synaptic Plasticity}{section.2.2}% 23
-\BOOKMARK [1][-]{section.2.3}{Simulating Networks of Spiking Neurons}{chapter.2}% 24
-\BOOKMARK [2][-]{subsection.2.3.1}{Software Simulators}{section.2.3}% 25
-\BOOKMARK [2][-]{subsection.2.3.2}{Neuromorphic Hardware}{section.2.3}% 26
-\BOOKMARK [2][-]{subsection.2.3.3}{Neuromorphic Sensory and Processing Systems}{section.2.3}% 27
-\BOOKMARK [1][-]{section.2.4}{Summary}{chapter.2}% 28
-\BOOKMARK [0][-]{chapter.3}{Deep Learning}{}% 29
-\BOOKMARK [1][-]{section.3.1}{Brief Overview}{chapter.3}% 30
-\BOOKMARK [2][-]{subsection.3.1.1}{Classical Models}{section.3.1}% 31
-\BOOKMARK [2][-]{subsection.3.1.2}{Combined Approaches}{section.3.1}% 32
-\BOOKMARK [1][-]{section.3.2}{Convolutional Networks}{chapter.3}% 33
-\BOOKMARK [2][-]{subsection.3.2.1}{Network Architecture}{section.3.2}% 34
-\BOOKMARK [2][-]{subsection.3.2.2}{Backpropagation}{section.3.2}% 35
-\BOOKMARK [2][-]{subsection.3.2.3}{Activation Function and Vanishing Gradient}{section.3.2}% 36
-\BOOKMARK [1][-]{section.3.3}{Autoencoders \(AEs\)}{chapter.3}% 37
-\BOOKMARK [2][-]{subsection.3.3.1}{Structure}{section.3.3}% 38
-\BOOKMARK [2][-]{subsection.3.3.2}{Training}{section.3.3}% 39
-\BOOKMARK [1][-]{section.3.4}{Restricted Boltzmann Machines \(RBMs\)}{chapter.3}% 40
-\BOOKMARK [2][-]{subsection.3.4.1}{Energy-based Model}{section.3.4}% 41
-\BOOKMARK [2][-]{subsection.3.4.2}{Objective Function}{section.3.4}% 42
-\BOOKMARK [2][-]{subsection.3.4.3}{Contrastive Divergence}{section.3.4}% 43
-\BOOKMARK [1][-]{section.3.5}{Summary}{chapter.3}% 44
-\BOOKMARK [0][-]{chapter.4}{Off-line SNN Training}{}% 45
-\BOOKMARK [1][-]{section.4.1}{Introduction}{chapter.4}% 46
-\BOOKMARK [1][-]{section.4.2}{Related Work}{chapter.4}% 47
-\BOOKMARK [1][-]{section.4.3}{Siegert: Modelling the Response Function}{chapter.4}% 48
-\BOOKMARK [2][-]{subsection.4.3.1}{Biological Background}{section.4.3}% 49
-\BOOKMARK [2][-]{subsection.4.3.2}{Mismatch of The Siegert Function to Practice}{section.4.3}% 50
-\BOOKMARK [2][-]{subsection.4.3.3}{Noisy Softplus \(NSP\)}{section.4.3}% 51
-\BOOKMARK [1][-]{section.4.4}{Generalised Off-line SNN Training}{chapter.4}% 52
-\BOOKMARK [2][-]{subsection.4.4.1}{Mapping NSP to Concrete Physical Units}{section.4.4}% 53
-\BOOKMARK [2][-]{subsection.4.4.2}{Parametric Activation Functions \(PAFs\)}{section.4.4}% 54
-\BOOKMARK [2][-]{subsection.4.4.3}{Training Method}{section.4.4}% 55
-\BOOKMARK [2][-]{subsection.4.4.4}{Fine Tuning}{section.4.4}% 56
-\BOOKMARK [1][-]{section.4.5}{Results}{chapter.4}% 57
-\BOOKMARK [2][-]{subsection.4.5.1}{Experiment Description}{section.4.5}% 58
-\BOOKMARK [2][-]{subsection.4.5.2}{Single Neuronal Activity}{section.4.5}% 59
-\BOOKMARK [2][-]{subsection.4.5.3}{Learning Performance}{section.4.5}% 60
-\BOOKMARK [2][-]{subsection.4.5.4}{Recognition Performance}{section.4.5}% 61
-\BOOKMARK [2][-]{subsection.4.5.5}{Power Consumption}{section.4.5}% 62
-\BOOKMARK [1][-]{section.4.6}{Summary}{chapter.4}% 63
-\BOOKMARK [0][-]{chapter.5}{On-line SNN Training with SRM}{}% 64
-\BOOKMARK [1][-]{section.5.1}{Introduction}{chapter.5}% 65
-\BOOKMARK [1][-]{section.5.2}{Related Work}{chapter.5}% 66
-\BOOKMARK [1][-]{section.5.3}{Spike-based Rate Multiplication \(SRM\)}{chapter.5}% 67
-\BOOKMARK [1][-]{section.5.4}{Training Deep SNNs}{chapter.5}% 68
-\BOOKMARK [2][-]{subsection.5.4.1}{Experimental Setup}{section.5.4}% 69
-\BOOKMARK [2][-]{subsection.5.4.2}{AEs}{section.5.4}% 70
-\BOOKMARK [2][-]{subsection.5.4.3}{Noisy RBMs}{section.5.4}% 71
-\BOOKMARK [2][-]{subsection.5.4.4}{Spiking AEs}{section.5.4}% 72
-\BOOKMARK [2][-]{subsection.5.4.5}{Spiking RBMs}{section.5.4}% 73
-\BOOKMARK [1][-]{section.5.5}{Problem of Spike Correlations }{chapter.5}% 74
-\BOOKMARK [2][-]{subsection.5.5.1}{Solution 1 \(S1\): Longer STDP Window}{section.5.5}% 75
-\BOOKMARK [2][-]{subsection.5.5.2}{Solution 2 \(S2\): Noisy Threshold}{section.5.5}% 76
-\BOOKMARK [2][-]{subsection.5.5.3}{Solution 3 \(S3\): Teaching Signal}{section.5.5}% 77
-\BOOKMARK [2][-]{subsection.5.5.4}{Combined Solutions \(S4\)}{section.5.5}% 78
-\BOOKMARK [1][-]{section.5.6}{Case Study}{chapter.5}% 79
-\BOOKMARK [2][-]{subsection.5.6.1}{Experimental Setup}{section.5.6}% 80
-\BOOKMARK [2][-]{subsection.5.6.2}{Trained Weights}{section.5.6}% 81
-\BOOKMARK [2][-]{subsection.5.6.3}{Classification Accuracy}{section.5.6}% 82
-\BOOKMARK [2][-]{subsection.5.6.4}{Reconstruction}{section.5.6}% 83
-\BOOKMARK [1][-]{section.5.7}{Summary}{chapter.5}% 84
-\BOOKMARK [0][-]{chapter.6}{Benchmarking Neuromorphic Vision}{}% 85
-\BOOKMARK [1][-]{section.6.1}{Introduction}{chapter.6}% 86
-\BOOKMARK [1][-]{section.6.2}{Related Work}{chapter.6}% 87
-\BOOKMARK [1][-]{section.6.3}{NE Dataset}{chapter.6}% 88
-\BOOKMARK [2][-]{subsection.6.3.1}{Guiding Principles}{section.6.3}% 89
-\BOOKMARK [2][-]{subsection.6.3.2}{The Dataset: NE15-MNIST}{section.6.3}% 90
-\BOOKMARK [2][-]{subsection.6.3.3}{Data Description}{section.6.3}% 91
-\BOOKMARK [1][-]{section.6.4}{Performance Evaluation}{chapter.6}% 92
-\BOOKMARK [2][-]{subsection.6.4.1}{Model-level Evaluation}{section.6.4}% 93
-\BOOKMARK [2][-]{subsection.6.4.2}{Hardware-level Evaluation}{section.6.4}% 94
-\BOOKMARK [1][-]{section.6.5}{Results}{chapter.6}% 95
-\BOOKMARK [2][-]{subsection.6.5.1}{Training}{section.6.5}% 96
-\BOOKMARK [2][-]{subsection.6.5.2}{Testing}{section.6.5}% 97
-\BOOKMARK [2][-]{subsection.6.5.3}{Evaluation}{section.6.5}% 98
-\BOOKMARK [1][-]{section.6.6}{Summary}{chapter.6}% 99
-\BOOKMARK [0][-]{chapter.7}{Conclusion and Future Work}{}% 100
-\BOOKMARK [1][-]{section.7.1}{Confirming Research Hypotheses}{chapter.7}% 101
-\BOOKMARK [1][-]{section.7.2}{Future Work}{chapter.7}% 102
-\BOOKMARK [2][-]{subsection.7.2.1}{Off-line SNN Training}{section.7.2}% 103
-\BOOKMARK [2][-]{subsection.7.2.2}{On-line Biologically-plausible Learning}{section.7.2}% 104
-\BOOKMARK [2][-]{subsection.7.2.3}{Evaluation on Neuromorphic Vision}{section.7.2}% 105
-\BOOKMARK [1][-]{section.7.3}{Closing Remarks}{chapter.7}% 106
-\BOOKMARK [0][-]{appendix.A}{Detailed Derivation Process of Equations}{}% 107
-\BOOKMARK [0][-]{appendix.B}{Detailed Experimental Results}{}% 108
+\BOOKMARK [0][-]{chapter*.7}{List of Acronyms}{}% 5
+\BOOKMARK [0][-]{chapter*.8}{List of Symbols}{}% 6
+\BOOKMARK [0][-]{chapter.1}{Introduction}{}% 7
+\BOOKMARK [1][-]{section.1.1}{Motivation and Aims}{chapter.1}% 8
+\BOOKMARK [1][-]{section.1.2}{Thesis Statement and Hypotheses}{chapter.1}% 9
+\BOOKMARK [1][-]{section.1.3}{Contributions}{chapter.1}% 10
+\BOOKMARK [1][-]{section.1.4}{Papers and Workshops}{chapter.1}% 11
+\BOOKMARK [2][-]{subsection.1.4.1}{Papers}{section.1.4}% 12
+\BOOKMARK [2][-]{subsection.1.4.2}{Workshops}{section.1.4}% 13
+\BOOKMARK [1][-]{section.1.5}{Thesis Structure}{chapter.1}% 14
+\BOOKMARK [1][-]{section.1.6}{Summary}{chapter.1}% 15
+\BOOKMARK [0][-]{chapter.2}{Spiking Neural Networks \(SNNs\)}{}% 16
+\BOOKMARK [1][-]{section.2.1}{Biological Neural Components}{chapter.2}% 17
+\BOOKMARK [2][-]{subsection.2.1.1}{Neuron}{section.2.1}% 18
+\BOOKMARK [2][-]{subsection.2.1.2}{Neuronal Signals}{section.2.1}% 19
+\BOOKMARK [2][-]{subsection.2.1.3}{Signal Transmission}{section.2.1}% 20
+\BOOKMARK [1][-]{section.2.2}{Modelling Spiking Neurons}{chapter.2}% 21
+\BOOKMARK [2][-]{subsection.2.2.1}{Neural Dynamics}{section.2.2}% 22
+\BOOKMARK [2][-]{subsection.2.2.2}{Neuron Models}{section.2.2}% 23
+\BOOKMARK [2][-]{subsection.2.2.3}{Synapse Model}{section.2.2}% 24
+\BOOKMARK [2][-]{subsection.2.2.4}{Synaptic Plasticity}{section.2.2}% 25
+\BOOKMARK [1][-]{section.2.3}{Simulating Networks of Spiking Neurons}{chapter.2}% 26
+\BOOKMARK [2][-]{subsection.2.3.1}{Software Simulators}{section.2.3}% 27
+\BOOKMARK [2][-]{subsection.2.3.2}{Neuromorphic Hardware}{section.2.3}% 28
+\BOOKMARK [2][-]{subsection.2.3.3}{Neuromorphic Sensory and Processing Systems}{section.2.3}% 29
+\BOOKMARK [1][-]{section.2.4}{Summary}{chapter.2}% 30
+\BOOKMARK [0][-]{chapter.3}{Deep Learning}{}% 31
+\BOOKMARK [1][-]{section.3.1}{Brief Overview}{chapter.3}% 32
+\BOOKMARK [2][-]{subsection.3.1.1}{Classical Models}{section.3.1}% 33
+\BOOKMARK [2][-]{subsection.3.1.2}{Combined Approaches}{section.3.1}% 34
+\BOOKMARK [1][-]{section.3.2}{Convolutional Networks}{chapter.3}% 35
+\BOOKMARK [2][-]{subsection.3.2.1}{Network Architecture}{section.3.2}% 36
+\BOOKMARK [2][-]{subsection.3.2.2}{Backpropagation}{section.3.2}% 37
+\BOOKMARK [2][-]{subsection.3.2.3}{Activation Function and Vanishing Gradient}{section.3.2}% 38
+\BOOKMARK [1][-]{section.3.3}{Autoencoders \(AEs\)}{chapter.3}% 39
+\BOOKMARK [2][-]{subsection.3.3.1}{Structure}{section.3.3}% 40
+\BOOKMARK [2][-]{subsection.3.3.2}{Training}{section.3.3}% 41
+\BOOKMARK [1][-]{section.3.4}{Restricted Boltzmann Machines \(RBMs\)}{chapter.3}% 42
+\BOOKMARK [2][-]{subsection.3.4.1}{Energy-based Model}{section.3.4}% 43
+\BOOKMARK [2][-]{subsection.3.4.2}{Objective Function}{section.3.4}% 44
+\BOOKMARK [2][-]{subsection.3.4.3}{Contrastive Divergence}{section.3.4}% 45
+\BOOKMARK [1][-]{section.3.5}{Summary}{chapter.3}% 46
+\BOOKMARK [0][-]{chapter.4}{Off-line SNN Training}{}% 47
+\BOOKMARK [1][-]{section.4.1}{Introduction}{chapter.4}% 48
+\BOOKMARK [1][-]{section.4.2}{Related Work}{chapter.4}% 49
+\BOOKMARK [1][-]{section.4.3}{Siegert: Modelling the Response Function}{chapter.4}% 50
+\BOOKMARK [2][-]{subsection.4.3.1}{Biological Background}{section.4.3}% 51
+\BOOKMARK [2][-]{subsection.4.3.2}{Mismatch of The Siegert Function to Practice}{section.4.3}% 52
+\BOOKMARK [2][-]{subsection.4.3.3}{Noisy Softplus \(NSP\)}{section.4.3}% 53
+\BOOKMARK [1][-]{section.4.4}{Generalised Off-line SNN Training}{chapter.4}% 54
+\BOOKMARK [2][-]{subsection.4.4.1}{Mapping NSP to Concrete Physical Units}{section.4.4}% 55
+\BOOKMARK [2][-]{subsection.4.4.2}{Parametric Activation Functions \(PAFs\)}{section.4.4}% 56
+\BOOKMARK [2][-]{subsection.4.4.3}{Training Method}{section.4.4}% 57
+\BOOKMARK [2][-]{subsection.4.4.4}{Fine Tuning}{section.4.4}% 58
+\BOOKMARK [1][-]{section.4.5}{Results}{chapter.4}% 59
+\BOOKMARK [2][-]{subsection.4.5.1}{Experiment Description}{section.4.5}% 60
+\BOOKMARK [2][-]{subsection.4.5.2}{Single Neuronal Activity}{section.4.5}% 61
+\BOOKMARK [2][-]{subsection.4.5.3}{Learning Performance}{section.4.5}% 62
+\BOOKMARK [2][-]{subsection.4.5.4}{Recognition Performance}{section.4.5}% 63
+\BOOKMARK [2][-]{subsection.4.5.5}{Power Consumption}{section.4.5}% 64
+\BOOKMARK [1][-]{section.4.6}{Summary}{chapter.4}% 65
+\BOOKMARK [0][-]{chapter.5}{On-line SNN Training with SRM}{}% 66
+\BOOKMARK [1][-]{section.5.1}{Introduction}{chapter.5}% 67
+\BOOKMARK [1][-]{section.5.2}{Related Work}{chapter.5}% 68
+\BOOKMARK [1][-]{section.5.3}{Spike-based Rate Multiplication \(SRM\)}{chapter.5}% 69
+\BOOKMARK [1][-]{section.5.4}{Training Deep SNNs}{chapter.5}% 70
+\BOOKMARK [2][-]{subsection.5.4.1}{Experimental Setup}{section.5.4}% 71
+\BOOKMARK [2][-]{subsection.5.4.2}{AEs}{section.5.4}% 72
+\BOOKMARK [2][-]{subsection.5.4.3}{Noisy RBMs}{section.5.4}% 73
+\BOOKMARK [2][-]{subsection.5.4.4}{Spiking AEs}{section.5.4}% 74
+\BOOKMARK [2][-]{subsection.5.4.5}{Spiking RBMs}{section.5.4}% 75
+\BOOKMARK [1][-]{section.5.5}{Problem of Spike Correlations}{chapter.5}% 76
+\BOOKMARK [2][-]{subsection.5.5.1}{Solution 1 \(S1\): Longer STDP Window}{section.5.5}% 77
+\BOOKMARK [2][-]{subsection.5.5.2}{Solution 2 \(S2\): Noisy Threshold}{section.5.5}% 78
+\BOOKMARK [2][-]{subsection.5.5.3}{Solution 3 \(S3\): Teaching Signal}{section.5.5}% 79
+\BOOKMARK [2][-]{subsection.5.5.4}{Combined Solutions \(S4\)}{section.5.5}% 80
+\BOOKMARK [1][-]{section.5.6}{Case Study}{chapter.5}% 81
+\BOOKMARK [2][-]{subsection.5.6.1}{Experimental Setup}{section.5.6}% 82
+\BOOKMARK [2][-]{subsection.5.6.2}{Trained Weights}{section.5.6}% 83
+\BOOKMARK [2][-]{subsection.5.6.3}{Classification Accuracy}{section.5.6}% 84
+\BOOKMARK [2][-]{subsection.5.6.4}{Reconstruction}{section.5.6}% 85
+\BOOKMARK [1][-]{section.5.7}{Summary}{chapter.5}% 86
+\BOOKMARK [0][-]{chapter.6}{Benchmarking Neuromorphic Vision}{}% 87
+\BOOKMARK [1][-]{section.6.1}{Introduction}{chapter.6}% 88
+\BOOKMARK [1][-]{section.6.2}{Related Work}{chapter.6}% 89
+\BOOKMARK [1][-]{section.6.3}{NE Dataset}{chapter.6}% 90
+\BOOKMARK [2][-]{subsection.6.3.1}{Guiding Principles}{section.6.3}% 91
+\BOOKMARK [2][-]{subsection.6.3.2}{The Dataset: NE15-MNIST}{section.6.3}% 92
+\BOOKMARK [2][-]{subsection.6.3.3}{Data Description}{section.6.3}% 93
+\BOOKMARK [1][-]{section.6.4}{Performance Evaluation}{chapter.6}% 94
+\BOOKMARK [2][-]{subsection.6.4.1}{Model-level Evaluation}{section.6.4}% 95
+\BOOKMARK [2][-]{subsection.6.4.2}{Hardware-level Evaluation}{section.6.4}% 96
+\BOOKMARK [1][-]{section.6.5}{Results}{chapter.6}% 97
+\BOOKMARK [2][-]{subsection.6.5.1}{Training}{section.6.5}% 98
+\BOOKMARK [2][-]{subsection.6.5.2}{Testing}{section.6.5}% 99
+\BOOKMARK [2][-]{subsection.6.5.3}{Evaluation}{section.6.5}% 100
+\BOOKMARK [1][-]{section.6.6}{Summary}{chapter.6}% 101
+\BOOKMARK [0][-]{chapter.7}{Conclusion and Future Work}{}% 102
+\BOOKMARK [1][-]{section.7.1}{Confirming Research Hypotheses}{chapter.7}% 103
+\BOOKMARK [1][-]{section.7.2}{Future Work}{chapter.7}% 104
+\BOOKMARK [2][-]{subsection.7.2.1}{Off-line SNN Training}{section.7.2}% 105
+\BOOKMARK [2][-]{subsection.7.2.2}{On-line Biologically-plausible Learning}{section.7.2}% 106
+\BOOKMARK [2][-]{subsection.7.2.3}{Evaluation on Neuromorphic Vision}{section.7.2}% 107
+\BOOKMARK [1][-]{section.7.3}{Closing Remarks}{chapter.7}% 108
+\BOOKMARK [0][-]{appendix.A}{Detailed Derivation Process of Equations}{}% 109
+\BOOKMARK [0][-]{appendix.B}{Detailed Experimental Results}{}% 110

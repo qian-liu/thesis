@@ -265,22 +265,32 @@ Thus the model can be employed to simulate large-scale brain models comprising r
 
 The membrane potential evolves in accordance with a pair of differential equations:
 \begin{equation}
-\begin{aligned}
-\dfrac{\D v}{\D t} &= 0.04v^2 + 5v + 140 - u - I(t)~,\\[10pt]
-\dfrac{\D u}{\D t} &= a(bv - u)~,
+\DIFdelbegin %DIFDELCMD < \begin{aligned}
+%DIFDELCMD < \dfrac{\D v}{\D t} &= 0.04v^2 + 5v + 140 - u - I(t)~,\\[10pt]
+%DIFDELCMD < \dfrac{\D u}{\D t} &= a(bv - u)~,
+%DIFDELCMD < \end{aligned}
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \begin{aligned}
+\dfrac{\D V}{\D t} &= 0.04V^2 + 5V + 140 - u - I(t)~,\\[10pt]
+\dfrac{\D u}{\D t} &= a(bV - u)~,
 \end{aligned}
-\end{equation}
-where $v$ is the membrane potential and $u$ represents the membrane recovery which negatively feeds back to $v$.
+\DIFaddend \end{equation}
+where \DIFdelbegin \DIFdel{$v$ }\DIFdelend \DIFaddbegin \DIFadd{$V$ }\DIFaddend is the membrane potential and $u$ represents the membrane recovery which negatively feeds back to \DIFdelbegin \DIFdel{$v$}\DIFdelend \DIFaddbegin \DIFadd{$V$}\DIFaddend .
 
 In terms of spike generation, the initiation part of an activation potential is produced by the equations, but a resetting scheme is needed:
 \begin{equation}
 \left\{
-\begin{aligned}
-v &= c \\
+\DIFdelbegin %DIFDELCMD < \begin{aligned}
+%DIFDELCMD < v &= c \\
+%DIFDELCMD < u &= u + d
+%DIFDELCMD < \end{aligned}
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \begin{aligned}
+V &= c \\
 u &= u + d
 \end{aligned}
-\right.
-\textrm{~~~~when~} v \geq 30.
+\DIFaddend \right.
+\textrm{~~~~when~} \DIFdelbegin \DIFdel{v }\DIFdelend \DIFaddbegin \DIFadd{V }\DIFaddend \geq 30.
 \end{equation}  
 Parameters $a$, $b$, $c$, and $d$ are constant, which can be configured to reproduce various neural dynamics of real biological neurons~\citep{izhikevich2004model}.
 

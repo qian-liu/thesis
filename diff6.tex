@@ -84,7 +84,7 @@ In this study's largest configuration, a network of 74,210 neurons and 15,216,51
 Spike-Timing-Dependent Plasticity (STDP) as a learning mechanism based on biological observations has been applied to vision tasks.
 As mentioned in Chapter~\ref{cha:intro}, these models typically comprise only two neural layers and exploit STDP and/or Winner-Take-All~(WTA) circuits on the synaptic connections.
 \citet{bichler2012extraction} demonstrated an unsupervised STDP learning model to classify car trajectories captured with a DVS retina. 
-A similar model trained with STDP using a winner-take-all~(WTA) circuit was tested on a Poissonian spike presentation of the MNIST dataset achieving a performance of 95.0\%~\citep{diehl2015unsupervised}.
+A similar model trained with STDP using a \DIFdelbegin \DIFdel{winner-take-all~(WTA ) }\DIFdelend \DIFaddbegin \DIFadd{WTA }\DIFaddend circuit was tested on a Poissonian spike presentation of the MNIST dataset achieving a performance of 95.0\%~\citep{diehl2015unsupervised}.
 %Theoretical analysis~\citep{nessler2013bayesian} showed that unsupervised STDP was able to approximate a stochastic version of Expectation Maximisation, a powerful learning algorithm in machine learning.
 Another STDP trained model tested on computer simulation reached a 93.3\% CA on MNIST and had the potential to be implemented using memristors~\citep{bill2014compound}. 
 Adding synaptic internal state enabled STDP to work on bistable synapses, and this method achieved the best performance of 96.5\% among similar network architectures\DIFaddbegin \DIFadd{~\mbox{%DIFAUXCMD
@@ -189,7 +189,7 @@ The spike trains are in the format of Address-Event Representation~(AER)~\citep{
 AER was originally proposed as a time-multiplexed spike communication protocol where each time a neuron produces a spike an event is generated that codes the spiking neuron's address on a fast time-multiplexed digital bus.
 The recorded AER data consists of a list of events, each one containing the time stamp of a spike and the address of the neuron which generated the spike.
 With the NE dataset we hope:
- \begin{itemize} 
+\begin{itemize}
 	\item \textit{to promote meaningful comparisons between algorithms and neuromorphic platforms in the field of NE.}
 	The NE dataset provides a unified format of AER data to meet the demands of spike-based visual stimuli.
 	It also encourages researchers to publish and contribute their data to build up the NE dataset.
@@ -207,7 +207,7 @@ With the NE dataset we hope:
 	The development of the dataset and its evaluation methodology will introduce new challenges for the \DIFdelbegin \DIFdel{neuromorphic engineering }\DIFdelend \DIFaddbegin \DIFadd{NE }\DIFaddend community.
 	However, these must represent an appropriate degree of difficulty: a too-easily-solved problem turns into a tuning competition, while a problem that is too difficult will not yield meaningful assessment.
 	So suitable problems should continuously be added to promote future research.  
- \end{itemize} 
+\end{itemize}
 
 
 \subsection{The Dataset: NE15-MNIST}
@@ -218,7 +218,7 @@ NE15-MNIST is the spiking version of an original non-spiking dataset which was d
 Due to its straightforward target of classifying real-world images, the plain format of the binary data and simple patterns, MNIST has been one of the most popular datasets in computer vision for over 20 years.
 MNIST is a popular task among the neuromorphic vision research community.
 The converted MNIST dataset consists of four subsets which were generated for different purposes:
- \begin{itemize} 
+\begin{itemize}
 	\item \textit{Poissonian},
 	which encodes each pixel as a Poisson spike train and is intended for benchmarking existing rate-based SNN models.
 	\item \textit{FoCal~(Filter Overlap Correction ALgorithm)},
@@ -229,7 +229,7 @@ The converted MNIST dataset consists of four subsets which were generated for di
 	\item \textit{DVS recorded moving input},
 	to trigger the study of algorithms targeting continuous input from real-world sensors for implementation, for example, on mobile neuromorphic robots.
 	\DIFaddbegin \DIFadd{This subset is contributed by our cooperator Teresa Serrano-Gotarredona.
-}\DIFaddend  \end{itemize} 
+}\DIFaddend \end{itemize}
 The dataset is published in the GitHub: \url{https://github.com/NEvision/NE15}.
 \subsection{Data Description}
 Two file formats are supported in the dataset: the jAER format~\citep{delbruck2008frame} (.dat or .aedat), and binary files in NumPy~\citep{numpyPython} (.npy) format.
@@ -262,9 +262,9 @@ The duration of the artificially-generated data can be configured using the Pyth
 	\includegraphics[width=0.8\textwidth]{pics_bench/fig1.jpg}
 	\caption[Snapshots of the jAER software.]{
 		Snapshots of the jAER software displaying spike-encoded videos.
-		The same image of digit `0' is transformed into spikes by \DIFaddbeginFL \DIFaddFL{DVS recording and Poisson generation, where }\DIFaddendFL (a) \DIFdelbeginFL \DIFdelFL{DVS recording }\DIFdelendFL and (b) \DIFdelbeginFL \DIFdelFL{Poisson generation}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{show the snapshots of the jAER software.
-		They visualise the spike counts for each pixel of an image}\DIFaddendFL .
-		(c) A raster plot of the Poisson spike trains.}
+		The same image of digit `0' is transformed into spikes by \DIFaddbeginFL \DIFaddFL{DVS recording and Poisson generation, where }\DIFaddendFL (a) \DIFdelbeginFL \DIFdelFL{DVS recording }\DIFdelendFL and (b) \DIFdelbeginFL \DIFdelFL{Poisson generation}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{show the snapshots of the jAER software}\DIFaddendFL .
+		\DIFaddbeginFL \DIFaddFL{They visualise the spike counts for each pixel of an image.
+		}\DIFaddendFL (c) A raster plot of the Poisson spike trains.}
 	\label{fig:zero}
 \end{figure}
 
@@ -341,7 +341,7 @@ Rank-ordered spike trains have been used in vision tasks under a biological plau
 %	\label{tab-kernel-specs}
 %\end{table}
 %
-Rank order coding (ROC) can be performed using an algorithm known as the
+Rank \DIFdelbegin \DIFdel{order coding }\DIFdelend \DIFaddbegin \DIFadd{Order Coding }\DIFaddend (ROC) can be performed using an algorithm known as the
 {FoCal algorithm~\citep{sen2009evaluating}}.
 This algorithm models the foveola, the highest resolution area of the retina, with four ganglion cell layers each with a different scale of centre-surround receptive field~\citep{kolb2003retina}.
 The detailed description of the algorithm was demonstrated by Garibaldi~Pineda-Garc\'ia\, in the published paper~\citep{liu2016bench} and the source Python scripts to transform images to ROC spike trains, and to convert the results into AER and PyNN spike source arrays, can be found in the dataset website.
@@ -893,6 +893,36 @@ For simplicity of describing the system, a set of standard configuration is used
 	%\egroup
 	\label{tbl:pynnSetting}
 \end{table}
+%DIF > \begin{table}[hbbp]
+%DIF > 	\centering
+%DIF > 	\caption[LIF parameter setting using PyNN.]{Parameter setting for the current-based LIF neurons using PyNN.}
+%DIF > 	\bgroup
+%DIF > 	\def\arraystretch{1.4}
+%DIF > 	\begin{tabular}{c c c}
+%DIF > 		%\hline
+%DIF > 		Parameters & Values & Units \\
+%DIF > 		\hline
+%DIF > 		cm & 0.25 & nF	\\
+%DIF > 		%\hline
+%DIF > 		tau\_m & 20.0 & ms\\
+%DIF > 		%\hline
+%DIF > 		tau\_refrac & 2.0 & ms\\
+%DIF > 		%\hline
+%DIF > 		%  tau\_syn\_E & 1.0 & ms\\
+%DIF > 		%  %\hline
+%DIF > 		%  tau\_syn\_I & 1.0 & ms\\
+%DIF > 		%  %\hline
+%DIF > 		v\_reset & -70.0 & mV\\
+%DIF > 		%\hline
+%DIF > 		v\_rest & -65.0 & mV\\
+%DIF > 		%\hline
+%DIF > 		v\_thresh & -50.0 & mV\\
+%DIF > 		%\hline
+%DIF > 		i\_offset & 0.0 & mV\\
+%DIF > 	\end{tabular}
+%DIF > 	\egroup
+%DIF > 	\label{tbl:pynnSetting}
+%DIF > \end{table}
 
 \subsection{Training}
 There are two layers in the model: 28$\times$28 input neurons fully connect to 100 decision neurons.
@@ -1307,8 +1337,8 @@ This example demonstrates a recommended way of using the dataset, describing the
 %They provide a baseline for comparisons and encourage improved algorithms and models to make use of the dataset.
 The case study provides a baseline for robust comparisons for SNN models and their hardware implementations, and also  validates the feasibility of the database and its evaluation methodology.
 
-
-%It contains spike-based versions of existing widely-used databases in the vision recognition field.
+\DIFaddbegin \DIFadd{Building up this dataset is a team work, I claim my own contributions are two sunsets of the dataset out of four, the complementary evaluation methodology and the on-line learning case study.
+}\DIFaddend %It contains spike-based versions of existing widely-used databases in the vision recognition field.
 %Since new problems will continue to arise before vision becomes a solved question, the dataset will evolve as research progresses. 
 %The conversion methods for transforming images and videos into spike trains will advance. The number of vision datasets will increase and the corresponding evaluation methodologies will evolve.
 %The dataset aims to provide unified spike-based vision benchmarks and complementary evaluation methodologies to assess the performance of SNN algorithms.
